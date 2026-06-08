@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors - Deep Navy for authority and trust */
+  --color-navy-900: #0A192F;
+  --color-navy-800: #112240;
+  --color-navy-700: #1E3A8A;
+
+  /* Background Colors - Clean and readable */
+  --color-paper-white: #FFFFFF;
+  --color-paper-gray: #F8F9FA;
+
+  /* Text Colors - Charcoal instead of pure black to reduce eye strain */
+  --color-charcoal-900: #1A1A1A;
+  --color-charcoal-700: #333333;
+  --color-charcoal-500: #666666;
+
+  /* Accent Colors - For buttons, links, and highlighting important items */
+  --color-accent-blue: #2563EB;
+  --color-accent-gold: #D4AF37;
+}
+
+/* Optional: Set the default base styles for the whole website */
+@layer base {
+  body {
+    background-color: var(--color-paper-gray);
+    color: var(--color-charcoal-700);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-navy-900);
+  }
+}
+
+@layer components {
+  .card-base {
+    background-color: var(--color-paper-white);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(10,25,47,0.04);
+    box-shadow: 0 10px 30px rgba(10,25,47,0.08);
+  }
+
+  .heading-primary {
+    color: var(--color-accent-gold);
+    font-weight: 700;
+  }
+}
