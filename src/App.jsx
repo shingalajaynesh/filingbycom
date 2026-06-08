@@ -33,7 +33,7 @@ export default function App() {
       <div className="min-h-screen bg-slate-50">
         <Navigation />
         <Routes>
-          <Route path="/" element={isAuthenticated ? <MainPage /> : <Login onAuthenticated={() => setIsAuthenticated(true)} />} />
+          <Route path="/" element={isAuthenticated ? <MainPage /> : <Login onAuthenticated={() => setIsAuthenticated(false)} />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
