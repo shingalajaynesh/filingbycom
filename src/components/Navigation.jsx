@@ -17,16 +17,16 @@ export default function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
-      <div className="mx-auto max-w-screen-xl px-4 lg:px-8">
+      <div className="mx-auto  px-4 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          <div className="flex-shrink-0">
+          <div>
             <a href="/" className="flex items-center rounded-xl bg-blue-50 px-3 py-1.5">
               <span className="text-xl font-bold text-[#1A56DB]">FilingBy</span>
               <span className="text-xl font-bold text-[#F97316]">.com</span>
             </a>
           </div>
 
-          <nav className="hidden flex-1 items-center justify-center lg:flex">
+          <nav className="hidden flex-1 items-center justify-center min-[1499px]:flex">
             <ul className="m-0 flex list-none items-center p-0">
               {navData.map((category, index) => (
                 <li
@@ -46,7 +46,7 @@ export default function Navigation() {
 
                   {open === category.id && (
                     <div
-                      className={`absolute top-full z-[999] ${index < 2 ? 'left-0' : index >= navData.length - 2 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}
+                      className={`absolute top-full ${index < 2 ? 'left-0' : index >= navData.length - 2 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}
                       style={{ paddingTop: '4px' }}
                     >
                       <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl" style={{ minWidth: 'min(480px, calc(100vw - 2rem))', maxWidth: '700px' }}>
@@ -80,22 +80,22 @@ export default function Navigation() {
             </ul>
           </nav>
 
-          <div className="flex flex-shrink-0 items-center gap-2">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => navigate('/login')}
-              className="hidden rounded-full border border-gray-300 px-4 py-1.5 text-[12px] font-medium text-gray-700 transition-all hover:border-blue-500 hover:text-blue-600 lg:block"
+              className="hidden rounded-full border border-gray-300 px-4 py-1.5 text-[12px] font-medium text-gray-700 transition-all hover:border-blue-500 hover:text-blue-600 min-[1499px]:block"
             >
               Login
             </button>
             <button
               onClick={() => navigate('/register')}
-              className="hidden rounded-full bg-[#1A56DB] px-4 py-1.5 text-[12px] font-medium text-white transition-all hover:bg-blue-700 lg:block whitespace-nowrap"
+              className="hidden rounded-full bg-[#1A56DB] px-4 py-1.5 text-[12px] font-medium text-white transition-all hover:bg-blue-700 min-[1499px]:block whitespace-nowrap"
             >
               Get Started
             </button>
 
             <button
-              className="rounded-lg p-2 transition-colors hover:bg-gray-100 lg:hidden"
+              className="hidden rounded-lg p-2 transition-colors hover:bg-gray-100 max-[1499px]:block"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? (
@@ -113,12 +113,12 @@ export default function Navigation() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 top-16 z-[998] overflow-y-auto bg-white lg:hidden">
+        <div className="fixed inset-0 top-16  overflow-y-auto bg-white max-[1499px]:block">
           <div className="space-y-1 px-4 py-4">
             {navData.map((category) => (
               <div key={category.id} className="border-b border-gray-100">
                 <button
-                  className="flex min-h-[52px] w-full items-center justify-between px-3 py-3 font-semibold text-gray-800 hover:text-blue-600"
+                  className="flex  w-full items-center justify-between px-3 py-3 font-semibold text-gray-800 hover:text-blue-600"
                   onClick={() => setMobileOpenCategory(mobileOpenCategory === category.id ? null : category.id)}
                 >
                   <span>{category.icon} {category.label}</span>
@@ -139,7 +139,7 @@ export default function Navigation() {
                               setMobileOpen(false);
                               setMobileOpenCategory(null);
                             }}
-                            className="min-h-[44px] w-full rounded-lg px-5 py-2.5 text-left text-sm text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                            className=" w-full rounded-lg px-5 py-2.5 text-left text-sm text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
                           >
                             {item.label}
                           </button>
