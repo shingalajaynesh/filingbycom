@@ -22,15 +22,54 @@
 
 /* Optional: Set the default base styles for the whole website */
 @layer base {
-  body {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
     background-color: var(--color-paper-gray);
     color: var(--color-charcoal-700);
     font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
   
   h1, h2, h3, h4, h5, h6 {
     color: var(--color-navy-900);
   }
+}
+
+/* WhatsApp Blob Button */
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0.2); }
+  100% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+}
+
+@keyframes wa-blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 40% 70% 60% 40%; }
+  75% { border-radius: 40% 60% 60% 40% / 60% 40% 60% 50%; }
+}
+
+.wa-blob-btn {
+  animation: wa-blob 4s ease-in-out infinite, wa-pulse 2s ease-in-out infinite;
+}
+
+@keyframes wa-ring {
+  0% { transform: rotate(0deg) scale(1); }
+  10% { transform: rotate(-10deg) scale(1.1); }
+  20% { transform: rotate(10deg) scale(1.1); }
+  30% { transform: rotate(-8deg) scale(1.05); }
+  40% { transform: rotate(8deg) scale(1.05); }
+  50% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.wa-icon-ring {
+  animation: wa-ring 3s ease-in-out infinite;
+  display: inline-block;
 }
 
 @layer components {

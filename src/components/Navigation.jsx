@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { navData } from '../data/navigation.js';
 
@@ -7,6 +7,13 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOpenCategory, setMobileOpenCategory] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : 'unset';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
@@ -21,7 +28,7 @@ export default function Navigation() {
 
           <nav className="hidden flex-1 items-center justify-center lg:flex">
             <ul className="m-0 flex list-none items-center p-0">
-              {navData.map((category) => (
+              {navData.map((category, index) => (
                 <li
                   key={category.id}
                   className="relative"
@@ -38,8 +45,11 @@ export default function Navigation() {
                   </button>
 
                   {open === category.id && (
-                    <div className="absolute left-1/2 top-full z-[999] -translate-x-1/2" style={{ paddingTop: '4px' }}>
-                      <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl" style={{ minWidth: '480px', maxWidth: '700px' }}>
+                    <div
+                      className={`absolute top-full z-[999] ${index < 2 ? 'left-0' : index >= navData.length - 2 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}
+                      style={{ paddingTop: '4px' }}
+                    >
+                      <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl" style={{ minWidth: 'min(480px, calc(100vw - 2rem))', maxWidth: '700px' }}>
                         <div className="grid gap-5" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 3)}, 1fr)` }}>
                           {category.sections.map((section) => (
                             <div key={section.heading}>
@@ -108,7 +118,7 @@ export default function Navigation() {
             {navData.map((category) => (
               <div key={category.id} className="border-b border-gray-100">
                 <button
-                  className="flex w-full items-center justify-between px-3 py-3 font-semibold text-gray-800 hover:text-blue-600"
+                  className="flex min-h-[52px] w-full items-center justify-between px-3 py-3 font-semibold text-gray-800 hover:text-blue-600"
                   onClick={() => setMobileOpenCategory(mobileOpenCategory === category.id ? null : category.id)}
                 >
                   <span>{category.icon} {category.label}</span>
@@ -129,7 +139,7 @@ export default function Navigation() {
                               setMobileOpen(false);
                               setMobileOpenCategory(null);
                             }}
-                            className="w-full rounded-lg px-3 py-2 text-left text-sm text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                            className="min-h-[44px] w-full rounded-lg px-5 py-2.5 text-left text-sm text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
                           >
                             {item.label}
                           </button>
@@ -140,9 +150,9 @@ export default function Navigation() {
                 )}
               </div>
             ))}
-            <div className="flex gap-3 pt-4 pb-8">
-              <button onClick={() => { navigate('/login'); setMobileOpen(false); }} className="flex-1 rounded-full border border-gray-300 py-2.5 text-sm font-medium">Login</button>
-              <button onClick={() => { navigate('/register'); setMobileOpen(false); }} className="flex-1 rounded-full bg-[#1A56DB] py-2.5 text-sm font-medium text-white">Get Started</button>
+            <div className="flex flex-col gap-3 pt-4 pb-8">
+              <button onClick={() => { navigate('/login'); setMobileOpen(false); }} className="w-full rounded-full border border-gray-300 py-3 text-base font-medium">Login</button>
+              <button onClick={() => { navigate('/register'); setMobileOpen(false); }} className="w-full rounded-full bg-[#1A56DB] py-3 text-base font-medium text-white">Get Started</button>
             </div>
           </div>
         </div>
