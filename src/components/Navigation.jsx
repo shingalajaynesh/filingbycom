@@ -36,7 +36,7 @@ export default function Navigation() {
                   onMouseLeave={() => setOpen(null)}
                 >
                   <button
-                    className={`flex items-center gap-1 rounded-full px-2.5 py-2 text-[11.5px] font-medium whitespace-nowrap transition-all duration-150 ${open === category.id ? 'bg-blue-50 text-[#1A56DB]' : 'text-gray-600 hover:bg-blue-50 hover:text-[#1A56DB]'}`}
+                    className={`flex items-center gap-1 rounded-full px-2.5 py-2 text-[11.5px] font-bold whitespace-nowrap text-black transition-all duration-150 ${open === category.id ? 'bg-blue-50' : 'hover:bg-blue-50 hover:text-[#1A56DB]'}`}
                   >
                     {category.label}
                     <svg className="h-3 w-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,7 +53,7 @@ export default function Navigation() {
                         <div className="grid gap-5" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 3)}, 1fr)` }}>
                           {category.sections.map((section) => (
                             <div key={section.heading}>
-                              <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">{section.heading}</p>
+                              <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-black">{section.heading}</p>
                               <ul className="space-y-0.5">
                                 {section.items.map((item) => (
                                   <li key={item.slug}>
@@ -62,7 +62,7 @@ export default function Navigation() {
                                         navigate(`/services/${item.slug}`);
                                         setOpen(null);
                                       }}
-                                      className="w-full rounded-lg px-2 py-1.5 text-left text-[12px] text-gray-600 transition-colors duration-100 hover:bg-blue-50 hover:text-[#1A56DB]"
+                                      className="w-full rounded-lg px-2 py-1.5 text-left text-[12px] text-black transition-colors duration-100 hover:bg-blue-50 hover:text-[#1A56DB]"
                                     >
                                       {item.label}
                                     </button>
@@ -118,7 +118,7 @@ export default function Navigation() {
             {navData.map((category) => (
               <div key={category.id} className="border-b border-gray-100">
                 <button
-                  className="flex  w-full items-center justify-between px-3 py-3 font-semibold text-gray-800 hover:text-blue-600"
+                  className="flex  w-full items-center justify-between px-3 py-3 font-semibold text-black hover:text-blue-600"
                   onClick={() => setMobileOpenCategory(mobileOpenCategory === category.id ? null : category.id)}
                 >
                   <span>{category.icon} {category.label}</span>
@@ -130,7 +130,7 @@ export default function Navigation() {
                   <div className="space-y-1 pb-3">
                     {category.sections.map((section) => (
                       <div key={section.heading} className="px-3">
-                        <p className="mt-3 mb-1 text-[10px] font-bold uppercase tracking-widest text-gray-400">{section.heading}</p>
+                        <p className="mt-3 mb-1 text-[10px] font-bold uppercase tracking-widest text-black">{section.heading}</p>
                         {section.items.map((item) => (
                           <button
                             key={item.slug}
@@ -139,7 +139,7 @@ export default function Navigation() {
                               setMobileOpen(false);
                               setMobileOpenCategory(null);
                             }}
-                            className=" w-full rounded-lg px-5 py-2.5 text-left text-sm text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                            className=" w-full rounded-lg px-5 py-2.5 text-left text-sm text-black transition-colors hover:bg-blue-50 hover:text-blue-600"
                           >
                             {item.label}
                           </button>
