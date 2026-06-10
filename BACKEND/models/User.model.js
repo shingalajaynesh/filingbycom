@@ -14,29 +14,29 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
-      required: true,
     },
     phone: {
       type: Number,
-      required: true,
-      unique: true,
     },
   },
   { timestamps: true },
 );
 
-
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  try {
-    const salt = await bcrypt.genSalt(12);
-    this.password = await bcrypt.hash(this.password, salt);
+  if (this.password && this.isModified("password")) {
+    try {
+      const salt = await bcrypt.genSalt(12);
+      this.password = await bcrypt.hash(this.password, salt);
+      next();
+    } catch (err) {
+      next(err);
+    }
+  } else {
     next();
-  } catch (err) {
-    next(err);
   }
 });
 
