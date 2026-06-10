@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
 
 export default function Login({ onAuthenticated }) {
   const [step, setStep] = useState("email");
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +22,7 @@ export default function Login({ onAuthenticated }) {
     setStep("password");
   };
 
-  const handleSignIn = (event) => {
+  const handleSignIn = async (event) => {
     event.preventDefault();
 
     if (!password.trim()) {
@@ -27,8 +30,30 @@ export default function Login({ onAuthenticated }) {
       return;
     }
 
+    if (!supabase) {
+      setError("Supabase is not configured in the frontend environment.");
+      return;
+    }
+
     setError("");
-    onAuthenticated?.();
+    setIsSubmitting(true);
+
+    try {
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      });
+
+      if (signInError) {
+        throw signInError;
+      }
+
+      onAuthenticated?.();
+    } catch (err) {
+      setError(err.message || "Invalid email or password.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -65,7 +90,27 @@ export default function Login({ onAuthenticated }) {
               <div className=" sm:block">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white/85 px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-white"
+                  onClick={async () => {
+                    if (!supabase) {
+                      setError("Supabase is not configured in the frontend environment.");
+                      return;
+                    }
+                    setIsGoogleLoading(true);
+                    setError("");
+                    sessionStorage.setItem("oauth_flow", "login");
+                    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+                      provider: "google",
+                      options: {
+                        redirectTo: window.location.origin,
+                      },
+                    });
+                    if (oauthError) {
+                      setError(oauthError.message || "Google login failed. Please try again.");
+                      setIsGoogleLoading(false);
+                    }
+                  }}
+                  disabled={isGoogleLoading}
+                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white/85 px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <svg
                     aria-hidden="true"
@@ -89,7 +134,7 @@ export default function Login({ onAuthenticated }) {
                       d="M43.611 20.083H42V20H24v8h11.303c-1.014 2.861-2.951 5.162-5.452 6.664l.002-.001 6.726 5.697C35.1 39.384 44 33.658 44 24c0-1.341-.138-2.651-.389-3.917z"
                     />
                   </svg>
-                  Continue with Google
+                  {isGoogleLoading ? "Redirecting to Google..." : "Continue with Google"}
                 </button>
 
                 <div className="my-6 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
@@ -156,9 +201,10 @@ export default function Login({ onAuthenticated }) {
                   </Link>
                   <button
                     type="submit"
-                    className="ml-auto rounded-2xl bg-navy-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-900/20 transition hover:-translate-y-0.5 hover:bg-navy-800 sm:px-6"
+                    disabled={isSubmitting}
+                    className="ml-auto rounded-2xl bg-navy-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-900/20 transition hover:-translate-y-0.5 hover:bg-navy-800 sm:px-6 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {step === "email" ? "Continue" : "Sign in"}
+                    {isSubmitting ? "Signing in..." : step === "email" ? "Continue" : "Sign in"}
                   </button>
                 </div>
               </form>

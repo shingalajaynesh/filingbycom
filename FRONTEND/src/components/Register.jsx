@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Register({ onRegistered }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [step, setStep] = useState(1);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -14,6 +15,13 @@ export default function Register({ onRegistered }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
+  useEffect(() => {
+    if (location.state?.error) {
+      setError(location.state.error);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
   const handleGoogleSignUp = async () => {
     if (!supabase) {
       setError("Supabase is not configured in the frontend environment.");
@@ -21,6 +29,7 @@ export default function Register({ onRegistered }) {
     }
     setIsGoogleLoading(true);
     setError("");
+    sessionStorage.setItem("oauth_flow", "register");
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
