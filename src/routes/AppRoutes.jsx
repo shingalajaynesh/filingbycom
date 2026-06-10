@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Home from '../pages/Home';
 import ServicePage from '../pages/ServicePage';
+import Login from "./components/Login";
 import ClientDashboard from '../pages/ClientDashboard';
 
 function FloatingActions() {
@@ -38,7 +39,7 @@ function AppRoutesContent() {
         <Route path="/" element={<Home />} />
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/dashboard" element={<ClientDashboard />} />
-        <Route path="/login" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Login Page Coming Soon</div>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Register Page Coming Soon</div>} />
         <Route path="*" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">404 - Page Not Found</div>} />
       </Routes>
