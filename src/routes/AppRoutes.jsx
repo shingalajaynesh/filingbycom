@@ -31,9 +31,12 @@ function FloatingActions() {
 }
 
 function AppRoutesContent() {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <>
-      <Navigation />
+      {!isAuthPage && <Navigation />}
       <FloatingActions />
       <Routes>
         <Route path="/" element={<Home />} />
