@@ -12,6 +12,27 @@ export default function Register({ onRegistered }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
+  const handleGoogleSignUp = async () => {
+    if (!supabase) {
+      setError("Supabase is not configured in the frontend environment.");
+      return;
+    }
+    setIsGoogleLoading(true);
+    setError("");
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin,
+      },
+    });
+    if (oauthError) {
+      setError(oauthError.message || "Google sign-up failed. Please try again.");
+      setIsGoogleLoading(false);
+    }
+    // On success, Supabase redirects the browser — no further action needed here.
+  };
 
   const handleContinue = (event) => {
     event.preventDefault();
@@ -133,7 +154,9 @@ export default function Register({ onRegistered }) {
               <div className="sm:block">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white/85 px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-white"
+                  onClick={handleGoogleSignUp}
+                  disabled={isGoogleLoading || isSubmitting}
+                  className="flex w-full items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-white/85 px-4 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <svg aria-hidden="true" viewBox="0 0 48 48" className="h-5 w-5">
                     <path
@@ -153,7 +176,7 @@ export default function Register({ onRegistered }) {
                       d="M43.611 20.083H42V20H24v8h11.303c-1.014 2.861-2.951 5.162-5.452 6.664l.002-.001 6.726 5.697C35.1 39.384 44 33.658 44 24c0-1.341-.138-2.651-.389-3.917z"
                     />
                   </svg>
-                  Continue with Google
+                  {isGoogleLoading ? "Redirecting to Google..." : "Continue with Google"}
                 </button>
 
                 <div className="my-6 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
