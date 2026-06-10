@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import Home from '../pages/Home';
 import ServicePage from '../pages/ServicePage';
 import Login from "../components/Login";
+import Register from '../components/Register';
 import ClientDashboard from '../pages/ClientDashboard';
 
 function FloatingActions() {
@@ -43,7 +44,7 @@ function AppRoutesContent() {
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/dashboard" element={<ClientDashboard />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Register Page Coming Soon</div>} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">404 - Page Not Found</div>} />
       </Routes>
     </>

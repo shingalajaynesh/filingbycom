@@ -1,4 +1,4 @@
-import supabase from "./supabase.js";
+import supabase from "../config/supabase.config.js";
 
 const verifyToken = async (token) => {
   const {

@@ -2,16 +2,21 @@ import User from "../models/User.model.js";
 
 const registerUser = async (req, res) => {
 	try {
-		const { firstName, lastName, email, password, phone } = req.user;
+		const { firstName, lastName, email, phone } = req.body;
 
-		if (!firstName || !lastName || !email || !password || !phone) {
+		if (!firstName || !lastName || !email || !phone) {
 			return res.status(400).json({
 				success: false,
 				message: "All fields are required",
 			});
 		}
 
-		const existingUser = await User.findOne({phone});
+		const normalizedEmail = email.trim().toLowerCase();
+		const normalizedPhone = phone.trim();
+
+		const existingUser = await User.findOne({
+			$or: [{ email: normalizedEmail }, { phone: normalizedPhone }],
+		});
 
 		if (existingUser) {
 			return res.status(409).json({
@@ -23,9 +28,8 @@ const registerUser = async (req, res) => {
 		const user = await User.create({
 			firstName: firstName.trim(),
 			lastName: lastName.trim(),
-			email: (supabaseUser.email || email).trim().toLowerCase(),
-			password,
-			phone,
+			email: normalizedEmail,
+			phone: normalizedPhone,
 		});
 
 		return res.status(201).json({

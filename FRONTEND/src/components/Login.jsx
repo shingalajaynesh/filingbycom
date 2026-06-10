@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login({ onAuthenticated }) {
   const [step, setStep] = useState("email");
@@ -147,12 +148,12 @@ export default function Login({ onAuthenticated }) {
                 ) : null}
 
                 <div className="flex items-center justify-between gap-3 pt-1 sm:pt-1">
-                  <button
-                    type="button"
+                  <Link
+                    to="/register"
                     className="text-sm font-semibold text-slate-500 transition hover:text-slate-700 sm:inline-flex"
                   >
-                    Forgot password?
-                  </button>
+                    Don&apos;t have an account? <span className="text-blue-500">Register</span>
+                  </Link>
                   <button
                     type="submit"
                     className="ml-auto rounded-2xl bg-navy-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-900/20 transition hover:-translate-y-0.5 hover:bg-navy-800 sm:px-6"
