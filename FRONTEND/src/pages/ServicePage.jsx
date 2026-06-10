@@ -95,8 +95,8 @@ export default function ServicePage() {
               <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹999/-</p>
               <p className="mt-1 text-xs text-gray-400">+ Govt. fees as applicable</p>
               <button className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700">Get Started</button>
-              <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
-              <a href="tel:+919876543210" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
+              <a href="https://wa.me/917567126945" target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
+              <a href="tel:+917567126945" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
               <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
             </div>
           </aside>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const initialUser = {
   name: "Rajesh Kumar",
   email: "rajesh.kumar@example.com",
-  phone: "+91 98765 43210",
+  phone: "+91 75671 26945",
   businessName: "Rajesh Enterprises",
   businessType: "Private Limited Company",
   gstNumber: "27AABCU9603R1ZX",
