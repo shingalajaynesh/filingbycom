@@ -6,6 +6,7 @@ import ServicePage from '../pages/ServicePage';
 import Login from "../components/Login";
 import Register from '../components/Register';
 import ClientDashboard from '../pages/ClientDashboard';
+import DigitalCard from '../pages/DigitalCard';
 
 function FloatingActions() {
   const [showBackTop, setShowBackTop] = useState(false);
@@ -34,10 +35,11 @@ function FloatingActions() {
 function AppRoutesContent() {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const isCardPage = location.pathname === '/card';
 
   return (
     <>
-      {!isAuthPage && <Navigation />}
+      {!isAuthPage && !isCardPage && <Navigation />}
       <FloatingActions />
       <Routes>
         <Route path="/" element={<Home />} />
