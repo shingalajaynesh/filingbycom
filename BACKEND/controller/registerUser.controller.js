@@ -4,24 +4,30 @@ const registerUser = async (req, res) => {
 	try {
 		const { firstName, lastName, email, phone } = req.body;
 
-		if (!firstName || !lastName || !email || !phone) {
+		if (!firstName || !lastName || !email) {
 			return res.status(400).json({
 				success: false,
-				message: "All fields are required",
+				message: "First name, last name, and email are required",
 			});
 		}
 
 		const normalizedEmail = email.trim().toLowerCase();
-		const normalizedPhone = phone.trim();
+		const normalizedPhone = phone ? phone.trim() : undefined;
 
-		const existingUser = await User.findOne({
-			$or: [{ email: normalizedEmail }, { phone: normalizedPhone }],
-		});
-
+		// If user already exists (e.g. returning Google OAuth user), return them
+		const existingUser = await User.findOne({ email: normalizedEmail });
+		console.log(existingUser);
 		if (existingUser) {
-			return res.status(409).json({
-				success: false,
-				message: "User already exists",
+			return res.status(200).json({
+				success: true,
+				message: "User already registered",
+				user: {
+					id: existingUser._id,
+					firstName: existingUser.firstName,
+					lastName: existingUser.lastName,
+					email: existingUser.email,
+					phone: existingUser.phone,
+				},
 			});
 		}
 
@@ -29,7 +35,7 @@ const registerUser = async (req, res) => {
 			firstName: firstName.trim(),
 			lastName: lastName.trim(),
 			email: normalizedEmail,
-			phone: normalizedPhone,
+			...(normalizedPhone && { phone: normalizedPhone }),
 		});
 
 		return res.status(201).json({
@@ -44,7 +50,7 @@ const registerUser = async (req, res) => {
 			},
 		});
 	} catch (error) {
-		return res.status(401).json({
+		return res.status(500).json({
 			success: false,
 			message: error.message || "Unable to register user",
 		});

@@ -7,6 +7,7 @@ import Login from "../components/Login";
 import Register from '../components/Register';
 import ClientDashboard from '../pages/ClientDashboard';
 import DigitalCard from '../pages/DigitalCard';
+import { supabase } from '../lib/supabaseClient';
 
 function FloatingActions() {
   const [showBackTop, setShowBackTop] = useState(false);
@@ -54,6 +55,43 @@ function AppRoutesContent() {
 }
 
 export default function AppRoutes() {
+  // Sync Google OAuth users to MongoDB after they land back from Google redirect
+  useEffect(() => {
+    if (!supabase) return;
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_IN' && session?.user) {
+          const provider = session.user.app_metadata?.provider;
+          if (provider === 'google') {
+            const { user } = session;
+            const fullName = user.user_metadata?.full_name || '';
+            const nameParts = fullName.trim().split(' ');
+            const firstName = user.user_metadata?.given_name || nameParts[0] || 'Google';
+            const lastName = user.user_metadata?.family_name || nameParts.slice(1).join(' ') || 'User';
+            const email = user.email;
+
+            const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+            try {
+              await fetch(`${backendUrl.replace(/\/$/, '')}/register`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${session.access_token}`,
+                },
+                body: JSON.stringify({ firstName, lastName, email }),
+              });
+            } catch (err) {
+              console.error('Failed to sync Google user to MongoDB:', err);
+            }
+          }
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <BrowserRouter>
       <AppRoutesContent />
