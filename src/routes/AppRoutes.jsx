@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Home from '../pages/Home';
 import ServicePage from '../pages/ServicePage';
-import Login from "./components/Login";
+import Login from "../components/Login";
 import ClientDashboard from '../pages/ClientDashboard';
 
 function FloatingActions() {
