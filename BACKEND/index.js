@@ -1,9 +1,13 @@
+import dns from "node:dns";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.config.js";
 import router from "./routes/route.js";
+
+// Use Google DNS to resolve MongoDB Atlas SRV records reliably
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 dotenv.config();
 const app = express();
