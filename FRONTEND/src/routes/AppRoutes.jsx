@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import ServicePage from '../pages/ServicePage';
 import Login from "../components/Login";
 import ClientDashboard from '../pages/ClientDashboard';
+import DigitalCard from '../pages/DigitalCard';
 
 function FloatingActions() {
   const [showBackTop, setShowBackTop] = useState(false);
@@ -33,16 +34,18 @@ function FloatingActions() {
 function AppRoutesContent() {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const isCardPage = location.pathname === '/card';
 
   return (
     <>
-      {!isAuthPage && <Navigation />}
+      {!isAuthPage && !isCardPage && <Navigation />}
       <FloatingActions />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services/:slug" element={<ServicePage />} />
         <Route path="/dashboard" element={<ClientDashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/card" element={<DigitalCard />} />
         <Route path="/register" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Register Page Coming Soon</div>} />
         <Route path="*" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">404 - Page Not Found</div>} />
       </Routes>
