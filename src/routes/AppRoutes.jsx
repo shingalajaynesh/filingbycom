@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import Home from '../pages/Home';
 import ServicePage from '../pages/ServicePage';
+import ClientDashboard from '../pages/ClientDashboard';
 
 function FloatingActions() {
   const [showBackTop, setShowBackTop] = useState(false);
@@ -28,18 +29,27 @@ function FloatingActions() {
   );
 }
 
-export default function AppRoutes() {
+function AppRoutesContent() {
   return (
-    <BrowserRouter>
+    <>
       <Navigation />
       <FloatingActions />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services/:slug" element={<ServicePage />} />
+        <Route path="/dashboard" element={<ClientDashboard />} />
         <Route path="/login" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Login Page Coming Soon</div>} />
         <Route path="/register" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">Register Page Coming Soon</div>} />
         <Route path="*" element={<div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">404 - Page Not Found</div>} />
       </Routes>
+    </>
+  );
+}
+
+export default function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <AppRoutesContent />
     </BrowserRouter>
   );
 }

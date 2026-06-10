@@ -87,43 +87,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-4 my-8 rounded-2xl border border-orange-100 bg-gradient-to-r from-orange-50 to-red-50 p-5 sm:mx-6 lg:mx-auto lg:max-w-screen-xl">
-        <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">
-              ⏰ Upcoming Compliance Deadlines
-            </h2>
-            <p className="text-sm text-gray-500">
-              Don't miss these important filing dates
-            </p>
-          </div>
-        </div>
-        <div
-          className="mt-4 flex gap-3 overflow-x-auto pb-3 scrollbar-hide"
-          style={{ WebkitOverflowScrolling: "touch" }}
-        >
-          {[
-            ["GSTR-1", "11 Jun 2025", "bg-red-500", "2 days left"],
-            ["GSTR-3B", "20 Jun 2025", "bg-orange-500", "11 days left"],
-            ["ITR Filing", "31 Jul 2025", "bg-yellow-500", "52 days left"],
-            ["TDS Return", "30 Jun 2025", "bg-orange-500", "21 days left"],
-            ["ROC Filing", "30 Sep 2025", "bg-green-500", "113 days left"],
-            ["DIR-3 KYC", "30 Sep 2025", "bg-green-500", "113 days left"],
-          ].map(([name, date, color, left]) => (
-            <article
-              key={name}
-              className="min-w-[160px] flex-shrink-0 rounded-xl border border-orange-100 bg-white p-4 text-center"
-            >
-              <div className={`mb-3 h-1 rounded-full ${color}`} />
-              <p className="text-sm font-semibold text-gray-800">{name}</p>
-              <p className="text-xs text-gray-500">{date}</p>
-              <span className="mt-2 inline-flex rounded-full bg-orange-50 px-2 py-0.5 text-xs font-medium text-orange-700">
-                {left}
-              </span>
-            </article>
-          ))}
-        </div>
-      </section>
 
       <section className="bg-[#0F172A] px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-screen-xl text-center">
@@ -231,7 +194,10 @@ export default function Home() {
             Join 50,000+ entrepreneurs who trust FilingBy.com
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
-            <button className="w-full rounded-full bg-white px-6 py-3 text-sm font-bold text-[#1A56DB] sm:w-auto sm:px-8">
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="w-full rounded-full bg-white px-6 py-3 text-sm font-bold text-[#1A56DB] sm:w-auto sm:px-8"
+            >
               Get Started Free
             </button>
             <button className="w-full rounded-full border-2 border-white px-6 py-3 text-sm font-medium text-white sm:w-auto sm:px-8">
