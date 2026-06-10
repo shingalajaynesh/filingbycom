@@ -13,15 +13,15 @@ export default function SupportWidget() {
       detail: "Get instant assistance",
       icon: "💬",
       color: "bg-green-50 hover:bg-green-100 border-green-200 text-green-700",
-      onClick: () => window.open('https://wa.me/919876543210', '_blank')
+      onClick: () => window.open('https://wa.me/917567126945', '_blank')
     },
     {
       title: "Call Helpline",
-      value: "+91 98765 43210",
+      value: "+91 75671 26945",
       detail: "Mon-Sat, 9AM to 7PM",
       icon: "📞",
       color: "bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700",
-      onClick: () => window.open('tel:+919876543210')
+      onClick: () => window.open('tel:+917567126945')
     },
     {
       title: "Email Support",
