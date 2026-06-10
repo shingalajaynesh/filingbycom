@@ -1,8 +1,11 @@
 import User from "../models/User.model.js";
 
+
 const registerUser = async (req, res) => {
 	try {
-		const { firstName, lastName, email, phone } = req.body;
+		// Log incoming request body for debugging
+		console.log("register body:", req.body);
+		const { firstName, lastName, email, phone } = req.body || {};
 
 		if (!firstName || !lastName || !email) {
 			return res.status(400).json({
@@ -12,7 +15,8 @@ const registerUser = async (req, res) => {
 		}
 
 		const normalizedEmail = email.trim().toLowerCase();
-		const normalizedPhone = phone ? phone.trim() : undefined;
+		// Ensure phone is normalized to a trimmed string if present
+		const normalizedPhone = phone ? String(phone).trim() : undefined;
 
 		// If user already exists (e.g. returning Google OAuth user), return them
 		const existingUser = await User.findOne({ email: normalizedEmail });

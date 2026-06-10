@@ -24,6 +24,8 @@ const authenticateToken = async (req, res, next) => {
     }
     const supabaseUser = await verifyToken(token);
     req.user = supabaseUser;
+    console.log(req.user);
+    
     next();
   } catch (error) {
     return res.status(401).json({
