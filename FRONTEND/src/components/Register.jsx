@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient";
+import { useSignUp } from "@clerk/clerk-react";
 
 export default function Register({ onRegistered }) {
   const navigate = useNavigate();
@@ -11,9 +11,11 @@ export default function Register({ onRegistered }) {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const { isLoaded, signUp, setActive } = useSignUp();
 
   useEffect(() => {
     if (location.state?.error) {
@@ -23,24 +25,21 @@ export default function Register({ onRegistered }) {
   }, [location.state]);
 
   const handleGoogleSignUp = async () => {
-    if (!supabase) {
-      setError("Supabase is not configured in the frontend environment.");
+    if (!isLoaded || !signUp) {
+      setError("Authentication is still loading. Please try again.");
       return;
     }
     setIsGoogleLoading(true);
     setError("");
-    sessionStorage.setItem("oauth_flow", "register");
-    const { error: oauthError } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: window.location.origin,
-      },
-    });
-    if (oauthError) {
+    try {
+      await signUp.authenticateWithRedirect({
+        strategy: "oauth_google",
+        redirectUrl: `${window.location.origin}/sso-callback`,
+      });
+    } catch (oauthError) {
       setError(oauthError.message || "Google sign-up failed. Please try again.");
       setIsGoogleLoading(false);
     }
-    // On success, Supabase redirects the browser — no further action needed here.
   };
 
   const handleContinue = (event) => {
@@ -55,7 +54,7 @@ export default function Register({ onRegistered }) {
     setStep(2);
   };
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
 
     if (!mobile.trim() || !password.trim()) {
@@ -63,70 +62,87 @@ export default function Register({ onRegistered }) {
       return;
     }
 
-    if (!supabase) {
-      setError("Supabase is not configured in the frontend environment.");
+    if (!isLoaded || !signUp) {
+      setError("Authentication is still loading. Please try again.");
       return;
     }
 
     setError("");
     setIsSubmitting(true);
 
-    supabase.auth
-      .signUp({
-        email: email.trim(),
+    try {
+      const signUpAttempt = await signUp.create({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        emailAddress: email.trim(),
         password,
-        options: {
-          data: {
-            firstName: firstName.trim(),
-            lastName: lastName.trim(),
-            phone: mobile.trim(),
-          },
+        unsafeMetadata: {
+          phoneNumber: mobile.trim(),
         },
-      })
-      .then(async ({ data, error: signUpError }) => {
-        if (signUpError) {
-          throw signUpError;
-        }
-
-        const accessToken = data.session?.access_token;
-
-        if (!accessToken) {
-          throw new Error(
-            "Supabase sign up succeeded, but no session was returned. Enable email confirmations or adjust the auth flow.",
-          );
-        }
-
-        const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-        const response = await fetch(`${backendUrl.replace(/\/$/, "")}/register`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            firstName: firstName.trim(),
-            lastName: lastName.trim(),
-            email: email.trim(),
-            phone: mobile.trim(),
-            password,
-          }),
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.message || "Unable to register user in the database.");
-        }
-
-        onRegistered?.(result.user);
-        navigate("/login", { replace: true });
-      })
-      .catch((registerError) => {
-        setError(registerError.message || "Registration failed.");
-      })
-      .finally(() => {
-        setIsSubmitting(false);
       });
+
+      if (signUpAttempt.status === "complete" && signUpAttempt.createdSessionId) {
+        await setActive({ session: signUpAttempt.createdSessionId });
+        if (onRegistered) {
+          onRegistered();
+        } else {
+          navigate("/dashboard", { replace: true });
+        }
+        return;
+      }
+
+      await signUpAttempt.prepareEmailAddressVerification({ strategy: "email_code" });
+      setStep(3);
+    } catch (registerError) {
+      setError(registerError.message || "Registration failed.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleVerification = async (event) => {
+    event.preventDefault();
+
+    if (!code.trim()) {
+      setError("Please enter the verification code.");
+      return;
+    }
+
+    if (!isLoaded || !signUp || !setActive) {
+      setError("Authentication is still loading. Please try again.");
+      return;
+    }
+
+    setError("");
+    setIsSubmitting(true);
+
+    try {
+      const verificationAttempt = await signUp.attemptEmailAddressVerification({
+        code: code.trim(),
+      });
+
+      if (verificationAttempt.status === "complete" && verificationAttempt.createdSessionId) {
+        await setActive({ session: verificationAttempt.createdSessionId });
+        if (onRegistered) {
+          onRegistered();
+        } else {
+          navigate("/dashboard", { replace: true });
+        }
+        return;
+      }
+
+      setError("Verification incomplete. Status: " + verificationAttempt.status);
+    } catch (err) {
+      setError(err.message || "Verification failed. Please check the code and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getSubmitHandler = () => {
+    if (step === 1) return handleContinue;
+    if (step === 2) return handleRegister;
+    return handleVerification;
   };
 
   return (
@@ -156,7 +172,7 @@ export default function Register({ onRegistered }) {
                   Create your account
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-slate-600 sm:hidden">
-                  Register in two quick steps.
+                  {step === 3 ? "Verify your email." : "Register in two quick steps."}
                 </p>
               </div>
 
@@ -195,8 +211,8 @@ export default function Register({ onRegistered }) {
                 </div>
               </div>
 
-              <form onSubmit={step === 1 ? handleContinue : handleRegister} className="space-y-5">
-                {step === 1 ? (
+              <form onSubmit={getSubmitHandler()} className="space-y-5">
+                {step === 1 && (
                   <>
                     <div className="grid gap-5 sm:grid-cols-2">
                       <div>
@@ -245,7 +261,9 @@ export default function Register({ onRegistered }) {
                       />
                     </div>
                   </>
-                ) : (
+                )}
+
+                {step === 2 && (
                   <>
                     <div>
                       <label className="block text-sm font-semibold text-slate-700" htmlFor="mobile">
@@ -279,6 +297,28 @@ export default function Register({ onRegistered }) {
                   </>
                 )}
 
+                {step === 3 && (
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700" htmlFor="code">
+                      Verification Code
+                    </label>
+                    <p className="mt-1 text-xs text-slate-500">
+                      We have sent a verification code to {email}.
+                    </p>
+                    <input
+                      id="code"
+                      type="text"
+                      value={code}
+                      onChange={(event) => setCode(event.target.value)}
+                      placeholder="Enter 6-digit code"
+                      className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent-blue focus:bg-white text-center font-mono text-lg tracking-[0.25em]"
+                      maxLength={6}
+                    />
+                  </div>
+                )}
+
+                <div id="clerk-captcha" className="my-2" />
+
                 {error ? (
                   <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
                     {error}
@@ -286,7 +326,7 @@ export default function Register({ onRegistered }) {
                 ) : null}
 
                 <div className="flex items-center justify-between gap-3 pt-1 sm:pt-1">
-                  {step === 2 ? (
+                  {step === 2 && (
                     <button
                       type="button"
                       onClick={() => setStep(1)}
@@ -295,7 +335,18 @@ export default function Register({ onRegistered }) {
                     >
                       Back
                     </button>
-                  ) : (
+                  )}
+                  {step === 3 && (
+                    <button
+                      type="button"
+                      onClick={() => setStep(2)}
+                      disabled={isSubmitting}
+                      className="text-sm font-semibold text-slate-500 transition hover:text-slate-700"
+                    >
+                      Back
+                    </button>
+                  )}
+                  {step === 1 && (
                     <Link
                       to="/login"
                       className="text-sm font-semibold text-slate-500 transition hover:text-slate-700"
@@ -309,7 +360,17 @@ export default function Register({ onRegistered }) {
                     disabled={isSubmitting}
                     className="ml-auto rounded-2xl bg-navy-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-navy-900/20 transition hover:-translate-y-0.5 hover:bg-navy-800 sm:px-6"
                   >
-                    {isSubmitting ? "Registering..." : step === 1 ? "Continue" : "Register"}
+                    {isSubmitting
+                      ? step === 3
+                        ? "Verifying..."
+                        : step === 2
+                        ? "Registering..."
+                        : "Continuing..."
+                      : step === 1
+                      ? "Continue"
+                      : step === 2
+                      ? "Register"
+                      : "Verify"}
                   </button>
                 </div>
               </form>

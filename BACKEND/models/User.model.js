@@ -20,7 +20,15 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     phone: {
-      type: Number,
+      type: String,
+    },
+    clerkId: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
+    authProvider: {
+      type: String,
     },
   },
   { timestamps: true },

@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import { clerkMiddleware } from "@clerk/express";
 import connectDB from "./config/db.config.js";
 import router from "./routes/route.js";
 
@@ -14,6 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(clerkMiddleware());
 app.use(router);
 
 connectDB();

@@ -1,17 +1,17 @@
 # CA Frontend
 
-React + Vite frontend for the CA website, with Supabase ready for BaaS integration.
+React + Vite frontend for the CA website, with Clerk handling authentication and the backend syncing user records into MongoDB.
 
 ## Setup
 
-1. Add your Supabase project values to `.env`:
+1. Add your Clerk and backend values to `.env`:
 
 ```env
-VITE_SUPABASE_URL=your-project-url
-VITE_SUPABASE_ANON_KEY=your-anon-key
+VITE_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+VITE_BACKEND_URL=http://localhost:3000
 ```
 
-2. Import the shared client from `src/lib/supabaseClient.js` in the feature that needs database access.
+2. Clerk handles sign-in and sign-up in the UI, while authenticated requests sync to the backend `/register` endpoint to persist user profiles in MongoDB.
 
 ## Scripts
 

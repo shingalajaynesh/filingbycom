@@ -1,56 +1,58 @@
 import User from "../models/User.model.js";
+import { mapClerkUserToProfile } from "../lib/verifyToken.js";
 
 
 const registerUser = async (req, res) => {
 	try {
-		// Log incoming request body for debugging
-		console.log("register body:", req.body);
-		const { firstName, lastName, email, phone } = req.body || {};
+		const { firstName, lastName, phone } = req.body || {};
+		const clerkUser = req.clerkUser || req.user;
 
-		if (!firstName || !lastName || !email) {
+		if (!clerkUser) {
+			return res.status(401).json({
+				success: false,
+				message: "Authenticated user is required",
+			});
+		}
+
+		const clerkProfile = mapClerkUserToProfile(clerkUser);
+
+		if (!clerkProfile.email) {
 			return res.status(400).json({
 				success: false,
-				message: "First name, last name, and email are required",
+				message: "Email is required",
 			});
 		}
 
-		const normalizedEmail = email.trim().toLowerCase();
-		// Ensure phone is normalized to a trimmed string if present
-		const normalizedPhone = phone ? String(phone).trim() : undefined;
+		const normalizedEmail = clerkProfile.email;
+		const normalizedPhone = String(phone || clerkProfile.phone || "").trim();
+		const normalizedFirstName = firstName?.trim() || clerkProfile.firstName;
+		const normalizedLastName = lastName?.trim() || clerkProfile.lastName;
 
-		// If user already exists (e.g. returning Google OAuth user), return them
-		const existingUser = await User.findOne({ email: normalizedEmail });
-		console.log(existingUser);
-		if (existingUser) {
-			return res.status(200).json({
-				success: true,
-				message: "User already registered",
-				user: {
-					id: existingUser._id,
-					firstName: existingUser.firstName,
-					lastName: existingUser.lastName,
-					email: existingUser.email,
-					phone: existingUser.phone,
+		const user = await User.findOneAndUpdate(
+			{ $or: [{ clerkId: clerkProfile.clerkId }, { email: normalizedEmail }] },
+			{
+				$set: {
+					clerkId: clerkProfile.clerkId,
+					firstName: normalizedFirstName,
+					lastName: normalizedLastName,
+					email: normalizedEmail,
+					authProvider: "clerk",
+					...(normalizedPhone ? { phone: normalizedPhone } : {}),
 				},
-			});
-		}
-
-		const user = await User.create({
-			firstName: firstName.trim(),
-			lastName: lastName.trim(),
-			email: normalizedEmail,
-			...(normalizedPhone && { phone: normalizedPhone }),
-		});
+			},
+			{ new: true, upsert: true, runValidators: true },
+		);
 
 		return res.status(201).json({
 			success: true,
-			message: "User registered successfully",
+			message: "User synchronized successfully",
 			user: {
 				id: user._id,
 				firstName: user.firstName,
 				lastName: user.lastName,
 				email: user.email,
 				phone: user.phone,
+				clerkId: user.clerkId,
 			},
 		});
 	} catch (error) {

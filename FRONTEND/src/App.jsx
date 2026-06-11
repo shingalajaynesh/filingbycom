@@ -1,6 +1,4 @@
 export default function App() {
-  console.log(import.meta.env.SUPABASE_URL);
-
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-screen-xl px-4 py-16 text-center">

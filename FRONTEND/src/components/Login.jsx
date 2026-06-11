@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { supabase } from "../lib/supabaseClient";
+import { useSignIn } from "@clerk/clerk-react";
 
 export default function Login({ onAuthenticated }) {
   const [step, setStep] = useState("email");
@@ -9,6 +9,7 @@ export default function Login({ onAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { isLoaded, signIn, setActive } = useSignIn();
 
   const handleContinue = (event) => {
     event.preventDefault();
@@ -30,8 +31,8 @@ export default function Login({ onAuthenticated }) {
       return;
     }
 
-    if (!supabase) {
-      setError("Supabase is not configured in the frontend environment.");
+    if (!isLoaded || !signIn || !setActive) {
+      setError("Authentication is still loading. Please try again.");
       return;
     }
 
@@ -39,16 +40,29 @@ export default function Login({ onAuthenticated }) {
     setIsSubmitting(true);
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: email.trim(),
+      const signInAttempt = await signIn.create({
+        identifier: email.trim(),
         password,
       });
 
-      if (signInError) {
-        throw signInError;
+      if (signInAttempt.status === "complete" && signInAttempt.createdSessionId) {
+        await setActive({ session: signInAttempt.createdSessionId });
+        onAuthenticated?.();
+        return;
       }
 
-      onAuthenticated?.();
+      const passwordAttempt = await signInAttempt.attemptFirstFactor({
+        strategy: "password",
+        password,
+      });
+
+      if (passwordAttempt.status === "complete" && passwordAttempt.createdSessionId) {
+        await setActive({ session: passwordAttempt.createdSessionId });
+        onAuthenticated?.();
+        return;
+      }
+
+      throw new Error("Unable to sign in with the provided credentials.");
     } catch (err) {
       setError(err.message || "Invalid email or password.");
     } finally {
@@ -91,20 +105,18 @@ export default function Login({ onAuthenticated }) {
                 <button
                   type="button"
                   onClick={async () => {
-                    if (!supabase) {
-                      setError("Supabase is not configured in the frontend environment.");
+                    if (!isLoaded || !signIn) {
+                      setError("Authentication is still loading. Please try again.");
                       return;
                     }
                     setIsGoogleLoading(true);
                     setError("");
-                    sessionStorage.setItem("oauth_flow", "login");
-                    const { error: oauthError } = await supabase.auth.signInWithOAuth({
-                      provider: "google",
-                      options: {
-                        redirectTo: window.location.origin,
-                      },
-                    });
-                    if (oauthError) {
+                    try {
+                      await signIn.authenticateWithRedirect({
+                        strategy: "oauth_google",
+                        redirectUrl: `${window.location.origin}/sso-callback`,
+                      });
+                    } catch (oauthError) {
                       setError(oauthError.message || "Google login failed. Please try again.");
                       setIsGoogleLoading(false);
                     }
@@ -185,6 +197,8 @@ export default function Login({ onAuthenticated }) {
                     />
                   </div>
                 )}
+
+                <div id="clerk-captcha" className="my-2" />
 
                 {error ? (
                   <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-medium text-red-700">

@@ -1,31 +1,47 @@
-import supabase from "../config/supabase.config.js";
+import { clerkClient, getAuth } from "@clerk/express";
+import User from "../models/User.model.js";
 
-const verifyToken = async (token) => {
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser(token);
+const getPrimaryEmail = (clerkUser) =>
+  clerkUser.emailAddresses.find(
+    (email) => email.id === clerkUser.primaryEmailAddressId,
+  )?.emailAddress ||
+  clerkUser.emailAddresses[0]?.emailAddress ||
+  "";
 
-  if (error || !user) {
-    throw new Error("Invalid or expired Supabase token");
+const getPrimaryPhone = (clerkUser) =>
+  clerkUser.phoneNumbers[0]?.phoneNumber ||
+  clerkUser.unsafeMetadata?.phoneNumber ||
+  "";
+
+const mapClerkUserToProfile = (clerkUser) => ({
+  clerkId: clerkUser.id,
+  firstName: clerkUser.firstName?.trim() || "Client",
+  lastName: clerkUser.lastName?.trim() || "User",
+  email: getPrimaryEmail(clerkUser).trim().toLowerCase(),
+  phone: getPrimaryPhone(clerkUser).trim(),
+});
+
+const verifyToken = async (req) => {
+  const { userId } = getAuth(req);
+
+  if (!userId) {
+    throw new Error("Authorization token is required");
   }
 
-  return user;
+  const clerkUser = await clerkClient.users.getUser(userId);
+
+  if (!clerkUser) {
+    throw new Error("Invalid or expired Clerk token");
+  }
+
+  return clerkUser;
 };
 
 const authenticateToken = async (req, res, next) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        message: "Authorization token is required",
-      });
-    }
-    const supabaseUser = await verifyToken(token);
-    req.user = supabaseUser;
-    console.log(req.user);
-    
+    const clerkUser = await verifyToken(req);
+    req.clerkUser = clerkUser;
+    req.user = clerkUser;
     next();
   } catch (error) {
     return res.status(401).json({
@@ -36,25 +52,29 @@ const authenticateToken = async (req, res, next) => {
 };
 
 const verifyUser = async (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) {
+  try {
+    const clerkUser = await verifyToken(req);
+    const { clerkId, email } = mapClerkUserToProfile(clerkUser);
+    const user = await User.findOne({
+      $or: [{ clerkId }, { email }],
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    req.user = user;
+    req.clerkUser = clerkUser;
+    next();
+  } catch (error) {
     return res.status(401).json({
       success: false,
-      message: "Authorization token is required",
+      message: error.message || "Unauthorized",
     });
   }
-  const supabaseUser = await verifyToken(token);
-  const user = await User.findOne({ phone: supabaseUser.phone }).select(
-    "-password",
-  );
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "User not found",
-    });
-  }
-  req.user = user;
-  next();
 };
 
-export { authenticateToken, verifyUser };
+export { authenticateToken, verifyUser, mapClerkUserToProfile };
