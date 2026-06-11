@@ -1,10 +1,8 @@
 import User from "../models/User.model.js";
 import { mapClerkUserToProfile } from "../lib/verifyToken.js";
 
-
 const registerUser = async (req, res) => {
 	try {
-		const { firstName, lastName, phone } = req.body || {};
 		const clerkUser = req.clerkUser || req.user;
 
 		if (!clerkUser) {
@@ -23,26 +21,31 @@ const registerUser = async (req, res) => {
 			});
 		}
 
-		const normalizedEmail = clerkProfile.email;
+		// 1. Sanitize and Normalize Inputs
+		const { firstName, lastName, phone } = req.body || {};
+		const normalizedEmail = clerkProfile.email.toLowerCase().trim();
 		const normalizedPhone = String(phone || clerkProfile.phone || "").trim();
-		const normalizedFirstName = firstName?.trim() || clerkProfile.firstName;
-		const normalizedLastName = lastName?.trim() || clerkProfile.lastName;
+		const normalizedFirstName = firstName?.trim() || clerkProfile.firstName?.trim() || "User";
+		const normalizedLastName = lastName?.trim() || clerkProfile.lastName?.trim() || "";
+		const clerkId = clerkProfile.clerkId;
 
-		const user = await User.findOneAndUpdate(
-			{ $or: [{ clerkId: clerkProfile.clerkId }, { email: normalizedEmail }] },
-			{
-				$set: {
-					clerkId: clerkProfile.clerkId,
-					firstName: normalizedFirstName,
-					lastName: normalizedLastName,
-					email: normalizedEmail,
-					authProvider: "clerk",
-					...(normalizedPhone ? { phone: normalizedPhone } : {}),
-				},
-			},
-			{ new: true, upsert: true, runValidators: true },
-		);
+		// 2. Safe Database Synchronization
+		// Look up by Clerk ID first (The absolute source of truth for auth)
+		let user = await User.findOne({ clerkId });
 
+		// If no user is found by Clerk ID, attempt to link by email or create a new one
+		if (!user) {
+			user = await User.create({
+				email: normalizedEmail,
+				clerkId,
+				firstName: normalizedFirstName,
+				lastName: normalizedLastName,
+				authProvider: "clerk",
+				...(normalizedPhone && { phone: normalizedPhone }),
+			});
+		}
+
+		// 3. Return Clean Response
 		return res.status(201).json({
 			success: true,
 			message: "User synchronized successfully",
@@ -55,10 +58,21 @@ const registerUser = async (req, res) => {
 				clerkId: user.clerkId,
 			},
 		});
+
 	} catch (error) {
+		console.error("User Registration Error:", error);
+
+		// Explicitly handle MongoDB Duplicate Key Errors (e.g., race conditions)
+		if (error.code === 11000) {
+			return res.status(409).json({
+				success: false,
+				message: "An account with this email or identity already exists.",
+			});
+		}
+
 		return res.status(500).json({
 			success: false,
-			message: error.message || "Unable to register user",
+			message: "Unable to register user. Please try again later.",
 		});
 	}
 };

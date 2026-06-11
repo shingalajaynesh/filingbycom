@@ -7,7 +7,8 @@ import {
 export function LoadingScreen() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 text-sm font-medium text-slate-500">
-      Loading secure session...
+      {/* 1. Added a subtle pulse animation for better perceived loading UX */}
+      <span className="animate-pulse">Loading secure session...</span>
     </div>
   );
 }
@@ -15,13 +16,9 @@ export function LoadingScreen() {
 export function ProtectedRoute({ children }) {
   const { isLoaded, isSignedIn } = useAuth();
 
-  if (!isLoaded) {
-    return <LoadingScreen />;
-  }
-
-  if (!isSignedIn) {
-    return <Navigate to="/login" replace />;
-  }
+  // 2. Condensed single-line returns for better readability
+  if (!isLoaded) return <LoadingScreen />;
+  if (!isSignedIn) return <Navigate to="/login" replace />;
 
   return children;
 }
@@ -29,12 +26,14 @@ export function ProtectedRoute({ children }) {
 export function PublicAuthRoute({ children }) {
   const { isLoaded, isSignedIn } = useAuth();
 
-  if (!isLoaded) {
-    return <LoadingScreen />;
-  }
+  if (!isLoaded) return <LoadingScreen />;
 
+  // 3. Storage API Optimization
   if (isSignedIn) {
-    return <Navigate to="/dashboard" replace />;
+    const justRegistered = sessionStorage.getItem("justRegistered") === "true";
+    if (!justRegistered) {
+      return <Navigate to="/dashboard" replace />;
+    }
   }
 
   return children;

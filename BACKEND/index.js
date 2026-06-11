@@ -12,7 +12,12 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(clerkMiddleware());

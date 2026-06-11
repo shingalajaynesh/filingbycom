@@ -1,82 +1,98 @@
 import { useEffect, useRef } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+// 1. Static values outside the hook
+const BACKEND_URL = (
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
+).replace(/\/$/, "");
 
 export default function useSyncUser() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isLoaded, isSignedIn, getToken } = useAuth();
+  const { isLoaded, isSignedIn, getToken, signOut } = useAuth();
   const { user, isLoaded: isUserLoaded } = useUser();
   const syncedUserIdRef = useRef(null);
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/register";
+
+  const isAuthPage = ["/login", "/register"].includes(location.pathname);
 
   useEffect(() => {
-    if (
-      !isLoaded ||
-      !isUserLoaded ||
-      !isSignedIn ||
-      !user ||
-      syncedUserIdRef.current === user.id
-    ) {
-      return;
-    }
+    // 2. Early returns
+    if (!isLoaded || !isUserLoaded || !isSignedIn || !user) return;
+    if (syncedUserIdRef.current === user.id) return;
 
-    let isCancelled = false;
+    const abortController = new AbortController();
 
-    const syncUser = async () => {
-      const token = await getToken();
+    const syncWithBackend = async () => {
+      try {
+        const token = await getToken();
+        if (!token) return;
 
-      if (!token) {
-        return;
-      }
-
-      const backendUrl = (
-        import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
-      ).replace(/\/$/, "");
-      const response = await fetch(`${backendUrl}/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
+        const payload = {
           firstName: user.firstName || "",
           lastName: user.lastName || "",
           email: user.primaryEmailAddress?.emailAddress || "",
           phone: user.unsafeMetadata?.phoneNumber || "",
-        }),
-      });
+        };
 
-      if (!response.ok) {
-        const result = await response.json().catch(() => ({}));
-        throw new Error(
-          result.message ||
-            "Failed to sync authenticated user with the backend",
-        );
-      }
+        // 3. Axios automatically handles JSON.stringify and throws on non-2xx status codes
+        await axios.post(`${BACKEND_URL}/register`, payload, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          signal: abortController.signal,
+        });
 
-      syncedUserIdRef.current = user.id;
+        if (abortController.signal.aborted) return;
 
-      if (!isCancelled && isAuthPage) {
-        navigate("/dashboard", { replace: true });
+        syncedUserIdRef.current = user.id;
+        const justRegistered = sessionStorage.getItem("justRegistered") === "true";
+
+        if (justRegistered) {
+          toast.success("Account created successfully! Please sign in.", { duration: 5000 });
+          await signOut();
+          sessionStorage.removeItem("justRegistered");
+          navigate("/login", { replace: true });
+        } else if (isAuthPage) {
+          navigate("/dashboard", { replace: true });
+        }
+
+      } catch (err) {
+        // 4. Use Axios's built-in cancellation checker
+        if (axios.isCancel(err)) return;
+
+        console.error("Failed in post-authentication flow:", err);
+
+        // 5. Safely extract error messages from the Axios error object
+        const errorMessage = err.response?.data?.message || err.message || "Something went wrong.";
+        const justRegistered = sessionStorage.getItem("justRegistered") === "true";
+
+        if (justRegistered) {
+          sessionStorage.removeItem("justRegistered");
+          toast.error(errorMessage, { duration: 5000 });
+          await signOut();
+          navigate("/register", { replace: true });
+        } else {
+          toast.error("Failed to sync your account. Please try again.", { duration: 4000 });
+        }
       }
     };
 
-    syncUser().catch((err) => {
-      console.error("Failed in post-authentication flow:", err);
-    });
+    syncWithBackend();
 
-    return () => {
-      isCancelled = true;
-    };
+    return () => abortController.abort();
+
   }, [
-    getToken,
-    isAuthPage,
     isLoaded,
-    isSignedIn,
     isUserLoaded,
-    navigate,
+    isSignedIn,
     user,
+    getToken,
+    signOut,
+    navigate,
+    isAuthPage,
   ]);
 }
