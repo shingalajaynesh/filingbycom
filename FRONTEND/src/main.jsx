@@ -1,4 +1,3 @@
-// filingbycom frontend entry point - handles Clerk Provider initialization and fallback configuration check
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
@@ -88,7 +87,7 @@ if (!clerkPublishableKey) {
 
   createRoot(document.getElementById('root')).render(
     <StrictMode>
-      <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">      
+      <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">
         <Toaster position="top-center" toastOptions={toastConfig} />
         <AppRoutes />
       </ClerkProvider>
