@@ -24,12 +24,12 @@ export default function ServiceCard({ service }) {
             </div>
             <div className="space-y-2">
                 <p className="text-base font-semibold leading-snug text-gray-900 sm:text-lg">{service.name}</p>
-                <p className="text-sm text-gray-500">Professional filing and compliance support.</p>
+                <p className="text-sm text-gray-500">{service.description}</p>
             </div>
             <div className="mt-6 flex items-end justify-between gap-4">
                 <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-gray-400">Starting at</p>
-                    <p className="mt-1 text-xl font-bold text-[#1A56DB]">{service.price}</p>
+                    <p className="mt-1 text-xl font-bold text-[#1A56DB]">₹{service.price}{service.billingCycle === "Fixed" ? "" : "/" + service.billingCycle}</p>
                 </div>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 transition-colors group-hover:text-[#1A56DB]">
                     View details

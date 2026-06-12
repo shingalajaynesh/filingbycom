@@ -19,6 +19,7 @@ export default function AdminNavbar({ activeTab, onTabChange }) {
   const tabs = [
     { id: "orders", label: "Orders" },
     { id: "history", label: "History" },
+    { id: "services", label: "Services" },
   ];
 
   return (

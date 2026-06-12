@@ -1,7 +1,30 @@
+import { useState, useEffect } from 'react';
 import ServiceCard from './ServiceCard.jsx';
-import { popularServices } from '../data/services.js';
+
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function PopularServices() {
+    const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const res = await fetch(`${API_BASE}/services`);
+                const data = await res.json();
+                if (data.success) {
+                    setServices(data.services);
+                }
+            } catch (error) {
+                console.error("Failed to fetch popular services", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
     return (
         <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-screen-xl">
@@ -12,11 +35,21 @@ export default function PopularServices() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-                    {popularServices.map((service) => (
-                        <ServiceCard key={service.slug} service={service} />
-                    ))}
-                </div>
+                {loading ? (
+                    <div className="flex justify-center py-12">
+                        <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
+                    </div>
+                ) : services.length === 0 ? (
+                    <div className="text-center py-12 text-gray-500">
+                        No services currently available.
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+                        {services.map((service) => (
+                            <ServiceCard key={service._id || service.slug} service={{...service, price: service.priceText}} />
+                        ))}
+                    </div>
+                )}
             </div>
         </section>
     );

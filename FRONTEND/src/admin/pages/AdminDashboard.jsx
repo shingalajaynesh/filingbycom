@@ -8,6 +8,7 @@ import { useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import OrdersTable from "../components/OrdersTable";
 import HistoryTable from "../components/HistoryTable";
+import AdminServices from "../components/AdminServices";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("orders");
@@ -22,17 +23,21 @@ export default function AdminDashboard() {
         {/* Page heading */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900">
-            {activeTab === "orders" ? "Current Orders" : "Order History"}
+            {activeTab === "orders" ? "Current Orders" : activeTab === "history" ? "Order History" : "Manage Services"}
           </h1>
           <p className="text-sm text-gray-500 mt-1">
             {activeTab === "orders"
               ? "Manage active orders — update status and payment"
-              : "Browse past completed orders"}
+              : activeTab === "history"
+              ? "Browse past completed orders"
+              : "Manage services available on the homepage"}
           </p>
         </div>
 
         {/* Tab content */}
-        {activeTab === "orders" ? <OrdersTable /> : <HistoryTable />}
+        {activeTab === "orders" && <OrdersTable />}
+        {activeTab === "history" && <HistoryTable />}
+        {activeTab === "services" && <AdminServices />}
       </main>
     </div>
   );
