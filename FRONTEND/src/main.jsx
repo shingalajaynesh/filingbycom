@@ -1,14 +1,25 @@
+/**
+ * main.jsx
+ * Bootstraps the FilingBy Frontend client application.
+ * Configures the global providers including Clerk (auth), Toaster (notifications), 
+ * Helmet (dynamic SEO), and mounts the main routing tree.
+ */
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { Toaster } from 'react-hot-toast';
+import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import AppRoutes from './routes/AppRoutes';
 
+// Retrieve Clerk key from environment configurations
 const clerkPublishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
+// ── CONFIGURATION CHECK ──────────────────────────────────────────────────────
+// Ensure the system fails safely with a custom warning UI if environmental
+// keys are missing, avoiding raw blank screen console errors in development.
 if (!clerkPublishableKey) {
-  // Render a clean, descriptive configuration warning page instead of throwing a raw JS error
   createRoot(document.getElementById('root')).render(
     <StrictMode>
       <div style={{
@@ -65,7 +76,8 @@ if (!clerkPublishableKey) {
     </StrictMode>
   );
 } else {
-  // 2. Extract configuration outside the component tree
+  // ── CUSTOM TOAST DESIGN SYSTEM ─────────────────────────────────────────────
+  // Standardized configuration parameters for app-wide user alerts (hot-toast)
   const toastConfig = {
     duration: 4000,
     style: {
@@ -85,12 +97,20 @@ if (!clerkPublishableKey) {
     },
   };
 
+  // ── APP BOOTSTRAP ──────────────────────────────────────────────────────────
+  // Mount the application. The provider hierarchy is carefully configured:
+  // - StrictMode: Validates React lifecycle side-effects in development
+  // - HelmetProvider: Enables thread-safe head tags compilation for SEO
+  // - ClerkProvider: Manages authentication sessions and identity synchronization
+  // - Toaster: Visual feedback container mapped globally
   createRoot(document.getElementById('root')).render(
     <StrictMode>
-      <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">
-        <Toaster position="top-center" toastOptions={toastConfig} />
-        <AppRoutes />
-      </ClerkProvider>
+      <HelmetProvider>
+        <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">
+          <Toaster position="top-center" toastOptions={toastConfig} />
+          <AppRoutes />
+        </ClerkProvider>
+      </HelmetProvider>
     </StrictMode>
   );
 }

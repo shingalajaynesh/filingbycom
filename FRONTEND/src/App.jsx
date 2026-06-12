@@ -1,3 +1,10 @@
+/**
+ * App.jsx
+ * Root component of the FilingBy application.
+ * Serves as a top-level wrapper for global state context layouts
+ * or visual boundary wrappers.
+ */
+
 export default function App() {
   return (
     <main className="min-h-screen bg-gray-50">
