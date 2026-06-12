@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { clerkMiddleware } from "@clerk/express";
 import connectDB from "./config/db.config.js";
 import router from "./routes/route.js";
+import adminRouter from "./routes/admin.route.js";
 
 // Use Google DNS to resolve MongoDB Atlas SRV records reliably
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(clerkMiddleware());
 app.use(router);
+app.use(adminRouter);
 
 connectDB();
 

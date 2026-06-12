@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const paymentSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -16,6 +16,11 @@ const paymentSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    orderStatus: {
+      type: String,
+      enum: ["Pending", "Document Verification", "Complete"],
+      default: "Pending",
+    },
     paymentType: {
       type: String,
       enum: ["Cash", "Online"],
@@ -23,16 +28,16 @@ const paymentSchema = new mongoose.Schema(
     },
     paymentStatus: {
       type: String,
-      enum: ["Pending", "Completed", "Failed"],
-      default: "Pending",
+      enum: ["Paid", "Unpaid"],
+      default: "Unpaid",
     },
     paymentID: {
       type: String,
-      unique: true,
+      sparse: true,
     },
   },
   { timestamps: true },
 );
 
-const Payment = mongoose.model("Payment", paymentSchema);
-export default Payment;
+const Order = mongoose.model("Order", orderSchema);
+export default Order;
