@@ -108,8 +108,23 @@ export default function VirtualOfficeNavigation() {
 
   // Scroll lock when mobile open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "unset";
-    return () => { document.body.style.overflow = "unset"; };
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.height = "100%";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.height = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+    };
   }, [mobileOpen]);
 
   // Navbar scroll effect
