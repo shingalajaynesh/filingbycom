@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 export function useAdminServices() {
   const [services, setServices] = useState([]);

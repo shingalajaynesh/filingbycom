@@ -88,7 +88,7 @@ export default function ClientDashboard() {
     const fetchOrders = async () => {
       try {
         const token = await getToken();
-        const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
         const res = await fetch(`${API_BASE}/orders`, {
           headers: {
             Authorization: `Bearer ${token}`

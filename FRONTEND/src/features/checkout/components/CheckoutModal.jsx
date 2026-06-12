@@ -2,7 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   const [loading, setLoading] = useState(false);

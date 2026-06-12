@@ -64,7 +64,7 @@ export default function ServicePage() {
 
     // We need to fetch the actual service from backend to get its ID and basePrice
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
       const res = await fetch(`${API_BASE}/services`);
       const data = await res.json();
 

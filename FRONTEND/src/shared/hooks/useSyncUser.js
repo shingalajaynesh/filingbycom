@@ -6,7 +6,7 @@ import axios from "axios";
 
 // 1. Static values outside the hook
 const BACKEND_URL = (
-  import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
+  import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
 ).replace(/\/$/, "");
 
 export default function useSyncUser() {
