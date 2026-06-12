@@ -357,7 +357,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           HERO SECTION
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-[#060d1f] via-[#0a1628] to-[#0f2351] min-h-[640px] flex items-center relative overflow-hidden py-16 lg:py-24 text-white">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] min-h-[640px] flex items-center relative overflow-hidden py-16 lg:py-24 text-white">
         {/* Grid overlay */}
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
         {/* Glow orbs */}
@@ -384,7 +384,7 @@ export default function VirtualSpace() {
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.1] mb-5 tracking-tight">
                 Premium Virtual Offices{" "}
-                <span className="shimmer-text block mt-1">Across All 28 States</span>
+                <span className="text-[#F97316] block mt-1">Across All 28 States</span>
               </h1>
 
               <p className="text-blue-200/80 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
@@ -462,11 +462,11 @@ export default function VirtualSpace() {
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"><f.icon /></div>
                         <input type={f.type} name={f.name} placeholder={f.placeholder} required
                           value={formData[f.name]} onChange={handleInput}
-                          className="rounded-xl border border-gray-200 pl-9 pr-4 py-3 text-sm w-full focus:border-[#1A56DB] outline-none transition-colors" />
+                          className="w-full text-xs font-semibold pl-9 pr-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none" />
                       </div>
                     ))}
                     <select name="purpose" required value={formData.purpose} onChange={handleInput}
-                      className="rounded-xl border border-gray-200 px-4 py-3 text-sm w-full focus:border-[#1A56DB] outline-none bg-white transition-colors text-gray-700">
+                      className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none cursor-pointer">
                       <option value="">Purpose*</option>
                       <option value="Mailing Address">Mailing Address</option>
                       <option value="GST Registration">GST Registration</option>
@@ -477,18 +477,18 @@ export default function VirtualSpace() {
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"><Icons.MapPin /></div>
                       <input type="text" name="city" placeholder="Preferred City*" required
                         value={formData.city} onChange={handleInput}
-                        className="rounded-xl border border-gray-200 pl-9 pr-4 py-3 text-sm w-full focus:border-[#1A56DB] outline-none transition-colors" />
+                        className="w-full text-xs font-semibold pl-9 pr-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none" />
                     </div>
                     <textarea name="message" placeholder="Message (optional)" rows={2}
                       value={formData.message} onChange={handleInput}
-                      className="rounded-xl border border-gray-200 px-4 py-3 text-sm w-full focus:border-[#1A56DB] outline-none transition-colors resize-none" />
+                      className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none resize-none" />
                     <button type="submit" id="form-submit-btn"
                       className="bg-[#1A56DB] text-white w-full py-3.5 rounded-xl font-bold hover:bg-blue-700 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-lg shadow-blue-500/25">
                       Get Free Consultation →
                     </button>
                   </form>
 
-                  <div className="flex justify-between mt-4 pt-4 border-t border-gray-100">
+                  <div className="flex justify-between mt-4 pt-4 border-t border-gray-100/50">
                     {[
                       { icon: Icons.Lock,         label: "100% Secure" },
                       { icon: Icons.Lightning,     label: "Quick Response" },
@@ -510,7 +510,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           LOGO TICKER
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-10 overflow-hidden border-b border-gray-100">
+      <section className="bg-white py-10 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4 mb-6 text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Trusted by India's leading brands</p>
           <h2 className="text-xl font-bold text-gray-900 mt-1">22,000+ Virtual Office Clients Served &amp; Counting</h2>
@@ -518,7 +518,7 @@ export default function VirtualSpace() {
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">
           <div className="flex animate-ticker whitespace-nowrap">
             {[...logos,...logos].map((logo, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 border border-gray-100 flex-shrink-0 mx-2 hover:border-[#1A56DB] hover:bg-blue-50/30 transition-all duration-200 cursor-default">
+              <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 flex-shrink-0 mx-2 hover:bg-blue-50/30 transition-all duration-200 cursor-default shadow-sm">
                 <BrandLogo name={logo} />
               </div>
             ))}
@@ -544,7 +544,7 @@ export default function VirtualSpace() {
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   activeTab === tab.id
                     ? "bg-[#1A56DB] text-white shadow-lg shadow-blue-500/25"
-                    : "bg-white border border-gray-200 text-gray-600 hover:border-[#1A56DB] hover:text-[#1A56DB]"
+                    : "bg-white text-gray-650 hover:bg-[#1A56DB]/5 hover:text-[#1A56DB] shadow-sm"
                 }`}>
                 <div className="w-4 h-4"><tab.icon /></div>
                 {tab.label}
@@ -557,7 +557,7 @@ export default function VirtualSpace() {
 
           {/* Tab Content */}
           {activeTabData && (
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-3xl shadow-md overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Left */}
                 <div className={`bg-gradient-to-br ${activeTabData.color} p-10 text-white flex flex-col justify-center`}>
@@ -610,7 +610,7 @@ export default function VirtualSpace() {
             <div className="hidden lg:block absolute top-10 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-blue-200 via-purple-200 to-teal-200 z-0" />
 
             {steps.map((step, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-gray-100 p-7 text-center hover:border-[#1A56DB] hover:shadow-xl hover:shadow-blue-50 transition-all duration-300 relative z-10 group">
+              <div key={idx} className="bg-white rounded-2xl p-6 sm:p-7 text-center hover:shadow-md transition-all duration-300 relative z-10 group shadow-sm">
                 <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} mx-auto mb-5 flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform duration-250 p-3`}>
                   <step.icon />
                 </div>
@@ -643,7 +643,7 @@ export default function VirtualSpace() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
             {/* Left: Visual card */}
-            <div className="bg-gradient-to-br from-[#0a1628] via-[#0f2351] to-[#1A56DB] rounded-3xl p-10 shadow-2xl relative overflow-hidden text-center">
+            <div className="bg-gradient-to-br from-[#0B1530] via-[#1A56DB] to-[#1e40af] rounded-3xl p-10 shadow-2xl relative overflow-hidden text-center">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />
               <div className="w-24 h-24 mx-auto mb-6 text-blue-300/80 relative z-10"><Icons.FileText /></div>
@@ -659,7 +659,7 @@ export default function VirtualSpace() {
             {/* Right: Document list */}
             <div className="grid grid-cols-1 gap-4">
               {documents.map((doc, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-gray-100 p-5 hover:border-[#1A56DB] hover:shadow-lg transition-all group flex items-start gap-4">
+                <div key={i} className="bg-white rounded-2xl p-5 hover:shadow-md shadow-sm transition-all duration-300 group flex items-start gap-4">
                   <div className={`w-11 h-11 rounded-xl ${doc.bg} flex items-center justify-center ${doc.color} flex-shrink-0 p-2.5 group-hover:scale-110 transition-transform`}>
                     <doc.icon />
                   </div>
@@ -689,7 +689,7 @@ export default function VirtualSpace() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
             {platforms.map((p) => (
               <div key={p.name} onClick={scrollToForm}
-                className="bg-white rounded-2xl border-2 border-gray-100 p-5 text-center hover:border-[#1A56DB] hover:shadow-xl hover:shadow-blue-100 transition-all duration-200 group active:scale-95 cursor-pointer flex flex-col items-center gap-3">
+                className="bg-white rounded-2xl p-5 text-center hover:shadow-md shadow-sm transition-all duration-300 group active:scale-95 cursor-pointer flex flex-col items-center gap-3">
                 <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${p.color} flex items-center justify-center text-white shadow-sm group-hover:scale-110 transition-transform duration-200 p-3`}>
                   <p.icon />
                 </div>
@@ -707,7 +707,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           WHY CHOOSE US — Dark Section
       ══════════════════════════════════════════════════════════════════ */}
-      <section ref={whyUsRef} className="bg-gradient-to-br from-[#060d1f] via-[#0a1628] to-[#0f2351] py-16 sm:py-20 text-white relative overflow-hidden">
+      <section ref={whyUsRef} className="bg-gradient-to-br from-[#0B1530] via-[#1A56DB] to-[#1e40af] py-16 sm:py-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -720,8 +720,8 @@ export default function VirtualSpace() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChooseUs.map((f, i) => (
-              <div key={i} className={`rounded-2xl border p-6 hover:bg-white/10 transition-all group cursor-default ${f.border} ${f.bg}`}>
-                <div className={`w-12 h-12 rounded-xl ${f.bg} border ${f.border} flex items-center justify-center ${f.color} mb-5 p-2.5 group-hover:scale-110 transition-transform`}>
+              <div key={i} className="rounded-2xl p-6 bg-white/5 hover:bg-white/10 transition-all duration-300 group cursor-default shadow-sm">
+                <div className={`w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center ${f.color} mb-5 p-2.5 group-hover:scale-110 transition-transform`}>
                   <f.icon />
                 </div>
                 <h3 className="mb-2 text-base font-bold text-white">{f.title}</h3>
@@ -746,7 +746,7 @@ export default function VirtualSpace() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {displayedStates.map((state, i) => (
               <div key={state.name} onClick={scrollToForm}
-                className="bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-lg hover:border-[#1A56DB] transition-all cursor-pointer flex items-center gap-3 active:scale-95 group">
+                className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-3 active:scale-95 group">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#1A56DB] flex-shrink-0 group-hover:bg-blue-100 transition-colors p-2">
                   <Icons.MapPin />
                 </div>
@@ -760,7 +760,7 @@ export default function VirtualSpace() {
 
           <div className="text-center mt-8">
             <button id="toggle-states-btn" onClick={() => setShowAll(!showAll)}
-              className="border-2 border-[#1A56DB] text-[#1A56DB] rounded-full px-8 py-3 font-bold text-sm hover:bg-blue-50 transition-all cursor-pointer active:scale-95">
+              className="bg-[#1A56DB]/10 text-[#1A56DB] rounded-full px-8 py-3.5 font-bold text-sm hover:bg-[#1A56DB]/15 transition-all cursor-pointer active:scale-95">
               {showAll ? "Show Less ↑" : "View All 28 States ↓"}
             </button>
           </div>
@@ -786,7 +786,7 @@ export default function VirtualSpace() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {reviews.map((rev, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-blue-100 transition-all flex flex-col justify-between group">
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
                 <div>
                   <div className="flex gap-0.5 mb-4">
                     {[1,2,3,4,5].map(s => <div key={s} className="w-4 h-4 text-yellow-400"><Icons.Star /></div>)}
@@ -822,7 +822,7 @@ export default function VirtualSpace() {
 
           <div className="max-w-3xl mx-auto space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className={`bg-white rounded-2xl border overflow-hidden transition-all shadow-sm ${openFaq === i ? "border-[#1A56DB] shadow-blue-100" : "border-gray-100 hover:border-gray-200"}`}>
+              <div key={i} className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${openFaq === i ? "ring-1 ring-blue-500/10 shadow-md" : "hover:shadow-md"}`}>
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-5 text-left cursor-pointer focus:outline-none gap-4">
                   <div className="flex items-center gap-3">
@@ -849,7 +849,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-[#1A56DB] via-[#1e40af] to-[#0f2351] py-20 text-center text-white relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] py-20 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none" />
@@ -858,7 +858,7 @@ export default function VirtualSpace() {
           <div className="w-16 h-16 mx-auto mb-6 text-blue-300/80"><Icons.Building /></div>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
             Ready to Get Your<br />
-            <span className="shimmer-text">Premium Virtual Office?</span>
+            <span className="text-[#F97316]">Premium Virtual Office?</span>
           </h2>
           <p className="text-blue-100 mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
             Join 22,000+ businesses who trust FilingBy for a credible, government-accepted business address across India.

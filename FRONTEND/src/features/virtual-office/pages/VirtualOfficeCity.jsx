@@ -195,7 +195,7 @@ export default function VirtualOfficeCity() {
         ]}
       />
       {/* Mini top header */}
-      <div className="bg-white border-b border-gray-100 py-3.5 sticky top-[28px] z-40">
+      <div className="bg-white shadow-sm py-3.5 sticky top-[28px] z-40">
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl">🏢</span>
@@ -219,7 +219,7 @@ export default function VirtualOfficeCity() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-20 pb-16 px-4 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-20 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
@@ -228,8 +228,8 @@ export default function VirtualOfficeCity() {
             <span className="text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
               ₹{defaultCity.rate}/mo* Special Location Offer
             </span>
-            <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
-              Premium Virtual Office in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">{defaultCity.name}</span> <br />
+            <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
+              Premium Virtual Office in <span className="text-[#F97316]">{defaultCity.name}</span> <br />
               for GST & Company Registration
             </h1>
             <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed max-w-xl">
@@ -264,7 +264,7 @@ export default function VirtualOfficeCity() {
 
           {/* Right Lead Form */}
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100 text-gray-900 animate-float">
+            <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 text-gray-900 animate-float">
               <h3 className="text-lg font-black tracking-tight mb-2">Get Instant Pricing Quote</h3>
               <p className="text-xs text-gray-500 font-medium mb-4">Leave details below and receive document samples on WhatsApp.</p>
               
@@ -277,7 +277,7 @@ export default function VirtualOfficeCity() {
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-3">
                   <div>
-                    <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Your Name</label>
+                    <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Your Name</label>
                     <input
                       type="text"
                       name="name"
@@ -285,12 +285,12 @@ export default function VirtualOfficeCity() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="e.g. Amit Sharma"
-                      className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                      className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Email</label>
+                      <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Email</label>
                       <input
                         type="email"
                         name="email"
@@ -298,11 +298,11 @@ export default function VirtualOfficeCity() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="amit@company.com"
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Mobile No</label>
+                      <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Mobile No</label>
                       <input
                         type="tel"
                         name="mobile"
@@ -310,18 +310,18 @@ export default function VirtualOfficeCity() {
                         value={formData.mobile}
                         onChange={handleInputChange}
                         placeholder="9999988888"
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Requirement Purpose</label>
+                    <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Requirement Purpose</label>
                     <select
                       name="purpose"
                       required
                       value={formData.purpose}
                       onChange={handleInputChange}
-                      className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                      className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none cursor-pointer"
                     >
                       <option value="">Select Purpose</option>
                       <option value="gst">GST Registration</option>
@@ -359,7 +359,7 @@ export default function VirtualOfficeCity() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Map Embed - Left side */}
-          <div className="lg:col-span-1 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm h-[320px]">
+          <div className="lg:col-span-1 bg-white rounded-2xl p-4 shadow-sm h-[320px]">
             <h4 className="text-xs font-bold text-gray-900 mb-2 uppercase tracking-widest">Map View</h4>
             <iframe
               src={defaultCity.mapEmbed}
@@ -369,7 +369,7 @@ export default function VirtualOfficeCity() {
               allowFullScreen=""
               loading="lazy"
               title={`Virtual office map in ${defaultCity.name}`}
-              className="rounded-xl border border-gray-100"
+              className="rounded-xl"
             ></iframe>
           </div>
 
@@ -378,7 +378,7 @@ export default function VirtualOfficeCity() {
             {defaultCity.addresses.map((addr, idx) => (
               <div 
                 key={idx}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-shadow"
+                className="bg-white rounded-2xl shadow-sm p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg transition-all duration-300"
               >
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
@@ -414,23 +414,34 @@ export default function VirtualOfficeCity() {
       </section>
 
       {/* Localized FAQ Section */}
-      <section className="max-w-3xl mx-auto px-4 py-12 border-t border-gray-100">
+      <section className="max-w-3xl mx-auto px-4 py-12">
         <h2 className="text-xl md:text-2xl font-black text-center text-gray-900 mb-8">
           FAQs for Virtual Office in {defaultCity.name}
         </h2>
         <div className="space-y-3">
           {defaultCity.faqs.map((item, index) => (
-            <div key={index} className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+            <div key={index} className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${openFaq === index ? "ring-1 ring-blue-500/10 shadow-md" : "hover:shadow-md"}`}>
               <button
                 onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                className="w-full text-left px-5 py-4 font-bold text-gray-900 hover:text-[#1A56DB] flex justify-between items-center transition-colors text-sm"
+                className="w-full flex items-center justify-between p-5 text-left cursor-pointer focus:outline-none gap-4"
               >
-                <span>{item.q}</span>
-                <span className="text-gray-400">{openFaq === index ? "−" : "+"}</span>
+                <div className="flex items-center gap-3">
+                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${openFaq === index ? "bg-[#1A56DB] text-white" : "bg-gray-100 text-gray-500"} p-1`}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                  </div>
+                  <span className="font-bold text-gray-900 text-sm sm:text-base">{item.q}</span>
+                </div>
+                <div className={`w-5 h-5 text-[#1A56DB] flex-shrink-0 transition-transform duration-200 ${openFaq === index ? "rotate-180" : ""}`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
               </button>
               {openFaq === index && (
-                <div className="px-5 pb-4 text-xs font-medium text-gray-600 leading-relaxed border-t border-gray-50 pt-2.5">
-                  {item.a}
+                <div className="px-5 pb-5 pl-14 animate-fadeInUp">
+                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.a}</p>
                 </div>
               )}
             </div>

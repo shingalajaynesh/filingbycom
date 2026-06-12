@@ -54,10 +54,10 @@ export default function GetLiveQuote() {
           { name: "Get Quote", url: "/get-live-quote" }
         ])}
       />
-      <div className="max-w-xl w-full bg-white rounded-3xl border border-gray-100 shadow-2xl p-6 md:p-8 animate-fadeInUp">
+      <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 md:p-8 animate-fadeInUp">
         
         {/* Step Indicator */}
-        <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-100">
+        <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-100/50">
           <h2 className="text-lg font-black text-gray-900">Virtual Office Quote Calculator</h2>
           <span className="text-xs font-bold text-[#1A56DB] bg-blue-50 px-2.5 py-1 rounded-full">Step {step} of 3</span>
         </div>
@@ -75,7 +75,7 @@ export default function GetLiveQuote() {
                 value={formData.city}
                 onChange={handleInputChange}
                 placeholder="e.g. Bangalore, Delhi, Noida"
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
 
@@ -86,7 +86,7 @@ export default function GetLiveQuote() {
                 required
                 value={formData.purpose}
                 onChange={handleInputChange}
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900"
               >
                 <option value="">Select Purpose</option>
                 <option value="gst">GST Registration / VPOB</option>
@@ -102,7 +102,7 @@ export default function GetLiveQuote() {
                 required
                 value={formData.businessType}
                 onChange={handleInputChange}
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900"
               >
                 <option value="">Select Entity Type</option>
                 <option value="pvt-ltd">Private Limited Company</option>
@@ -115,7 +115,7 @@ export default function GetLiveQuote() {
             <button
               disabled={!formData.city || !formData.purpose || !formData.businessType}
               onClick={() => setStep(2)}
-              className="w-full mt-6 py-3 bg-[#1A56DB] hover:bg-blue-700 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer"
+              className="w-full mt-6 py-3.5 bg-[#1A56DB] hover:bg-blue-700 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-blue-500/25"
             >
               Continue to Details
             </button>
@@ -136,7 +136,7 @@ export default function GetLiveQuote() {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="e.g. Sameer Goel"
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
 
@@ -149,7 +149,7 @@ export default function GetLiveQuote() {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="sameer@gmail.com"
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
 
@@ -162,21 +162,21 @@ export default function GetLiveQuote() {
                 value={formData.mobile}
                 onChange={handleInputChange}
                 placeholder="9999988888"
-                className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
               />
             </div>
 
             <div className="flex gap-3 pt-4">
               <button
                 onClick={() => setStep(1)}
-                className="w-1/3 py-3 bg-gray-50 border border-gray-200 hover:bg-gray-100 text-gray-800 rounded-xl font-bold transition-all text-xs tracking-wider uppercase"
+                className="w-1/3 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-bold transition-all text-xs tracking-wider uppercase"
               >
                 Back
               </button>
               <button
                 disabled={!formData.name || !formData.email || !formData.mobile}
                 onClick={calculateQuote}
-                className="flex-1 py-3 bg-[#F97316] hover:bg-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer"
+                className="flex-1 py-3.5 bg-[#F97316] hover:bg-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-orange-500/25"
               >
                 Calculate Live Estimate
               </button>
@@ -192,7 +192,7 @@ export default function GetLiveQuote() {
               <p className="text-xs text-gray-500">Based on selection: {formData.city} • {formData.businessType.toUpperCase()}</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl border border-gray-150 p-6 inline-block w-full">
+            <div className="bg-gray-50/60 rounded-2xl p-6 inline-block w-full">
               <span className="text-sm font-semibold text-gray-500">Estimated Slabs Starting From</span>
               <div className="text-4xl font-black text-[#1A56DB] mt-1">₹{priceEstimate}*<span className="text-xs font-semibold text-gray-500">/month</span></div>
               <p className="text-[10px] text-gray-400 mt-2">*Excludes government registry stamp duty & GST registration filing fees.</p>

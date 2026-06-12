@@ -37,13 +37,13 @@ export default function CustomerCare() {
         ])}
       />
       {/* Hero Header */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="max-w-3xl mx-auto space-y-4 relative z-10 animate-fadeInUp">
           <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/20">
             FilingBy Support Center
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
             How Can We Assist You?
           </h1>
           <p className="text-gray-300 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
@@ -53,12 +53,12 @@ export default function CustomerCare() {
       </section>
 
       {/* Main Grid */}
-      <section className="max-w-screen-xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <section className="max-w-screen-xl mx-auto px-4 py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         {/* Contact details - Left Fold */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
-            <h3 className="text-lg font-black text-gray-900 border-b border-gray-100 pb-3">Support Contacts</h3>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm space-y-4 hover:shadow-md transition-all duration-300">
+            <h3 className="text-lg font-black text-gray-900 pb-3">Support Contacts</h3>
             
             <div className="space-y-4 text-xs font-medium text-gray-600">
               <div className="flex items-start gap-3">
@@ -73,7 +73,7 @@ export default function CustomerCare() {
                 <span className="text-xl">📧</span>
                 <div>
                   <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">Email Address</p>
-                  <a href="mailto:care@address.co" className="text-sm font-bold text-[#1A56DB] hover:underline">care@filingby.com</a>
+                  <a href="mailto:care@filingby.com" className="text-sm font-bold text-[#1A56DB] hover:underline">care@filingby.com</a>
                 </div>
               </div>
 
@@ -97,16 +97,16 @@ export default function CustomerCare() {
           </div>
 
           {/* SLA promises */}
-          <div className="bg-gradient-to-br from-[#0a1628] to-[#1E3A8A] text-white rounded-2xl p-6 shadow-sm space-y-3">
+          <div className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white rounded-2xl p-6 shadow-sm space-y-3">
             <h4 className="text-sm font-bold uppercase tracking-widest text-orange-400">Resolution Commitment</h4>
-            <p className="text-xs text-gray-300 leading-relaxed font-medium">
+            <p className="text-xs text-blue-100 leading-relaxed font-medium">
               We aim to review and resolve standard billing and documentation disputes within 2 working hours. Government tax queries are addressed on priority within 12 hours.
             </p>
           </div>
         </div>
 
         {/* Ticket Submission Form - Right Fold */}
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+        <div className="lg:col-span-7 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 md:p-8">
           <h3 className="text-lg font-black tracking-tight mb-2">Create a Support Ticket</h3>
           <p className="text-xs text-gray-500 font-medium mb-6">If you are an existing client, please specify your order ID or company name.</p>
           
@@ -126,7 +126,7 @@ export default function CustomerCare() {
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Your Name</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Your Name</label>
                   <input
                     type="text"
                     name="name"
@@ -134,11 +134,11 @@ export default function CustomerCare() {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="e.g. Ramesh Chandra"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Mobile No</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Mobile No</label>
                   <input
                     type="tel"
                     name="mobile"
@@ -146,14 +146,14 @@ export default function CustomerCare() {
                     value={formData.mobile}
                     onChange={handleInputChange}
                     placeholder="9999988888"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Email</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -161,30 +161,30 @@ export default function CustomerCare() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="name@email.com"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Order ID (Optional)</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Order ID (Optional)</label>
                   <input
                     type="text"
                     name="orderId"
                     value={formData.orderId}
                     onChange={handleInputChange}
                     placeholder="e.g. FB-83742"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Help Category</label>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Help Category</label>
                 <select
                   name="category"
                   required
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                  className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none bg-white cursor-pointer"
                 >
                   <option value="">Select Category</option>
                   <option value="documentation">Missing Rent Agreement / NOC</option>
@@ -196,7 +196,7 @@ export default function CustomerCare() {
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Detailed Message</label>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Detailed Message</label>
                 <textarea
                   name="message"
                   required
@@ -204,13 +204,13 @@ export default function CustomerCare() {
                   value={formData.message}
                   onChange={handleInputChange}
                   placeholder="Describe your request in detail..."
-                  className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB] resize-none"
+                  className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none resize-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer"
+                className="w-full py-3.5 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-orange-500/25"
               >
                 Submit Support Request
               </button>

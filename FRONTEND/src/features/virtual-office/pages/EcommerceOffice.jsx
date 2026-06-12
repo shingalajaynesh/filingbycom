@@ -38,7 +38,7 @@ export default function EcommerceOffice() {
         ])}
       />
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500 rounded-full blur-[150px] opacity-20 pointer-events-none" />
         
@@ -47,9 +47,9 @@ export default function EcommerceOffice() {
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
               VPOB (Virtual Principal Place of Business) Solutions
             </span>
-            <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
               Virtual Office for <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">E-commerce GST Registration</span>
+              <span className="text-[#F97316]">E-commerce GST Registration</span>
             </h1>
             <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed max-w-xl">
               Fulfill Amazon FC (Fulfilment Center) & Flipkart Assured registration requirements easily. Obtain a valid GSTIN in multiple states using legal virtual addresses starting from ₹999/mo.
@@ -65,7 +65,7 @@ export default function EcommerceOffice() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100 text-gray-900">
+            <div className="bg-white rounded-2xl p-6 shadow-2xl text-gray-900">
               <h3 className="text-lg font-black tracking-tight mb-2">Request VPOB Pricing</h3>
               <p className="text-xs text-gray-500 font-medium mb-4">Select target state for Amazon/Flipkart hub approvals.</p>
               
@@ -78,7 +78,7 @@ export default function EcommerceOffice() {
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-3">
                   <div>
-                    <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Full Name</label>
+                    <label className="text-[11px] font-bold text-gray-650 uppercase block mb-1">Full Name</label>
                     <input
                       type="text"
                       name="name"
@@ -86,12 +86,12 @@ export default function EcommerceOffice() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="e.g. Rajesh Kumar"
-                      className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                      className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Email</label>
+                      <label className="text-[11px] font-bold text-gray-650 uppercase block mb-1">Email</label>
                       <input
                         type="email"
                         name="email"
@@ -99,11 +99,11 @@ export default function EcommerceOffice() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="seller@store.com"
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Mobile No</label>
+                      <label className="text-[11px] font-bold text-gray-650 uppercase block mb-1">Mobile No</label>
                       <input
                         type="tel"
                         name="mobile"
@@ -111,13 +111,13 @@ export default function EcommerceOffice() {
                         value={formData.mobile}
                         onChange={handleInputChange}
                         placeholder="9999988888"
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                       />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Target State</label>
+                      <label className="text-[11px] font-bold text-gray-650 uppercase block mb-1">Target State</label>
                       <input
                         type="text"
                         name="state"
@@ -125,17 +125,17 @@ export default function EcommerceOffice() {
                         value={formData.state}
                         onChange={handleInputChange}
                         placeholder="e.g. Karnataka"
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-bold text-gray-600 uppercase block mb-1">Primary Platform</label>
+                      <label className="text-[11px] font-bold text-gray-650 uppercase block mb-1">Primary Platform</label>
                       <select
                         name="platform"
                         required
                         value={formData.platform}
                         onChange={handleInputChange}
-                        className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                        className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none cursor-pointer bg-white"
                       >
                         <option value="">Select Platform</option>
                         <option value="amazon">Amazon Flex/FBA</option>
@@ -147,7 +147,7 @@ export default function EcommerceOffice() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer"
+                    className="w-full py-3.5 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-orange-500/25"
                   >
                     Get VPOB Document Details
                   </button>
@@ -178,7 +178,7 @@ export default function EcommerceOffice() {
             { title: "Physical Desk Representation", desc: "Complies with GST physical inspection standards. We allocate physical spaces with signboards to support audits smoothly.", icon: "🖥️" },
             { title: "State NOC Packets", desc: "No Objection Certificate (NOC) templates pre-formatted to pass online portal validation without issues.", icon: "📄" },
           ].map((item) => (
-            <div key={item.title} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-3">
+            <div key={item.title} className="bg-white rounded-2xl shadow-sm p-6 space-y-3">
               <span className="text-3xl">{item.icon}</span>
               <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
               <p className="text-gray-500 text-xs font-medium leading-relaxed">{item.desc}</p>
@@ -188,7 +188,7 @@ export default function EcommerceOffice() {
       </section>
 
       {/* Pricing Slabs */}
-      <section className="bg-white border-y border-gray-100 py-16">
+      <section className="bg-white py-16">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-2xl md:text-3xl font-black text-gray-900">
@@ -203,7 +203,7 @@ export default function EcommerceOffice() {
               { name: "Multi-State Combo (3 States)", rate: "2,499", desc: "Best for sellers unlocking East, West, and South warehouse hubs.", features: ["3 High-Converting state addresses", "Priority document delivery", "Complete signboards and tags", "Inspection support call coordination"] },
               { name: "National Seller Package (6+ States)", rate: "4,799", desc: "For large enterprise merchants seeking zero dispatch boundaries.", features: ["6 premium business addresses", "Dedicated customer care liaison", "Immediate 100% refund policy", "Free trade license consultancy"] },
             ].map((plan) => (
-              <div key={plan.name} className="bg-gray-50 rounded-2xl border border-gray-200 p-8 flex flex-col justify-between hover:border-[#1A56DB] transition-all">
+              <div key={plan.name} className="bg-white rounded-2xl p-8 flex flex-col justify-between hover:shadow-xl hover:shadow-blue-50/20 transition-all duration-300 shadow-sm">
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
                   <p className="text-xs text-gray-500 font-medium leading-relaxed">{plan.desc}</p>
@@ -225,7 +225,7 @@ export default function EcommerceOffice() {
                 
                 <button
                   onClick={() => navigate("/get-live-quote")}
-                  className="w-full mt-8 py-3 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl font-bold text-xs tracking-wider uppercase active:scale-95 transition-all cursor-pointer"
+                  className="w-full mt-8 py-3.5 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl font-bold text-xs tracking-wider uppercase active:scale-95 transition-all cursor-pointer shadow-lg shadow-blue-500/25"
                 >
                   Select Package
                 </button>

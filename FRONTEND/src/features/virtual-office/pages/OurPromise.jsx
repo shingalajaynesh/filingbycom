@@ -19,15 +19,15 @@ export default function OurPromise() {
         ])}
       />
       {/* Header Fold */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="max-w-3xl mx-auto space-y-4 relative z-10 animate-fadeInUp">
           <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
             FilingBy Service Commitment
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
             Our Guarantee to You: <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">100% Compliant or Full Refund</span>
+            <span className="text-[#F97316]">100% Compliant or Full Refund</span>
           </h1>
           <p className="text-gray-300 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
             Your trust is our greatest asset. That's why we secure every virtual lease against strict state codes and offer instant refunds if registrations fail.
@@ -64,7 +64,7 @@ export default function OurPromise() {
               color: "border-l-4 border-green-500",
             },
           ].map((promise) => (
-            <div key={promise.title} className={`bg-white rounded-2xl p-8 shadow-sm border border-gray-100 flex gap-6 ${promise.color}`}>
+            <div key={promise.title} className={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300 flex gap-6 ${promise.color}`}>
               <span className="text-4xl flex-shrink-0">{promise.icon}</span>
               <div className="space-y-2">
                 <h3 className="text-lg font-black text-gray-900">{promise.title}</h3>
@@ -76,7 +76,7 @@ export default function OurPromise() {
       </section>
 
       {/* Timeline of Support SLA */}
-      <section className="bg-white border-y border-gray-100 py-16">
+      <section className="bg-white py-16">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-black text-gray-900 text-center mb-12">FilingBy Response SLA Timelines</h2>
           
@@ -103,7 +103,7 @@ export default function OurPromise() {
 
       {/* Footer Call to Action */}
       <section className="max-w-screen-xl mx-auto px-4 mt-16">
-        <div className="bg-[#0a1628] rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden shadow-lg">
+        <div className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] rounded-3xl p-8 md:p-12 text-white text-center relative overflow-hidden shadow-lg">
           <div className="relative z-10 space-y-4">
             <h3 className="text-xl md:text-2xl font-black">Register with absolute confidence.</h3>
             <p className="text-gray-300 text-xs md:text-sm max-w-lg mx-auto">

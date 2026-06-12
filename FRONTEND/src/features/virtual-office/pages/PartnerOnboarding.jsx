@@ -38,13 +38,13 @@ export default function PartnerOnboarding() {
         ])}
       />
       {/* Header Fold */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="max-w-3xl mx-auto space-y-4 relative z-10 animate-fadeInUp">
           <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
             FilingBy Partner Program
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
             Monetize Your Coworking or Commercial Space
           </h1>
           <p className="text-gray-300 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
@@ -58,7 +58,7 @@ export default function PartnerOnboarding() {
         
         {/* Left column info */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
+          <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 space-y-4">
             <h3 className="text-lg font-black text-gray-900 border-b border-gray-100 pb-3">Why Partner with Us?</h3>
             <ul className="space-y-4">
               {[
@@ -79,7 +79,7 @@ export default function PartnerOnboarding() {
         </div>
 
         {/* Right column form */}
-        <div className="lg:col-span-7 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
+        <div className="lg:col-span-7 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 md:p-8">
           <h3 className="text-lg font-black tracking-tight mb-2">Register Your Workspace</h3>
           <p className="text-xs text-gray-500 font-medium mb-6">Provide workspace parameters to verify listing slots.</p>
           
@@ -93,7 +93,7 @@ export default function PartnerOnboarding() {
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Workspace / Center Name</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace / Center Name</label>
                   <input
                     type="text"
                     name="spaceName"
@@ -101,11 +101,11 @@ export default function PartnerOnboarding() {
                     value={formData.spaceName}
                     onChange={handleInputChange}
                     placeholder="e.g. Innovate Coworking"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">City / Region</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">City / Region</label>
                   <input
                     type="text"
                     name="city"
@@ -113,14 +113,14 @@ export default function PartnerOnboarding() {
                     value={formData.city}
                     onChange={handleInputChange}
                     placeholder="e.g. Bangalore"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Onboarding Contact Person</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Onboarding Contact Person</label>
                   <input
                     type="text"
                     name="ownerName"
@@ -128,11 +128,11 @@ export default function PartnerOnboarding() {
                     value={formData.ownerName}
                     onChange={handleInputChange}
                     placeholder="e.g. Ajay Jaynesh"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Mobile No</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Mobile No</label>
                   <input
                     type="tel"
                     name="mobile"
@@ -140,14 +140,14 @@ export default function PartnerOnboarding() {
                     value={formData.mobile}
                     onChange={handleInputChange}
                     placeholder="9999988888"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Email Address</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Email Address</label>
                   <input
                     type="email"
                     name="email"
@@ -155,11 +155,11 @@ export default function PartnerOnboarding() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="contact@coworking.com"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Space Desk Capacity</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Space Desk Capacity</label>
                   <input
                     type="number"
                     name="deskCount"
@@ -167,19 +167,19 @@ export default function PartnerOnboarding() {
                     value={formData.deskCount}
                     onChange={handleInputChange}
                     placeholder="e.g. 50"
-                    className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-gray-600 uppercase block mb-1">Property Layout Type</label>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Property Layout Type</label>
                 <select
                   name="spaceType"
                   required
                   value={formData.spaceType}
                   onChange={handleInputChange}
-                  className="w-full text-xs font-semibold px-3.5 py-2.5 rounded-lg border border-gray-200 focus:outline-none focus:border-[#1A56DB]"
+                  className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900"
                 >
                   <option value="">Select Space Type</option>
                   <option value="coworking">Coworking Space</option>

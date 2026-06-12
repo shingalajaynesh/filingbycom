@@ -247,98 +247,214 @@ export default function Home() {
       </section>
 
       {/* Virtual Office Teaser Section */}
-      <section className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-slate-50 py-16 px-4 sm:px-6 lg:px-8 border-y border-slate-100">
         <div className="max-w-screen-xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-[#0a1628] text-white p-8 sm:p-12 shadow-xl">
-            {/* Grid background & glow orbs */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-            <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-blue-500/15 blur-3xl pointer-events-none" />
+          <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-[#0B1530] text-white p-8 sm:p-12 lg:p-16 shadow-2xl">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            <div className="absolute -right-10 -top-10 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
+            <div className="absolute -left-10 -bottom-10 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="space-y-4 max-w-2xl text-left">
-                <span className="inline-flex rounded-full bg-blue-500/20 border border-blue-400/30 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-blue-300">
-                  NEW SERVICE 🏢
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              {/* Left Column: Copy & Action */}
+              <div className="space-y-6 lg:col-span-7 text-left">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-blue-400">
+                  <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                  Premium Compliance Address
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                  Establish a Professional Presence with <span className="shimmer-text font-bold">Virtual Office</span>
+                
+                <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                  Establish a Professional Presence with a <span className="text-[#F97316]">Virtual Office</span>
                 </h3>
-                <p className="text-sm sm:text-base text-blue-100/80 leading-relaxed">
-                  Get a premium business address in any of the 28 states in India for GST registration, company mailing address, or seller registration. Fast 7-day setup with 100% compliant documentation!
+                
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
+                  Skip the expensive commercial leases. Secure a premium, legal business address across any of the 28 states in India. Perfect for GST registration, company mailing, or seller registration with 100% compliant documentation.
                 </p>
-                <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-blue-200 select-none">
-                  <span>✓ Official NOC & Bills included</span>
-                  <span>✓ 28 States Covered</span>
-                  <span>✓ Starting at ₹999/month</span>
+
+                {/* Structured Checkmarks List */}
+                <div className="grid gap-3 sm:grid-cols-2 text-sm text-slate-300">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span>Official NOC & Utility Bills</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span>100% GST Registry Approved</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span>Courier & Mail Handling</span>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span>Starting at ₹999/month</span>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <button
+                    onClick={() => navigate('/virtual-space')}
+                    className="w-full sm:w-auto bg-[#F97316] text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 cursor-pointer text-center min-h-[48px] inline-flex items-center justify-center gap-2"
+                  >
+                    <span>Explore Virtual Space</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </button>
                 </div>
               </div>
 
-              <div className="flex-shrink-0 w-full lg:w-auto">
-                <button
-                  onClick={() => navigate('/virtual-space')}
-                  className="w-full lg:w-auto bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold text-sm hover:bg-orange-500 transition-all active:scale-95 hover:shadow-lg hover:shadow-orange-200 cursor-pointer text-center min-h-[44px]"
-                >
-                  Explore Virtual Office →
-                </button>
+              {/* Right Column: Premium Compliance Panel */}
+              <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
+                <div className="w-full max-w-sm rounded-2xl border border-slate-700 bg-slate-800/80 backdrop-blur p-6 shadow-xl relative overflow-hidden">
+                  {/* Glowing tag */}
+                  <div className="absolute right-0 top-0 bg-gradient-to-l from-green-500 to-emerald-400 text-slate-950 font-extrabold text-[10px] px-3.5 py-1 rounded-bl-xl uppercase tracking-wider">
+                    Ready to Use
+                  </div>
+
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M9 22V12h6v10" />
+                        <path d="M3 9h18" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-base">Elite Business Center</h4>
+                      <p className="text-xs text-slate-400">Commercial Business Address</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* State Selector Preview */}
+                    <div className="bg-slate-900/60 rounded-xl p-3 border border-slate-700/50 space-y-1">
+                      <div className="flex justify-between items-center text-[10px] text-slate-400 uppercase font-semibold">
+                        <span>Selected State</span>
+                        <span className="text-green-400 font-bold">● Available</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm text-white font-semibold">
+                        <span>Delhi NCR, India</span>
+                        <span className="text-slate-400 text-xs">Change State</span>
+                      </div>
+                    </div>
+
+                    {/* Deliverables checklist */}
+                    <div className="space-y-2.5">
+                      <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                        <span className="text-emerald-400 text-sm">✓</span>
+                        <div>
+                          <p className="font-semibold text-white">NOC & Agreement</p>
+                          <p className="text-[10px] text-slate-400">Owner authorization NOC for GST validation</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                        <span className="text-emerald-400 text-sm">✓</span>
+                        <div>
+                          <p className="font-semibold text-white">Electricity Bill</p>
+                          <p className="text-[10px] text-slate-400">Recent utility bill matching the exact address</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-slate-300">
+                        <span className="text-emerald-400 text-sm">✓</span>
+                        <div>
+                          <p className="font-semibold text-white">Desk Space & Signage</p>
+                          <p className="text-[10px] text-slate-400">Physical representation for physical verification visits</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+
       {/* Upgraded Why Choose Us Section */}
-      <section className="bg-[#0a1628] px-4 py-16 text-white sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="bg-slate-900 px-4 py-16 text-white sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
 
         <div className="mx-auto max-w-screen-xl text-center relative z-10">
-          <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full text-blue-400 bg-blue-400/10 border border-blue-400/20">
+          <span className="text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full text-[#60a5fa] bg-blue-500/10 border border-blue-500/20">
             FilingBy Trust Factor
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-3 mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mt-4 mb-10">
             Why 50,000+ Businesses Trust FilingBy
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: "👨‍💼",
+                icon: (
+                  <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  </svg>
+                ),
                 title: "Expert CA & CS Team",
                 desc: "Qualified corporate professionals with 10+ years of legal & compliance experience.",
-                border: "border-blue-500/20",
                 bg: "bg-blue-500/10",
               },
               {
-                icon: "⚡",
+                icon: (
+                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
                 title: "Fast Processing",
                 desc: "Most service orders and applications filed within 24 to 72 business hours.",
-                border: "border-green-500/20",
                 bg: "bg-green-500/10",
               },
               {
-                icon: "💰",
+                icon: (
+                  <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+                  </svg>
+                ),
                 title: "Transparent Pricing",
                 desc: "Fixed upfront fees with absolutely zero hidden charges or surprises — ever.",
-                border: "border-purple-500/20",
                 bg: "bg-purple-500/10",
               },
               {
-                icon: "🔒",
+                icon: (
+                  <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                ),
                 title: "100% Secure & Private",
                 desc: "Industrial-grade database encryption safeguarding all client company data.",
-                border: "border-orange-500/20",
                 bg: "bg-orange-500/10",
               },
             ].map((item, idx) => (
               <article
                 key={idx}
-                className={`rounded-2xl border p-6 text-left transition-all hover:bg-white/10 group ${item.border} ${item.bg}`}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 text-left transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-blue-950/20 hover:-translate-y-1"
               >
-                <div className="mb-4 text-3xl group-hover:scale-110 transition-transform duration-200 select-none">
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${item.bg}`}>
                   {item.icon}
                 </div>
                 <h3 className="mb-2 text-base font-bold text-white sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="text-sm text-blue-100 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
               </article>
             ))}
           </div>

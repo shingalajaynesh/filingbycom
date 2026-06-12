@@ -21,15 +21,15 @@ export default function AboutUs() {
         ]}
       />
       {/* Header Fold */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="max-w-3xl mx-auto space-y-4 relative z-10 animate-fadeInUp">
           <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/20">
             FilingBy Story
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
             Simplifying Business Compliance <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">For Indian Entrepreneurs</span>
+            <span className="text-[#F97316]">For Indian Entrepreneurs</span>
           </h1>
           <p className="text-gray-300 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
             We are a network of verified legal spaces, CA professionals, and technology experts dedicated to providing digital business registrations.
@@ -39,7 +39,7 @@ export default function AboutUs() {
 
       {/* Metrics Grid */}
       <section className="max-w-screen-xl mx-auto px-4 -mt-8 relative z-20">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="bg-white rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
             { value: "50,000+", label: "Businesses Registered" },
             { value: "99.4%", label: "Client Retention Rate" },
@@ -78,7 +78,7 @@ export default function AboutUs() {
             { title: "Turnaround SLA", desc: "Digital draft NOCs within 24 hours. Express courier dispatch for original folders.", icon: "⚡" },
             { title: "Expert Care Network", desc: "Dedicated CA/CS support representatives handling commercial tax authority query replies.", icon: "🤝" },
           ].map((val) => (
-            <div key={val.title} className="bg-white rounded-2xl border border-gray-150 p-5 space-y-2 shadow-sm">
+            <div key={val.title} className="bg-white rounded-2xl shadow-sm p-5 space-y-2">
               <span className="text-2xl">{val.icon}</span>
               <h3 className="text-sm font-bold text-gray-900">{val.title}</h3>
               <p className="text-gray-500 text-[11px] font-medium leading-relaxed">{val.desc}</p>
@@ -89,7 +89,7 @@ export default function AboutUs() {
 
       {/* Footer Call to Action */}
       <section className="max-w-screen-xl mx-auto px-4">
-        <div className="bg-gradient-to-br from-[#0a1628] to-[#1E3A8A] rounded-3xl p-8 text-center text-white relative overflow-hidden shadow-lg">
+        <div className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] rounded-3xl p-8 text-center text-white relative overflow-hidden shadow-lg">
           <div className="relative z-10 space-y-4">
             <h3 className="text-xl md:text-2xl font-black">Ready to scale your business?</h3>
             <p className="text-gray-300 text-xs md:text-sm max-w-lg mx-auto leading-relaxed">

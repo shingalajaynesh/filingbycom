@@ -83,7 +83,7 @@ export default function Locations() {
         ])}
       />
       {/* Hero Header */}
-      <section className="bg-gradient-to-br from-[#0a1628] via-[#0F172A] to-[#1A56DB] text-white pt-24 pb-16 px-4 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 relative overflow-hidden">
         {/* Glow orbs & Grid overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500 rounded-full blur-[150px] opacity-20 pointer-events-none" />
@@ -92,23 +92,23 @@ export default function Locations() {
           <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/20">
             FilingBy Directory
           </span>
-          <h1 className="text-3xl md:text-5xl font-black tracking-tight mt-4 mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight mt-4 mb-6 leading-tight text-white">
             Virtual Office Locations <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">Across All Major Cities in India</span>
+            <span className="text-[#F97316]">Across All Major Cities in India</span>
           </h1>
           <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto font-medium">
             Register your company or secure a GST number anywhere in India. Select a city below to view available business centers.
           </p>
 
           {/* Search bar */}
-          <div className="relative max-w-xl mx-auto bg-white rounded-full p-2 shadow-2xl flex items-center border border-gray-100">
-            <span className="pl-4 text-gray-400 text-xl">🔍</span>
+          <div className="relative max-w-xl mx-auto bg-white rounded-2xl p-1.5 shadow-xl flex items-center">
+            <span className="pl-4 text-gray-400 text-sm">🔍</span>
             <input
               type="text"
               placeholder="Search by city, state, or area (e.g. Koramangala)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-3 pr-4 py-2 bg-transparent text-gray-900 placeholder-gray-400 focus:outline-none text-sm font-medium"
+              className="w-full pl-3 pr-4 py-3 bg-transparent text-gray-900 placeholder-gray-400 focus:outline-none text-xs font-semibold"
             />
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function Locations() {
               Search Results ({filteredCities.length} cities found)
             </h2>
             {filteredCities.length === 0 ? (
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-12 text-center">
+              <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
                 <span className="text-4xl">🏢</span>
                 <p className="text-gray-500 font-semibold mt-3 text-lg">No virtual office spaces found matching "{searchQuery}"</p>
                 <button 
@@ -138,7 +138,7 @@ export default function Locations() {
                   <div
                     key={city.slug}
                     onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                    className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#1A56DB] hover:shadow-xl hover:shadow-blue-50 transition-all p-6 cursor-pointer group flex flex-col justify-between"
+                    className="bg-white rounded-2xl shadow-sm hover:shadow-xl hover:shadow-blue-50/30 transition-all duration-300 p-6 cursor-pointer group flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex justify-between items-start mb-3">
@@ -179,7 +179,7 @@ export default function Locations() {
                     <div
                       key={city.slug}
                       onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                      className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#1A56DB] hover:shadow-xl hover:shadow-blue-50 transition-all p-6 cursor-pointer group flex flex-col justify-between"
+                      className="bg-white rounded-2xl shadow-sm hover:shadow-xl hover:shadow-blue-50/30 transition-all duration-300 p-6 cursor-pointer group flex flex-col justify-between"
                     >
                       <div>
                         <div className="flex justify-between items-start mb-3">
@@ -195,7 +195,7 @@ export default function Locations() {
                         </h3>
                         <div className="flex flex-wrap gap-1 mt-3">
                           {city.addresses.map((addr) => (
-                            <span key={addr} className="text-[10px] bg-gray-50 border border-gray-100 text-gray-600 rounded px-1.5 py-0.5">
+                            <span key={addr} className="text-[10px] bg-gray-100 text-gray-650 rounded px-2 py-0.5 font-semibold">
                               {addr}
                             </span>
                           ))}
@@ -217,7 +217,7 @@ export default function Locations() {
 
       {/* Trust & Guarantee banner */}
       <section className="max-w-screen-xl mx-auto px-4 mt-20">
-        <div className="bg-gradient-to-br from-[#0a1628] to-[#1E3A8A] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-xl">
+        <div className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-xl">
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-15 pointer-events-none" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="lg:col-span-2 space-y-4">
