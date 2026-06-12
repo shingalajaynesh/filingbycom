@@ -8,4 +8,8 @@ export default defineConfig({
     tailwindcss(),
     react()
   ],
+  build: {
+    // Suppress warning for chunks larger than 500kB since React + Clerk bundles exceed the default threshold.
+    chunkSizeWarningLimit: 1000,
+  }
 })
