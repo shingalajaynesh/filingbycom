@@ -7,94 +7,6 @@ import ProfileCard from '../components/dashboard/ProfileCard';
 import OrderTimeline from '../components/dashboard/OrderTimeline';
 import NotificationPanel from '../components/dashboard/NotificationPanel';
 
-const dummyOrders = [
-  {
-    id: "FB001",
-    service: "GST Registration",
-    category: "GST Services",
-    status: "completed",
-    amount: 999,
-    date: "2025-06-01",
-    assignedTo: "CA Priya Sharma",
-    progress: 100,
-    steps: [
-      { label: "Order Placed", done: true, date: "01 Jun" },
-      { label: "Documents Received", done: true, date: "02 Jun" },
-      { label: "Processing", done: true, date: "03 Jun" },
-      { label: "Govt Filing Done", done: true, date: "04 Jun" },
-      { label: "Certificate Delivered", done: true, date: "05 Jun" },
-    ]
-  },
-  {
-    id: "FB002",
-    service: "Trademark Registration",
-    category: "Trademark & IP",
-    status: "in-progress",
-    amount: 6999,
-    date: "2025-06-03",
-    assignedTo: "CS Anita Verma",
-    progress: 45,
-    steps: [
-      { label: "Order Placed", done: true, date: "03 Jun" },
-      { label: "Documents Received", done: true, date: "04 Jun" },
-      { label: "Application Filed", done: false, date: null },
-      { label: "Govt Approval", done: false, date: null },
-      { label: "Certificate Delivered", done: false, date: null },
-    ]
-  },
-  {
-    id: "FB003",
-    service: "Private Limited Company",
-    category: "Company Registration",
-    status: "pending-docs",
-    amount: 6999,
-    date: "2025-06-04",
-    assignedTo: "CA Rahul Mehta",
-    progress: 20,
-    steps: [
-      { label: "Order Placed", done: true, date: "04 Jun" },
-      { label: "Documents Received", done: false, date: null },
-      { label: "DSC Application", done: false, date: null },
-      { label: "MCA Filing", done: false, date: null },
-      { label: "Certificate Delivered", done: false, date: null },
-    ]
-  },
-  {
-    id: "FB004",
-    service: "ITR-3 Filing",
-    category: "Income Tax",
-    status: "under-review",
-    amount: 999,
-    date: "2025-06-05",
-    assignedTo: "CA Sunita Patel",
-    progress: 65,
-    steps: [
-      { label: "Order Placed", done: true, date: "05 Jun" },
-      { label: "Documents Received", done: true, date: "06 Jun" },
-      { label: "ITR Preparation", done: true, date: "07 Jun" },
-      { label: "Client Review", done: false, date: null },
-      { label: "Filed & Acknowledged", done: false, date: null },
-    ]
-  },
-  {
-    id: "FB005",
-    service: "ROC Annual Filing",
-    category: "MCA/ROC",
-    status: "completed",
-    amount: 2999,
-    date: "2025-05-20",
-    assignedTo: "CS Vijay Kumar",
-    progress: 100,
-    steps: [
-      { label: "Order Placed", done: true, date: "20 May" },
-      { label: "Documents Received", done: true, date: "21 May" },
-      { label: "Filing Prepared", done: true, date: "23 May" },
-      { label: "MCA Portal Filed", done: true, date: "25 May" },
-      { label: "Acknowledgement Received", done: true, date: "27 May" },
-    ]
-  },
-];
-
 const DocumentSection = ({ orders }) => (
   <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center">
     <p className="text-4xl mb-3">📁</p>
@@ -161,6 +73,8 @@ export default function ClientDashboard() {
   );
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [notifOpen, setNotifOpen] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (location.state?.tab) {
@@ -168,18 +82,65 @@ export default function ClientDashboard() {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+        const res = await fetch(`${API_BASE}/orders`, {
+          credentials: "include"
+        });
+        const data = await res.json();
+        if (data.success) {
+          // Map backend orders to frontend format
+          const mappedOrders = data.orders.map(o => ({
+            id: o._id,
+            service: o.service?.name || "Unknown Service",
+            category: o.service?.tag || "Service",
+            status: o.orderStatus === "Pending" ? "pending-docs" : o.orderStatus === "Complete" ? "completed" : "in-progress",
+            amount: o.amount,
+            date: new Date(o.createdAt).toISOString().split('T')[0],
+            assignedTo: "Processing Team",
+            progress: o.orderStatus === "Pending" ? 20 : o.orderStatus === "Complete" ? 100 : 60,
+            paymentType: o.paymentType,
+            paymentStatus: o.paymentStatus,
+            steps: [
+              { label: "Order Placed", done: true, date: new Date(o.createdAt).toLocaleDateString() },
+              { label: "Documents Received", done: o.orderStatus !== "Pending", date: null },
+              { label: "Processing", done: o.orderStatus !== "Pending", date: null },
+              { label: "Certificate Delivered", done: o.orderStatus === "Complete", date: null },
+            ]
+          }));
+          setOrders(mappedOrders);
+        }
+      } catch (err) {
+        console.error("Failed to fetch orders:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrders();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 relative">
 
 
       {/* Main dashboard content */}
       <main className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {activeTab === 'overview' && <DashboardOverview orders={dummyOrders} setActiveTab={setActiveTab} />}
-        {activeTab === 'orders' && <OrderList orders={dummyOrders} onOrderClick={setSelectedOrder} />}
-        {activeTab === 'documents' && <DocumentSection orders={dummyOrders} />}
-        {activeTab === 'support' && <SupportWidget />}
-        {activeTab === 'profile' && <ProfileCard />}
-        {activeTab === 'referral' && <ReferralCard />}
+        {loading ? (
+           <div className="flex justify-center items-center h-64">
+             <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
+           </div>
+        ) : (
+          <>
+            {activeTab === 'overview' && <DashboardOverview orders={orders} setActiveTab={setActiveTab} />}
+            {activeTab === 'orders' && <OrderList orders={orders} onOrderClick={setSelectedOrder} />}
+            {activeTab === 'documents' && <DocumentSection orders={orders} />}
+            {activeTab === 'support' && <SupportWidget />}
+            {activeTab === 'profile' && <ProfileCard />}
+            {activeTab === 'referral' && <ReferralCard />}
+          </>
+        )}
       </main>
 
       {/* Order Detail Slider / Modal */}

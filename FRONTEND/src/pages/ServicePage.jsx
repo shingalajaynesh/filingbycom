@@ -1,11 +1,20 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useUser, useClerk } from "@clerk/clerk-react";
 import { navData } from '../data/navigation.js';
+import PhoneVerificationModal from '../components/PhoneVerificationModal';
+import CheckoutModal from '../components/CheckoutModal';
 
 export default function ServicePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const { user, isLoaded, isSignedIn } = useUser();
+  const clerk = useClerk();
   const [openFaq, setOpenFaq] = useState(0);
+
+  const [showPhoneModal, setShowPhoneModal] = useState(false);
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [serviceData, setServiceData] = useState(null);
 
   let found = null;
   for (const category of navData) {
@@ -24,6 +33,53 @@ export default function ServicePage() {
   }
 
   const relatedServices = found.category.sections.flatMap((section) => section.items).filter((item) => item.slug !== slug).slice(0, 4);
+
+  const handleGetStarted = async () => {
+    if (!isLoaded) return;
+    
+    if (!isSignedIn) {
+      clerk.openSignIn({ redirectUrl: window.location.href });
+      return;
+    }
+
+    // Check if phone number exists on the Clerk user
+    const hasPhone = user.phoneNumbers && user.phoneNumbers.length > 0;
+    
+    // We need to fetch the actual service from backend to get its ID and basePrice
+    try {
+      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+      const res = await fetch(`${API_BASE}/services`);
+      const data = await res.json();
+      
+      if (data.success) {
+        // Find the matching service from the database by slug
+        const dbService = data.services.find(s => s.slug === slug);
+        if (dbService) {
+          setServiceData(dbService);
+          if (!hasPhone) {
+            setShowPhoneModal(true);
+          } else {
+            setShowCheckoutModal(true);
+          }
+        } else {
+          alert("Service is currently unavailable for checkout. Please contact support.");
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to initiate checkout. Please try again later.");
+    }
+  };
+
+  const handlePhoneVerificationSuccess = () => {
+    setShowPhoneModal(false);
+    setShowCheckoutModal(true);
+  };
+
+  const handleCheckoutSuccess = () => {
+    setShowCheckoutModal(false);
+    navigate('/dashboard'); // redirect to client dashboard
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 text-gray-900">
@@ -94,7 +150,12 @@ export default function ServicePage() {
               <p className="text-sm text-gray-500">Starting from</p>
               <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹999/-</p>
               <p className="mt-1 text-xs text-gray-400">+ Govt. fees as applicable</p>
-              <button className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700">Get Started</button>
+              <button 
+                onClick={handleGetStarted}
+                className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+              >
+                Get Started
+              </button>
               <a href="https://wa.me/917567126945" target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
               <a href="tel:+917567126945" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
               <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
@@ -114,6 +175,19 @@ export default function ServicePage() {
           </div>
         </section>
       </section>
+
+      <PhoneVerificationModal 
+        isOpen={showPhoneModal} 
+        onClose={() => setShowPhoneModal(false)}
+        onSuccess={handlePhoneVerificationSuccess}
+      />
+
+      <CheckoutModal
+        isOpen={showCheckoutModal}
+        onClose={() => setShowCheckoutModal(false)}
+        service={serviceData}
+        onSuccess={handleCheckoutSuccess}
+      />
     </main>
   );
 }
