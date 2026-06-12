@@ -30,8 +30,29 @@ const app = express();
 
 // ── GLOBAL EXPRESS MIDDLEWARE ────────────────────────────────────────────────
 // CORS configuration to allow cross-origin resource requests from the React frontend.
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL
+].filter(Boolean).map(url => url.replace(/\/$/, ""));
+
+const allowedDomains = allowedOrigins.map(url => url.replace(/^https?:\/\/(www\.)?/, ""));
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    const originNormalized = origin.replace(/\/$/, "");
+    const domainNormalized = originNormalized.replace(/^https?:\/\/(www\.)?/, "");
+    
+    const isAllowed = allowedOrigins.includes(originNormalized) || 
+                      allowedDomains.includes(domainNormalized) ||
+                      originNormalized.endsWith(".vercel.app");
+                      
+    if (isAllowed) {
+      callback(null, origin);
+    } else {
+      callback(null, false);
+    }
+  },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
