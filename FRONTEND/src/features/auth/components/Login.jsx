@@ -30,6 +30,7 @@ export default function Login() {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
+        redirectUrlComplete: `${window.location.origin}/dashboard`,
       });
     } catch (oauthError) {
       setError(oauthError.message || "Google login failed. Please try again.");

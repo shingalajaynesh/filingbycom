@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
 import { navData } from '../data/navigation';
 
 export default function Navigation() {
@@ -10,14 +11,30 @@ export default function Navigation() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = location.pathname.startsWith('/dashboard');
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  
+  const isLoggedIn = isSignedIn;
+
+  const getInitials = (firstName, lastName) => {
+    if (!firstName && !lastName) return 'U';
+    return `${firstName?.[0] || ''}${lastName?.[0] || ''}`.toUpperCase();
+  };
 
   const dummyUser = {
-    name: "Rajesh Kumar",
-    initials: "RK",
-    email: "rajesh@example.com",
-    business: "Rajesh Enterprises",
+    name: "User",
+    initials: "U",
+    email: "",
+    business: "Client",
   };
+
+  const currentUser = user ? {
+    name: user.fullName || "User",
+    initials: getInitials(user.firstName, user.lastName),
+    email: user.primaryEmailAddress?.emailAddress || "",
+    business: "Client",
+  } : dummyUser;
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -189,10 +206,10 @@ export default function Navigation() {
                     className="flex items-center gap-2 rounded-full hover:bg-gray-50 pl-1 pr-2 py-1 transition-all"
                   >
                     <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1A56DB] to-blue-400 flex items-center justify-center text-white text-xs font-bold shadow-md flex-shrink-0">
-                      {dummyUser.initials}
+                      {currentUser.initials}
                     </div>
                     <span className="text-xs font-semibold text-gray-900 max-w-[80px] truncate">
-                      {dummyUser.name.split(' ')[0]}
+                      {currentUser.name.split(' ')[0]}
                     </span>
                     <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -205,14 +222,14 @@ export default function Navigation() {
                         <div className="bg-gradient-to-br from-[#0a1628] to-[#1A56DB] p-4">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm border-2 border-white/30">
-                              {dummyUser.initials}
+                              {currentUser.initials}
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="text-white font-bold text-sm truncate">
-                                {dummyUser.name}
+                                {currentUser.name}
                               </p>
                               <p className="text-blue-200 text-[10px] truncate">
-                                {dummyUser.business}
+                                {currentUser.business}
                               </p>
                             </div>
                           </div>
@@ -243,7 +260,7 @@ export default function Navigation() {
 
                           <button
                             onClick={() => {
-                              navigate('/');
+                              signOut(() => navigate('/'));
                               setProfileOpen(false);
                             }}
                             className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-semibold text-red-650 hover:text-red-705 hover:bg-red-50 rounded-xl transition-colors text-left"
@@ -295,7 +312,7 @@ export default function Navigation() {
                   onClick={() => setProfileOpen(!profileOpen)}
                   className="w-8 h-8 rounded-full bg-gradient-to-br from-[#1A56DB] to-blue-400 flex items-center justify-center text-white text-xs font-bold shadow-md"
                 >
-                  {dummyUser.initials}
+                  {currentUser.initials}
                 </button>
 
                 {/* Mobile profile dropdown */}
@@ -305,14 +322,14 @@ export default function Navigation() {
                     <div className="bg-gradient-to-br from-[#0a1628] to-[#1A56DB] p-4">
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm border-2 border-white/30 flex-shrink-0">
-                          {dummyUser.initials}
+                          {currentUser.initials}
                         </div>
                         <div className="min-w-0">
                           <p className="text-white font-bold text-sm truncate">
-                            {dummyUser.name}
+                            {currentUser.name}
                           </p>
                           <p className="text-blue-200 text-[10px] truncate">
-                            {dummyUser.business}
+                            {currentUser.business}
                           </p>
                         </div>
                       </div>
@@ -343,7 +360,7 @@ export default function Navigation() {
                       <div className="border-t border-gray-100 my-1" />
                       <button
                         onClick={() => {
-                          navigate('/');
+                          signOut(() => navigate('/'));
                           setProfileOpen(false);
                           setMobileOpen(false);
                         }}
@@ -476,7 +493,7 @@ export default function Navigation() {
                   </button>
                   <button
                     onClick={() => {
-                      navigate('/');
+                      signOut(() => navigate('/'));
                       setMobileOpen(false);
                     }}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-red-650 bg-red-50 hover:bg-red-100 rounded-xl transition-colors active:scale-95 cursor-pointer"

@@ -42,8 +42,8 @@ export function PublicAuthRoute({ children }) {
 export function ClerkCallback() {
   return (
     <AuthenticateWithRedirectCallback
-      signInForceRedirectUrl="/dashboard"
-      signUpForceRedirectUrl="/dashboard"
+      forceRedirectUrl="/dashboard"
+      fallbackRedirectUrl="/dashboard"
     />
   );
 }

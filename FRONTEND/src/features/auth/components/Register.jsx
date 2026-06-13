@@ -64,6 +64,7 @@ export default function Register() {
       await signUp.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
+        redirectUrlComplete: `${window.location.origin}/dashboard`,
       });
     } catch (oauthError) {
       setError(oauthError.message || "Google sign-up failed. Please try again.");
