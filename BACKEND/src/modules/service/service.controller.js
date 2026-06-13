@@ -8,7 +8,9 @@ import Service from "../../models/Service.model.js";
 // ─── Get All Services (Public) ──────────────────────────────────────────────
 export const getAllServices = async (req, res) => {
   try {
-    const services = await Service.find().sort({ createdAt: -1 });
+    const { portal } = req.query;
+    const filter = portal ? { portal } : {};
+    const services = await Service.find(filter).sort({ createdAt: -1 });
     return res.status(200).json({ success: true, services });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -18,7 +20,7 @@ export const getAllServices = async (req, res) => {
 // ─── Create Service (Admin) ─────────────────────────────────────────────────
 export const createService = async (req, res) => {
   try {
-    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag } = req.body;
+    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal } = req.body;
 
     // Check if slug already exists
     const existing = await Service.findOne({ slug });
@@ -35,6 +37,7 @@ export const createService = async (req, res) => {
       billingCycle,
       slug,
       tag,
+      portal,
     });
 
     await service.save();
@@ -48,7 +51,7 @@ export const createService = async (req, res) => {
 export const updateService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag } = req.body;
+    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal } = req.body;
 
     // If updating slug, check if another service has the new slug
     if (slug) {
@@ -60,7 +63,7 @@ export const updateService = async (req, res) => {
 
     const service = await Service.findByIdAndUpdate(
       id,
-      { name, description, priceText, basePrice, icon, billingCycle, slug, tag },
+      { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal },
       { new: true, runValidators: true }
     );
 

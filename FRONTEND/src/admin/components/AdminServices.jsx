@@ -15,8 +15,8 @@ const ICONS = [
   "scale",
 ];
 
-export default function AdminServices() {
-  const { services, loading, error, refetch, addService, updateService, deleteService } = useAdminServices();
+export default function AdminServices({ portal }) {
+  const { services, loading, error, refetch, addService, updateService, deleteService } = useAdminServices(portal);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingService, setEditingService] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -149,7 +149,7 @@ export default function AdminServices() {
                     <div className="text-xs text-gray-500">{service.slug}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <div>{service.priceText}</div>
+                    <div>₹{service.basePrice?.toLocaleString("en-IN")}</div>
                     <div className="text-xs text-gray-400">{service.billingCycle}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">

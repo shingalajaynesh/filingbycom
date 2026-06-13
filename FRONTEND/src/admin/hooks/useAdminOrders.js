@@ -9,15 +9,15 @@ import { useAdminAuth } from "../context/AdminAuthContext";
 
 const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
-export function useAdminOrders(filter = "active") {
+export function useAdminOrders(filter = "active", portal = "ca-portal") {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const endpoint =
     filter === "history"
-      ? `${API_BASE}/admin/orders/history`
-      : `${API_BASE}/admin/orders/active`;
+      ? `${API_BASE}/admin/orders/history?portal=${portal}`
+      : `${API_BASE}/admin/orders/active?portal=${portal}`;
 
   const fetchOrders = useCallback(async () => {
     setLoading(true);

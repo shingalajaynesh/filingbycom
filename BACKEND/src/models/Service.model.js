@@ -34,6 +34,12 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    portal: {
+      type: String,
+      required: true,
+      enum: ["ca-portal", "virtual-space"],
+      default: "ca-portal",
+    },
   },
   { timestamps: true }
 );

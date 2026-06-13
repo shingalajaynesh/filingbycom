@@ -70,10 +70,15 @@ export const adminLogout = (req, res) => {
 // ─── Get All Orders ──────────────────────────────────────────────────────────
 export const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find()
+    const { portal } = req.query;
+    let orders = await Order.find()
       .populate("user", "firstName lastName email phone")
-      .populate("service", "name")
+      .populate("service", "name portal")
       .sort({ createdAt: -1 });
+
+    if (portal) {
+      orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);
+    }
 
     return res.status(200).json({ success: true, orders });
   } catch (error) {
@@ -84,10 +89,15 @@ export const getAllOrders = async (req, res) => {
 // ─── Get Active Orders (not Complete) ───────────────────────────────────────
 export const getActiveOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ orderStatus: { $ne: "Complete" } })
+    const { portal } = req.query;
+    let orders = await Order.find({ orderStatus: { $ne: "Complete" } })
       .populate("user", "firstName lastName email phone")
-      .populate("service", "name")
+      .populate("service", "name portal")
       .sort({ createdAt: -1 });
+
+    if (portal) {
+      orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);
+    }
 
     return res.status(200).json({ success: true, orders });
   } catch (error) {
@@ -98,10 +108,15 @@ export const getActiveOrders = async (req, res) => {
 // ─── Get Completed Orders (History) ─────────────────────────────────────────
 export const getCompletedOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ orderStatus: "Complete" })
+    const { portal } = req.query;
+    let orders = await Order.find({ orderStatus: "Complete" })
       .populate("user", "firstName lastName email phone")
-      .populate("service", "name")
+      .populate("service", "name portal")
       .sort({ createdAt: -1 });
+
+    if (portal) {
+      orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);
+    }
 
     return res.status(200).json({ success: true, orders });
   } catch (error) {
