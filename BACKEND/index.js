@@ -133,4 +133,21 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   logger.info(`🚀 Server running on port ${PORT}`);
+  
+  // ── PREVENT RENDER COLD START / SLEEP ──
+  // Render's free tier spins down the backend after 15 minutes of inactivity.
+  // Pinging the public URL every 10 minutes keeps the instance awake.
+  const RENDER_URL = process.env.RENDER_EXTERNAL_URL;
+  if (RENDER_URL) {
+    logger.info(`Self-pinger initialized targeting: ${RENDER_URL}`);
+    setInterval(() => {
+      fetch(RENDER_URL)
+        .then((res) => {
+          logger.info(`Self-ping to ${RENDER_URL} completed with status: ${res.status}`);
+        })
+        .catch((err) => {
+          logger.error(`Self-ping to ${RENDER_URL} failed:`, err);
+        });
+    }, 10 * 60 * 1000); // Every 10 minutes
+  }
 });

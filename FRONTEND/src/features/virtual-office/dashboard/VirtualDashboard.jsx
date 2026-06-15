@@ -107,7 +107,7 @@ export default function VirtualDashboard() {
 
   const handleDownloadReceipt = () => {
     if (!selectedOrder) return;
-    
+
     const invoiceNum = selectedOrder.invoiceNumber || `INV-VO-${selectedOrder._id.slice(-6).toUpperCase()}-${Date.now().toString().slice(-4)}`;
     const invoiceD = selectedOrder.invoiceDate ? new Date(selectedOrder.invoiceDate) : new Date(selectedOrder.createdAt || Date.now());
     const dateStr = invoiceD.toLocaleDateString("en-IN", {
@@ -510,7 +510,7 @@ export default function VirtualDashboard() {
       {/* Main Workspace Layout */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          
+
           {/* Side Menu Navigation */}
           <div className="lg:col-span-1 space-y-4">
             <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/60 flex flex-row lg:flex-col gap-1 overflow-x-auto lg:overflow-visible">
@@ -524,11 +524,10 @@ export default function VirtualDashboard() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer w-full text-left ${
-                    activeTab === tab.id
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer w-full text-left ${activeTab === tab.id
                       ? "bg-[#1A56DB]/5 text-[#1A56DB]"
                       : "text-slate-500 hover:bg-slate-50 hover:text-slate-800"
-                  }`}
+                    }`}
                 >
                   <span className="text-sm">{tab.icon}</span>
                   {tab.label}
@@ -552,21 +551,12 @@ export default function VirtualDashboard() {
 
           {/* Content Pane */}
           <div className="lg:col-span-3 space-y-6">
-            {activeTab !== "overview" && (
-              <button
-                onClick={() => setActiveTab("overview")}
-                className="inline-flex items-center gap-1 text-xs font-bold text-[#1A56DB] hover:text-blue-700 bg-blue-50/50 hover:bg-blue-50 px-3 py-1.5 rounded-full transition-all cursor-pointer active:scale-95"
-              >
-                ← Back to Overview
-              </button>
-            )}
-            
+
             {/* Global notification banner */}
             {notification.message && (
               <div
-                className={`p-4 rounded-xl text-xs font-bold flex items-center gap-2 animate-fadeIn ${
-                  notification.type === "success" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
-                }`}
+                className={`p-4 rounded-xl text-xs font-bold flex items-center gap-2 animate-fadeIn ${notification.type === "success" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+                  }`}
               >
                 <span>{notification.type === "success" ? "✅" : "❌"}</span>
                 {notification.message}
@@ -576,10 +566,10 @@ export default function VirtualDashboard() {
             {/* OVERVIEW TAB */}
             {activeTab === "overview" && (
               <div className="space-y-6">
-                
+
                 {/* Visual Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                  
+
                   {/* Card 1: Mail Scans count */}
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100/80 flex items-center justify-between">
                     <div>
@@ -660,13 +650,12 @@ export default function VirtualDashboard() {
                           <div key={idx} className="flex md:flex-col items-start md:items-center md:text-center gap-4 md:gap-0">
                             {/* Dot indicator */}
                             <div
-                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 md:mb-3 flex-shrink-0 ${
-                                isDone
+                              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 md:mb-3 flex-shrink-0 ${isDone
                                   ? "bg-[#1A56DB] text-white shadow-md shadow-blue-100"
                                   : isCurrent
-                                  ? "bg-[#1A56DB] text-white ring-4 ring-blue-100"
-                                  : "bg-white text-slate-400 border-2 border-slate-200"
-                              }`}
+                                    ? "bg-[#1A56DB] text-white ring-4 ring-blue-100"
+                                    : "bg-white text-slate-400 border-2 border-slate-200"
+                                }`}
                             >
                               {isDone ? "✓" : idx + 1}
                             </div>
@@ -718,7 +707,7 @@ export default function VirtualDashboard() {
             {/* COMPLIANCE & KYC TAB */}
             {activeTab === "compliance" && (
               <div className="space-y-6">
-                
+
                 {/* 1. Official Files Issuance Downloads */}
                 <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100/80 space-y-5">
                   <div>
@@ -786,7 +775,7 @@ export default function VirtualDashboard() {
 
                   <form onSubmit={handleKycSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      
+
                       {/* Company Name */}
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold text-slate-500 uppercase">Registered Company Name</label>
@@ -945,7 +934,7 @@ export default function VirtualDashboard() {
             {/* VERIFICATION AUDITS TAB */}
             {activeTab === "audits" && (
               <div className="space-y-6">
-                
+
                 {/* Audit Checklist Guide */}
                 <div className="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100/80 space-y-4">
                   <h3 className="text-base font-black text-slate-900">GST Verification Audit Checklist</h3>
@@ -1001,15 +990,14 @@ export default function VirtualDashboard() {
                                 })}
                               </span>
                               <span
-                                className={`text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider ${
-                                  insp.status === "Success"
+                                className={`text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider ${insp.status === "Success"
                                     ? "bg-emerald-50 text-emerald-700"
                                     : insp.status === "Scheduled"
-                                    ? "bg-blue-50 text-blue-700"
-                                    : insp.status === "Action Required"
-                                    ? "bg-amber-50 text-amber-700"
-                                    : "bg-rose-50 text-rose-700"
-                                }`}
+                                      ? "bg-blue-50 text-blue-700"
+                                      : insp.status === "Action Required"
+                                        ? "bg-amber-50 text-amber-700"
+                                        : "bg-rose-50 text-rose-700"
+                                  }`}
                               >
                                 {insp.status}
                               </span>
