@@ -158,14 +158,6 @@ export default function ClientDashboard() {
           </div>
         ) : (
           <div className="space-y-4">
-            {activeTab !== 'overview' && (
-              <button
-                onClick={() => setActiveTab('overview')}
-                className="inline-flex items-center gap-1 text-xs font-bold text-[#1A56DB] hover:text-blue-700 bg-blue-50/50 hover:bg-blue-50 px-3 py-1.5 rounded-full transition-all cursor-pointer active:scale-95"
-              >
-                ← Back to Overview
-              </button>
-            )}
             {activeTab === 'overview' && <DashboardOverview orders={orders} setActiveTab={setActiveTab} onOrderClick={setSelectedOrder} />}
             {activeTab === 'orders' && <OrderList orders={orders} onOrderClick={setSelectedOrder} />}
             {activeTab === 'documents' && <DocumentSection />}
