@@ -4,13 +4,80 @@
  */
 
 import Service from "../../models/Service.model.js";
+import MainService from "../../models/MainService.model.js";
+
+// ─── Get All Main Services (Public) ─────────────────────────────────────────
+export const getAllMainServices = async (req, res) => {
+  try {
+    const { portal } = req.query;
+    const filter = portal ? { portal } : {};
+    const mainServices = await MainService.find(filter).sort({ order: 1, createdAt: -1 });
+    return res.status(200).json({ success: true, mainServices });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ─── Create Main Service (Admin) ────────────────────────────────────────────
+export const createMainService = async (req, res) => {
+  try {
+    const { name, order, isActive, portal } = req.body;
+    const existing = await MainService.findOne({ name });
+    if (existing) {
+      return res.status(400).json({ success: false, message: "MainService with this name already exists" });
+    }
+    const mainService = new MainService({ name, order, isActive, portal });
+    await mainService.save();
+    return res.status(201).json({ success: true, mainService });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ─── Update Main Service (Admin) ────────────────────────────────────────────
+export const updateMainService = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, order, isActive, portal } = req.body;
+    if (name) {
+      const existing = await MainService.findOne({ name, _id: { $ne: id } });
+      if (existing) {
+        return res.status(400).json({ success: false, message: "Another MainService with this name already exists" });
+      }
+    }
+    const mainService = await MainService.findByIdAndUpdate(
+      id,
+      { name, order, isActive, portal },
+      { new: true, runValidators: true }
+    );
+    if (!mainService) return res.status(404).json({ success: false, message: "MainService not found" });
+    return res.status(200).json({ success: true, mainService });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ─── Delete Main Service (Admin) ────────────────────────────────────────────
+export const deleteMainService = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const mainService = await MainService.findByIdAndDelete(id);
+    if (!mainService) return res.status(404).json({ success: false, message: "MainService not found" });
+    // Also consider unlinking or deleting associated services? Let's just return for now.
+    return res.status(200).json({ success: true, message: "MainService deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 // ─── Get All Services (Public) ──────────────────────────────────────────────
 export const getAllServices = async (req, res) => {
   try {
     const { portal } = req.query;
     const filter = portal ? { portal } : {};
-    const services = await Service.find(filter).sort({ createdAt: -1 });
+    const services = await Service.find(filter)
+      .populate("mainService")
+      .sort({ order: 1, createdAt: -1 });
     return res.status(200).json({ success: true, services });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -20,7 +87,10 @@ export const getAllServices = async (req, res) => {
 // ─── Create Service (Admin) ─────────────────────────────────────────────────
 export const createService = async (req, res) => {
   try {
-    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal } = req.body;
+    const { 
+      name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
+      mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+    } = req.body;
 
     // Check if slug already exists
     const existing = await Service.findOne({ slug });
@@ -38,6 +108,14 @@ export const createService = async (req, res) => {
       slug,
       tag,
       portal,
+      mainService,
+      order,
+      navSection, 
+      isActive, 
+      isPopular,
+      documentsRequired, 
+      processSteps, 
+      faqs
     });
 
     await service.save();
@@ -51,7 +129,10 @@ export const createService = async (req, res) => {
 export const updateService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal } = req.body;
+    const { 
+      name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
+      mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+    } = req.body;
 
     // If updating slug, check if another service has the new slug
     if (slug) {
@@ -63,7 +144,10 @@ export const updateService = async (req, res) => {
 
     const service = await Service.findByIdAndUpdate(
       id,
-      { name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal },
+      { 
+        name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
+        mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+      },
       { new: true, runValidators: true }
     );
 

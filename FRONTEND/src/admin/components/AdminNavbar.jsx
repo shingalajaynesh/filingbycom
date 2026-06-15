@@ -26,14 +26,16 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
     ? [
         { id: "orders", label: "Orders" },
         { id: "history", label: "History" },
-        { id: "services", label: "Services" },
+        { id: "nav-services", label: "Navigation Services" },
+        { id: "popular-services", label: "Popular Services" },
       ]
     : [
         { id: "orders", label: "Orders" },
         { id: "inquiries", label: "Inquiries" },
         { id: "partners", label: "Partners" },
         { id: "quotes", label: "Quotes" },
-        { id: "services", label: "Services" },
+        { id: "nav-services", label: "Navigation Services" },
+        { id: "popular-services", label: "Popular Services" },
       ];
 
   return (

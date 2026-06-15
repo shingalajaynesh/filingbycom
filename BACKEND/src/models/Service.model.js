@@ -40,6 +40,42 @@ const serviceSchema = new mongoose.Schema(
       enum: ["ca-portal", "virtual-space"],
       default: "ca-portal",
     },
+    mainService: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "MainService",
+      required: false,
+    },
+    order: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    navSection: {
+      type: String,
+      required: false,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isPopular: {
+      type: Boolean,
+      default: false,
+    },
+    documentsRequired: {
+      type: [String],
+      default: [],
+    },
+    processSteps: {
+      type: [String],
+      default: [],
+    },
+    faqs: [
+      {
+        q: { type: String, required: true },
+        a: { type: String, required: true },
+      }
+    ],
   },
   { timestamps: true }
 );

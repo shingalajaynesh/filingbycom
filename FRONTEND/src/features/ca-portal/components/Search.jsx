@@ -1,18 +1,35 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { allServices } from '../data/services.js';
 
 export default function Search() {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [showResults, setShowResults] = useState(false);
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+                const res = await fetch(`${API_BASE}/services`);
+                const data = await res.json();
+                if (data.success) {
+                    setServices(data.services.filter(s => s.isActive !== false));
+                }
+            } catch (err) {
+                console.error("Failed to fetch services for search:", err);
+            }
+        };
+        fetchServices();
+    }, []);
 
     const filtered = useMemo(() => {
-        return allServices.filter((item) =>
+        if (!searchQuery) return [];
+        return services.filter((item) =>
             item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.category.toLowerCase().includes(searchQuery.toLowerCase())
+            (item.category && item.category.toLowerCase().includes(searchQuery.toLowerCase()))
         );
-    }, [searchQuery]);
+    }, [searchQuery, services]);
 
     useEffect(() => {
         const handleClick = (event) => {
@@ -52,7 +69,7 @@ export default function Search() {
                                 <p className="text-sm font-medium text-gray-800">{service.name}</p>
                                 <p className="text-xs text-gray-400">{service.category}</p>
                             </div>
-                            <span className="text-sm font-semibold text-[#1A56DB]">{service.price}</span>
+                            <span className="text-sm font-semibold text-[#1A56DB]">₹{service.basePrice?.toLocaleString("en-IN") || '—'}</span>
                         </button>
                     ))}
                 </div>

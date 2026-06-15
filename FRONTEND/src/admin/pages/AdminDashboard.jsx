@@ -48,7 +48,9 @@ export default function AdminDashboard() {
               ? "Partner Onboardings"
               : activeTab === "quotes"
               ? "Live Quote Leads"
-              : "Manage Services"}
+              : activeTab === "nav-services"
+              ? "Manage Navigation Services"
+              : "Manage Popular Services"}
           </h1>
           <p className="text-sm text-gray-500 mt-1">
             {activeTab === "orders"
@@ -61,7 +63,9 @@ export default function AdminDashboard() {
               ? "Verify and onboard commercial workspaces"
               : activeTab === "quotes"
               ? "Inspect live quote calculator lead estimations"
-              : "Manage services available on the homepage"}
+              : activeTab === "nav-services"
+              ? "Manage services that appear in the navigation bar dropdowns"
+              : "Manage services that appear on the homepage Popular Services section"}
           </p>
         </div>
 
@@ -71,7 +75,8 @@ export default function AdminDashboard() {
         {activeTab === "inquiries" && <InquiriesTable />}
         {activeTab === "partners" && <PartnersTable />}
         {activeTab === "quotes" && <QuotesTable />}
-        {activeTab === "services" && <AdminServices portal={currentPortal} />}
+        {activeTab === "nav-services" && <AdminServices portal={currentPortal} type="nav" />}
+        {activeTab === "popular-services" && <AdminServices portal={currentPortal} type="popular" />}
       </main>
     </div>
   );

@@ -14,7 +14,7 @@ export default function PopularServices() {
                 const res = await fetch(`${API_BASE}/services`);
                 const data = await res.json();
                 if (data.success) {
-                    setServices(data.services);
+                    setServices(data.services.filter(s => s.isPopular === true));
                 }
             } catch (error) {
                 console.error("Failed to fetch popular services", error);

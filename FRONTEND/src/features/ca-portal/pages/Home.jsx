@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "../components/Search.jsx";
 import PopularServices from "../components/PopularServices.jsx";
-import { navData } from "../data/navigation.js";
-import { allServices } from "../data/services.js";
 import SEO from "../../../shared/components/SEO.jsx";
 import { localBusinessSchema, websiteSchema, homeReviewsSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
 

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
-import { navData } from '../data/navigation';
 
 export default function Navigation() {
+  const [navData, setNavData] = useState([]);
   const [open, setOpen] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOpenCategory, setMobileOpenCategory] = useState(null);
@@ -16,6 +16,77 @@ export default function Navigation() {
   const { signOut } = useClerk();
   
   const isLoggedIn = isSignedIn;
+
+  useEffect(() => {
+    const fetchNav = async () => {
+      try {
+        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+        const [resServices, resMain] = await Promise.all([
+          fetch(`${API_BASE}/services`),
+          fetch(`${API_BASE}/main-services`)
+        ]);
+        const dataServices = await resServices.json();
+        const dataMain = await resMain.json();
+        
+        if (dataServices.success && dataMain.success) {
+          const navMap = {};
+          dataMain.mainServices.filter(m => m.isActive !== false).forEach(main => {
+            navMap[main._id] = {
+              id: main._id,
+              label: main.name,
+              order: main.order || 0,
+              sections: {}
+            };
+          });
+          
+          dataServices.services.filter(s => s.isActive !== false).forEach(service => {
+            const mainId = service.mainService?._id || service.mainService;
+            const section = service.navSection || 'General';
+            
+            if (mainId && navMap[mainId]) {
+              if (!navMap[mainId].sections[section]) {
+                navMap[mainId].sections[section] = { heading: section, items: [] };
+              }
+              navMap[mainId].sections[section].items.push({
+                label: service.name,
+                slug: service.slug,
+                order: service.order || 0
+              });
+            } else {
+              if (!navMap['other']) {
+                navMap['other'] = { id: 'other', label: 'Other Services', order: 999, sections: {} };
+              }
+              if (!navMap['other'].sections[section]) {
+                navMap['other'].sections[section] = { heading: section, items: [] };
+              }
+              navMap['other'].sections[section].items.push({
+                label: service.name,
+                slug: service.slug,
+                order: service.order || 0
+              });
+            }
+          });
+          
+          const formattedNavData = Object.values(navMap)
+            .sort((a, b) => a.order - b.order)
+            .map(cat => ({
+              ...cat,
+              sections: Object.values(cat.sections).map(sec => ({
+                ...sec,
+                items: sec.items.sort((a, b) => a.order - b.order)
+              }))
+            }));
+          
+          setNavData(formattedNavData);
+        }
+      } catch (err) {
+        console.error("Failed to fetch nav data", err);
+        // Retry after 3 seconds if server was temporarily unavailable
+        setTimeout(fetchNav, 3000);
+      }
+    };
+    fetchNav();
+  }, []);
 
   const getInitials = (firstName, lastName) => {
     if (!firstName && !lastName) return 'U';
@@ -94,7 +165,7 @@ export default function Navigation() {
       <div className="w-full px-4 sm:px-6 min-[1500px]:px-8">
 
         {/* DESKTOP ROW (1500px and above) */}
-        <div className="hidden min-[1500px]:flex items-center h-14 w-full gap-4">
+        <div className="hidden lg:flex items-center h-14 w-full gap-4">
 
           {/* COL 1: Logo — fixed LEFT, never moves */}
           <div className="flex-shrink-0">
@@ -105,7 +176,7 @@ export default function Navigation() {
           </div>
 
           {/* COL 2: Nav Items — CENTERED, takes all remaining space */}
-          <nav className="hidden min-[1500px]:flex flex-1 items-center justify-center overflow-visible">
+          <nav className="hidden lg:flex flex-1 items-center justify-center overflow-visible">
             <ul className="flex items-center list-none m-0 p-0 flex-nowrap gap-0.5">
               {navData.map((category, index) => (
                 <li
@@ -294,7 +365,7 @@ export default function Navigation() {
         </div>
 
         {/* MOBILE ROW (below 1500px) */}
-        <div className="flex min-[1500px]:hidden items-center justify-between h-14 w-full px-4">
+        <div className="flex lg:hidden items-center justify-between h-14 w-full px-4">
 
           {/* LEFT: Logo */}
           <a href="/" className="flex items-center bg-blue-50 rounded-xl px-3 py-1.5">
@@ -421,7 +492,6 @@ export default function Navigation() {
                     onClick={() => setMobileOpenCategory(mobileOpenCategory === category.id ? null : category.id)}
                   >
                     <span className="flex items-center gap-2">
-                      <span>{category.icon}</span>
                       {category.label}
                     </span>
                     <svg className={`w-4 h-4 transition-transform duration-200 text-gray-400 ${mobileOpenCategory === category.id ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">

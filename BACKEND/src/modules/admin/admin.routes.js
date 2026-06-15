@@ -19,6 +19,10 @@ import {
   createService,
   updateService,
   deleteService,
+  getAllMainServices,
+  createMainService,
+  updateMainService,
+  deleteMainService
 } from "../service/service.controller.js";
 
 const adminRouter = express.Router();
@@ -39,5 +43,11 @@ adminRouter.patch("/admin/orders/:id/payment",  verifyAdmin, updatePaymentStatus
 adminRouter.post("/admin/services",       verifyAdmin, createService);
 adminRouter.put("/admin/services/:id",    verifyAdmin, updateService);
 adminRouter.delete("/admin/services/:id", verifyAdmin, deleteService);
+
+// ─── Main Services (Protected) ──────────────────────────────────────────────
+adminRouter.get("/admin/main-services",       verifyAdmin, getAllMainServices);
+adminRouter.post("/admin/main-services",      verifyAdmin, createMainService);
+adminRouter.put("/admin/main-services/:id",   verifyAdmin, updateMainService);
+adminRouter.delete("/admin/main-services/:id",verifyAdmin, deleteMainService);
 
 export default adminRouter;
