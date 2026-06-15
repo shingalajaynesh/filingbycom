@@ -10,6 +10,8 @@ import { createRoot } from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { Toaster } from 'react-hot-toast';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import './index.css';
 import AppRoutes from './routes/AppRoutes';
 
@@ -109,6 +111,8 @@ if (!clerkPublishableKey) {
         <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">
           <Toaster position="top-center" toastOptions={toastConfig} />
           <AppRoutes />
+          <Analytics />
+          <SpeedInsights />
         </ClerkProvider>
       </HelmetProvider>
     </StrictMode>
