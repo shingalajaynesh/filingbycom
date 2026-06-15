@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSignIn } from "@clerk/clerk-react";
+import { motion } from "framer-motion";
 
 // Removed the unused `onAuthenticated` prop, as useSyncUser now handles routing
 export default function Login() {
@@ -90,9 +91,19 @@ export default function Login() {
   };
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,31,60,0.2),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_35%),linear-gradient(135deg,#e9eef8_0%,#f7f8fb_45%,#dde7f8_100%)] px-4 py-5 sm:px-6 lg:px-8">
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,31,60,0.2),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_35%),linear-gradient(135deg,#e9eef8_0%,#f7f8fb_45%,#dde7f8_100%)] px-4 py-5 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl overflow-hidden rounded-[2.25rem] border border-white/60 bg-white/60 shadow-[0_40px_120px_rgba(15,23,42,0.16)] backdrop-blur-2xl lg:grid-cols-2">
-        <section className="relative flex items-center justify-center bg-[#f7f8fb] px-6 py-10 sm:px-10 lg:px-14">
+        <motion.section 
+          initial={{ x: -30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="relative flex items-center justify-center bg-[#f7f8fb] px-6 py-10 sm:px-10 lg:px-14"
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_30%)]" />
           <div className="relative z-10 w-full max-w-md">
             <div className="mb-4 flex justify-center lg:hidden">
@@ -199,10 +210,15 @@ export default function Login() {
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Static Visual Layout */}
-        <section className="relative hidden overflow-hidden bg-navy-900 px-6 py-10 text-white sm:px-10 lg:flex lg:px-14">
+        <motion.section 
+          initial={{ x: 30, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative hidden overflow-hidden bg-navy-900 px-6 py-10 text-white sm:px-10 lg:flex lg:px-14"
+        >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(37,99,235,0.35),transparent_28%),radial-gradient(circle_at_80%_75%,rgba(212,175,55,0.22),transparent_26%),linear-gradient(160deg,rgba(255,255,255,0.05),transparent_35%)]" />
           <div className="absolute -right-8 top-1/3 h-40 w-40 rounded-full border border-white/10 bg-white/5" />
           <div className="relative z-10 flex h-full w-full flex-col justify-between">
@@ -214,8 +230,8 @@ export default function Login() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
-    </main>
+    </motion.main>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
@@ -8,7 +9,8 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const { getToken } = useAuth();
 
-  if (!isOpen || !service) return null;
+  // We handle early return using AnimatePresence now
+  // if (!isOpen || !service) return null;
 
   const loadRazorpay = () => {
     return new Promise((resolve) => {
@@ -171,9 +173,22 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl relative text-center">
-        <button
+    <AnimatePresence>
+      {isOpen && service && (
+        <motion.div 
+          initial={{ scale: 0.5, opacity: 0 }} 
+          animate={{ scale: 1, opacity: 1 }} 
+          exit={{ scale: 0.5, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+        >
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl relative text-center"
+          >
+            <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
           disabled={loading}
@@ -214,7 +229,9 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
             {loading ? "Processing..." : "Pay Cash Later"}
           </button>
         </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

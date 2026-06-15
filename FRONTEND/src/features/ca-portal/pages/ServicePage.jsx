@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useUser, useClerk } from "@clerk/clerk-react";
+import { motion } from 'framer-motion';
 import { navData } from '../data/navigation.js';
 import PhoneVerificationModal from '../../auth/components/PhoneVerificationModal';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
@@ -99,7 +100,12 @@ export default function ServicePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-gray-900">
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-slate-50 text-gray-900"
+    >
       <SEO
         title={`${found.item.label} Online India — Fast & Affordable | FilingBy`}
         description={`Get expert-assisted ${found.item.label} services online in India. Safe & secure document collection, 100% transparency, starting from ₹999/month.`}
@@ -126,7 +132,12 @@ export default function ServicePage() {
 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <article className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+            <motion.article 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+            >
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#1A56DB]">Service detail</p>
               <h1 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl">{found.item.label}</h1>
               <p className="mt-4 max-w-2xl text-gray-600">Get expert assistance with {found.item.label} — 100% online, affordable, and fast.</p>
@@ -134,18 +145,28 @@ export default function ServicePage() {
                 <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Expert CA/CS Support</span>
                 <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Fast Processing</span>
               </div>
-            </article>
+            </motion.article>
 
-            <article className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+            <motion.article 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+            >
               <h2 className="text-xl font-semibold text-gray-900">Documents Required</h2>
               <ul className="mt-4 space-y-3 text-sm text-gray-600">
                 {['PAN Card of all directors/partners', 'Aadhaar Card (self-attested)', 'Passport size photographs', 'Address proof (electricity bill / bank statement)', 'Digital Signature Certificate (DSC)'].map((item) => (
                   <li key={item} className="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3"><span className="mt-1 h-2 w-2 rounded-full bg-[#1A56DB]" /> <span>{item}</span></li>
                 ))}
               </ul>
-            </article>
+            </motion.article>
 
-            <article className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+            <motion.article 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+            >
               <h2 className="text-xl font-semibold text-gray-900">Our Process</h2>
               <div className="mt-5 space-y-4">
                 {['Fill the Form — Share your basic details online.', 'Document Collection — Upload required documents securely.', 'Expert Review — Our CA/CS team verifies everything.', 'Certificate Delivery — Get your certificate via email.'].map((step, index) => (
@@ -155,9 +176,14 @@ export default function ServicePage() {
                   </div>
                 ))}
               </div>
-            </article>
+            </motion.article>
 
-            <article className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+            <motion.article 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+            >
               <h2 className="text-xl font-semibold text-gray-900">FAQs</h2>
               <div className="mt-5 space-y-3">
                 {serviceFaqs.map((faq, index) => (
@@ -170,10 +196,15 @@ export default function ServicePage() {
                   </div>
                 ))}
               </div>
-            </article>
+            </motion.article>
           </div>
 
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          <motion.aside 
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="lg:sticky lg:top-24 lg:self-start"
+          >
             <div className="rounded-3xl border border-[#1A56DB] bg-white p-6 shadow-lg">
               <p className="text-sm text-gray-500">Starting from</p>
               <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹999/-</p>
@@ -188,10 +219,16 @@ export default function ServicePage() {
               <a href="tel:+917567126945" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
               <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
 
-        <section className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
+        <motion.section 
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+        >
           <h2 className="text-xl font-semibold text-gray-900">Related Services</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {relatedServices.map((item) => (
@@ -201,7 +238,7 @@ export default function ServicePage() {
               </button>
             ))}
           </div>
-        </section>
+        </motion.section>
       </section>
 
       <PhoneVerificationModal
@@ -216,6 +253,6 @@ export default function ServicePage() {
         service={serviceData}
         onSuccess={handleCheckoutSuccess}
       />
-    </main>
+    </motion.main>
   );
 }

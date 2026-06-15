@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   const { user } = useUser();
@@ -10,7 +11,8 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const [phoneResource, setPhoneResource] = useState(null);
 
-  if (!isOpen) return null;
+  // We handle early return using AnimatePresence now
+  // if (!isOpen) return null;
 
   const handleSendCode = async (e) => {
     e.preventDefault();
@@ -57,9 +59,21 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl relative">
-        <button
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+        >
+          <motion.div 
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl relative"
+          >
+            <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
         >
@@ -126,9 +140,11 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
             >
               {loading ? "Verifying..." : "Verify & Continue"}
             </button>
-          </form>
-        )}
-      </div>
-    </div>
+            </form>
+          )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
