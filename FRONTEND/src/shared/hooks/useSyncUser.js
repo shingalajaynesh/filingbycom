@@ -15,20 +15,37 @@ export default function useSyncUser() {
   const { isLoaded, isSignedIn, getToken, signOut } = useAuth();
   const { user, isLoaded: isUserLoaded } = useUser();
   const syncedUserIdRef = useRef(null);
+  const isSyncingRef = useRef(false);
 
   const isAuthPage = ["/login", "/register"].includes(location.pathname);
+  const syncKey = user ? `usr_sync_${user.id}` : null;
+  const isSynced = syncKey ? sessionStorage.getItem(syncKey) === "true" : false;
 
   useEffect(() => {
     // 2. Early returns
     if (!isLoaded || !isUserLoaded || !isSignedIn || !user) return;
-    if (syncedUserIdRef.current === user.id) return;
+
+    // If already synced, handle redirect on auth pages and skip API calls
+    if (syncedUserIdRef.current === user.id || isSynced) {
+      syncedUserIdRef.current = user.id;
+      if (isAuthPage) {
+        navigate("/dashboard", { replace: true });
+      }
+      return;
+    }
+
+    if (isSyncingRef.current) return;
+    isSyncingRef.current = true;
 
     const abortController = new AbortController();
 
     const syncWithBackend = async () => {
       try {
         const token = await getToken();
-        if (!token) return;
+        if (!token) {
+          isSyncingRef.current = false;
+          return;
+        }
 
         const payload = {
           firstName: user.firstName || "",
@@ -46,9 +63,17 @@ export default function useSyncUser() {
           signal: abortController.signal,
         });
 
-        if (abortController.signal.aborted) return;
+        if (abortController.signal.aborted) {
+          isSyncingRef.current = false;
+          return;
+        }
 
         syncedUserIdRef.current = user.id;
+        if (syncKey) {
+          sessionStorage.setItem(syncKey, "true");
+        }
+        isSyncingRef.current = false;
+
         const justRegistered = sessionStorage.getItem("justRegistered") === "true";
 
         if (justRegistered) {
@@ -61,6 +86,8 @@ export default function useSyncUser() {
         }
 
       } catch (err) {
+        isSyncingRef.current = false;
+        
         // 4. Use Axios's built-in cancellation checker
         if (axios.isCancel(err)) return;
 
@@ -83,13 +110,16 @@ export default function useSyncUser() {
 
     syncWithBackend();
 
-    return () => abortController.abort();
+    return () => {
+      abortController.abort();
+    };
 
   }, [
     isLoaded,
     isUserLoaded,
     isSignedIn,
-    user,
+    user?.id,
+    isSynced,
     getToken,
     signOut,
     navigate,

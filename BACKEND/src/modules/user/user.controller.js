@@ -62,6 +62,39 @@ const registerUser = async (req, res) => {
 					...(normalizedPhone && { phone: normalizedPhone }),
 				});
 			}
+		} else {
+			// User is found by Clerk ID. Ensure MongoDB profile fields are in sync with Clerk/payload
+			let isModified = false;
+			
+			// Always sync phone if it's provided and different
+			if (normalizedPhone && user.phone !== normalizedPhone) {
+				user.phone = normalizedPhone;
+				isModified = true;
+			}
+			
+			// Sync names if they were default placeholders or are different
+			if (normalizedFirstName && user.firstName !== normalizedFirstName) {
+				if (!user.firstName || user.firstName === "User" || user.firstName === "Client") {
+					user.firstName = normalizedFirstName;
+					isModified = true;
+				}
+			}
+			if (normalizedLastName && user.lastName !== normalizedLastName) {
+				if (!user.lastName || user.lastName === "") {
+					user.lastName = normalizedLastName;
+					isModified = true;
+				}
+			}
+			
+			// Sync email if different
+			if (normalizedEmail && user.email !== normalizedEmail) {
+				user.email = normalizedEmail;
+				isModified = true;
+			}
+
+			if (isModified) {
+				await user.save();
+			}
 		}
 
 		// 3. Return Clean Response

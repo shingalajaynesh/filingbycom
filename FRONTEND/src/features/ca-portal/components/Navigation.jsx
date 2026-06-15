@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
+import { safeFetch } from '../../../shared/utils/api';
 
 export default function Navigation() {
   const [navData, setNavData] = useState([]);
@@ -8,6 +9,21 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOpenCategory, setMobileOpenCategory] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [navLimit, setNavLimit] = useState(5);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const dynamicLimit = (() => {
+    if (windowWidth < 1280) return Math.min(navLimit, 2);
+    if (windowWidth < 1440) return Math.min(navLimit, 3);
+    if (windowWidth < 1640) return Math.min(navLimit, 4);
+    return navLimit;
+  })();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,17 +34,29 @@ export default function Navigation() {
   const isLoggedIn = isSignedIn;
 
   useEffect(() => {
+    let active = true;
+    let retryCount = 0;
+    const maxRetries = 5;
+
     const fetchNav = async () => {
       try {
-        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-        const [resServices, resMain] = await Promise.all([
-          fetch(`${API_BASE}/services`),
-          fetch(`${API_BASE}/main-services`)
+        const [dataServices, dataMain, dataSettings] = await Promise.all([
+          safeFetch('/services'),
+          safeFetch('/main-services'),
+          safeFetch('/settings').catch(err => {
+            console.error("Failed to load settings in nav, fallback to default:", err);
+            return { success: true, settings: {} };
+          })
         ]);
-        const dataServices = await resServices.json();
-        const dataMain = await resMain.json();
         
+        if (!active) return;
+
         if (dataServices.success && dataMain.success) {
+          const limit = dataSettings?.settings?.navbar_category_limit !== undefined
+            ? Number(dataSettings.settings.navbar_category_limit)
+            : 5;
+          setNavLimit(limit);
+
           const navMap = {};
           dataMain.mainServices.filter(m => m.isActive !== false).forEach(main => {
             navMap[main._id] = {
@@ -80,12 +108,29 @@ export default function Navigation() {
           setNavData(formattedNavData);
         }
       } catch (err) {
-        console.error("Failed to fetch nav data", err);
-        // Retry after 3 seconds if server was temporarily unavailable
-        setTimeout(fetchNav, 3000);
+        console.error("Failed to fetch nav data:", err);
+        if (!active) return;
+
+        // If it's a permanent configuration/routing error (indicated by HTML response), don't retry endlessly.
+        if (err.message && err.message.includes("HTML response")) {
+          console.warn("Discontinuing nav retries due to configuration/routing error.");
+          return;
+        }
+
+        if (retryCount < maxRetries) {
+          retryCount++;
+          console.log(`Retrying nav fetch (${retryCount}/${maxRetries}) in 5s...`);
+          setTimeout(() => {
+            if (active) fetchNav();
+          }, 5000);
+        }
       }
     };
     fetchNav();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const getInitials = (firstName, lastName) => {
@@ -141,10 +186,11 @@ export default function Navigation() {
 
   // Mega menu edge detection style logic
   const getMegaMenuStyle = (index) => {
+    const visibleLength = Math.min(navData.length, dynamicLimit);
     if (index <= 1) {
       return { left: '0', right: 'auto', transform: 'none' };
     }
-    if (index >= navData.length - 2) {
+    if (index >= visibleLength - 1) {
       return { left: 'auto', right: '0', transform: 'none' };
     }
     return { left: '50%', transform: 'translateX(-50%)' };
@@ -164,7 +210,7 @@ export default function Navigation() {
       {/* Nav container — FULL WIDTH layout */}
       <div className="w-full px-4 sm:px-6 min-[1500px]:px-8">
 
-        {/* DESKTOP ROW (1500px and above) */}
+        {/* DESKTOP ROW (lg/1024px and above) */}
         <div className="hidden lg:flex items-center h-14 w-full gap-4">
 
           {/* COL 1: Logo — fixed LEFT, never moves */}
@@ -176,9 +222,9 @@ export default function Navigation() {
           </div>
 
           {/* COL 2: Nav Items — CENTERED, takes all remaining space */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center overflow-visible">
+          <nav className="hidden lg:flex flex-1 min-w-0 items-center justify-center overflow-visible">
             <ul className="flex items-center list-none m-0 p-0 flex-nowrap gap-0.5">
-              {navData.map((category, index) => (
+              {navData.slice(0, dynamicLimit).map((category, index) => (
                 <li
                   key={category.id}
                   className="relative flex-shrink-0"
@@ -245,6 +291,101 @@ export default function Navigation() {
                   )}
                 </li>
               ))}
+
+              {/* MORE DROPDOWN */}
+              {navData.length > dynamicLimit && (() => {
+                const isMoreOpen = open === 'more-dropdown' || navData.slice(dynamicLimit).some(c => open === c.id);
+                return (
+                  <li
+                    className="relative flex-shrink-0"
+                    onMouseEnter={() => setOpen('more-dropdown')}
+                    onMouseLeave={() => setOpen(null)}
+                  >
+                    <button
+                      type="button"
+                      className={`flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[11.5px] font-bold ${isMoreOpen
+                        ? 'text-[#1A56DB] bg-blue-50'
+                        : 'text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50'
+                        }`}
+                    >
+                      More
+                      <svg className="w-3 h-3 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* More Flyout Container */}
+                    {isMoreOpen && (
+                      <div
+                        className="absolute top-full right-0 z-[999]"
+                        style={{ paddingTop: '4px' }}
+                      >
+                        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 min-w-[200px]">
+                          <ul className="space-y-0.5 list-none p-0 m-0">
+                            {navData.slice(dynamicLimit).map((category) => (
+                              <li
+                                key={category.id}
+                                className="relative"
+                                onMouseEnter={() => setOpen(category.id)}
+                              >
+                                <button
+                                  type="button"
+                                  className={`w-full text-left text-[12px] font-bold text-gray-800 hover:text-[#1A56DB] hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${open === category.id ? 'text-[#1A56DB] bg-blue-50' : ''}`}
+                                >
+                                  {category.label}
+                                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </button>
+
+                                {/* Nested Sub Mega Menu sliding to the left */}
+                                {open === category.id && (
+                                  <div
+                                    className="absolute top-0 right-full z-[1000] pr-2"
+                                  >
+                                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5" style={{ minWidth: '420px', maxWidth: '560px' }}>
+                                      <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 2)}, 1fr)` }}>
+                                        {category.sections.map((section) => (
+                                          <div key={section.heading}>
+                                            <p className="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
+                                              {section.heading}
+                                            </p>
+                                            <ul className="space-y-0.5 list-none m-0 p-0">
+                                              {section.items.map((item) => (
+                                                <li key={item.slug}>
+                                                  <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                      if (item.slug.startsWith('/')) {
+                                                        navigate(item.slug);
+                                                      } else {
+                                                        navigate(`/services/${item.slug}`);
+                                                      }
+                                                      setOpen(null);
+                                                    }}
+                                                    className="w-full text-left text-[12px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer"
+                                                  >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0 group-hover:bg-[#1A56DB] transition-colors" />
+                                                    {item.label}
+                                                  </button>
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                );
+              })()}
             </ul>
           </nav>
 
@@ -364,7 +505,7 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* MOBILE ROW (below 1500px) */}
+        {/* MOBILE ROW (below lg/1024px) */}
         <div className="flex lg:hidden items-center justify-between h-14 w-full px-4">
 
           {/* LEFT: Logo */}
@@ -480,10 +621,10 @@ export default function Navigation() {
       {mobileOpen && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 top-[88px] bg-black/20 z-[997] min-[1500px]:hidden" onClick={() => setMobileOpen(false)} />
+          <div className="fixed inset-0 top-[88px] bg-black/20 z-[997] lg:hidden" onClick={() => setMobileOpen(false)} />
 
           {/* Menu panel */}
-          <div className="fixed top-[88px] left-0 right-0 bottom-0 bg-white z-[998] overflow-y-auto min-[1500px]:hidden">
+          <div className="fixed top-[88px] left-0 right-0 bottom-0 bg-white z-[998] overflow-y-auto lg:hidden">
             <div className="px-4 py-3 space-y-1">
               {navData.map((category) => (
                 <div key={category.id} className="border-b border-gray-100">

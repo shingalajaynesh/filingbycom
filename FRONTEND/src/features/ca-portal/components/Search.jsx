@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { safeFetch } from '../../../shared/utils/api';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -8,12 +9,11 @@ export default function Search() {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
+        let active = true;
         const fetchServices = async () => {
             try {
-                const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-                const res = await fetch(`${API_BASE}/services`);
-                const data = await res.json();
-                if (data.success) {
+                const data = await safeFetch('/services');
+                if (active && data.success) {
                     setServices(data.services.filter(s => s.isActive !== false));
                 }
             } catch (err) {
@@ -21,6 +21,9 @@ export default function Search() {
             }
         };
         fetchServices();
+        return () => {
+            active = false;
+        };
     }, []);
 
     const filtered = useMemo(() => {

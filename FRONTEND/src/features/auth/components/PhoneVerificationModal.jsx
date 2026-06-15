@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useUser } from "@clerk/clerk-react";
+import { useUser, useAuth } from "@clerk/clerk-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   const { user } = useUser();
+  const { getToken } = useAuth();
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [step, setStep] = useState(1); // 1: Enter Phone, 2: Enter Code
@@ -29,6 +32,31 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
           phoneNumber: formattedPhone,
         },
       });
+
+      // Synchronize with the backend User database in MongoDB
+      const token = await getToken();
+      if (!token) {
+        throw new Error("Session expired. Please log in again.");
+      }
+
+      const syncRes = await fetch(`${API_BASE}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          firstName: user.firstName || "",
+          lastName: user.lastName || "",
+          email: user.primaryEmailAddress?.emailAddress || "",
+          phone: formattedPhone,
+        }),
+      });
+
+      const syncData = await syncRes.json();
+      if (!syncData.success) {
+        throw new Error(syncData.message || "Failed to sync phone number to database.");
+      }
       
       onSuccess();
     } catch (err) {

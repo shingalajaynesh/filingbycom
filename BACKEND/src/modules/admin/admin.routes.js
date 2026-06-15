@@ -45,6 +45,8 @@ adminRouter.put("/admin/services/:id",    verifyAdmin, updateService);
 adminRouter.delete("/admin/services/:id", verifyAdmin, deleteService);
 
 // ─── Main Services (Protected) ──────────────────────────────────────────────
+import { updateSettings } from "../setting/setting.controller.js";
+adminRouter.post("/admin/settings",           verifyAdmin, updateSettings);
 adminRouter.get("/admin/main-services",       verifyAdmin, getAllMainServices);
 adminRouter.post("/admin/main-services",      verifyAdmin, createMainService);
 adminRouter.put("/admin/main-services/:id",   verifyAdmin, updateMainService);

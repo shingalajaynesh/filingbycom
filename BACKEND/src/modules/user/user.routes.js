@@ -22,6 +22,8 @@ router.post("/register",    authenticateToken, registerUser);
 router.get("/check-user",   authenticateToken, checkUser);
 
 // ── Services (Public) ────────────────────────────────────────────────────────
+import { getPublicSettings } from "../setting/setting.controller.js";
+router.get("/settings", getPublicSettings);
 router.get("/services", getAllServices);
 router.get("/main-services", getAllMainServices);
 
