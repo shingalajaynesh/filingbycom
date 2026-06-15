@@ -552,6 +552,14 @@ export default function VirtualDashboard() {
 
           {/* Content Pane */}
           <div className="lg:col-span-3 space-y-6">
+            {activeTab !== "overview" && (
+              <button
+                onClick={() => setActiveTab("overview")}
+                className="inline-flex items-center gap-1 text-xs font-bold text-[#1A56DB] hover:text-blue-700 bg-blue-50/50 hover:bg-blue-50 px-3 py-1.5 rounded-full transition-all cursor-pointer active:scale-95"
+              >
+                ← Back to Overview
+              </button>
+            )}
             
             {/* Global notification banner */}
             {notification.message && (

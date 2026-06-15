@@ -110,7 +110,12 @@ function AppRoutesContent() {
   const showCANavigation = !isVirtualOfficeRoute && !hideNavigationPaths.includes(location.pathname) && !isAdminRoute;
   const showVirtualOfficeNavigation = isVirtualOfficeRoute && !isAdminRoute;
 
-  const showBackButton = location.pathname !== "/" && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard" && !isAdminRoute;
+  const showBackButton =
+    location.pathname !== "/" &&
+    location.pathname !== "/virtual-space" &&
+    location.pathname !== "/dashboard" &&
+    location.pathname !== "/virtual-office/dashboard" &&
+    !isAdminRoute;
 
   const handleBack = () => {
     if (window.history.state && window.history.state.idx > 0) {
