@@ -6,110 +6,110 @@ import { useAuth, useUser, useClerk } from "@clerk/clerk-react";
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 const MapPinIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
   </svg>
 );
 const BuildingIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 22V12h6v10M3 9h18M9 3v6M15 3v6"/>
+    <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 22V12h6v10M3 9h18M9 3v6M15 3v6" />
   </svg>
 );
 const ShoppingCartIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+    <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+    <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
   </svg>
 );
 const HeartIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
   </svg>
 );
 const PhoneIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 9.09 19.79 19.79 0 01.88.4 2 2 0 012.86.02h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 9.09 19.79 19.79 0 01.88.4 2 2 0 012.86.02h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
   </svg>
 );
 const HelpCircleIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    <circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" />
   </svg>
 );
 const UsersIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
   </svg>
 );
 const QuoteIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
   </svg>
 );
 const HandshakeIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M20.42 4.58a5.4 5.4 0 00-7.65 0l-.77.78-.77-.78a5.4 5.4 0 00-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/>
+    <path d="M20.42 4.58a5.4 5.4 0 00-7.65 0l-.77.78-.77-.78a5.4 5.4 0 00-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
   </svg>
 );
 const FileTextIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-    <polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+    <polyline points="14,2 14,8 20,8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
   </svg>
 );
 const ChevronDownIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
-    <polyline points="6,9 12,15 18,9"/>
+    <polyline points="6,9 12,15 18,9" />
   </svg>
 );
 const ChevronRightIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-    <polyline points="9,18 15,12 9,6"/>
+    <polyline points="9,18 15,12 9,6" />
   </svg>
 );
 const HomeIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
+    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9,22 9,12 15,12 15,22" />
   </svg>
 );
 const ArrowLeftIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-    <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12,19 5,12 12,5"/>
+    <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12,19 5,12 12,5" />
   </svg>
 );
 
 // ─── City links for dropdown ──────────────────────────────────────────────────
 const fallbackCities = [
-  { label: "Surat",  path: "/virtual-office-surat" },
+  { label: "Surat", path: "/virtual-office-surat" },
   { label: "Mumbai", path: "/virtual-office-mumbai" },
 ];
 
 // ─── Company dropdown links ────────────────────────────────────────────────────
 const companyLinks = [
-  { icon: UsersIcon,    label: "About Us",         path: "/about-us",          desc: "Our story & mission" },
-  { icon: HeartIcon,    label: "Our Promise",      path: "/our-promise",       desc: "What we guarantee to you" },
-  { icon: HandshakeIcon,label: "Partner With Us",  path: "/partner-onboarding",desc: "Become a FilingBy partner" },
+  { icon: UsersIcon, label: "About Us", path: "/about-us", desc: "Our story & mission" },
+  { icon: HeartIcon, label: "Our Promise", path: "/our-promise", desc: "What we guarantee to you" },
+  { icon: HandshakeIcon, label: "Partner With Us", path: "/partner-onboarding", desc: "Become a FilingBy partner" },
 ];
 
 export default function VirtualOfficeNavigation() {
-  const navigate  = useNavigate();
-  const location  = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { locations } = useSharedData();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
   const { signOut } = useClerk();
-  const [mobileOpen,      setMobileOpen]      = useState(false);
-  const [locationOpen,    setLocationOpen]    = useState(false);
-  const [companyOpen,     setCompanyOpen]     = useState(false);
-  const [mobileSection,   setMobileSection]   = useState(null);
-  const [scrolled,        setScrolled]        = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const menuCities = locations && locations.length > 0
     ? locations.map(loc => ({ label: loc.name, path: `/virtual-office-${loc.slug}` }))
     : fallbackCities;
 
   const locationRef = useRef(null);
-  const companyRef  = useRef(null);
+  const companyRef = useRef(null);
 
   // Scroll lock when mobile open
   useEffect(() => {
@@ -143,14 +143,14 @@ export default function VirtualOfficeNavigation() {
   useEffect(() => {
     const handler = (e) => {
       if (locationRef.current && !locationRef.current.contains(e.target)) setLocationOpen(false);
-      if (companyRef.current  && !companyRef.current.contains(e.target))  setCompanyOpen(false);
+      if (companyRef.current && !companyRef.current.contains(e.target)) setCompanyOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + "/");
-  const goto     = (path) => { navigate(path); setMobileOpen(false); setLocationOpen(false); setCompanyOpen(false); };
+  const goto = (path) => { navigate(path); setMobileOpen(false); setLocationOpen(false); setCompanyOpen(false); };
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg shadow-black/8" : "bg-white"} border-b border-gray-100`}>
@@ -336,11 +336,11 @@ export default function VirtualOfficeNavigation() {
           <button onClick={() => setMobileOpen(o => !o)} className="p-2 lg:hidden rounded-xl hover:bg-gray-100 transition-colors">
             {mobileOpen ? (
               <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
               <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
@@ -440,8 +440,8 @@ export default function VirtualOfficeNavigation() {
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-4 pb-2">Policies</p>
                 {[
                   { label: "Terms & Conditions", path: "/terms-conditions", icon: FileTextIcon },
-                  { label: "Refund Policy",       path: "/default/refund",   icon: FileTextIcon },
-                  { label: "Privacy Policy",      path: "/default/privacy-policy", icon: FileTextIcon },
+                  { label: "Refund Policy", path: "/default/refund", icon: FileTextIcon },
+                  { label: "Privacy Policy", path: "/default/privacy-policy", icon: FileTextIcon },
                 ].map(p => (
                   <button key={p.path} onClick={() => goto(p.path)}
                     className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-all font-medium">
