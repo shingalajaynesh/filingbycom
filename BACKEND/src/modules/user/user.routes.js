@@ -21,5 +21,6 @@ router.post("/orders/razorpay", authenticateToken, OrderController.createRazorpa
 router.post("/orders/verify",   authenticateToken, OrderController.verifyOnlineOrder);
 router.post("/orders/cash",     authenticateToken, OrderController.createCashOrder);
 router.get("/orders",           authenticateToken, OrderController.getUserOrders);
+router.delete("/orders/:id",    authenticateToken, OrderController.deleteUserOrder);
 
 export default router;

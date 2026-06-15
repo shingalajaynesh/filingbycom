@@ -93,5 +93,30 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
     []
   );
 
-  return { orders, loading, error, refetch: fetchOrders, updateOrderStatus, updatePaymentStatus };
+  // Soft delete order
+  const deleteOrder = useCallback(
+    async (orderId, reason) => {
+      try {
+        const res = await fetch(`${API_BASE}/admin/orders/${orderId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ reason }),
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message);
+
+        // Optimistically remove the deleted order from the state
+        setOrders((prev) => prev.filter((o) => o._id !== orderId));
+        return { success: true };
+      } catch (err) {
+        return { success: false, message: err.message };
+      }
+    },
+    []
+  );
+
+  return { orders, loading, error, refetch: fetchOrders, updateOrderStatus, updatePaymentStatus, deleteOrder };
 }

@@ -4,6 +4,7 @@ import Order from "../../models/Order.model.js";
 import Service from "../../models/Service.model.js";
 import User from "../../models/User.model.js";
 import { sendAdminWhatsAppNotification } from "../../services/whatsapp.service.js";
+import { generateInvoiceNumber } from "../../services/invoice.service.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -37,6 +38,20 @@ class OrderController {
         currency: "INR",
         receipt: `receipt_${Date.now()}`,
       };
+
+      // Check if credentials are placeholder/test keys, and return mock order for simulation
+      const keyId = process.env.RAZORPAY_KEY_ID;
+      if (!keyId || keyId === "test_key" || keyId.includes("placeholder")) {
+        return res.status(200).json({
+          success: true,
+          order: {
+            id: `order_mock_${Date.now()}`,
+            amount,
+            currency: "INR",
+            receipt: options.receipt
+          }
+        });
+      }
 
       const order = await razorpay.orders.create(options);
 
@@ -75,6 +90,9 @@ class OrderController {
         }
       }
 
+      const invoiceNumber = await generateInvoiceNumber();
+      const invoiceDate = new Date();
+
       // Payment is valid, create the order
       const newOrder = await Order.create({
         user: user._id,
@@ -84,6 +102,8 @@ class OrderController {
         paymentType: "Online",
         paymentStatus: "Paid",
         paymentID: razorpay_payment_id,
+        invoiceNumber,
+        invoiceDate,
       });
 
       // Send WhatsApp notification
@@ -140,13 +160,48 @@ class OrderController {
       const user = await User.findOne({ clerkId: clerkUser.id });
       if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
 
-      const orders = await Order.find({ user: user._id })
+      const orders = await Order.find({ user: user._id, isDeleted: { $ne: true } })
         .populate("service", "name slug icon tag")
         .sort({ createdAt: -1 });
 
       return res.status(200).json({ success: true, orders });
     } catch (error) {
       console.error("Get User Orders Error:", error);
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Delete/Cancel User Order (Client-Initiated) ───────────────────────────
+  deleteUserOrder = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { reason } = req.body;
+      const clerkUser = req.clerkUser || req.user;
+
+      if (!clerkUser) return res.status(401).json({ success: false, message: "Unauthorized" });
+
+      const user = await User.findOne({ clerkId: clerkUser.id });
+      if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
+
+      // Find order that belongs to this user and is not soft-deleted
+      const order = await Order.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } });
+      if (!order) {
+        return res.status(404).json({ success: false, message: "Order not found" });
+      }
+
+      // Allow cancelling only if the order is still "Pending"
+      if (order.orderStatus !== "Pending") {
+        return res.status(400).json({ success: false, message: "Only pending orders can be cancelled." });
+      }
+
+      order.isDeleted = true;
+      order.deletedAt = new Date();
+      order.deleteReason = reason || "Cancelled by client (mistake)";
+      await order.save();
+
+      return res.status(200).json({ success: true, message: "Order successfully cancelled/deleted", order });
+    } catch (error) {
+      console.error("Delete User Order Error:", error);
       return res.status(500).json({ success: false, message: error.message });
     }
   };

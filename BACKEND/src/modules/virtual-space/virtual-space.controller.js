@@ -3,6 +3,7 @@ import PartnerApplication from "../../models/PartnerApplication.model.js";
 import QuoteLead from "../../models/QuoteLead.model.js";
 import VirtualOfficeOrder from "../../models/VirtualOfficeOrder.model.js";
 import VirtualLocation from "../../models/VirtualLocation.model.js";
+import { generateInvoiceNumber } from "../../services/invoice.service.js";
 
 const initialSeedLocations = [
   {
@@ -297,7 +298,7 @@ class VirtualSpaceController {
       if (!user) {
         return res.status(401).json({ success: false, message: "User not found" });
       }
-      const orders = await VirtualOfficeOrder.find({ user: user._id }).sort({ createdAt: -1 });
+      const orders = await VirtualOfficeOrder.find({ user: user._id, isDeleted: { $ne: true } }).sort({ createdAt: -1 });
       return res.status(200).json({ success: true, orders });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -312,7 +313,7 @@ class VirtualSpaceController {
       if (!user) {
         return res.status(401).json({ success: false, message: "User not found" });
       }
-      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id });
+      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } });
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
@@ -334,6 +335,9 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Missing required fields" });
       }
 
+      const invoiceNumber = await generateInvoiceNumber();
+      const invoiceDate = new Date();
+
       const order = await VirtualOfficeOrder.create({
         user: user._id,
         citySlug: citySlug.toLowerCase(),
@@ -343,6 +347,8 @@ class VirtualSpaceController {
         complianceStatus: "Payment Received",
         paymentStatus: "Paid",
         paymentId: "pay_VO_" + Date.now(),
+        invoiceNumber,
+        invoiceDate,
         clientDocuments: {
           panCard: "",
           aadhaarCard: "",
@@ -376,7 +382,7 @@ class VirtualSpaceController {
       }
       const { panCard, aadhaarCard, photo, companyName, incorporationCert } = req.body;
 
-      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id });
+      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } });
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
@@ -510,7 +516,7 @@ class VirtualSpaceController {
   // Fetch all virtual office address bookings
   adminGetVirtualOrders = async (req, res) => {
     try {
-      const orders = await VirtualOfficeOrder.find().populate("user", "firstName lastName email phone").sort({ createdAt: -1 });
+      const orders = await VirtualOfficeOrder.find({ isDeleted: { $ne: true } }).populate("user", "firstName lastName email phone").sort({ createdAt: -1 });
       return res.status(200).json({ success: true, orders });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -523,13 +529,19 @@ class VirtualSpaceController {
       const { id } = req.params;
       const { complianceStatus, paymentStatus, nocFile, utilityBillFile, rentAgreementFile, consentLetterFile } = req.body;
 
-      const order = await VirtualOfficeOrder.findById(id);
+      const order = await VirtualOfficeOrder.findOne({ _id: id, isDeleted: { $ne: true } });
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
 
       if (complianceStatus) order.complianceStatus = complianceStatus;
-      if (paymentStatus) order.paymentStatus = paymentStatus;
+      if (paymentStatus) {
+        order.paymentStatus = paymentStatus;
+        if (paymentStatus === "Paid" && !order.invoiceNumber) {
+          order.invoiceNumber = await generateInvoiceNumber();
+          order.invoiceDate = new Date();
+        }
+      }
 
       if (!order.complianceDocuments) {
         order.complianceDocuments = {};
@@ -557,7 +569,7 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Sender and category are required" });
       }
 
-      const order = await VirtualOfficeOrder.findById(id);
+      const order = await VirtualOfficeOrder.findOne({ _id: id, isDeleted: { $ne: true } });
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
@@ -588,7 +600,7 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Date scheduled is required" });
       }
 
-      const order = await VirtualOfficeOrder.findById(id);
+      const order = await VirtualOfficeOrder.findOne({ _id: id, isDeleted: { $ne: true } });
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
@@ -602,6 +614,68 @@ class VirtualSpaceController {
 
       await order.save();
       return res.status(200).json({ success: true, message: "Verification audit scheduled successfully", order });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // Soft deletes a Virtual Office booking order with a reason note
+  deleteVirtualOrder = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { reason } = req.body;
+
+      if (!reason || !reason.trim()) {
+        return res.status(400).json({ success: false, message: "A deletion reason is required." });
+      }
+
+      const order = await VirtualOfficeOrder.findOneAndUpdate(
+        { _id: id, isDeleted: { $ne: true } },
+        {
+          isDeleted: true,
+          deletedAt: new Date(),
+          deleteReason: reason
+        },
+        { new: true }
+      );
+
+      if (!order) {
+        return res.status(404).json({ success: false, message: "Booking not found" });
+      }
+
+      return res.status(200).json({ success: true, message: "Booking successfully deleted", order });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // Client-initiated soft delete/cancel of their own Virtual Office order
+  deleteUserVirtualOrder = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { reason } = req.body;
+      const user = req.user; // verifyUser middleware sets req.user to local user DB profile
+
+      if (!user) {
+        return res.status(401).json({ success: false, message: "User not found" });
+      }
+
+      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } });
+      if (!order) {
+        return res.status(404).json({ success: false, message: "Booking not found" });
+      }
+
+      // Restrict cancellation to initial stages ("Payment Received" or "Documents Uploaded")
+      if (order.complianceStatus !== "Payment Received" && order.complianceStatus !== "Documents Uploaded") {
+        return res.status(400).json({ success: false, message: "Cannot cancel a booking that has progressed past document upload." });
+      }
+
+      order.isDeleted = true;
+      order.deletedAt = new Date();
+      order.deleteReason = reason || "Cancelled by client (mistake)";
+      await order.save();
+
+      return res.status(200).json({ success: true, message: "Booking successfully cancelled", order });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
     }

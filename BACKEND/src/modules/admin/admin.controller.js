@@ -1,5 +1,6 @@
 import Order from "../../models/Order.model.js";
 import jwt from "jsonwebtoken";
+import { generateInvoiceNumber } from "../../services/invoice.service.js";
 
 class AdminController {
   // ─── Admin Login ────────────────────────────────────────────────────────────
@@ -71,7 +72,7 @@ class AdminController {
   getAllOrders = async (req, res) => {
     try {
       const { portal } = req.query;
-      let orders = await Order.find()
+      let orders = await Order.find({ isDeleted: { $ne: true } })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
         .sort({ createdAt: -1 });
@@ -90,7 +91,7 @@ class AdminController {
   getActiveOrders = async (req, res) => {
     try {
       const { portal } = req.query;
-      let orders = await Order.find({ orderStatus: { $ne: "Complete" } })
+      let orders = await Order.find({ isDeleted: { $ne: true }, orderStatus: { $ne: "Complete" } })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
         .sort({ createdAt: -1 });
@@ -109,7 +110,7 @@ class AdminController {
   getCompletedOrders = async (req, res) => {
     try {
       const { portal } = req.query;
-      let orders = await Order.find({ orderStatus: "Complete" })
+      let orders = await Order.find({ isDeleted: { $ne: true }, orderStatus: "Complete" })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
         .sort({ createdAt: -1 });
@@ -164,11 +165,7 @@ class AdminController {
         return res.status(400).json({ success: false, message: "Invalid payment status" });
       }
 
-      const order = await Order.findByIdAndUpdate(
-        id,
-        { paymentStatus },
-        { new: true, runValidators: true }
-      )
+      const order = await Order.findById(id)
         .populate("user", "firstName lastName email phone")
         .populate("service", "name");
 
@@ -176,7 +173,45 @@ class AdminController {
         return res.status(404).json({ success: false, message: "Order not found" });
       }
 
+      order.paymentStatus = paymentStatus;
+      if (paymentStatus === "Paid" && !order.invoiceNumber) {
+        order.invoiceNumber = await generateInvoiceNumber();
+        order.invoiceDate = new Date();
+      }
+
+      await order.save();
+
       return res.status(200).json({ success: true, order });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Delete Order (Soft Delete) ──────────────────────────────────────────────
+  deleteOrder = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { reason } = req.body;
+
+      if (!reason || !reason.trim()) {
+        return res.status(400).json({ success: false, message: "A deletion reason is required." });
+      }
+
+      const order = await Order.findByIdAndUpdate(
+        id,
+        {
+          isDeleted: true,
+          deletedAt: new Date(),
+          deleteReason: reason
+        },
+        { new: true }
+      );
+
+      if (!order) {
+        return res.status(404).json({ success: false, message: "Order not found" });
+      }
+
+      return res.status(200).json({ success: true, message: "Order successfully deleted", order });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
     }

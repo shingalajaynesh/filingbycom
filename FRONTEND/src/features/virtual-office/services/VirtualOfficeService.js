@@ -167,6 +167,40 @@ class VirtualOfficeService {
       body: JSON.stringify(auditDetails),
     });
   }
+
+  /**
+   * Soft deletes a Virtual Office booking order with a reason note.
+   * @param {string} id - Booking order ID
+   * @param {string} reason - The delete reason note
+   */
+  async adminDeleteOrder(id, reason) {
+    return safeFetch(`/admin/virtual-space/orders/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ reason }),
+    });
+  }
+
+  /**
+   * Client-initiated soft deletes/cancels of their own Virtual Office booking.
+   * @param {string} token - Clerk authorization token
+   * @param {string} id - Booking order ID
+   * @param {string} reason - The cancel reason note
+   */
+  async cancelUserOrder(token, id, reason) {
+    return safeFetch(`/virtual-space/orders/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+      body: JSON.stringify({ reason }),
+    });
+  }
 }
 
 export default new VirtualOfficeService();

@@ -17,6 +17,7 @@ virtualSpaceRouter.get("/virtual-space/orders", verifyUser, VirtualSpaceControll
 virtualSpaceRouter.post("/virtual-space/orders", verifyUser, VirtualSpaceController.createVirtualOrder);
 virtualSpaceRouter.get("/virtual-space/orders/:id", verifyUser, VirtualSpaceController.getUserVirtualOrderById);
 virtualSpaceRouter.post("/virtual-space/orders/:id/documents", verifyUser, VirtualSpaceController.uploadUserVirtualDocuments);
+virtualSpaceRouter.delete("/virtual-space/orders/:id", verifyUser, VirtualSpaceController.deleteUserVirtualOrder);
 
 // ─── Admin Endpoints (Protected via verifyAdmin) ─────────────────────────────
 virtualSpaceRouter.get("/admin/virtual-space/inquiries", verifyAdmin, VirtualSpaceController.getInquiries);
@@ -33,6 +34,7 @@ virtualSpaceRouter.delete("/admin/virtual-space/locations/:id", verifyAdmin, Vir
 
 virtualSpaceRouter.get("/admin/virtual-space/orders", verifyAdmin, VirtualSpaceController.adminGetVirtualOrders);
 virtualSpaceRouter.put("/admin/virtual-space/orders/:id", verifyAdmin, VirtualSpaceController.adminUpdateVirtualOrder);
+virtualSpaceRouter.delete("/admin/virtual-space/orders/:id", verifyAdmin, VirtualSpaceController.deleteVirtualOrder);
 virtualSpaceRouter.post("/admin/virtual-space/orders/:id/mail", verifyAdmin, VirtualSpaceController.adminAddMailLog);
 virtualSpaceRouter.post("/admin/virtual-space/orders/:id/verification", verifyAdmin, VirtualSpaceController.adminAddVerificationAudit);
 

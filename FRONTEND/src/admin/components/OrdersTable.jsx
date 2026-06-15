@@ -8,7 +8,7 @@ import { useAdminOrders } from "../hooks/useAdminOrders";
 import OrderCard from "./OrderCard";
 
 export default function OrdersTable({ portal }) {
-  const { orders, loading, error, refetch, updateOrderStatus, updatePaymentStatus } =
+  const { orders, loading, error, refetch, updateOrderStatus, updatePaymentStatus, deleteOrder } =
     useAdminOrders("active", portal);
 
   if (loading) {
@@ -26,7 +26,7 @@ export default function OrdersTable({ portal }) {
         <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-2">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </div>
-        <p className="text-red-600 font-medium">{error}</p>
+        <p className="text-red-655 font-medium">{error}</p>
         <button
           onClick={refetch}
           className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
@@ -72,6 +72,7 @@ export default function OrdersTable({ portal }) {
             order={order}
             onUpdateStatus={updateOrderStatus}
             onUpdatePayment={updatePaymentStatus}
+            onDelete={deleteOrder}
             readOnly={false}
           />
         ))}

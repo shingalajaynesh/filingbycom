@@ -35,6 +35,24 @@ const orderSchema = new mongoose.Schema(
       type: String,
       sparse: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: {
+      type: Date,
+    },
+    deleteReason: {
+      type: String,
+    },
+    invoiceNumber: {
+      type: String,
+      sparse: true,
+      unique: true,
+    },
+    invoiceDate: {
+      type: Date,
+    },
   },
   { timestamps: true },
 );

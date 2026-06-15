@@ -70,6 +70,24 @@ const virtualOfficeOrderSchema = new mongoose.Schema(
       default: "Paid",
     },
     paymentId: { type: String, default: "" },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: {
+      type: Date,
+    },
+    deleteReason: {
+      type: String,
+    },
+    invoiceNumber: {
+      type: String,
+      sparse: true,
+      unique: true,
+    },
+    invoiceDate: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

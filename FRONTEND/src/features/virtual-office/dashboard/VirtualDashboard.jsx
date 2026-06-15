@@ -105,6 +105,317 @@ export default function VirtualDashboard() {
     }));
   };
 
+  const handleDownloadReceipt = () => {
+    if (!selectedOrder) return;
+    
+    const invoiceNum = selectedOrder.invoiceNumber || `INV-VO-${selectedOrder._id.slice(-6).toUpperCase()}-${Date.now().toString().slice(-4)}`;
+    const invoiceD = selectedOrder.invoiceDate ? new Date(selectedOrder.invoiceDate) : new Date(selectedOrder.createdAt || Date.now());
+    const dateStr = invoiceD.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+    const clientName = clerkUser?.fullName || `${clerkUser?.firstName || "Client"} ${clerkUser?.lastName || ""}`.trim() || "Valued Client";
+    const clientEmail = clerkUser?.primaryEmailAddress?.emailAddress || "N/A";
+    const clientPhone = clerkUser?.primaryPhoneNumber?.phoneNumber || "N/A";
+
+    const baseAmount = Math.round(selectedOrder.price / 1.18);
+    const gstAmount = selectedOrder.price - baseAmount;
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      alert("Please allow popups to download/print the invoice.");
+      return;
+    }
+
+    const planNames = {
+      gst: "GST Registration / VPOB Plan",
+      incorporation: "Company Incorporation Plan",
+      mailing: "Business Address & Mailing Plan"
+    };
+    const planName = planNames[selectedOrder.selectedPlan] || "Virtual Office Leased Space";
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Invoice - ${invoiceNum}</title>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+            body {
+              font-family: 'Inter', sans-serif;
+              color: #1e293b;
+              margin: 0;
+              padding: 40px;
+              line-height: 1.5;
+            }
+            .invoice-card {
+              max-w: 800px;
+              margin: 0 auto;
+              background: #fff;
+            }
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              border-b: 2px solid #f1f5f9;
+              padding-bottom: 30px;
+              margin-bottom: 40px;
+            }
+            .logo-area h1 {
+              font-size: 28px;
+              font-weight: 800;
+              color: #1e3a8a;
+              margin: 0;
+              letter-spacing: -0.5px;
+            }
+            .logo-area span {
+              color: #f59e0b;
+            }
+            .logo-area p {
+              margin: 4px 0 0 0;
+              font-size: 12px;
+              color: #64748b;
+              font-weight: 500;
+            }
+            .invoice-details {
+              text-align: right;
+            }
+            .invoice-details h2 {
+              font-size: 24px;
+              font-weight: 800;
+              margin: 0;
+              color: #0f172a;
+            }
+            .invoice-details p {
+              margin: 5px 0 0 0;
+              font-size: 13px;
+              color: #64748b;
+            }
+            .grid-2 {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 40px;
+              margin-bottom: 40px;
+            }
+            .info-block h3 {
+              font-size: 11px;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              color: #64748b;
+              margin-bottom: 12px;
+              font-weight: 700;
+            }
+            .info-block p {
+              margin: 4px 0;
+              font-size: 14px;
+              color: #334155;
+            }
+            .info-block .name {
+              font-weight: 700;
+              color: #0f172a;
+            }
+            .table-container {
+              margin-bottom: 40px;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              text-align: left;
+            }
+            th {
+              background: #f8fafc;
+              padding: 14px 16px;
+              font-size: 11px;
+              text-transform: uppercase;
+              font-weight: 700;
+              color: #475569;
+              border-bottom: 2px solid #e2e8f0;
+            }
+            td {
+              padding: 16px;
+              font-size: 14px;
+              color: #334155;
+              border-bottom: 1px solid #f1f5f9;
+            }
+            .totals {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 20px;
+            }
+            .totals-table {
+              width: 300px;
+            }
+            .totals-table td {
+              padding: 8px 16px;
+              font-size: 14px;
+              border: none;
+            }
+            .totals-table .grand-total {
+              font-weight: 800;
+              font-size: 16px;
+              color: #1e3a8a;
+              border-top: 2px solid #f1f5f9;
+              padding-top: 12px;
+            }
+            .status-badge {
+              display: inline-block;
+              padding: 6px 12px;
+              border-radius: 9999px;
+              font-size: 11px;
+              font-weight: 700;
+              text-transform: uppercase;
+              margin-top: 10px;
+            }
+            .status-paid {
+              background: #ecfdf5;
+              color: #047857;
+            }
+            .status-unpaid {
+              background: #fff7ed;
+              color: #c2410c;
+            }
+            .footer {
+              border-top: 2px solid #f1f5f9;
+              padding-top: 30px;
+              margin-top: 60px;
+              text-align: center;
+              font-size: 12px;
+              color: #94a3b8;
+            }
+            @media print {
+              body {
+                padding: 0;
+              }
+              .no-print {
+                display: none;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="invoice-card">
+            <div class="header">
+              <div class="logo-area">
+                <h1>Filing<span>By</span>.com</h1>
+                <p>Tax & Corporate Compliance Solutions</p>
+              </div>
+              <div class="invoice-details">
+                <h2>INVOICE</h2>
+                <p><strong>Invoice #:</strong> ${invoiceNum}</p>
+                <p><strong>Date:</strong> ${dateStr}</p>
+                <span class="status-badge ${selectedOrder.paymentStatus === 'Paid' ? 'status-paid' : 'status-unpaid'}">
+                  ${selectedOrder.paymentStatus === 'Paid' ? 'Paid' : 'Unpaid / Pending'}
+                </span>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="info-block">
+                <h3>Billed By</h3>
+                <p class="name">FilingBy Solutions Private Limited</p>
+                <p>402-405 Compliance Center Hub,</p>
+                <p>Adajan, Surat, Gujarat - 395009</p>
+                <p>support@filingby.com | +91 75671 26945</p>
+              </div>
+              <div class="info-block">
+                <h3>Billed To</h3>
+                <p class="name">${clientName}</p>
+                <p>Email: ${clientEmail}</p>
+                <p>Phone: ${clientPhone}</p>
+                <p>Registered Member</p>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item Description</th>
+                    <th>Qty</th>
+                    <th style="text-align: right;">Unit Price</th>
+                    <th style="text-align: right;">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 600; color: #0f172a;">
+                      ${planName}
+                      <span style="display: block; font-size: 11px; font-weight: normal; color: #64748b; margin-top: 4px;">
+                        Location: ${selectedOrder.addressName} (${selectedOrder.citySlug.toUpperCase()})
+                      </span>
+                    </td>
+                    <td>1</td>
+                    <td style="text-align: right;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                    <td style="text-align: right; font-weight: 600;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="totals">
+              <table class="totals-table">
+                <tr>
+                  <td>Subtotal:</td>
+                  <td style="text-align: right;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                </tr>
+                <tr>
+                  <td>GST (18%):</td>
+                  <td style="text-align: right;">₹${gstAmount.toLocaleString("en-IN")}</td>
+                </tr>
+                <tr class="grand-total">
+                  <td>Grand Total:</td>
+                  <td style="text-align: right;">₹${selectedOrder.price.toLocaleString("en-IN")}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="footer">
+              <p>Thank you for choosing FilingBy.com for your legal compliance needs.</p>
+              <p style="margin-top: 5px; font-size: 10px; color: #cbd5e1;">This is a computer-generated invoice and requires no physical signature.</p>
+            </div>
+          </div>
+          <script>
+            window.onload = function() {
+              window.print();
+              setTimeout(function() { window.close(); }, 500);
+            }
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
+  const handleCancelBooking = async () => {
+    if (!selectedOrder) return;
+    const reason = prompt("Why do you want to cancel this booking? (e.g. Created by mistake)");
+    if (reason === null) return; // User cancelled prompt
+    if (!reason.trim()) {
+      alert("A cancellation reason is required.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const token = await getToken();
+      const data = await VirtualOfficeService.cancelUserOrder(token, selectedOrder._id, reason);
+      if (data.success) {
+        setNotification({ type: "success", message: "Booking cancelled successfully!" });
+        // Fetch bookings again
+        await fetchOrders();
+      } else {
+        setNotification({ type: "error", message: data.message || "Failed to cancel booking." });
+      }
+    } catch (err) {
+      console.error(err);
+      setNotification({ type: "error", message: "Error cancelling booking." });
+    } finally {
+      setLoading(false);
+      setTimeout(() => setNotification({ type: "", message: "" }), 5000);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50/50">
@@ -293,12 +604,22 @@ export default function VirtualDashboard() {
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100/80 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Payment Status</span>
-                      <p className="text-xl font-black text-emerald-600 mt-2">
+                      <p className="text-xl font-black text-[#047857] mt-2">
                         {selectedOrder.paymentStatus === "Paid" ? "💰 Verified" : "⚠️ Pending"}
                       </p>
-                      <span className="text-[9px] font-semibold text-slate-400 block mt-2">
-                        ID: {selectedOrder.paymentId || "Direct Booking"}
-                      </span>
+                      {selectedOrder.paymentStatus === "Paid" && (
+                        <button
+                          onClick={handleDownloadReceipt}
+                          className="text-[10px] font-bold text-[#1A56DB] hover:underline mt-2 inline-block cursor-pointer bg-transparent border-0 p-0 text-left outline-none"
+                        >
+                          Download Receipt →
+                        </button>
+                      )}
+                      {selectedOrder.paymentStatus !== "Paid" && (
+                        <span className="text-[9px] font-semibold text-slate-400 block mt-2">
+                          ID: {selectedOrder.paymentId || "Direct Booking"}
+                        </span>
+                      )}
                     </div>
                     <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center text-xl">💸</div>
                   </div>
@@ -367,6 +688,22 @@ export default function VirtualDashboard() {
                     Add Address +
                   </button>
                 </div>
+
+                {/* Cancellation row */}
+                {(selectedOrder.complianceStatus === "Payment Received" || selectedOrder.complianceStatus === "Documents Uploaded") && (
+                  <div className="bg-rose-50/35 p-6 rounded-3xl border border-rose-100/50 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                      <h4 className="font-extrabold text-rose-955 text-sm leading-tight">Cancel this Booking?</h4>
+                      <p className="text-slate-500 text-[11px] mt-0.5">If you made this workspace booking by mistake, you can cancel it here.</p>
+                    </div>
+                    <button
+                      onClick={handleCancelBooking}
+                      className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                    >
+                      Cancel Booking
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 

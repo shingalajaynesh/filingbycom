@@ -99,6 +99,8 @@ export default function ClientDashboard() {
             progress: o.orderStatus === "Pending" ? 20 : o.orderStatus === "Complete" ? 100 : 60,
             paymentType: o.paymentType,
             paymentStatus: o.paymentStatus,
+            invoiceNumber: o.invoiceNumber,
+            invoiceDate: o.invoiceDate,
             steps: [
               { label: "Order Placed", done: true, date: new Date(o.createdAt).toLocaleDateString() },
               { label: "Documents Received", done: o.orderStatus !== "Pending", date: null },
@@ -180,6 +182,10 @@ export default function ClientDashboard() {
         <OrderTimeline
           order={selectedOrder}
           onClose={() => setSelectedOrder(null)}
+          onCancelSuccess={(cancelledId) => {
+            setOrders(prev => prev.filter(o => o.id !== cancelledId));
+            setSelectedOrder(null);
+          }}
         />
       )}
 

@@ -174,6 +174,36 @@ export default function AdminVirtualBookings() {
     }));
   };
 
+  const handleDeleteBooking = async () => {
+    if (!selectedBooking) return;
+    const reason = prompt("Why are you soft deleting this virtual office booking? Please specify a reason note:");
+    if (reason === null) return; // user cancelled
+    if (!reason.trim()) {
+      alert("Deletion reason note is required.");
+      return;
+    }
+    
+    if (confirm("Are you sure you want to delete this virtual office booking? It will be hidden from all dashboards.")) {
+      try {
+        setUpdating(true);
+        const data = await VirtualOfficeService.adminDeleteOrder(selectedBooking._id, reason);
+        if (data.success) {
+          setNotif({ type: "success", message: "Virtual booking deleted successfully." });
+          setSelectedBookingId("");
+          fetchBookings();
+        } else {
+          setNotif({ type: "error", message: data.message || "Failed to delete booking." });
+        }
+      } catch (err) {
+        console.error(err);
+        setNotif({ type: "error", message: "Error deleting booking." });
+      } finally {
+        setUpdating(false);
+        setTimeout(() => setNotif({ type: "", message: "" }), 5000);
+      }
+    }
+  };
+
   if (loading && bookings.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 gap-4">
@@ -278,8 +308,20 @@ export default function AdminVirtualBookings() {
                       Client ID: {selectedBooking.user?._id} | Email: {selectedBooking.user?.email} | Phone: {selectedBooking.user?.phone}
                     </p>
                   </div>
-                  <div className="bg-[#1A56DB] text-white px-3.5 py-1.5 rounded-full text-xs font-bold select-none text-center self-start md:self-auto">
-                    {selectedBooking.complianceStatus}
+                  <div className="flex items-center gap-2.5 self-start md:self-auto flex-wrap">
+                    <div className="bg-[#1A56DB] text-white px-3.5 py-1.5 rounded-full text-xs font-bold select-none text-center">
+                      {selectedBooking.complianceStatus}
+                    </div>
+                    <button
+                      onClick={handleDeleteBooking}
+                      className="bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border border-red-200 cursor-pointer flex items-center gap-1.5 shadow-sm"
+                      title="Soft delete booking"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      Delete Booking
+                    </button>
                   </div>
                 </div>
 

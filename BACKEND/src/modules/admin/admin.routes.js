@@ -17,6 +17,7 @@ adminRouter.get("/admin/orders/active",         verifyAdmin, AdminController.get
 adminRouter.get("/admin/orders/history",        verifyAdmin, AdminController.getCompletedOrders);
 adminRouter.patch("/admin/orders/:id/status",   verifyAdmin, AdminController.updateOrderStatus);
 adminRouter.patch("/admin/orders/:id/payment",  verifyAdmin, AdminController.updatePaymentStatus);
+adminRouter.delete("/admin/orders/:id",         verifyAdmin, AdminController.deleteOrder);
 
 // ── Services (Protected) ──────────────────────────────────────────────────────
 adminRouter.post("/admin/services",       verifyAdmin, ServiceController.createService);

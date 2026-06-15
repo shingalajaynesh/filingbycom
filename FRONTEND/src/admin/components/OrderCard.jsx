@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 const ORDER_STATUSES = ["Pending", "Document Verification", "Complete"];
 
-export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, readOnly = false }) {
+export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDelete, readOnly = false }) {
   const [updatingStatus, setUpdatingStatus] = useState(false);
   const [updatingPayment, setUpdatingPayment] = useState(false);
 
@@ -47,6 +47,25 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, read
       toast.error(result.message || "Failed to update payment");
     }
     setUpdatingPayment(false);
+  };
+
+  const handleDelete = async () => {
+    if (!onDelete) return;
+    const reason = prompt("Why are you soft deleting this order? Please specify a reason note:");
+    if (reason === null) return; // user cancelled
+    if (!reason.trim()) {
+      toast.error("Deletion reason note is required.");
+      return;
+    }
+    
+    if (confirm("Are you sure you want to delete this order? It will be hidden from all client and admin dashboards.")) {
+      const result = await onDelete(_id, reason);
+      if (result.success) {
+        toast.success("Order deleted successfully.");
+      } else {
+        toast.error(result.message || "Failed to delete order");
+      }
+    }
   };
 
   return (
@@ -155,20 +174,36 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, read
             )}
           </div>
 
-          {/* Mark as Paid button — only for Cash + Unpaid + not readOnly */}
-          {!readOnly && paymentType === "Cash" && paymentStatus === "Unpaid" && (
-            <button
-              onClick={handleMarkPaid}
-              disabled={updatingPayment}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {updatingPayment ? (
-                <span className="animate-pulse">Updating...</span>
-              ) : (
-                <>Mark as Paid</>
-              )}
-            </button>
-          )}
+          <div className="flex items-center gap-2">
+            {/* Delete button (only if onDelete is supplied) */}
+            {onDelete && (
+              <button
+                onClick={handleDelete}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 transition-colors border border-red-200 cursor-pointer"
+                title="Soft delete order"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Delete
+              </button>
+            )}
+
+            {/* Mark as Paid button — only for Cash + Unpaid + not readOnly */}
+            {!readOnly && paymentType === "Cash" && paymentStatus === "Unpaid" && (
+              <button
+                onClick={handleMarkPaid}
+                disabled={updatingPayment}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-green-600 text-white hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              >
+                {updatingPayment ? (
+                  <span className="animate-pulse">Updating...</span>
+                ) : (
+                  <>Mark as Paid</>
+                )}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

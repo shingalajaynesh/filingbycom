@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useAuth, useUser } from "@clerk/clerk-react";
 
-export default function OrderTimeline({ order, onClose }) {
+export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
+  const { getToken } = useAuth();
+  const { user: clerkUser } = useUser();
+  const [cancelling, setCancelling] = useState(false);
   if (!order) return null;
 
   const statusStyles = {
@@ -14,11 +18,318 @@ export default function OrderTimeline({ order, onClose }) {
   const currentStatus = statusStyles[order.status] || { bg: 'bg-gray-100 text-gray-600 border-gray-200', label: order.status };
 
   const handleDownloadReceipt = () => {
-    alert(`Downloading receipt for order ${order.id}...`);
+    // Use stored invoice details, or generate fallback for legacy orders
+    const invoiceNum = order.invoiceNumber || `INV-${order.id.slice(-6).toUpperCase()}-${Date.now().toString().slice(-4)}`;
+    const invoiceD = order.invoiceDate ? new Date(order.invoiceDate) : new Date(order.date || Date.now());
+    const dateStr = invoiceD.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+    
+    const clientName = clerkUser?.fullName || `${clerkUser?.firstName || "Client"} ${clerkUser?.lastName || ""}`.trim() || "Valued Client";
+    const clientEmail = clerkUser?.primaryEmailAddress?.emailAddress || "N/A";
+    const clientPhone = clerkUser?.primaryPhoneNumber?.phoneNumber || "N/A";
+
+    const baseAmount = Math.round(order.amount / 1.18);
+    const gstAmount = order.amount - baseAmount;
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) {
+      alert("Please allow popups to download/print the invoice.");
+      return;
+    }
+
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Invoice - ${invoiceNum}</title>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+            body {
+              font-family: 'Inter', sans-serif;
+              color: #1e293b;
+              margin: 0;
+              padding: 40px;
+              line-height: 1.5;
+            }
+            .invoice-card {
+              max-w: 800px;
+              margin: 0 auto;
+              background: #fff;
+            }
+            .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              border-b: 2px solid #f1f5f9;
+              padding-bottom: 30px;
+              margin-bottom: 40px;
+            }
+            .logo-area h1 {
+              font-size: 28px;
+              font-weight: 800;
+              color: #1e3a8a;
+              margin: 0;
+              letter-spacing: -0.5px;
+            }
+            .logo-area span {
+              color: #f59e0b;
+            }
+            .logo-area p {
+              margin: 4px 0 0 0;
+              font-size: 12px;
+              color: #64748b;
+              font-weight: 500;
+            }
+            .invoice-details {
+              text-align: right;
+            }
+            .invoice-details h2 {
+              font-size: 24px;
+              font-weight: 800;
+              margin: 0;
+              color: #0f172a;
+            }
+            .invoice-details p {
+              margin: 5px 0 0 0;
+              font-size: 13px;
+              color: #64748b;
+            }
+            .grid-2 {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 40px;
+              margin-bottom: 40px;
+            }
+            .info-block h3 {
+              font-size: 11px;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              color: #64748b;
+              margin-bottom: 12px;
+              font-weight: 700;
+            }
+            .info-block p {
+              margin: 4px 0;
+              font-size: 14px;
+              color: #334155;
+            }
+            .info-block .name {
+              font-weight: 700;
+              color: #0f172a;
+            }
+            .table-container {
+              margin-bottom: 40px;
+            }
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              text-align: left;
+            }
+            th {
+              background: #f8fafc;
+              padding: 14px 16px;
+              font-size: 11px;
+              text-transform: uppercase;
+              font-weight: 700;
+              color: #475569;
+              border-bottom: 2px solid #e2e8f0;
+            }
+            td {
+              padding: 16px;
+              font-size: 14px;
+              color: #334155;
+              border-bottom: 1px solid #f1f5f9;
+            }
+            .totals {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 20px;
+            }
+            .totals-table {
+              width: 300px;
+            }
+            .totals-table td {
+              padding: 8px 16px;
+              font-size: 14px;
+              border: none;
+            }
+            .totals-table .grand-total {
+              font-weight: 800;
+              font-size: 16px;
+              color: #1e3a8a;
+              border-top: 2px solid #f1f5f9;
+              padding-top: 12px;
+            }
+            .status-badge {
+              display: inline-block;
+              padding: 6px 12px;
+              border-radius: 9999px;
+              font-size: 11px;
+              font-weight: 700;
+              text-transform: uppercase;
+              margin-top: 10px;
+            }
+            .status-paid {
+              background: #ecfdf5;
+              color: #047857;
+            }
+            .status-unpaid {
+              background: #fff7ed;
+              color: #c2410c;
+            }
+            .footer {
+              border-top: 2px solid #f1f5f9;
+              padding-top: 30px;
+              margin-top: 60px;
+              text-align: center;
+              font-size: 12px;
+              color: #94a3b8;
+            }
+            @media print {
+              body {
+                padding: 0;
+              }
+              .no-print {
+                display: none;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="invoice-card">
+            <div class="header">
+              <div class="logo-area">
+                <h1>Filing<span>By</span>.com</h1>
+                <p>Tax & Corporate Compliance Solutions</p>
+              </div>
+              <div class="invoice-details">
+                <h2>INVOICE</h2>
+                <p><strong>Invoice #:</strong> ${invoiceNum}</p>
+                <p><strong>Date:</strong> ${dateStr}</p>
+                <span class="status-badge ${order.paymentStatus === 'Paid' ? 'status-paid' : 'status-unpaid'}">
+                  ${order.paymentStatus === 'Paid' ? 'Paid' : 'Unpaid / Pending'}
+                </span>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="info-block">
+                <h3>Billed By</h3>
+                <p class="name">FilingBy Solutions Private Limited</p>
+                <p>402-405 Compliance Center Hub,</p>
+                <p>Adajan, Surat, Gujarat - 395009</p>
+                <p>support@filingby.com | +91 75671 26945</p>
+              </div>
+              <div class="info-block">
+                <h3>Billed To</h3>
+                <p class="name">${clientName}</p>
+                <p>Email: ${clientEmail}</p>
+                <p>Phone: ${clientPhone}</p>
+                <p>Registered Member</p>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item Description</th>
+                    <th>Qty</th>
+                    <th style="text-align: right;">Unit Price</th>
+                    <th style="text-align: right;">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 600; color: #0f172a;">
+                      ${order.service}
+                      <span style="display: block; font-size: 11px; font-weight: normal; color: #64748b; margin-top: 4px;">
+                        Category: ${order.category}
+                      </span>
+                    </td>
+                    <td>1</td>
+                    <td style="text-align: right;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                    <td style="text-align: right; font-weight: 600;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="totals">
+              <table class="totals-table">
+                <tr>
+                  <td>Subtotal:</td>
+                  <td style="text-align: right;">₹${baseAmount.toLocaleString("en-IN")}</td>
+                </tr>
+                <tr>
+                  <td>GST (18%):</td>
+                  <td style="text-align: right;">₹${gstAmount.toLocaleString("en-IN")}</td>
+                </tr>
+                <tr class="grand-total">
+                  <td>Grand Total:</td>
+                  <td style="text-align: right;">₹${order.amount.toLocaleString("en-IN")}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="footer">
+              <p>Thank you for choosing FilingBy.com for your legal compliance needs.</p>
+              <p style="margin-top: 5px; font-size: 10px; color: #cbd5e1;">This is a computer-generated invoice and requires no physical signature.</p>
+            </div>
+          </div>
+          <script>
+            window.onload = function() {
+              window.print();
+              setTimeout(function() { window.close(); }, 500);
+            }
+          </script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   };
 
   const handleContactSupport = () => {
     alert(`Routing to Support. Please raise a ticket or call us for Order #${order.id}.`);
+  };
+
+  const handleCancelOrder = async () => {
+    const reason = prompt("Why do you want to cancel this order? (e.g. Created by mistake)");
+    if (reason === null) return;
+    if (!reason.trim()) {
+      alert("A cancellation reason is required.");
+      return;
+    }
+
+    try {
+      setCancelling(true);
+      const token = await getToken();
+      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${API_BASE}/orders/${order.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ reason })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("Order cancelled successfully.");
+        if (onCancelSuccess) {
+          onCancelSuccess(order.id);
+        }
+      } else {
+        alert(data.message || "Failed to cancel order.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error cancelling order.");
+    } finally {
+      setCancelling(false);
+    }
   };
 
   // Extract initials for CA avatar
@@ -181,14 +492,24 @@ export default function OrderTimeline({ order, onClose }) {
         {/* Action buttons footer */}
         <div className="border-t border-gray-100 pt-4 mt-6 flex flex-col gap-2">
           {order.status === 'pending-docs' && (
-            <button
-              onClick={() => {
-                window.open("https://wa.me/917567126945", "_blank");
-              }}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
-            >
-              💬 Upload Required Documents on WhatsApp
-            </button>
+            <>
+              <button
+                onClick={() => {
+                  window.open("https://wa.me/917567126945", "_blank");
+                }}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2 cursor-pointer animate-pulse"
+              >
+                💬 Upload Required Documents on WhatsApp
+              </button>
+
+              <button
+                disabled={cancelling}
+                onClick={handleCancelOrder}
+                className="w-full bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs py-3 px-4 rounded-xl border border-rose-200 transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer disabled:bg-slate-100 disabled:text-slate-400"
+              >
+                ❌ {cancelling ? "Cancelling Order..." : "Cancel Order (Created by mistake)"}
+              </button>
+            </>
           )}
 
           <div className="flex gap-2">

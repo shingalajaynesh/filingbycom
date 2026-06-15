@@ -33,7 +33,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
       }
 
       const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
-      if (!razorpayKey || razorpayKey === "test_key") {
+      if (!razorpayKey || razorpayKey === "test_key" || razorpayKey.includes("placeholder")) {
         // Run simulated payment for local development
         const loadingToast = toast.loading("Simulating online payment...");
         await new Promise((resolve) => setTimeout(resolve, 1500));
