@@ -20,17 +20,24 @@ src/
 │   │   ├── components/          # Navigation, Search, PopularServices
 │   │   └── data/                # services.js, navigation.js
 │   │
+│   ├── client-dashboard/        # Logged-in customer CA portal workspace components
+│   │
 │   ├── virtual-office/          # Virtual Space Standalone Portal
 │   │   ├── pages/               # VirtualSpace, Locations, VirtualOfficeCity, AboutUs, etc.
-│   │   └── components/          # VirtualOfficeNavigation
+│   │   ├── components/          # VirtualOfficeNavigation
+│   │   └── dashboard/           # [NEW] Client portal for virtual spaces, compliance tracking, mailbox scans & audits
 │   │
 │   ├── auth/                    # Verification modals & login structures
-│   ├── client-dashboard/        # Logged-in customer workspace components
 │   ├── checkout/                # Razorpay checkout modals & order generation
 │   └── legal/                   # Terms and policy pages
 │
+├── admin/                       # Admin Control Room
+│   ├── pages/                   # AdminLogin, AdminDashboard
+│   ├── components/              # AdminNavbar, OrdersTable, Locations, and AdminVirtualBookings (Virtual Office bookings CRUD logs)
+│   └── context/                 # AdminAuthContext
+│
 ├── routes/                      # Routing layer
-│   ├── AppRoutes.jsx            # Mapping of paths to dynamic features
+│   ├── AppRoutes.jsx            # Mapping of paths to dynamic features (including /dashboard and /virtual-office/dashboard)
 │   └── RouteGuards.jsx          # Protected route checks (authenticated/admin)
 │
 └── shared/                      # Global reusable utilities (domain-agnostic)
@@ -40,7 +47,8 @@ src/
 ```
 
 ### Structuring Rules:
-- **Colocation**: If a component is only used inside the `ca-portal`, it *must* live inside `features/ca-portal/components/`, not in a global components folder.
+- **Colocation**: If a component is only used inside the `ca-portal` or `virtual-office`, it *must* live inside their respective feature components subdirectories, not in a global shared components folder.
+- **Dedicated Portals Separation**: To support two completely independent customer bases, standard CA portal customers log into `/dashboard` (using `features/client-dashboard`), while Virtual Space corporate address tenants log into `/virtual-office/dashboard` (using `features/virtual-office/dashboard`). Both dashboards query separate database schemas in the backend.
 - **Shared Space**: Place components in `shared/components/` *only* if they are used by more than one feature domain and have no domain-specific business logic.
 - **Index Exports**: Each feature subdirectory should expose its features via an index barrel export where applicable to ensure clean importing syntax.
 

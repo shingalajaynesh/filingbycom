@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { useAuth, useUser, useClerk } from "@clerk/clerk-react";
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 const MapPinIcon = () => (
@@ -77,14 +79,9 @@ const ArrowLeftIcon = () => (
 );
 
 // ─── City links for dropdown ──────────────────────────────────────────────────
-const cities = [
-  { label: "Delhi / NCR", path: "/virtual-office/delhi" },
-  { label: "Mumbai",       path: "/virtual-office/mumbai" },
-  { label: "Bangalore",   path: "/virtual-office/bangalore" },
-  { label: "Hyderabad",   path: "/virtual-office/hyderabad" },
-  { label: "Chennai",     path: "/virtual-office/chennai" },
-  { label: "Kolkata",     path: "/virtual-office/kolkata" },
-  { label: "Noida",       path: "/virtual-office/noida" },
+const fallbackCities = [
+  { label: "Surat",  path: "/virtual-office-surat" },
+  { label: "Mumbai", path: "/virtual-office-mumbai" },
 ];
 
 // ─── Company dropdown links ────────────────────────────────────────────────────
@@ -97,11 +94,19 @@ const companyLinks = [
 export default function VirtualOfficeNavigation() {
   const navigate  = useNavigate();
   const location  = useLocation();
+  const { locations } = useSharedData();
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
   const [mobileOpen,      setMobileOpen]      = useState(false);
   const [locationOpen,    setLocationOpen]    = useState(false);
   const [companyOpen,     setCompanyOpen]     = useState(false);
   const [mobileSection,   setMobileSection]   = useState(null);
   const [scrolled,        setScrolled]        = useState(false);
+
+  const menuCities = locations && locations.length > 0
+    ? locations.map(loc => ({ label: loc.name, path: `/virtual-office-${loc.slug}` }))
+    : fallbackCities;
 
   const locationRef = useRef(null);
   const companyRef  = useRef(null);
@@ -195,7 +200,7 @@ export default function VirtualOfficeNavigation() {
             {locationOpen && (
               <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl shadow-black/10 border border-gray-100 p-2 z-50 animate-fadeInUp">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-3 py-2">Cities</p>
-                {cities.map(city => (
+                {menuCities.map(city => (
                   <button key={city.path} onClick={() => goto(city.path)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer group ${isActive(city.path) ? "bg-blue-50 text-[#1A56DB]" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"}`}>
                     <div className={`w-7 h-7 rounded-lg flex items-center justify-center p-1.5 flex-shrink-0 transition-colors ${isActive(city.path) ? "bg-blue-100 text-[#1A56DB]" : "bg-gray-100 text-gray-500 group-hover:bg-blue-50 group-hover:text-[#1A56DB]"}`}>
@@ -303,6 +308,30 @@ export default function VirtualOfficeNavigation() {
             <span>CA Website</span>
           </button>
 
+          {isSignedIn ? (
+            <>
+              <button
+                onClick={() => goto("/virtual-office/dashboard")}
+                className="flex items-center gap-1.5 text-xs font-bold text-white bg-[#1A56DB] hover:bg-blue-700 rounded-full px-4 py-2.5 transition-all active:scale-95 hover:shadow-lg hover:shadow-blue-200 cursor-pointer"
+              >
+                Dashboard
+              </button>
+              <button
+                onClick={() => signOut(() => navigate("/"))}
+                className="hidden md:flex items-center gap-1.5 text-xs font-bold text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full px-3.5 py-2.5 transition-all cursor-pointer"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => goto("/login")}
+              className="flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-[#1A56DB] border border-gray-200 hover:border-[#1A56DB] rounded-full px-4 py-2.5 transition-all active:scale-95 cursor-pointer"
+            >
+              Login
+            </button>
+          )}
+
           {/* Hamburger */}
           <button onClick={() => setMobileOpen(o => !o)} className="p-2 lg:hidden rounded-xl hover:bg-gray-100 transition-colors">
             {mobileOpen ? (
@@ -346,7 +375,7 @@ export default function VirtualOfficeNavigation() {
                 </button>
                 {mobileSection === "loc" && (
                   <div className="ml-4 mt-1 space-y-1 pl-4 border-l-2 border-blue-100">
-                    {cities.map(city => (
+                    {menuCities.map(city => (
                       <button key={city.path} onClick={() => goto(city.path)}
                         className={`w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${isActive(city.path) ? "text-[#1A56DB] bg-blue-50" : "text-gray-700 hover:bg-gray-50"}`}>
                         <div className="w-4 h-4 text-gray-400"><MapPinIcon /></div>
@@ -436,6 +465,24 @@ export default function VirtualOfficeNavigation() {
                   <ArrowLeftIcon />
                   Back to CA Website (FilingBy)
                 </button>
+
+                {isSignedIn ? (
+                  <>
+                    <button onClick={() => goto("/virtual-office/dashboard")}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-bold text-white bg-[#1A56DB] rounded-2xl hover:bg-blue-700 transition-all shadow-lg active:scale-95 cursor-pointer">
+                      Dashboard Portal
+                    </button>
+                    <button onClick={() => signOut(() => navigate("/"))}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-bold text-red-500 bg-red-50 rounded-2xl hover:bg-red-100 transition-all active:scale-95 cursor-pointer">
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <button onClick={() => goto("/login")}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-bold text-gray-700 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 transition-all active:scale-95 cursor-pointer">
+                    Login to Portal
+                  </button>
+                )}
               </div>
             </div>
           </div>

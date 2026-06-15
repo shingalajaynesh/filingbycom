@@ -12,6 +12,8 @@ import AdminServices from "../components/AdminServices";
 import InquiriesTable from "../components/InquiriesTable";
 import PartnersTable from "../components/PartnersTable";
 import QuotesTable from "../components/QuotesTable";
+import AdminLocations from "../components/AdminLocations";
+import AdminVirtualBookings from "../components/AdminVirtualBookings";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("orders");
@@ -48,6 +50,8 @@ export default function AdminDashboard() {
               ? "Partner Onboardings"
               : activeTab === "quotes"
               ? "Live Quote Leads"
+              : activeTab === "locations"
+              ? "Manage Virtual Office Locations"
               : activeTab === "nav-services"
               ? "Manage Navigation Services"
               : "Manage Popular Services"}
@@ -63,6 +67,8 @@ export default function AdminDashboard() {
               ? "Verify and onboard commercial workspaces"
               : activeTab === "quotes"
               ? "Inspect live quote calculator lead estimations"
+              : activeTab === "locations"
+              ? "Configure cities, states, workspaces, map pins, pricing, and FAQ items dynamically"
               : activeTab === "nav-services"
               ? "Manage services that appear in the navigation bar dropdowns"
               : "Manage services that appear on the homepage Popular Services section"}
@@ -70,11 +76,18 @@ export default function AdminDashboard() {
         </div>
 
         {/* Tab content */}
-        {activeTab === "orders" && <OrdersTable portal={currentPortal} />}
+        {activeTab === "orders" && (
+          currentPortal === "virtual-space" ? (
+            <AdminVirtualBookings />
+          ) : (
+            <OrdersTable portal={currentPortal} />
+          )
+        )}
         {activeTab === "history" && <HistoryTable portal={currentPortal} />}
         {activeTab === "inquiries" && <InquiriesTable />}
         {activeTab === "partners" && <PartnersTable />}
         {activeTab === "quotes" && <QuotesTable />}
+        {activeTab === "locations" && <AdminLocations />}
         {activeTab === "nav-services" && <AdminServices portal={currentPortal} type="nav" />}
         {activeTab === "popular-services" && <AdminServices portal={currentPortal} type="popular" />}
       </main>

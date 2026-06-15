@@ -18,6 +18,10 @@ import connectDB from "./src/config/db.config.js";
 import router from "./src/modules/user/user.routes.js";
 import adminRouter from "./src/modules/admin/admin.routes.js";
 import virtualSpaceRouter from "./src/modules/virtual-space/virtual-space.routes.js";
+import logger from "./src/services/logger.service.js";
+import { requestLogger } from "./src/middleware/logger.middleware.js";
+import helmet from "helmet";
+import { rateLimit } from "express-rate-limit";
 
 // ── DNS RESOLUTION SETUP ─────────────────────────────────────────────────────
 // Node's default resolver sometimes fails on MongoDB SRV records when DNS queries
@@ -27,9 +31,29 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 dotenv.config();
 
+// Enforce environment configuration security checks on boot
+const requiredEnv = [
+  "MONGODB_URI",
+  "CLERK_SECRET_KEY",
+  "ADMIN_USERNAME",
+  "ADMIN_PASSWORD",
+  "ADMIN_SECRET"
+];
+
+// In production, FRONTEND_URL is required to prevent CORS failures
+if (process.env.NODE_ENV === "production") {
+  requiredEnv.push("FRONTEND_URL");
+}
+
+for (const key of requiredEnv) {
+  if (!process.env[key]) {
+    logger.error(`FATAL CONFIGURATION ERROR: Missing environment variable [${key}].`);
+    process.exit(1);
+  }
+}
+
 const app = express();
 
-// ── GLOBAL EXPRESS MIDDLEWARE ────────────────────────────────────────────────
 // CORS configuration to allow cross-origin resource requests from the React frontend.
 const allowedOrigins = [
   "http://localhost:5173",
@@ -46,10 +70,12 @@ app.use(cors({
     
     const isAllowed = allowedOrigins.includes(originNormalized) || 
                       allowedDomains.includes(domainNormalized) ||
+                      /^https?:\/\/localhost(:\d+)?$/.test(originNormalized) ||
+                      /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(originNormalized) ||
                       originNormalized.endsWith(".vercel.app");
                       
     if (isAllowed) {
-      callback(null, origin);
+      callback(null, true);
     } else {
       callback(null, false);
     }
@@ -59,9 +85,30 @@ app.use(cors({
   credentials: true,
 }));
 
+// Apply security headers via helmet
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+
+// Apply rate limiting on API requests to defend against DoS/brute-force
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: process.env.NODE_ENV === "development" ? 2000 : 300, // Relax bounds locally for dev
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many requests from this IP, please try again after 15 minutes."
+  }
+});
+app.use(limiter);
+
 // Body parsers enabling Express to process JSON loads and incoming cookies.
 app.use(express.json());
 app.use(cookieParser());
+
+// Request logger middleware
+app.use(requestLogger);
 
 // Clerk middleware automatically decodes and signs session JWTs for request.auth.
 app.use(clerkMiddleware());
@@ -85,5 +132,5 @@ app.get("/", (req, res) => {
 // ── HTTP LISTENER INITIALIZATION ────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  logger.info(`🚀 Server running on port ${PORT}`);
 });

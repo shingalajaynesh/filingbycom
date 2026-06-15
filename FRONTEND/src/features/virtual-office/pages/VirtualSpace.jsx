@@ -240,7 +240,7 @@ export default function VirtualSpace() {
   const stats = [
     { icon: Icons.Users,     value: "22,000+", label: "Happy Clients",    color: "text-blue-200",   bgColor: "bg-white/10" },
     { icon: Icons.Star,      value: "4.7★",    label: "Google Rating",    color: "text-yellow-300", bgColor: "bg-white/10" },
-    { icon: Icons.Globe,     value: "28",       label: "States Covered",   color: "text-green-300",  bgColor: "bg-white/10" },
+    { icon: Icons.Globe,     value: "2",        label: "States Covered",   color: "text-green-300",  bgColor: "bg-white/10" },
     { icon: Icons.Lightning, value: "7 Days",   label: "Setup Time",       color: "text-orange-300", bgColor: "bg-white/10" },
   ];
 
@@ -321,22 +321,8 @@ export default function VirtualSpace() {
   ];
 
   const states = [
+    { name: "Gujarat",        city: "Surat",        icon: Icons.Building },
     { name: "Maharashtra",    city: "Mumbai",       icon: Icons.Building },
-    { name: "Delhi / NCR",    city: "New Delhi",    icon: Icons.Building },
-    { name: "Karnataka",      city: "Bangalore",    icon: Icons.Building },
-    { name: "Telangana",      city: "Hyderabad",    icon: Icons.Building },
-    { name: "Gujarat",        city: "Ahmedabad",    icon: Icons.Building },
-    { name: "Punjab",         city: "Chandigarh",   icon: Icons.Building },
-    { name: "Rajasthan",      city: "Jaipur",       icon: Icons.Building },
-    { name: "Haryana",        city: "Gurugram",     icon: Icons.Building },
-    { name: "Uttar Pradesh",  city: "Lucknow",      icon: Icons.Building },
-    { name: "Madhya Pradesh", city: "Bhopal",       icon: Icons.Building },
-    { name: "Tamil Nadu",     city: "Chennai",      icon: Icons.Building },
-    { name: "West Bengal",    city: "Kolkata",      icon: Icons.Building },
-    { name: "Andhra Pradesh", city: "Visakhapatnam",icon: Icons.Building },
-    { name: "Odisha",         city: "Bhubaneswar",  icon: Icons.Building },
-    { name: "Kerala",         city: "Kochi",        icon: Icons.Building },
-    { name: "Goa",            city: "Panaji",       icon: Icons.Building },
   ];
 
   const reviews = [
@@ -365,9 +351,9 @@ export default function VirtualSpace() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-gray-900">
       <SEO
-        title="Virtual Office India — GST Registration Address in 28 States | FilingBy"
-        description="Get a premium virtual office address in any of the 28 states in India for GST registration, company mailing address, or ecommerce seller registration (VPOB/PPOB). Starting at ₹999/month. NOC & utility bills included."
-        keywords="virtual office India, virtual office GST registration, virtual office address India, VPOB registration, virtual office Mumbai, virtual office Delhi, virtual office Bangalore, virtual office for Amazon seller"
+        title="Virtual Office India — GST Registration Address in Surat & Mumbai | FilingBy"
+        description="Get a premium virtual office address in Surat or Mumbai for GST registration, company mailing address, or ecommerce seller registration (VPOB/PPOB). Starting at ₹999/month. NOC & utility bills included."
+        keywords="virtual office India, virtual office GST registration, virtual office address India, VPOB registration, virtual office Mumbai, virtual office Surat, virtual office for Amazon seller"
         canonical="/virtual-space"
         schema={virtualOfficeSchema}
         extraSchemas={[
@@ -758,20 +744,20 @@ export default function VirtualSpace() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════
-          28 STATES GRID
+          Active States Coverage GRID
       ══════════════════════════════════════════════════════════════════ */}
       <section className="bg-gray-50 py-16 sm:py-20">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-50 text-indigo-600">Coverage</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-3">Virtual Offices in 28 States</h2>
-            <p className="text-gray-500 text-sm mt-2">Pan-India coverage — from metros to tier-2 cities</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-3">Available States Coverage</h2>
+            <p className="text-gray-500 text-sm mt-2">Premium virtual office address options in Gujarat and Maharashtra</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {displayedStates.map((state, i) => (
+          <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto">
+            {states.map((state, i) => (
               <div key={state.name} onClick={scrollToForm}
-                className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-3 active:scale-95 group">
+                className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-3 active:scale-95 group justify-center">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#1A56DB] flex-shrink-0 group-hover:bg-blue-100 transition-colors p-2">
                   <Icons.MapPin />
                 </div>
@@ -781,13 +767,6 @@ export default function VirtualSpace() {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <button id="toggle-states-btn" onClick={() => setShowAll(!showAll)}
-              className="bg-[#1A56DB]/10 text-[#1A56DB] rounded-full px-8 py-3.5 font-bold text-sm hover:bg-[#1A56DB]/15 transition-all cursor-pointer active:scale-95">
-              {showAll ? "Show Less ↑" : "View All 28 States ↓"}
-            </button>
           </div>
         </div>
       </section>

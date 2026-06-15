@@ -6,6 +6,7 @@ import PhoneVerificationModal from '../../auth/components/PhoneVerificationModal
 import CheckoutModal from '../../checkout/components/CheckoutModal';
 import SEO from '../../../shared/components/SEO.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -17,42 +18,38 @@ export default function ServicePage() {
   const [showPhoneModal, setShowPhoneModal] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   
+  const { services, loading: cacheLoading, refresh } = useSharedData();
   const [serviceData, setServiceData] = useState(null);
   const [relatedServices, setRelatedServices] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
-    const fetchServiceData = async () => {
-      setLoading(true);
-      try {
-        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-        const res = await fetch(`${API_BASE}/services`);
-        const data = await res.json();
+    if (services && services.length > 0) {
+      const currentService = services.find(s => s.slug === slug);
+      if (currentService) {
+        setServiceData(currentService);
         
-        if (data.success) {
-          const currentService = data.services.find(s => s.slug === slug);
-          if (currentService) {
-            setServiceData(currentService);
-            
-            // Find related services in same category
-            const related = data.services
-              .filter(s => s.category === currentService.category && s.slug !== slug && s.isActive !== false)
-              .slice(0, 4);
-            setRelatedServices(related);
-          } else {
-            setServiceData(null);
-          }
-        }
-      } catch (err) {
-        console.error("Failed to fetch service data:", err);
-      } finally {
-        setLoading(false);
+        // Find related services in same category
+        const related = services
+          .filter(s => s.category === currentService.category && s.slug !== slug && s.isActive !== false)
+          .slice(0, 4);
+        setRelatedServices(related);
+      } else {
+        setServiceData(null);
       }
-    };
-    fetchServiceData();
-  }, [slug]);
+      setPageLoading(false);
+    } else if (!cacheLoading) {
+      setServiceData(null);
+      setPageLoading(false);
+    }
+  }, [slug, services, cacheLoading]);
 
-  if (loading) {
+  // Perform background caching refresh only once when slug changes
+  useEffect(() => {
+    refresh().catch(err => console.error("Silently failed to refresh services cache:", err));
+  }, [slug, refresh]);
+
+  if (pageLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 gap-4">
         <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />

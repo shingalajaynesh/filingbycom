@@ -183,11 +183,11 @@ export default function OrderTimeline({ order, onClose }) {
           {order.status === 'pending-docs' && (
             <button
               onClick={() => {
-                alert("Please close this modal and go to 'Documents' tab or click upload to proceed.");
+                window.open("https://wa.me/917567126945", "_blank");
               }}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2"
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
             >
-              📤 Upload Required Documents
+              💬 Upload Required Documents on WhatsApp
             </button>
           )}
 

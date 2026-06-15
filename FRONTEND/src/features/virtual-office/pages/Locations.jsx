@@ -2,69 +2,26 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function Locations() {
+  const { locations } = useSharedData();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const statesData = [
     {
-      state: "Delhi NCR",
+      state: "Gujarat",
       cities: [
         {
-          name: "Delhi",
-          slug: "delhi",
-          count: 24,
+          name: "Surat",
+          slug: "surat",
+          count: 2,
           price: "999",
-          image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80",
+          image: "https://images.unsplash.com/photo-1609137144814-722c608f6575?auto=format&fit=crop&w=800&q=80",
           addresses: [
-            { name: "Connaught Place", slug: "connaughtplace" },
-            { name: "Nehru Place", slug: "nehruplace" },
-            { name: "NSP Pitam Pura", slug: "pitampura" },
-            { name: "Ramesh Nagar", slug: "rameshnagar" }
-          ],
-        },
-        {
-          name: "Noida",
-          slug: "noida",
-          count: 12,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Sector 62", slug: "sector-62" },
-            { name: "Sector 63", slug: "sector-63" },
-            { name: "Noida Expressway", slug: "noida-expressway" }
-          ],
-        },
-        {
-          name: "Gurugram",
-          slug: "gurugram",
-          count: 18,
-          price: "1,199",
-          image: "https://images.unsplash.com/photo-1598977123418-45f04b615e0e?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Golf Course Road", slug: "golf-course-road" },
-            { name: "Cyber City", slug: "cyber-city" },
-            { name: "Sohna Road", slug: "sohna-road" }
-          ],
-        },
-      ],
-    },
-    {
-      state: "Karnataka",
-      cities: [
-        {
-          name: "Bangalore",
-          slug: "bangalore",
-          count: 32,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Koramangala", slug: "koramangala" },
-            { name: "Indiranagar", slug: "indiranagar" },
-            { name: "MG Road", slug: "mg-road" },
-            { name: "HSR Layout", slug: "hsr-layout" },
-            { name: "Whitefield", slug: "whitefield" }
+            { name: "Adajan Compliance Hub", slug: "adajan" },
+            { name: "Vesu Business Center", slug: "vesu" }
           ],
         },
       ],
@@ -75,103 +32,47 @@ export default function Locations() {
         {
           name: "Mumbai",
           slug: "mumbai",
-          count: 28,
+          count: 1,
           price: "1,299",
           image: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80",
           addresses: [
-            { name: "BKC", slug: "bkc" },
-            { name: "Andheri East", slug: "andheri-east" },
-            { name: "Nariman Point", slug: "nariman-point" },
-            { name: "Vashi", slug: "vashi" }
-          ],
-        },
-        {
-          name: "Pune",
-          slug: "pune",
-          count: 14,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Hinjewadi", slug: "hinjewadi" },
-            { name: "Kharadi", slug: "kharadi" },
-            { name: "Baner", slug: "baner" }
-          ],
-        },
-      ],
-    },
-    {
-      state: "Tamil Nadu",
-      cities: [
-        {
-          name: "Chennai",
-          slug: "chennai",
-          count: 16,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Guindy", slug: "guindy" },
-            { name: "OMR", slug: "omr" },
-            { name: "T-Nagar", slug: "t-nagar" },
-            { name: "Anna Salai", slug: "anna-salai" }
-          ],
-        },
-      ],
-    },
-    {
-      state: "Telangana",
-      cities: [
-        {
-          name: "Hyderabad",
-          slug: "hyderabad",
-          count: 20,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1605007493699-af65834f8a00?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Hitec City", slug: "hitec-city" },
-            { name: "Gachibowli", slug: "gachibowli" },
-            { name: "Jubilee Hills", slug: "jubilee-hills" }
-          ],
-        },
-      ],
-    },
-    {
-      state: "West Bengal",
-      cities: [
-        {
-          name: "Kolkata",
-          slug: "kolkata",
-          count: 11,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "Salt Lake Sector V", slug: "salt-lake-sector-v" },
-            { name: "Rajarhat New Town", slug: "rajarhat-new-town" },
-            { name: "Park Street", slug: "park-street" }
-          ],
-        },
-      ],
-    },
-    {
-      state: "Gujarat",
-      cities: [
-        {
-          name: "Ahmedabad",
-          slug: "ahmedabad",
-          count: 8,
-          price: "999",
-          image: "https://images.unsplash.com/photo-1609137144814-722c608f6575?auto=format&fit=crop&w=800&q=80",
-          addresses: [
-            { name: "S.G. Highway", slug: "sg-highway" },
-            { name: "Ashram Road", slug: "ashram-road" },
-            { name: "Gift City", slug: "gift-city" }
+            { name: "BKC Prestige Towers", slug: "bkc" }
           ],
         },
       ],
     },
   ];
 
+
+  // Group backend locations by state if loaded
+  const groupedLocations = {};
+  if (locations && locations.length > 0) {
+    locations.forEach(loc => {
+      const stateName = loc.state || "Other";
+      if (!groupedLocations[stateName]) {
+        groupedLocations[stateName] = { state: stateName, cities: [] };
+      }
+      // Check if this city already added
+      const existingCity = groupedLocations[stateName].cities.find(c => c.slug === loc.slug);
+      if (!existingCity) {
+        groupedLocations[stateName].cities.push({
+          name: loc.name,
+          slug: loc.slug,
+          count: loc.addresses ? loc.addresses.length : 0,
+          price: loc.rate || "999",
+          image: loc.image || "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+          addresses: loc.addresses ? loc.addresses.map(a => ({ name: a.name, slug: a.slug })) : []
+        });
+      }
+    });
+  }
+
+  const finalStatesData = Object.keys(groupedLocations).length > 0
+    ? Object.values(groupedLocations)
+    : statesData;
+
   // Flatten cities for lookup
-  const allCities = statesData.flatMap(stateGroup => 
+  const allCities = finalStatesData.flatMap(stateGroup => 
     stateGroup.cities.map(city => ({
       ...city,
       state: stateGroup.state
@@ -258,21 +159,21 @@ export default function Locations() {
                 {filteredCities.map((city) => (
                   <div
                     key={city.slug}
-                    className="bg-white rounded-3xl border border-gray-150 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                    className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group border-0"
                   >
                     <div>
                       {/* Image block */}
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-56 overflow-hidden">
                         <img 
                           src={city.image} 
                           alt={`Virtual Office in ${city.name}`} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                        <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-wider text-orange-600 bg-orange-50 px-3 py-1 rounded-full shadow-sm">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
                           Starting ₹{city.price}/mo
                         </span>
-                        <span className="absolute bottom-4 left-4 text-white font-black text-xl drop-shadow-md">
+                        <span className="absolute bottom-4 left-4 text-white font-black text-xl drop-shadow-lg">
                           {city.name}
                         </span>
                         <span className="absolute bottom-4 right-4 text-[10px] font-bold text-white bg-blue-600/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -291,7 +192,7 @@ export default function Locations() {
                             <button
                               key={addr.slug}
                               onClick={() => navigate(`/virtual-office-${city.slug}/${addr.slug}`)}
-                              className="text-[10px] bg-gray-100 hover:bg-[#1A56DB] text-gray-700 hover:text-white rounded-lg px-2.5 py-1.5 font-bold transition-colors cursor-pointer border-0"
+                              className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95"
                             >
                               {addr.name}
                             </button>
@@ -303,7 +204,7 @@ export default function Locations() {
                     <div className="p-6 pt-0 mt-2">
                       <button
                         onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                        className="w-full py-3 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 group-hover:shadow-lg shadow-blue-500/10 cursor-pointer"
+                        className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer"
                       >
                         <span>Explore All Spaces</span>
                         <span className="group-hover:translate-x-1.5 transition-transform">➔</span>
@@ -316,7 +217,7 @@ export default function Locations() {
           </div>
         ) : (
           <div className="space-y-16">
-            {statesData.map((stateGroup) => (
+            {finalStatesData.map((stateGroup) => (
               <div key={stateGroup.state}>
                 <h2 className="text-xl md:text-2xl font-black text-gray-900 border-l-4 border-[#1A56DB] pl-4 mb-8">
                   {stateGroup.state} Region
@@ -326,21 +227,21 @@ export default function Locations() {
                   {stateGroup.cities.map((city) => (
                     <div
                       key={city.slug}
-                      className="bg-white rounded-3xl border border-gray-150 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                      className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between group border-0"
                     >
                       <div>
                         {/* Image block */}
-                        <div className="relative h-48 overflow-hidden">
+                        <div className="relative h-56 overflow-hidden">
                           <img 
                             src={city.image} 
                             alt={`Virtual Office in ${city.name}`} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                          <span className="absolute top-4 left-4 text-[10px] font-black uppercase tracking-wider text-orange-655 bg-orange-50 px-3 py-1 rounded-full shadow-sm">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                          <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
                             Starting ₹{city.price}/mo
                           </span>
-                          <span className="absolute bottom-4 left-4 text-white font-black text-xl drop-shadow-md">
+                          <span className="absolute bottom-4 left-4 text-white font-black text-xl drop-shadow-lg">
                             {city.name}
                           </span>
                           <span className="absolute bottom-4 right-4 text-[10px] font-bold text-white bg-blue-600/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -356,7 +257,7 @@ export default function Locations() {
                               <button
                                 key={addr.slug}
                                 onClick={() => navigate(`/virtual-office-${city.slug}/${addr.slug}`)}
-                                className="text-[10px] bg-gray-100 hover:bg-[#1A56DB] text-gray-700 hover:text-white rounded-lg px-2.5 py-1.5 font-bold transition-colors cursor-pointer border-0"
+                                className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95"
                               >
                                 {addr.name}
                               </button>
@@ -368,7 +269,7 @@ export default function Locations() {
                       <div className="p-6 pt-0 mt-2">
                         <button
                           onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                          className="w-full py-3 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 group-hover:shadow-lg shadow-blue-500/10 cursor-pointer"
+                          className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer"
                         >
                           <span>Explore Office Hubs</span>
                           <span className="group-hover:translate-x-1.5 transition-transform">➔</span>

@@ -1,36 +1,25 @@
-/**
- * user.routes.js
- * Routes for user authentication, registration, and order management.
- */
-
 import express from "express";
-import registerUser from "./user.controller.js";
-import checkUser from "./checkUser.controller.js";
+import UserController from "./user.controller.js";
 import { authenticateToken } from "../../middleware/auth.middleware.js";
-import { getAllServices, getAllMainServices } from "../service/service.controller.js";
-import {
-  createRazorpayOrder,
-  verifyOnlineOrder,
-  createCashOrder,
-  getUserOrders,
-} from "../order/order.controller.js";
+import ServiceController from "../service/service.controller.js";
+import OrderController from "../order/order.controller.js";
+import SettingController from "../setting/setting.controller.js";
 
 const router = express.Router();
 
 // ── User Auth ────────────────────────────────────────────────────────────────
-router.post("/register",    authenticateToken, registerUser);
-router.get("/check-user",   authenticateToken, checkUser);
+router.post("/register",    authenticateToken, UserController.registerUser);
+router.get("/check-user",   authenticateToken, UserController.checkUser);
 
 // ── Services (Public) ────────────────────────────────────────────────────────
-import { getPublicSettings } from "../setting/setting.controller.js";
-router.get("/settings", getPublicSettings);
-router.get("/services", getAllServices);
-router.get("/main-services", getAllMainServices);
+router.get("/settings", SettingController.getPublicSettings);
+router.get("/services", ServiceController.getAllServices);
+router.get("/main-services", ServiceController.getAllMainServices);
 
 // ── Orders (Protected) ───────────────────────────────────────────────────────
-router.post("/orders/razorpay", authenticateToken, createRazorpayOrder);
-router.post("/orders/verify",   authenticateToken, verifyOnlineOrder);
-router.post("/orders/cash",     authenticateToken, createCashOrder);
-router.get("/orders",           authenticateToken, getUserOrders);
+router.post("/orders/razorpay", authenticateToken, OrderController.createRazorpayOrder);
+router.post("/orders/verify",   authenticateToken, OrderController.verifyOnlineOrder);
+router.post("/orders/cash",     authenticateToken, OrderController.createCashOrder);
+router.get("/orders",           authenticateToken, OrderController.getUserOrders);
 
 export default router;

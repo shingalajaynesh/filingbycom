@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function VirtualOfficeArea() {
   const { city, area } = useParams();
   const navigate = useNavigate();
+  const { locations } = useSharedData();
 
   // Extract city and area slug from route
   const currentPath = window.location.pathname;
-  let citySlug = city ? city.toLowerCase() : "delhi";
-  let areaSlug = area ? area.toLowerCase() : "rameshnagar";
+  let citySlug = city ? city.toLowerCase() : "surat";
+  let areaSlug = area ? area.toLowerCase() : "adajan";
 
-  // Parse path formats like `/virtual-office-delhi/rameshnagar`
+  // Parse path formats like `/virtual-office-surat/adajan`
   if (!city) {
     const match = currentPath.match(/\/virtual-office-([a-zA-Z0-9-]+)\/([a-zA-Z0-9-]+)/);
     if (match) {
@@ -34,16 +36,8 @@ export default function VirtualOfficeArea() {
   });
 
   const cityNames = {
-    delhi: "Delhi",
+    surat: "Surat",
     mumbai: "Mumbai",
-    bangalore: "Bangalore",
-    noida: "Noida",
-    chennai: "Chennai",
-    hyderabad: "Hyderabad",
-    kolkata: "Kolkata",
-    pune: "Pune",
-    ahmedabad: "Ahmedabad",
-    gurugram: "Gurugram"
   };
 
   const cityName = cityNames[citySlug] || (citySlug.charAt(0).toUpperCase() + citySlug.slice(1));
@@ -59,50 +53,33 @@ export default function VirtualOfficeArea() {
 
   // Area Workspace Database
   const areaData = {
-    rameshnagar: {
-      name: "Ramesh Nagar Hub",
-      address: "Main Ring Road, Metro Pillar No. 370, Ramesh Nagar, New Delhi - 110015",
+    adajan: {
+      name: "Adajan Compliance Hub",
+      address: "304, Prime Shoppers, Near Green Arcade, Adajan, Surat, Gujarat - 395009",
       priceGST: "999",
       priceIncorp: "1,299",
       priceMail: "599",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.127827878643!2d77.1350849!3d28.6558482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03923ff8c691%3A0xe54ef48f86f7881c!2sRamesh%20Nagar%20Metro%20Station!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.818318182283!2d72.7842608!3d21.199321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04df1603504bf%3A0xe54ef48f86f7881c!2sAdajan%2C%20Surat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
       photos: [
         "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
+      ],
+      description: "Located in one of the most premium commercial areas of Surat, Adajan. Perfect for GST registration, company incorporation, and business correspondence."
+    },
+    vesu: {
+      name: "Vesu Business Center",
+      address: "502, Rajhans VIP Plaza, VIP Road, Vesu, Surat, Gujarat - 395007",
+      priceGST: "1,099",
+      priceIncorp: "1,399",
+      priceMail: "649",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.127827878643!2d72.8250849!3d21.1458482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be051d3c874d6df%3A0xe54ef48f86f7881c!2sVesu%2C%20Surat%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
+      photos: [
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80"
       ],
-      description: "Located in one of the most accessible retail and commercial markets of West Delhi, the Ramesh Nagar Hub is right adjacent to the Ramesh Nagar Metro Station (Blue Line). Perfect for e-commerce sellers requiring GST addresses, trading firms, and legal setups."
-    },
-    connaughtplace: {
-      name: "Connaught Place Executive Center",
-      address: "Radial Road 2, Block-E, Connaught Place, New Delhi - 110001",
-      priceGST: "1,199",
-      priceIncorp: "1,499",
-      priceMail: "699",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.5843468305084!2d77.21447087627464!3d28.627252075667232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd36a32d1bb5%3A0x6b7fa15f8de50a21!2sConnaught%20Place%20New%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-      photos: [
-        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
-      ],
-      description: "Establish your corporate presence at Connaught Place, the premier central business district of the national capital. This Grade-A center provides high credibility for correspondence, visiting cards, and formal bank documentation."
-    },
-    pitampura: {
-      name: "Netaji Subhash Place Heights",
-      address: "3rd Floor, NDM-2, Netaji Subhash Place, Pitampura, Delhi - 110034",
-      priceGST: "999",
-      priceIncorp: "1,299",
-      priceMail: "599",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.191637772412!2d77.1507746!3d28.6943831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03d3c874d6df%3A0xe54ef48f86f7881c!2sNetaji%20Subhash%20Place!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-      photos: [
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
-      ],
-      description: "Netaji Subhash Place is the leading commercial complex in North-West Delhi. Heavily favored by IT, software developers, logistics firms, and chartered accountancy agencies for compliance registrations."
+      description: "Located on the premium VIP Road in Vesu, Surat's fastest-growing business hub. Extremely credible address for startup registrations and trade licenses."
     },
     bkc: {
       name: "BKC Prestige Towers",
@@ -118,25 +95,13 @@ export default function VirtualOfficeArea() {
         "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
       ],
       description: "The crown jewel of Mumbai financial hubs, BKC hosts top tier banks and global multinationals. Secure an address here to instantly elevate your business status."
-    },
-    koramangala: {
-      name: "Koramangala Startups Hub",
-      address: "80 Feet Road, 4th Block, Koramangala, Bengaluru, Karnataka - 560034",
-      priceGST: "999",
-      priceIncorp: "1,299",
-      priceMail: "599",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5838520862024!2d77.61907777583685!3d12.934449887377595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae144e3e5c9b4f%3A0xf6708764b8bb6d!2sKoramangala%20Bangalore!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
-      photos: [
-        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80"
-      ],
-      description: "Located in the epicentre of the Indian tech ecosystem. Very popular with venture backed companies, SaaS providers, and consulting firms requiring Karnataka VPOB filings."
     }
   };
 
-  const selectedArea = areaData[areaSlug] || {
+  const dbCity = locations.find(loc => loc.slug === citySlug);
+  const dbArea = dbCity?.addresses?.find(a => a.slug === areaSlug);
+
+  const selectedArea = dbArea || areaData[areaSlug] || {
     name: `${areaSlug.charAt(0).toUpperCase() + areaSlug.slice(1)} Workspace`,
     address: `Commercial Street, Sector Block, ${cityName} - 100001`,
     priceGST: "999",
@@ -230,12 +195,11 @@ export default function VirtualOfficeArea() {
           
           {/* Left Main column */}
           <div className="lg:col-span-8 space-y-10">
-            
             {/* Gallery Block */}
-            <div className="bg-white rounded-3xl p-4 md:p-6 border border-gray-150 shadow-sm space-y-4">
+            <div className="bg-white rounded-3xl p-4 md:p-6 border-0 shadow-md space-y-4">
               <h3 className="text-base font-black text-gray-900 px-2 uppercase tracking-wide">Workspace Photographs</h3>
               
-              <div className="relative h-96 rounded-2xl overflow-hidden border border-gray-100 bg-gray-50">
+              <div className="relative h-96 rounded-2xl overflow-hidden border-0 bg-gray-155">
                 <img 
                   src={selectedArea.photos[activePhoto]} 
                   alt="Workspace interior" 
@@ -251,7 +215,7 @@ export default function VirtualOfficeArea() {
                   <div 
                     key={index}
                     onClick={() => setActivePhoto(index)}
-                    className={`h-20 rounded-xl overflow-hidden border-2 cursor-pointer transition-all ${activePhoto === index ? "border-[#1A56DB] opacity-100 scale-95" : "border-transparent opacity-60 hover:opacity-100"}`}
+                    className={`h-20 rounded-xl overflow-hidden ring-2 transition-all cursor-pointer ${activePhoto === index ? "ring-[#1A56DB] scale-95 opacity-100" : "ring-transparent opacity-60 hover:opacity-100"}`}
                   >
                     <img src={ph} alt="thumbnail" className="w-full h-full object-cover" />
                   </div>
@@ -260,7 +224,7 @@ export default function VirtualOfficeArea() {
             </div>
 
             {/* Description & Plan list */}
-            <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-150 shadow-sm space-y-6">
+            <div className="bg-white rounded-3xl p-6 md:p-8 border-0 shadow-md space-y-6">
               <h3 className="text-lg font-black text-gray-900 border-l-4 border-[#1A56DB] pl-3 mb-4">About the Business Center</h3>
               <p className="text-gray-655 text-xs md:text-sm font-semibold leading-relaxed">
                 {selectedArea.description}
@@ -286,7 +250,7 @@ export default function VirtualOfficeArea() {
             </div>
 
             {/* Pricing Packages */}
-            <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-150 shadow-sm space-y-6">
+            <div className="bg-white rounded-3xl p-6 md:p-8 border-0 shadow-md space-y-6">
               <h3 className="text-lg font-black text-gray-900 border-l-4 border-[#1A56DB] pl-3 mb-6">Service Packages & Pricing</h3>
               
               <div className="space-y-6">
@@ -310,11 +274,11 @@ export default function VirtualOfficeArea() {
                     inclusions: ["ROC compliant NOC from land owner", "Director proof utility copy", "Consent Letter & structural NOCs", "Board placement in lobby"]
                   }
                 ].map((plan, pIdx) => (
-                  <div key={pIdx} className="border border-gray-150 rounded-2xl p-6 hover:border-blue-500/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div key={pIdx} className="bg-slate-50/60 rounded-3xl p-6 hover:bg-slate-50 transition-all border-0 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
                         <h4 className="text-base font-black text-gray-900">{plan.title}</h4>
-                        <span className="text-[9px] font-black text-orange-600 bg-orange-50 px-2 py-0.5 rounded">{plan.badge}</span>
+                        <span className="text-[9px] font-black text-orange-650 bg-orange-50 px-2 py-0.5 rounded">{plan.badge}</span>
                       </div>
                       
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -345,7 +309,7 @@ export default function VirtualOfficeArea() {
           <div className="lg:col-span-4 space-y-8">
             
             {/* Lead capture form */}
-            <div className="bg-white rounded-3xl p-6 border border-gray-150 shadow-md space-y-5">
+            <div className="bg-white rounded-3xl p-6 border-0 shadow-md space-y-5">
               <div className="space-y-1">
                 <span className="text-[9px] font-black uppercase text-green-600 bg-green-50 px-2 py-0.5 rounded">Active Rep Assigned</span>
                 <h3 className="text-base font-black text-gray-900 mt-2">Get Instant Legal NOC Draft</h3>
@@ -369,7 +333,7 @@ export default function VirtualOfficeArea() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder=" Rahul Sharma"
-                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
+                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
                   <div>
@@ -381,7 +345,7 @@ export default function VirtualOfficeArea() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="rahul@company.com"
-                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
+                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
                   <div>
@@ -393,7 +357,7 @@ export default function VirtualOfficeArea() {
                       value={formData.mobile}
                       onChange={handleInputChange}
                       placeholder="9999988888"
-                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
+                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
                   <div>
@@ -403,7 +367,7 @@ export default function VirtualOfficeArea() {
                       required
                       value={formData.purpose}
                       onChange={handleInputChange}
-                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none cursor-pointer"
+                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none cursor-pointer"
                     >
                       <option value="">Select Purpose</option>
                       <option value="gst">GST Registration</option>
@@ -423,7 +387,7 @@ export default function VirtualOfficeArea() {
             </div>
 
             {/* Document details box */}
-            <div className="bg-white rounded-3xl p-6 border border-gray-150 shadow-sm space-y-4">
+            <div className="bg-white rounded-3xl p-6 border-0 shadow-md space-y-4">
               <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest pl-1 border-l-3 border-orange-500">Legal Documents List</h4>
               <p className="text-[10px] text-gray-500 font-semibold leading-relaxed">
                 With every purchase, FilingBy provides a full package of compliance paperwork required by state departments:
@@ -445,7 +409,7 @@ export default function VirtualOfficeArea() {
             </div>
 
             {/* Interactive Location Map */}
-            <div className="bg-white rounded-3xl p-4 border border-gray-150 shadow-sm h-72 flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-4 border-0 shadow-md h-72 flex flex-col justify-between">
               <h4 className="text-[10px] font-black text-gray-900 uppercase tracking-widest pl-2 mb-2">Google Map Location</h4>
               <iframe
                 src={selectedArea.mapEmbed}

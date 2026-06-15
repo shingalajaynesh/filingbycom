@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@clerk/clerk-react";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import VirtualOfficeService from "../services/VirtualOfficeService";
 
 export default function GetLiveQuote() {
   const navigate = useNavigate();
+  const { locations } = useSharedData();
+  const { getToken, isSignedIn } = useAuth();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     city: "",
@@ -16,8 +21,14 @@ export default function GetLiveQuote() {
   });
 
   const [priceEstimate, setPriceEstimate] = useState(0);
-
   const [submitting, setSubmitting] = useState(false);
+
+  const availableCities = locations && locations.length > 0
+    ? locations.map(loc => ({ name: loc.name, slug: loc.slug }))
+    : [
+        { name: "Surat", slug: "surat" },
+        { name: "Mumbai", slug: "mumbai" }
+      ];
 
   const calculateQuote = async () => {
     let base = 999;
@@ -36,18 +47,10 @@ export default function GetLiveQuote() {
 
     setSubmitting(true);
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-      const res = await fetch(`${API_BASE}/virtual-space/quotes`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          estimatedPrice: base,
-        }),
+      const data = await VirtualOfficeService.createQuoteLead({
+        ...formData,
+        estimatedPrice: base,
       });
-      const data = await res.json();
       if (data.success) {
         setPriceEstimate(base);
         setStep(3);
@@ -56,7 +59,47 @@ export default function GetLiveQuote() {
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to submit quote request. Please try again.");
+      alert(err.message || "Failed to submit quote request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (!isSignedIn) {
+      alert("You must be logged in to proceed to checkout.");
+      navigate("/login", { state: { from: "/get-live-quote" } });
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const token = await getToken();
+      
+      // Determine default address names based on city
+      let addressName = `${formData.city} Business Suite`;
+      if (formData.city.toLowerCase() === "surat") {
+        addressName = "Adajan Compliance Hub";
+      } else if (formData.city.toLowerCase() === "mumbai") {
+        addressName = "BKC Prestige Towers";
+      }
+
+      const data = await VirtualOfficeService.createVirtualOrder(token, {
+        citySlug: formData.city.toLowerCase(),
+        addressName,
+        selectedPlan: formData.purpose,
+        price: priceEstimate,
+      });
+
+      if (data.success) {
+        alert("Payment successful! Leased address created on dashboard.");
+        navigate("/virtual-office/dashboard");
+      } else {
+        alert(data.message || "Failed to complete checkout.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "An error occurred during checkout. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -94,15 +137,18 @@ export default function GetLiveQuote() {
             
             <div>
               <label className="text-[10px] font-bold text-gray-500 uppercase block mb-1">Target City</label>
-              <input
-                type="text"
+              <select
                 name="city"
                 required
                 value={formData.city}
                 onChange={handleInputChange}
-                placeholder="e.g. Bangalore, Delhi, Noida"
-                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
-              />
+                className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900"
+              >
+                <option value="">Select Target City</option>
+                {availableCities.map(c => (
+                  <option key={c.slug} value={c.name}>{c.name}</option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -226,10 +272,7 @@ export default function GetLiveQuote() {
 
             <div className="space-y-3 pt-4">
               <button
-                onClick={() => {
-                  alert("Redirecting to payment gateway / order confirmation...");
-                  navigate("/dashboard");
-                }}
+                onClick={handleCheckout}
                 className="w-full py-3 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer"
               >
                 Proceed to Checkout

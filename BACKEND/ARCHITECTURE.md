@@ -18,14 +18,16 @@ BACKEND/
     ├── config/
     │   └── db.config.js         # Mongoose connection logic with DNS resolving safety
     │
-    ├── middleware/                  # Request filters and security interceptors
+    ├── middleware/              # Request filters and security interceptors
     │   ├── auth.middleware.js   # Clerk JWT token decoders and role verifications
     │   └── admin.middleware.js  # Dedicated administrator authorization barriers
     │
     ├── models/                  # Mongoose schemas
     │   ├── User.model.js        # User metadata matching Clerk accounts
-    │   ├── Service.model.js     # CA and virtual office filing item details
-    │   └── Order.model.js       # Transaction records & order statuses
+    │   ├── Service.model.js     # CA filing services details
+    │   ├── Order.model.js       # Transaction records & order statuses for standard CA Portal
+    │   ├── VirtualLocation.model.js # Rented workspace physical addresses, coordinates and cities
+    │   └── VirtualOfficeOrder.model.js # [NEW] Active customer leases, compliance status, mailbox scan files & audits
     │
     ├── modules/                 # Module controllers and routers
     │   ├── user/
@@ -33,13 +35,22 @@ BACKEND/
     │   │   ├── user.controller.js    # Order filing & user management controllers
     │   │   └── checkUser.controller.js # Sync user profile hooks
     │   │
-    │   └── admin/
-    │       ├── admin.routes.js       # Secured admin endpoints
-    │       └── admin.controller.js   # Control room operations (order processing, service pricing)
+    │   ├── admin/
+    │   │   ├── admin.routes.js       # Secured admin endpoints for CA portal
+    │   │   └── admin.controller.js   # Control room operations for CA services
+    │   │
+    │   └── virtual-space/       # [NEWLY SEPARATED] Virtual Office domain
+    │       ├── virtual-space.routes.js # Combined endpoints for client bookings & admin management
+    │       └── virtual-space.controller.js # Inquiry submissions, dynamic location CRUD, and bookings/couriers log CRUD actions
     │
     └── services/
+        ├── whatsapp.service.js   # Admin notification dispatcher via WhatsApp
         └── (Optional helper files for external utilities e.g. Razorpay, mail dispatchers)
 ```
+
+### Scope Separation Policy:
+- **CA Portal Domain**: All payments, GST/ITR registrations, and standard client CA filings are handled by `models/Order.model.js` and `modules/order/`.
+- **Virtual Space Domain**: All commercial address leasing, landlord NOC certifications, official utility proof uploads, physical couriers mailbox scans, and scheduled tax inspector physical inspections are processed by `models/VirtualOfficeOrder.model.js` and `modules/virtual-space/`. This completely prevents cross-contamination of transactional business logic.
 
 ---
 

@@ -1,32 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ServiceCard from './ServiceCard.jsx';
-import { safeFetch } from '../../../shared/utils/api';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function PopularServices() {
-    const [services, setServices] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { services, loading } = useSharedData();
     const [showAll, setShowAll] = useState(false);
 
-    useEffect(() => {
-        let active = true;
-        const fetchServices = async () => {
-            try {
-                const data = await safeFetch('/services');
-                if (active && data.success) {
-                    setServices(data.services.filter(s => s.isPopular === true));
-                }
-            } catch (error) {
-                console.error("Failed to fetch popular services", error);
-            } finally {
-                if (active) setLoading(false);
-            }
-        };
-
-        fetchServices();
-        return () => {
-            active = false;
-        };
-    }, []);
+    const popularServices = services ? services.filter(s => s.isPopular === true && s.isActive !== false) : [];
 
     return (
         <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -42,18 +22,18 @@ export default function PopularServices() {
                     <div className="flex justify-center py-12">
                         <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
                     </div>
-                ) : services.length === 0 ? (
+                ) : popularServices.length === 0 ? (
                     <div className="text-center py-12 text-gray-500">
                         No services currently available.
                     </div>
                 ) : (
                     <>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-                            {(showAll ? services : services.slice(0, 8)).map((service) => (
+                            {(showAll ? popularServices : popularServices.slice(0, 8)).map((service) => (
                                 <ServiceCard key={service._id || service.slug} service={{...service, price: service.basePrice}} />
                             ))}
                         </div>
-                        {services.length > 8 && (
+                        {popularServices.length > 8 && (
                             <div className="mt-8 text-center">
                                 <button
                                     onClick={() => setShowAll(!showAll)}

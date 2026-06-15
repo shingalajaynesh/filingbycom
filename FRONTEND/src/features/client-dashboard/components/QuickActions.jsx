@@ -16,6 +16,8 @@ export default function QuickActions({ onNavigate }) {
   const handleActionClick = (action) => {
     if (action.slug) {
       navigate(`/services/${action.slug}`);
+    } else if (action.tab === 'documents') {
+      window.open("https://wa.me/917567126945", "_blank");
     } else if (action.tab && onNavigate) {
       onNavigate(action.tab);
     }

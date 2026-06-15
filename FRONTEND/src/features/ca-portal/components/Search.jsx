@@ -1,37 +1,21 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { safeFetch } from '../../../shared/utils/api';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function Search() {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
     const [showResults, setShowResults] = useState(false);
-    const [services, setServices] = useState([]);
-
-    useEffect(() => {
-        let active = true;
-        const fetchServices = async () => {
-            try {
-                const data = await safeFetch('/services');
-                if (active && data.success) {
-                    setServices(data.services.filter(s => s.isActive !== false));
-                }
-            } catch (err) {
-                console.error("Failed to fetch services for search:", err);
-            }
-        };
-        fetchServices();
-        return () => {
-            active = false;
-        };
-    }, []);
+    const { services } = useSharedData();
 
     const filtered = useMemo(() => {
-        if (!searchQuery) return [];
-        return services.filter((item) =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            (item.category && item.category.toLowerCase().includes(searchQuery.toLowerCase()))
-        );
+        if (!searchQuery || !services) return [];
+        return services
+            .filter(s => s.isActive !== false)
+            .filter((item) =>
+                item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (item.category && item.category.toLowerCase().includes(searchQuery.toLowerCase()))
+            );
     }, [searchQuery, services]);
 
     useEffect(() => {

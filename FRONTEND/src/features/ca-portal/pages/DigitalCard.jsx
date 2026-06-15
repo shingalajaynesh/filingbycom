@@ -510,7 +510,7 @@ export default function DigitalCard() {
           <div style={S.profileContainer}>
             <div style={S.profileRing}>
               <img
-                src="https://ui-avatars.com/api/?name=Filing+By&background=0A192F&color=D4AF37&size=200&bold=true&font-size=0.4"
+                src="/logo.jpeg"
                 alt="FilingBy.com Logo"
                 style={S.profilePhoto}
                 onError={(e) => {

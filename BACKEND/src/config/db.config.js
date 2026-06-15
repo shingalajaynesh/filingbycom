@@ -5,6 +5,7 @@
  */
 
 import mongoose from "mongoose";
+import logger from "../services/logger.service.js";
 
 /**
  * Connects to MongoDB Atlas using the configured MONGODB_URI environment variable.
@@ -17,10 +18,10 @@ const connectDB = async () => {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,
     });
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    logger.info(`MongoDB Connected: ${conn.connection.host}`);
     
   } catch (error) {
-    console.error("MongoDB connection error:", error.message || error);
+    logger.error("MongoDB connection error:", error);
     // Exit process with failure (1) if connection could not be established
     process.exit(1);
   }

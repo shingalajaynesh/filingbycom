@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
-import { safeFetch } from '../../../shared/utils/api';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function Navigation() {
+  const { services, mainServices, settings } = useSharedData();
   const [navData, setNavData] = useState([]);
   const [open, setOpen] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,104 +35,65 @@ export default function Navigation() {
   const isLoggedIn = isSignedIn;
 
   useEffect(() => {
-    let active = true;
-    let retryCount = 0;
-    const maxRetries = 5;
+    if (!services || services.length === 0 || !mainServices || mainServices.length === 0) {
+      return;
+    }
 
-    const fetchNav = async () => {
-      try {
-        const [dataServices, dataMain, dataSettings] = await Promise.all([
-          safeFetch('/services'),
-          safeFetch('/main-services'),
-          safeFetch('/settings').catch(err => {
-            console.error("Failed to load settings in nav, fallback to default:", err);
-            return { success: true, settings: {} };
-          })
-        ]);
-        
-        if (!active) return;
+    const limit = settings?.navbar_category_limit !== undefined
+      ? Number(settings.navbar_category_limit)
+      : 5;
+    setNavLimit(limit);
 
-        if (dataServices.success && dataMain.success) {
-          const limit = dataSettings?.settings?.navbar_category_limit !== undefined
-            ? Number(dataSettings.settings.navbar_category_limit)
-            : 5;
-          setNavLimit(limit);
-
-          const navMap = {};
-          dataMain.mainServices.filter(m => m.isActive !== false).forEach(main => {
-            navMap[main._id] = {
-              id: main._id,
-              label: main.name,
-              order: main.order || 0,
-              sections: {}
-            };
-          });
-          
-          dataServices.services.filter(s => s.isActive !== false).forEach(service => {
-            const mainId = service.mainService?._id || service.mainService;
-            const section = service.navSection || 'General';
-            
-            if (mainId && navMap[mainId]) {
-              if (!navMap[mainId].sections[section]) {
-                navMap[mainId].sections[section] = { heading: section, items: [] };
-              }
-              navMap[mainId].sections[section].items.push({
-                label: service.name,
-                slug: service.slug,
-                order: service.order || 0
-              });
-            } else {
-              if (!navMap['other']) {
-                navMap['other'] = { id: 'other', label: 'Other Services', order: 999, sections: {} };
-              }
-              if (!navMap['other'].sections[section]) {
-                navMap['other'].sections[section] = { heading: section, items: [] };
-              }
-              navMap['other'].sections[section].items.push({
-                label: service.name,
-                slug: service.slug,
-                order: service.order || 0
-              });
-            }
-          });
-          
-          const formattedNavData = Object.values(navMap)
-            .sort((a, b) => a.order - b.order)
-            .map(cat => ({
-              ...cat,
-              sections: Object.values(cat.sections).map(sec => ({
-                ...sec,
-                items: sec.items.sort((a, b) => a.order - b.order)
-              }))
-            }));
-          
-          setNavData(formattedNavData);
+    const navMap = {};
+    mainServices.filter(m => m.isActive !== false).forEach(main => {
+      navMap[main._id] = {
+        id: main._id,
+        label: main.name,
+        order: main.order || 0,
+        sections: {}
+      };
+    });
+    
+    services.filter(s => s.isActive !== false).forEach(service => {
+      const mainId = service.mainService?._id || service.mainService;
+      const section = service.navSection || 'General';
+      
+      if (mainId && navMap[mainId]) {
+        if (!navMap[mainId].sections[section]) {
+          navMap[mainId].sections[section] = { heading: section, items: [] };
         }
-      } catch (err) {
-        console.error("Failed to fetch nav data:", err);
-        if (!active) return;
-
-        // If it's a permanent configuration/routing error (indicated by HTML response), don't retry endlessly.
-        if (err.message && err.message.includes("HTML response")) {
-          console.warn("Discontinuing nav retries due to configuration/routing error.");
-          return;
+        navMap[mainId].sections[section].items.push({
+          label: service.name,
+          slug: service.slug,
+          order: service.order || 0
+        });
+      } else {
+        if (!navMap['other']) {
+          navMap['other'] = { id: 'other', label: 'Other Services', order: 999, sections: {} };
         }
-
-        if (retryCount < maxRetries) {
-          retryCount++;
-          console.log(`Retrying nav fetch (${retryCount}/${maxRetries}) in 5s...`);
-          setTimeout(() => {
-            if (active) fetchNav();
-          }, 5000);
+        if (!navMap['other'].sections[section]) {
+          navMap['other'].sections[section] = { heading: section, items: [] };
         }
+        navMap['other'].sections[section].items.push({
+          label: service.name,
+          slug: service.slug,
+          order: service.order || 0
+        });
       }
-    };
-    fetchNav();
-
-    return () => {
-      active = false;
-    };
-  }, []);
+    });
+    
+    const formattedNavData = Object.values(navMap)
+      .sort((a, b) => a.order - b.order)
+      .map(cat => ({
+        ...cat,
+        sections: Object.values(cat.sections).map(sec => ({
+          ...sec,
+          items: sec.items.sort((a, b) => a.order - b.order)
+        }))
+      }));
+    
+    setNavData(formattedNavData);
+  }, [services, mainServices, settings]);
 
   const getInitials = (firstName, lastName) => {
     if (!firstName && !lastName) return 'U';
@@ -401,7 +363,7 @@ export default function Navigation() {
               <div className="flex items-center gap-3">
                 {/* New Order */}
                 <button
-                  onClick={() => navigate('/services/gst-registration')}
+                  onClick={() => navigate('/dashboard', { state: { tab: 'new-order' } })}
                   className="flex items-center gap-1.5 text-[11px] font-semibold text-white bg-[#F97316] rounded-full px-3.5 py-1.5 hover:bg-orange-500 transition-all whitespace-nowrap hover:shadow-lg hover:shadow-orange-200 active:scale-95"
                 >
                   + New Order
@@ -453,7 +415,7 @@ export default function Navigation() {
                             { icon: "📋", label: "My Orders", tab: "orders" },
                             { icon: "🎧", label: "Support", tab: "support" },
                             { icon: "👤", label: "My Profile", tab: "profile" },
-                            { icon: "🎁", label: "Refer & Earn", tab: "referral" },
+                            // { icon: "🎁", label: "Refer & Earn", tab: "referral" },
                           ].map((item) => (
                             <button
                               key={item.tab}
@@ -554,7 +516,7 @@ export default function Navigation() {
                         { icon: "📋", label: "My Orders", tab: "orders" },
                         { icon: "🎧", label: "Support", tab: "support" },
                         { icon: "👤", label: "My Profile", tab: "profile" },
-                        { icon: "🎁", label: "Refer & Earn", tab: "referral" },
+                        // { icon: "🎁", label: "Refer & Earn", tab: "referral" },
                       ].map((item) => (
                         <button
                           key={item.tab}
@@ -695,7 +657,7 @@ export default function Navigation() {
                 <div className="pt-4 pb-6 space-y-3 border-t border-gray-100 mt-4">
                   <button
                     onClick={() => {
-                      navigate('/services/gst-registration');
+                      navigate('/dashboard', { state: { tab: 'new-order' } });
                       setMobileOpen(false);
                     }}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white bg-[#F97316] rounded-xl hover:bg-orange-600 transition-colors shadow-md active:scale-95 cursor-pointer"

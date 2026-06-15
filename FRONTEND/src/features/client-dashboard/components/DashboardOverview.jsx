@@ -1,11 +1,23 @@
 import React from 'react';
+import { useUser } from '@clerk/clerk-react';
 import StatsCards from './StatsCards';
 import OrderList from './OrderList';
 import QuickActions from './QuickActions';
 
 export default function DashboardOverview({ orders = [], setActiveTab, onOrderClick }) {
+  const { user } = useUser();
+  const userName = user?.firstName || 'User';
+
   // Count items for the welcome banner
   const pendingDocsCount = orders.filter(o => o.status === 'pending-docs').length;
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    return 'Good evening';
+  };
+  const greeting = getGreeting();
 
   return (
     <div className="space-y-6">
@@ -13,8 +25,10 @@ export default function DashboardOverview({ orders = [], setActiveTab, onOrderCl
       {/* 1. Welcome Banner */}
       <div className="bg-gradient-to-r from-[#1A56DB] to-[#1e40af] rounded-2xl p-5 sm:p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div className="space-y-1">
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-            Good morning, Rajesh! 👋
+          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex flex-wrap items-center gap-x-2">
+            <span>{greeting},</span>
+            <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent">{userName}</span>
+            <span>! 👋</span>
           </h2>
           <p className="text-xs sm:text-sm text-blue-100 font-medium">
             You have {pendingDocsCount} pending document {pendingDocsCount === 1 ? 'upload' : 'uploads'}.
@@ -28,7 +42,7 @@ export default function DashboardOverview({ orders = [], setActiveTab, onOrderCl
             View Orders
           </button>
           <button
-            onClick={() => setActiveTab('documents')}
+            onClick={() => window.open("https://wa.me/917567126945", "_blank")}
             className="flex-1 md:flex-initial bg-white text-blue-600 hover:bg-blue-50 font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/20 transition-all text-center min-h-11 md:min-h-[unset] cursor-pointer"
           >
             Upload Documents

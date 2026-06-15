@@ -34,6 +34,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
         { id: "inquiries", label: "Inquiries" },
         { id: "partners", label: "Partners" },
         { id: "quotes", label: "Quotes" },
+        { id: "locations", label: "Locations" },
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
       ];

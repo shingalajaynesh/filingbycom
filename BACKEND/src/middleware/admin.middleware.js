@@ -13,8 +13,13 @@ const verifyAdmin = (req, res, next) => {
     return res.status(401).json({ success: false, message: "Admin token missing" });
   }
 
+  const secret = process.env.ADMIN_SECRET;
+  if (!secret) {
+    return res.status(500).json({ success: false, message: "Server configuration error: ADMIN_SECRET is not configured." });
+  }
+
   try {
-    jwt.verify(token, process.env.ADMIN_SECRET || "admin_secret_token");
+    jwt.verify(token, secret);
     next();
   } catch (error) {
     return res.status(403).json({ success: false, message: "Invalid or expired admin token" });

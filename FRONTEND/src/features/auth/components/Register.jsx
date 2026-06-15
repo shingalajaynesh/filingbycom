@@ -169,7 +169,7 @@ export default function Register() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_30%)]" />
           <div className="relative z-10 w-full max-w-md">
             <div className="mb-4 flex justify-center lg:hidden">
-              <img src="/favicon.png" alt="Company logo" className="h-16 w-auto object-contain" />
+              <img src="/logo.jpeg" alt="Company logo" className="h-16 w-auto object-contain" />
             </div>
             
             <div className="mb-6 flex items-center justify-between sm:mb-8">
