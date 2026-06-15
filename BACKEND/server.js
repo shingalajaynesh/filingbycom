@@ -17,6 +17,7 @@ import { clerkMiddleware } from "@clerk/express";
 import connectDB from "./src/config/db.config.js";
 import router from "./src/modules/user/user.routes.js";
 import adminRouter from "./src/modules/admin/admin.routes.js";
+import virtualSpaceRouter from "./src/modules/virtual-space/virtual-space.routes.js";
 
 // ── DNS RESOLUTION SETUP ─────────────────────────────────────────────────────
 // Node's default resolver sometimes fails on MongoDB SRV records when DNS queries
@@ -69,6 +70,7 @@ app.use(clerkMiddleware());
 // Mount modular routes for standard users and administrative actions.
 app.use(router);
 app.use(adminRouter);
+app.use(virtualSpaceRouter);
 
 // ── MONGOOSE DATABASE CONNECTIVITY ──────────────────────────────────────────
 // Establish socket connections to the MongoDB Atlas cluster.

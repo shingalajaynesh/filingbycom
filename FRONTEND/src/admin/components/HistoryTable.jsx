@@ -7,8 +7,8 @@
 import { useAdminOrders } from "../hooks/useAdminOrders";
 import OrderCard from "./OrderCard";
 
-export default function HistoryTable() {
-  const { orders, loading, error, refetch } = useAdminOrders("history");
+export default function HistoryTable({ portal }) {
+  const { orders, loading, error, refetch } = useAdminOrders("history", portal);
 
   if (loading) {
     return (

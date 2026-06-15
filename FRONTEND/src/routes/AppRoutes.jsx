@@ -22,6 +22,7 @@ import VirtualOfficeNavigation from "../features/virtual-office/components/Virtu
 import VirtualSpace            from "../features/virtual-office/pages/VirtualSpace";
 import Locations               from "../features/virtual-office/pages/Locations";
 import VirtualOfficeCity       from "../features/virtual-office/pages/VirtualOfficeCity";
+import VirtualOfficeArea       from "../features/virtual-office/pages/VirtualOfficeArea";
 import EcommerceOffice         from "../features/virtual-office/pages/EcommerceOffice";
 import AboutUs                 from "../features/virtual-office/pages/AboutUs";
 import OurPromise              from "../features/virtual-office/pages/OurPromise";
@@ -112,6 +113,10 @@ function AppRoutesContent() {
         <Route path="/virtual-office-hyderabad" element={<VirtualOfficeCity />} />
         <Route path="/virtual-office-noida" element={<VirtualOfficeCity />} />
         <Route path="/virtual-office-kolkata" element={<VirtualOfficeCity />} />
+        
+        {/* Specific Business Centers / Area Subpages */}
+        <Route path="/virtual-office-:city/:area" element={<VirtualOfficeArea />} />
+        <Route path="/virtual-office/:city/:area" element={<VirtualOfficeArea />} />
         
         <Route path="/virtual-office-ecommerce" element={<EcommerceOffice />} />
         <Route path="/about-us" element={<AboutUs />} />

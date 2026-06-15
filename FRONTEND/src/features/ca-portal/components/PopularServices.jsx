@@ -48,7 +48,7 @@ export default function PopularServices() {
                     <>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
                             {(showAll ? services : services.slice(0, 8)).map((service) => (
-                                <ServiceCard key={service._id || service.slug} service={{...service, price: service.priceText}} />
+                                <ServiceCard key={service._id || service.slug} service={{...service, price: service.basePrice}} />
                             ))}
                         </div>
                         {services.length > 8 && (

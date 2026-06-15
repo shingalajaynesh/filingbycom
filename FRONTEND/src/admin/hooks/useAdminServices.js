@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
-export function useAdminServices() {
+export function useAdminServices(portal = "ca-portal") {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ export function useAdminServices() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_BASE}/services`);
+      const res = await fetch(`${API_BASE}/services?portal=${portal}`);
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
       setServices(data.services);
@@ -21,7 +21,7 @@ export function useAdminServices() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [portal]);
 
   useEffect(() => {
     fetchServices();
@@ -33,7 +33,7 @@ export function useAdminServices() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(serviceData),
+        body: JSON.stringify({ ...serviceData, portal }),
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.message);

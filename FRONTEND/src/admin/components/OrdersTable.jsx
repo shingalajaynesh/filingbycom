@@ -7,9 +7,9 @@
 import { useAdminOrders } from "../hooks/useAdminOrders";
 import OrderCard from "./OrderCard";
 
-export default function OrdersTable() {
+export default function OrdersTable({ portal }) {
   const { orders, loading, error, refetch, updateOrderStatus, updatePaymentStatus } =
-    useAdminOrders("active");
+    useAdminOrders("active", portal);
 
   if (loading) {
     return (

@@ -1,26 +1,40 @@
-/**
- * AdminNavbar.jsx
- * Top navigation bar for the admin panel.
- * Contains the FilingBy.com logo, tab navigation (Orders / History), and logout.
- */
-
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
 
-export default function AdminNavbar({ activeTab, onTabChange }) {
+export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onPortalChange }) {
   const { logout } = useAdminAuth();
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (!e.target.closest('.portal-dropdown-wrapper')) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   const handleLogout = async () => {
     await logout();
     navigate("/admin", { replace: true });
   };
 
-  const tabs = [
-    { id: "orders", label: "Orders" },
-    { id: "history", label: "History" },
-    { id: "services", label: "Services" },
-  ];
+  const tabs = currentPortal === "ca-portal"
+    ? [
+        { id: "orders", label: "Orders" },
+        { id: "history", label: "History" },
+        { id: "services", label: "Services" },
+      ]
+    : [
+        { id: "orders", label: "Orders" },
+        { id: "inquiries", label: "Inquiries" },
+        { id: "partners", label: "Partners" },
+        { id: "quotes", label: "Quotes" },
+        { id: "services", label: "Services" },
+      ];
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -57,7 +71,7 @@ export default function AdminNavbar({ activeTab, onTabChange }) {
                 className={`flex items-center px-4 py-1.5 rounded-md text-sm font-semibold transition-colors whitespace-nowrap ${
                   activeTab === tab.id
                     ? "bg-[#1A56DB] text-white"
-                    : "text-gray-600 hover:text-[#1A56DB] hover:bg-gray-50"
+                    : "text-gray-650 hover:text-[#1A56DB] hover:bg-gray-50"
                 }`}
               >
                 {tab.label}
@@ -65,12 +79,58 @@ export default function AdminNavbar({ activeTab, onTabChange }) {
             ))}
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center px-4 py-1.5 rounded-md text-sm font-semibold text-gray-600 hover:text-red-600 hover:bg-red-50 border border-transparent transition-colors flex-shrink-0"
-          >
-            Logout
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Portal Switch Dropdown */}
+            <div className="relative portal-dropdown-wrapper">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-bold text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap cursor-pointer"
+              >
+                <span>{currentPortal === "ca-portal" ? "💼 CA Portal" : "🏢 Virtual Space"}</span>
+                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-1.5 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-[999]">
+                  <button
+                    onClick={() => {
+                      onPortalChange("ca-portal");
+                      setDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center px-4 py-2 text-sm text-left font-bold ${
+                      currentPortal === "ca-portal"
+                        ? "bg-blue-50 text-[#1A56DB]"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    💼 CA Portal
+                  </button>
+                  <button
+                    onClick={() => {
+                      onPortalChange("virtual-space");
+                      setDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center px-4 py-2 text-sm text-left font-bold ${
+                      currentPortal === "virtual-space"
+                        ? "bg-blue-50 text-[#1A56DB]"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    🏢 Virtual Space Admin
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={handleLogout}
+              className="flex items-center px-4 py-1.5 rounded-md text-sm font-semibold text-gray-650 hover:text-red-650 hover:bg-red-50 border border-transparent transition-colors flex-shrink-0"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </header>

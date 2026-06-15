@@ -73,9 +73,21 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, read
         {/* Client details row */}
         <div className="flex flex-wrap gap-4 text-xs text-gray-600">
           {user?.phone && (
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 font-medium">
               <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               {user.phone}
+              <a
+                href={`https://wa.me/${user.phone.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-0.5 ml-1.5 px-2 py-0.5 bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800 rounded border border-green-200 transition-colors text-[10px] font-bold cursor-pointer"
+                title="Chat with client on WhatsApp"
+              >
+                <svg viewBox="0 0 32 32" className="w-3 h-3 fill-current" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.13 6.75 3.047 9.383L1.05 30.91l5.7-1.824A15.93 15.93 0 0016.004 32C24.828 32 32 24.822 32 16S24.828 0 16.004 0zm9.28 22.617c-.385 1.086-1.91 1.988-3.13 2.25-.834.178-1.922.32-5.586-1.2-4.688-1.963-7.71-6.72-7.945-7.027-.223-.308-1.883-2.508-1.883-4.781 0-2.273 1.19-3.383 1.61-3.816.386-.4.84-.5 1.12-.5l.808.016c.26.01.613-.098.96.73.386.89 1.313 3.164 1.43 3.393.115.23.19.5.038.808-.15.307-.225.497-.446.766-.224.27-.47.603-.672.81-.224.228-.457.476-.196.932.26.457 1.157 1.908 2.484 3.09 1.707 1.524 3.145 1.996 3.6 2.22.457.222.724.186.99-.112.27-.298 1.154-1.348 1.462-1.81.307-.46.614-.385 1.034-.23.42.154 2.677 1.263 3.134 1.492.457.228.762.342.873.53.11.185.11 1.073-.275 2.16z" />
+                </svg>
+                WhatsApp
+              </a>
             </span>
           )}
           <span className="flex items-center gap-1.5">

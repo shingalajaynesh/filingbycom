@@ -190,6 +190,7 @@ export default function VirtualSpace() {
 
   const [formData, setFormData] = useState({ name: "", email: "", mobile: "", purpose: "", city: "", message: "" });
   const [submitted,    setSubmitted]    = useState(false);
+  const [submitting,   setSubmitting]   = useState(false);
   const [showAll,      setShowAll]      = useState(false);
   const [openFaq,      setOpenFaq]      = useState(null);
   const [showBackTop,  setShowBackTop]  = useState(false);
@@ -203,7 +204,31 @@ export default function VirtualSpace() {
 
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${API_BASE}/virtual-space/inquiries`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        alert(data.message || "Failed to submit inquiry");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit inquiry. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
   const handleInput  = (e) => {
     const { name, value } = e.target;
     setFormData(p => ({ ...p, [name]: value }));
@@ -482,9 +507,9 @@ export default function VirtualSpace() {
                     <textarea name="message" placeholder="Message (optional)" rows={2}
                       value={formData.message} onChange={handleInput}
                       className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none resize-none" />
-                    <button type="submit" id="form-submit-btn"
-                      className="bg-[#1A56DB] text-white w-full py-3.5 rounded-xl font-bold hover:bg-blue-700 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-lg shadow-blue-500/25">
-                      Get Free Consultation →
+                    <button type="submit" id="form-submit-btn" disabled={submitting}
+                      className="bg-[#1A56DB] text-white w-full py-3.5 rounded-xl font-bold hover:bg-blue-700 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed">
+                      {submitting ? "Submitting..." : "Get Free Consultation →"}
                     </button>
                   </form>
 

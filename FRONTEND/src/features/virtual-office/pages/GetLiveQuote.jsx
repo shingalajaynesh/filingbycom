@@ -17,7 +17,9 @@ export default function GetLiveQuote() {
 
   const [priceEstimate, setPriceEstimate] = useState(0);
 
-  const calculateQuote = () => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const calculateQuote = async () => {
     let base = 999;
     if (formData.purpose === "incorporation") base = 1299;
     if (formData.purpose === "gst") base = 1199;
@@ -28,12 +30,36 @@ export default function GetLiveQuote() {
     
     // Add city specific weights
     const metroCities = ["mumbai", "delhi", "bangalore"];
-    if (metroCities.includes(formData.city.toLowerCase())) {
+    if (formData.city && metroCities.includes(formData.city.toLowerCase())) {
       base += 300;
     }
 
-    setPriceEstimate(base);
-    setStep(3);
+    setSubmitting(true);
+    try {
+      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const res = await fetch(`${API_BASE}/virtual-space/quotes`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          estimatedPrice: base,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setPriceEstimate(base);
+        setStep(3);
+      } else {
+        alert(data.message || "Failed to calculate quote lead");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to submit quote request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -174,11 +200,11 @@ export default function GetLiveQuote() {
                 Back
               </button>
               <button
-                disabled={!formData.name || !formData.email || !formData.mobile}
+                disabled={!formData.name || !formData.email || !formData.mobile || submitting}
                 onClick={calculateQuote}
-                className="flex-1 py-3.5 bg-[#F97316] hover:bg-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-orange-500/25"
+                className="flex-1 py-3.5 bg-[#F97316] hover:bg-orange-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer shadow-lg shadow-orange-500/25 disabled:opacity-50"
               >
-                Calculate Live Estimate
+                {submitting ? "Calculating..." : "Calculate Live Estimate"}
               </button>
             </div>
           </div>
