@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useUser } from "@clerk/clerk-react";
 import { m } from 'framer-motion';
-import PhoneVerificationModal from '../../auth/components/PhoneVerificationModal';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
 import SEO from '../../../shared/components/SEO.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
@@ -11,10 +10,9 @@ import { useSharedData } from '../../../shared/context/SharedDataContext';
 export default function ServicePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user, isLoaded, isSignedIn } = useUser();
+  const { isLoaded, isSignedIn } = useUser();
   
   const [openFaq, setOpenFaq] = useState(0);
-  const [showPhoneModal, setShowPhoneModal] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   
   const { services, loading: cacheLoading, refresh, settings } = useSharedData();
@@ -61,7 +59,7 @@ export default function ServicePage() {
     return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-gray-600">Service not found.</div>;
   }
 
-  const handleGetStarted = async () => {
+  const handleGetStarted = () => {
     if (!isLoaded) return;
 
     if (!isSignedIn) {
@@ -69,17 +67,6 @@ export default function ServicePage() {
       return;
     }
 
-    const hasPhone = (user.phoneNumbers && user.phoneNumbers.length > 0) || !!user.unsafeMetadata?.phoneNumber;
-
-    if (!hasPhone) {
-      setShowPhoneModal(true);
-    } else {
-      setShowCheckoutModal(true);
-    }
-  };
-
-  const handlePhoneVerificationSuccess = () => {
-    setShowPhoneModal(false);
     setShowCheckoutModal(true);
   };
 
@@ -243,11 +230,6 @@ export default function ServicePage() {
         )}
       </section>
  
-      <PhoneVerificationModal
-        isOpen={showPhoneModal}
-        onClose={() => setShowPhoneModal(false)}
-        onSuccess={handlePhoneVerificationSuccess}
-      />
  
       <CheckoutModal
         isOpen={showCheckoutModal}

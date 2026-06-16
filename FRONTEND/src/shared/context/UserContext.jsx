@@ -149,7 +149,7 @@ export function UserProvider({ children }) {
     syncKey
   ]);
 
-  // 2. Expose manual sync for PhoneVerificationModal / Self-Sync
+  // 2. Expose manual sync for Self-Sync
   const syncUserToBackend = useCallback(async (customPayload) => {
     const token = await getToken();
     if (!token) throw new Error("Session expired. Please log in again.");
