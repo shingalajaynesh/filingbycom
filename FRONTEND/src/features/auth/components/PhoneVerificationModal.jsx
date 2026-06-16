@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useUser, useAuth } from "@clerk/clerk-react";
 import { m, AnimatePresence } from "framer-motion";
-import { safeFetch } from "../../../shared/utils/api";
+import { useUserContext } from "../../../shared/context/UserContext";
 
 export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   const { user } = useUser();
   const { getToken } = useAuth();
+  const { syncUserToBackend } = useUserContext();
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [step, setStep] = useState(1); // 1: Enter Phone, 2: Enter Code
@@ -33,27 +34,12 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
       });
 
       // Synchronize with the backend User database in MongoDB
-      const token = await getToken();
-      if (!token) {
-        throw new Error("Session expired. Please log in again.");
-      }
-
-      const syncData = await safeFetch("/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          firstName: user.firstName || "",
-          lastName: user.lastName || "",
-          email: user.primaryEmailAddress?.emailAddress || "",
-          phone: formattedPhone,
-        }),
+      await syncUserToBackend({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.primaryEmailAddress?.emailAddress || "",
+        phone: formattedPhone,
       });
-      if (!syncData.success) {
-        throw new Error(syncData.message || "Failed to sync phone number to database.");
-      }
       
       onSuccess();
     } catch (err) {

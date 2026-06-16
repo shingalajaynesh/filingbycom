@@ -47,11 +47,9 @@ const TermsConditions = lazy(() => import("../features/legal/pages/TermsConditio
 const RefundPolicy    = lazy(() => import("../features/legal/pages/RefundPolicy"));
 const PrivacyPolicy   = lazy(() => import("../features/legal/pages/PrivacyPolicy"));
 
-// ── Shared Hook Utilities ──
-import useSyncUser from "../shared/hooks/useSyncUser";
-
 // ── Shared Data Context ──
 import { SharedDataProvider } from "../shared/context/SharedDataContext";
+import { UserProvider } from "../shared/context/UserContext";
 
 // ── Admin Control Room ──
 import { ProtectedRoute, PublicAuthRoute, ClerkCallback } from "./RouteGuards";
@@ -89,7 +87,8 @@ function AppRoutesContent() {
   const navigate = useNavigate();
 
   // Sync logged-in Clerk profile states with local databases automatically.
-  useSyncUser();
+  // Now handled by UserProvider inside AppRoutes
+
 
   // 2. Consolidate layout logic into a single array check for scalability
   const isVirtualOfficeRoute =
@@ -236,9 +235,11 @@ export default function AppRoutes() {
     <BrowserRouter>
       {/* AdminAuthProvider wraps everything so admin context is available everywhere */}
       <AdminAuthProvider>
-        <SharedDataProvider>
-          <AppRoutesContent />
-        </SharedDataProvider>
+        <UserProvider>
+          <SharedDataProvider>
+            <AppRoutesContent />
+          </SharedDataProvider>
+        </UserProvider>
       </AdminAuthProvider>
     </BrowserRouter>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/clerk-react';
+import { useUserContext } from '../../../shared/context/UserContext';
 
 const defaultUser = {
   firstName: "",
@@ -16,27 +17,15 @@ export default function ProfileCard() {
   const [formData, setFormData] = useState({ ...defaultUser });
   const [saveSuccess, setSaveSuccess] = useState(false);
 
-  // Fetch user profile from backend
+  const { profile, profileLoading } = useUserContext();
+
+  // Initialize form data when profile is loaded
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = await getToken();
-        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-        const res = await fetch(`${API_BASE}/profile`, {
-          headers: { Authorization: `Bearer ${token}` },
-          credentials: "include",
-        });
-        const data = await res.json();
-        if (data.success) {
-          setUser(data.profile);
-          setFormData(data.profile);
-        }
-      } catch (err) {
-        console.error("Failed to fetch profile:", err);
-      }
-    };
-    fetchProfile();
-  }, []);
+    if (profile) {
+      setUser(profile);
+      setFormData(profile);
+    }
+  }, [profile]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

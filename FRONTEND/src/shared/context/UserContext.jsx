@@ -1,19 +1,20 @@
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
+import { safeFetch } from "../utils/api";
 
-// 1. Static values outside the hook
-const BACKEND_URL = (
-  import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000"
-).replace(/\/$/, "");
+const UserContext = createContext(null);
 
-export default function useSyncUser() {
-  const location = useLocation();
-  const navigate = useNavigate();
+export function UserProvider({ children }) {
   const { isLoaded, isSignedIn, getToken, signOut } = useAuth();
   const { user, isLoaded: isUserLoaded } = useUser();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [profile, setProfile] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+
   const syncedUserIdRef = useRef(null);
   const isSyncingRef = useRef(false);
 
@@ -21,11 +22,10 @@ export default function useSyncUser() {
   const syncKey = user ? `usr_sync_${user.id}` : null;
   const isSynced = syncKey ? sessionStorage.getItem(syncKey) === "true" : false;
 
+  // 1. Sync User logic moved from useSyncUser.js
   useEffect(() => {
-    // 2. Early returns
     if (!isLoaded || !isUserLoaded || !isSignedIn || !user) return;
 
-    // If already synced, handle redirect on auth pages and skip API calls
     if (syncedUserIdRef.current === user.id || isSynced) {
       syncedUserIdRef.current = user.id;
       if (isAuthPage) {
@@ -54,13 +54,13 @@ export default function useSyncUser() {
           phone: user.unsafeMetadata?.phoneNumber || "",
         };
 
-        // 3. Axios automatically handles JSON.stringify and throws on non-2xx status codes
-        await axios.post(`${BACKEND_URL}/register`, payload, {
+        const res = await safeFetch("/register", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          signal: abortController.signal,
+          body: JSON.stringify(payload)
         });
 
         if (abortController.signal.aborted) {
@@ -84,17 +84,14 @@ export default function useSyncUser() {
         } else if (isAuthPage) {
           navigate("/dashboard", { replace: true });
         }
-
       } catch (err) {
         isSyncingRef.current = false;
         
-        // 4. Use Axios's built-in cancellation checker
-        if (axios.isCancel(err)) return;
+        if (err.name === 'AbortError') return;
 
         console.error("Failed in post-authentication flow:", err);
 
-        // 5. Safely extract error messages from the Axios error object
-        const errorMessage = err.response?.data?.message || err.message || "Something went wrong.";
+        const errorMessage = err.message || "Something went wrong.";
         const justRegistered = sessionStorage.getItem("justRegistered") === "true";
 
         if (justRegistered) {
@@ -113,7 +110,6 @@ export default function useSyncUser() {
     return () => {
       abortController.abort();
     };
-
   }, [
     isLoaded,
     isUserLoaded,
@@ -124,5 +120,75 @@ export default function useSyncUser() {
     signOut,
     navigate,
     isAuthPage,
+    syncKey
   ]);
+
+  // 2. Fetch Profile logic moved from ProfileCard.jsx
+  const fetchProfile = useCallback(async () => {
+    if (!isSignedIn) return;
+    setProfileLoading(true);
+    try {
+      const token = await getToken();
+      if (!token) return;
+      
+      const resData = await safeFetch("/profile", {
+        headers: { Authorization: `Bearer ${token}` },
+        credentials: "include",
+      });
+      if (resData.success) {
+        setProfile(resData.profile);
+      }
+    } catch (err) {
+      console.error("Failed to fetch profile:", err);
+    } finally {
+      setProfileLoading(false);
+    }
+  }, [getToken, isSignedIn]);
+
+  // Automatically fetch profile when user is signed in
+  useEffect(() => {
+    if (isSignedIn) {
+      fetchProfile();
+    }
+  }, [isSignedIn, fetchProfile]);
+
+  // 3. Expose manual sync for PhoneVerificationModal
+  const syncUserToBackend = useCallback(async (customPayload) => {
+    const token = await getToken();
+    if (!token) throw new Error("Session expired. Please log in again.");
+
+    const payload = customPayload || {
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.primaryEmailAddress?.emailAddress || "",
+      phone: user?.unsafeMetadata?.phoneNumber || "",
+    };
+
+    const resData = await safeFetch("/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!resData.success) {
+      throw new Error(resData.message || "Failed to sync user data to database.");
+    }
+    return resData;
+  }, [getToken, user]);
+
+  // Provide context
+  return (
+    <UserContext.Provider value={{ profile, profileLoading, fetchProfile, syncUserToBackend }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+export function useUserContext() {
+  const context = useContext(UserContext);
+  if (!context) throw new Error("useUserContext must be used inside UserProvider");
+  return context;
 }
