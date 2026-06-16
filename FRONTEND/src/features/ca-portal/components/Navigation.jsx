@@ -194,7 +194,7 @@ export default function Navigation() {
                 >
                   <button
                     type="button"
-                    className={`flex items-center gap-1 px-2 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[11.5px] font-bold ${open === category.id
+                    className={`flex items-center gap-1 px-2 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[14px] font-bold ${open === category.id
                       ? 'text-[#1A56DB] bg-blue-50'
                       : 'text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50'
                       }`}
@@ -218,7 +218,7 @@ export default function Navigation() {
                         <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 3)}, 1fr)` }}>
                           {category.sections.map((section) => (
                             <div key={section.heading}>
-                              <p className="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
+                              <p className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
                                 {section.heading}
                               </p>
                               <ul className="space-y-0.5">
@@ -236,7 +236,7 @@ export default function Navigation() {
                                         setMobileOpen(false);
                                         setMobileOpenCategory(null);
                                       }}
-                                      className="w-full text-left text-[12px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer z-[1000]"
+                                      className="w-full text-left text-[14px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer z-[1000]"
                                     >
                                       <span className="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0 group-hover:bg-[#1A56DB] transition-colors" />
                                       {item.label}
@@ -264,7 +264,7 @@ export default function Navigation() {
                   >
                     <button
                       type="button"
-                      className={`flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[11.5px] font-bold ${isMoreOpen
+                      className={`flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[14px] font-bold ${isMoreOpen
                         ? 'text-[#1A56DB] bg-blue-50'
                         : 'text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50'
                         }`}
@@ -291,7 +291,7 @@ export default function Navigation() {
                               >
                                 <button
                                   type="button"
-                                  className={`w-full text-left text-[12px] font-bold text-gray-800 hover:text-[#1A56DB] hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${open === category.id ? 'text-[#1A56DB] bg-blue-50' : ''}`}
+                                  className={`w-full text-left text-[14px] font-bold text-gray-800 hover:text-[#1A56DB] hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${open === category.id ? 'text-[#1A56DB] bg-blue-50' : ''}`}
                                 >
                                   {category.label}
                                   <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -308,7 +308,7 @@ export default function Navigation() {
                                       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 2)}, 1fr)` }}>
                                         {category.sections.map((section) => (
                                           <div key={section.heading}>
-                                            <p className="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
+                                            <p className="text-[12px] font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
                                               {section.heading}
                                             </p>
                                             <ul className="space-y-0.5 list-none m-0 p-0">
@@ -324,7 +324,7 @@ export default function Navigation() {
                                                       }
                                                       setOpen(null);
                                                     }}
-                                                    className="w-full text-left text-[12px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer"
+                                                    className="w-full text-left text-[14px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer"
                                                   >
                                                     <span className="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0 group-hover:bg-[#1A56DB] transition-colors" />
                                                     {item.label}
@@ -354,7 +354,7 @@ export default function Navigation() {
           <div className="flex-shrink-0 flex items-center gap-2">
             <button
               onClick={() => navigate('/virtual-space')}
-              className="flex-shrink-0 text-[12px] font-bold text-[#F97316] bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-full px-3 py-1.5 whitespace-nowrap transition-all hover:shadow-sm active:scale-95 cursor-pointer"
+              className="flex-shrink-0 text-[14px] font-bold text-[#F97316] bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-full px-3 py-1.5 whitespace-nowrap transition-all hover:shadow-sm active:scale-95 cursor-pointer"
             >
               Virtual Office
             </button>
@@ -363,7 +363,7 @@ export default function Navigation() {
                 {/* New Order */}
                 <button
                   onClick={() => navigate('/dashboard', { state: { tab: 'new-order' } })}
-                  className="flex items-center gap-1.5 text-[11px] font-semibold text-white bg-[#F97316] rounded-full px-3.5 py-1.5 hover:bg-orange-500 transition-all whitespace-nowrap hover:shadow-lg hover:shadow-orange-200 active:scale-95"
+                  className="flex items-center gap-1.5 text-[14px] font-semibold text-white bg-[#F97316] rounded-full px-3.5 py-1.5 hover:bg-orange-500 transition-all whitespace-nowrap hover:shadow-lg hover:shadow-orange-200 active:scale-95"
                 >
                   + New Order
                 </button>
@@ -451,13 +451,13 @@ export default function Navigation() {
               <>
                 <button
                   onClick={() => navigate('/login')}
-                  className="text-[11px] font-bold text-gray-900 border border-gray-300 rounded-full px-3.5 py-1.5 hover:border-[#1A56DB] hover:text-[#1A56DB] transition-all"
+                  className="text-[14px] font-bold text-gray-900 border border-gray-300 rounded-full px-3.5 py-1.5 hover:border-[#1A56DB] hover:text-[#1A56DB] transition-all"
                 >
                   Login
                 </button>
                 <button
                   onClick={() => navigate('/register')}
-                  className="text-[11px] font-bold text-white bg-[#1A56DB] rounded-full px-3.5 py-1.5 hover:bg-blue-700 transition-all whitespace-nowrap hover:shadow-lg hover:shadow-blue-200"
+                  className="text-[14px] font-bold text-white bg-[#1A56DB] rounded-full px-3.5 py-1.5 hover:bg-blue-700 transition-all whitespace-nowrap hover:shadow-lg hover:shadow-blue-200"
                 >
                   Get Started
                 </button>
