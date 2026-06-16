@@ -2,7 +2,13 @@ import { createContext, useContext, useState, useEffect, useCallback, useRef } f
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { safeFetch } from "../utils/api";
+import axios from "axios";
+
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 
+  import.meta.env.VITE_BACKEND_URL || 
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 const UserContext = createContext(null);
 
@@ -22,7 +28,7 @@ export function UserProvider({ children }) {
   const syncKey = user ? `usr_sync_${user.id}` : null;
   const isSynced = syncKey ? sessionStorage.getItem(syncKey) === "true" : false;
 
-  // 1. Sync User logic moved from useSyncUser.js
+  // 1. Sync User logic
   useEffect(() => {
     if (!isLoaded || !isUserLoaded || !isSignedIn || !user) return;
 
@@ -54,14 +60,16 @@ export function UserProvider({ children }) {
           phone: user.unsafeMetadata?.phoneNumber || "",
         };
 
-        const res = await safeFetch("/register", {
-          method: "POST",
+        const res = await axios.post(`${API_BASE}/register`, payload, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(payload)
+          withCredentials: true,
+          signal: abortController.signal
         });
+
+        const data = res.data;
 
         if (abortController.signal.aborted) {
           isSyncingRef.current = false;
@@ -87,11 +95,11 @@ export function UserProvider({ children }) {
       } catch (err) {
         isSyncingRef.current = false;
         
-        if (err.name === 'AbortError') return;
+        if (axios.isCancel(err) || err.name === 'AbortError') return;
 
         console.error("Failed in post-authentication flow:", err);
 
-        const errorMessage = err.message || "Something went wrong.";
+        const errorMessage = err.response?.data?.message || err.message || "Something went wrong.";
         const justRegistered = sessionStorage.getItem("justRegistered") === "true";
 
         if (justRegistered) {
@@ -123,7 +131,7 @@ export function UserProvider({ children }) {
     syncKey
   ]);
 
-  // 2. Fetch Profile logic moved from ProfileCard.jsx
+  // 2. Fetch Profile logic
   const fetchProfile = useCallback(async () => {
     if (!isSignedIn) return;
     setProfileLoading(true);
@@ -131,12 +139,13 @@ export function UserProvider({ children }) {
       const token = await getToken();
       if (!token) return;
       
-      const resData = await safeFetch("/profile", {
+      const res = await axios.get(`${API_BASE}/profile`, {
         headers: { Authorization: `Bearer ${token}` },
-        credentials: "include",
+        withCredentials: true,
       });
+      const resData = res.data;
       if (resData.success) {
-        setProfile(resData.profile);
+        setProfile(resData.user);
       }
     } catch (err) {
       console.error("Failed to fetch profile:", err);
@@ -164,19 +173,24 @@ export function UserProvider({ children }) {
       phone: user?.unsafeMetadata?.phoneNumber || "",
     };
 
-    const resData = await safeFetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!resData.success) {
-      throw new Error(resData.message || "Failed to sync user data to database.");
+    try {
+      const res = await axios.post(`${API_BASE}/register`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true
+      });
+      
+      const resData = res.data;
+      if (!resData.success) {
+        throw new Error(resData.message || "Failed to sync user data to database.");
+      }
+      return resData;
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || err.message || "Failed to sync user data";
+      throw new Error(errorMessage);
     }
-    return resData;
   }, [getToken, user]);
 
   // Provide context

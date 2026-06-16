@@ -50,6 +50,8 @@ const PrivacyPolicy   = lazy(() => import("../features/legal/pages/PrivacyPolicy
 // ── Shared Data Context ──
 import { SharedDataProvider } from "../shared/context/SharedDataContext";
 import { UserProvider } from "../shared/context/UserContext";
+import { OrderProvider } from "../shared/context/OrderContext";
+import { AdminProvider } from "../shared/context/AdminContext";
 
 // ── Admin Control Room ──
 import { ProtectedRoute, PublicAuthRoute, ClerkCallback } from "./RouteGuards";
@@ -235,11 +237,15 @@ export default function AppRoutes() {
     <BrowserRouter>
       {/* AdminAuthProvider wraps everything so admin context is available everywhere */}
       <AdminAuthProvider>
-        <UserProvider>
-          <SharedDataProvider>
-            <AppRoutesContent />
-          </SharedDataProvider>
-        </UserProvider>
+        <AdminProvider>
+          <UserProvider>
+            <OrderProvider>
+              <SharedDataProvider>
+                <AppRoutesContent />
+              </SharedDataProvider>
+            </OrderProvider>
+          </UserProvider>
+        </AdminProvider>
       </AdminAuthProvider>
     </BrowserRouter>
   );

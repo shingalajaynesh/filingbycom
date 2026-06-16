@@ -5,10 +5,15 @@
  */
 
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
-import { safeFetch } from "../../shared/utils/api";
+import axios from "axios";
+
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 
+  import.meta.env.VITE_BACKEND_URL || 
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 const AdminAuthContext = createContext(null);
-
 
 export function AdminAuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,9 +21,10 @@ export function AdminAuthProvider({ children }) {
 
   const checkAuth = useCallback(async () => {
     try {
-      const data = await safeFetch("/admin/check-auth", {
-        credentials: "include",
+      const res = await axios.get(`${API_BASE}/admin/check-auth`, {
+        withCredentials: true,
       });
+      const data = res.data;
       setIsAuthenticated(data.success && data.authenticated);
     } catch {
       setIsAuthenticated(false);
@@ -37,9 +43,8 @@ export function AdminAuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     try {
-      await safeFetch("/admin/logout", {
-        method: "POST",
-        credentials: "include",
+      await axios.post(`${API_BASE}/admin/logout`, {}, {
+        withCredentials: true,
       });
     } catch (e) {
       console.error("Logout failed", e);

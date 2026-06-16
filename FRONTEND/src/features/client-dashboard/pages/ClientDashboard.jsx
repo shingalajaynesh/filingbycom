@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from "@clerk/clerk-react";
-import { safeFetch } from "../../../shared/utils/api";
 import DashboardOverview from '../components/DashboardOverview';
 import OrderList from '../components/OrderList';
 import SupportWidget from '../components/SupportWidget';
@@ -9,6 +8,7 @@ import ProfileCard from '../components/ProfileCard';
 import OrderTimeline from '../components/OrderTimeline';
 import NotificationPanel from '../components/NotificationPanel';
 import NewOrderSection from '../components/NewOrderSection';
+import { useOrderContext } from '../../../shared/context/OrderContext';
 
 const DocumentSection = () => (
   <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center max-w-lg mx-auto">
@@ -62,8 +62,7 @@ export default function ClientDashboard() {
   );
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [notifOpen, setNotifOpen] = useState(false);
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { orders, ordersLoading: loading } = useOrderContext();
 
   const handleServiceSelect = (slug) => {
     navigate(`/services/${slug}`);
@@ -74,49 +73,6 @@ export default function ClientDashboard() {
       setActiveTab(location.state.tab);
     }
   }, [location.state]);
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const token = await getToken();
-        const data = await safeFetch("/orders", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          credentials: "include"
-        });
-        if (data.success) {
-          // Map backend orders to frontend format
-          const mappedOrders = data.orders.map(o => ({
-            id: o._id,
-            service: o.service?.name || "Unknown Service",
-            category: o.service?.tag || "Service",
-            status: o.orderStatus === "Pending" ? "pending-docs" : o.orderStatus === "Complete" ? "completed" : "in-progress",
-            amount: o.amount,
-            date: new Date(o.createdAt).toISOString().split('T')[0],
-            assignedTo: "Processing Team",
-            progress: o.orderStatus === "Pending" ? 20 : o.orderStatus === "Complete" ? 100 : 60,
-            paymentType: o.paymentType,
-            paymentStatus: o.paymentStatus,
-            invoiceNumber: o.invoiceNumber,
-            invoiceDate: o.invoiceDate,
-            steps: [
-              { label: "Order Placed", done: true, date: new Date(o.createdAt).toLocaleDateString() },
-              { label: "Documents Received", done: o.orderStatus !== "Pending", date: null },
-              { label: "Processing", done: o.orderStatus !== "Pending", date: null },
-              { label: "Certificate Delivered", done: o.orderStatus === "Complete", date: null },
-            ]
-          }));
-          setOrders(mappedOrders);
-        }
-      } catch (err) {
-        console.error("Failed to fetch orders:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchOrders();
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 relative">

@@ -1,4 +1,10 @@
-import { safeFetch } from "../../../shared/utils/api";
+import axios from "axios";
+
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 
+  import.meta.env.VITE_BACKEND_URL || 
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 class VirtualOfficeService {
   // ─── Public Marketing Endpoints ──────────────────────────────────────────
@@ -8,13 +14,14 @@ class VirtualOfficeService {
    * @param {Object} payload - { name, email, mobile, purpose, city, message }
    */
   async createInquiry(payload) {
-    return safeFetch("/virtual-space/inquiries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/inquiries`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to create inquiry");
+    }
   }
 
   /**
@@ -22,13 +29,14 @@ class VirtualOfficeService {
    * @param {Object} payload - { spaceName, ownerName, email, mobile, city, spaceType, deskCount }
    */
   async createPartnerApplication(payload) {
-    return safeFetch("/virtual-space/partner-onboarding", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/partner-onboarding`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to submit partner application");
+    }
   }
 
   /**
@@ -36,13 +44,14 @@ class VirtualOfficeService {
    * @param {Object} payload - { city, purpose, businessType, name, email, mobile, estimatedPrice }
    */
   async createQuoteLead(payload) {
-    return safeFetch("/virtual-space/quotes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/quotes`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to submit quote lead");
+    }
   }
 
   // ─── Client Endpoints ──────────────────────────────────────────────────────
@@ -52,12 +61,15 @@ class VirtualOfficeService {
    * @param {string} token - Clerk authorization token
    */
   async getUserOrders(token) {
-    return safeFetch("/virtual-space/orders", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include",
-    });
+    try {
+      const res = await axios.get(`${API_BASE}/virtual-space/orders`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch user orders");
+    }
   }
 
   /**
@@ -66,12 +78,15 @@ class VirtualOfficeService {
    * @param {string} id - Booking order ID
    */
   async getUserOrderById(token, id) {
-    return safeFetch(`/virtual-space/orders/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include",
-    });
+    try {
+      const res = await axios.get(`${API_BASE}/virtual-space/orders/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch user order");
+    }
   }
 
   /**
@@ -80,15 +95,18 @@ class VirtualOfficeService {
    * @param {Object} payload - { citySlug, addressName, selectedPlan, price }
    */
   async createVirtualOrder(token, payload) {
-    return safeFetch("/virtual-space/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/orders`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to create virtual order");
+    }
   }
 
   /**
@@ -98,15 +116,18 @@ class VirtualOfficeService {
    * @param {Object} documents - { panCard, aadhaarCard, photo, companyName, incorporationCert }
    */
   async uploadUserDocuments(token, id, documents) {
-    return safeFetch(`/virtual-space/orders/${id}/documents`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include",
-      body: JSON.stringify(documents),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/orders/${id}/documents`, documents, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to upload documents");
+    }
   }
 
   // ─── Admin Endpoints ───────────────────────────────────────────────────────
@@ -115,9 +136,14 @@ class VirtualOfficeService {
    * Fetches all Virtual Office orders for administrative view.
    */
   async adminGetOrders() {
-    return safeFetch("/admin/virtual-space/orders", {
-      credentials: "include",
-    });
+    try {
+      const res = await axios.get(`${API_BASE}/admin/virtual-space/orders`, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch admin orders");
+    }
   }
 
   /**
@@ -126,14 +152,15 @@ class VirtualOfficeService {
    * @param {Object} payload - { complianceStatus, paymentStatus, nocFile, utilityBillFile, rentAgreementFile, consentLetterFile }
    */
   async adminUpdateOrder(id, payload) {
-    return safeFetch(`/admin/virtual-space/orders/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(payload),
-    });
+    try {
+      const res = await axios.put(`${API_BASE}/admin/virtual-space/orders/${id}`, payload, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to update admin order");
+    }
   }
 
   /**
@@ -142,14 +169,15 @@ class VirtualOfficeService {
    * @param {Object} mailItem - { sender, category, actionTaken, attachmentUrl, notes }
    */
   async adminAddMailLog(id, mailItem) {
-    return safeFetch(`/admin/virtual-space/orders/${id}/mail`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(mailItem),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/orders/${id}/mail`, mailItem, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to add mail log");
+    }
   }
 
   /**
@@ -158,14 +186,15 @@ class VirtualOfficeService {
    * @param {Object} auditDetails - { dateScheduled, status, inspectorName, notes }
    */
   async adminAddVerificationAudit(id, auditDetails) {
-    return safeFetch(`/admin/virtual-space/orders/${id}/verification`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(auditDetails),
-    });
+    try {
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/orders/${id}/verification`, auditDetails, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to add verification audit");
+    }
   }
 
   /**
@@ -174,14 +203,16 @@ class VirtualOfficeService {
    * @param {string} reason - The delete reason note
    */
   async adminDeleteOrder(id, reason) {
-    return safeFetch(`/admin/virtual-space/orders/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ reason }),
-    });
+    try {
+      const res = await axios.delete(`${API_BASE}/admin/virtual-space/orders/${id}`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+        data: { reason },
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to delete admin order");
+    }
   }
 
   /**
@@ -191,15 +222,19 @@ class VirtualOfficeService {
    * @param {string} reason - The cancel reason note
    */
   async cancelUserOrder(token, id, reason) {
-    return safeFetch(`/virtual-space/orders/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      credentials: "include",
-      body: JSON.stringify({ reason }),
-    });
+    try {
+      const res = await axios.delete(`${API_BASE}/virtual-space/orders/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+        data: { reason },
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to cancel user order");
+    }
   }
 }
 

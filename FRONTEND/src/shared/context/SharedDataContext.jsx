@@ -1,5 +1,11 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { safeFetch } from "../utils/api";
+import axios from "axios";
+
+const API_BASE = (
+  import.meta.env.VITE_API_URL || 
+  import.meta.env.VITE_BACKEND_URL || 
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 const SharedDataContext = createContext(null);
 
@@ -11,40 +17,53 @@ export function SharedDataProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const fetchData = useCallback(async (silent = false) => {
+  const fetchSharedData = useCallback(async (silent = false) => {
     if (!silent) setLoading(true);
     try {
-      const [resServices, resMain, resSettings, resLocations] = await Promise.all([
-        safeFetch('/services'),
-        safeFetch('/main-services'),
-        safeFetch('/settings').catch(() => ({ success: true, settings: {} })),
-        safeFetch('/virtual-space/locations').catch(() => ({ success: true, locations: [] }))
+      const [servicesRes, mainServicesRes, settingsRes, locationsRes] = await Promise.all([
+        axios.get(`${API_BASE}/services`).catch(() => ({ data: { services: [] } })),
+        axios.get(`${API_BASE}/main-services`).catch(() => ({ data: { mainServices: [] } })),
+        axios.get(`${API_BASE}/settings`).catch(() => ({ data: { success: true, settings: {} } })),
+        axios.get(`${API_BASE}/virtual-space/locations`).catch(() => ({ data: { success: true, locations: [] } }))
       ]);
 
-      if (resServices.success && resMain.success) {
-        setServices(resServices.services);
-        setMainServices(resMain.mainServices);
-        setSettings(resSettings.settings || {});
-        setLocations(resLocations.locations || []);
+      const servicesData = servicesRes.data;
+      const mainServicesData = mainServicesRes.data;
+      const settingsData = settingsRes.data;
+      const locationsData = locationsRes.data;
+
+      if (servicesData.success !== false && mainServicesData.success !== false) {
+        setServices(servicesData.services || []);
+        setMainServices(mainServicesData.mainServices || []);
+        setSettings(settingsData.settings || {});
+        setLocations(locationsData.locations || []);
         setIsInitialized(true);
       }
     } catch (err) {
-      console.error("Failed to load shared app data:", err);
+      console.error("Failed to fetch shared data:", err);
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    fetchSharedData();
+  }, [fetchSharedData]);
 
   const refresh = useCallback(() => {
-    return fetchData(true);
-  }, [fetchData]);
+    return fetchSharedData(true);
+  }, [fetchSharedData]);
 
   return (
-    <SharedDataContext.Provider value={{ services, mainServices, settings, locations, loading, isInitialized, refresh }}>
+    <SharedDataContext.Provider value={{ 
+      services, 
+      mainServices, 
+      settings,
+      locations, 
+      loading, 
+      isInitialized,
+      refresh 
+    }}>
       {children}
     </SharedDataContext.Provider>
   );
@@ -52,6 +71,6 @@ export function SharedDataProvider({ children }) {
 
 export function useSharedData() {
   const context = useContext(SharedDataContext);
-  if (!context) throw new Error("useSharedData must be used inside SharedDataProvider");
+  if (!context) throw new Error("useSharedData must be used within SharedDataProvider");
   return context;
 }

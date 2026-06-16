@@ -2,11 +2,12 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 import { m, AnimatePresence } from "framer-motion";
-import { safeFetch } from "../../../shared/utils/api";
+import { useOrderContext } from "../../../shared/context/OrderContext";
 
 export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const { getToken } = useAuth();
+  const { createRazorpayOrder, verifyPayment, createCashOrder } = useOrderContext();
 
   // We handle early return using AnimatePresence now
   // if (!isOpen || !service) return null;
@@ -38,19 +39,11 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         await new Promise((resolve) => setTimeout(resolve, 1500));
         
         try {
-          const verifyData = await safeFetch("/orders/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            credentials: "include",
-            body: JSON.stringify({
-              razorpay_order_id: "order_mock_" + Date.now(),
-              razorpay_payment_id: "pay_mock_" + Date.now(),
-              razorpay_signature: "mock_signature",
-              serviceId: service._id,
-            }),
+          const verifyData = await verifyPayment({
+            razorpay_order_id: "order_mock_" + Date.now(),
+            razorpay_payment_id: "pay_mock_" + Date.now(),
+            razorpay_signature: "mock_signature",
+            serviceId: service._id,
           });
           toast.dismiss(loadingToast);
           if (verifyData.success) {
@@ -74,41 +67,23 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
       }
 
       // Create Razorpay Order via Backend
-      const orderData = await safeFetch("/orders/razorpay", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ serviceId: service._id }),
-      });
-      if (!orderData.success) throw new Error(orderData.message);
-
+      const orderData = await createRazorpayOrder(service._id);
+      
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || "test_key", // Will fallback if backend handles validation mostly
-        amount: orderData.order.amount,
-        currency: orderData.order.currency,
+        amount: orderData.amount,
+        currency: orderData.currency,
         name: "FilingBy",
         description: service.name,
-        order_id: orderData.order.id,
+        order_id: orderData.id,
         handler: async function (response) {
           // Verify payment
           try {
-            const activeToken = await getToken();
-            const verifyData = await safeFetch("/orders/verify", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${activeToken}`,
-              },
-              credentials: "include",
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                serviceId: service._id,
-              }),
+            const verifyData = await verifyPayment({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              serviceId: service._id,
             });
             if (verifyData.success) {
               toast.success("Payment successful! Order placed.");
@@ -145,15 +120,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         return;
       }
 
-      const data = await safeFetch("/orders/cash", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ serviceId: service._id }),
-      });
+      const data = await createCashOrder(service._id);
       if (data.success) {
         toast.success("Order placed successfully! You can pay by cash later.");
         onSuccess();

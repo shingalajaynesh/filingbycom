@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth, useUser } from "@clerk/clerk-react";
-import { safeFetch } from "../../../shared/utils/api";
+import { useOrderContext } from '../../../shared/context/OrderContext';
 
 export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
   const { getToken } = useAuth();
   const { user: clerkUser } = useUser();
+  const { cancelOrder } = useOrderContext();
   const [cancelling, setCancelling] = useState(false);
   if (!order) return null;
 
@@ -306,15 +307,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
 
     try {
       setCancelling(true);
-      const token = await getToken();
-      const data = await safeFetch(`/orders/${order.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ reason })
-      });
+      const data = await cancelOrder(order.id, reason);
       if (data.success) {
         alert("Order cancelled successfully.");
         if (onCancelSuccess) {
