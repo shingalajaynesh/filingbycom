@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
-import VirtualOfficeService from "../services/VirtualOfficeService";
+import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
 
 export default function VirtualDashboard() {
-  const { getToken } = useAuth();
   const { user: clerkUser } = useUser();
   const navigate = useNavigate();
+  const { fetchVirtualOrders, uploadVirtualDocuments, cancelVirtualOrder } = useOrderContext();
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,8 +30,7 @@ export default function VirtualDashboard() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const token = await getToken();
-      const data = await VirtualOfficeService.getUserOrders(token);
+      const data = await fetchVirtualOrders();
       if (data.success) {
         setOrders(data.orders);
         if (data.orders.length > 0 && !selectedOrderId) {
@@ -73,8 +72,7 @@ export default function VirtualDashboard() {
     if (!selectedOrder) return;
     try {
       setUploading(true);
-      const token = await getToken();
-      const data = await VirtualOfficeService.uploadUserDocuments(token, selectedOrder._id, kycForm);
+      const data = await uploadVirtualDocuments(selectedOrder._id, kycForm);
       if (data.success) {
         setNotification({ type: "success", message: "KYC Documents updated successfully!" });
         // Refresh orders to fetch latest status
@@ -398,8 +396,7 @@ export default function VirtualDashboard() {
 
     try {
       setLoading(true);
-      const token = await getToken();
-      const data = await VirtualOfficeService.cancelUserOrder(token, selectedOrder._id, reason);
+      const data = await cancelVirtualOrder(selectedOrder._id, reason);
       if (data.success) {
         setNotification({ type: "success", message: "Booking cancelled successfully!" });
         // Fetch bookings again

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAdminServices } from "../hooks/useAdminServices";
-import { safeFetch } from "../../shared/utils/api";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 const ICONS = [
   "building",
@@ -18,10 +17,22 @@ const ICONS = [
 
 export default function AdminServices({ portal, type = 'nav' }) {
   const { 
-    services, mainServices, loading, error, refetch, 
+    services, mainServices, loading, fetchServicesData,
     addService, updateService, deleteService,
-    addMainService, updateMainService, deleteMainService 
-  } = useAdminServices(portal);
+    addMainService, updateMainService, deleteMainService,
+    fetchAdminSettings, updateSettings
+  } = useAdminContext();
+
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchServicesData(portal).catch(err => setError(err.message));
+  }, [fetchServicesData, portal]);
+
+  const refetch = () => {
+    setError(null);
+    fetchServicesData(portal).catch(err => setError(err.message));
+  };
 
   // Navbar limit settings state
   const [navbarLimit, setNavbarLimit] = useState(5);
@@ -35,7 +46,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
   useEffect(() => {
     const fetchLimit = async () => {
       try {
-        const data = await safeFetch("/settings");
+        const data = await fetchAdminSettings();
         if (data.success && data.settings?.navbar_category_limit !== undefined) {
           setNavbarLimit(data.settings.navbar_category_limit);
         }
@@ -46,18 +57,17 @@ export default function AdminServices({ portal, type = 'nav' }) {
     if (type === 'nav') {
       fetchLimit();
     }
-  }, [type]);
+  }, [type, fetchAdminSettings]);
 
   const handleSaveLimit = async () => {
     setSavingLimit(true);
     try {
-      await safeFetch("/admin/settings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ key: "navbar_category_limit", value: Number(navbarLimit) }),
-      });
-      alert("Navbar category limit updated successfully!");
+      const data = await updateSettings({ key: "navbar_category_limit", value: Number(navbarLimit) });
+      if (data.success) {
+        alert("Navbar category limit updated successfully!");
+      } else {
+        alert(data.message || "Failed to update navbar limit");
+      }
     } catch (err) {
       alert(err.message || "Failed to update navbar limit");
     } finally {

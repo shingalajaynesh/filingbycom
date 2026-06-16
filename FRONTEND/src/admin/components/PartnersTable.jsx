@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { safeFetch } from "../../shared/utils/api";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function PartnersTable() {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { fetchPartners, updatePartnerStatus } = useAdminContext();
+
   const fetchApplications = async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await safeFetch("/admin/virtual-space/partner-onboarding", {
-        credentials: "include",
-      });
+      const data = await fetchPartners();
       if (data.success) {
         setApplications(data.applications);
       } else {
-        throw new Error(data.message);
+        throw new Error(data.message || "Failed to load partner applications");
       }
     } catch (err) {
       setError(err.message || "Failed to load partner applications");
@@ -33,15 +33,10 @@ export default function PartnersTable() {
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
     try {
-      const data = await safeFetch(`/admin/virtual-space/partner-onboarding/${id}/status`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const data = await updatePartnerStatus(id, newStatus);
       if (data.success) {
-        setApplications((prev) => prev.map((item) => (item._id === id ? data.application : item)));
         toast.success(`Application updated to ${newStatus}`);
+        fetchApplications();
       } else {
         throw new Error(data.message);
       }

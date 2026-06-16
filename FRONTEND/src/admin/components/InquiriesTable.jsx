@@ -1,47 +1,40 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { safeFetch } from "../../shared/utils/api";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const fetchInquiries = async () => {
+  const { fetchInquiries, updateInquiryStatus } = useAdminContext();
+
+  const loadInquiries = async () => {
     setLoading(true);
-    setError(null);
     try {
-      const data = await safeFetch("/admin/virtual-space/inquiries", {
-        credentials: "include",
-      });
+      const data = await fetchInquiries();
       if (data.success) {
         setInquiries(data.inquiries);
       } else {
-        throw new Error(data.message);
+        throw new Error(data.message || "Failed to load inquiries");
       }
     } catch (err) {
-      setError(err.message || "Failed to load inquiries");
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchInquiries();
+    loadInquiries();
   }, []);
 
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
     try {
-      const data = await safeFetch(`/admin/virtual-space/inquiries/${id}/status`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const data = await updateInquiryStatus(id, newStatus);
       if (data.success) {
-        setInquiries((prev) => prev.map((item) => (item._id === id ? data.inquiry : item)));
         toast.success(`Inquiry updated to ${newStatus}`);
+        loadInquiries();
       } else {
         throw new Error(data.message);
       }

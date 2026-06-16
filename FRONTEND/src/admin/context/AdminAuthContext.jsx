@@ -37,8 +37,17 @@ export function AdminAuthProvider({ children }) {
     checkAuth();
   }, [checkAuth]);
 
-  const login = useCallback(() => {
-    setIsAuthenticated(true);
+  const login = useCallback(async (username, password) => {
+    const res = await axios.post(`${API_BASE}/admin/login`, { username, password }, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+    const data = res.data;
+    if (data.success) {
+      setIsAuthenticated(true);
+      return { success: true };
+    }
+    return { success: false, message: data.message || "Invalid credentials" };
   }, []);
 
   const logout = useCallback(async () => {

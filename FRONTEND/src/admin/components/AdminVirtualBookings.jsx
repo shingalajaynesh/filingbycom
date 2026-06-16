@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import VirtualOfficeService from "../../features/virtual-office/services/VirtualOfficeService";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function AdminVirtualBookings() {
+  const { adminGetVirtualOrders, adminUpdateVirtualOrder, adminDeleteVirtualOrder, adminAddMailLog, adminAddVerificationAudit } = useAdminContext();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,7 +43,7 @@ export default function AdminVirtualBookings() {
   const fetchBookings = async () => {
     try {
       setLoading(true);
-      const data = await VirtualOfficeService.adminGetOrders();
+      const data = await adminGetVirtualOrders();
       if (data.success) {
         setBookings(data.orders);
         if (data.orders.length > 0 && !selectedBookingId) {
@@ -85,7 +86,7 @@ export default function AdminVirtualBookings() {
     if (!selectedBooking) return;
     try {
       setUpdating(true);
-      const data = await VirtualOfficeService.adminUpdateOrder(selectedBooking._id, statusForm);
+      const data = await adminUpdateVirtualOrder(selectedBooking._id, statusForm);
       if (data.success) {
         setNotif({ type: "success", message: "Booking compliance parameters updated!" });
         fetchBookings();
@@ -111,7 +112,7 @@ export default function AdminVirtualBookings() {
     }
     try {
       setUpdating(true);
-      const data = await VirtualOfficeService.adminAddMailLog(selectedBooking._id, mailForm);
+      const data = await adminAddMailLog(selectedBooking._id, mailForm);
       if (data.success) {
         setNotif({ type: "success", message: "Incoming mail scan successfully logged!" });
         setMailForm({
@@ -144,7 +145,7 @@ export default function AdminVirtualBookings() {
     }
     try {
       setUpdating(true);
-      const data = await VirtualOfficeService.adminAddVerificationAudit(selectedBooking._id, auditForm);
+      const data = await adminAddVerificationAudit(selectedBooking._id, auditForm);
       if (data.success) {
         setNotif({ type: "success", message: "Tax verification audit scheduled!" });
         setAuditForm({
@@ -186,7 +187,7 @@ export default function AdminVirtualBookings() {
     if (confirm("Are you sure you want to delete this virtual office booking? It will be hidden from all dashboards.")) {
       try {
         setUpdating(true);
-        const data = await VirtualOfficeService.adminDeleteOrder(selectedBooking._id, reason);
+        const data = await adminDeleteVirtualOrder(selectedBooking._id, reason);
         if (data.success) {
           setNotif({ type: "success", message: "Virtual booking deleted successfully." });
           setSelectedBookingId("");

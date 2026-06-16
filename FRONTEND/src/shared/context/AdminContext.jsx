@@ -209,6 +209,190 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
+  // ─── Virtual Space Admin APIs ───
+
+  // Inquiries
+  const fetchInquiries = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/admin/virtual-space/inquiries`, { withCredentials: true });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch inquiries");
+    }
+  }, []);
+
+  const updateInquiryStatus = useCallback(async (id, status) => {
+    try {
+      const res = await axios.patch(`${API_BASE}/admin/virtual-space/inquiries/${id}/status`, { status }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  // Partners
+  const fetchPartners = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/admin/virtual-space/partner-onboarding`, { withCredentials: true });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch partners");
+    }
+  }, []);
+
+  const updatePartnerStatus = useCallback(async (id, status) => {
+    try {
+      const res = await axios.patch(`${API_BASE}/admin/virtual-space/partner-onboarding/${id}/status`, { status }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  // Quotes
+  const fetchQuotes = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/admin/virtual-space/quotes`, { withCredentials: true });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch quotes");
+    }
+  }, []);
+
+  const updateQuoteStatus = useCallback(async (id, status) => {
+    try {
+      const res = await axios.patch(`${API_BASE}/admin/virtual-space/quotes/${id}/status`, { status }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  // Locations
+  const fetchAdminLocations = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/virtual-space/locations`);
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch locations");
+    }
+  }, []);
+
+  const saveLocation = useCallback(async (isEdit, id, locationData) => {
+    try {
+      const url = isEdit ? `${API_BASE}/admin/virtual-space/locations/${id}` : `${API_BASE}/admin/virtual-space/locations`;
+      const method = isEdit ? "put" : "post";
+      const res = await axios[method](url, locationData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  const deleteLocation = useCallback(async (id) => {
+    try {
+      const res = await axios.delete(`${API_BASE}/admin/virtual-space/locations/${id}`, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  // Admin Virtual Orders
+  const adminGetVirtualOrders = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/admin/virtual-space/orders`, { withCredentials: true });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch virtual orders");
+    }
+  }, []);
+
+  const adminUpdateVirtualOrder = useCallback(async (orderId, payload) => {
+    try {
+      const res = await axios.put(`${API_BASE}/admin/virtual-space/orders/${orderId}`, payload, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  const adminDeleteVirtualOrder = useCallback(async (orderId, reason) => {
+    try {
+      const res = await axios.delete(`${API_BASE}/admin/virtual-space/orders/${orderId}`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+        data: { reason }
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  const adminAddMailLog = useCallback(async (orderId, payload) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/orders/${orderId}/mail`, payload, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  const adminAddVerificationAudit = useCallback(async (orderId, payload) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/orders/${orderId}/verification`, payload, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  // Settings
+  const fetchAdminSettings = useCallback(async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/settings`);
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch settings");
+    }
+  }, []);
+
+  const updateSettings = useCallback(async (settingsData) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/settings`, settingsData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
   return (
     <AdminContext.Provider value={{
       activeOrders,
@@ -225,7 +409,23 @@ export function AdminProvider({ children }) {
       deleteService,
       addMainService,
       updateMainService,
-      deleteMainService
+      deleteMainService,
+      fetchInquiries,
+      updateInquiryStatus,
+      fetchPartners,
+      updatePartnerStatus,
+      fetchQuotes,
+      updateQuoteStatus,
+      fetchAdminLocations,
+      saveLocation,
+      deleteLocation,
+      fetchAdminSettings,
+      updateSettings,
+      adminGetVirtualOrders,
+      adminUpdateVirtualOrder,
+      adminDeleteVirtualOrder,
+      adminAddMailLog,
+      adminAddVerificationAudit
     }}>
       {children}
     </AdminContext.Provider>

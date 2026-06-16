@@ -19,7 +19,7 @@ export default function ProfileCard({ ordersCount = 0 }) {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const { profile, profileLoading, fetchProfile, syncUserToBackend } = useUserContext();
+  const { profile, profileLoading } = useUserContext();
 
   // Initialize form data when profile is loaded
   useEffect(() => {
@@ -73,16 +73,22 @@ export default function ProfileCard({ ordersCount = 0 }) {
         },
       });
 
-      // Synchronize with the backend User database in MongoDB using context sync
-      await syncUserToBackend({
-        firstName,
-        lastName,
-        email: formData.email,
-        phone: formData.phone,
-      });
-
-      // Refresh local user profile context from database
-      await fetchProfile();
+      // Synchronize with the backend User database in MongoDB
+      const token = await getToken();
+      if (token) {
+        await safeFetch("/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: {
+            firstName,
+            lastName,
+            phone: formData.phone,
+          },
+        });
+      }
 
       setUser({ ...formData, initials: (firstName[0] || "") + (lastName[0] || "") });
       setIsEditing(false);

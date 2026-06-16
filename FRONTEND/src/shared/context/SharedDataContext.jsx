@@ -54,6 +54,41 @@ export function SharedDataProvider({ children }) {
     return fetchSharedData(true);
   }, [fetchSharedData]);
 
+  const submitInquiry = useCallback(async (payload) => {
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/inquiries`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to submit inquiry");
+    }
+  }, []);
+
+  const submitPartnerApplication = useCallback(async (payload) => {
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/partner-onboarding`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to submit application");
+    }
+  }, []);
+
+  const submitQuoteLead = useCallback(async (payload) => {
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/quotes`, payload, {
+        headers: { "Content-Type": "application/json" }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to submit quote");
+    }
+  }, []);
+
+
+
   return (
     <SharedDataContext.Provider value={{ 
       services, 
@@ -62,7 +97,10 @@ export function SharedDataProvider({ children }) {
       locations, 
       loading, 
       isInitialized,
-      refresh 
+      refresh,
+      submitInquiry,
+      submitPartnerApplication,
+      submitQuoteLead
     }}>
       {children}
     </SharedDataContext.Provider>

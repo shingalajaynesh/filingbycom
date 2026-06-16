@@ -164,6 +164,84 @@ export function OrderProvider({ children }) {
     }
   }, [getToken]);
 
+  // --- Virtual Space Orders ---
+  const fetchVirtualOrders = useCallback(async () => {
+    const token = await getToken();
+    if (!token) throw new Error("Authentication required");
+    try {
+      const res = await axios.get(`${API_BASE}/virtual-space/orders`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch virtual orders");
+    }
+  }, [getToken]);
+
+  const createVirtualOrder = useCallback(async (payload) => {
+    const token = await getToken();
+    if (!token) throw new Error("Authentication required");
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/orders`, payload, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        withCredentials: true
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to create virtual order");
+    }
+  }, [getToken]);
+
+  const fetchVirtualOrderById = useCallback(async (orderId) => {
+    const token = await getToken();
+    if (!token) throw new Error("Authentication required");
+    try {
+      const res = await axios.get(`${API_BASE}/virtual-space/orders/${orderId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch virtual order");
+    }
+  }, [getToken]);
+
+  const uploadVirtualDocuments = useCallback(async (orderId, formData) => {
+    const token = await getToken();
+    if (!token) throw new Error("Authentication required");
+    try {
+      const res = await axios.post(`${API_BASE}/virtual-space/orders/${orderId}/documents`, formData, {
+        headers: { Authorization: `Bearer ${token}` }, // don't set content-type for FormData
+        withCredentials: true
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to upload documents");
+    }
+  }, [getToken]);
+
+  const cancelVirtualOrder = useCallback(async (orderId, reason) => {
+    const token = await getToken();
+    if (!token) throw new Error("Authentication required");
+    try {
+      const res = await axios.delete(`${API_BASE}/virtual-space/orders/${orderId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        withCredentials: true,
+        data: { reason }
+      });
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to cancel virtual order");
+    }
+  }, [getToken]);
+
   return (
     <OrderContext.Provider value={{ 
       orders, 
@@ -173,7 +251,12 @@ export function OrderProvider({ children }) {
       createRazorpayOrder,
       verifyPayment,
       createCashOrder,
-      cancelOrder
+      cancelOrder,
+      fetchVirtualOrders,
+      createVirtualOrder,
+      fetchVirtualOrderById,
+      uploadVirtualDocuments,
+      cancelVirtualOrder
     }}>
       {children}
     </OrderContext.Provider>
