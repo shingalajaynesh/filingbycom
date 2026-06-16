@@ -1,41 +1,120 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUser, useAuth } from '@clerk/clerk-react';
+import { safeFetch } from '../../../shared/utils/api';
 
-const initialUser = {
-  name: "Rajesh Kumar",
-  email: "rajesh.kumar@example.com",
-  phone: "+91 75671 26945",
-  businessName: "Rajesh Enterprises",
-  businessType: "Private Limited Company",
-  gstNumber: "27AABCU9603R1ZX",
-  panNumber: "AABCU9603R",
-  memberSince: "January 2024",
-  totalOrders: 5,
-  initials: "RK",
-};
+export default function ProfileCard({ ordersCount = 0 }) {
+  const { user: clerkUser, isLoaded } = useUser();
+  const { getToken } = useAuth();
 
-export default function ProfileCard() {
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ ...initialUser });
+  const [formData, setFormData] = useState(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const getProfileData = (clerkUser) => {
+    if (!clerkUser) return null;
+    const firstName = clerkUser.firstName || "";
+    const lastName = clerkUser.lastName || "";
+    const name = `${firstName} ${lastName}`.trim() || "Client User";
+    const initials = (firstName[0] || "") + (lastName[0] || "") || "U";
+
+    return {
+      name,
+      firstName,
+      lastName,
+      email: clerkUser.primaryEmailAddress?.emailAddress || "",
+      phone: clerkUser.unsafeMetadata?.phoneNumber || clerkUser.phoneNumbers?.[0]?.phoneNumber || "",
+      businessName: clerkUser.unsafeMetadata?.businessName || "",
+      businessType: clerkUser.unsafeMetadata?.businessType || "Sole Proprietorship",
+      gstNumber: clerkUser.unsafeMetadata?.gstNumber || "",
+      panNumber: clerkUser.unsafeMetadata?.panNumber || "",
+      memberSince: clerkUser.createdAt
+        ? new Date(clerkUser.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+        : "N/A",
+      totalOrders: ordersCount,
+      initials,
+    };
+  };
+
+  useEffect(() => {
+    if (isLoaded && clerkUser) {
+      const profileData = getProfileData(clerkUser);
+      setUser(profileData);
+      setFormData(profileData);
+    }
+  }, [isLoaded, clerkUser, ordersCount]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    setUser({ ...formData });
-    setIsEditing(false);
-    setSaveSuccess(true);
-    setTimeout(() => setSaveSuccess(false), 3000);
+    if (!clerkUser) return;
+    setSaving(true);
+    try {
+      const nameParts = formData.name.trim().split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
+
+      // Update Clerk user details and unsafeMetadata
+      await clerkUser.update({
+        firstName,
+        lastName,
+        unsafeMetadata: {
+          ...clerkUser.unsafeMetadata,
+          phoneNumber: formData.phone,
+          businessName: formData.businessName,
+          businessType: formData.businessType,
+          gstNumber: formData.gstNumber,
+          panNumber: formData.panNumber,
+        },
+      });
+
+      // Synchronize with the backend User database in MongoDB
+      const token = await getToken();
+      if (token) {
+        await safeFetch("/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            phone: formData.phone,
+          }),
+        });
+      }
+
+      setUser({ ...formData, initials: (firstName[0] || "") + (lastName[0] || "") });
+      setIsEditing(false);
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+      alert(err.message || "Failed to save profile changes.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleCancel = () => {
     setFormData({ ...user });
     setIsEditing(false);
   };
+
+  if (!isLoaded || !user) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 gap-4">
+        <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
+        <p className="text-gray-500 text-sm font-medium">Loading profile...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 max-w-3xl mx-auto space-y-6">
@@ -102,9 +181,8 @@ export default function ProfileCard() {
                 type="email"
                 name="email"
                 value={formData.email}
-                onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
+                disabled
+                className="w-full bg-gray-100 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-gray-500 cursor-not-allowed outline-none"
               />
             </div>
 
@@ -177,15 +255,17 @@ export default function ProfileCard() {
             <button
               type="button"
               onClick={handleCancel}
-              className="bg-gray-100 hover:bg-gray-250 text-gray-700 font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all min-h-11 sm:min-h-[unset]"
+              disabled={saving}
+              className="bg-gray-100 hover:bg-gray-250 disabled:opacity-50 text-gray-700 font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all min-h-11 sm:min-h-[unset]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all min-h-11 sm:min-h-[unset]"
+              disabled={saving}
+              className="bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white font-bold text-xs px-5 py-2.5 rounded-xl cursor-pointer transition-all min-h-11 sm:min-h-[unset]"
             >
-              Save Changes
+              {saving ? "Saving..." : "Save Changes"}
             </button>
           </div>
         </form>
