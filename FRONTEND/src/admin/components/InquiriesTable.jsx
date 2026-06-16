@@ -61,7 +61,6 @@ export default function InquiriesTable() {
         <p className="text-red-650 font-medium">{error}</p>
         <button
           onClick={loadInquiries}
-          onClick={loadInquiries}
           className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
         >
           Retry
