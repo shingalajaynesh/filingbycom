@@ -298,26 +298,7 @@ const S = {
     letterSpacing: '0.01em',
   },
 
-  /* footer strip */
-  footerStrip: {
-    marginTop: 30,
-    padding: '14px 22px',
-    background: `linear-gradient(135deg, ${TOKEN.navy} 0%, #112240 100%)`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-  },
-  footerText: {
-    color: 'rgba(255,255,255,0.7)',
-    fontSize: '0.75rem',
-    fontWeight: 500,
-  },
-  footerBrand: {
-    color: TOKEN.gold,
-    fontWeight: 700,
-    fontSize: '0.8rem',
-  },
+
 
   /* toast */
   toast: {
@@ -629,11 +610,6 @@ export default function DigitalCard() {
             />
           </div>
 
-          {/* ── Footer strip ── */}
-          <div style={S.footerStrip}>
-            <i className="fas fa-shield-alt" style={{ color: TOKEN.gold, fontSize: '0.85rem' }} />
-            <span style={S.footerText}>Trusted by 10,000+ businesses across India</span>
-          </div>
         </div>
       </div>
 
