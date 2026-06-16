@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useAuth } from "@clerk/clerk-react";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL || 

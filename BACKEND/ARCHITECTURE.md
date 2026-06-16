@@ -10,7 +10,7 @@ Our server is built on **Express.js** and **Mongoose (MongoDB)** using a clean, 
 
 ```
 BACKEND/
-├── server.js                    # Core entry point (initializes middleware, DB, and routes)
+├── index.js                     # Core entry point (initializes middleware, DB, and routes)
 ├── package.json                 # Dependency tree & NPM scripts
 ├── .env                         # Server environment configuration variables
 │
@@ -19,33 +19,48 @@ BACKEND/
     │   └── db.config.js         # Mongoose connection logic with DNS resolving safety
     │
     ├── middleware/              # Request filters and security interceptors
-    │   ├── auth.middleware.js   # Clerk JWT token decoders and role verifications
-    │   └── admin.middleware.js  # Dedicated administrator authorization barriers
+    │   ├── auth.middleware.js   # Clerk JWT token decoders and user role verifications
+    │   ├── admin.middleware.js  # Dedicated administrator authorization barriers
+    │   └── logger.middleware.js # Express request logger middleware
     │
     ├── models/                  # Mongoose schemas
     │   ├── User.model.js        # User metadata matching Clerk accounts
     │   ├── Service.model.js     # CA filing services details
+    │   ├── MainService.model.js # Main categories for grouping CA services
     │   ├── Order.model.js       # Transaction records & order statuses for standard CA Portal
+    │   ├── Setting.model.js     # System settings (e.g. dynamic layout limits, features)
     │   ├── VirtualLocation.model.js # Rented workspace physical addresses, coordinates and cities
-    │   └── VirtualOfficeOrder.model.js # [NEW] Active customer leases, compliance status, mailbox scan files & audits
+    │   ├── VirtualOfficeOrder.model.js # Active customer leases, compliance status, mailbox scan files & audits
+    │   ├── VirtualSpaceInquiry.model.js # General consultation lead submissions
+    │   ├── PartnerApplication.model.js # Landlord onboarding registrations
+    │   └── QuoteLead.model.js   # Lead forms submitted via get-live-quote calculator
     │
-    ├── modules/                 # Module controllers and routers
+    ├── modules/                 # Module controllers and routes
     │   ├── user/
-    │   │   ├── user.routes.js        # Core user route mapping
-    │   │   ├── user.controller.js    # Order filing & user management controllers
-    │   │   └── checkUser.controller.js # Sync user profile hooks
+    │   │   ├── user.routes.js        # Core user route mapping (mounts orders, public services & settings)
+    │   │   └── user.controller.js    # Profile retrieval and onboarding logic
     │   │
     │   ├── admin/
     │   │   ├── admin.routes.js       # Secured admin endpoints for CA portal
-    │   │   └── admin.controller.js   # Control room operations for CA services
+    │   │   └── admin.controller.js   # Admin authentication & operations controllers
     │   │
-    │   └── virtual-space/       # [NEWLY SEPARATED] Virtual Office domain
-    │       ├── virtual-space.routes.js # Combined endpoints for client bookings & admin management
-    │       └── virtual-space.controller.js # Inquiry submissions, dynamic location CRUD, and bookings/couriers log CRUD actions
+    │   ├── virtual-space/       # Virtual Office domain
+    │   │   ├── virtual-space.routes.js # Public, client, and admin endpoints for Virtual Office
+    │   │   └── virtual-space.controller.js # Location, booking, mail log, and audit CRUD actions
+    │   │
+    │   ├── order/
+    │   │   └── order.controller.js   # Razorpay, payment verification, and cash orders
+    │   │
+    │   ├── service/
+    │   │   └── service.controller.js # Public & admin CA services CRUD
+    │   │
+    │   └── setting/
+    │       └── setting.controller.js # App settings and features configurations
     │
     └── services/
-        ├── whatsapp.service.js   # Admin notification dispatcher via WhatsApp
-        └── (Optional helper files for external utilities e.g. Razorpay, mail dispatchers)
+        ├── invoice.service.js    # Invoice number generator
+        ├── logger.service.js     # Winston logger service for server events
+        └── whatsapp.service.js   # Admin notification dispatcher via WhatsApp
 ```
 
 ### Scope Separation Policy:

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { useOrderContext } from '../../../shared/context/OrderContext';
 
 export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
-  const { getToken } = useAuth();
   const { user: clerkUser } = useUser();
   const { cancelOrder } = useOrderContext();
   const [cancelling, setCancelling] = useState(false);

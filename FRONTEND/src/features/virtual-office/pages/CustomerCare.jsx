@@ -4,6 +4,7 @@ import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 export default function CustomerCare() {
   const [submitted, setSubmitted] = useState(false);
+  const [ticketId, setTicketId] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,6 +21,7 @@ export default function CustomerCare() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setTicketId(Math.floor(100000 + Math.random() * 900000));
     setSubmitted(true);
   };
 
@@ -114,9 +116,12 @@ export default function CustomerCare() {
             <div className="py-12 text-center space-y-4">
               <span className="text-4xl text-green-500">📥</span>
               <h4 className="text-xl font-bold text-gray-900">Support Ticket Created</h4>
-              <p className="text-xs text-gray-500 font-medium">Your request ID is **#FB-{Math.floor(100000 + Math.random() * 900000)}**. A support representative will email or call you shortly.</p>
+              <p className="text-xs text-gray-505 font-medium">Your request ID is **#FB-{ticketId}**. A support representative will email or call you shortly.</p>
               <button 
-                onClick={() => setSubmitted(false)}
+                onClick={() => {
+                  setSubmitted(false);
+                  setTicketId(null);
+                }}
                 className="px-6 py-2 bg-[#1A56DB] text-white rounded-full font-bold active:scale-95 transition-all text-xs uppercase cursor-pointer"
               >
                 Create another ticket
