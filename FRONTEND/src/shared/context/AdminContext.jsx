@@ -46,8 +46,17 @@ export function AdminProvider({ children }) {
       });
       const data = res.data;
       // Optimistically update
-      setActiveOrders(prev => prev.map(o => o._id === orderId ? data.order : o));
-      setHistoryOrders(prev => prev.map(o => o._id === orderId ? data.order : o));
+      if (orderStatus === "Complete") {
+        setActiveOrders(prev => prev.filter(o => o._id !== orderId));
+        setHistoryOrders(prev => {
+          const exists = prev.find(o => o._id === orderId);
+          if (exists) return prev.map(o => o._id === orderId ? data.order : o);
+          return [data.order, ...prev];
+        });
+      } else {
+        setActiveOrders(prev => prev.map(o => o._id === orderId ? data.order : o));
+        setHistoryOrders(prev => prev.map(o => o._id === orderId ? data.order : o));
+      }
       return { success: true };
     } catch (err) {
       return { success: false, message: err.response?.data?.message || err.message };

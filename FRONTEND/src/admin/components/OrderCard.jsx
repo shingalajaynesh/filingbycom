@@ -16,6 +16,7 @@ const ORDER_STATUSES = ["Pending", "Document Verification", "Complete"];
 export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDelete, readOnly = false }) {
   const [updatingStatus, setUpdatingStatus] = useState(false);
   const [updatingPayment, setUpdatingPayment] = useState(false);
+  const [isCompleting, setIsCompleting] = useState(false);
 
   const { user, service, amount, orderStatus, paymentType, paymentStatus, createdAt, _id } = order;
 
@@ -31,6 +32,22 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
 
   const handleStatusChange = async (newStatus) => {
     if (newStatus === orderStatus || updatingStatus) return;
+    
+    if (newStatus === "Complete") {
+      setIsCompleting(true);
+      // Let the animation play before removing it from active
+      setTimeout(async () => {
+        setUpdatingStatus(true);
+        const result = await onUpdateStatus(_id, newStatus);
+        if (!result.success) {
+          toast.error(result.message || "Failed to update status");
+          setIsCompleting(false); // revert if failed
+        }
+        setUpdatingStatus(false);
+      }, 1000);
+      return;
+    }
+
     setUpdatingStatus(true);
     const result = await onUpdateStatus(_id, newStatus);
     if (!result.success) toast.error(result.message || "Failed to update status");
@@ -69,7 +86,21 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+    <div className={`relative bg-white rounded-lg border shadow-sm overflow-hidden transition-all duration-700 ease-in-out ${
+      isCompleting ? "scale-95 opacity-0 border-green-500 shadow-xl z-50 translate-x-4" : "border-gray-200 scale-100 opacity-100"
+    }`}>
+      {/* Complete Animation Overlay */}
+      {isCompleting && (
+        <div className="absolute inset-0 bg-green-500 flex items-center justify-center z-50 transition-all duration-300">
+          <span className="text-white text-2xl font-black flex items-center gap-2 animate-bounce shadow-sm">
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+            </svg>
+            Order Completed!
+          </span>
+        </div>
+      )}
+
       {/* Card header */}
       <div className="bg-[#1A56DB] px-5 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3 min-w-0">
@@ -126,7 +157,7 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
               Order Status
             </p>
             <div className="flex flex-wrap gap-2">
-              {ORDER_STATUSES.map((status) => (
+              {ORDER_STATUSES.filter(s => orderStatus !== "Complete" || s === "Complete").map((status) => (
                 <button
                   key={status}
                   onClick={() => handleStatusChange(status)}
