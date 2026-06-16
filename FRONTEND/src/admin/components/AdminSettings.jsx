@@ -14,7 +14,6 @@ export default function AdminSettings({ portal }) {
     ca_whatsapp_url: "https://wa.me/917567126945",
     ca_contact_email: "support@filingby.com",
     ca_contact_address: "3rd Floor, Business Center, New Delhi, India",
-    navbar_category_limit: 5,
     vs_announcement_text: "🎉 Special Offer: Virtual Office starting at just ₹999/month — Limited slots!",
     vs_contact_phone: "+91 75671 26945",
     vs_whatsapp_url: "https://wa.me/917567126945",
@@ -61,8 +60,7 @@ export default function AdminSettings({ portal }) {
               ca_contact_phone: settings.ca_contact_phone,
               ca_whatsapp_url: settings.ca_whatsapp_url,
               ca_contact_email: settings.ca_contact_email,
-              ca_contact_address: settings.ca_contact_address,
-              navbar_category_limit: Number(settings.navbar_category_limit)
+              ca_contact_address: settings.ca_contact_address
             }
           : {
               vs_announcement_text: settings.vs_announcement_text,
@@ -200,24 +198,7 @@ export default function AdminSettings({ portal }) {
               </p>
             </div>
 
-            {/* Category display Limit */}
-            <div className="space-y-2">
-              <label className="block text-sm font-bold text-gray-800">
-                Desktop Navbar Category Limit
-              </label>
-              <input
-                type="number"
-                min="1"
-                max="20"
-                value={settings.navbar_category_limit}
-                onChange={(e) => handleChange("navbar_category_limit", Math.max(1, Number(e.target.value)))}
-                className="w-32 px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-[#1A56DB] text-sm text-gray-900 bg-white text-center font-bold"
-                required
-              />
-              <p className="text-[11px] text-gray-400">
-                Maximum categories visible before shifting items to the "More" dropdown folder.
-              </p>
-            </div>
+
           </>
         ) : (
           <>

@@ -21,8 +21,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
   const { 
     services, mainServices, loading, fetchServicesData,
     addService, updateService, deleteService,
-    addMainService, updateMainService, deleteMainService,
-    fetchAdminSettings, updateSettings
+    addMainService, updateMainService, deleteMainService
   } = useAdminContext();
 
   const [error, setError] = useState(null);
@@ -42,9 +41,6 @@ export default function AdminServices({ portal, type = 'nav' }) {
     });
   };
 
-  // Navbar limit settings state
-  const [navbarLimit, setNavbarLimit] = useState(5);
-  const [savingLimit, setSavingLimit] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   // Modals state
@@ -52,37 +48,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
   const [isMainModalOpen, setIsMainModalOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState(null);
 
-  useEffect(() => {
-    const fetchLimit = async () => {
-      try {
-        const data = await fetchAdminSettings();
-        if (data.success && data.settings?.navbar_category_limit !== undefined) {
-          setNavbarLimit(data.settings.navbar_category_limit);
-        }
-      } catch (err) {
-        handleFrontendError(err, "Failed to load settings", { silent: true });
-      }
-    };
-    if (type === 'nav') {
-      fetchLimit();
-    }
-  }, [type, fetchAdminSettings]);
 
-  const handleSaveLimit = async () => {
-    setSavingLimit(true);
-    try {
-      const data = await updateSettings({ key: "navbar_category_limit", value: Number(navbarLimit) });
-      if (data.success) {
-        toast.success("Navbar category limit updated successfully!");
-      } else {
-        toast.error(data.message || "Failed to update navbar limit");
-      }
-    } catch (err) {
-      handleFrontendError(err, "Failed to update navbar limit");
-    } finally {
-      setSavingLimit(false);
-    }
-  };
 
   // Forms state
   const [editingService, setEditingService] = useState(null);
@@ -391,33 +357,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
         </div>
       </div>
 
-      {type === 'nav' && (
-        <div className="mb-6 p-4 bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h3 className="text-sm font-bold text-gray-900">Desktop Navbar Category Limit</h3>
-            <p className="text-xs text-gray-500 mt-0.5">
-              Set the maximum number of categories visible directly in the navigation bar. Additional active categories will automatically wrap under a "More" dropdown to prevent header layout breaking.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 self-end sm:self-auto">
-            <input
-              type="number"
-              min="1"
-              max="20"
-              value={navbarLimit}
-              onChange={(e) => setNavbarLimit(Math.max(1, Number(e.target.value)))}
-              className="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm text-center font-bold text-gray-900 bg-white"
-            />
-            <button
-              onClick={handleSaveLimit}
-              disabled={savingLimit}
-              className="px-4 py-2 bg-[#1A56DB] text-white text-sm font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer"
-            >
-              {savingLimit ? "Saving..." : "Save Limit"}
-            </button>
-          </div>
-        </div>
-      )}
+
 
       {type === 'nav' ? (
         <div className="space-y-4">

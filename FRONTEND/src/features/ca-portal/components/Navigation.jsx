@@ -10,6 +10,21 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOpenCategory, setMobileOpenCategory] = useState(null);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const navLimit = 5;
+  const dynamicLimit = (() => {
+    if (windowWidth < 1280) return Math.min(navLimit, 2);
+    if (windowWidth < 1440) return Math.min(navLimit, 3);
+    if (windowWidth < 1821) return Math.min(navLimit, 4);
+    return navLimit;
+  })();
 
   const navigate = useNavigate();
   const { isSignedIn } = useAuth();
@@ -129,7 +144,7 @@ export default function Navigation() {
 
   // Mega menu edge detection style logic
   const getMegaMenuStyle = (index) => {
-    const visibleLength = navData.length;
+    const visibleLength = Math.min(navData.length, dynamicLimit);
     if (index <= 1) {
       return { left: '0', right: 'auto', transform: 'none' };
     }
@@ -167,7 +182,7 @@ export default function Navigation() {
           {/* COL 2: Nav Items — CENTERED, takes all remaining space */}
           <nav className="hidden lg:flex flex-1 min-w-0 items-center justify-center overflow-visible">
             <ul className="flex items-center list-none m-0 p-0 flex-nowrap gap-0.5">
-              {navData.map((category, index) => (
+              {navData.slice(0, dynamicLimit).map((category, index) => (
                 <li
                   key={category.id}
                   className="relative flex-shrink-0"
@@ -234,6 +249,101 @@ export default function Navigation() {
                   )}
                 </li>
               ))}
+
+              {/* MORE DROPDOWN */}
+              {navData.length > dynamicLimit && (() => {
+                const isMoreOpen = open === 'more-dropdown' || navData.slice(dynamicLimit).some(c => open === c.id);
+                return (
+                  <li
+                    className="relative flex-shrink-0"
+                    onMouseEnter={() => setOpen('more-dropdown')}
+                    onMouseLeave={() => setOpen(null)}
+                  >
+                    <button
+                      type="button"
+                      className={`flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[14px] font-bold ${isMoreOpen
+                        ? 'text-[#1A56DB] bg-blue-50'
+                        : 'text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50'
+                        }`}
+                    >
+                      More
+                      <svg className="w-3 h-3 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* More Flyout Container */}
+                    {isMoreOpen && (
+                      <div
+                        className="absolute top-full right-0 z-[999]"
+                        style={{ paddingTop: '4px' }}
+                      >
+                        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 min-w-[200px]">
+                          <ul className="space-y-0.5 list-none p-0 m-0">
+                            {navData.slice(dynamicLimit).map((category) => (
+                              <li
+                                key={category.id}
+                                className="relative"
+                                onMouseEnter={() => setOpen(category.id)}
+                              >
+                                <button
+                                  type="button"
+                                  className={`w-full text-left text-[14px] font-bold text-gray-800 hover:text-[#1A56DB] hover:bg-blue-50 px-3 py-2 rounded-lg transition-colors flex items-center justify-between cursor-pointer ${open === category.id ? 'text-[#1A56DB] bg-blue-50' : ''}`}
+                                >
+                                  {category.label}
+                                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </button>
+
+                                {/* Nested Sub Mega Menu sliding to the left */}
+                                {open === category.id && (
+                                  <div
+                                    className="absolute top-0 right-full z-[1000] pr-2"
+                                  >
+                                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-5" style={{ minWidth: '420px', maxWidth: '560px' }}>
+                                      <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${Math.min(category.sections.length, 2)}, 1fr)` }}>
+                                        {category.sections.map((section) => (
+                                          <div key={section.heading}>
+                                            <p className="text-[12px] font-bold text-gray-900 uppercase tracking-widest mb-2 px-2">
+                                              {section.heading}
+                                            </p>
+                                            <ul className="space-y-0.5 list-none m-0 p-0">
+                                              {section.items.map((item) => (
+                                                <li key={item.slug}>
+                                                  <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                      if (item.slug.startsWith('/')) {
+                                                        navigate(item.slug);
+                                                      } else {
+                                                        navigate(`/services/${item.slug}`);
+                                                      }
+                                                      setOpen(null);
+                                                    }}
+                                                    className="w-full text-left text-[14px] text-gray-800 font-medium hover:text-[#1A56DB] hover:bg-blue-50 px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 group cursor-pointer"
+                                                  >
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0 group-hover:bg-[#1A56DB] transition-colors" />
+                                                    {item.label}
+                                                  </button>
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                );
+              })()}
             </ul>
           </nav>
 
