@@ -7,8 +7,9 @@ import SettingController from "../setting/setting.controller.js";
 
 const router = express.Router();
 
+// ── User Auth ────────────────────────────────────────────────────────────────
 router.post("/register", authenticateToken, UserController.registerUser);
-router.post("/check-user", authenticateToken, UserController.checkUser);
+router.get("/check-user", authenticateToken, UserController.checkUser);
 router.get("/profile", authenticateToken, UserController.getProfile);
 
 // ── Services (Public) ────────────────────────────────────────────────────────
@@ -18,9 +19,9 @@ router.get("/main-services", ServiceController.getAllMainServices);
 
 // ── Orders (Protected) ───────────────────────────────────────────────────────
 router.post("/orders/razorpay", authenticateToken, OrderController.createRazorpayOrder);
-router.post("/orders/verify",   authenticateToken, OrderController.verifyOnlineOrder);
-router.post("/orders/cash",     authenticateToken, OrderController.createCashOrder);
-router.get("/orders",           authenticateToken, OrderController.getUserOrders);
-router.delete("/orders/:id",    authenticateToken, OrderController.deleteUserOrder);
+router.post("/orders/verify", authenticateToken, OrderController.verifyOnlineOrder);
+router.post("/orders/cash", authenticateToken, OrderController.createCashOrder);
+router.get("/orders", authenticateToken, OrderController.getUserOrders);
+router.delete("/orders/:id", authenticateToken, OrderController.deleteUserOrder);
 
 export default router;

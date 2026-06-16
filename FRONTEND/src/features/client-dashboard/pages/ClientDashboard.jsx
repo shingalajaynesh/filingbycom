@@ -125,7 +125,7 @@ export default function ClientDashboard() {
             {activeTab === 'orders' && <OrderList orders={orders} onOrderClick={setSelectedOrder} />}
             {activeTab === 'documents' && <DocumentSection />}
             {activeTab === 'support' && <SupportWidget />}
-            {activeTab === 'profile' && <ProfileCard />}
+            {activeTab === 'profile' && <ProfileCard ordersCount={orders.length} />}
             {/* {activeTab === 'referral' && <ReferralCard />} */}
             {activeTab === 'new-order' && <NewOrderSection />}
           </div>
