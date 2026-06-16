@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/clerk-react";
+import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
@@ -56,11 +57,11 @@ export default function GetLiveQuote() {
         setPriceEstimate(base);
         setStep(3);
       } else {
-        alert(data.message || "Failed to calculate quote lead");
+        toast.error(data.message || "Failed to calculate quote lead");
       }
     } catch (err) {
       console.error(err);
-      alert(err.message || "Failed to submit quote request. Please try again.");
+      toast.error(err.message || "Failed to submit quote request. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -68,7 +69,7 @@ export default function GetLiveQuote() {
 
   const handleCheckout = async () => {
     if (!isSignedIn) {
-      alert("You must be logged in to proceed to checkout.");
+      toast.error("You must be logged in to proceed to checkout.");
       navigate("/login", { state: { from: "/get-live-quote" } });
       return;
     }
@@ -92,14 +93,14 @@ export default function GetLiveQuote() {
       });
 
       if (data.success) {
-        alert("Payment successful! Leased address created on dashboard.");
+        toast.success("Payment successful! Leased address created on dashboard.");
         navigate("/virtual-office/dashboard");
       } else {
-        alert(data.message || "Failed to complete checkout.");
+        toast.error(data.message || "Failed to complete checkout.");
       }
     } catch (err) {
       console.error(err);
-      alert(err.message || "An error occurred during checkout. Please try again.");
+      toast.error(err.message || "An error occurred during checkout. Please try again.");
     } finally {
       setSubmitting(false);
     }

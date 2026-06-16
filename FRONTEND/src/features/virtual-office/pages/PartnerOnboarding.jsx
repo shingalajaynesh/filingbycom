@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
@@ -31,12 +32,13 @@ export default function PartnerOnboarding() {
       const data = await submitPartnerApplication(formData);
       if (data.success) {
         setSubmitted(true);
+        toast.success("Application submitted successfully!");
       } else {
-        alert(data.message || "Failed to submit onboarding application");
+        toast.error(data.message || "Failed to submit onboarding application");
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to submit application. Please try again.");
+      toast.error("Failed to submit application. Please try again.");
     } finally {
       setSubmitting(false);
     }

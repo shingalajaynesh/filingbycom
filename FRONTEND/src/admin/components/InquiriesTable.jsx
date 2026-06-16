@@ -6,13 +6,13 @@ import { handleFrontendError } from "../../shared/utils/errorHandler";
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   const { fetchInquiries, updateInquiryStatus } = useAdminContext();
 
   const loadInquiries = useCallback(async () => {
     setLoading(true);
-    setError("");
+    setError(null);
     try {
       const data = await fetchInquiries();
       if (data.success) {
