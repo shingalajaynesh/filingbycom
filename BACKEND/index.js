@@ -22,6 +22,8 @@ import logger from "./src/services/logger.service.js";
 import { requestLogger } from "./src/middleware/logger.middleware.js";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
+import compression from "compression";
+
 
 // ── DNS RESOLUTION SETUP ─────────────────────────────────────────────────────
 // Node's default resolver sometimes fails on MongoDB SRV records when DNS queries
@@ -53,6 +55,10 @@ for (const key of requiredEnv) {
 }
 
 const app = express();
+
+// Compress all responses
+app.use(compression());
+
 
 // CORS configuration to allow cross-origin resource requests from the React frontend.
 const allowedOrigins = [

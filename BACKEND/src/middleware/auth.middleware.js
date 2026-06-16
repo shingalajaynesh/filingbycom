@@ -97,7 +97,7 @@ const verifyUser = async (req, res, next) => {
     const { clerkId, email } = mapClerkUserToProfile(clerkUser);
     const user = await User.findOne({
       $or: [{ clerkId }, { email }],
-    });
+    }).lean();
 
     if (!user) {
       return res.status(404).json({

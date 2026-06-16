@@ -151,7 +151,7 @@ class UserController {
       const normalizedEmail = email.trim().toLowerCase();
       const existingUser = await User.findOne({
         $or: [{ clerkId }, { email: normalizedEmail }],
-      });
+      }).lean();
 
       if (existingUser) {
         return res.status(200).json({

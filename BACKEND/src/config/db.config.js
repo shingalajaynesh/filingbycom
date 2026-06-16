@@ -17,6 +17,7 @@ const connectDB = async () => {
     // If the database is unreachable, it rejects early instead of hanging indefinetly.
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 10, // Optimize memory consumption by limiting concurrent database socket connections
     });
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
     

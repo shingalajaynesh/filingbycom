@@ -5,9 +5,10 @@
  */
 
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { safeFetch } from "../../shared/utils/api";
 
 const AdminAuthContext = createContext(null);
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+
 
 export function AdminAuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,10 +16,9 @@ export function AdminAuthProvider({ children }) {
 
   const checkAuth = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/admin/check-auth`, {
+      const data = await safeFetch("/admin/check-auth", {
         credentials: "include",
       });
-      const data = await res.json();
       setIsAuthenticated(data.success && data.authenticated);
     } catch {
       setIsAuthenticated(false);
@@ -37,7 +37,7 @@ export function AdminAuthProvider({ children }) {
 
   const logout = useCallback(async () => {
     try {
-      await fetch(`${API_BASE}/admin/logout`, {
+      await safeFetch("/admin/logout", {
         method: "POST",
         credentials: "include",
       });

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useUser, useAuth } from "@clerk/clerk-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { m, AnimatePresence } from "framer-motion";
+import { safeFetch } from "../../../shared/utils/api";
 
 export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   const { user } = useUser();
@@ -39,7 +38,7 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
         throw new Error("Session expired. Please log in again.");
       }
 
-      const syncRes = await fetch(`${API_BASE}/register`, {
+      const syncData = await safeFetch("/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,8 +51,6 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
           phone: formattedPhone,
         }),
       });
-
-      const syncData = await syncRes.json();
       if (!syncData.success) {
         throw new Error(syncData.message || "Failed to sync phone number to database.");
       }
@@ -89,13 +86,13 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
         >
-          <motion.div 
+          <m.div 
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
@@ -115,13 +112,13 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
             ? "We need your phone number to proceed with the service request and keep you updated." 
             : `A verification code was sent to ${phone}.`}
         </p>
-
+ 
         {error && (
           <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600">
             {error}
           </div>
         )}
-
+ 
         {step === 1 ? (
           <form onSubmit={handleSendCode}>
             <div className="mb-4">
@@ -170,8 +167,8 @@ export default function PhoneVerificationModal({ isOpen, onClose, onSuccess }) {
             </button>
             </form>
           )}
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

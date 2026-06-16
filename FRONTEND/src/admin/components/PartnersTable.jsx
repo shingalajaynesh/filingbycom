@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { safeFetch } from "../../shared/utils/api";
 
 export default function PartnersTable() {
   const [applications, setApplications] = useState([]);
@@ -12,10 +11,9 @@ export default function PartnersTable() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_BASE}/admin/virtual-space/partner-onboarding`, {
+      const data = await safeFetch("/admin/virtual-space/partner-onboarding", {
         credentials: "include",
       });
-      const data = await res.json();
       if (data.success) {
         setApplications(data.applications);
       } else {
@@ -35,13 +33,12 @@ export default function PartnersTable() {
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
     try {
-      const res = await fetch(`${API_BASE}/admin/virtual-space/partner-onboarding/${id}/status`, {
+      const data = await safeFetch(`/admin/virtual-space/partner-onboarding/${id}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ status: newStatus }),
       });
-      const data = await res.json();
       if (data.success) {
         setApplications((prev) => prev.map((item) => (item._id === id ? data.application : item)));
         toast.success(`Application updated to ${newStatus}`);

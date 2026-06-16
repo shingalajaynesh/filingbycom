@@ -8,6 +8,7 @@
 
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 // ── FEATURE COMPONENT IMPORTS ────────────────────────────────────────────────
 // ── CA Portal ──
@@ -126,7 +127,7 @@ function AppRoutesContent() {
   };
 
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       {showBackButton && (
         <div className="fixed bottom-6 left-6 z-[9999] print:hidden">
           <button
@@ -226,7 +227,7 @@ function AppRoutesContent() {
       </Suspense>
 
       {!isAdminRoute && <Footer />}
-    </>
+    </LazyMotion>
   );
 }
 

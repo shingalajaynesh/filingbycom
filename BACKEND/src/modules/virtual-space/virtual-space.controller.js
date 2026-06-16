@@ -171,14 +171,14 @@ class VirtualSpaceController {
   // Retrieve list of cities/locations
   getLocations = async (req, res) => {
     try {
-      let locations = await VirtualLocation.find();
+      let locations = await VirtualLocation.find().lean();
       const hasDelhi = locations.some(l => l.slug === "delhi");
       
       if (locations.length === 0 || hasDelhi) {
         if (hasDelhi) {
           await VirtualLocation.deleteMany({ slug: "delhi" });
         }
-        const currentLocs = await VirtualLocation.find();
+        const currentLocs = await VirtualLocation.find().lean();
         const hasSurat = currentLocs.some(l => l.slug === "surat");
         const hasMumbai = currentLocs.some(l => l.slug === "mumbai");
         
@@ -190,7 +190,7 @@ class VirtualSpaceController {
           const mumbaiData = initialSeedLocations.find(l => l.slug === "mumbai");
           if (mumbaiData) await VirtualLocation.create(mumbaiData);
         }
-        locations = await VirtualLocation.find();
+        locations = await VirtualLocation.find().lean();
       }
       return res.status(200).json({ success: true, locations });
     } catch (error) {
@@ -202,7 +202,7 @@ class VirtualSpaceController {
   getLocationBySlug = async (req, res) => {
     try {
       const { slug } = req.params;
-      const location = await VirtualLocation.findOne({ slug: slug.toLowerCase() });
+      const location = await VirtualLocation.findOne({ slug: slug.toLowerCase() }).lean();
       if (!location) {
         return res.status(404).json({ success: false, message: "Location not found" });
       }
@@ -220,7 +220,7 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Slug, Name and State are required fields" });
       }
 
-      const existing = await VirtualLocation.findOne({ slug: slug.toLowerCase() });
+      const existing = await VirtualLocation.findOne({ slug: slug.toLowerCase() }).lean();
       if (existing) {
         return res.status(400).json({ success: false, message: "Location slug already exists" });
       }
@@ -298,7 +298,7 @@ class VirtualSpaceController {
       if (!user) {
         return res.status(401).json({ success: false, message: "User not found" });
       }
-      const orders = await VirtualOfficeOrder.find({ user: user._id, isDeleted: { $ne: true } }).sort({ createdAt: -1 });
+      const orders = await VirtualOfficeOrder.find({ user: user._id, isDeleted: { $ne: true } }).sort({ createdAt: -1 }).lean();
       return res.status(200).json({ success: true, orders });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -313,7 +313,7 @@ class VirtualSpaceController {
       if (!user) {
         return res.status(401).json({ success: false, message: "User not found" });
       }
-      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } });
+      const order = await VirtualOfficeOrder.findOne({ _id: id, user: user._id, isDeleted: { $ne: true } }).lean();
       if (!order) {
         return res.status(404).json({ success: false, message: "Booking not found" });
       }
@@ -411,7 +411,7 @@ class VirtualSpaceController {
   // Fetch all inquiries submitted
   getInquiries = async (req, res) => {
     try {
-      const inquiries = await VirtualSpaceInquiry.find().sort({ createdAt: -1 });
+      const inquiries = await VirtualSpaceInquiry.find().sort({ createdAt: -1 }).lean();
       return res.status(200).json({ success: true, inquiries });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -421,7 +421,7 @@ class VirtualSpaceController {
   // Fetch all coworker partner applications
   getPartnerApplications = async (req, res) => {
     try {
-      const applications = await PartnerApplication.find().sort({ createdAt: -1 });
+      const applications = await PartnerApplication.find().sort({ createdAt: -1 }).lean();
       return res.status(200).json({ success: true, applications });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -431,7 +431,7 @@ class VirtualSpaceController {
   // Fetch all quote estimates leads
   getQuoteLeads = async (req, res) => {
     try {
-      const leads = await QuoteLead.find().sort({ createdAt: -1 });
+      const leads = await QuoteLead.find().sort({ createdAt: -1 }).lean();
       return res.status(200).json({ success: true, leads });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -516,7 +516,7 @@ class VirtualSpaceController {
   // Fetch all virtual office address bookings
   adminGetVirtualOrders = async (req, res) => {
     try {
-      const orders = await VirtualOfficeOrder.find({ isDeleted: { $ne: true } }).populate("user", "firstName lastName email phone").sort({ createdAt: -1 });
+      const orders = await VirtualOfficeOrder.find({ isDeleted: { $ne: true } }).populate("user", "firstName lastName email phone").sort({ createdAt: -1 }).lean();
       return res.status(200).json({ success: true, orders });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });

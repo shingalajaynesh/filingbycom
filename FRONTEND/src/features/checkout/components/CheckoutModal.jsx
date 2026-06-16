@@ -1,9 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { m, AnimatePresence } from "framer-motion";
+import { safeFetch } from "../../../shared/utils/api";
 
 export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   const [loading, setLoading] = useState(false);
@@ -39,7 +38,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         await new Promise((resolve) => setTimeout(resolve, 1500));
         
         try {
-          const verifyRes = await fetch(`${API_BASE}/orders/verify`, {
+          const verifyData = await safeFetch("/orders/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -53,7 +52,6 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
               serviceId: service._id,
             }),
           });
-          const verifyData = await verifyRes.json();
           toast.dismiss(loadingToast);
           if (verifyData.success) {
             toast.success("Simulated payment successful! Order placed.");
@@ -76,7 +74,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
       }
 
       // Create Razorpay Order via Backend
-      const orderRes = await fetch(`${API_BASE}/orders/razorpay`, {
+      const orderData = await safeFetch("/orders/razorpay", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +83,6 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         credentials: "include",
         body: JSON.stringify({ serviceId: service._id }),
       });
-      const orderData = await orderRes.json();
       if (!orderData.success) throw new Error(orderData.message);
 
       const options = {
@@ -99,7 +96,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
           // Verify payment
           try {
             const activeToken = await getToken();
-            const verifyRes = await fetch(`${API_BASE}/orders/verify`, {
+            const verifyData = await safeFetch("/orders/verify", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -113,7 +110,6 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
                 serviceId: service._id,
               }),
             });
-            const verifyData = await verifyRes.json();
             if (verifyData.success) {
               toast.success("Payment successful! Order placed.");
               onSuccess();
@@ -149,7 +145,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         return;
       }
 
-      const res = await fetch(`${API_BASE}/orders/cash`, {
+      const data = await safeFetch("/orders/cash", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -158,7 +154,6 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         credentials: "include",
         body: JSON.stringify({ serviceId: service._id }),
       });
-      const data = await res.json();
       if (data.success) {
         toast.success("Order placed successfully! You can pay by cash later.");
         onSuccess();
@@ -175,14 +170,14 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   return (
     <AnimatePresence>
       {isOpen && service && (
-        <motion.div 
+        <m.div 
           initial={{ scale: 0.5, opacity: 0 }} 
           animate={{ scale: 1, opacity: 1 }} 
           exit={{ scale: 0.5, opacity: 0 }}
           transition={{ duration: 0.3 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
         >
-          <motion.div 
+          <m.div 
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
@@ -202,7 +197,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         <p className="text-sm text-gray-500 mb-6">
           You are requesting <strong>{service.name}</strong> for ₹{service.basePrice}. Please select your preferred payment method.
         </p>
-
+ 
         <div className="space-y-3">
           <button
             onClick={handlePayOnline}
@@ -220,7 +215,7 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
               <span className="bg-white px-2 text-xs text-gray-500">OR</span>
             </div>
           </div>
-
+ 
           <button
             onClick={handlePayCash}
             disabled={loading}
@@ -229,8 +224,8 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
             {loading ? "Processing..." : "Pay Cash Later"}
           </button>
         </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

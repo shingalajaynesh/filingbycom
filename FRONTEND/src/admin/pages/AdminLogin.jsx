@@ -9,8 +9,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
 import toast from "react-hot-toast";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { safeFetch } from "../../shared/utils/api";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
@@ -38,14 +37,12 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/admin/login`, {
+      const data = await safeFetch("/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ username: username.trim(), password }),
       });
-
-      const data = await res.json();
 
       if (!data.success) {
         toast.error(data.message || "Invalid credentials");
@@ -55,8 +52,8 @@ export default function AdminLogin() {
       login();
       toast.success("Welcome, Admin");
       navigate("/admin/dashboard", { replace: true });
-    } catch {
-      toast.error("Server error. Please try again.");
+    } catch (err) {
+      toast.error(err.message || "Server error. Please try again.");
     } finally {
       setLoading(false);
     }

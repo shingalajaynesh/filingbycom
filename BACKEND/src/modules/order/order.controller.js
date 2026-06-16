@@ -26,7 +26,7 @@ class OrderController {
         return res.status(401).json({ success: false, message: "Unauthorized" });
       }
 
-      const service = await Service.findById(serviceId);
+      const service = await Service.findById(serviceId).lean();
       if (!service) {
         return res.status(404).json({ success: false, message: "Service not found" });
       }
@@ -70,10 +70,10 @@ class OrderController {
 
       if (!clerkUser) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-      const user = await User.findOne({ clerkId: clerkUser.id });
+      const user = await User.findOne({ clerkId: clerkUser.id }).lean();
       if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
 
-      const service = await Service.findById(serviceId);
+      const service = await Service.findById(serviceId).lean();
       if (!service) return res.status(404).json({ success: false, message: "Service not found" });
 
       const secret = process.env.RAZORPAY_KEY_SECRET || "test_secret";
@@ -124,10 +124,10 @@ class OrderController {
 
       if (!clerkUser) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-      const user = await User.findOne({ clerkId: clerkUser.id });
+      const user = await User.findOne({ clerkId: clerkUser.id }).lean();
       if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
 
-      const service = await Service.findById(serviceId);
+      const service = await Service.findById(serviceId).lean();
       if (!service) return res.status(404).json({ success: false, message: "Service not found" });
 
       // Create the order
@@ -157,12 +157,13 @@ class OrderController {
 
       if (!clerkUser) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-      const user = await User.findOne({ clerkId: clerkUser.id });
+      const user = await User.findOne({ clerkId: clerkUser.id }).lean();
       if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
 
       const orders = await Order.find({ user: user._id, isDeleted: { $ne: true } })
         .populate("service", "name slug icon tag")
-        .sort({ createdAt: -1 });
+        .sort({ createdAt: -1 })
+        .lean();
 
       return res.status(200).json({ success: true, orders });
     } catch (error) {
@@ -180,7 +181,7 @@ class OrderController {
 
       if (!clerkUser) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-      const user = await User.findOne({ clerkId: clerkUser.id });
+      const user = await User.findOne({ clerkId: clerkUser.id }).lean();
       if (!user) return res.status(404).json({ success: false, message: "User not found in DB" });
 
       // Find order that belongs to this user and is not soft-deleted

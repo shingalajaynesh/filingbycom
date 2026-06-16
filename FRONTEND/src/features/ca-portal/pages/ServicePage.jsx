@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useUser, useClerk } from "@clerk/clerk-react";
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import PhoneVerificationModal from '../../auth/components/PhoneVerificationModal';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
 import SEO from '../../../shared/components/SEO.jsx';
@@ -94,7 +94,7 @@ export default function ServicePage() {
   const documentsRequired = serviceData.documentsRequired || [];
 
   return (
-    <motion.main 
+    <m.main 
       key={slug}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -124,10 +124,10 @@ export default function ServicePage() {
           <span>/</span>
           <span className="font-medium text-gray-900">{serviceData.name}</span>
         </nav>
-
+ 
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <motion.article 
+            <m.article 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -140,10 +140,10 @@ export default function ServicePage() {
                 <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Expert CA/CS Support</span>
                 <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Fast Processing</span>
               </div>
-            </motion.article>
-
+            </m.article>
+ 
             {documentsRequired.length > 0 && (
-              <motion.article 
+              <m.article 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -155,11 +155,11 @@ export default function ServicePage() {
                     <li key={i} className="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3"><span className="mt-1 h-2 w-2 rounded-full bg-[#1A56DB]" /> <span>{item}</span></li>
                   ))}
                 </ul>
-              </motion.article>
+              </m.article>
             )}
-
+ 
             {processSteps.length > 0 && (
-              <motion.article 
+              <m.article 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -174,11 +174,11 @@ export default function ServicePage() {
                     </div>
                   ))}
                 </div>
-              </motion.article>
+              </m.article>
             )}
-
+ 
             {faqs.length > 0 && (
-              <motion.article 
+              <m.article 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -196,11 +196,11 @@ export default function ServicePage() {
                     </div>
                   ))}
                 </div>
-              </motion.article>
+              </m.article>
             )}
           </div>
-
-          <motion.aside 
+ 
+          <m.aside 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -220,11 +220,11 @@ export default function ServicePage() {
               <a href="tel:+917567126945" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
               <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
             </div>
-          </motion.aside>
+          </m.aside>
         </div>
-
+ 
         {relatedServices.length > 0 && (
-          <motion.section 
+          <m.section 
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -240,22 +240,22 @@ export default function ServicePage() {
                 </button>
               ))}
             </div>
-          </motion.section>
+          </m.section>
         )}
       </section>
-
+ 
       <PhoneVerificationModal
         isOpen={showPhoneModal}
         onClose={() => setShowPhoneModal(false)}
         onSuccess={handlePhoneVerificationSuccess}
       />
-
+ 
       <CheckoutModal
         isOpen={showCheckoutModal}
         onClose={() => setShowCheckoutModal(false)}
         service={serviceData}
         onSuccess={handleCheckoutSuccess}
       />
-    </motion.main>
+    </m.main>
   );
 }
