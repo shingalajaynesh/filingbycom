@@ -53,6 +53,7 @@ import { UserProvider } from "../shared/context/UserContext";
 import { OrderProvider } from "../shared/context/OrderContext";
 import { AdminProvider } from "../shared/context/AdminContext";
 import SEO from "../shared/components/SEO";
+import ScrollToTop from "../shared/components/ScrollToTop";
 import { orgSchema, websiteSchema } from "../shared/seo/schemas";
 
 // ── Admin Control Room ──
@@ -214,6 +215,7 @@ function AppRoutesContent() {
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {/* AdminAuthProvider wraps everything so admin context is available everywhere */}
       <AdminAuthProvider>
         <AdminProvider>

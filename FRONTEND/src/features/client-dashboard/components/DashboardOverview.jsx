@@ -70,6 +70,7 @@ export default function DashboardOverview({ orders = [], setActiveTab, onOrderCl
             orders={orders.slice(0, 3)}
             onOrderClick={onOrderClick}
             hideFilters={true}
+            onNewOrderClick={() => setActiveTab('new-order')}
           />
         </div>
 

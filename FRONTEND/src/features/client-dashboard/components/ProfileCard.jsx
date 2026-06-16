@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
+import toast from 'react-hot-toast';
 import { useUserContext } from '../../../shared/context/UserContext';
 
 export default function ProfileCard({ ordersCount = 0 }) {
@@ -82,7 +83,7 @@ export default function ProfileCard({ ordersCount = 0 }) {
       setTimeout(() => setSaveSuccess(false), 3000);
     } catch (err) {
       console.error("Failed to update profile:", err);
-      alert(err.message || "Failed to save profile changes.");
+      toast.error(err.message || "Failed to save profile changes.");
     } finally {
       setSaving(false);
     }

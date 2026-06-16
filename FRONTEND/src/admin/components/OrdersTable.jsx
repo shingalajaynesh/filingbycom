@@ -10,10 +10,25 @@ import OrderCard from "./OrderCard";
 
 export default function OrdersTable({ portal }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const { orders, loading, error, refetch, updateOrderStatus, updatePaymentStatus, deleteOrder } =
     useAdminOrders("active", portal);
 
   const filteredOrders = orders.filter((order) => {
+    if (startDate) {
+      const orderDate = new Date(order.createdAt);
+      const start = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+      if (orderDate < start) return false;
+    }
+    if (endDate) {
+      const orderDate = new Date(order.createdAt);
+      const end = new Date(endDate);
+      end.setHours(23, 59, 59, 999);
+      if (orderDate > end) return false;
+    }
+
     if (!searchTerm) return true;
     const searchLower = searchTerm.toLowerCase();
     const name = `${order.user?.firstName || ""} ${order.user?.lastName || ""}`.toLowerCase();
@@ -64,25 +79,57 @@ export default function OrdersTable({ portal }) {
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
         <div>
           <h2 className="text-lg font-bold text-gray-900">Active Orders</h2>
           <p className="text-sm text-gray-500">{orders.length} pending action</p>
         </div>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+      </div>
+
+      <div className="bg-white p-4 rounded-xl border border-gray-200 mb-6 flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between shadow-sm">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-550 uppercase">From:</span>
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#1A56DB] outline-none bg-slate-50"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-gray-550 uppercase">To:</span>
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="px-3 py-1.5 border border-gray-200 rounded-lg text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#1A56DB] outline-none bg-slate-50"
+            />
+          </div>
+          {(startDate || endDate) && (
+            <button
+              onClick={() => { setStartDate(""); setEndDate(""); }}
+              className="text-xs font-bold text-red-600 hover:text-red-700 hover:underline cursor-pointer"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        
+        <div className="flex items-center gap-3 w-full lg:w-auto">
           <div className="relative w-full sm:w-64">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             <input
               type="text"
-              placeholder="Search orders..."
+              placeholder="Search active orders..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent"
+              className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-slate-50"
             />
           </div>
           <button
             onClick={refetch}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors whitespace-nowrap"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors whitespace-nowrap cursor-pointer"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             Refresh
@@ -91,9 +138,9 @@ export default function OrdersTable({ portal }) {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
-        {filteredOrders.length === 0 && searchTerm ? (
+        {filteredOrders.length === 0 && (searchTerm || startDate || endDate) ? (
           <div className="col-span-full text-center py-12 bg-white rounded-lg border border-gray-200 shadow-sm">
-            <p className="text-gray-500 font-medium">No orders found matching "{searchTerm}"</p>
+            <p className="text-gray-500 font-medium">No active orders matching the filter criteria</p>
           </div>
         ) : (
           filteredOrders.map((order) => (

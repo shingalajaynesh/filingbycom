@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
 
@@ -120,7 +121,7 @@ export default function AdminVirtualBookings() {
     e.preventDefault();
     if (!selectedBooking) return;
     if (!mailForm.sender) {
-      alert("Please provide the courier sender's name.");
+      toast.error("Please provide the courier sender's name.");
       return;
     }
     try {
@@ -153,7 +154,7 @@ export default function AdminVirtualBookings() {
     e.preventDefault();
     if (!selectedBooking) return;
     if (!auditForm.dateScheduled) {
-      alert("Please specify the scheduled date for the audit.");
+      toast.error("Please specify the scheduled date for the audit.");
       return;
     }
     try {
@@ -193,7 +194,7 @@ export default function AdminVirtualBookings() {
     const reason = prompt("Why are you soft deleting this virtual office booking? Please specify a reason note:");
     if (reason === null) return; // user cancelled
     if (!reason.trim()) {
-      alert("Deletion reason note is required.");
+      toast.error("Deletion reason note is required.");
       return;
     }
     

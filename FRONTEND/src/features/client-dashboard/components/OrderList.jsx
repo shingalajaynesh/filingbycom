@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import OrderCard from './OrderCard';
 
-export default function OrderList({ orders = [], onOrderClick, hideFilters = false }) {
+export default function OrderList({ orders = [], onOrderClick, hideFilters = false, onNewOrderClick }) {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('latest');
@@ -128,18 +128,34 @@ export default function OrderList({ orders = [], onOrderClick, hideFilters = fal
           <h3 className="text-lg font-bold text-gray-900 mb-1">
             No orders found
           </h3>
-          <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
-            We couldn't find any orders matching your search query or selected filter criteria.
-          </p>
-          <button
-            onClick={() => {
-              setSearch('');
-              setFilter('all');
-            }}
-            className="bg-[#1A56DB] text-white font-bold text-xs px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all cursor-pointer min-h-11 shadow-md shadow-blue-500/10"
-          >
-            Reset Filters
-          </button>
+          {orders.length === 0 ? (
+            <>
+              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
+                You haven't placed any orders yet. Start compliance today!
+              </p>
+              <button
+                onClick={onNewOrderClick}
+                className="bg-[#1A56DB] text-white font-bold text-xs px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all cursor-pointer min-h-11 shadow-md shadow-blue-500/10"
+              >
+                Place New Order
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-sm text-gray-500 mb-6 max-w-xs leading-relaxed">
+                We couldn't find any orders matching your search query or selected filter criteria.
+              </p>
+              <button
+                onClick={() => {
+                  setSearch('');
+                  setFilter('all');
+                }}
+                className="bg-[#1A56DB] text-white font-bold text-xs px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all cursor-pointer min-h-11 shadow-md shadow-blue-500/10"
+              >
+                Reset Filters
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>

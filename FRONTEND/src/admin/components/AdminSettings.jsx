@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function AdminSettings({ portal }) {
@@ -74,13 +75,13 @@ export default function AdminSettings({ portal }) {
 
       const data = await updateSettings(payload);
       if (data.success) {
-        alert("Settings saved successfully!");
+        toast.success("Settings saved successfully!");
       } else {
-        alert(data.message || "Failed to save settings");
+        toast.error(data.message || "Failed to save settings");
       }
     } catch (err) {
       console.error(err);
-      alert("Error saving settings");
+      toast.error("Error saving settings");
     } finally {
       setSubmitting(false);
     }

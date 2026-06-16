@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
  * @returns {string} The formatted error message string.
  */
 export function handleFrontendError(error, contextMessage, options = {}) {
-  const { silent = false, showAlert = false } = options;
+  const { silent = false } = options;
 
   // 1. Extract error details safely
   const errorMessage = error?.response?.data?.message
@@ -25,11 +25,7 @@ export function handleFrontendError(error, contextMessage, options = {}) {
   // 3. User feedback
   if (!silent) {
     const formattedUserMsg = `${contextMessage}: ${errorMessage}`;
-    if (showAlert) {
-      alert(formattedUserMsg);
-    } else {
-      toast.error(formattedUserMsg);
-    }
+    toast.error(formattedUserMsg);
   }
 
   return errorMessage;

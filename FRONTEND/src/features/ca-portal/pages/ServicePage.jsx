@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useUser, useClerk } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { m } from 'framer-motion';
 import PhoneVerificationModal from '../../auth/components/PhoneVerificationModal';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
@@ -12,7 +12,6 @@ export default function ServicePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { user, isLoaded, isSignedIn } = useUser();
-  const clerk = useClerk();
   
   const [openFaq, setOpenFaq] = useState(0);
   const [showPhoneModal, setShowPhoneModal] = useState(false);
@@ -66,7 +65,7 @@ export default function ServicePage() {
     if (!isLoaded) return;
 
     if (!isSignedIn) {
-      clerk.openSignIn({ redirectUrl: window.location.href });
+      navigate('/login');
       return;
     }
 
@@ -86,7 +85,7 @@ export default function ServicePage() {
 
   const handleCheckoutSuccess = () => {
     setShowCheckoutModal(false);
-    navigate('/dashboard'); 
+    window.location.href = '/dashboard'; 
   };
 
   const faqs = serviceData.faqs || [];

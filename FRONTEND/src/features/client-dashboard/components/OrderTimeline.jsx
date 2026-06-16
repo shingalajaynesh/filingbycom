@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUser } from "@clerk/clerk-react";
+import toast from 'react-hot-toast';
 import { useOrderContext } from '../../../shared/context/OrderContext';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 
@@ -39,7 +40,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
 
     const printWindow = window.open("", "_blank");
     if (!printWindow) {
-      alert("Please allow popups to download/print the invoice.");
+      toast.error("Please allow popups to download/print the invoice.");
       return;
     }
 
@@ -294,14 +295,14 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
   };
 
   const handleContactSupport = () => {
-    alert(`Routing to Support. Please raise a ticket or call us for Order #${order.id}.`);
+    toast(`Routing to Support. Please raise a ticket or call us for Order #${order.id}.`, { icon: 'ℹ️' });
   };
 
   const handleCancelOrder = async () => {
     const reason = prompt("Why do you want to cancel this order? (e.g. Created by mistake)");
     if (reason === null) return;
     if (!reason.trim()) {
-      alert("A cancellation reason is required.");
+      toast.error("A cancellation reason is required.");
       return;
     }
 
@@ -309,16 +310,16 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
       setCancelling(true);
       const data = await cancelOrder(order.id, reason);
       if (data.success) {
-        alert("Order cancelled successfully.");
+        toast.success("Order cancelled successfully.");
         if (onCancelSuccess) {
           onCancelSuccess(order.id);
         }
       } else {
-        alert(data.message || "Failed to cancel order.");
+        toast.error(data.message || "Failed to cancel order.");
       }
     } catch (err) {
       console.error(err);
-      alert("Error cancelling order.");
+      toast.error("Error cancelling order.");
     } finally {
       setCancelling(false);
     }
@@ -448,7 +449,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
           {/* Documents Section */}
           <div>
             <h4 className="font-bold text-sm text-gray-900 mb-3 tracking-wide uppercase">
-              Order Documents
+              Documents Submitted
             </h4>
 
             {order.status === 'pending-docs' ? (

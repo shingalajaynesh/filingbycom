@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
 
@@ -72,12 +73,12 @@ export default function AdminServices({ portal, type = 'nav' }) {
     try {
       const data = await updateSettings({ key: "navbar_category_limit", value: Number(navbarLimit) });
       if (data.success) {
-        alert("Navbar category limit updated successfully!");
+        toast.success("Navbar category limit updated successfully!");
       } else {
-        alert(data.message || "Failed to update navbar limit");
+        toast.error(data.message || "Failed to update navbar limit");
       }
     } catch (err) {
-      handleFrontendError(err, "Failed to update navbar limit", { showAlert: true });
+      handleFrontendError(err, "Failed to update navbar limit");
     } finally {
       setSavingLimit(false);
     }
@@ -149,7 +150,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
   const handleMainSubmit = async (e) => {
     e.preventDefault();
     if (!mainFormData.name.trim()) {
-      alert("Category Name is required");
+      toast.error("Category Name is required");
       return;
     }
     setSubmitting(true);
@@ -161,12 +162,13 @@ export default function AdminServices({ portal, type = 'nav' }) {
         res = await addMainService(mainFormData);
       }
       if (res.success) {
+        toast.success(editingMainService ? "Category updated successfully!" : "Category added successfully!");
         handleCloseMainModal();
       } else {
-        alert(res.message || "Failed to save category");
+        toast.error(res.message || "Failed to save category");
       }
     } catch (err) {
-      handleFrontendError(err, "Failed to save category", { showAlert: true });
+      handleFrontendError(err, "Failed to save category");
     } finally {
       setSubmitting(false);
     }
@@ -256,17 +258,17 @@ export default function AdminServices({ portal, type = 'nav' }) {
     e.preventDefault();
     
     if (!formData.name.trim()) {
-      alert("Service Name is required.");
+      toast.error("Service Name is required.");
       setActiveTab('basic');
       return;
     }
     if (!formData.slug.trim()) {
-      alert("Slug is required (URL friendly).");
+      toast.error("Slug is required (URL friendly).");
       setActiveTab('basic');
       return;
     }
     if (formData.basePrice === "" || formData.basePrice < 0) {
-      alert("Valid Base Price is required.");
+      toast.error("Valid Base Price is required.");
       setActiveTab('basic');
       return;
     }
@@ -288,12 +290,13 @@ export default function AdminServices({ portal, type = 'nav' }) {
         res = await addService(cleanedData);
       }
       if (res.success) {
+        toast.success(editingService ? "Service updated successfully!" : "Service added successfully!");
         handleCloseModal();
       } else {
-        alert(res.message || "Failed to save service");
+        toast.error(res.message || "Failed to save service");
       }
     } catch (err) {
-      handleFrontendError(err, "Failed to save service", { showAlert: true });
+      handleFrontendError(err, "Failed to save service");
     } finally {
       setSubmitting(false);
     }

@@ -96,7 +96,7 @@ export default function ClientDashboard() {
               </button>
             )}
             {activeTab === 'overview' && <DashboardOverview orders={orders} setActiveTab={setActiveTab} onOrderClick={setSelectedOrder} />}
-            {activeTab === 'orders' && <OrderList orders={orders} onOrderClick={setSelectedOrder} />}
+            {activeTab === 'orders' && <OrderList orders={orders} onOrderClick={setSelectedOrder} onNewOrderClick={() => setActiveTab('new-order')} />}
             {activeTab === 'documents' && <DocumentSection />}
             {activeTab === 'support' && <SupportWidget />}
             {activeTab === 'profile' && <ProfileCard ordersCount={orders.length} />}

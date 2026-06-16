@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
 
@@ -113,7 +114,7 @@ export default function AdminLocations() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.slug.trim() || !formData.state.trim()) {
-      alert("City Name, Slug, and State are required fields");
+      toast.error("City Name, Slug, and State are required fields");
       return;
     }
 
@@ -125,14 +126,14 @@ export default function AdminLocations() {
       const res = await saveLocation(isEdit, id, formData);
 
       if (res.success) {
-        alert(isEdit ? "City updated successfully!" : "City added successfully!");
+        toast.success(isEdit ? "City updated successfully!" : "City added successfully!");
         handleCloseModal();
         fetchLocations();
       } else {
-        alert(res.message || "Failed to save location");
+        toast.error(res.message || "Failed to save location");
       }
     } catch (err) {
-      handleFrontendError(err, "Failed to save location", { showAlert: true });
+      handleFrontendError(err, "Failed to save location");
     } finally {
       setSubmitting(false);
     }
@@ -145,13 +146,13 @@ export default function AdminLocations() {
     try {
       const res = await deleteLocAPI(id);
       if (res.success) {
-        alert("Location deleted successfully!");
+        toast.success("Location deleted successfully!");
         fetchLocations();
       } else {
-        alert(res.message || "Failed to delete location");
+        toast.error(res.message || "Failed to delete location");
       }
     } catch (err) {
-      handleFrontendError(err, "Failed to delete location", { showAlert: true });
+      handleFrontendError(err, "Failed to delete location");
     }
   };
 
@@ -228,7 +229,7 @@ export default function AdminLocations() {
 
   const handleSaveAddress = () => {
     if (!addressData.name.trim() || !addressData.address.trim()) {
-      alert("Workspace Name and Full Address are required!");
+      toast.error("Workspace Name and Full Address are required!");
       return;
     }
 

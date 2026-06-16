@@ -571,9 +571,12 @@ export default function Home() {
             >
               Get Started Free
             </button>
-            <button className="w-full rounded-full border-2 border-white px-6 py-3 text-sm font-medium text-white sm:w-auto sm:px-8">
+            <a
+              href={`tel:${settings?.ca_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
+              className="w-full rounded-full border-2 border-white px-6 py-3 text-sm font-medium text-white sm:w-auto sm:px-8 flex items-center justify-center cursor-pointer"
+            >
               Talk to Expert
-            </button>
+            </a>
           </div>
         </div>
       </section>
