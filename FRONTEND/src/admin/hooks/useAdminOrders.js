@@ -5,9 +5,7 @@
  */
 
 import { useState, useEffect, useCallback } from "react";
-import { useAdminAuth } from "../context/AdminAuthContext";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { safeFetch } from "../../shared/utils/api";
 
 export function useAdminOrders(filter = "active", portal = "ca-portal") {
   const [orders, setOrders] = useState([]);
@@ -16,18 +14,16 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
 
   const endpoint =
     filter === "history"
-      ? `${API_BASE}/admin/orders/history?portal=${portal}`
-      : `${API_BASE}/admin/orders/active?portal=${portal}`;
+      ? `/admin/orders/history?portal=${portal}`
+      : `/admin/orders/active?portal=${portal}`;
 
   const fetchOrders = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(endpoint, {
+      const data = await safeFetch(endpoint, {
         credentials: "include",
       });
-      const data = await res.json();
-      if (!data.success) throw new Error(data.message);
       setOrders(data.orders);
     } catch (err) {
       setError(err.message);
@@ -44,7 +40,7 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
   const updateOrderStatus = useCallback(
     async (orderId, orderStatus) => {
       try {
-        const res = await fetch(`${API_BASE}/admin/orders/${orderId}/status`, {
+        const data = await safeFetch(`/admin/orders/${orderId}/status`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -52,8 +48,6 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
           credentials: "include",
           body: JSON.stringify({ orderStatus }),
         });
-        const data = await res.json();
-        if (!data.success) throw new Error(data.message);
 
         // Optimistically update the local state
         setOrders((prev) =>
@@ -71,7 +65,7 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
   const updatePaymentStatus = useCallback(
     async (orderId, paymentStatus) => {
       try {
-        const res = await fetch(`${API_BASE}/admin/orders/${orderId}/payment`, {
+        const data = await safeFetch(`/admin/orders/${orderId}/payment`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -79,8 +73,6 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
           credentials: "include",
           body: JSON.stringify({ paymentStatus }),
         });
-        const data = await res.json();
-        if (!data.success) throw new Error(data.message);
 
         setOrders((prev) =>
           prev.map((o) => (o._id === orderId ? data.order : o))
@@ -97,7 +89,7 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
   const deleteOrder = useCallback(
     async (orderId, reason) => {
       try {
-        const res = await fetch(`${API_BASE}/admin/orders/${orderId}`, {
+        const data = await safeFetch(`/admin/orders/${orderId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -105,8 +97,6 @@ export function useAdminOrders(filter = "active", portal = "ca-portal") {
           credentials: "include",
           body: JSON.stringify({ reason }),
         });
-        const data = await res.json();
-        if (!data.success) throw new Error(data.message);
 
         // Optimistically remove the deleted order from the state
         setOrders((prev) => prev.filter((o) => o._id !== orderId));

@@ -126,7 +126,7 @@ function AppRoutesContent() {
   };
 
   return (
-    <>
+    <LazyMotion features={domAnimation} strict>
       {showBackButton && (
         <div className="fixed bottom-6 left-6 z-[9999] print:hidden">
           <button
@@ -226,7 +226,7 @@ function AppRoutesContent() {
       </Suspense>
 
       {!isAdminRoute && <Footer />}
-    </>
+    </LazyMotion>
   );
 }
 

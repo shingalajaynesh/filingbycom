@@ -75,7 +75,8 @@ class AdminController {
       let orders = await Order.find({ isDeleted: { $ne: true } })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
-        .sort({ createdAt: -1 });
+        .sort({ createdAt: -1 })
+        .lean();
 
       if (portal) {
         orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);
@@ -94,7 +95,8 @@ class AdminController {
       let orders = await Order.find({ isDeleted: { $ne: true }, orderStatus: { $ne: "Complete" } })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
-        .sort({ createdAt: -1 });
+        .sort({ createdAt: -1 })
+        .lean();
 
       if (portal) {
         orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);
@@ -113,7 +115,8 @@ class AdminController {
       let orders = await Order.find({ isDeleted: { $ne: true }, orderStatus: "Complete" })
         .populate("user", "firstName lastName email phone")
         .populate("service", "name portal")
-        .sort({ createdAt: -1 });
+        .sort({ createdAt: -1 })
+        .lean();
 
       if (portal) {
         orders = orders.filter((o) => (o.service?.portal || "ca-portal") === portal);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth, useUser } from "@clerk/clerk-react";
+import { safeFetch } from "../../../shared/utils/api";
 
 export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
   const { getToken } = useAuth();
@@ -306,8 +307,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
     try {
       setCancelling(true);
       const token = await getToken();
-      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-      const res = await fetch(`${API_BASE}/orders/${order.id}`, {
+      const data = await safeFetch(`/orders/${order.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -315,7 +315,6 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
         },
         body: JSON.stringify({ reason })
       });
-      const data = await res.json();
       if (data.success) {
         alert("Order cancelled successfully.");
         if (onCancelSuccess) {

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { safeFetch } from "../../../shared/utils/api";
 
 export default function VirtualOfficeArea() {
   const { city, area } = useParams();
@@ -126,15 +127,13 @@ export default function VirtualOfficeArea() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-      const res = await fetch(`${API_BASE}/virtual-space/inquiries`, {
+      const data = await safeFetch("/virtual-space/inquiries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
       if (data.success) {
         setSubmitted(true);
       } else {

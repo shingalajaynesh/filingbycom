@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from "@clerk/clerk-react";
+import { safeFetch } from "../../../shared/utils/api";
 import DashboardOverview from '../components/DashboardOverview';
 import OrderList from '../components/OrderList';
 import SupportWidget from '../components/SupportWidget';
@@ -78,14 +79,12 @@ export default function ClientDashboard() {
     const fetchOrders = async () => {
       try {
         const token = await getToken();
-        const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
-        const res = await fetch(`${API_BASE}/orders`, {
+        const data = await safeFetch("/orders", {
           headers: {
             Authorization: `Bearer ${token}`
           },
           credentials: "include"
         });
-        const data = await res.json();
         if (data.success) {
           // Map backend orders to frontend format
           const mappedOrders = data.orders.map(o => ({

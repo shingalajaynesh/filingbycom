@@ -7,7 +7,7 @@ class ServiceController {
     try {
       const { portal } = req.query;
       const filter = portal ? { portal } : {};
-      const mainServices = await MainService.find(filter).sort({ order: 1, createdAt: -1 });
+      const mainServices = await MainService.find(filter).sort({ order: 1, createdAt: -1 }).lean();
       return res.status(200).json({ success: true, mainServices });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -18,7 +18,7 @@ class ServiceController {
   createMainService = async (req, res) => {
     try {
       const { name, order, isActive, portal } = req.body;
-      const existing = await MainService.findOne({ name });
+      const existing = await MainService.findOne({ name }).lean();
       if (existing) {
         return res.status(400).json({ success: false, message: "MainService with this name already exists" });
       }
@@ -36,7 +36,7 @@ class ServiceController {
       const { id } = req.params;
       const { name, order, isActive, portal } = req.body;
       if (name) {
-        const existing = await MainService.findOne({ name, _id: { $ne: id } });
+        const existing = await MainService.findOne({ name, _id: { $ne: id } }).lean();
         if (existing) {
           return res.status(400).json({ success: false, message: "Another MainService with this name already exists" });
         }
@@ -73,7 +73,8 @@ class ServiceController {
       const filter = portal ? { portal } : {};
       const services = await Service.find(filter)
         .populate("mainService")
-        .sort({ order: 1, createdAt: -1 });
+        .sort({ order: 1, createdAt: -1 })
+        .lean();
       return res.status(200).json({ success: true, services });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -89,7 +90,7 @@ class ServiceController {
       } = req.body;
 
       // Check if slug already exists
-      const existing = await Service.findOne({ slug });
+      const existing = await Service.findOne({ slug }).lean();
       if (existing) {
         return res.status(400).json({ success: false, message: "Service with this slug already exists" });
       }
@@ -132,7 +133,7 @@ class ServiceController {
 
       // If updating slug, check if another service has the new slug
       if (slug) {
-        const existing = await Service.findOne({ slug, _id: { $ne: id } });
+        const existing = await Service.findOne({ slug, _id: { $ne: id } }).lean();
         if (existing) {
           return res.status(400).json({ success: false, message: "Another service with this slug already exists" });
         }

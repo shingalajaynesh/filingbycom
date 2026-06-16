@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-
-const API_BASE = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+import { safeFetch } from "../../shared/utils/api";
 
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
@@ -12,10 +11,9 @@ export default function InquiriesTable() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_BASE}/admin/virtual-space/inquiries`, {
+      const data = await safeFetch("/admin/virtual-space/inquiries", {
         credentials: "include",
       });
-      const data = await res.json();
       if (data.success) {
         setInquiries(data.inquiries);
       } else {
@@ -35,13 +33,12 @@ export default function InquiriesTable() {
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
     try {
-      const res = await fetch(`${API_BASE}/admin/virtual-space/inquiries/${id}/status`, {
+      const data = await safeFetch(`/admin/virtual-space/inquiries/${id}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ status: newStatus }),
       });
-      const data = await res.json();
       if (data.success) {
         setInquiries((prev) => prev.map((item) => (item._id === id ? data.inquiry : item)));
         toast.success(`Inquiry updated to ${newStatus}`);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSignIn } from "@clerk/clerk-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 // Removed the unused `onAuthenticated` prop, as useSyncUser now handles routing
 export default function Login() {
@@ -91,14 +91,14 @@ export default function Login() {
   };
 
   return (
-    <motion.main 
+    <m.main 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,31,60,0.2),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_35%),linear-gradient(135deg,#e9eef8_0%,#f7f8fb_45%,#dde7f8_100%)] px-4 py-5 sm:px-6 lg:px-8"
     >
       <div className="mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl overflow-hidden rounded-[2.25rem] border border-white/60 bg-white/60 shadow-[0_40px_120px_rgba(15,23,42,0.16)] backdrop-blur-2xl lg:grid-cols-2">
-        <motion.section 
+        <m.section 
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -210,10 +210,10 @@ export default function Login() {
               </p>
             </div>
           </div>
-        </motion.section>
-
+        </m.section>
+ 
         {/* Static Visual Layout */}
-        <motion.section 
+        <m.section 
           initial={{ x: 30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -230,8 +230,8 @@ export default function Login() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </m.section>
       </div>
-    </motion.main>
+    </m.main>
   );
 }
