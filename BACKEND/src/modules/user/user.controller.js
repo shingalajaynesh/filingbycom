@@ -179,6 +179,45 @@ class UserController {
       });
     }
   };
+
+  getProfile = async (req, res) => {
+    try {
+      const clerkUser = req.clerkUser || req.user;
+      if (!clerkUser) {
+        return res.status(401).json({
+          success: false,
+          message: "Authenticated user is required",
+        });
+      }
+
+      const { clerkId } = mapClerkUserToProfile(clerkUser);
+      const user = await User.findOne({ clerkId });
+
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User profile not found",
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+          clerkId: user.clerkId,
+        },
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Unable to fetch profile",
+      });
+    }
+  };
 }
 
 export default new UserController();
