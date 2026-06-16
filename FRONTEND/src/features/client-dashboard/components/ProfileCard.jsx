@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@clerk/clerk-react';
+import { useAuth, useUser } from '@clerk/clerk-react';
 import { useUserContext } from '../../../shared/context/UserContext';
 
 const defaultUser = {
@@ -7,7 +7,6 @@ const defaultUser = {
   lastName: "",
   email: "",
   phone: "",
-  
 };
 
 export default function ProfileCard({ ordersCount = 0 }) {
@@ -18,16 +17,33 @@ export default function ProfileCard({ ordersCount = 0 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const { profile, profileLoading } = useUserContext();
+  const { profile, profileLoading, fetchProfile, syncUserToBackend } = useUserContext();
 
   // Initialize form data when profile is loaded
   useEffect(() => {
-    if (profile) {
-      setUser(profile);
-      setFormData(profile);
+    if (profile && isLoaded && clerkUser) {
+      const mergedProfile = {
+        name: `${profile.firstName || ""} ${profile.lastName || ""}`.trim() || clerkUser.fullName || "Client User",
+        firstName: profile.firstName || clerkUser.firstName || "",
+        lastName: profile.lastName || clerkUser.lastName || "",
+        email: profile.email || clerkUser.primaryEmailAddress?.emailAddress || "",
+        phone: profile.phone || clerkUser.unsafeMetadata?.phoneNumber || clerkUser.phoneNumbers?.[0]?.phoneNumber || "",
+        businessName: clerkUser.unsafeMetadata?.businessName || "",
+        businessType: clerkUser.unsafeMetadata?.businessType || "Sole Proprietorship",
+        gstNumber: clerkUser.unsafeMetadata?.gstNumber || "",
+        panNumber: clerkUser.unsafeMetadata?.panNumber || "",
+        memberSince: clerkUser.createdAt
+          ? new Date(clerkUser.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+          : "January 2024",
+        totalOrders: ordersCount,
+        initials: (profile.firstName?.[0] || clerkUser.firstName?.[0] || "") + (profile.lastName?.[0] || clerkUser.lastName?.[0] || "") || "CU",
+      };
+      setUser(mergedProfile);
+      setFormData(mergedProfile);
     }
-  }, [profile]);
+  }, [profile, isLoaded, clerkUser, ordersCount]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,22 +73,16 @@ export default function ProfileCard({ ordersCount = 0 }) {
         },
       });
 
-      // Synchronize with the backend User database in MongoDB
-      const token = await getToken();
-      if (token) {
-        await safeFetch("/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: {
-            firstName,
-            lastName,
-            phone: formData.phone,
-          },
-        });
-      }
+      // Synchronize with the backend User database in MongoDB using context sync
+      await syncUserToBackend({
+        firstName,
+        lastName,
+        email: formData.email,
+        phone: formData.phone,
+      });
+
+      // Refresh local user profile context from database
+      await fetchProfile();
 
       setUser({ ...formData, initials: (firstName[0] || "") + (lastName[0] || "") });
       setIsEditing(false);
