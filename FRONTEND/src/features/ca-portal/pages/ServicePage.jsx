@@ -125,13 +125,13 @@ export default function ServicePage() {
           <span className="font-medium text-gray-900">{serviceData.name}</span>
         </nav>
  
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
+          <div className="contents lg:col-span-2 lg:flex lg:flex-col lg:gap-6">
             <m.article 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+              className="order-1 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#1A56DB]">Service detail</p>
               <h1 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl">{serviceData.name}</h1>
@@ -147,7 +147,7 @@ export default function ServicePage() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+                className="order-3 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
               >
                 <h2 className="text-xl font-semibold text-gray-900">Documents Required</h2>
                 <ul className="mt-4 space-y-3 text-sm text-gray-600">
@@ -163,7 +163,7 @@ export default function ServicePage() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+                className="order-4 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
               >
                 <h2 className="text-xl font-semibold text-gray-900">Our Process</h2>
                 <div className="mt-5 space-y-4">
@@ -182,7 +182,7 @@ export default function ServicePage() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="mt-6 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+                className="order-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
               >
                 <h2 className="text-xl font-semibold text-gray-900">FAQs</h2>
                 <div className="mt-5 space-y-3">
@@ -204,7 +204,7 @@ export default function ServicePage() {
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="lg:sticky lg:top-24 lg:self-start"
+            className="order-2 lg:order-none lg:sticky lg:top-24 lg:self-start"
           >
             <div className="rounded-3xl border border-[#1A56DB] bg-white p-6 shadow-lg">
               <p className="text-sm text-gray-500">Starting from</p>
