@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
@@ -9,7 +10,7 @@ export default function InquiriesTable() {
 
   const { fetchInquiries, updateInquiryStatus } = useAdminContext();
 
-  const loadInquiries = async () => {
+  const loadInquiries = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -20,16 +21,16 @@ export default function InquiriesTable() {
         throw new Error(data.message || "Failed to load inquiries");
       }
     } catch (err) {
-      toast.error(err.message);
-      setError(err.message || "Failed to load inquiries");
+      const msg = handleFrontendError(err, "Failed to load inquiries");
+      setError(msg);
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchInquiries]);
 
   useEffect(() => {
     loadInquiries();
-  }, []);
+  }, [loadInquiries]);
 
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
@@ -42,7 +43,7 @@ export default function InquiriesTable() {
         throw new Error(data.message);
       }
     } catch (err) {
-      toast.error(err.message || "Failed to update status");
+      handleFrontendError(err, "Failed to update inquiry status");
     }
   };
 
@@ -77,7 +78,7 @@ export default function InquiriesTable() {
           <p className="text-sm text-gray-500">General consultation leads from Virtual Space homepage</p>
         </div>
         <button
-          onClick={fetchInquiries}
+          onClick={loadInquiries}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors"
         >
           Refresh
@@ -135,13 +136,12 @@ export default function InquiriesTable() {
                     })}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${
-                      item.status === "Closed"
+                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${item.status === "Closed"
                         ? "bg-gray-100 text-gray-800"
                         : item.status === "Contacted"
-                        ? "bg-blue-100 text-[#1A56DB]"
-                        : "bg-yellow-100 text-yellow-800"
-                    }`}>
+                          ? "bg-blue-100 text-[#1A56DB]"
+                          : "bg-yellow-100 text-yellow-800"
+                      }`}>
                       {item.status}
                     </span>
                   </td>

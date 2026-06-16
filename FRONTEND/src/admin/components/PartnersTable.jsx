@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 export default function PartnersTable() {
   const [applications, setApplications] = useState([]);
@@ -9,7 +10,7 @@ export default function PartnersTable() {
 
   const { fetchPartners, updatePartnerStatus } = useAdminContext();
 
-  const fetchApplications = async () => {
+  const fetchApplications = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -20,15 +21,16 @@ export default function PartnersTable() {
         throw new Error(data.message || "Failed to load partner applications");
       }
     } catch (err) {
-      setError(err.message || "Failed to load partner applications");
+      const msg = handleFrontendError(err, "Failed to load partner applications");
+      setError(msg);
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchPartners]);
 
   useEffect(() => {
     fetchApplications();
-  }, []);
+  }, [fetchApplications]);
 
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
@@ -41,7 +43,7 @@ export default function PartnersTable() {
         throw new Error(data.message);
       }
     } catch (err) {
-      toast.error(err.message || "Failed to update status");
+      handleFrontendError(err, "Failed to update status");
     }
   };
 
@@ -131,13 +133,12 @@ export default function PartnersTable() {
                     <div className="text-xs font-semibold text-gray-700 mt-1.5">Capacity: <span className="font-bold">{item.deskCount} Desks</span></div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${
-                      item.status === "Approved"
+                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${item.status === "Approved"
                         ? "bg-green-100 text-green-800"
                         : item.status === "Rejected"
-                        ? "bg-red-100 text-red-800"
-                        : "bg-yellow-100 text-yellow-800"
-                    }`}>
+                          ? "bg-red-100 text-red-800"
+                          : "bg-yellow-100 text-yellow-800"
+                      }`}>
                       {item.status}
                     </span>
                   </td>

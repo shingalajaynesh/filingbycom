@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 const ICONS = [
   "building",
@@ -26,12 +27,18 @@ export default function AdminServices({ portal, type = 'nav' }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchServicesData(portal).catch(err => setError(err.message));
+    fetchServicesData(portal).catch(err => {
+      const msg = handleFrontendError(err, "Failed to fetch services data", { silent: true });
+      setError(msg);
+    });
   }, [fetchServicesData, portal]);
 
   const refetch = () => {
     setError(null);
-    fetchServicesData(portal).catch(err => setError(err.message));
+    fetchServicesData(portal).catch(err => {
+      const msg = handleFrontendError(err, "Failed to fetch services data", { silent: true });
+      setError(msg);
+    });
   };
 
   // Navbar limit settings state
@@ -51,7 +58,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
           setNavbarLimit(data.settings.navbar_category_limit);
         }
       } catch (err) {
-        console.error("Failed to load settings:", err);
+        handleFrontendError(err, "Failed to load settings", { silent: true });
       }
     };
     if (type === 'nav') {
@@ -69,7 +76,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
         alert(data.message || "Failed to update navbar limit");
       }
     } catch (err) {
-      alert(err.message || "Failed to update navbar limit");
+      handleFrontendError(err, "Failed to update navbar limit", { showAlert: true });
     } finally {
       setSavingLimit(false);
     }
@@ -145,21 +152,32 @@ export default function AdminServices({ portal, type = 'nav' }) {
       return;
     }
     setSubmitting(true);
-    let res;
-    if (editingMainService) {
-      res = await updateMainService(editingMainService._id, mainFormData);
-    } else {
-      res = await addMainService(mainFormData);
+    try {
+      let res;
+      if (editingMainService) {
+        res = await updateMainService(editingMainService._id, mainFormData);
+      } else {
+        res = await addMainService(mainFormData);
+      }
+      if (res.success) {
+        handleCloseMainModal();
+      } else {
+        alert(res.message || "Failed to save category");
+      }
+    } catch (err) {
+      handleFrontendError(err, "Failed to save category", { showAlert: true });
+    } finally {
+      setSubmitting(false);
     }
-    if (res.success) {
-      handleCloseMainModal();
-    }
-    setSubmitting(false);
   };
 
   const handleDeleteMain = async (id) => {
     if (window.confirm("Are you sure you want to delete this Category? Services inside it will lose their category.")) {
-      await deleteMainService(id);
+      try {
+        await deleteMainService(id);
+      } catch (err) {
+        handleFrontendError(err, "Failed to delete category", { showAlert: true });
+      }
     }
   };
 
@@ -261,21 +279,32 @@ export default function AdminServices({ portal, type = 'nav' }) {
         faqs: formData.faqs.filter(f => f.q.trim() !== "" && f.a.trim() !== "")
     };
 
-    let res;
-    if (editingService) {
-      res = await updateService(editingService._id, cleanedData);
-    } else {
-      res = await addService(cleanedData);
+    try {
+      let res;
+      if (editingService) {
+        res = await updateService(editingService._id, cleanedData);
+      } else {
+        res = await addService(cleanedData);
+      }
+      if (res.success) {
+        handleCloseModal();
+      } else {
+        alert(res.message || "Failed to save service");
+      }
+    } catch (err) {
+      handleFrontendError(err, "Failed to save service", { showAlert: true });
+    } finally {
+      setSubmitting(false);
     }
-    if (res.success) {
-      handleCloseModal();
-    }
-    setSubmitting(false);
   };
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this service?")) {
-      await deleteService(id);
+      try {
+        await deleteService(id);
+      } catch (err) {
+        handleFrontendError(err, "Failed to delete service", { showAlert: true });
+      }
     }
   };
 

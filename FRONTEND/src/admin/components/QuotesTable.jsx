@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 export default function QuotesTable() {
   const [leads, setLeads] = useState([]);
@@ -9,7 +10,7 @@ export default function QuotesTable() {
 
   const { fetchQuotes, updateQuoteStatus } = useAdminContext();
 
-  const fetchLeads = async () => {
+  const fetchLeads = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
@@ -20,15 +21,16 @@ export default function QuotesTable() {
         throw new Error(data.message || "Failed to load quote leads");
       }
     } catch (err) {
-      setError(err.message || "Failed to load quote leads");
+      const msg = handleFrontendError(err, "Failed to load quote leads");
+      setError(msg);
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchQuotes]);
 
   useEffect(() => {
     fetchLeads();
-  }, []);
+  }, [fetchLeads]);
 
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
@@ -41,7 +43,7 @@ export default function QuotesTable() {
         throw new Error(data.message);
       }
     } catch (err) {
-      toast.error(err.message || "Failed to update status");
+      handleFrontendError(err, "Failed to update status");
     }
   };
 
@@ -131,13 +133,12 @@ export default function QuotesTable() {
                     <span className="text-[10px] text-gray-400">/month</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${
-                      item.status === "Closed"
+                    <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${item.status === "Closed"
                         ? "bg-gray-100 text-gray-800"
                         : item.status === "Contacted"
-                        ? "bg-blue-100 text-[#1A56DB]"
-                        : "bg-yellow-100 text-yellow-800"
-                    }`}>
+                          ? "bg-blue-100 text-[#1A56DB]"
+                          : "bg-yellow-100 text-yellow-800"
+                      }`}>
                       {item.status}
                     </span>
                   </td>

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 export default function AdminVirtualBookings() {
   const { adminGetVirtualOrders, adminUpdateVirtualOrder, adminDeleteVirtualOrder, adminAddMailLog, adminAddVerificationAudit } = useAdminContext();
@@ -40,7 +41,7 @@ export default function AdminVirtualBookings() {
 
   const [notif, setNotif] = useState({ type: "", message: "" });
 
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     try {
       setLoading(true);
       const data = await adminGetVirtualOrders();
@@ -53,16 +54,16 @@ export default function AdminVirtualBookings() {
         setError(data.message || "Failed to retrieve virtual office bookings.");
       }
     } catch (err) {
-      console.error(err);
-      setError("Failed to connect to the backend server.");
+      const msg = handleFrontendError(err, "Failed to fetch bookings", { silent: true });
+      setError(msg || "Failed to connect to the backend server.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [adminGetVirtualOrders, selectedBookingId]);
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [fetchBookings]);
 
   const selectedBooking = bookings.find((b) => b._id === selectedBookingId) || bookings[0];
 
@@ -78,7 +79,7 @@ export default function AdminVirtualBookings() {
         consentLetterFile: selectedBooking.complianceDocuments?.consentLetterFile || "",
       });
     }
-  }, [selectedBookingId, bookings]);
+  }, [selectedBooking]);
 
   // Update compliance status / documents
   const handleStatusSubmit = async (e) => {
@@ -94,8 +95,8 @@ export default function AdminVirtualBookings() {
         setNotif({ type: "error", message: data.message || "Failed to update booking." });
       }
     } catch (err) {
-      console.error(err);
-      setNotif({ type: "error", message: "Error updating booking." });
+      const msg = handleFrontendError(err, "Error updating booking status", { silent: true });
+      setNotif({ type: "error", message: msg || "Error updating booking." });
     } finally {
       setUpdating(false);
       setTimeout(() => setNotif({ type: "", message: "" }), 5000);
@@ -127,8 +128,8 @@ export default function AdminVirtualBookings() {
         setNotif({ type: "error", message: data.message || "Failed to log mail." });
       }
     } catch (err) {
-      console.error(err);
-      setNotif({ type: "error", message: "Error adding mail scan log." });
+      const msg = handleFrontendError(err, "Error adding mail scan log", { silent: true });
+      setNotif({ type: "error", message: msg || "Error adding mail scan log." });
     } finally {
       setUpdating(false);
       setTimeout(() => setNotif({ type: "", message: "" }), 5000);
@@ -159,8 +160,8 @@ export default function AdminVirtualBookings() {
         setNotif({ type: "error", message: data.message || "Failed to schedule audit." });
       }
     } catch (err) {
-      console.error(err);
-      setNotif({ type: "error", message: "Error scheduling audit." });
+      const msg = handleFrontendError(err, "Error scheduling verification audit", { silent: true });
+      setNotif({ type: "error", message: msg || "Error scheduling audit." });
     } finally {
       setUpdating(false);
       setTimeout(() => setNotif({ type: "", message: "" }), 5000);
@@ -196,8 +197,8 @@ export default function AdminVirtualBookings() {
           setNotif({ type: "error", message: data.message || "Failed to delete booking." });
         }
       } catch (err) {
-        console.error(err);
-        setNotif({ type: "error", message: "Error deleting booking." });
+        const msg = handleFrontendError(err, "Error soft-deleting virtual space booking", { silent: true });
+        setNotif({ type: "error", message: msg || "Error deleting booking." });
       } finally {
         setUpdating(false);
         setTimeout(() => setNotif({ type: "", message: "" }), 5000);

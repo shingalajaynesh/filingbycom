@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { handleFrontendError } from "../../shared/utils/errorHandler";
 
 export default function AdminLocations() {
   const [locations, setLocations] = useState([]);
@@ -43,7 +44,7 @@ export default function AdminLocations() {
     photosStr: "",
   });
 
-  const fetchLocations = async () => {
+  const fetchLocations = useCallback(async () => {
     setLoading(true);
     try {
       const data = await fetchAdminLocations();
@@ -51,15 +52,16 @@ export default function AdminLocations() {
         setLocations(data.locations || []);
       }
     } catch (err) {
-      setError(err.message || "Failed to fetch locations");
+      const msg = handleFrontendError(err, "Failed to fetch locations");
+      setError(msg);
     } finally {
       setLoading(false);
     }
-  };
+  }, [fetchAdminLocations]);
 
   useEffect(() => {
     fetchLocations();
-  }, []);
+  }, [fetchLocations]);
 
   const handleOpenModal = (location = null) => {
     if (location) {
@@ -118,7 +120,7 @@ export default function AdminLocations() {
     try {
       const isEdit = !!editingLocation;
       const id = editingLocation ? editingLocation._id : null;
-      
+
       const res = await saveLocation(isEdit, id, formData);
 
       if (res.success) {
@@ -129,7 +131,7 @@ export default function AdminLocations() {
         alert(res.message || "Failed to save location");
       }
     } catch (err) {
-      alert(err.message || "Failed to save location");
+      handleFrontendError(err, "Failed to save location", { showAlert: true });
     } finally {
       setSubmitting(false);
     }
@@ -148,7 +150,7 @@ export default function AdminLocations() {
         alert(res.message || "Failed to delete location");
       }
     } catch (err) {
-      alert(err.message || "Failed to delete location");
+      handleFrontendError(err, "Failed to delete location", { showAlert: true });
     }
   };
 
@@ -346,7 +348,7 @@ export default function AdminLocations() {
       {isModalOpen && (
         <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col animate-fadeInUp">
-            
+
             {/* Modal Header */}
             <div className="p-6 border-b border-gray-100 flex justify-between items-center">
               <div>
@@ -355,7 +357,7 @@ export default function AdminLocations() {
                 </h4>
                 <p className="text-xs text-gray-400 font-medium">Configure landing assets and workspaces for this region.</p>
               </div>
-              <button 
+              <button
                 onClick={handleCloseModal}
                 className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent"
               >
@@ -383,7 +385,7 @@ export default function AdminLocations() {
 
             {/* Form Content container */}
             <form onSubmit={handleFormSubmit} className="flex-grow overflow-y-auto p-6 space-y-6">
-              
+
               {/* Tab 1: Basic Details */}
               {activeFormTab === "basic" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -607,7 +609,7 @@ export default function AdminLocations() {
       {isAddressModalOpen && (
         <div className="fixed inset-0 z-[1000] bg-black/60 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col animate-fadeInUp">
-            
+
             <div className="p-6 border-b border-gray-100 flex justify-between items-center">
               <div>
                 <h4 className="text-sm font-black text-gray-900">
@@ -615,7 +617,7 @@ export default function AdminLocations() {
                 </h4>
                 <p className="text-xs text-gray-400 font-medium">Configure pricing, amenities and gallery for this center.</p>
               </div>
-              <button 
+              <button
                 type="button"
                 onClick={() => setIsAddressModalOpen(false)}
                 className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent"

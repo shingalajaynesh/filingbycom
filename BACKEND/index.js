@@ -23,6 +23,8 @@ import { requestLogger } from "./src/middleware/logger.middleware.js";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import compression from "compression";
+import { globalErrorHandler } from "./src/middleware/error.middleware.js";
+
 
 
 // ── DNS RESOLUTION SETUP ─────────────────────────────────────────────────────
@@ -124,6 +126,9 @@ app.use(clerkMiddleware());
 app.use(router);
 app.use(adminRouter);
 app.use(virtualSpaceRouter);
+
+// Centralized error handling middleware
+app.use(globalErrorHandler);
 
 // ── MONGOOSE DATABASE CONNECTIVITY ──────────────────────────────────────────
 // Establish socket connections to the MongoDB Atlas cluster.
