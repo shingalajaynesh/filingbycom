@@ -10,7 +10,7 @@ export default function AdminVirtualBookings() {
   
   // Dialog/Form selections
   const [selectedBookingId, setSelectedBookingId] = useState("");
-  
+  const [searchTerm, setSearchTerm] = useState("");
   // Status and Document update states
   const [updating, setUpdating] = useState(false);
   const [statusForm, setStatusForm] = useState({
@@ -65,7 +65,19 @@ export default function AdminVirtualBookings() {
     fetchBookings();
   }, [fetchBookings]);
 
-  const selectedBooking = bookings.find((b) => b._id === selectedBookingId) || bookings[0];
+  const filteredBookings = bookings.filter((booking) => {
+    if (!searchTerm) return true;
+    const searchLower = searchTerm.toLowerCase();
+    const name = `${booking.user?.firstName || ""} ${booking.user?.lastName || ""}`.toLowerCase();
+    const email = (booking.user?.email || "").toLowerCase();
+    const phone = (booking.user?.phone || "").toLowerCase();
+    const city = (booking.citySlug || "").toLowerCase();
+    const address = (booking.addressName || "").toLowerCase();
+    
+    return name.includes(searchLower) || email.includes(searchLower) || phone.includes(searchLower) || city.includes(searchLower) || address.includes(searchLower);
+  });
+
+  const selectedBooking = bookings.find((b) => b._id === selectedBookingId) || filteredBookings[0] || bookings[0];
 
   // Sync status form fields when selected booking changes
   useEffect(() => {
@@ -258,12 +270,30 @@ export default function AdminVirtualBookings() {
         
         {/* Left column: Bookings list selector */}
         <div className="lg:col-span-1 space-y-4">
-          <div className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100/60 max-h-[70vh] overflow-y-auto">
-            <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest px-3 mb-3">
-              Bookings ({bookings.length})
-            </h3>
-            <div className="space-y-1.5">
-              {bookings.map((booking) => {
+          <div className="bg-white rounded-3xl p-4 shadow-sm border border-slate-100/60 flex flex-col max-h-[70vh]">
+            <div className="flex flex-col gap-3 mb-3">
+              <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">
+                Bookings ({filteredBookings.length})
+              </h3>
+              <div className="relative">
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <input
+                  type="text"
+                  placeholder="Search bookings..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 text-xs border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-1.5 overflow-y-auto pr-1">
+              {filteredBookings.length === 0 && searchTerm ? (
+                <div className="text-center py-8 text-gray-500 text-xs font-medium">
+                  No bookings found matching "{searchTerm}"
+                </div>
+              ) : (
+                filteredBookings.map((booking) => {
                 const isActive = booking._id === selectedBookingId;
                 return (
                   <button
@@ -290,7 +320,7 @@ export default function AdminVirtualBookings() {
                     </div>
                   </button>
                 );
-              })}
+              }))}
             </div>
           </div>
         </div>
