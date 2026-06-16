@@ -42,7 +42,7 @@ src/
 │
 └── shared/                      # Global reusable utilities (domain-agnostic)
     ├── components/              # SEO component, shared SVG icons
-    ├── hooks/                   # useSyncUser custom hook
+    ├── context/                 # State management Context Providers (UserContext, OrderContext, SharedDataContext, AdminContext)
     └── seo/                     # JSON-LD Schema library (schemas.js)
 ```
 

@@ -5,11 +5,13 @@ import { useAdminContext } from "../../shared/context/AdminContext";
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const { fetchInquiries, updateInquiryStatus } = useAdminContext();
 
   const loadInquiries = async () => {
     setLoading(true);
+    setError("");
     try {
       const data = await fetchInquiries();
       if (data.success) {
@@ -19,6 +21,7 @@ export default function InquiriesTable() {
       }
     } catch (err) {
       toast.error(err.message);
+      setError(err.message || "Failed to load inquiries");
     } finally {
       setLoading(false);
     }
@@ -57,7 +60,7 @@ export default function InquiriesTable() {
       <div className="flex flex-col items-center justify-center py-24 gap-3">
         <p className="text-red-650 font-medium">{error}</p>
         <button
-          onClick={fetchInquiries}
+          onClick={loadInquiries}
           className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
         >
           Retry

@@ -26,47 +26,18 @@ const DocumentSection = () => (
   </div>
 );
 
-const ReferralCard = () => (
-  <div className="bg-white rounded-2xl p-8 text-center border border-gray-100 
-                  max-w-md mx-auto">
-    <p className="text-5xl mb-4">🎁</p>
-    <h2 className="text-xl font-bold text-gray-900 mb-2">Refer & Earn ₹500</h2>
-    <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-      Share your referral code. Earn ₹500 for every friend who orders.
-    </p>
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl 
-                    p-5 mb-5 border border-blue-100">
-      <p className="text-xs text-gray-400 mb-1 font-semibold uppercase tracking-wider">Your Referral Code</p>
-      <p className="text-3xl font-bold text-[#1A56DB] tracking-widest">RAJESH50</p>
-    </div>
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText('RAJESH50');
-        alert("Referral code 'RAJESH50' copied to clipboard!");
-      }}
-      className="bg-[#1A56DB] text-white px-8 py-3 rounded-full font-bold 
-                 text-sm hover:bg-blue-700 transition-all active:scale-95 
-                 hover:shadow-lg hover:shadow-blue-200 w-full"
-    >
-      📋 Copy Code
-    </button>
-  </div>
-);
+// ReferralCard component deleted since it was unused and commented out.
+
 
 export default function ClientDashboard() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { getToken } = useAuth();
   const [activeTab, setActiveTab] = useState(
     location.state?.tab || 'overview'
   );
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [notifOpen, setNotifOpen] = useState(false);
-  const { orders, ordersLoading: loading } = useOrderContext();
-
-  const handleServiceSelect = (slug) => {
-    navigate(`/services/${slug}`);
-  };
+  const { orders, ordersLoading: loading, fetchOrders } = useOrderContext();
 
   useEffect(() => {
     if (location.state?.tab) {
@@ -138,7 +109,7 @@ export default function ClientDashboard() {
           order={selectedOrder}
           onClose={() => setSelectedOrder(null)}
           onCancelSuccess={(cancelledId) => {
-            setOrders(prev => prev.filter(o => o.id !== cancelledId));
+            fetchOrders();
             setSelectedOrder(null);
           }}
         />

@@ -1,8 +1,6 @@
 import React from 'react';
-import { useAuth } from '@clerk/clerk-react';
 
 export default function OrderCard({ order, onClick }) {
-  const { getToken } = useAuth();
   if (!order) return null;
 
   const statusStyles = {
@@ -28,7 +26,6 @@ export default function OrderCard({ order, onClick }) {
   const paymentInfo = order.paymentStatus
     ? (paymentStatusStyles[order.paymentStatus] || { bg: 'bg-gray-100 text-gray-500 border-gray-200', dot: 'bg-gray-400', label: order.paymentStatus })
     : null;
-  const isUnpaid = ['Unpaid', 'unpaid', 'Pending', 'pending'].includes(order.paymentStatus);
 
   // Format date nicely
   const formatDate = (dateStr) => {

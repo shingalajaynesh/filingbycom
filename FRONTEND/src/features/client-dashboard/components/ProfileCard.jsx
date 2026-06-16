@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth, useUser } from '@clerk/clerk-react';
+import { useUser } from '@clerk/clerk-react';
 import { useUserContext } from '../../../shared/context/UserContext';
-
-const defaultUser = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-};
 
 export default function ProfileCard({ ordersCount = 0 }) {
   const { user: clerkUser, isLoaded } = useUser();
-  const { getToken } = useAuth();
 
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -19,7 +11,7 @@ export default function ProfileCard({ ordersCount = 0 }) {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const { profile, profileLoading, fetchProfile, syncUserToBackend } = useUserContext();
+  const { profile, fetchProfile, syncUserToBackend } = useUserContext();
 
   // Initialize form data when profile is loaded
   useEffect(() => {

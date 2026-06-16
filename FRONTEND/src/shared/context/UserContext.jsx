@@ -69,8 +69,6 @@ export function UserProvider({ children }) {
           signal: abortController.signal
         });
 
-        const data = res.data;
-
         if (abortController.signal.aborted) {
           isSyncingRef.current = false;
           return;

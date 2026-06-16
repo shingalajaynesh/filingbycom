@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 
@@ -27,7 +27,6 @@ export default function Navigation() {
   })();
 
   const navigate = useNavigate();
-  const location = useLocation();
   const { isSignedIn } = useAuth();
   const { user } = useUser();
   const { signOut } = useClerk();

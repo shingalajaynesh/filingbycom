@@ -3,7 +3,7 @@
  * Displays a colored pill badge for order status or payment status.
  */
 
-export default function StatusBadge({ type, value }) {
+export default function StatusBadge({ value }) {
   const configs = {
     // Order statuses
     "Pending": {
