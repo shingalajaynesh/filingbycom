@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function StatsCards({ orders = [] }) {
   const totalOrders = orders.length;

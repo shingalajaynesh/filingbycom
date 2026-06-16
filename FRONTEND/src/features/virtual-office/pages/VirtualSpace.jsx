@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
 import { virtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
@@ -172,20 +171,9 @@ function BrandLogo({ name }) {
   );
 }
 
-// ─── Stats Counter Component ───────────────────────────────────────────────
-function StatCard({ icon: Icon, value, label, color, bgColor }) {
-  return (
-    <div className={`flex flex-col items-center justify-center p-6 rounded-2xl ${bgColor} border border-white/20 text-center hover:scale-105 transition-transform duration-300`}>
-      <div className={`w-10 h-10 mb-3 ${color}`}><Icon /></div>
-      <div className="text-3xl font-black text-white mb-1">{value}</div>
-      <div className="text-white/70 text-xs font-medium">{label}</div>
-    </div>
-  );
-}
 
-// ─── Main Component ────────────────────────────────────────────────────────
+
 export default function VirtualSpace() {
-  const navigate = useNavigate();
   const formRef  = useRef(null);
   const docsRef  = useRef(null);
   const whyUsRef = useRef(null);
@@ -193,7 +181,6 @@ export default function VirtualSpace() {
   const [formData, setFormData] = useState({ name: "", email: "", mobile: "", purpose: "", city: "", message: "" });
   const [submitted,    setSubmitted]    = useState(false);
   const [submitting,   setSubmitting]   = useState(false);
-  const [showAll,      setShowAll]      = useState(false);
   const [openFaq,      setOpenFaq]      = useState(null);
   const [showBackTop,  setShowBackTop]  = useState(false);
   const [activeTab,    setActiveTab]    = useState("gst");
@@ -342,7 +329,6 @@ export default function VirtualSpace() {
     { q: "Is it valid for GST registration?",                 a: "Yes, our virtual office includes NOC, utility bills, and rental agreement — all documents required for GST registration." },
   ];
 
-  const displayedStates = showAll ? states : states.slice(0, 12);
   const activeTabData = tabs.find(t => t.id === activeTab);
 
   return (
@@ -752,7 +738,7 @@ export default function VirtualSpace() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto">
-            {states.map((state, i) => (
+            {states.map((state) => (
               <div key={state.name} onClick={scrollToForm}
                 className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-3 active:scale-95 group justify-center">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#1A56DB] flex-shrink-0 group-hover:bg-blue-100 transition-colors p-2">

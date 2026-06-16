@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 import ServiceCard from '../../ca-portal/components/ServiceCard';
 

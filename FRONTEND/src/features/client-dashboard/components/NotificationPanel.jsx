@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const initialNotifications = [
   { id: 1, type: "order", message: "Your GST Registration is now In Progress", time: "2 hours ago", read: false, icon: "📋" },

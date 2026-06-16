@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function OrderCard({ order, onClick }) {
   if (!order) return null;

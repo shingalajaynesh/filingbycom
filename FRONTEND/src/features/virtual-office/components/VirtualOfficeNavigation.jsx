@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
-import { useAuth, useUser, useClerk } from "@clerk/clerk-react";
+import { useAuth, useClerk } from "@clerk/clerk-react";
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 const MapPinIcon = () => (
@@ -96,7 +96,6 @@ export default function VirtualOfficeNavigation() {
   const location = useLocation();
   const { locations } = useSharedData();
   const { isSignedIn } = useAuth();
-  const { user } = useUser();
   const { signOut } = useClerk();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);

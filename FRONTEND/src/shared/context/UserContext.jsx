@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -60,7 +61,7 @@ export function UserProvider({ children }) {
           phone: user.unsafeMetadata?.phoneNumber || "",
         };
 
-        const res = await axios.post(`${API_BASE}/register`, payload, {
+        await axios.post(`${API_BASE}/register`, payload, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -120,7 +121,7 @@ export function UserProvider({ children }) {
     isLoaded,
     isUserLoaded,
     isSignedIn,
-    user?.id,
+    user,
     isSynced,
     getToken,
     signOut,

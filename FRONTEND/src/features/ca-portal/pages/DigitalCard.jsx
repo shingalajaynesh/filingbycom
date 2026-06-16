@@ -436,12 +436,12 @@ export default function DigitalCard() {
       url: 'https://filingby.com',
     };
     if (navigator.share) {
-      try { await navigator.share(shareData); } catch (_) { /* cancelled */ }
+      try { await navigator.share(shareData); } catch { /* cancelled */ }
     } else {
       try {
         await navigator.clipboard.writeText('https://filingby.com');
         showToast('🔗 Link copied to clipboard!');
-      } catch (_) {
+      } catch {
         const ta = document.createElement('textarea');
         ta.value = 'https://filingby.com';
         document.body.appendChild(ta);

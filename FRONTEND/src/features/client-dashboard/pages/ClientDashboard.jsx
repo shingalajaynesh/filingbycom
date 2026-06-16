@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from "@clerk/clerk-react";
+import { useLocation } from 'react-router-dom';
 import DashboardOverview from '../components/DashboardOverview';
 import OrderList from '../components/OrderList';
 import SupportWidget from '../components/SupportWidget';
@@ -31,7 +30,6 @@ const DocumentSection = () => (
 
 export default function ClientDashboard() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(
     location.state?.tab || 'overview'
   );
@@ -108,7 +106,7 @@ export default function ClientDashboard() {
         <OrderTimeline
           order={selectedOrder}
           onClose={() => setSelectedOrder(null)}
-          onCancelSuccess={(cancelledId) => {
+          onCancelSuccess={() => {
             fetchOrders();
             setSelectedOrder(null);
           }}

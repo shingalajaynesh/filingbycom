@@ -1,4 +1,3 @@
-import React from 'react';
 import { useUser } from '@clerk/clerk-react';
 import StatsCards from './StatsCards';
 import OrderList from './OrderList';

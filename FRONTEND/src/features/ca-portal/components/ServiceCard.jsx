@@ -7,7 +7,7 @@ export default function ServiceCard({ service }) {
     return (
         <button
             onClick={() => navigate(`/services/${service.slug}`)}
-            className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl sm:p-6 w-full"
+            className="group relative overflow-hidden rounded-3xl border border-gray-200 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl sm:p-6 w-full h-[260px] flex flex-col justify-between"
         >
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#1A56DB] via-blue-500 to-cyan-400" />
             <div className="mb-5 flex items-start justify-between gap-3">
@@ -22,9 +22,9 @@ export default function ServiceCard({ service }) {
                     <span className="h-7" />
                 )}
             </div>
-            <div className="space-y-2">
-                <p className="text-base font-semibold leading-snug text-gray-900 sm:text-lg">{service.name}</p>
-                <p className="text-sm text-gray-500">{service.description}</p>
+            <div className="space-y-2 flex-1">
+                <p className="text-base font-semibold leading-snug text-gray-900 sm:text-lg line-clamp-1">{service.name}</p>
+                <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">{service.description}</p>
             </div>
             <div className="mt-6 flex items-end justify-between gap-4">
                 <div>

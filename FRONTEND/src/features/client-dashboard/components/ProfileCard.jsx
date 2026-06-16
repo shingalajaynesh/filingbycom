@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { useUserContext } from '../../../shared/context/UserContext';
 

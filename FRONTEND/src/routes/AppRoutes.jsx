@@ -16,7 +16,7 @@ import Navigation     from "../features/ca-portal/components/Navigation";
 import Footer         from "../features/ca-portal/components/Footer";
 import FloatingActions from "../features/ca-portal/components/FloatingActions";
 
-const Home           = lazy(() => import("../features/ca-portal/pages/Home"));
+import Home from "../features/ca-portal/pages/Home";
 const ServicePage    = lazy(() => import("../features/ca-portal/pages/ServicePage"));
 const DigitalCard    = lazy(() => import("../features/ca-portal/pages/DigitalCard"));
 

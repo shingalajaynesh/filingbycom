@@ -4,7 +4,7 @@ import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 function ServiceCardSkeleton() {
     return (
-        <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-gray-50/50 p-5 sm:p-6 w-full animate-pulse h-[240px] flex flex-col justify-between">
+        <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-gray-50/50 p-5 sm:p-6 w-full animate-pulse h-[260px] flex flex-col justify-between">
             <div>
                 <div className="absolute inset-x-0 top-0 h-1 bg-gray-200" />
                 <div className="mb-5 flex items-start justify-between gap-3">

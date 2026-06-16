@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
@@ -50,6 +50,7 @@ export default function VirtualDashboard() {
 
   useEffect(() => {
     fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const selectedOrder = orders.find((o) => o._id === selectedOrderId) || orders[0];
@@ -65,7 +66,7 @@ export default function VirtualDashboard() {
         incorporationCert: selectedOrder.clientDocuments?.incorporationCert || "",
       });
     }
-  }, [selectedOrderId, orders]);
+  }, [selectedOrder]);
 
   // Handle KYC submit
   const handleKycSubmit = async (e) => {
