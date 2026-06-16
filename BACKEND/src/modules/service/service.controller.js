@@ -1,13 +1,22 @@
 import Service from "../../models/Service.model.js";
 import MainService from "../../models/MainService.model.js";
+import { serviceCache } from "../../services/cache.service.js";
 
 class ServiceController {
   // ─── Get All Main Services (Public) ─────────────────────────────────────────
   getAllMainServices = async (req, res) => {
     try {
       const { portal } = req.query;
+      const cacheKey = `mainServices_${portal || "all"}`;
+      const cached = serviceCache.get(cacheKey);
+      if (cached) {
+        return res.status(200).json({ success: true, mainServices: cached });
+      }
+
       const filter = portal ? { portal } : {};
       const mainServices = await MainService.find(filter).sort({ order: 1, createdAt: -1 }).lean();
+      
+      serviceCache.set(cacheKey, mainServices);
       return res.status(200).json({ success: true, mainServices });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -24,6 +33,7 @@ class ServiceController {
       }
       const mainService = new MainService({ name, order, isActive, portal });
       await mainService.save();
+      serviceCache.clear();
       return res.status(201).json({ success: true, mainService });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -47,6 +57,7 @@ class ServiceController {
         { new: true, runValidators: true }
       );
       if (!mainService) return res.status(404).json({ success: false, message: "MainService not found" });
+      serviceCache.clear();
       return res.status(200).json({ success: true, mainService });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -59,7 +70,7 @@ class ServiceController {
       const { id } = req.params;
       const mainService = await MainService.findByIdAndDelete(id);
       if (!mainService) return res.status(404).json({ success: false, message: "MainService not found" });
-      // Also consider unlinking or deleting associated services? Let's just return for now.
+      serviceCache.clear();
       return res.status(200).json({ success: true, message: "MainService deleted successfully" });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -70,11 +81,19 @@ class ServiceController {
   getAllServices = async (req, res) => {
     try {
       const { portal } = req.query;
+      const cacheKey = `services_${portal || "all"}`;
+      const cached = serviceCache.get(cacheKey);
+      if (cached) {
+        return res.status(200).json({ success: true, services: cached });
+      }
+
       const filter = portal ? { portal } : {};
       const services = await Service.find(filter)
         .populate("mainService")
         .sort({ order: 1, createdAt: -1 })
         .lean();
+      
+      serviceCache.set(cacheKey, services);
       return res.status(200).json({ success: true, services });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -116,6 +135,7 @@ class ServiceController {
       });
 
       await service.save();
+      serviceCache.clear();
       return res.status(201).json({ success: true, service });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -152,6 +172,7 @@ class ServiceController {
         return res.status(404).json({ success: false, message: "Service not found" });
       }
 
+      serviceCache.clear();
       return res.status(200).json({ success: true, service });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -168,6 +189,7 @@ class ServiceController {
         return res.status(404).json({ success: false, message: "Service not found" });
       }
 
+      serviceCache.clear();
       return res.status(200).json({ success: true, message: "Service deleted successfully" });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });

@@ -1,4 +1,5 @@
 import Setting from "../../models/Setting.model.js";
+import { settingCache } from "../../services/cache.service.js";
 
 class SettingController {
   /**
@@ -6,6 +7,11 @@ class SettingController {
    */
   getPublicSettings = async (req, res) => {
     try {
+      const cached = settingCache.get("public_settings");
+      if (cached) {
+        return res.status(200).json({ success: true, settings: cached });
+      }
+
       const settings = await Setting.find({ isPublic: true }).lean();
       
       // Map array to a key-value dictionary for easy client use
@@ -14,6 +20,7 @@ class SettingController {
         settingsMap[s.key] = s.value;
       });
 
+      settingCache.set("public_settings", settingsMap);
       return res.status(200).json({ success: true, settings: settingsMap });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -38,6 +45,7 @@ class SettingController {
         { new: true, upsert: true, runValidators: true }
       );
 
+      settingCache.clear();
       return res.status(200).json({ success: true, setting });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });

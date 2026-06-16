@@ -4,6 +4,7 @@ import QuoteLead from "../../models/QuoteLead.model.js";
 import VirtualOfficeOrder from "../../models/VirtualOfficeOrder.model.js";
 import VirtualLocation from "../../models/VirtualLocation.model.js";
 import { generateInvoiceNumber } from "../../services/invoice.service.js";
+import { locationCache } from "../../services/cache.service.js";
 
 const initialSeedLocations = [
   {
@@ -171,6 +172,11 @@ class VirtualSpaceController {
   // Retrieve list of cities/locations
   getLocations = async (req, res) => {
     try {
+      const cached = locationCache.get("locations");
+      if (cached) {
+        return res.status(200).json({ success: true, locations: cached });
+      }
+
       let locations = await VirtualLocation.find().lean();
       const hasDelhi = locations.some(l => l.slug === "delhi");
       
@@ -192,6 +198,8 @@ class VirtualSpaceController {
         }
         locations = await VirtualLocation.find().lean();
       }
+      
+      locationCache.set("locations", locations);
       return res.status(200).json({ success: true, locations });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -225,7 +233,7 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Location slug already exists" });
       }
 
-      const location = await VirtualLocation.create({
+      await VirtualLocation.create({
         slug: slug.toLowerCase(),
         name,
         state,
@@ -237,6 +245,7 @@ class VirtualSpaceController {
         faqs: faqs || [],
       });
 
+      locationCache.clear();
       return res.status(201).json({ success: true, message: "Location created successfully", location });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -269,6 +278,7 @@ class VirtualSpaceController {
         return res.status(404).json({ success: false, message: "Location not found" });
       }
 
+      locationCache.clear();
       return res.status(200).json({ success: true, message: "Location updated successfully", location });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -283,6 +293,7 @@ class VirtualSpaceController {
       if (!location) {
         return res.status(404).json({ success: false, message: "Location not found" });
       }
+      locationCache.clear();
       return res.status(200).json({ success: true, message: "Location deleted successfully" });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });

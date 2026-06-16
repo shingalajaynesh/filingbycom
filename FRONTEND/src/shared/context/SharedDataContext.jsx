@@ -11,15 +11,67 @@ const API_BASE = (
 const SharedDataContext = createContext(null);
 
 export function SharedDataProvider({ children }) {
-  const [services, setServices] = useState([]);
-  const [mainServices, setMainServices] = useState([]);
-  const [settings, setSettings] = useState({});
-  const [locations, setLocations] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [services, setServices] = useState(() => {
+    try {
+      const cached = localStorage.getItem("shared_services");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+  
+  const [mainServices, setMainServices] = useState(() => {
+    try {
+      const cached = localStorage.getItem("shared_mainServices");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+  
+  const [settings, setSettings] = useState(() => {
+    try {
+      const cached = localStorage.getItem("shared_settings");
+      return cached ? JSON.parse(cached) : {};
+    } catch {
+      return {};
+    }
+  });
+  
+  const [locations, setLocations] = useState(() => {
+    try {
+      const cached = localStorage.getItem("shared_locations");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !localStorage.getItem("shared_services");
+    } catch {
+      return true;
+    }
+  });
+
+  const [isInitialized, setIsInitialized] = useState(() => {
+    try {
+      return !!localStorage.getItem("shared_services");
+    } catch {
+      return false;
+    }
+  });
 
   const fetchSharedData = useCallback(async (silent = false) => {
-    if (!silent) setLoading(true);
+    let hasCache = false;
+    try {
+      hasCache = !!localStorage.getItem("shared_services");
+    } catch {
+      // Cache reading failed, default to false
+    }
+
+    if (!silent && !hasCache) setLoading(true);
     try {
       const [servicesRes, mainServicesRes, settingsRes, locationsRes] = await Promise.all([
         axios.get(`${API_BASE}/services`).catch(() => ({ data: { services: [] } })),
@@ -34,10 +86,25 @@ export function SharedDataProvider({ children }) {
       const locationsData = locationsRes.data;
 
       if (servicesData.success !== false && mainServicesData.success !== false) {
-        setServices(servicesData.services || []);
-        setMainServices(mainServicesData.mainServices || []);
-        setSettings(settingsData.settings || {});
-        setLocations(locationsData.locations || []);
+        const freshServices = servicesData.services || [];
+        const freshMainServices = mainServicesData.mainServices || [];
+        const freshSettings = settingsData.settings || {};
+        const freshLocations = locationsData.locations || [];
+
+        setServices(freshServices);
+        setMainServices(freshMainServices);
+        setSettings(freshSettings);
+        setLocations(freshLocations);
+        
+        try {
+          localStorage.setItem("shared_services", JSON.stringify(freshServices));
+          localStorage.setItem("shared_mainServices", JSON.stringify(freshMainServices));
+          localStorage.setItem("shared_settings", JSON.stringify(freshSettings));
+          localStorage.setItem("shared_locations", JSON.stringify(freshLocations));
+        } catch (e) {
+          console.warn("Failed to write to localStorage:", e);
+        }
+
         setIsInitialized(true);
       }
     } catch (err) {
