@@ -7,7 +7,10 @@ import SettingController from "../setting/setting.controller.js";
 
 const router = express.Router();
 
-router.get("/profile", authenticateToken, UserController.getProfile);
+// ── User Auth ────────────────────────────────────────────────────────────────
+router.post("/register",    authenticateToken, UserController.registerUser);
+router.get("/check-user",   authenticateToken, UserController.checkUser);
+router.get("/profile",      authenticateToken, UserController.getProfile);
 
 // ── Services (Public) ────────────────────────────────────────────────────────
 router.get("/settings", SettingController.getPublicSettings);
