@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { virtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
-import { safeFetch } from "../../../shared/utils/api";
+import { useSharedData } from "../../../shared/context/SharedDataContext";
 
 // ─── SVG Icon Library ──────────────────────────────────────────────────────
 const Icons = {
@@ -197,6 +197,8 @@ export default function VirtualSpace() {
   const [showBackTop,  setShowBackTop]  = useState(false);
   const [activeTab,    setActiveTab]    = useState("gst");
 
+  const { submitInquiry } = useSharedData();
+
   useEffect(() => {
     const fn = () => setShowBackTop(window.scrollY > 300);
     window.addEventListener("scroll", fn, { passive: true });
@@ -209,13 +211,7 @@ export default function VirtualSpace() {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const data = await safeFetch("/virtual-space/inquiries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = await submitInquiry(formData);
       if (data.success) {
         setSubmitted(true);
       } else {

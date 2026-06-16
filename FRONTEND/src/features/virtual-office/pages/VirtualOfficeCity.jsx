@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildCityVirtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
-import { safeFetch } from "../../../shared/utils/api";
+
 
 // Standard brand logos helper
 function BrandLogo({ name }) {
@@ -158,17 +158,13 @@ export default function VirtualOfficeCity() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const { submitInquiry } = useSharedData();
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const data = await safeFetch("/virtual-space/inquiries", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = await submitInquiry(formData);
       if (data.success) {
         setSubmitted(true);
       } else {

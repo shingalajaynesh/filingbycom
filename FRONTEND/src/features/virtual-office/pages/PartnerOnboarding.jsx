@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
-import { safeFetch } from "../../../shared/utils/api";
+import { useSharedData } from "../../../shared/context/SharedDataContext";
 
 export default function PartnerOnboarding() {
   const [submitted, setSubmitted] = useState(false);
@@ -22,17 +22,13 @@ export default function PartnerOnboarding() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const { submitPartnerApplication } = useSharedData();
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const data = await safeFetch("/virtual-space/partner-onboarding", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const data = await submitPartnerApplication(formData);
       if (data.success) {
         setSubmitted(true);
       } else {

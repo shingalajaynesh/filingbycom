@@ -18,8 +18,9 @@ export default function ProfileCard({ ordersCount = 0 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  const { profile, profileLoading } = useUserContext();
+  const { profile, profileLoading, syncUserToBackend } = useUserContext();
 
   // Initialize form data when profile is loaded
   useEffect(() => {
@@ -58,20 +59,15 @@ export default function ProfileCard({ ordersCount = 0 }) {
       });
 
       // Synchronize with the backend User database in MongoDB
-      const token = await getToken();
-      if (token) {
-        await safeFetch("/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: {
-            firstName,
-            lastName,
-            phone: formData.phone,
-          },
+      try {
+        await syncUserToBackend({
+          firstName,
+          lastName,
+          phone: formData.phone,
         });
+      } catch (syncErr) {
+        console.warn("Backend sync issue:", syncErr);
+        // We still proceed even if backend sync fails, because Clerk was updated
       }
 
       setUser({ ...formData, initials: (firstName[0] || "") + (lastName[0] || "") });

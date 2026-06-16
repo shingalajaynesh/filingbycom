@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { safeFetch } from "../../shared/utils/api";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function QuotesTable() {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { fetchQuotes, updateQuoteStatus } = useAdminContext();
+
   const fetchLeads = async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await safeFetch("/admin/virtual-space/quotes", {
-        credentials: "include",
-      });
+      const data = await fetchQuotes();
       if (data.success) {
         setLeads(data.leads);
       } else {
-        throw new Error(data.message);
+        throw new Error(data.message || "Failed to load quote leads");
       }
     } catch (err) {
       setError(err.message || "Failed to load quote leads");
@@ -33,15 +33,10 @@ export default function QuotesTable() {
   const handleStatusChange = async (id, currentStatus, newStatus) => {
     if (currentStatus === newStatus) return;
     try {
-      const data = await safeFetch(`/admin/virtual-space/quotes/${id}/status`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ status: newStatus }),
-      });
+      const data = await updateQuoteStatus(id, newStatus);
       if (data.success) {
-        setLeads((prev) => prev.map((item) => (item._id === id ? data.lead : item)));
         toast.success(`Lead status updated to ${newStatus}`);
+        fetchLeads();
       } else {
         throw new Error(data.message);
       }

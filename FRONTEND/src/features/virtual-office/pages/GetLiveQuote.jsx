@@ -4,12 +4,13 @@ import { useAuth } from "@clerk/clerk-react";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
-import VirtualOfficeService from "../services/VirtualOfficeService";
+import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
 
 export default function GetLiveQuote() {
   const navigate = useNavigate();
-  const { locations } = useSharedData();
-  const { getToken, isSignedIn } = useAuth();
+  const { locations, submitQuoteLead } = useSharedData();
+  const { createVirtualOrder } = useOrderContext();
+  const { isSignedIn } = useAuth();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     city: "",
@@ -47,7 +48,7 @@ export default function GetLiveQuote() {
 
     setSubmitting(true);
     try {
-      const data = await VirtualOfficeService.createQuoteLead({
+      const data = await submitQuoteLead({
         ...formData,
         estimatedPrice: base,
       });
@@ -74,7 +75,6 @@ export default function GetLiveQuote() {
 
     try {
       setSubmitting(true);
-      const token = await getToken();
       
       // Determine default address names based on city
       let addressName = `${formData.city} Business Suite`;
@@ -84,7 +84,7 @@ export default function GetLiveQuote() {
         addressName = "BKC Prestige Towers";
       }
 
-      const data = await VirtualOfficeService.createVirtualOrder(token, {
+      const data = await createVirtualOrder({
         citySlug: formData.city.toLowerCase(),
         addressName,
         selectedPlan: formData.purpose,

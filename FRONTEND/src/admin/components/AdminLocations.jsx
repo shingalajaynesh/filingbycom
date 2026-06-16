@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { safeFetch } from "../../shared/utils/api";
+import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function AdminLocations() {
   const [locations, setLocations] = useState([]);
@@ -9,6 +9,8 @@ export default function AdminLocations() {
   const [editingLocation, setEditingLocation] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [activeFormTab, setActiveFormTab] = useState("basic"); // basic, workspaces, faqs
+
+  const { fetchAdminLocations, saveLocation, deleteLocation: deleteLocAPI } = useAdminContext();
 
   // Form state for location (city level)
   const [formData, setFormData] = useState({
@@ -44,9 +46,9 @@ export default function AdminLocations() {
   const fetchLocations = async () => {
     setLoading(true);
     try {
-      const res = await safeFetch("/virtual-space/locations");
-      if (res.success) {
-        setLocations(res.locations || []);
+      const data = await fetchAdminLocations();
+      if (data.success) {
+        setLocations(data.locations || []);
       }
     } catch (err) {
       setError(err.message || "Failed to fetch locations");
@@ -114,20 +116,17 @@ export default function AdminLocations() {
 
     setSubmitting(true);
     try {
-      const url = editingLocation 
-        ? `/admin/virtual-space/locations/${editingLocation._id}` 
-        : "/admin/virtual-space/locations";
+      const isEdit = !!editingLocation;
+      const id = editingLocation ? editingLocation._id : null;
       
-      const res = await safeFetch(url, {
-        method: editingLocation ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await saveLocation(isEdit, id, formData);
 
       if (res.success) {
-        alert(editingLocation ? "City updated successfully!" : "City added successfully!");
+        alert(isEdit ? "City updated successfully!" : "City added successfully!");
         handleCloseModal();
         fetchLocations();
+      } else {
+        alert(res.message || "Failed to save location");
       }
     } catch (err) {
       alert(err.message || "Failed to save location");
@@ -141,12 +140,12 @@ export default function AdminLocations() {
       return;
     }
     try {
-      const res = await safeFetch(`/admin/virtual-space/locations/${id}`, {
-        method: "DELETE",
-      });
+      const res = await deleteLocAPI(id);
       if (res.success) {
         alert("Location deleted successfully!");
         fetchLocations();
+      } else {
+        alert(res.message || "Failed to delete location");
       }
     } catch (err) {
       alert(err.message || "Failed to delete location");
