@@ -163,7 +163,7 @@ export default function Navigation() {
       <div className="bg-gradient-to-r from-[#0a1628] via-[#1A56DB] to-[#0a1628] py-1.5 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-center">
           <p className="text-white text-[11px] font-semibold text-center whitespace-nowrap overflow-hidden text-ellipsis">
-            🎉 Get 15% OFF | Code: <span className="font-extrabold underline">FILING15</span>
+            {settings?.ca_announcement_text || "🎉 Get 15% OFF | Code: FILING15"}
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Search from "../components/Search.jsx";
 import PopularServices from "../components/PopularServices.jsx";
 import SEO from "../../../shared/components/SEO.jsx";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { localBusinessSchema, websiteSchema, homeReviewsSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
 
 const HOME_FAQS = [
@@ -121,6 +122,7 @@ function BrandLogo({ name }) {
 export default function Home() {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
+  const { settings } = useSharedData();
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-gray-900">
@@ -582,7 +584,7 @@ export default function Home() {
           <div className="absolute top-full right-4 border-4 border-transparent border-t-gray-900" />
         </div>
         <a
-          href="https://wa.me/917567126945?text=Hi%2C%20I%20need%20help%20with%20a%20service%20on%20FilingBy.com"
+          href={settings?.ca_whatsapp_url ? `${settings.ca_whatsapp_url}?text=Hi%2C%20I%20need%20help%20with%20a%20service%20on%20FilingBy.com` : "https://wa.me/917567126945?text=Hi%2C%20I%20need%20help%20with%20a%20service%20on%20FilingBy.com"}
           target="_blank"
           rel="noopener noreferrer"
           className="wa-blob-btn flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-transform duration-300 hover:scale-110"

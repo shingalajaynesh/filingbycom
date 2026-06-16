@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useAuth } from "@clerk/clerk-react";
 import axios from "axios";
 
@@ -17,8 +17,19 @@ export function OrderProvider({ children }) {
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
 
-  const fetchOrders = useCallback(async () => {
+  const ordersFetchedRef = useRef(false);
+
+  // Reset fetch tracker when signed out
+  useEffect(() => {
+    if (!isSignedIn) {
+      setOrders([]);
+      ordersFetchedRef.current = false;
+    }
+  }, [isSignedIn]);
+
+  const fetchOrders = useCallback(async (force = false) => {
     if (!isSignedIn) return;
+    if (ordersFetchedRef.current && !force) return;
     setOrdersLoading(true);
     try {
       const token = await getToken();
@@ -52,6 +63,7 @@ export function OrderProvider({ children }) {
           ]
         }));
         setOrders(mappedOrders);
+        ordersFetchedRef.current = true;
       }
     } catch (err) {
       console.error("Failed to fetch orders:", err);

@@ -52,6 +52,8 @@ import { SharedDataProvider } from "../shared/context/SharedDataContext";
 import { UserProvider } from "../shared/context/UserContext";
 import { OrderProvider } from "../shared/context/OrderContext";
 import { AdminProvider } from "../shared/context/AdminContext";
+import SEO from "../shared/components/SEO";
+import { orgSchema, websiteSchema } from "../shared/seo/schemas";
 
 // ── Admin Control Room ──
 import { ProtectedRoute, PublicAuthRoute, ClerkCallback } from "./RouteGuards";
@@ -115,6 +117,7 @@ function AppRoutesContent() {
 
   return (
     <LazyMotion features={domAnimation} strict>
+      <SEO schema={orgSchema} extraSchemas={[websiteSchema]} />
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}

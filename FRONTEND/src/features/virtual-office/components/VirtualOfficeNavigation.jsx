@@ -94,7 +94,7 @@ const companyLinks = [
 export default function VirtualOfficeNavigation() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { locations } = useSharedData();
+  const { locations, settings } = useSharedData();
   const { isSignedIn } = useAuth();
   const { signOut } = useClerk();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -157,7 +157,7 @@ export default function VirtualOfficeNavigation() {
       {/* ── Announcement Bar ──────────────────────────────────────────── */}
       <div className="bg-gradient-to-r from-[#0a1628] via-[#1A56DB] to-[#0a1628] py-1.5">
         <p className="text-white text-[11px] font-semibold text-center">
-          🎉 Special Offer: Virtual Office starting at just <span className="font-extrabold underline decoration-dotted">₹999/month</span> — Limited slots!
+          {settings?.vs_announcement_text || "🎉 Special Offer: Virtual Office starting at just ₹999/month — Limited slots!"}
         </p>
       </div>
 
@@ -283,10 +283,10 @@ export default function VirtualOfficeNavigation() {
         <div className="flex items-center gap-2 flex-shrink-0">
 
           {/* Phone */}
-          <a href="tel:+917567126945"
+          <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
             className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-gray-600 border border-gray-200 hover:border-[#1A56DB] hover:text-[#1A56DB] rounded-full px-3.5 py-2 transition-all">
             <div className="w-3.5 h-3.5"><PhoneIcon /></div>
-            <span className="hidden xl:inline">+91 75671 26945</span>
+            <span className="hidden xl:inline">{settings?.vs_contact_phone || "+91 75671 26945"}</span>
             <span className="xl:hidden">Call</span>
           </a>
 

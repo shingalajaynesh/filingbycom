@@ -101,9 +101,15 @@ app.use(helmet({
 // Apply rate limiting on API requests to defend against DoS/brute-force
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: process.env.NODE_ENV === "development" ? 2000 : 300, // Relax bounds locally for dev
+  max: process.env.NODE_ENV === "production" ? 300 : 5000, // Relax bounds locally for dev
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    // Bypass rate limiting for localhost development and non-production environments
+    if (process.env.NODE_ENV !== "production") return true;
+    const ip = req.ip || req.connection?.remoteAddress || "";
+    return ip === "::1" || ip === "127.0.0.1" || ip.includes("127.0.0.1");
+  },
   message: {
     success: false,
     message: "Too many requests from this IP, please try again after 15 minutes."

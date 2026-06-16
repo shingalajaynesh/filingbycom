@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import { updateSchemaSettings } from "../seo/schemas";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL || 
@@ -32,7 +33,9 @@ export function SharedDataProvider({ children }) {
   const [settings, setSettings] = useState(() => {
     try {
       const cached = localStorage.getItem("shared_settings");
-      return cached ? JSON.parse(cached) : {};
+      const parsed = cached ? JSON.parse(cached) : {};
+      updateSchemaSettings(parsed);
+      return parsed;
     } catch {
       return {};
     }
@@ -95,6 +98,9 @@ export function SharedDataProvider({ children }) {
         setMainServices(freshMainServices);
         setSettings(freshSettings);
         setLocations(freshLocations);
+        
+        // Update SEO schemas dynamically
+        updateSchemaSettings(freshSettings);
         
         try {
           localStorage.setItem("shared_services", JSON.stringify(freshServices));

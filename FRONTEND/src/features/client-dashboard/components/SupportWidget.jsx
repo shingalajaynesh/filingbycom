@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function SupportWidget() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState('');
+  const { settings } = useSharedData();
 
   const contactOptions = [
     {
@@ -13,23 +15,23 @@ export default function SupportWidget() {
       detail: "Get instant assistance",
       icon: "💬",
       color: "bg-green-50 hover:bg-green-100 border-green-200 text-green-700",
-      onClick: () => window.open('https://wa.me/917567126945', '_blank')
+      onClick: () => window.open(settings?.ca_whatsapp_url || 'https://wa.me/917567126945', '_blank')
     },
     {
       title: "Call Helpline",
-      value: "+91 75671 26945",
+      value: settings?.ca_contact_phone || "+91 75671 26945",
       detail: "Mon-Sat, 9AM to 7PM",
       icon: "📞",
       color: "bg-blue-50 hover:bg-blue-100 border-blue-200 text-blue-700",
-      onClick: () => window.open('tel:+917567126945')
+      onClick: () => window.open(`tel:${(settings?.ca_contact_phone || "+91 75671 26945").replace(/\s+/g, '')}`)
     },
     {
       title: "Email Support",
-      value: "support@filingby.com",
+      value: settings?.ca_contact_email || "support@filingby.com",
       detail: "Response within 24 hours",
       icon: "✉️",
       color: "bg-purple-50 hover:bg-purple-100 border-purple-200 text-purple-700",
-      onClick: () => window.open('mailto:support@filingby.com')
+      onClick: () => window.open(`mailto:${settings?.ca_contact_email || "support@filingby.com"}`)
     }
   ];
 

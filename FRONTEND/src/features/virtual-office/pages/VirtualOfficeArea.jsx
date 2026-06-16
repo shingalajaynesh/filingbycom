@@ -187,27 +187,27 @@ export default function VirtualOfficeArea() {
       {/* Details Grid */}
       <section className="max-w-screen-xl mx-auto px-4 mt-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Main column */}
           <div className="lg:col-span-8 space-y-10">
             {/* Gallery Block */}
             <div className="bg-white rounded-3xl p-4 md:p-6 border-0 shadow-md space-y-4">
               <h3 className="text-base font-black text-gray-900 px-2 uppercase tracking-wide">Workspace Photographs</h3>
-              
+
               <div className="relative h-96 rounded-2xl overflow-hidden border-0 bg-gray-155">
-                <img 
-                  src={selectedArea.photos[activePhoto]} 
-                  alt="Workspace interior" 
-                  className="w-full h-full object-cover" 
+                <img
+                  src={selectedArea.photos[activePhoto]}
+                  alt="Workspace interior"
+                  className="w-full h-full object-cover"
                 />
                 <span className="absolute bottom-4 right-4 text-[10px] font-black bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full">
                   Photo {activePhoto + 1} of {selectedArea.photos.length}
                 </span>
               </div>
-              
+
               <div className="grid grid-cols-4 gap-3">
                 {selectedArea.photos.map((ph, index) => (
-                  <div 
+                  <div
                     key={index}
                     onClick={() => setActivePhoto(index)}
                     className={`h-20 rounded-xl overflow-hidden ring-2 transition-all cursor-pointer ${activePhoto === index ? "ring-[#1A56DB] scale-95 opacity-100" : "ring-transparent opacity-60 hover:opacity-100"}`}
@@ -224,7 +224,7 @@ export default function VirtualOfficeArea() {
               <p className="text-gray-655 text-xs md:text-sm font-semibold leading-relaxed">
                 {selectedArea.description}
               </p>
-              
+
               {/* Features list */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
                 {[
@@ -247,7 +247,7 @@ export default function VirtualOfficeArea() {
             {/* Pricing Packages */}
             <div className="bg-white rounded-3xl p-6 md:p-8 border-0 shadow-md space-y-6">
               <h3 className="text-lg font-black text-gray-900 border-l-4 border-[#1A56DB] pl-3 mb-6">Service Packages & Pricing</h3>
-              
+
               <div className="space-y-6">
                 {[
                   {
@@ -275,7 +275,7 @@ export default function VirtualOfficeArea() {
                         <h4 className="text-base font-black text-gray-900">{plan.title}</h4>
                         <span className="text-[9px] font-black text-orange-650 bg-orange-50 px-2 py-0.5 rounded">{plan.badge}</span>
                       </div>
-                      
+
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {plan.inclusions.map((inc, iIdx) => (
                           <li key={iIdx} className="text-[10px] text-gray-500 font-semibold flex items-center gap-1.5">
@@ -302,7 +302,7 @@ export default function VirtualOfficeArea() {
 
           {/* Right Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            
+
             {/* Lead capture form */}
             <div className="bg-white rounded-3xl p-6 border-0 shadow-md space-y-5">
               <div className="space-y-1">
@@ -387,7 +387,7 @@ export default function VirtualOfficeArea() {
               <p className="text-[10px] text-gray-500 font-semibold leading-relaxed">
                 With every purchase, FilingBy provides a full package of compliance paperwork required by state departments:
               </p>
-              
+
               <ul className="space-y-2 pl-2">
                 {[
                   "NOC from building owner / structural layout",

@@ -3,11 +3,13 @@ import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function VirtualDashboard() {
   const { user: clerkUser } = useUser();
   const navigate = useNavigate();
   const { fetchVirtualOrders, uploadVirtualDocuments, cancelVirtualOrder } = useOrderContext();
+  const { settings } = useSharedData();
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -314,9 +316,8 @@ export default function VirtualDashboard() {
               <div class="info-block">
                 <h3>Billed By</h3>
                 <p class="name">FilingBy Solutions Private Limited</p>
-                <p>402-405 Compliance Center Hub,</p>
-                <p>Adajan, Surat, Gujarat - 395009</p>
-                <p>support@filingby.com | +91 75671 26945</p>
+                <p>${settings?.vs_contact_address || "402-405 Compliance Center Hub, Adajan, Surat, Gujarat - 395009"}</p>
+                <p>${settings?.vs_contact_email || "support@filingby.com"} | ${settings?.vs_contact_phone || "+91 75671 26945"}</p>
               </div>
               <div class="info-block">
                 <h3>Billed To</h3>
@@ -1036,7 +1037,11 @@ export default function VirtualDashboard() {
                 </div>
 
                 <button
-                  onClick={() => window.open(`https://wa.me/917567126945?text=Hello,%20I%20have%20an%20active%20virtual%20office%20order%20ID%20${selectedOrder._id}.%20Need%20assistance.`, "_blank")}
+                  onClick={() => {
+                    const waBase = settings?.vs_whatsapp_url || "https://wa.me/917567126945";
+                    const separator = waBase.includes("?") ? "&" : "?";
+                    window.open(`${waBase}${separator}text=Hello,%20I%20have%20an%20active%20virtual%20office%20order%20ID%20${selectedOrder._id}.%20Need%20assistance.`, "_blank");
+                  }}
                   className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-8 py-3 rounded-xl transition-all active:scale-95 shadow-md shadow-green-100 flex items-center justify-center gap-2 mx-auto cursor-pointer"
                 >
                   Start WhatsApp Chat

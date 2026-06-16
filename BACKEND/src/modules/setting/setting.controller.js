@@ -33,7 +33,19 @@ class SettingController {
    */
   updateSettings = async (req, res) => {
     try {
-      const { key, value, isPublic = true } = req.body;
+      const { key, value, isPublic = true, settings } = req.body;
+
+      if (settings && typeof settings === "object") {
+        for (const [k, v] of Object.entries(settings)) {
+          await Setting.findOneAndUpdate(
+            { key: k },
+            { value: v, isPublic },
+            { upsert: true, runValidators: true }
+          );
+        }
+        settingCache.clear();
+        return res.status(200).json({ success: true, message: "Settings updated successfully" });
+      }
 
       if (!key) {
         return res.status(400).json({ success: false, message: "Setting key is required" });

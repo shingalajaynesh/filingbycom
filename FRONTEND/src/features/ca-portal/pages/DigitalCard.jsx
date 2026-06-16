@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import SEO from "../../../shared/components/SEO.jsx";
+import { useSharedData } from '../../../shared/context/SharedDataContext.jsx';
 
 /* ─────────────────────────────────────────────
    Brand Tokens  (FilingBy.com palette)
@@ -378,6 +379,7 @@ const ContactItem = ({ href, icon, label, value, valueStyle, target }) => {
    Main Component
 ══════════════════════════════════════════════ */
 export default function DigitalCard() {
+  const { settings } = useSharedData();
   const [toastMsg, setToastMsg] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
   const toastTimer = useRef(null);
@@ -396,7 +398,10 @@ export default function DigitalCard() {
 
   /* vCard download */
   function handleSaveContact() {
-    const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:FilingBy.com\r\nORG:FilingBy.com\r\nTITLE:Business Registration & Compliance Experts\r\nTEL;TYPE=WORK,VOICE:+917567126945\r\nEMAIL;TYPE=WORK:support@filingby.com\r\nURL:https://filingby.com\r\nADR;TYPE=WORK:;;Surat;Gujarat;;India\r\nNOTE:India's trusted platform for business registration, GST, ITR, Trademark & all compliance needs.\r\nEND:VCARD`;
+    const phone = (settings?.ca_contact_phone || "+91 75671 26945").replace(/\s+/g, "");
+    const email = settings?.ca_contact_email || "support@filingby.com";
+    const address = settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India";
+    const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:FilingBy.com\r\nORG:FilingBy.com\r\nTITLE:Business Registration & Compliance Experts\r\nTEL;TYPE=WORK,VOICE:${phone}\r\nEMAIL;TYPE=WORK:${email}\r\nURL:https://filingby.com\r\nADR;TYPE=WORK:;;${address}\r\nNOTE:India's trusted platform for business registration, GST, ITR, Trademark & all compliance needs.\r\nEND:VCARD`;
     const blob = new Blob([vcard], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -507,7 +512,7 @@ export default function DigitalCard() {
             <h2 style={S.titleText}>Business Registration & Compliance Experts</h2>
             <div style={S.locationText}>
               <i className="fas fa-map-marker-alt" style={{ color: TOKEN.gold, fontSize: '0.8rem' }} />
-              Surat, Gujarat · Pan-India Services
+              {settings?.ca_contact_address || "Surat, Gujarat · Pan-India Services"}
             </div>
           </div>
 
@@ -523,7 +528,7 @@ export default function DigitalCard() {
           {/* ── Social Icons ── */}
           <div style={S.actionsRow}>
             <SocialIcon
-              href="https://wa.me/917567126945"
+              href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"}
               bg={TOKEN.whatsapp}
               icon="fab fa-whatsapp"
               label="WhatsApp"
@@ -541,7 +546,7 @@ export default function DigitalCard() {
               label="Facebook"
             />
             <SocialIcon
-              href="mailto:support@filingby.com"
+              href={settings?.ca_contact_email ? `mailto:${settings.ca_contact_email}` : "mailto:support@filingby.com"}
               bg={TOKEN.email}
               icon="fas fa-envelope"
               label="Email"
@@ -558,16 +563,16 @@ export default function DigitalCard() {
           {/* ── Contact Details ── */}
           <div style={S.contactList}>
             <ContactItem
-              href="tel:+917567126945"
+              href={settings?.ca_contact_phone ? `tel:${settings.ca_contact_phone.replace(/\s+/g, '')}` : "tel:+917567126945"}
               icon="fas fa-phone-alt"
               label="Mobile"
-              value="+91 7567126945"
+              value={settings?.ca_contact_phone || "+91 75671 26945"}
             />
             <ContactItem
-              href="mailto:support@filingby.com"
+              href={settings?.ca_contact_email ? `mailto:${settings.ca_contact_email}` : "mailto:support@filingby.com"}
               icon="fas fa-envelope"
               label="Email"
-              value="support@filingby.com"
+              value={settings?.ca_contact_email || "support@filingby.com"}
             />
             <ContactItem
               href="https://filingby.com"
@@ -577,17 +582,17 @@ export default function DigitalCard() {
               target="_blank"
             />
             <ContactItem
-              href="https://wa.me/917567126945"
+              href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"}
               icon="fab fa-whatsapp"
               label="WhatsApp"
-              value="+91 7567126945"
+              value={settings?.ca_contact_phone || "+91 75671 26945"}
               target="_blank"
             />
             <ContactItem
               href="https://www.google.com/maps/search/Surat+Gujarat"
               icon="fas fa-map-marker-alt"
               label="Location"
-              value="Surat, Gujarat — Pan-India Services"
+              value={settings?.ca_contact_address || "Surat, Gujarat — Pan-India Services"}
               valueStyle={{ fontSize: '0.85rem', lineHeight: 1.35 }}
               target="_blank"
             />

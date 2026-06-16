@@ -4,6 +4,34 @@
  * Standardizes schema generation for search engine indexing.
  */
 
+const schemaConfig = {
+  ca_contact_phone: "+91-75671-26945",
+  ca_contact_email: "support@filingby.com",
+  ca_contact_address: "3rd Floor, Business Center, New Delhi, India",
+  vs_contact_phone: "+91-75671-26945"
+};
+
+export function updateSchemaSettings(settings) {
+  if (settings.ca_contact_phone) {
+    schemaConfig.ca_contact_phone = settings.ca_contact_phone;
+    orgSchema.contactPoint[0].telephone = settings.ca_contact_phone;
+    localBusinessSchema.telephone = settings.ca_contact_phone;
+  }
+  if (settings.ca_contact_email) {
+    schemaConfig.ca_contact_email = settings.ca_contact_email;
+    localBusinessSchema.email = settings.ca_contact_email;
+  }
+  if (settings.ca_contact_address) {
+    schemaConfig.ca_contact_address = settings.ca_contact_address;
+    if (localBusinessSchema.address) {
+      localBusinessSchema.address.streetAddress = settings.ca_contact_address;
+    }
+  }
+  if (settings.vs_contact_phone) {
+    schemaConfig.vs_contact_phone = settings.vs_contact_phone;
+  }
+}
+
 export const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -203,7 +231,7 @@ export function buildCityVirtualOfficeSchema(cityName) {
     "name": `Virtual Office ${cityName} — FilingBy`,
     "description": `Get premium virtual business address in ${cityName} for GST registration, company incorporation, and business mailing with NOC & utility bills.`,
     "image": "https://filingby.com/logo.jpeg",
-    "telephone": "+91-75671-26945",
+    "telephone": schemaConfig.vs_contact_phone,
     "url": `https://filingby.com/virtual-office-${cityName.toLowerCase().replace(/\s+/g, '-')}`,
     "address": {
       "@type": "PostalAddress",

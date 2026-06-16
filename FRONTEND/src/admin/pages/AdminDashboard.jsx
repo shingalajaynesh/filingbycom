@@ -14,6 +14,7 @@ import PartnersTable from "../components/PartnersTable";
 import QuotesTable from "../components/QuotesTable";
 import AdminLocations from "../components/AdminLocations";
 import AdminVirtualBookings from "../components/AdminVirtualBookings";
+import AdminSettings from "../components/AdminSettings";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("orders");
@@ -54,7 +55,11 @@ export default function AdminDashboard() {
               ? "Manage Virtual Office Locations"
               : activeTab === "nav-services"
               ? "Manage Navigation Services"
-              : "Manage Popular Services"}
+              : activeTab === "popular-services"
+              ? "Manage Popular Services"
+              : activeTab === "settings"
+              ? "Portal Settings"
+              : "Portal Settings"}
           </h1>
           <p className="text-sm text-gray-500 mt-1">
             {activeTab === "orders"
@@ -71,7 +76,11 @@ export default function AdminDashboard() {
               ? "Configure cities, states, workspaces, map pins, pricing, and FAQ items dynamically"
               : activeTab === "nav-services"
               ? "Manage services that appear in the navigation bar dropdowns"
-              : "Manage services that appear on the homepage Popular Services section"}
+              : activeTab === "popular-services"
+              ? "Manage services that appear on the homepage Popular Services section"
+              : activeTab === "settings"
+              ? "Manage configuration fields and text components dynamically"
+              : "Manage configuration fields and text components dynamically"}
           </p>
         </div>
 
@@ -90,6 +99,7 @@ export default function AdminDashboard() {
         {activeTab === "locations" && <AdminLocations />}
         {activeTab === "nav-services" && <AdminServices portal={currentPortal} type="nav" />}
         {activeTab === "popular-services" && <AdminServices portal={currentPortal} type="popular" />}
+        {activeTab === "settings" && <AdminSettings portal={currentPortal} />}
       </main>
     </div>
   );

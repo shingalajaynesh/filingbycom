@@ -5,7 +5,7 @@ import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function Locations() {
-  const { locations } = useSharedData();
+  const { locations, settings } = useSharedData();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -302,7 +302,7 @@ export default function Locations() {
             </div>
             <div className="flex flex-wrap lg:justify-end gap-4">
               <a 
-                href="tel:+917567126945"
+                href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
                 className="px-7 py-3.5 bg-[#F97316] hover:bg-orange-500 rounded-full font-bold active:scale-95 transition-all text-xs tracking-wider uppercase text-center shadow-lg shadow-orange-500/25"
               >
                 Call Support

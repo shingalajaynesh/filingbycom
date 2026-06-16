@@ -9,14 +9,17 @@ const actions = [
   { icon: "🎧", label: "Get Support", color: "bg-red-50 hover:bg-red-100/80 text-red-700 border-red-100", tab: "support", slug: null },
 ];
 
+import { useSharedData } from '../../../shared/context/SharedDataContext';
+
 export default function QuickActions({ onNavigate }) {
   const navigate = useNavigate();
+  const { settings } = useSharedData();
 
   const handleActionClick = (action) => {
     if (action.slug) {
       navigate(`/services/${action.slug}`);
     } else if (action.tab === 'documents') {
-      window.open("https://wa.me/917567126945", "_blank");
+      window.open(settings?.ca_whatsapp_url || "https://wa.me/917567126945", "_blank");
     } else if (action.tab && onNavigate) {
       onNavigate(action.tab);
     }

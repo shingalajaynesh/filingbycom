@@ -28,6 +28,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
         { id: "history", label: "History" },
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
+        { id: "settings", label: "Settings" },
       ]
     : [
         { id: "orders", label: "Orders" },
@@ -37,6 +38,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
         { id: "locations", label: "Locations" },
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
+        { id: "settings", label: "Settings" },
       ];
 
   return (

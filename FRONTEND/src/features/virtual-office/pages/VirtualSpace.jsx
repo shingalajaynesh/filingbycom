@@ -185,7 +185,7 @@ export default function VirtualSpace() {
   const [showBackTop,  setShowBackTop]  = useState(false);
   const [activeTab,    setActiveTab]    = useState("gst");
 
-  const { submitInquiry } = useSharedData();
+  const { submitInquiry, settings } = useSharedData();
 
   useEffect(() => {
     const fn = () => setShowBackTop(window.scrollY > 300);
@@ -412,7 +412,7 @@ export default function VirtualSpace() {
                   className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 hover:shadow-xl hover:shadow-orange-500/30 cursor-pointer text-sm min-h-[48px]">
                   Get Free Consultation →
                 </button>
-                <a href="tel:+919876543210"
+                <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
                   className="flex items-center justify-center gap-2 bg-white/8 border border-white/20 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white/15 transition-all active:scale-95 cursor-pointer text-sm min-h-[48px]">
                   <div className="w-4 h-4"><Icons.Phone /></div>
                   Talk to Expert
@@ -856,7 +856,7 @@ export default function VirtualSpace() {
               className="w-full sm:w-auto rounded-full bg-white px-8 py-3.5 text-sm font-bold text-[#1A56DB] hover:bg-blue-50 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-xl">
               Get Free Consultation →
             </button>
-            <a href="tel:+919876543210" id="final-cta-secondary"
+            <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} id="final-cta-secondary"
               className="w-full sm:w-auto rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-all active:scale-95 text-center min-h-[48px] flex items-center justify-center gap-2">
               <div className="w-4 h-4"><Icons.Phone /></div>
               Talk to Expert
@@ -889,7 +889,7 @@ export default function VirtualSpace() {
           Chat with us on WhatsApp
           <div className="absolute top-full right-4 border-4 border-transparent border-t-gray-900" />
         </div>
-        <a href="https://wa.me/917567126945?text=Hi%2C%20I%20need%20help%20with%20a%20virtual%20office%20on%20FilingBy.com"
+        <a href={settings?.vs_whatsapp_url ? `${settings.vs_whatsapp_url}?text=Hi%2C%20I%20need%20help%20with%20a%20virtual%20office%20on%20FilingBy.com` : "https://wa.me/917567126945?text=Hi%2C%20I%20need%20help%20with%20a%20virtual%20office%20on%20FilingBy.com"}
           target="_blank" rel="noopener noreferrer"
           className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] shadow-xl shadow-green-500/30 transition-transform duration-300 hover:scale-110"
           title="Chat on WhatsApp">

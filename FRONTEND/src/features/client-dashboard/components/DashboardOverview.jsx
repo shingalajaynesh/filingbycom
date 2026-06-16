@@ -2,9 +2,11 @@ import { useUser } from '@clerk/clerk-react';
 import StatsCards from './StatsCards';
 import OrderList from './OrderList';
 import QuickActions from './QuickActions';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function DashboardOverview({ orders = [], setActiveTab, onOrderClick }) {
   const { user } = useUser();
+  const { settings } = useSharedData();
   const userName = user?.firstName || 'User';
 
   // Count items for the welcome banner
@@ -41,7 +43,7 @@ export default function DashboardOverview({ orders = [], setActiveTab, onOrderCl
             View Orders
           </button>
           <button
-            onClick={() => window.open("https://wa.me/917567126945", "_blank")}
+            onClick={() => window.open(settings?.ca_whatsapp_url || "https://wa.me/917567126945", "_blank")}
             className="flex-1 md:flex-initial bg-white text-blue-600 hover:bg-blue-50 font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg shadow-blue-900/20 transition-all text-center min-h-11 md:min-h-[unset] cursor-pointer"
           >
             Upload Documents

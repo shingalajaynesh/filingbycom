@@ -24,17 +24,32 @@ export function UserProvider({ children }) {
 
   const syncedUserIdRef = useRef(null);
   const isSyncingRef = useRef(false);
+  const profileFetchedRef = useRef(false);
+
+  const userId = user?.id;
+  const userFirstName = user?.firstName;
+  const userLastName = user?.lastName;
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
+  const userPhone = user?.unsafeMetadata?.phoneNumber;
 
   const isAuthPage = ["/login", "/register"].includes(location.pathname);
-  const syncKey = user ? `usr_sync_${user.id}` : null;
+  const syncKey = userId ? `usr_sync_${userId}` : null;
   const isSynced = syncKey ? sessionStorage.getItem(syncKey) === "true" : false;
+
+  // Reset fetch tracker when signed out
+  useEffect(() => {
+    if (!isSignedIn) {
+      setProfile(null);
+      profileFetchedRef.current = false;
+    }
+  }, [isSignedIn]);
 
   // 1. Sync User logic
   useEffect(() => {
-    if (!isLoaded || !isUserLoaded || !isSignedIn || !user) return;
+    if (!isLoaded || !isUserLoaded || !isSignedIn || !userId) return;
 
-    if (syncedUserIdRef.current === user.id || isSynced) {
-      syncedUserIdRef.current = user.id;
+    if (syncedUserIdRef.current === userId || isSynced) {
+      syncedUserIdRef.current = userId;
       if (isAuthPage) {
         navigate("/dashboard", { replace: true });
       }
@@ -55,10 +70,10 @@ export function UserProvider({ children }) {
         }
 
         const payload = {
-          firstName: user.firstName || "",
-          lastName: user.lastName || "",
-          email: user.primaryEmailAddress?.emailAddress || "",
-          phone: user.unsafeMetadata?.phoneNumber || "",
+          firstName: userFirstName || "",
+          lastName: userLastName || "",
+          email: userEmail || "",
+          phone: userPhone || "",
         };
 
         await axios.post(`${API_BASE}/register`, payload, {
@@ -75,7 +90,7 @@ export function UserProvider({ children }) {
           return;
         }
 
-        syncedUserIdRef.current = user.id;
+        syncedUserIdRef.current = userId;
         if (syncKey) {
           sessionStorage.setItem(syncKey, "true");
         }
@@ -121,7 +136,11 @@ export function UserProvider({ children }) {
     isLoaded,
     isUserLoaded,
     isSignedIn,
-    user,
+    userId,
+    userFirstName,
+    userLastName,
+    userEmail,
+    userPhone,
     isSynced,
     getToken,
     signOut,
@@ -136,10 +155,10 @@ export function UserProvider({ children }) {
     if (!token) throw new Error("Session expired. Please log in again.");
 
     const payload = customPayload || {
-      firstName: user?.firstName || "",
-      lastName: user?.lastName || "",
-      email: user?.primaryEmailAddress?.emailAddress || "",
-      phone: user?.unsafeMetadata?.phoneNumber || "",
+      firstName: userFirstName || "",
+      lastName: userLastName || "",
+      email: userEmail || "",
+      phone: userPhone || "",
     };
 
     try {
@@ -160,11 +179,12 @@ export function UserProvider({ children }) {
       const errorMessage = err.response?.data?.message || err.message || "Failed to sync user data";
       throw new Error(errorMessage);
     }
-  }, [getToken, user]);
+  }, [getToken, userFirstName, userLastName, userEmail, userPhone]);
 
   // 3. Fetch Profile logic with robust auto-sync recovery
-  const fetchProfile = useCallback(async () => {
+  const fetchProfile = useCallback(async (force = false) => {
     if (!isSignedIn) return;
+    if (profileFetchedRef.current && !force) return;
     setProfileLoading(true);
     try {
       const token = await getToken();
@@ -177,6 +197,7 @@ export function UserProvider({ children }) {
       const resData = res.data;
       if (resData.success) {
         setProfile(resData.user);
+        profileFetchedRef.current = true;
       }
     } catch (err) {
       console.error("Failed to fetch profile:", err);
@@ -197,7 +218,8 @@ export function UserProvider({ children }) {
             if (retryRes.data.success) {
               setProfile(retryRes.data.user);
               if (syncKey) sessionStorage.setItem(syncKey, "true");
-              syncedUserIdRef.current = user?.id;
+              syncedUserIdRef.current = userId;
+              profileFetchedRef.current = true;
             }
           }
         } catch (syncErr) {
@@ -207,7 +229,7 @@ export function UserProvider({ children }) {
     } finally {
       setProfileLoading(false);
     }
-  }, [getToken, isSignedIn, user, syncKey, syncUserToBackend]);
+  }, [getToken, isSignedIn, userId, syncKey, syncUserToBackend]);
 
   // Automatically fetch profile when user is signed in
   useEffect(() => {

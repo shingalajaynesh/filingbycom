@@ -9,21 +9,26 @@ import NotificationPanel from '../components/NotificationPanel';
 import NewOrderSection from '../components/NewOrderSection';
 import { useOrderContext } from '../../../shared/context/OrderContext';
 
-const DocumentSection = () => (
-  <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center max-w-lg mx-auto">
-    <p className="text-5xl mb-4">📁</p>
-    <h3 className="text-xl font-bold text-gray-900 mb-2">Upload Documents</h3>
-    <p className="text-gray-505 text-sm mb-6 leading-relaxed">
-      Please send your documents directly to our expert CA/CS processing team on WhatsApp. Mention your order details or registered email.
-    </p>
-    <button
-      onClick={() => window.open("https://wa.me/917567126945", "_blank")}
-      className="bg-green-600 text-white font-bold text-sm px-8 py-3 rounded-full hover:bg-green-700 transition-all active:scale-95 hover:shadow-lg hover:shadow-green-200 flex items-center justify-center gap-2 mx-auto cursor-pointer"
-    >
-      <span>💬</span> Share on WhatsApp
-    </button>
-  </div>
-);
+import { useSharedData } from '../../../shared/context/SharedDataContext';
+
+const DocumentSection = () => {
+  const { settings } = useSharedData();
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 p-8 text-center max-w-lg mx-auto">
+      <p className="text-5xl mb-4">📁</p>
+      <h3 className="text-xl font-bold text-gray-900 mb-2">Upload Documents</h3>
+      <p className="text-gray-550 text-sm mb-6 leading-relaxed">
+        Please send your documents directly to our expert CA/CS processing team on WhatsApp. Mention your order details or registered email.
+      </p>
+      <button
+        onClick={() => window.open(settings?.ca_whatsapp_url || "https://wa.me/917567126945", "_blank")}
+        className="bg-green-600 text-white font-bold text-sm px-8 py-3 rounded-full hover:bg-green-700 transition-all active:scale-95 hover:shadow-lg hover:shadow-green-200 flex items-center justify-center gap-2 mx-auto cursor-pointer"
+      >
+        <span>💬</span> Share on WhatsApp
+      </button>
+    </div>
+  );
+};
 
 // ReferralCard component deleted since it was unused and commented out.
 

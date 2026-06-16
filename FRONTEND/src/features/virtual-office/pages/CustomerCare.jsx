@@ -1,10 +1,12 @@
 import { useState } from "react";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function CustomerCare() {
   const [submitted, setSubmitted] = useState(false);
   const [ticketId, setTicketId] = useState(null);
+  const { settings } = useSharedData();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -67,7 +69,9 @@ export default function CustomerCare() {
                 <span className="text-xl">📞</span>
                 <div>
                   <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">Call Support Desk</p>
-                  <a href="tel:+917567126945" className="text-sm font-bold text-[#1A56DB] hover:underline">+91 75671 26945</a>
+                  <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} className="text-sm font-bold text-[#1A56DB] hover:underline">
+                    {settings?.vs_contact_phone || "+91 75671 26945"}
+                  </a>
                 </div>
               </div>
 
@@ -75,7 +79,9 @@ export default function CustomerCare() {
                 <span className="text-xl">📧</span>
                 <div>
                   <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">Email Address</p>
-                  <a href="mailto:care@filingby.com" className="text-sm font-bold text-[#1A56DB] hover:underline">care@filingby.com</a>
+                  <a href={`mailto:${settings?.vs_contact_email || "support@filingby.com"}`} className="text-sm font-bold text-[#1A56DB] hover:underline">
+                    {settings?.vs_contact_email || "support@filingby.com"}
+                  </a>
                 </div>
               </div>
 
@@ -83,7 +89,7 @@ export default function CustomerCare() {
                 <span className="text-xl">💬</span>
                 <div>
                   <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">WhatsApp Live Assistant</p>
-                  <a href="https://wa.me/917567126945" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-600 hover:underline">Chat on WhatsApp</a>
+                  <a href={settings?.vs_whatsapp_url || "https://wa.me/917567126945"} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-600 hover:underline">Chat on WhatsApp</a>
                 </div>
               </div>
 

@@ -10,6 +10,7 @@ export default function AdminLocations() {
   const [editingLocation, setEditingLocation] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [activeFormTab, setActiveFormTab] = useState("basic"); // basic, workspaces, faqs
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { fetchAdminLocations, saveLocation, deleteLocation: deleteLocAPI } = useAdminContext();
 
@@ -268,16 +269,42 @@ export default function AdminLocations() {
     }
   };
 
+  const filteredLocations = locations.filter(loc => {
+    if (!searchTerm) return true;
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      (loc.name || "").toLowerCase().includes(searchLower) ||
+      (loc.slug || "").toLowerCase().includes(searchLower) ||
+      (loc.state || "").toLowerCase().includes(searchLower) ||
+      (loc.tagline || "").toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-      <div className="flex justify-between items-center mb-6">
-        <h3 className="text-lg font-black text-gray-900">Virtual Office Locations & Spaces</h3>
-        <button
-          onClick={() => handleOpenModal()}
-          className="px-4.5 py-2.5 bg-[#1A56DB] hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl cursor-pointer active:scale-95 transition-all shadow-md shadow-blue-500/10 border-0"
-        >
-          + Add New City
-        </button>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h3 className="text-lg font-black text-gray-900">Virtual Office Locations & Spaces</h3>
+          <p className="text-xs text-gray-400 mt-1">Configure physical workspaces and cities dynamically</p>
+        </div>
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="relative w-full sm:w-64">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input
+              type="text"
+              placeholder="Search locations..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white text-gray-950"
+            />
+          </div>
+          <button
+            onClick={() => handleOpenModal()}
+            className="px-4.5 py-2.5 bg-[#1A56DB] hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl cursor-pointer active:scale-95 transition-all shadow-md shadow-blue-500/10 border-0 whitespace-nowrap"
+          >
+            + Add New City
+          </button>
+        </div>
       </div>
 
       {loading ? (
@@ -300,7 +327,14 @@ export default function AdminLocations() {
               </tr>
             </thead>
             <tbody>
-              {locations.map((loc) => (
+              {filteredLocations.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="py-12 text-center text-gray-500 text-sm font-semibold">
+                    No locations found matching "{searchTerm}"
+                  </td>
+                </tr>
+              ) : (
+                filteredLocations.map((loc) => (
                 <tr key={loc._id} className="border-b border-gray-50 hover:bg-slate-50/50 transition-colors">
                   <td className="py-4 px-4">
                     <div className="flex items-center gap-3">
@@ -338,7 +372,7 @@ export default function AdminLocations() {
                     </button>
                   </td>
                 </tr>
-              ))}
+              )))}
             </tbody>
           </table>
         </div>

@@ -44,6 +44,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
   // Navbar limit settings state
   const [navbarLimit, setNavbarLimit] = useState(5);
   const [savingLimit, setSavingLimit] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Modals state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -328,7 +329,18 @@ export default function AdminServices({ portal, type = 'nav' }) {
     );
   }
 
-  const displayServices = services.filter(s => type === 'nav' ? s.isActive !== false : s.isPopular === true);
+  const displayServices = services.filter(s => {
+    const matchesType = type === 'nav' ? s.isActive !== false : s.isPopular === true;
+    if (!matchesType) return false;
+    if (!searchTerm) return true;
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      (s.name || "").toLowerCase().includes(searchLower) ||
+      (s.slug || "").toLowerCase().includes(searchLower) ||
+      (s.description || "").toLowerCase().includes(searchLower) ||
+      (s.mainService?.name || "").toLowerCase().includes(searchLower)
+    );
+  });
 
   const uncategorizedServices = displayServices.filter(s => {
     const mainId = s.mainService?._id || s.mainService;
@@ -337,7 +349,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-lg font-bold text-gray-900">
             {type === 'nav' ? 'Manage Navigation Services' : 'Manage Popular Services'}
@@ -348,18 +360,28 @@ export default function AdminServices({ portal, type = 'nav' }) {
               : 'Add or edit services and manage their placement on the Homepage.'}
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div className="relative w-full sm:w-64">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <input
+              type="text"
+              placeholder="Search services..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1A56DB] focus:border-transparent bg-white text-gray-900"
+            />
+          </div>
           {type === 'nav' && (
             <button
               onClick={() => handleOpenMainModal()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-md border border-[#1A56DB] text-[#1A56DB] text-sm font-medium hover:bg-blue-50 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-md border border-[#1A56DB] text-[#1A56DB] text-sm font-medium hover:bg-blue-50 transition-colors bg-white cursor-pointer"
             >
               + Add Category
             </button>
           )}
           <button
             onClick={() => handleOpenModal()}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-medium hover:bg-blue-700 transition-colors cursor-pointer border-0"
           >
             + Add Service
           </button>
@@ -403,7 +425,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
           ) : (
             mainServices.map(main => {
               const semiServices = displayServices.filter(s => s.mainService?._id === main._id || s.mainService === main._id).sort((a,b) => (a.order || 0) - (b.order || 0));
-              const isExpanded = expandedCategory === main._id;
+              const isExpanded = expandedCategory === main._id || (searchTerm && semiServices.length > 0);
               
               return (
                 <div key={main._id} className="border border-gray-200 rounded-lg shadow-sm bg-white overflow-hidden">

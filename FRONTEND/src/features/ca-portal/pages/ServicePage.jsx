@@ -18,7 +18,7 @@ export default function ServicePage() {
   const [showPhoneModal, setShowPhoneModal] = useState(false);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   
-  const { services, loading: cacheLoading, refresh } = useSharedData();
+  const { services, loading: cacheLoading, refresh, settings } = useSharedData();
   const [serviceData, setServiceData] = useState(null);
   const [relatedServices, setRelatedServices] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
@@ -216,8 +216,8 @@ export default function ServicePage() {
               >
                 Get Started
               </button>
-              <a href="https://wa.me/917567126945" target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
-              <a href="tel:+917567126945" className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
+              <a href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"} target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
+              <a href={`tel:${settings?.ca_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
               <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
             </div>
           </m.aside>

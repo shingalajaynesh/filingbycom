@@ -30,8 +30,8 @@ function BrandLogo({ name }) {
 export default function VirtualOfficeCity() {
   const { city } = useParams();
   const navigate = useNavigate();
-  const { locations } = useSharedData();
-  
+  const { locations, settings } = useSharedData();
+
   // Extract city slug from route (e.g. from `/virtual-office-delhi` or `/virtual-office/:city`)
   const currentPath = window.location.pathname;
   let detectedCitySlug = "surat";
@@ -136,10 +136,10 @@ export default function VirtualOfficeCity() {
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.5843468305084!2d77.21447087627464!3d28.627252075667232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd36a32d1bb5%3A0x6b7fa15f8de50a21!2sConnaught%20Place%20New%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
     addresses: [
-      { 
-        name: "Premium Business Center", 
+      {
+        name: "Premium Business Center",
         slug: "premium-center",
-        address: `Main Commercial Street, Central Business District, ${detectedCitySlug || "Selected City"}`, 
+        address: `Main Commercial Street, Central Business District, ${detectedCitySlug || "Selected City"}`,
         feature: "Fully Compliant Business Address",
         image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
         priceGST: "999",
@@ -208,16 +208,16 @@ export default function VirtualOfficeCity() {
             <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded hidden sm:inline-block">Starting ₹{defaultCity.rate}/mo</span>
           </div>
           <div className="flex items-center gap-3">
-            <a 
-              href="tel:+917567126945" 
+            <a
+              href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
               className="text-xs font-black text-gray-900 px-4 py-2 rounded-xl border border-gray-300 hover:border-[#1A56DB] active:scale-95 transition-all flex items-center gap-1.5"
             >
               <span>📞</span>
               <span className="hidden sm:inline">Call Representative</span>
               <span className="sm:hidden">Call Now</span>
             </a>
-            <button 
-              onClick={() => navigate("/locations")} 
+            <button
+              onClick={() => navigate("/locations")}
               className="text-xs font-black text-white bg-[#1A56DB] hover:bg-blue-700 px-4 py-2 rounded-xl active:scale-95 transition-all cursor-pointer shadow-md shadow-blue-500/10 border-0"
             >
               Other Cities
@@ -243,12 +243,12 @@ export default function VirtualOfficeCity() {
                 🛡️ 100% Moneyback SLA
               </span>
             </div>
-            
+
             <h1 className="text-3xl md:text-5xl font-black tracking-tight leading-tight text-white">
               Premium Business Address in <br />
               <span className="text-[#F97316]">{defaultCity.name}</span> for GST & MCA
             </h1>
-            
+
             <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed max-w-xl">
               Register your company branch, set up VPOB, or file for a GST registration using a government-compliant commercial address. Complete documentation delivered in 24 hours.
             </p>
@@ -312,7 +312,7 @@ export default function VirtualOfficeCity() {
                       className="w-full text-xs font-semibold px-4 py-3.5 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
                     />
                   </div>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[10px] font-black text-gray-600 uppercase block mb-1">Email Address</label>
@@ -412,16 +412,16 @@ export default function VirtualOfficeCity() {
         {/* Workspace Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {defaultCity.addresses.map((addr, idx) => (
-            <div 
+            <div
               key={idx}
               className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col group border-0"
             >
               {/* Card Photo header */}
               <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={addr.image} 
-                  alt={addr.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
+                <img
+                  src={addr.image}
+                  alt={addr.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-green-700 bg-green-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
@@ -439,7 +439,7 @@ export default function VirtualOfficeCity() {
                     <span className="text-base leading-none">📍</span>
                     <span>{addr.address}</span>
                   </div>
-                  
+
                   <div className="bg-gradient-to-r from-orange-500/10 to-transparent text-[#EA580C] px-4 py-2.5 rounded-r-xl border-l-4 border-[#F97316] font-bold text-xs inline-block mb-6 w-full shadow-sm">
                     💡 {addr.feature}
                   </div>
@@ -477,14 +477,14 @@ export default function VirtualOfficeCity() {
 
                 {/* CTAs */}
                 <div className="grid grid-cols-2 gap-3 mt-4">
-                  <a 
-                    href="tel:+917567126945"
+                  <a
+                    href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
                     className="py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-2xl text-xs font-black text-center transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 border-0 shadow-sm"
                   >
                     <span>📞</span>
                     <span>Call Expert</span>
                   </a>
-                  <button 
+                  <button
                     onClick={() => navigate(`/virtual-office-${detectedCitySlug}/${addr.slug}`)}
                     className="py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black text-center transition-all cursor-pointer shadow-lg shadow-blue-500/20 active:scale-95 border-0 flex items-center justify-center gap-1.5"
                   >
@@ -508,7 +508,7 @@ export default function VirtualOfficeCity() {
               <p className="text-xs text-gray-500 font-semibold leading-relaxed mb-6">
                 All FilingBy centers in {defaultCity.name} are situated in premium class-A IT towers and commercial landmarks, offering extreme credibility to your stationery and invoice address.
               </p>
-              
+
               <ul className="space-y-3">
                 {[
                   "Within 500m of prominent Metro Stations",
@@ -523,8 +523,8 @@ export default function VirtualOfficeCity() {
                 ))}
               </ul>
             </div>
-            
-            <button 
+
+            <button
               onClick={() => {
                 const el = document.querySelector("form");
                 el?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -534,7 +534,7 @@ export default function VirtualOfficeCity() {
               Get Landlord Consent Letters
             </button>
           </div>
-          
+
           <div className="lg:col-span-8 bg-white rounded-3xl p-4 shadow-md flex flex-col h-[400px] border-0">
             <h4 className="text-[10px] font-black text-gray-900 mb-2 uppercase tracking-widest pl-2">Google Map Index Location</h4>
             <iframe
@@ -561,7 +561,7 @@ export default function VirtualOfficeCity() {
               FilingBy is a CA-backed compliance platform. If your GST application gets rejected because of an address document deficiency, we will work with you to resolve it immediately. If it still fails, we refund your complete booking amount with no questions asked.
             </p>
           </div>
-          <button 
+          <button
             onClick={() => navigate("/get-live-quote")}
             className="flex-shrink-0 px-8 py-4 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl text-xs font-black tracking-wider uppercase active:scale-95 transition-all shadow-md shadow-blue-500/20 cursor-pointer border-0"
           >
@@ -577,8 +577,8 @@ export default function VirtualOfficeCity() {
         </h2>
         <div className="space-y-4">
           {defaultCity.faqs.map((item, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`bg-white rounded-3xl overflow-hidden transition-all duration-300 shadow-sm border-0 ${openFaq === index ? "ring-2 ring-blue-500/10 shadow-md" : "hover:shadow-md"}`}
             >
               <button
@@ -588,14 +588,14 @@ export default function VirtualOfficeCity() {
                 <div className="flex items-center gap-3">
                   <div className={`w-7 h-7 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${openFaq === index ? "bg-[#1A56DB] text-white" : "bg-gray-150 text-gray-500"} p-1`}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14,2 14,8 20,8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
                     </svg>
                   </div>
                   <span className="font-extrabold text-gray-950 text-sm sm:text-base">{item.q}</span>
                 </div>
                 <div className={`w-5 h-5 text-[#1A56DB] flex-shrink-0 transition-transform duration-200 ${openFaq === index ? "rotate-180" : ""}`}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                    <polyline points="6 9 12 15 18 9"/>
+                    <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </div>
               </button>

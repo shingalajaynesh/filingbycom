@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function Footer() {
   const navigate = useNavigate();
+  const { settings } = useSharedData();
 
   return (
     <footer className="bg-[#0a1628] text-gray-300 border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
@@ -98,15 +100,19 @@ export default function Footer() {
             <div className="space-y-2 text-sm text-blue-100/75">
               <p className="flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:+917567126945" className="hover:text-white transition-colors">+91 75671 26945</a>
+                <a href={`tel:${settings?.ca_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} className="hover:text-white transition-colors">
+                  {settings?.ca_contact_phone || "+91 75671 26945"}
+                </a>
               </p>
               <p className="flex items-center gap-2">
                 <span>📧</span>
-                <a href="mailto:info@filingby.com" className="hover:text-white transition-colors">info@filingby.com</a>
+                <a href={`mailto:${settings?.ca_contact_email || "support@filingby.com"}`} className="hover:text-white transition-colors">
+                  {settings?.ca_contact_email || "support@filingby.com"}
+                </a>
               </p>
               <p className="flex items-start gap-2 leading-relaxed">
                 <span className="mt-1">📍</span>
-                <span>3rd Floor, Business Center, New Delhi, India</span>
+                <span>{settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India"}</span>
               </p>
             </div>
           </div>

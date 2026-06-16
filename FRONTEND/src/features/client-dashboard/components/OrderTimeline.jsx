@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useUser } from "@clerk/clerk-react";
 import { useOrderContext } from '../../../shared/context/OrderContext';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
   const { user: clerkUser } = useUser();
   const { cancelOrder } = useOrderContext();
   const [cancelling, setCancelling] = useState(false);
+  const { settings } = useSharedData();
   if (!order) return null;
 
   const statusStyles = {
@@ -219,9 +221,8 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
               <div class="info-block">
                 <h3>Billed By</h3>
                 <p class="name">FilingBy Solutions Private Limited</p>
-                <p>402-405 Compliance Center Hub,</p>
-                <p>Adajan, Surat, Gujarat - 395009</p>
-                <p>support@filingby.com | +91 75671 26945</p>
+                <p>${settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India"}</p>
+                <p>${settings?.ca_contact_email || "support@filingby.com"} | ${settings?.ca_contact_phone || "+91 75671 26945"}</p>
               </div>
               <div class="info-block">
                 <h3>Billed To</h3>
@@ -486,7 +487,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
             <>
               <button
                 onClick={() => {
-                  window.open("https://wa.me/917567126945", "_blank");
+                  window.open(settings?.ca_whatsapp_url || "https://wa.me/917567126945", "_blank");
                 }}
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 px-4 rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2 cursor-pointer animate-pulse"
               >

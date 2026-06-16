@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { orgSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 
 export default function AboutUs() {
   const navigate = useNavigate();
+  const { settings } = useSharedData();
 
   return (
     <div className="bg-gray-50 min-h-screen pb-16">
@@ -103,7 +105,7 @@ export default function AboutUs() {
                 Browse Locations
               </button>
               <a 
-                href="tel:+917567126945"
+                href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
                 className="px-6 py-2.5 bg-white/10 hover:bg-white/15 border border-white/25 text-white rounded-full font-bold active:scale-95 transition-all text-xs uppercase text-center"
               >
                 Talk to Expert
