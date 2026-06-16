@@ -22,7 +22,7 @@ export default function Navigation() {
   const dynamicLimit = (() => {
     if (windowWidth < 1280) return Math.min(navLimit, 2);
     if (windowWidth < 1440) return Math.min(navLimit, 3);
-    if (windowWidth < 1640) return Math.min(navLimit, 4);
+    if (windowWidth < 1821) return Math.min(navLimit, 4);
     return navLimit;
   })();
 
