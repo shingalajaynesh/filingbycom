@@ -130,37 +130,7 @@ export function UserProvider({ children }) {
     syncKey
   ]);
 
-  // 2. Fetch Profile logic
-  const fetchProfile = useCallback(async () => {
-    if (!isSignedIn) return;
-    setProfileLoading(true);
-    try {
-      const token = await getToken();
-      if (!token) return;
-      
-      const res = await axios.get(`${API_BASE}/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-      });
-      const resData = res.data;
-      if (resData.success) {
-        setProfile(resData.user);
-      }
-    } catch (err) {
-      console.error("Failed to fetch profile:", err);
-    } finally {
-      setProfileLoading(false);
-    }
-  }, [getToken, isSignedIn]);
-
-  // Automatically fetch profile when user is signed in
-  useEffect(() => {
-    if (isSignedIn) {
-      fetchProfile();
-    }
-  }, [isSignedIn, fetchProfile]);
-
-  // 3. Expose manual sync for PhoneVerificationModal
+  // 2. Expose manual sync for PhoneVerificationModal / Self-Sync
   const syncUserToBackend = useCallback(async (customPayload) => {
     const token = await getToken();
     if (!token) throw new Error("Session expired. Please log in again.");
@@ -191,6 +161,60 @@ export function UserProvider({ children }) {
       throw new Error(errorMessage);
     }
   }, [getToken, user]);
+
+  // 3. Fetch Profile logic with robust auto-sync recovery
+  const fetchProfile = useCallback(async () => {
+    if (!isSignedIn) return;
+    setProfileLoading(true);
+    try {
+      const token = await getToken();
+      if (!token) return;
+      
+      const res = await axios.get(`${API_BASE}/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+      const resData = res.data;
+      if (resData.success) {
+        setProfile(resData.user);
+      }
+    } catch (err) {
+      console.error("Failed to fetch profile:", err);
+      // Auto-sync if profile is not found in database (404)
+      if (err.response?.status === 404) {
+        console.warn("Profile not found in database. Attempting self-sync...");
+        if (syncKey) sessionStorage.removeItem(syncKey);
+        syncedUserIdRef.current = null;
+        
+        try {
+          const syncRes = await syncUserToBackend();
+          if (syncRes && syncRes.success) {
+            const token = await getToken();
+            const retryRes = await axios.get(`${API_BASE}/profile`, {
+              headers: { Authorization: `Bearer ${token}` },
+              withCredentials: true,
+            });
+            if (retryRes.data.success) {
+              setProfile(retryRes.data.user);
+              if (syncKey) sessionStorage.setItem(syncKey, "true");
+              syncedUserIdRef.current = user?.id;
+            }
+          }
+        } catch (syncErr) {
+          console.error("Self-sync after profile 404 failed:", syncErr);
+        }
+      }
+    } finally {
+      setProfileLoading(false);
+    }
+  }, [getToken, isSignedIn, user, syncKey, syncUserToBackend]);
+
+  // Automatically fetch profile when user is signed in
+  useEffect(() => {
+    if (isSignedIn) {
+      fetchProfile();
+    }
+  }, [isSignedIn, fetchProfile]);
 
   // Provide context
   return (
