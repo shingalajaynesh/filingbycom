@@ -1,105 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { useUser, useAuth } from '@clerk/clerk-react';
-import { safeFetch } from '../../../shared/utils/api';
+import React, { useState } from 'react';
 
-export default function ProfileCard({ ordersCount = 0 }) {
-  const { user: clerkUser, isLoaded } = useUser();
-  const { getToken } = useAuth();
+const initialUser = {
+  name: "Rajesh Kumar",
+  email: "rajesh.kumar@example.com",
+  phone: "+91 75671 26945",
+  businessName: "Rajesh Enterprises",
+  businessType: "Private Limited Company",
+  gstNumber: "27AABCU9603R1ZX",
+  panNumber: "AABCU9603R",
+  memberSince: "January 2024",
+  totalOrders: 5,
+  initials: "RK",
+};
 
-  const [user, setUser] = useState(null);
+export default function ProfileCard() {
+  const [user, setUser] = useState(initialUser);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({ ...initialUser });
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [saving, setSaving] = useState(false);
-
-  const getProfileData = (clerkUser) => {
-    if (!clerkUser) return null;
-    const firstName = clerkUser.firstName || "";
-    const lastName = clerkUser.lastName || "";
-    const name = `${firstName} ${lastName}`.trim() || "Client User";
-    const initials = (firstName[0] || "") + (lastName[0] || "") || "U";
-
-    return {
-      name,
-      firstName,
-      lastName,
-      email: clerkUser.primaryEmailAddress?.emailAddress || "",
-      phone: clerkUser.unsafeMetadata?.phoneNumber || clerkUser.phoneNumbers?.[0]?.phoneNumber || "",
-      businessName: clerkUser.unsafeMetadata?.businessName || "",
-      businessType: clerkUser.unsafeMetadata?.businessType || "Sole Proprietorship",
-      gstNumber: clerkUser.unsafeMetadata?.gstNumber || "",
-      panNumber: clerkUser.unsafeMetadata?.panNumber || "",
-      memberSince: clerkUser.createdAt
-        ? new Date(clerkUser.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-        : "N/A",
-      totalOrders: ordersCount,
-      initials,
-    };
-  };
-
-  useEffect(() => {
-    if (isLoaded && clerkUser) {
-      const profileData = getProfileData(clerkUser);
-      setUser(profileData);
-      setFormData(profileData);
-    }
-  }, [isLoaded, clerkUser, ordersCount]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = async (e) => {
+  // Update initials when name changes
+  useEffect(() => {
+    const initials = user.firstName + " " + user.lastName;
+    setUser(prev => ({ ...prev, initials }));
+  }, [user.firstName, user.lastName]);
+
+  const handleSave = (e) => {
     e.preventDefault();
-    if (!clerkUser) return;
-    setSaving(true);
-    try {
-      const nameParts = formData.name.trim().split(/\s+/);
-      const firstName = nameParts[0] || "";
-      const lastName = nameParts.slice(1).join(" ") || "";
-
-      // Update Clerk user details and unsafeMetadata
-      await clerkUser.update({
-        firstName,
-        lastName,
-        unsafeMetadata: {
-          ...clerkUser.unsafeMetadata,
-          phoneNumber: formData.phone,
-          businessName: formData.businessName,
-          businessType: formData.businessType,
-          gstNumber: formData.gstNumber,
-          panNumber: formData.panNumber,
-        },
-      });
-
-      // Synchronize with the backend User database in MongoDB
-      const token = await getToken();
-      if (token) {
-        await safeFetch("/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            phone: formData.phone,
-          }),
-        });
-      }
-
-      setUser({ ...formData, initials: (firstName[0] || "") + (lastName[0] || "") });
-      setIsEditing(false);
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 3000);
-    } catch (err) {
-      console.error("Failed to update profile:", err);
-      alert(err.message || "Failed to save profile changes.");
-    } finally {
-      setSaving(false);
-    }
+    setUser({ ...formData });
+    setIsEditing(false);
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
   };
 
   const handleCancel = () => {
@@ -140,9 +76,6 @@ export default function ProfileCard({ ordersCount = 0 }) {
               Enterprise Client
             </span>
           </div>
-          <p className="text-sm font-semibold text-gray-500">
-            {user.businessName}
-          </p>
           <p className="text-xs text-gray-400">
             Member Since: {user.memberSince} • Total Orders: <span className="font-semibold text-gray-700">{user.totalOrders}</span>
           </p>
@@ -198,56 +131,6 @@ export default function ProfileCard({ ordersCount = 0 }) {
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Business Name</label>
-              <input
-                type="text"
-                name="businessName"
-                value={formData.businessName}
-                onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Business Entity Type</label>
-              <select
-                name="businessType"
-                value={formData.businessType}
-                onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-              >
-                <option value="Sole Proprietorship">Sole Proprietorship</option>
-                <option value="Partnership Firm">Partnership Firm</option>
-                <option value="Private Limited Company">Private Limited Company</option>
-                <option value="One Person Company (OPC)">One Person Company (OPC)</option>
-                <option value="Limited Liability Partnership (LLP)">Limited Liability Partnership (LLP)</option>
-              </select>
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">GST Number</label>
-              <input
-                type="text"
-                name="gstNumber"
-                value={formData.gstNumber}
-                onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">PAN Card Number</label>
-              <input
-                type="text"
-                name="panNumber"
-                value={formData.panNumber}
-                onChange={handleInputChange}
-                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
 
           </div>
 
@@ -291,41 +174,8 @@ export default function ProfileCard({ ordersCount = 0 }) {
             </span>
           </div>
 
-          <div className="flex flex-col bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-              Business Type
-            </span>
-            <span className="text-sm font-semibold text-gray-800">
-              {user.businessType}
-            </span>
-          </div>
 
-          <div className="flex flex-col bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-              GSTIN Details
-            </span>
-            <span className="text-sm font-bold text-gray-800 tracking-wide">
-              {user.gstNumber || 'Not Provided'}
-            </span>
-          </div>
 
-          <div className="flex flex-col bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-              Corporate PAN
-            </span>
-            <span className="text-sm font-bold text-gray-800 tracking-wide">
-              {user.panNumber}
-            </span>
-          </div>
-
-          <div className="flex flex-col bg-gray-50 border border-gray-100 rounded-xl px-4 py-3">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
-              Member Account Created
-            </span>
-            <span className="text-sm font-semibold text-gray-800">
-              {user.memberSince}
-            </span>
-          </div>
 
         </div>
       )}
