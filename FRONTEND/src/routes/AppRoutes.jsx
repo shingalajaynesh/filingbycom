@@ -8,6 +8,7 @@
 
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { LazyMotion, domAnimation } from "framer-motion";
 
 // ── FEATURE COMPONENT IMPORTS ────────────────────────────────────────────────
 // ── CA Portal ──
