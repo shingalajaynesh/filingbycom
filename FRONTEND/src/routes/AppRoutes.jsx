@@ -111,34 +111,10 @@ function AppRoutesContent() {
   const isAdminRoute = location.pathname.startsWith("/admin");
   const showCANavigation = !isVirtualOfficeRoute && !hideNavigationPaths.includes(location.pathname) && !isAdminRoute;
   const showVirtualOfficeNavigation = isVirtualOfficeRoute && !isAdminRoute;
-
-  const showBackButton =
-    location.pathname !== "/" &&
-    location.pathname !== "/virtual-space" &&
-    location.pathname !== "/dashboard" &&
-    location.pathname !== "/virtual-office/dashboard" &&
-    !isAdminRoute;
-
-  const handleBack = () => {
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1);
-    } else {
-      navigate("/");
-    }
-  };
+  const showGlobalFooter = !isAdminRoute && !hideNavigationPaths.includes(location.pathname) && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard";
 
   return (
     <LazyMotion features={domAnimation} strict>
-      {showBackButton && (
-        <div className="fixed bottom-6 left-6 z-[9999] print:hidden">
-          <button
-            onClick={handleBack}
-            className="flex items-center gap-1.5 px-4.5 py-3 rounded-full bg-slate-900 text-white hover:bg-slate-800 shadow-2xl border border-slate-700/60 transition-all duration-200 active:scale-95 text-xs font-bold uppercase tracking-wider cursor-pointer"
-          >
-            ← Back
-          </button>
-        </div>
-      )}
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}
@@ -227,7 +203,7 @@ function AppRoutesContent() {
         </Routes>
       </Suspense>
 
-      {!isAdminRoute && <Footer />}
+      {showGlobalFooter && <Footer />}
     </LazyMotion>
   );
 }
