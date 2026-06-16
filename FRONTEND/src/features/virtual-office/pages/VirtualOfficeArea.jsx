@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
@@ -130,12 +131,13 @@ export default function VirtualOfficeArea() {
       const data = await submitInquiry(formData);
       if (data.success) {
         setSubmitted(true);
+        toast.success("Inquiry submitted successfully!");
       } else {
-        alert(data.message || "Failed to submit inquiry");
+        toast.error(data.message || "Failed to submit inquiry");
       }
     } catch (err) {
       console.error(err);
-      alert("Failed to submit inquiry. Please try again.");
+      toast.error("Failed to submit inquiry. Please try again.");
     } finally {
       setSubmitting(false);
     }

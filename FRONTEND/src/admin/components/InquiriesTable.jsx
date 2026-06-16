@@ -5,11 +5,13 @@ import { useAdminContext } from "../../shared/context/AdminContext";
 export default function InquiriesTable() {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const { fetchInquiries, updateInquiryStatus } = useAdminContext();
 
   const loadInquiries = async () => {
     setLoading(true);
+    setError(null);
     try {
       const data = await fetchInquiries();
       if (data.success) {
@@ -19,6 +21,7 @@ export default function InquiriesTable() {
       }
     } catch (err) {
       toast.error(err.message);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -57,7 +60,7 @@ export default function InquiriesTable() {
       <div className="flex flex-col items-center justify-center py-24 gap-3">
         <p className="text-red-650 font-medium">{error}</p>
         <button
-          onClick={fetchInquiries}
+          onClick={loadInquiries}
           className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
         >
           Retry
@@ -74,7 +77,7 @@ export default function InquiriesTable() {
           <p className="text-sm text-gray-500">General consultation leads from Virtual Space homepage</p>
         </div>
         <button
-          onClick={fetchInquiries}
+          onClick={loadInquiries}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors"
         >
           Refresh

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
 
 export default function VirtualDashboard() {
@@ -123,7 +124,7 @@ export default function VirtualDashboard() {
 
     const printWindow = window.open("", "_blank");
     if (!printWindow) {
-      alert("Please allow popups to download/print the invoice.");
+      toast.error("Please allow popups to download/print the invoice.");
       return;
     }
 
@@ -390,7 +391,7 @@ export default function VirtualDashboard() {
     const reason = prompt("Why do you want to cancel this booking? (e.g. Created by mistake)");
     if (reason === null) return; // User cancelled prompt
     if (!reason.trim()) {
-      alert("A cancellation reason is required.");
+      toast.error("A cancellation reason is required.");
       return;
     }
 
