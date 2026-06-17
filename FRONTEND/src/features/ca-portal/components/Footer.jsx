@@ -99,6 +99,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-blue-100/75">
               {[
                 { label: 'Home', path: '/' },
+                { label: 'Knowledge Hub (Blog)', path: '/blog' },
                 { label: 'Locations Directory', path: '/locations' },
                 { label: 'For E-commerce', path: '/virtual-office-ecommerce' },
                 { label: 'About Us', path: '/about-us' },

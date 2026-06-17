@@ -19,6 +19,8 @@ import FloatingActions from "../features/ca-portal/components/FloatingActions";
 import Home from "../features/ca-portal/pages/Home";
 const ServicePage    = lazy(() => import("../features/ca-portal/pages/ServicePage"));
 const DigitalCard    = lazy(() => import("../features/ca-portal/pages/DigitalCard"));
+const BlogList       = lazy(() => import("../features/blog/pages/BlogList"));
+const BlogDetail     = lazy(() => import("../features/blog/pages/BlogDetail"));
 
 // ── Virtual Office ──
 import VirtualOfficeNavigation from "../features/virtual-office/components/VirtualOfficeNavigation";
@@ -128,6 +130,8 @@ function AppRoutesContent() {
           <Route path="/" element={<Home />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/virtual-space" element={<VirtualSpace />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           
           {/* Cloned Pages for address.co */}
           <Route path="/locations" element={<Locations />} />

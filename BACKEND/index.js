@@ -18,6 +18,7 @@ import connectDB from "./src/config/db.config.js";
 import router from "./src/modules/user/user.routes.js";
 import adminRouter from "./src/modules/admin/admin.routes.js";
 import virtualSpaceRouter from "./src/modules/virtual-space/virtual-space.routes.js";
+import blogRouter from "./src/modules/blog/blog.routes.js";
 import logger from "./src/services/logger.service.js";
 import { requestLogger } from "./src/middleware/logger.middleware.js";
 import helmet from "helmet";
@@ -132,6 +133,7 @@ app.use(clerkMiddleware());
 app.use(router);
 app.use(adminRouter);
 app.use(virtualSpaceRouter);
+app.use(blogRouter);
 
 // Centralized error handling middleware
 app.use(globalErrorHandler);
