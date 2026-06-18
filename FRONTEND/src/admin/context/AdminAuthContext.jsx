@@ -5,6 +5,7 @@
  */
 
 import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const API_BASE = (
@@ -17,7 +18,9 @@ const AdminAuthContext = createContext(null);
 
 export function AdminAuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => window.location.pathname.startsWith("/admin"));
+  const [hasChecked, setHasChecked] = useState(false);
+  const location = useLocation();
 
   const checkAuth = useCallback(async () => {
     try {
@@ -34,8 +37,15 @@ export function AdminAuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+    if (location.pathname.startsWith("/admin")) {
+      if (!isAuthenticated && !hasChecked) {
+        setLoading(true);
+        checkAuth().then(() => setHasChecked(true));
+      }
+    } else {
+      setHasChecked(false);
+    }
+  }, [location.pathname, isAuthenticated, hasChecked, checkAuth]);
 
   const login = useCallback(async (username, password) => {
     const res = await axios.post(`${API_BASE}/admin/login`, { username, password }, {
@@ -59,6 +69,7 @@ export function AdminAuthProvider({ children }) {
       console.error("Logout failed", e);
     }
     setIsAuthenticated(false);
+    setHasChecked(false);
   }, []);
 
   return (
