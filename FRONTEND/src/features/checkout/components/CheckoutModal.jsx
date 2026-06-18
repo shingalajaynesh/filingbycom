@@ -32,32 +32,11 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         return;
       }
 
-      const razorpayKey = import.meta.env.VITE_RAZORPAY_KEY_ID;
-      if (!razorpayKey || razorpayKey === "test_key" || razorpayKey.includes("placeholder")) {
-        // Run simulated payment for local development
-        const loadingToast = toast.loading("Simulating online payment...");
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        
-        try {
-          const verifyData = await verifyPayment({
-            razorpay_order_id: "order_mock_" + Date.now(),
-            razorpay_payment_id: "pay_mock_" + Date.now(),
-            razorpay_signature: "mock_signature",
-            serviceId: service._id,
-          });
-          toast.dismiss(loadingToast);
-          if (verifyData.success) {
-            toast.success("Simulated payment successful! Order placed.");
-            onSuccess();
-          } else {
-            throw new Error(verifyData.message);
-          }
-        } catch (err) {
-          toast.dismiss(loadingToast);
-          toast.error(err.message || "Payment verification failed");
-        }
-        return;
-      }
+      // Create Razorpay Order via Backend
+      const orderDataResponse = await createRazorpayOrder(service._id);
+      
+      const orderData = orderDataResponse?.order || orderDataResponse;
+      const keyId = orderDataResponse?.keyId || import.meta.env.VITE_RAZORPAY_KEY_ID;
 
       const res = await loadRazorpay();
       if (!res) {
@@ -66,11 +45,8 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
         return;
       }
 
-      // Create Razorpay Order via Backend
-      const orderData = await createRazorpayOrder(service._id);
-      
       const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || "test_key", // Will fallback if backend handles validation mostly
+        key: keyId,
         amount: orderData.amount,
         currency: orderData.currency,
         name: "FilingBy",

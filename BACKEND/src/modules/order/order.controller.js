@@ -39,23 +39,14 @@ class OrderController {
         receipt: `receipt_${Date.now()}`,
       };
 
-      // Check if credentials are placeholder/test keys, and return mock order for simulation
       const keyId = process.env.RAZORPAY_KEY_ID;
-      if (!keyId || keyId === "test_key" || keyId.includes("placeholder")) {
-        return res.status(200).json({
-          success: true,
-          order: {
-            id: `order_mock_${Date.now()}`,
-            amount,
-            currency: "INR",
-            receipt: options.receipt
-          }
-        });
+      if (!keyId) {
+        return res.status(500).json({ success: false, message: "Razorpay Key ID not configured on server" });
       }
 
       const order = await razorpay.orders.create(options);
 
-      return res.status(200).json({ success: true, order });
+      return res.status(200).json({ success: true, order, keyId });
     } catch (error) {
       console.error("Razorpay Order Error:", error);
       return res.status(500).json({ success: false, message: error.message });
@@ -76,18 +67,18 @@ class OrderController {
       const service = await Service.findById(serviceId).lean();
       if (!service) return res.status(404).json({ success: false, message: "Service not found" });
 
-      const secret = process.env.RAZORPAY_KEY_SECRET || "test_secret";
+      const secret = process.env.RAZORPAY_KEY_SECRET;
+      if (!secret) {
+        return res.status(500).json({ success: false, message: "Razorpay Key Secret not configured on server" });
+      }
 
-      // Verify signature (allows bypass with mock_signature for sandbox testing)
-      if (razorpay_signature !== "mock_signature") {
-        const generated_signature = crypto
-          .createHmac("sha256", secret)
-          .update(razorpay_order_id + "|" + razorpay_payment_id)
-          .digest("hex");
+      const generated_signature = crypto
+        .createHmac("sha256", secret)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest("hex");
 
-        if (generated_signature !== razorpay_signature) {
-          return res.status(400).json({ success: false, message: "Invalid payment signature" });
-        }
+      if (generated_signature !== razorpay_signature) {
+        return res.status(400).json({ success: false, message: "Invalid payment signature" });
       }
 
       const invoiceNumber = await generateInvoiceNumber();

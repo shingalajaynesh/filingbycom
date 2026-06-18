@@ -110,7 +110,7 @@ export function OrderProvider({ children }) {
       });
       const data = res.data;
       if (!data.success) throw new Error(data.message || "Failed to create order");
-      return data.order;
+      return data;
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || "Failed to create order";
       throw new Error(errorMessage);
