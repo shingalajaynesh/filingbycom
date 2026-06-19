@@ -6,7 +6,7 @@
  * - Integrates Clerk user profile state sync hook (useSyncUser).
  */
 
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate, useParams } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
 
@@ -102,6 +102,12 @@ function GlobalDynamicRouter() {
   return <NotFound />;
 }
 
+// Helper to redirect legacy Shopify product URLs dynamically to services
+function RedirectToService() {
+  const { slug } = useParams();
+  return <Navigate to={`/services/${slug}`} replace />;
+}
+
 /**
  * AppRoutesContent component handles layout determinations and path routing.
  * Evaluates path structures to conditionally render matching navigation bars.
@@ -153,6 +159,27 @@ function AppRoutesContent() {
       
       <Suspense fallback={<RouteLoader />}>
         <Routes>
+          {/* Legacy Shopify page redirects */}
+          <Route path="/pages/csr-audit" element={<Navigate to="/services/csr-registration" replace />} />
+          <Route path="/pages/trust-compliance" element={<Navigate to="/services/trust-registration" replace />} />
+          <Route path="/pages/trust-audit" element={<Navigate to="/services/trust-registration" replace />} />
+          <Route path="/pages/about-us" element={<Navigate to="/about-us" replace />} />
+          <Route path="/pages/terms-conditions" element={<Navigate to="/terms-conditions" replace />} />
+          <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />
+          <Route path="/pages/refund-policy" element={<Navigate to="/default/refund" replace />} />
+
+          {/* Legacy Shopify products catch-all */}
+          <Route path="/products/:slug" element={<RedirectToService />} />
+
+          {/* Obsolete Shopify internal tracking/assets routes */}
+          <Route path="/wpm" element={<Navigate to="/" replace />} />
+          <Route path="/b" element={<Navigate to="/" replace />} />
+          <Route path="/cdn" element={<Navigate to="/" replace />} />
+          <Route path="/v1/produce" element={<Navigate to="/" replace />} />
+          <Route path="/%24%7Bt%7D" element={<Navigate to="/" replace />} />
+          <Route path="/$%7Bt%7D" element={<Navigate to="/" replace />} />
+          <Route path="/${t}" element={<Navigate to="/" replace />} />
+
           <Route path="/" element={<Home />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/virtual-space" element={<VirtualSpace />} />

@@ -1,4 +1,76 @@
 {
+  "redirects": [
+    {
+      "source": "/pages/csr-audit",
+      "destination": "/services/csr-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/trust-compliance",
+      "destination": "/services/trust-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/trust-audit",
+      "destination": "/services/trust-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/about-us",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/pages/terms-conditions",
+      "destination": "/terms-conditions",
+      "permanent": true
+    },
+    {
+      "source": "/pages/privacy-policy",
+      "destination": "/default/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/pages/refund-policy",
+      "destination": "/default/refund",
+      "permanent": true
+    },
+    {
+      "source": "/products/:slug",
+      "destination": "/services/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/wpm",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/b",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/cdn",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v1/produce",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/%24%7Bt%7D",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/\\${t}",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
