@@ -163,6 +163,17 @@ function AppRoutesContent() {
           <Route path="/pages/csr-audit" element={<Navigate to="/services/csr-registration" replace />} />
           <Route path="/pages/trust-compliance" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/trust-audit" element={<Navigate to="/services/trust-registration" replace />} />
+          <Route path="/pages/moa-amendment-public-private-limited" element={<Navigate to="/services/moa-amendment" replace />} />
+          <Route path="/pages/pan-card" element={<Navigate to="/services/tan-registration" replace />} />
+          <Route path="/pages/private-limited-company-winding-up" element={<Navigate to="/services/pvt-winding-up" replace />} />
+          <Route path="/pages/ngo-compliance" element={<Navigate to="/services/trust-registration" replace />} />
+          <Route path="/pages/llp-compliance" element={<Navigate to="/services/roc-annual-filing-llp" replace />} />
+          <Route path="/pages/start-application" element={<Navigate to="/register" replace />} />
+          <Route path="/pages/apeda-registration" element={<Navigate to="/services/apeda-registration" replace />} />
+          <Route path="/pages/tan-card" element={<Navigate to="/services/tan-registration" replace />} />
+          <Route path="/pages/ngo-registration" element={<Navigate to="/services/trust-registration" replace />} />
+          <Route path="/pages/salary-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
+          <Route path="/pages/gst-audit" element={<Navigate to="/services/gst-audit" replace />} />
           <Route path="/pages/about-us" element={<Navigate to="/about-us" replace />} />
           <Route path="/pages/terms-conditions" element={<Navigate to="/terms-conditions" replace />} />
           <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />

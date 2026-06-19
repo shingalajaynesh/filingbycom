@@ -13,6 +13,7 @@ BACKEND/
 ├── index.js                     # Core entry point (initializes middleware, DB, and routes)
 ├── package.json                 # Dependency tree & NPM scripts
 ├── .env                         # Server environment configuration variables
+├── scripts/                     # Seed and utility scripts (seedBlogs.js, seedVirtualSpaceServices.js, seedVirtualOffice.js, seedInvoices.js, etc.)
 │
 └── src/
     ├── config/

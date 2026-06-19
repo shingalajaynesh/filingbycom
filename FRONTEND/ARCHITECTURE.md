@@ -8,11 +8,9 @@ Welcome to the **FilingBy.com** Frontend developer guide. This document details 
 
 We use a **Feature-Based (Domain-Driven) Folder Architecture** to isolate business domains, improve colocation, and ensure high modularity. 
 
-```
 src/
-├── main.jsx                     # Entry point (initializes Helmet, Clerk, providers)
-├── App.jsx                      # Root Layout and main boundary wraps
-├── index.css                    # Global design tokens and tailwind utilities
+├── main.jsx                     # Entry point (initializes Helmet, Clerk, routes & providers)
+├── index.css                    # Global design tokens and design utilities
 │
 ├── features/                    # Standalone business/domain modules
 │   ├── ca-portal/               # CA Portal pages, components & data
@@ -25,7 +23,7 @@ src/
 │   ├── virtual-office/          # Virtual Space Standalone Portal
 │   │   ├── pages/               # VirtualSpace, Locations, VirtualOfficeCity, AboutUs, etc.
 │   │   ├── components/          # VirtualOfficeNavigation
-│   │   └── dashboard/           # [NEW] Client portal for virtual spaces, compliance tracking, mailbox scans & audits
+│   │   └── dashboard/           # Client portal for virtual spaces, compliance tracking, mailbox scans & audits
 │   │
 │   ├── auth/                    # Verification modals & login structures
 │   ├── checkout/                # Razorpay checkout modals & order generation
@@ -54,13 +52,15 @@ src/
 
 ---
 
-## 2. Advanced SEO Framework
+## 2. Advanced SEO & Legacy Routing Framework
 
-Our application is a Single Page Application (SPA). Because search engine crawlers (Google, Bing) need metadata early, we utilize a two-tier SEO strategy:
-1. **Fallback Base Header ([index.html](file:///d:/WEBSITE%20DEVELOPMENT/filingbycom/FRONTEND/index.html))**: Declares primary tags and the global JSON-LD `Organization` + `WebSite` schemas.
+Our application is a Single Page Application (SPA). Because search engine crawlers (Google, Bing) need metadata early, we utilize a multi-tier SEO strategy:
+1. **Fallback Base Header ([index.html](file:///d:/WEBSITE%20DEVELOPMENT/filingbycom/FRONTEND/index.html))**: Declares primary tags and the global JSON-LD `Organization` + `WebSite` schemas. Uses `/logo.png` rather than JPEG format for high-definition previews.
 2. **Dynamic Meta Tag Injections ([SEO.jsx](file:///d:/WEBSITE%20DEVELOPMENT/filingbycom/FRONTEND/src/shared/components/SEO.jsx))**: Utilizes `<Helmet>` from `react-helmet-async` to dynamically replace page titles, meta descriptions, canonical links, Open Graph (OG), and inject specific page-level JSON-LD schemas (such as `FAQPage` and `Service` ratings).
-
----
+3. **Legacy Shopify Redirects Mapping**:
+   * **Edge CDN redirects ([vercel.json](file:///d:/WEBSITE%20DEVELOPMENT/filingbycom/FRONTEND/vercel.json))**: Intercepts requests for deprecated paths (like `/pages/csr-audit`, `/pages/trust-compliance`, and `/products/:slug`) and sends a `301/308 Moved Permanently` status code. This transfers SEO index rankings to our new React routes (`/services/csr-registration`, `/services/:slug`).
+   * **Client-side redirects ([AppRoutes.jsx](file:///d:/WEBSITE%20DEVELOPMENT/filingbycom/FRONTEND/src/routes/AppRoutes.jsx))**: Employs React Router `<Navigate />` and dynamic `useParams` mapping as a fail-safe fallback for internal navigation, instantly redirecting legacy urls to the active routes.
+   * **Obsolescence Cleanup**: Redirects tracking, logging, or broken placeholder endpoints (`/wpm`, `/b`, `/cdn`, `/v1/produce`, `/${t}`) back to the homepage (`/`) to preserve crawl budgets and suppress crawler indexing warnings.
 
 ## 3. Strict Coding Rules (The Senior Checklist)
 
@@ -78,6 +78,7 @@ To maintain a professional codebase that scales easily, all developers must adhe
 ### C. State Management Guidelines
 - **Local vs Global**: Keep state as local as possible. Raise state to parent components only when siblings need to share it.
 - **Clerk Auth**: Leverage `@clerk/clerk-react` hooks (`useUser`, `useClerk`) for security-based auth actions rather than managing token states locally.
+- **Context Fetch Caching (Anti-Request-Storm)**: When building global state context providers (e.g. `SharedDataContext`, `UserContext`, `OrderContext`) that perform asynchronous API calls on mount, always use a **module-scope promise cache** (`let globalFetchPromise = null`). This allows dual lifecycles (React Strict Mode), parallel hooks, or route transition mounts to share a single in-flight HTTP request promise and prevents concurrent database hit storms. Clean the promise reference immediately upon completion to allow future manual refreshes.
 
 ---
 

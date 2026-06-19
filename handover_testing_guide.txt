@@ -71,3 +71,39 @@ To see the system working together, try this simple test flow:
 1. Go to the Quote Calculator (https://www.filingby.com/get-live-quote) or a City Page and submit a lead form.
 2. Go to the Admin Login (https://www.filingby.com/admin), sign in with the username "admin" and password "filingby@2024".
 3. Open the Admin Dashboard, look at the "Active Orders" table, and you will see your newly submitted lead listed with all contact/location details.
+
+--------------------------------------------------------------------
+5. LEGACY REDIRECT & SEO CLEANUP VERIFICATION
+--------------------------------------------------------------------
+
+To check if the legacy Shopify routes resolve successfully to the new React app features and retain ranking parameters:
+1. Try visiting: https://www.filingby.com/pages/csr-audit
+   ➔ Expected: Automatically redirects to `/services/csr-registration` (CSR Registration).
+2. Try visiting: https://www.filingby.com/pages/trust-compliance or https://www.filingby.com/pages/trust-audit
+   ➔ Expected: Redirects to `/services/trust-registration` (Trust Registration).
+3. Try visiting: https://www.filingby.com/pages/moa-amendment-public-private-limited
+   ➔ Expected: Redirects to `/services/moa-amendment` (MOA Amendment).
+4. Try visiting: https://www.filingby.com/pages/pan-card
+   ➔ Expected: Redirects to `/services/tan-registration` (TAN Registration).
+5. Try visiting: https://www.filingby.com/pages/private-limited-company-winding-up
+   ➔ Expected: Redirects to `/services/pvt-winding-up` (Pvt Ltd Winding Up).
+6. Try visiting: https://www.filingby.com/pages/ngo-compliance or `/pages/ngo-registration`
+   ➔ Expected: Redirects to `/services/trust-registration` (Trust Registration).
+7. Try visiting: https://www.filingby.com/pages/llp-compliance
+   ➔ Expected: Redirects to `/services/roc-annual-filing-llp` (ROC Filing LLP).
+8. Try visiting: https://www.filingby.com/pages/start-application
+   ➔ Expected: Redirects to `/register` (User registration).
+9. Try visiting: https://www.filingby.com/pages/apeda-registration
+   ➔ Expected: Redirects to `/services/apeda-registration` (APEDA Registration).
+10. Try visiting: https://www.filingby.com/pages/tan-card
+    ➔ Expected: Redirects to `/services/tan-registration` (TAN Registration).
+11. Try visiting: https://www.filingby.com/pages/salary-return-filing
+    ➔ Expected: Redirects to `/services/itr-1-filing` (ITR-1 Salaried filing).
+12. Try visiting: https://www.filingby.com/pages/gst-audit
+    ➔ Expected: Redirects to `/services/gst-audit` (GST Audit).
+13. Try visiting: https://www.filingby.com/products/fcra-registration (or any `/products/:slug` format)
+    ➔ Expected: Redirects dynamically to `/services/fcra-registration` (or `/services/:slug`).
+14. Try visiting internal tracking endpoints (e.g., https://www.filingby.com/wpm, `/cdn`, `/b`, or `/${t}`)
+    ➔ Expected: Redirects back to the root website homepage `/` instead of showing crawler index issues.
+
+

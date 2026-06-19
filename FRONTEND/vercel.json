@@ -16,6 +16,61 @@
       "permanent": true
     },
     {
+      "source": "/pages/moa-amendment-public-private-limited",
+      "destination": "/services/moa-amendment",
+      "permanent": true
+    },
+    {
+      "source": "/pages/pan-card",
+      "destination": "/services/tan-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/private-limited-company-winding-up",
+      "destination": "/services/pvt-winding-up",
+      "permanent": true
+    },
+    {
+      "source": "/pages/ngo-compliance",
+      "destination": "/services/trust-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/llp-compliance",
+      "destination": "/services/roc-annual-filing-llp",
+      "permanent": true
+    },
+    {
+      "source": "/pages/start-application",
+      "destination": "/register",
+      "permanent": true
+    },
+    {
+      "source": "/pages/apeda-registration",
+      "destination": "/services/apeda-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/tan-card",
+      "destination": "/services/tan-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/ngo-registration",
+      "destination": "/services/trust-registration",
+      "permanent": true
+    },
+    {
+      "source": "/pages/salary-return-filing",
+      "destination": "/services/itr-1-filing",
+      "permanent": true
+    },
+    {
+      "source": "/pages/gst-audit",
+      "destination": "/services/gst-audit",
+      "permanent": true
+    },
+    {
       "source": "/pages/about-us",
       "destination": "/about-us",
       "permanent": true
