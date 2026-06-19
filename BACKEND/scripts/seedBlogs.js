@@ -3,7 +3,7 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import BlogPost from "./src/models/BlogPost.model.js";
+import BlogPost from "../src/models/BlogPost.model.js";
 
 dotenv.config();
 

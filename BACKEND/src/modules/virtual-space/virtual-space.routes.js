@@ -15,9 +15,15 @@ virtualSpaceRouter.get("/virtual-space/locations/:slug", VirtualSpaceController.
 // ─── Client Endpoints (Protected via verifyUser) ─────────────────────────────
 virtualSpaceRouter.get("/virtual-space/orders", verifyUser, VirtualSpaceController.getUserVirtualOrders);
 virtualSpaceRouter.post("/virtual-space/orders", verifyUser, VirtualSpaceController.createVirtualOrder);
+virtualSpaceRouter.post("/virtual-space/orders/razorpay", verifyUser, VirtualSpaceController.createVirtualRazorpayOrder);
+virtualSpaceRouter.post("/virtual-space/orders/verify", verifyUser, VirtualSpaceController.verifyVirtualOnlineOrder);
 virtualSpaceRouter.get("/virtual-space/orders/:id", verifyUser, VirtualSpaceController.getUserVirtualOrderById);
 virtualSpaceRouter.post("/virtual-space/orders/:id/documents", verifyUser, VirtualSpaceController.uploadUserVirtualDocuments);
 virtualSpaceRouter.delete("/virtual-space/orders/:id", verifyUser, VirtualSpaceController.deleteUserVirtualOrder);
+
+// ─── Partner Endpoints (Protected via verifyUser) ────────────────────────────
+virtualSpaceRouter.get("/virtual-space/partner/properties", verifyUser, VirtualSpaceController.getPartnerProperties);
+virtualSpaceRouter.get("/virtual-space/partner/leads", verifyUser, VirtualSpaceController.getPartnerLeads);
 
 // ─── Admin Endpoints (Protected via verifyAdmin) ─────────────────────────────
 virtualSpaceRouter.get("/admin/virtual-space/inquiries", verifyAdmin, VirtualSpaceController.getInquiries);

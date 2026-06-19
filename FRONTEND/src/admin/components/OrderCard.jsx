@@ -11,7 +11,7 @@ import { useState } from "react";
 import StatusBadge from "./StatusBadge";
 import toast from "react-hot-toast";
 
-const ORDER_STATUSES = ["Pending", "Document Verification", "Complete"];
+const ORDER_STATUSES = ["Pending", "Document Verification", "Pending Payment", "Complete"];
 
 export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDelete, readOnly = false }) {
   const [updatingStatus, setUpdatingStatus] = useState(false);
@@ -32,7 +32,7 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
 
   const handleStatusChange = async (newStatus) => {
     if (newStatus === orderStatus || updatingStatus) return;
-    
+
     if (newStatus === "Complete") {
       setIsCompleting(true);
       // Let the animation play before removing it from active
@@ -74,7 +74,7 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
       toast.error("Deletion reason note is required.");
       return;
     }
-    
+
     if (confirm("Are you sure you want to delete this order? It will be hidden from all client and admin dashboards.")) {
       const result = await onDelete(_id, reason);
       if (result.success) {
@@ -86,9 +86,8 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
   };
 
   return (
-    <div className={`relative bg-white rounded-lg border shadow-sm overflow-hidden transition-all duration-700 ease-in-out ${
-      isCompleting ? "scale-95 opacity-0 border-green-500 shadow-xl z-50 translate-x-4" : "border-gray-200 scale-100 opacity-100"
-    }`}>
+    <div className={`relative bg-white rounded-lg border shadow-sm overflow-hidden transition-all duration-700 ease-in-out ${isCompleting ? "scale-95 opacity-0 border-green-500 shadow-xl z-50 translate-x-4" : "border-gray-200 scale-100 opacity-100"
+      }`}>
       {/* Complete Animation Overlay */}
       {isCompleting && (
         <div className="absolute inset-0 bg-green-500 flex items-center justify-center z-50 transition-all duration-300">
@@ -162,15 +161,16 @@ export default function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDe
                   key={status}
                   onClick={() => handleStatusChange(status)}
                   disabled={updatingStatus}
-                  className={`px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${
-                    orderStatus === status
+                  className={`px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${orderStatus === status
                       ? status === "Complete"
                         ? "bg-green-600 text-white border-green-600"
                         : status === "Document Verification"
-                        ? "bg-[#1A56DB] text-white border-[#1A56DB]"
-                        : "bg-yellow-500 text-white border-yellow-500"
+                          ? "bg-[#1A56DB] text-white border-[#1A56DB]"
+                          : status === "Pending Payment"
+                            ? "bg-purple-600 text-white border-purple-600"
+                            : "bg-yellow-500 text-white border-yellow-500"
                       : "bg-white text-gray-600 border-gray-200 hover:border-[#1A56DB] hover:text-[#1A56DB]"
-                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                    } disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   {updatingStatus && orderStatus !== status ? (
                     <span className="animate-pulse">{status}</span>

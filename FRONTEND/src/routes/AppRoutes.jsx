@@ -7,7 +7,7 @@
  */
 
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
 
 // ── FEATURE COMPONENT IMPORTS ────────────────────────────────────────────────
@@ -43,6 +43,7 @@ const Register = lazy(() => import("../features/auth/components/Register"));
 // ── Client Dashboard ──
 const ClientDashboard = lazy(() => import("../features/client-dashboard/pages/ClientDashboard"));
 const VirtualDashboard = lazy(() => import("../features/virtual-office/dashboard/VirtualDashboard"));
+const PartnerDashboard = lazy(() => import("../features/virtual-office/dashboard/PartnerDashboard"));
 
 // ── Legal & Policies ──
 const TermsConditions = lazy(() => import("../features/legal/pages/TermsConditions"));
@@ -85,6 +86,22 @@ function RouteLoader() {
   );
 }
 
+// Dynamic router component to handle dynamic paths and fall back to 404
+function GlobalDynamicRouter() {
+  const currentPath = window.location.pathname;
+  
+  if (currentPath.startsWith("/virtual-office-")) {
+    const segments = currentPath.split("/").filter(Boolean);
+    // If we have an area path segment (e.g., /virtual-office-city/area)
+    if (segments.length > 1) {
+      return <VirtualOfficeArea />;
+    }
+    return <VirtualOfficeCity />;
+  }
+  
+  return <NotFound />;
+}
+
 /**
  * AppRoutesContent component handles layout determinations and path routing.
  * Evaluates path structures to conditionally render matching navigation bars.
@@ -102,12 +119,12 @@ function AppRoutesContent() {
     location.pathname === "/virtual-space" ||
     location.pathname === "/locations" ||
     location.pathname.startsWith("/virtual-office") ||
+    location.pathname.startsWith("/partner") ||
     location.pathname === "/about-us" ||
     location.pathname === "/our-promise" ||
     location.pathname === "/customer-care" ||
     location.pathname === "/faq" ||
     location.pathname === "/get-live-quote" ||
-    location.pathname === "/partner-onboarding" ||
     location.pathname === "/terms-conditions" ||
     location.pathname === "/default/refund" ||
     location.pathname === "/default/privacy-policy";
@@ -116,7 +133,16 @@ function AppRoutesContent() {
   const isAdminRoute = location.pathname.startsWith("/admin");
   const showCANavigation = !isVirtualOfficeRoute && !hideNavigationPaths.includes(location.pathname) && !isAdminRoute;
   const showVirtualOfficeNavigation = isVirtualOfficeRoute && !isAdminRoute;
-  const showGlobalFooter = !isAdminRoute && !hideNavigationPaths.includes(location.pathname) && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard";
+  const showGlobalFooter = !isAdminRoute && !hideNavigationPaths.includes(location.pathname) && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard" && location.pathname !== "/partner/dashboard";
+
+  // Track last visited portal to direct login/register redirects
+  useEffect(() => {
+    if (isVirtualOfficeRoute) {
+      sessionStorage.setItem("last_portal", "virtual-space");
+    } else if (!hideNavigationPaths.includes(location.pathname) && !isAdminRoute) {
+      sessionStorage.setItem("last_portal", "ca-portal");
+    }
+  }, [location.pathname, isVirtualOfficeRoute, isAdminRoute]);
 
   return (
     <LazyMotion features={domAnimation} strict>
@@ -136,21 +162,23 @@ function AppRoutesContent() {
           {/* Cloned Pages for address.co */}
           <Route path="/locations" element={<Locations />} />
           <Route path="/virtual-office/:city" element={<VirtualOfficeCity />} />
-          <Route path="/virtual-office-surat" element={<VirtualOfficeCity />} />
-          <Route path="/virtual-office-mumbai" element={<VirtualOfficeCity />} />
-          
-          {/* Specific Business Centers / Area Subpages */}
-          <Route path="/virtual-office-surat/:area" element={<VirtualOfficeArea />} />
-          <Route path="/virtual-office-mumbai/:area" element={<VirtualOfficeArea />} />
           <Route path="/virtual-office/:city/:area" element={<VirtualOfficeArea />} />
           
+
           <Route path="/virtual-office-ecommerce" element={<EcommerceOffice />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-promise" element={<OurPromise />} />
           <Route path="/customer-care" element={<CustomerCare />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/get-live-quote" element={<GetLiveQuote />} />
-          <Route path="/partner-onboarding" element={<PartnerOnboarding />} />
+          <Route
+            path="/partner-onboarding"
+            element={
+              <ProtectedRoute>
+                <PartnerOnboarding />
+              </ProtectedRoute>
+            }
+          />
           
           <Route path="/terms-conditions" element={<TermsConditions />} />
           <Route path="/default/refund" element={<RefundPolicy />} />
@@ -169,6 +197,14 @@ function AppRoutesContent() {
             element={
               <ProtectedRoute>
                 <VirtualDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/partner/dashboard"
+            element={
+              <ProtectedRoute>
+                <PartnerDashboard />
               </ProtectedRoute>
             }
           />
@@ -207,7 +243,7 @@ function AppRoutesContent() {
           />
           
           {/* 4. Use the extracted component */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<GlobalDynamicRouter />} />
         </Routes>
       </Suspense>
 

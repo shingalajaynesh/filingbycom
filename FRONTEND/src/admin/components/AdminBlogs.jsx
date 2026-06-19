@@ -260,22 +260,22 @@ export default function AdminBlogs() {
 
       {/* Edit/Create Dialog Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/55 backdrop-blur-xs p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col">
-            <div className="p-6 border-b border-gray-150 bg-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/55 backdrop-blur-xs p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl w-full max-w-3xl max-h-[95vh] sm:max-h-[90vh] shadow-2xl flex flex-col overflow-hidden animate-fadeInUp">
+            <div className="p-4 sm:p-6 border-b border-gray-150 bg-gray-50 flex items-center justify-between sticky top-0 bg-white z-10">
               <h3 className="text-base font-bold text-gray-900">
                 {editingPost ? "Edit Article" : "Create New Article"}
               </h3>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="text-gray-400 hover:text-gray-900 font-bold text-xl cursor-pointer"
+                className="text-gray-400 hover:text-gray-900 font-bold text-xl cursor-pointer px-2"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-6">
+            <form onSubmit={handleSubmit} className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
                 {/* Title */}
                 <div className="space-y-1">

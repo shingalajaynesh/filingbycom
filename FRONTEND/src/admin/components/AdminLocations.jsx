@@ -381,11 +381,11 @@ export default function AdminLocations() {
 
       {/* Primary City Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col animate-fadeInUp">
+        <div className="fixed inset-0 z-[999] bg-black/50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] flex flex-col animate-fadeInUp">
 
             {/* Modal Header */}
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+            <div className="p-4 sm:p-6 border-b border-gray-100 flex justify-between items-center">
               <div>
                 <h4 className="text-base font-black text-gray-900">
                   {editingLocation ? `Edit City Details: ${formData.name}` : "Create New Location (City)"}
@@ -394,14 +394,14 @@ export default function AdminLocations() {
               </div>
               <button
                 onClick={handleCloseModal}
-                className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent"
+                className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent px-2"
               >
                 ✕
               </button>
             </div>
 
             {/* Modal Form Tabs */}
-            <div className="flex border-b border-gray-100 px-6">
+            <div className="flex border-b border-gray-100 px-4 sm:px-6 overflow-x-auto scrollbar-none flex-nowrap">
               {[
                 { id: "basic", label: "1. Basic Details" },
                 { id: "workspaces", label: `2. Office Centers (${formData.addresses.length})` },
@@ -411,7 +411,7 @@ export default function AdminLocations() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveFormTab(tab.id)}
-                  className={`py-3 px-4 text-xs font-bold border-b-2 -mb-[1px] transition-colors cursor-pointer ${activeFormTab === tab.id ? "border-[#1A56DB] text-[#1A56DB]" : "border-transparent text-gray-450 hover:text-gray-900"}`}
+                  className={`py-3 px-4 text-xs font-bold border-b-2 -mb-[1px] transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${activeFormTab === tab.id ? "border-[#1A56DB] text-[#1A56DB]" : "border-transparent text-gray-450 hover:text-gray-900"}`}
                 >
                   {tab.label}
                 </button>
@@ -419,7 +419,7 @@ export default function AdminLocations() {
             </div>
 
             {/* Form Content container */}
-            <form onSubmit={handleFormSubmit} className="flex-grow overflow-y-auto p-6 space-y-6">
+            <form onSubmit={handleFormSubmit} className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-6">
 
               {/* Tab 1: Basic Details */}
               {activeFormTab === "basic" && (
@@ -618,11 +618,11 @@ export default function AdminLocations() {
             </form>
 
             {/* Modal Footer */}
-            <div className="p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-3xl">
+            <div className="p-4 sm:p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-3xl">
               <button
                 type="button"
                 onClick={handleCloseModal}
-                className="px-4.5 py-3 bg-white hover:bg-gray-100 text-gray-900 border border-gray-250 text-xs font-bold rounded-xl cursor-pointer"
+                className="px-4.5 py-2.5 sm:py-3 bg-white hover:bg-gray-100 text-gray-950 border border-gray-250 text-xs font-bold rounded-xl cursor-pointer"
               >
                 Cancel
               </button>
@@ -630,7 +630,7 @@ export default function AdminLocations() {
                 type="button"
                 onClick={handleFormSubmit}
                 disabled={submitting}
-                className="px-6 py-3 bg-[#1A56DB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl cursor-pointer border-0 shadow-md shadow-blue-500/10"
+                className="px-6 py-2.5 sm:py-3 bg-[#1A56DB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl cursor-pointer border-0 shadow-md shadow-blue-500/10"
               >
                 {submitting ? "Saving location..." : "Save Location"}
               </button>
@@ -642,10 +642,10 @@ export default function AdminLocations() {
 
       {/* Secondary Address/Workspace modal */}
       {isAddressModalOpen && (
-        <div className="fixed inset-0 z-[1000] bg-black/60 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col animate-fadeInUp">
+        <div className="fixed inset-0 z-[1000] bg-black/60 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[95vh] sm:max-h-[85vh] flex flex-col animate-fadeInUp">
 
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+            <div className="p-4 sm:p-6 border-b border-gray-100 flex justify-between items-center">
               <div>
                 <h4 className="text-sm font-black text-gray-900">
                   {activeAddressIdx !== null ? `Edit Workspace Center: ${addressData.name}` : "Add New Office Center / Workspace"}
@@ -655,13 +655,13 @@ export default function AdminLocations() {
               <button
                 type="button"
                 onClick={() => setIsAddressModalOpen(false)}
-                className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent"
+                className="text-gray-400 hover:text-gray-900 font-bold text-lg cursor-pointer border-0 bg-transparent px-2"
               >
                 ✕
               </button>
             </div>
 
-            <div className="flex-grow overflow-y-auto p-6 space-y-4">
+            <div className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Center Name*</label>
@@ -812,11 +812,11 @@ export default function AdminLocations() {
               </div>
             </div>
 
-            <div className="p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-3xl">
+            <div className="p-4 sm:p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-3xl">
               <button
                 type="button"
                 onClick={() => setIsAddressModalOpen(false)}
-                className="px-4 py-2 bg-white hover:bg-gray-100 text-gray-900 border border-gray-250 text-xs font-bold rounded-xl"
+                className="px-4 py-2 bg-white hover:bg-gray-100 text-gray-950 border border-gray-250 text-xs font-bold rounded-xl"
               >
                 Discard
               </button>

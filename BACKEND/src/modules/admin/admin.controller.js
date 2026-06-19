@@ -134,9 +134,18 @@ class AdminController {
       const { id } = req.params;
       const { orderStatus } = req.body;
 
-      const validStatuses = ["Pending", "Document Verification", "Complete"];
+      const validStatuses = ["Pending", "Document Verification", "Pending Payment", "Complete"];
       if (!validStatuses.includes(orderStatus)) {
         return res.status(400).json({ success: false, message: "Invalid order status" });
+      }
+
+      const existingOrder = await Order.findById(id);
+      if (!existingOrder) {
+        return res.status(404).json({ success: false, message: "Order not found" });
+      }
+
+      if (orderStatus === "Complete" && existingOrder.paymentStatus === "Unpaid") {
+        return res.status(400).json({ success: false, message: "Cannot mark order as complete when payment is unpaid." });
       }
 
       const order = await Order.findByIdAndUpdate(
@@ -146,10 +155,6 @@ class AdminController {
       )
         .populate("user", "firstName lastName email phone")
         .populate("service", "name");
-
-      if (!order) {
-        return res.status(404).json({ success: false, message: "Order not found" });
-      }
 
       return res.status(200).json({ success: true, order });
     } catch (error) {

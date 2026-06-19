@@ -9,21 +9,32 @@ import AdminNavbar from "../components/AdminNavbar";
 import OrdersTable from "../components/OrdersTable";
 import HistoryTable from "../components/HistoryTable";
 import AdminServices from "../components/AdminServices";
-import InquiriesTable from "../components/InquiriesTable";
+import LeadsTable from "../components/LeadsTable";
 import PartnersTable from "../components/PartnersTable";
-import QuotesTable from "../components/QuotesTable";
 import AdminLocations from "../components/AdminLocations";
 import AdminVirtualBookings from "../components/AdminVirtualBookings";
 import AdminSettings from "../components/AdminSettings";
 import AdminBlogs from "../components/AdminBlogs";
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("orders");
-  const [currentPortal, setCurrentPortal] = useState("ca-portal");
+  const [currentPortal, setCurrentPortal] = useState(() => {
+    return localStorage.getItem("admin_current_portal") || "ca-portal";
+  });
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem("admin_active_tab") || "orders";
+  });
 
   const handlePortalChange = (portal) => {
     setCurrentPortal(portal);
-    setActiveTab("orders"); // Reset tab to prevent showing invalid tabs (e.g. history)
+    localStorage.setItem("admin_current_portal", portal);
+    // Default to "orders" tab when switching portal to prevent showing invalid tabs
+    setActiveTab("orders");
+    localStorage.setItem("admin_active_tab", "orders");
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    localStorage.setItem("admin_active_tab", tab);
   };
 
   return (
@@ -31,27 +42,25 @@ export default function AdminDashboard() {
       {/* Top navigation */}
       <AdminNavbar
         activeTab={activeTab}
-        onTabChange={setActiveTab}
+        onTabChange={handleTabChange}
         currentPortal={currentPortal}
         onPortalChange={handlePortalChange}
       />
 
       {/* Main content */}
-      <main className="max-w-screen-xl mx-auto px-4 sm:px-6 py-8">
+      <main className="max-w-screen-xl mx-auto px-4 sm:px-6 py-5 md:py-8">
         {/* Page heading */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">
+        <div className="mb-5 md:mb-8">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight">
             {currentPortal === "ca-portal" ? "CA Portal — " : "Virtual Space Admin — "}
-            {activeTab === "orders"
+             {activeTab === "orders"
               ? "Current Orders"
               : activeTab === "history"
               ? "Order History"
-              : activeTab === "inquiries"
-              ? "General Inquiries"
+              : activeTab === "leads"
+              ? "Leads (Inquiries & Quotes)"
               : activeTab === "partners"
               ? "Partner Onboardings"
-              : activeTab === "quotes"
-              ? "Live Quote Leads"
               : activeTab === "locations"
               ? "Manage Virtual Office Locations"
               : activeTab === "nav-services"
@@ -64,17 +73,15 @@ export default function AdminDashboard() {
               ? "Portal Settings"
               : "Portal Settings"}
           </h1>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">
             {activeTab === "orders"
               ? "Manage active orders — update status and payment"
               : activeTab === "history"
               ? "Browse past completed orders"
-              : activeTab === "inquiries"
-              ? "Track landing page consultation requests"
+              : activeTab === "leads"
+              ? "Track landing page consultation requests and live calculator quotes in one place"
               : activeTab === "partners"
               ? "Verify and onboard commercial workspaces"
-              : activeTab === "quotes"
-              ? "Inspect live quote calculator lead estimations"
               : activeTab === "locations"
               ? "Configure cities, states, workspaces, map pins, pricing, and FAQ items dynamically"
               : activeTab === "nav-services"
@@ -98,9 +105,8 @@ export default function AdminDashboard() {
           )
         )}
         {activeTab === "history" && <HistoryTable portal={currentPortal} />}
-        {activeTab === "inquiries" && <InquiriesTable />}
+        {activeTab === "leads" && <LeadsTable />}
         {activeTab === "partners" && <PartnersTable />}
-        {activeTab === "quotes" && <QuotesTable />}
         {activeTab === "locations" && <AdminLocations />}
         {activeTab === "nav-services" && <AdminServices portal={currentPortal} type="nav" />}
         {activeTab === "popular-services" && <AdminServices portal={currentPortal} type="popular" />}

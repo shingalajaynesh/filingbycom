@@ -1,10 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
+import { useUserContext } from "../../../shared/context/UserContext.jsx";
+
+const DEFAULT_AMENITIES = [
+  "High-speed Wi-Fi",
+  "Courier Handling",
+  "Meeting Rooms",
+  "Professional Receptionist",
+  "GST Officer Desk",
+  "Digital Mail Forwarding",
+  "Name Board Placement",
+  "VIP Lounge Access"
+];
 
 export default function PartnerOnboarding() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { profile } = useUserContext();
+
+  useEffect(() => {
+    if (profile?.isPartner && !location.state?.forceForm) {
+      navigate("/partner/dashboard", { replace: true });
+    }
+  }, [profile, navigate, location.state]);
+
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     spaceName: "",
@@ -14,6 +37,11 @@ export default function PartnerOnboarding() {
     city: "",
     spaceType: "",
     deskCount: "",
+    address: "",
+    price: "",
+    image: "",
+    description: "",
+    amenities: []
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -23,13 +51,38 @@ export default function PartnerOnboarding() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleAmenityChange = (amenity) => {
+    setFormData(prev => {
+      const current = prev.amenities || [];
+      const updated = current.includes(amenity)
+        ? current.filter(a => a !== amenity)
+        : [...current, amenity];
+      return { ...prev, amenities: updated };
+    });
+  };
+
   const { submitPartnerApplication } = useSharedData();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.address.trim()) {
+      toast.error("Address is required.");
+      return;
+    }
+    if (!formData.price || Number(formData.price) <= 0) {
+      toast.error("Please enter a valid monthly price.");
+      return;
+    }
+
     setSubmitting(true);
     try {
-      const data = await submitPartnerApplication(formData);
+      const payload = {
+        ...formData,
+        deskCount: Number(formData.deskCount) || 10,
+        price: String(formData.price)
+      };
+
+      const data = await submitPartnerApplication(payload);
       if (data.success) {
         setSubmitted(true);
         toast.success("Application submitted successfully!");
@@ -85,6 +138,7 @@ export default function PartnerOnboarding() {
                 { title: "Consistent Rental Yields", desc: "No tenant vacancy risks. Earn monthly margins from multiple registered corporate accounts." },
                 { title: "Zero Marketing Costs", desc: "We manage customer acquisition, sales follow-ups, and payment collection." },
                 { title: "Dashboard Integration", desc: "Track incoming packages, schedule physical audits, and review agreements instantly." },
+                { title: "Instant Publishing", desc: "Once approved by our admin, your property is dynamically added as a location on our website immediately." },
               ].map((benefit) => (
                 <li key={benefit.title} className="flex gap-3">
                   <span className="text-green-500 font-extrabold">✓</span>
@@ -96,6 +150,23 @@ export default function PartnerOnboarding() {
               ))}
             </ul>
           </div>
+
+          {/* Image Preview Block */}
+          {formData.image && (
+            <div className="bg-white rounded-2xl shadow-sm p-4 space-y-2 border border-gray-150">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Property Image Preview</span>
+              <div className="w-full h-48 rounded-xl overflow-hidden bg-gray-100 relative">
+                <img
+                  src={formData.image}
+                  alt="Property Preview"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80";
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right column form */}
@@ -111,6 +182,8 @@ export default function PartnerOnboarding() {
             </div>
           ) : (
             <form onSubmit={handleFormSubmit} className="space-y-4">
+              
+              {/* Row 1 */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace / Center Name</label>
@@ -138,6 +211,7 @@ export default function PartnerOnboarding() {
                 </div>
               </div>
 
+              {/* Row 2 */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Onboarding Contact Person</label>
@@ -165,6 +239,7 @@ export default function PartnerOnboarding() {
                 </div>
               </div>
 
+              {/* Row 3 */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Email Address</label>
@@ -192,6 +267,7 @@ export default function PartnerOnboarding() {
                 </div>
               </div>
 
+              {/* Space Type */}
               <div>
                 <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Property Layout Type</label>
                 <select
@@ -209,12 +285,87 @@ export default function PartnerOnboarding() {
                 </select>
               </div>
 
+              {/* NEW: Price & Image URL */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Monthly Cost for GST Desk (₹)</label>
+                  <input
+                    type="number"
+                    name="price"
+                    required
+                    value={formData.price}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 999"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace Image URL</label>
+                  <input
+                    type="text"
+                    name="image"
+                    value={formData.image}
+                    onChange={handleInputChange}
+                    placeholder="Paste a direct image link (optional)"
+                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
+                  />
+                </div>
+              </div>
+
+              {/* NEW: Full Postal Address */}
+              <div>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Full Postal Address (for NOC/GST)</label>
+                <textarea
+                  name="address"
+                  required
+                  value={formData.address}
+                  onChange={handleInputChange}
+                  rows="3"
+                  placeholder="Include floor number, building name, street address, and pin code"
+                  className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400 resize-none"
+                />
+              </div>
+
+              {/* NEW: Workspace Description */}
+              <div>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace Description (Features & Benefits)</label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  rows="3"
+                  placeholder="Describe your workspace location, proximity to transport, and any surrounding landmarks"
+                  className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400 resize-none"
+                />
+              </div>
+
+              {/* NEW: Amenities Checklist */}
+              <div>
+                <label className="text-[10px] font-bold text-gray-650 uppercase block mb-2">Amenities Checklist</label>
+                <div className="grid grid-cols-2 gap-2 bg-gray-50 p-4 rounded-xl border border-gray-150">
+                  {DEFAULT_AMENITIES.map((amenity) => {
+                    const isChecked = formData.amenities.includes(amenity);
+                    return (
+                      <label key={amenity} className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-gray-800">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => handleAmenityChange(amenity)}
+                          className="w-4 h-4 text-[#1A56DB] border-gray-300 rounded focus:ring-[#1A56DB]/20"
+                        />
+                        {amenity}
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
               >
-                {submitting ? "Submitting..." : "Submit Onboarding Application"}
+                {submitting ? "Submitting Application..." : "Submit Onboarding Application"}
               </button>
             </form>
           )}

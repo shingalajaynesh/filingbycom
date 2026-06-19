@@ -3,8 +3,8 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import User from "./src/models/User.model.js";
-import VirtualOfficeOrder from "./src/models/VirtualOfficeOrder.model.js";
+import User from "../src/models/User.model.js";
+import VirtualOfficeOrder from "../src/models/VirtualOfficeOrder.model.js";
 
 dotenv.config();
 

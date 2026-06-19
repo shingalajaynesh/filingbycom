@@ -3,11 +3,12 @@ export default function OrderCard({ order, onClick }) {
   if (!order) return null;
 
   const statusStyles = {
-    'completed':    { bg: 'bg-green-100 text-green-700 border-green-200',   label: 'Completed' },
-    'in-progress':  { bg: 'bg-blue-100 text-blue-700 border-blue-200',      label: 'In Progress' },
-    'pending-docs': { bg: 'bg-red-100 text-red-700 border-red-200',         label: 'Pending Docs' },
-    'under-review': { bg: 'bg-purple-100 text-purple-700 border-purple-200',label: 'Under Review' },
-    'cancelled':    { bg: 'bg-gray-100 text-gray-500 border-gray-200',      label: 'Cancelled' }
+    'completed':       { bg: 'bg-green-100 text-green-700 border-green-200',      label: 'Completed' },
+    'in-progress':     { bg: 'bg-blue-100 text-blue-700 border-blue-200',         label: 'In Progress' },
+    'pending-docs':    { bg: 'bg-red-100 text-red-700 border-red-200',            label: 'Pending Docs' },
+    'under-review':    { bg: 'bg-purple-100 text-purple-700 border-purple-200',   label: 'Under Review' },
+    'pending-payment': { bg: 'bg-indigo-100 text-indigo-700 border-indigo-200',   label: 'Pending Payment' },
+    'cancelled':       { bg: 'bg-gray-100 text-gray-500 border-gray-200',         label: 'Cancelled' }
   };
 
   const paymentStatusStyles = {

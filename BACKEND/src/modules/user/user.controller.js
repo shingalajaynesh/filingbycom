@@ -1,4 +1,6 @@
 import User from "../../models/User.model.js";
+import PartnerApplication from "../../models/PartnerApplication.model.js";
+import VirtualOfficeOrder from "../../models/VirtualOfficeOrder.model.js";
 import { mapClerkUserToProfile } from "../../middleware/auth.middleware.js";
 
 class UserController {
@@ -99,6 +101,9 @@ class UserController {
       }
 
       // 3. Return Clean Response
+      const isPartner = !!(await PartnerApplication.exists({ email: user.email }));
+      const isClient = !!(await VirtualOfficeOrder.exists({ user: user._id, isDeleted: { $ne: true } }));
+
       return res.status(201).json({
         success: true,
         message: "User synchronized successfully",
@@ -109,6 +114,8 @@ class UserController {
           email: user.email,
           phone: user.phone,
           clerkId: user.clerkId,
+          isPartner,
+          isClient: isClient || !isPartner,
         },
       });
 
@@ -200,6 +207,9 @@ class UserController {
         });
       }
 
+      const isPartner = !!(await PartnerApplication.exists({ email: user.email }));
+      const isClient = !!(await VirtualOfficeOrder.exists({ user: user._id, isDeleted: { $ne: true } }));
+
       return res.status(200).json({
         success: true,
         user: {
@@ -209,6 +219,8 @@ class UserController {
           email: user.email,
           phone: user.phone,
           clerkId: user.clerkId,
+          isPartner,
+          isClient: isClient || !isPartner,
         },
       });
     } catch (error) {

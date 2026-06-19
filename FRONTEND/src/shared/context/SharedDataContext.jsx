@@ -11,6 +11,8 @@ const API_BASE = (
 
 const SharedDataContext = createContext(null);
 
+let globalFetchPromise = null;
+
 export function SharedDataProvider({ children }) {
   const [services, setServices] = useState(() => {
     try {
@@ -67,6 +69,10 @@ export function SharedDataProvider({ children }) {
   });
 
   const fetchSharedData = useCallback(async (silent = false) => {
+    if (globalFetchPromise) {
+      return globalFetchPromise;
+    }
+
     let hasCache = false;
     try {
       hasCache = !!localStorage.getItem("shared_services");
@@ -75,48 +81,57 @@ export function SharedDataProvider({ children }) {
     }
 
     if (!silent && !hasCache) setLoading(true);
-    try {
-      const [servicesRes, mainServicesRes, settingsRes, locationsRes] = await Promise.all([
-        axios.get(`${API_BASE}/services`).catch(() => ({ data: { services: [] } })),
-        axios.get(`${API_BASE}/main-services`).catch(() => ({ data: { mainServices: [] } })),
-        axios.get(`${API_BASE}/settings`).catch(() => ({ data: { success: true, settings: {} } })),
-        axios.get(`${API_BASE}/virtual-space/locations`).catch(() => ({ data: { success: true, locations: [] } }))
-      ]);
 
-      const servicesData = servicesRes.data;
-      const mainServicesData = mainServicesRes.data;
-      const settingsData = settingsRes.data;
-      const locationsData = locationsRes.data;
+    globalFetchPromise = (async () => {
+      try {
+        const [servicesRes, mainServicesRes, settingsRes, locationsRes] = await Promise.all([
+          axios.get(`${API_BASE}/services`).catch(() => ({ data: { services: [] } })),
+          axios.get(`${API_BASE}/main-services`).catch(() => ({ data: { mainServices: [] } })),
+          axios.get(`${API_BASE}/settings`).catch(() => ({ data: { success: true, settings: {} } })),
+          axios.get(`${API_BASE}/virtual-space/locations`).catch(() => ({ data: { success: true, locations: [] } }))
+        ]);
 
-      if (servicesData.success !== false && mainServicesData.success !== false) {
-        const freshServices = servicesData.services || [];
-        const freshMainServices = mainServicesData.mainServices || [];
-        const freshSettings = settingsData.settings || {};
-        const freshLocations = locationsData.locations || [];
+        const servicesData = servicesRes.data;
+        const mainServicesData = mainServicesRes.data;
+        const settingsData = settingsRes.data;
+        const locationsData = locationsRes.data;
 
-        setServices(freshServices);
-        setMainServices(freshMainServices);
-        setSettings(freshSettings);
-        setLocations(freshLocations);
-        
-        // Update SEO schemas dynamically
-        updateSchemaSettings(freshSettings);
-        
-        try {
-          localStorage.setItem("shared_services", JSON.stringify(freshServices));
-          localStorage.setItem("shared_mainServices", JSON.stringify(freshMainServices));
-          localStorage.setItem("shared_settings", JSON.stringify(freshSettings));
-          localStorage.setItem("shared_locations", JSON.stringify(freshLocations));
-        } catch (e) {
-          console.warn("Failed to write to localStorage:", e);
+        if (servicesData.success !== false && mainServicesData.success !== false) {
+          const freshServices = servicesData.services || [];
+          const freshMainServices = mainServicesData.mainServices || [];
+          const freshSettings = settingsData.settings || {};
+          const freshLocations = locationsData.locations || [];
+
+          setServices(freshServices);
+          setMainServices(freshMainServices);
+          setSettings(freshSettings);
+          setLocations(freshLocations);
+          
+          // Update SEO schemas dynamically
+          updateSchemaSettings(freshSettings);
+          
+          try {
+            localStorage.setItem("shared_services", JSON.stringify(freshServices));
+            localStorage.setItem("shared_mainServices", JSON.stringify(freshMainServices));
+            localStorage.setItem("shared_settings", JSON.stringify(freshSettings));
+            localStorage.setItem("shared_locations", JSON.stringify(freshLocations));
+          } catch (e) {
+            console.warn("Failed to write to localStorage:", e);
+          }
+
+          setIsInitialized(true);
         }
-
-        setIsInitialized(true);
+      } catch (err) {
+        console.error("Failed to fetch shared data:", err);
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error("Failed to fetch shared data:", err);
+    })();
+
+    try {
+      await globalFetchPromise;
     } finally {
-      setLoading(false);
+      globalFetchPromise = null;
     }
   }, []);
 

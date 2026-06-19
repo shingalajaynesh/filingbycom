@@ -27,11 +27,14 @@ export default function Login() {
     setIsGoogleLoading(true);
     setError("");
     
+    const lastPortal = sessionStorage.getItem("last_portal");
+    const target = lastPortal === "virtual-space" ? "/virtual-office/dashboard" : "/dashboard";
+
     try {
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
-        redirectUrlComplete: `${window.location.origin}/dashboard`,
+        redirectUrlComplete: `${window.location.origin}${target}`,
       });
     } catch (oauthError) {
       setError(oauthError.message || "Google login failed. Please try again.");

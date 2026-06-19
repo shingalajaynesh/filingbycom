@@ -125,7 +125,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
       if (editingMainService) {
         res = await updateMainService(editingMainService._id, mainFormData);
       } else {
-        res = await addMainService(mainFormData);
+        res = await addMainService(mainFormData, portal);
       }
       if (res.success) {
         toast.success(editingMainService ? "Category updated successfully!" : "Category added successfully!");
@@ -253,7 +253,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
       if (editingService) {
         res = await updateService(editingService._id, cleanedData);
       } else {
-        res = await addService(cleanedData);
+        res = await addService(cleanedData, portal);
       }
       if (res.success) {
         toast.success(editingService ? "Service updated successfully!" : "Service added successfully!");

@@ -1,10 +1,19 @@
+import crypto from "crypto";
+import Razorpay from "razorpay";
 import VirtualSpaceInquiry from "../../models/VirtualSpaceInquiry.model.js";
 import PartnerApplication from "../../models/PartnerApplication.model.js";
 import QuoteLead from "../../models/QuoteLead.model.js";
 import VirtualOfficeOrder from "../../models/VirtualOfficeOrder.model.js";
 import VirtualLocation from "../../models/VirtualLocation.model.js";
+import User from "../../models/User.model.js";
 import { generateInvoiceNumber } from "../../services/invoice.service.js";
 import { locationCache } from "../../services/cache.service.js";
+
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID || "test_key",
+  key_secret: process.env.RAZORPAY_KEY_SECRET || "test_secret",
+});
+
 
 const initialSeedLocations = [
   {
@@ -122,8 +131,8 @@ class VirtualSpaceController {
   // Submit coworking/space partner request
   createPartnerApplication = async (req, res) => {
     try {
-      const { spaceName, ownerName, email, mobile, city, spaceType, deskCount } = req.body;
-      if (!spaceName || !ownerName || !email || !mobile || !city || !spaceType || !deskCount) {
+      const { spaceName, ownerName, email, mobile, city, spaceType, deskCount, address, price, image, description, amenities } = req.body;
+      if (!spaceName || !ownerName || !email || !mobile || !city || !spaceType || !deskCount || !address || !price) {
         return res.status(400).json({ success: false, message: "Missing required fields" });
       }
 
@@ -135,6 +144,11 @@ class VirtualSpaceController {
         city,
         spaceType,
         deskCount: Number(deskCount),
+        address,
+        price,
+        image: image || "",
+        description: description || "",
+        amenities: amenities || [],
       });
 
       return res.status(201).json({ success: true, message: "Partner application submitted successfully", application });
@@ -484,13 +498,63 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Invalid status value" });
       }
 
-      const application = await PartnerApplication.findByIdAndUpdate(
-        id,
-        { status },
-        { new: true, runValidators: true }
-      );
+      const application = await PartnerApplication.findById(id);
       if (!application) {
         return res.status(404).json({ success: false, message: "Application not found" });
+      }
+
+      const oldStatus = application.status;
+      application.status = status;
+      await application.save();
+
+      if (status === "Approved") {
+        // Find or create VirtualLocation for this city
+        const citySlug = application.city.toLowerCase().trim().replace(/\s+/g, "-");
+        let location = await VirtualLocation.findOne({ slug: citySlug });
+        if (!location) {
+          location = await VirtualLocation.create({
+            slug: citySlug,
+            name: application.city.trim(),
+            state: application.city.trim(),
+            tagline: `Premium corporate address options in ${application.city.trim()}`,
+            rate: application.price || "999",
+            image: application.image || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+            addresses: [],
+            faqs: [
+              { q: `Is physical verification supported in ${application.city.trim()}?`, a: `Yes, our representatives assist in managing site inspections at our ${application.city.trim()} centers by arranging the physical desk and documentation.` },
+              { q: "Will I get a NOC and utility bill?", a: "Yes, we provide the complete legal documentation kit including the NOC, Utility Bill, Rent Agreement, and Consent Letter." }
+            ]
+          });
+        }
+
+        // Check if this address already exists under this city to avoid duplicates
+        const addressSlug = application.spaceName.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-");
+        const exists = location.addresses.some(addr => addr.slug === addressSlug);
+        if (!exists) {
+          const basePriceVal = Number(application.price) || 999;
+          const priceGST = String(basePriceVal);
+          const priceIncorp = String(basePriceVal + 300);
+          const priceMail = String(Math.max(100, basePriceVal - 400));
+          
+          location.addresses.push({
+            name: application.spaceName.trim(),
+            slug: addressSlug,
+            address: application.address.trim(),
+            feature: `Onboarded Workspace (${application.spaceType})`,
+            image: application.image || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
+            priceGST,
+            priceIncorp,
+            priceMail,
+            amenities: application.amenities && application.amenities.length > 0 
+              ? application.amenities 
+              : ["High-speed Wi-Fi", "Courier Handling", "Meeting Rooms", "GST Officer Desk"],
+            description: application.description || `Excellent prime commercial desk space at ${application.spaceName.trim()}. Suitable for virtual registration, company registration, and trade license processing.`,
+            photos: [application.image].filter(Boolean)
+          });
+          
+          await location.save();
+          locationCache.clear();
+        }
       }
 
       return res.status(200).json({ success: true, application });
@@ -687,6 +751,169 @@ class VirtualSpaceController {
       await order.save();
 
       return res.status(200).json({ success: true, message: "Booking successfully cancelled", order });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Razorpay Checkout Integration ──────────────────────────────────────────
+
+  createVirtualRazorpayOrder = async (req, res) => {
+    try {
+      const { price } = req.body;
+      const user = req.user;
+      if (!user) {
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+      }
+
+      if (!price) {
+        return res.status(400).json({ success: false, message: "Price is required" });
+      }
+
+      const amount = Math.round(Number(price) * 100); // in paise
+
+      const options = {
+        amount,
+        currency: "INR",
+        receipt: `receipt_vo_${Date.now()}`,
+      };
+
+      const keyId = process.env.RAZORPAY_KEY_ID;
+      if (!keyId) {
+        return res.status(500).json({ success: false, message: "Razorpay Key ID not configured on server" });
+      }
+
+      const order = await razorpay.orders.create(options);
+      return res.status(200).json({ success: true, order, keyId });
+    } catch (error) {
+      console.error("Virtual Razorpay Order Error:", error);
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  verifyVirtualOnlineOrder = async (req, res) => {
+    try {
+      const { razorpay_order_id, razorpay_payment_id, razorpay_signature, citySlug, addressName, selectedPlan, price } = req.body;
+      const user = req.user;
+
+      if (!user) return res.status(401).json({ success: false, message: "Unauthorized" });
+
+      const secret = process.env.RAZORPAY_KEY_SECRET;
+      if (!secret) {
+        return res.status(500).json({ success: false, message: "Razorpay Key Secret not configured on server" });
+      }
+
+      const generated_signature = crypto
+        .createHmac("sha256", secret)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest("hex");
+
+      if (generated_signature !== razorpay_signature) {
+        return res.status(400).json({ success: false, message: "Invalid payment signature" });
+      }
+
+      const invoiceNumber = await generateInvoiceNumber();
+      const invoiceDate = new Date();
+
+      // Create the order
+      const newOrder = await VirtualOfficeOrder.create({
+        user: user._id,
+        citySlug: citySlug.toLowerCase(),
+        addressName,
+        selectedPlan,
+        price: Number(price),
+        complianceStatus: "Payment Received",
+        paymentStatus: "Paid",
+        paymentId: razorpay_payment_id,
+        invoiceNumber,
+        invoiceDate,
+        clientDocuments: {
+          panCard: "",
+          aadhaarCard: "",
+          photo: "",
+          companyName: "",
+          incorporationCert: "",
+        },
+        complianceDocuments: {
+          nocFile: "",
+          utilityBillFile: "",
+          rentAgreementFile: "",
+          consentLetterFile: "",
+        },
+        mailLogs: [],
+        inspections: []
+      });
+
+      return res.status(201).json({ success: true, order: newOrder });
+    } catch (error) {
+      console.error("Verify Virtual Order Error:", error);
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Partner Portal Handlers ───────────────────────────────────────────────
+
+  getPartnerProperties = async (req, res) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+      }
+
+      const properties = await PartnerApplication.find({ email: user.email })
+        .sort({ createdAt: -1 })
+        .lean();
+
+      return res.status(200).json({ success: true, properties });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  getPartnerLeads = async (req, res) => {
+    try {
+      const user = req.user;
+      if (!user) {
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+      }
+
+      // 1. Get properties submitted/owned by this user email
+      const properties = await PartnerApplication.find({ email: user.email }).lean();
+      
+      // We only care about Approved properties for active leads/orders
+      const approvedSpaceNames = properties
+        .filter(p => p.status === "Approved")
+        .map(p => p.spaceName.trim());
+
+      if (approvedSpaceNames.length === 0) {
+        return res.status(200).json({ success: true, leads: [] });
+      }
+
+      // 2. Query virtual office orders where addressName is one of the partner's spaceNames
+      const orders = await VirtualOfficeOrder.find({
+        addressName: { $in: approvedSpaceNames },
+        isDeleted: { $ne: true }
+      })
+        .populate("user", "firstName lastName email phone")
+        .sort({ createdAt: -1 })
+        .lean();
+
+      // 3. Map orders into dynamic Leads objects
+      const leads = orders.map(order => ({
+        _id: order._id,
+        clientName: order.user ? `${order.user.firstName} ${order.user.lastName}`.trim() : "Valued Client",
+        clientEmail: order.user ? order.user.email : "N/A",
+        clientPhone: order.user ? order.user.phone || "N/A" : "N/A",
+        spaceName: order.addressName,
+        plan: order.selectedPlan,
+        price: order.price,
+        paymentStatus: order.paymentStatus,
+        complianceStatus: order.complianceStatus,
+        createdAt: order.createdAt,
+        invoiceNumber: order.invoiceNumber
+      }));
+
+      return res.status(200).json({ success: true, leads });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
     }

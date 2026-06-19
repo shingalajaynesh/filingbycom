@@ -91,7 +91,7 @@ export default function PartnersTable() {
           <h2 className="text-lg font-bold text-gray-900">Partner Workspace Onboardings</h2>
           <p className="text-sm text-gray-500">Commercial real estate space hosting applications</p>
         </div>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
           <div className="relative w-full sm:w-64">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
             <input
@@ -104,7 +104,7 @@ export default function PartnersTable() {
           </div>
           <button
             onClick={fetchApplications}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors bg-white cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-[#1A56DB] border border-blue-200 hover:bg-blue-50 transition-colors bg-white cursor-pointer"
           >
             Refresh
           </button>
@@ -132,11 +132,21 @@ export default function PartnersTable() {
             ) : (
               filteredApplications.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-semibold text-gray-900">{item.spaceName}</div>
-                    <div className="text-xs text-gray-500">City: <span className="font-semibold text-gray-800">{item.city}</span></div>
-                    <div className="text-xs text-gray-400 mt-1">
-                      Submitted: {new Date(item.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                  <td className="px-6 py-4">
+                    <div className="flex gap-3 items-start">
+                      {item.image && (
+                        <div className="w-14 h-14 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-200">
+                          <img src={item.image} alt="Preview" className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
+                        </div>
+                      )}
+                      <div>
+                        <div className="text-sm font-semibold text-gray-905">{item.spaceName}</div>
+                        <div className="text-xs text-gray-500">City: <span className="font-semibold text-gray-800">{item.city}</span></div>
+                        <div className="text-xs text-[#1A56DB] font-extrabold mt-1">Price: ₹{item.price || "999"}/mo</div>
+                        <div className="text-xs text-gray-400 mt-1">
+                          Submitted: {new Date(item.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
+                        </div>
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -154,9 +164,32 @@ export default function PartnersTable() {
                       </a>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-xs font-bold text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full w-fit capitalize">{item.spaceType}</div>
-                    <div className="text-xs font-semibold text-gray-700 mt-1.5">Capacity: <span className="font-bold">{item.deskCount} Desks</span></div>
+                  <td className="px-6 py-4">
+                    <div className="space-y-1.5 max-w-md">
+                      <div className="flex gap-2">
+                        <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full capitalize">{item.spaceType}</span>
+                        <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{item.deskCount} Desks</span>
+                      </div>
+                      {item.address && (
+                        <div className="text-xs text-gray-800 leading-tight">
+                          <span className="font-bold text-gray-600">Address:</span> {item.address}
+                        </div>
+                      )}
+                      {item.description && (
+                        <div className="text-xs text-gray-500 italic leading-snug line-clamp-2" title={item.description}>
+                          "{item.description}"
+                        </div>
+                      )}
+                      {item.amenities && item.amenities.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mt-1.5">
+                          {item.amenities.map(amenity => (
+                            <span key={amenity} className="text-[9px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-bold">
+                              {amenity}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-2 inline-flex text-xs leading-5 font-bold rounded-full ${item.status === "Approved"
@@ -171,10 +204,9 @@ export default function PartnersTable() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-xs font-semibold space-x-2">
                     <button
                       onClick={() => handleStatusChange(item._id, item.status, "Approved")}
-                      className={`text-green-600 hover:underline ${item.status === "Approved" ? "opacity-50 cursor-not-allowed" : ""}`}
-                      disabled={item.status === "Approved"}
+                      className="text-green-600 hover:underline font-bold"
                     >
-                      Approve
+                      {item.status === "Approved" ? "Sync" : "Approve"}
                     </button>
                     <span className="text-gray-300">|</span>
                     <button

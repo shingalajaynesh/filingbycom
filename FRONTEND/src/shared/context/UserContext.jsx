@@ -13,6 +13,8 @@ const API_BASE = (
 
 const UserContext = createContext(null);
 
+let globalProfileFetchPromise = null;
+
 export function UserProvider({ children }) {
   const { isLoaded, isSignedIn, getToken, signOut } = useAuth();
   const { user, isLoaded: isUserLoaded } = useUser();
@@ -51,7 +53,12 @@ export function UserProvider({ children }) {
     if (syncedUserIdRef.current === userId || isSynced) {
       syncedUserIdRef.current = userId;
       if (isAuthPage) {
-        navigate("/dashboard", { replace: true });
+        const lastPortal = sessionStorage.getItem("last_portal") || "ca-portal";
+        const target = lastPortal === "virtual-space"
+          ? (profile?.isPartner ? "/partner/dashboard" : "/virtual-office/dashboard")
+          : "/dashboard";
+        localStorage.setItem("auth_portal", lastPortal);
+        navigate(target, { replace: true });
       }
       return;
     }
@@ -76,7 +83,7 @@ export function UserProvider({ children }) {
           phone: userPhone || "",
         };
 
-        await axios.post(`${API_BASE}/register`, payload, {
+        const res = await axios.post(`${API_BASE}/register`, payload, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -84,6 +91,11 @@ export function UserProvider({ children }) {
           withCredentials: true,
           signal: abortController.signal
         });
+
+        const resData = res.data;
+        if (resData.success) {
+          setProfile(resData.user);
+        }
 
         if (abortController.signal.aborted) {
           isSyncingRef.current = false;
@@ -104,7 +116,12 @@ export function UserProvider({ children }) {
           sessionStorage.removeItem("justRegistered");
           navigate("/login", { replace: true });
         } else if (isAuthPage) {
-          navigate("/dashboard", { replace: true });
+          const lastPortal = sessionStorage.getItem("last_portal") || "ca-portal";
+          const target = lastPortal === "virtual-space"
+            ? (resData.user?.isPartner ? "/partner/dashboard" : "/virtual-office/dashboard")
+            : "/dashboard";
+          localStorage.setItem("auth_portal", lastPortal);
+          navigate(target, { replace: true });
         }
       } catch (err) {
         isSyncingRef.current = false;
@@ -185,49 +202,62 @@ export function UserProvider({ children }) {
   const fetchProfile = useCallback(async (force = false) => {
     if (!isSignedIn) return;
     if (profileFetchedRef.current && !force) return;
+    if (globalProfileFetchPromise) {
+      return globalProfileFetchPromise;
+    }
+
     setProfileLoading(true);
-    try {
-      const token = await getToken();
-      if (!token) return;
-      
-      const res = await axios.get(`${API_BASE}/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-      });
-      const resData = res.data;
-      if (resData.success) {
-        setProfile(resData.user);
-        profileFetchedRef.current = true;
-      }
-    } catch (err) {
-      console.error("Failed to fetch profile:", err);
-      // Auto-sync if profile is not found in database (404)
-      if (err.response?.status === 404) {
-        console.warn("Profile not found in database. Attempting self-sync...");
-        if (syncKey) sessionStorage.removeItem(syncKey);
-        syncedUserIdRef.current = null;
+
+    globalProfileFetchPromise = (async () => {
+      try {
+        const token = await getToken();
+        if (!token) return;
         
-        try {
-          const syncRes = await syncUserToBackend();
-          if (syncRes && syncRes.success) {
-            const token = await getToken();
-            const retryRes = await axios.get(`${API_BASE}/profile`, {
-              headers: { Authorization: `Bearer ${token}` },
-              withCredentials: true,
-            });
-            if (retryRes.data.success) {
-              setProfile(retryRes.data.user);
-              if (syncKey) sessionStorage.setItem(syncKey, "true");
-              syncedUserIdRef.current = userId;
-              profileFetchedRef.current = true;
-            }
-          }
-        } catch (syncErr) {
-          console.error("Self-sync after profile 404 failed:", syncErr);
+        const res = await axios.get(`${API_BASE}/profile`, {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        });
+        const resData = res.data;
+        if (resData.success) {
+          setProfile(resData.user);
+          profileFetchedRef.current = true;
         }
+      } catch (err) {
+        console.error("Failed to fetch profile:", err);
+        // Auto-sync if profile is not found in database (404)
+        if (err.response?.status === 404) {
+          console.warn("Profile not found in database. Attempting self-sync...");
+          if (syncKey) sessionStorage.removeItem(syncKey);
+          syncedUserIdRef.current = null;
+          
+          try {
+            const syncRes = await syncUserToBackend();
+            if (syncRes && syncRes.success) {
+              const token = await getToken();
+              const retryRes = await axios.get(`${API_BASE}/profile`, {
+                headers: { Authorization: `Bearer ${token}` },
+                withCredentials: true,
+              });
+              if (retryRes.data.success) {
+                setProfile(retryRes.data.user);
+                if (syncKey) sessionStorage.setItem(syncKey, "true");
+                syncedUserIdRef.current = userId;
+                profileFetchedRef.current = true;
+              }
+            }
+          } catch (syncErr) {
+            console.error("Self-sync after profile 404 failed:", syncErr);
+          }
+        }
+      } finally {
+        setProfileLoading(false);
       }
+    })();
+
+    try {
+      await globalProfileFetchPromise;
     } finally {
-      setProfileLoading(false);
+      globalProfileFetchPromise = null;
     }
   }, [getToken, isSignedIn, userId, syncKey, syncUserToBackend]);
 

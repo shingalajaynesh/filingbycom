@@ -35,6 +35,28 @@ const partnerApplicationSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    address: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    price: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    amenities: {
+      type: [String],
+      default: [],
+    },
     status: {
       type: String,
       enum: ["Pending", "Approved", "Rejected"],

@@ -62,10 +62,13 @@ export default function Register() {
     setError("");
     
     try {
+      const lastPortal = sessionStorage.getItem("last_portal");
+      const target = lastPortal === "virtual-space" ? "/virtual-office/dashboard" : "/dashboard";
+
       await signUp.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
-        redirectUrlComplete: `${window.location.origin}/dashboard`,
+        redirectUrlComplete: `${window.location.origin}${target}`,
       });
     } catch (oauthError) {
       setError(oauthError.message || "Google sign-up failed. Please try again.");

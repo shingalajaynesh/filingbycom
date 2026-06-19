@@ -18,6 +18,12 @@ export default function StatusBadge({ value }) {
       text: "text-blue-700",
       dot: "bg-blue-500",
     },
+    "Pending Payment": {
+      bg: "bg-purple-50",
+      border: "border-purple-200",
+      text: "text-purple-700",
+      dot: "bg-purple-500",
+    },
     "Complete": {
       bg: "bg-emerald-50",
       border: "border-emerald-200",

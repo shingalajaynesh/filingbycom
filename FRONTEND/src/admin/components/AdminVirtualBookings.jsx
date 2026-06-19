@@ -48,9 +48,7 @@ export default function AdminVirtualBookings() {
       const data = await adminGetVirtualOrders();
       if (data.success) {
         setBookings(data.orders);
-        if (data.orders.length > 0 && !selectedBookingId) {
-          setSelectedBookingId(data.orders[0]._id);
-        }
+        setSelectedBookingId(prev => prev || (data.orders[0]?._id || ""));
       } else {
         setError(data.message || "Failed to retrieve virtual office bookings.");
       }
@@ -60,7 +58,7 @@ export default function AdminVirtualBookings() {
     } finally {
       setLoading(false);
     }
-  }, [adminGetVirtualOrders, selectedBookingId]);
+  }, [adminGetVirtualOrders]);
 
   useEffect(() => {
     fetchBookings();

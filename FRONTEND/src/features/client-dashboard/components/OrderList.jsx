@@ -19,7 +19,7 @@ export default function OrderList({ orders = [], onOrderClick, hideFilters = fal
     .filter(o => {
       if (hideFilters) return true; // disable filter tab checks in compact mode
       if (filter === 'all') return true;
-      if (filter === 'active') return ['in-progress', 'under-review'].includes(o.status);
+      if (filter === 'active') return ['in-progress', 'under-review', 'pending-payment'].includes(o.status);
       if (filter === 'completed') return o.status === 'completed';
       if (filter === 'pending') return o.status === 'pending-docs';
       return true;
@@ -97,7 +97,7 @@ export default function OrderList({ orders = [], onOrderClick, hideFilters = fal
               {tab.id !== 'all' && (
                 <span className={`ml-1.5 px-1.5 py-0.5 text-[10px] rounded-full font-bold ${filter === tab.id ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500'
                   }`}>
-                  {tab.id === 'active' && orders.filter(o => ['in-progress', 'under-review'].includes(o.status)).length}
+                  {tab.id === 'active' && orders.filter(o => ['in-progress', 'under-review', 'pending-payment'].includes(o.status)).length}
                   {tab.id === 'completed' && orders.filter(o => o.status === 'completed').length}
                   {tab.id === 'pending' && orders.filter(o => o.status === 'pending-docs').length}
                 </span>

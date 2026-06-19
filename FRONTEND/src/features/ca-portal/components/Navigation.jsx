@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, useUser, useClerk } from '@clerk/clerk-react';
+import { useUser, useClerk } from '@clerk/clerk-react';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
+import { usePortalAuth } from '../../../routes/RouteGuards';
 
 export default function Navigation() {
   const { services, mainServices, settings } = useSharedData();
@@ -27,7 +28,7 @@ export default function Navigation() {
   })();
 
   const navigate = useNavigate();
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = usePortalAuth();
   const { user } = useUser();
   const { signOut } = useClerk();
   
@@ -41,7 +42,7 @@ export default function Navigation() {
 
 
     const navMap = {};
-    mainServices.filter(m => m.isActive !== false).forEach(main => {
+    mainServices.filter(m => m.isActive !== false && (m.portal === "ca-portal" || !m.portal)).forEach(main => {
       navMap[main._id] = {
         id: main._id,
         label: main.name,
@@ -50,7 +51,7 @@ export default function Navigation() {
       };
     });
     
-    services.filter(s => s.isActive !== false).forEach(service => {
+    services.filter(s => s.isActive !== false && (s.portal === "ca-portal" || !s.portal)).forEach(service => {
       const mainId = service.mainService?._id || service.mainService;
       const section = service.navSection || 'General';
       

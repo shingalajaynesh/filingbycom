@@ -222,10 +222,10 @@ export default function VirtualSpace() {
   const logos = ["Swiggy","Saregama","Relaxo","Aramex","HTC","Flipkart","Amazon","Myntra","Meesho","JioMart","Blinkit","Zepto"];
 
   const stats = [
-    { icon: Icons.Users,     value: "22,000+", label: "Happy Clients",    color: "text-blue-200",   bgColor: "bg-white/10" },
-    { icon: Icons.Star,      value: "4.7★",    label: "Google Rating",    color: "text-yellow-300", bgColor: "bg-white/10" },
-    { icon: Icons.Globe,     value: "2",        label: "States Covered",   color: "text-green-300",  bgColor: "bg-white/10" },
-    { icon: Icons.Lightning, value: "7 Days",   label: "Setup Time",       color: "text-orange-300", bgColor: "bg-white/10" },
+    { icon: Icons.Users,     value: "22,000+", label: "Happy Clients",    color: "text-blue-400",   bgColor: "bg-white/10" },
+    { icon: Icons.Star,      value: "4.7★",    label: "Google Rating",    color: "text-yellow-400", bgColor: "bg-white/10" },
+    { icon: Icons.Globe,     value: "2",        label: "States Covered",   color: "text-emerald-400",  bgColor: "bg-white/10" },
+    { icon: Icons.Lightning, value: "7 Days",   label: "Setup Time",       color: "text-blue-300", bgColor: "bg-white/10" },
   ];
 
   const tabs = [
@@ -236,7 +236,7 @@ export default function VirtualSpace() {
       title: "Virtual Office for GST Registration",
       desc: "Get a legally valid business address accepted by all GST authorities across India. Our virtual office includes all required documents — NOC, utility bills, and rental agreement — to ensure a hassle-free GST registration.",
       features: ["NOC from property owner", "Utility bills included", "Rental agreement provided", "State GST accepted", "Expert filing support"],
-      color: "from-blue-500 to-blue-700",
+      color: "from-[#1A56DB] to-[#1e40af]",
       badge: "Most Popular",
     },
     {
@@ -246,7 +246,7 @@ export default function VirtualSpace() {
       title: "Virtual Office for Company Registration",
       desc: "Use our premium address as your registered office for Pvt Ltd, LLP, OPC, or any business entity. We provide a prestigious business address that meets all MCA compliance requirements.",
       features: ["MCA-compliant address", "Registered office address", "Director address proof", "Certificate of occupancy", "Supports all business types"],
-      color: "from-purple-500 to-purple-700",
+      color: "from-blue-600 to-indigo-800",
       badge: "Trusted",
     },
     {
@@ -256,7 +256,7 @@ export default function VirtualSpace() {
       title: "Virtual Office for E-Commerce Sellers",
       desc: "Register as a seller on Flipkart, Amazon, Meesho, JioMart, and all major platforms. Our address is accepted for VPOB (Virtual Place of Business) and PPOB (Principal Place of Business) registration.",
       features: ["Amazon seller verified", "Flipkart VPOB & PPOB", "All platforms accepted", "GST-ready documents", "Quick 7-day setup"],
-      color: "from-orange-500 to-orange-700",
+      color: "from-indigo-650 to-blue-800",
       badge: "New",
     },
     {
@@ -266,32 +266,32 @@ export default function VirtualSpace() {
       title: "Professional Mail Management",
       desc: "Receive all your business correspondence at our prestigious address. Official mail, legal notices, bank letters, and courier deliveries are all handled professionally by our team.",
       features: ["Dedicated mail handling", "Legal notice reception", "Courier acceptance", "Digital scan & forward", "Monthly reporting"],
-      color: "from-teal-500 to-teal-700",
+      color: "from-blue-500 to-indigo-700",
       badge: "Popular",
     },
   ];
 
   const documents = [
-    { icon: Icons.FileText,    title: "No Objection Certificate (NOC)", desc: "Official NOC from property owner validating your business address", color: "text-blue-600", bg: "bg-blue-50" },
-    { icon: Icons.Lightning,   title: "Utility Bills",                  desc: "Electricity/water bills proving address authenticity for GST",     color: "text-yellow-600", bg: "bg-yellow-50" },
-    { icon: Icons.Clipboard,   title: "Rental Agreement",               desc: "Legally stamped agreement between you and the address provider",   color: "text-green-600",  bg: "bg-green-50" },
-    { icon: Icons.ShieldCheck, title: "Additional State Documents",     desc: "Any extra paperwork required by specific state GST authorities",   color: "text-purple-600", bg: "bg-purple-50" },
+    { icon: Icons.FileText,    title: "No Objection Certificate (NOC)", desc: "Official NOC from property owner validating your business address", color: "text-blue-500", bg: "bg-blue-500/10" },
+    { icon: Icons.Lightning,   title: "Utility Bills",                  desc: "Electricity/water bills proving address authenticity for GST",     color: "text-blue-600", bg: "bg-blue-500/10" },
+    { icon: Icons.Clipboard,   title: "Rental Agreement",               desc: "Legally stamped agreement between you and the address provider",   color: "text-emerald-500",  bg: "bg-emerald-500/10" },
+    { icon: Icons.ShieldCheck, title: "Additional State Documents",     desc: "Any extra paperwork required by specific state GST authorities",   color: "text-blue-500", bg: "bg-blue-500/10" },
   ];
 
   const whyChooseUs = [
-    { icon: Icons.Users,       title: "Dedicated Account Manager",     desc: "Personalized support from experts who understand your business",              color: "text-blue-500",   bg: "bg-blue-500/10",   border: "border-blue-500/20"   },
-    { icon: Icons.IndianRupee, title: "Transparent Pricing",           desc: "Clear, honest pricing with absolutely no hidden fees — ever",                  color: "text-green-500",  bg: "bg-green-500/10",  border: "border-green-500/20"  },
-    { icon: Icons.Refresh,     title: "Easy Stress-Free Refunds",      desc: "Full no-questions-asked refunds if your GST application has issues",           color: "text-purple-500", bg: "bg-purple-500/10", border: "border-purple-500/20" },
-    { icon: Icons.CheckCircle, title: "Complete Registration Help",    desc: "Expert handling of GST and company registration — swiftly and accurately",     color: "text-teal-500",   bg: "bg-teal-500/10",   border: "border-teal-500/20"   },
-    { icon: Icons.ShieldCheck, title: "Fully Compliant Addresses",     desc: "Government-accepted virtual addresses ensuring seamless business operations",   color: "text-orange-500", bg: "bg-orange-500/10", border: "border-orange-500/20" },
-    { icon: Icons.Trophy,      title: "Trusted by 22,000+ Businesses", desc: "Rated 4.7 stars by thousands of businesses, from startups to enterprise brands", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/20" },
+    { icon: Icons.Users,       title: "Dedicated Account Manager",     desc: "Personalized support from experts who understand your business",              color: "text-blue-500",   bg: "bg-blue-500/10" },
+    { icon: Icons.IndianRupee, title: "Transparent Pricing",           desc: "Clear, honest pricing with absolutely no hidden fees — ever",                  color: "text-emerald-500",  bg: "bg-emerald-500/10" },
+    { icon: Icons.Refresh,     title: "Easy Stress-Free Refunds",      desc: "Full no-questions-asked refunds if your GST application has issues",           color: "text-emerald-500", bg: "bg-emerald-500/10" },
+    { icon: Icons.CheckCircle, title: "Complete Registration Help",    desc: "Expert handling of GST and company registration — swiftly and accurately",     color: "text-blue-500",   bg: "bg-blue-500/10" },
+    { icon: Icons.ShieldCheck, title: "Fully Compliant Addresses",     desc: "Government-accepted virtual addresses ensuring seamless business operations",   color: "text-blue-600", bg: "bg-blue-500/10" },
+    { icon: Icons.Trophy,      title: "Trusted by 22,000+ Businesses", desc: "Rated 4.7 stars by thousands of businesses, from startups to enterprise brands", color: "text-blue-500", bg: "bg-blue-500/10" },
   ];
 
   const steps = [
-    { icon: Icons.Clipboard,   num: "01", title: "Choose Your Plan",         desc: "Browse plans, pick the one that fits your virtual office needs.",          color: "from-blue-500 to-indigo-600"   },
-    { icon: Icons.FileText,    num: "02", title: "Submit Documents",          desc: "Our experts guide you through a simple document submission process.",       color: "from-indigo-500 to-purple-600" },
-    { icon: Icons.CreditCard,  num: "03", title: "Secure Payment",            desc: "Pay securely online — then leave everything else to us.",                  color: "from-purple-500 to-pink-600"   },
-    { icon: Icons.CheckCircle, num: "04", title: "Virtual Office is Ready",   desc: "Receive your professional address in just 7–10 working days.",             color: "from-green-500 to-teal-600"    },
+    { icon: Icons.Clipboard,   num: "01", title: "Choose Your Plan",         desc: "Browse plans, pick the one that fits your virtual office needs.",          color: "from-blue-500 to-indigo-650"   },
+    { icon: Icons.FileText,    num: "02", title: "Submit Documents",          desc: "Our experts guide you through a simple document submission process.",       color: "from-blue-650 to-indigo-800" },
+    { icon: Icons.CreditCard,  num: "03", title: "Secure Payment",            desc: "Pay securely online — then leave everything else to us.",                  color: "from-indigo-600 to-blue-800"   },
+    { icon: Icons.CheckCircle, num: "04", title: "Virtual Office is Ready",   desc: "Receive your professional address in just 7–10 working days.",             color: "from-emerald-500 to-teal-650"    },
   ];
 
   const platforms = [
@@ -311,11 +311,11 @@ export default function VirtualSpace() {
 
   const reviews = [
     { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
-    { initials: "AA", color: "bg-green-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
-    { initials: "JP", color: "bg-purple-600", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
-    { initials: "AM", color: "bg-orange-600", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
-    { initials: "AF", color: "bg-teal-600",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
-    { initials: "KD", color: "bg-pink-600",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
+    { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
+    { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
+    { initials: "AM", color: "bg-indigo-650", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
+    { initials: "AF", color: "bg-[#0E1528]",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
+    { initials: "KD", color: "bg-emerald-700",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
   ];
 
   const faqs = [
@@ -351,7 +351,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           HERO SECTION
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] min-h-[640px] flex items-center relative overflow-hidden py-16 lg:py-24 text-white">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] min-h-[640px] flex items-center relative overflow-hidden py-20 lg:py-28 text-white">
         {/* Grid overlay */}
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
         {/* Glow orbs */}
@@ -371,7 +371,7 @@ export default function VirtualSpace() {
             {/* LEFT */}
             <div className="lg:col-span-2 text-left animate-fadeInUp">
               {/* Trust badge */}
-              <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur border border-white/10 rounded-full px-4 py-2 mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 mb-6 shadow-md">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
                 <span className="text-white text-xs font-semibold">🇮🇳 22,000+ Businesses Across India</span>
               </div>
@@ -381,39 +381,39 @@ export default function VirtualSpace() {
                 <span className="text-[#F97316] block mt-1">Across All 28 States</span>
               </h1>
 
-              <p className="text-blue-200/80 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
+              <p className="text-blue-100 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
                 Stop paying hefty rent just for a business address. Get a prestigious virtual office with all GST-compliant documents — starting under ₹1,000/month.
               </p>
 
               {/* Stats row */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {stats.map((s) => (
-                  <div key={s.label} className="bg-white/5 backdrop-blur border border-white/10 rounded-2xl px-3 py-3 text-center hover:bg-white/10 transition-all">
+                  <div key={s.label} className="bg-white/5 backdrop-blur-md rounded-2xl px-3 py-3 text-center hover:bg-white/[0.08] shadow-md transition-all">
                     <div className={`w-6 h-6 mx-auto mb-1 ${s.color}`}><s.icon /></div>
                     <div className="text-white font-black text-lg leading-none">{s.value}</div>
-                    <div className="text-blue-300 text-[10px] font-medium mt-0.5">{s.label}</div>
+                    <div className="text-blue-200 text-[10px] font-medium mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </div>
 
               {/* Google Rating */}
-              <div className="flex items-center gap-3 w-fit bg-white/8 border border-white/15 rounded-2xl px-4 py-3 mb-8">
+              <div className="flex items-center gap-3 w-fit bg-white/5 backdrop-blur-md rounded-2xl px-4 py-3 mb-8 shadow-md">
                 <div className="flex gap-0.5">
                   {[1,2,3,4].map(i => <div key={i} className="w-4 h-4 text-yellow-400"><Icons.Star /></div>)}
                   <div className="w-4 h-4 text-yellow-400/50"><Icons.Star /></div>
                 </div>
                 <span className="text-white font-bold text-sm">4.7</span>
-                <span className="text-blue-300 text-xs">· 928 verified reviews</span>
+                <span className="text-blue-200 text-xs">· 928 verified reviews</span>
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button id="hero-cta-primary" onClick={scrollToForm}
-                  className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 hover:shadow-xl hover:shadow-orange-500/30 cursor-pointer text-sm min-h-[48px]">
+                  className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-500/20 cursor-pointer text-sm min-h-[48px]">
                   Get Free Consultation →
                 </button>
                 <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`}
-                  className="flex items-center justify-center gap-2 bg-white/8 border border-white/20 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white/15 transition-all active:scale-95 cursor-pointer text-sm min-h-[48px]">
+                  className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white/15 transition-all active:scale-95 shadow-md cursor-pointer text-sm min-h-[48px]">
                   <div className="w-4 h-4"><Icons.Phone /></div>
                   Talk to Expert
                 </a>
@@ -424,13 +424,13 @@ export default function VirtualSpace() {
             <div ref={formRef} className="lg:col-span-1 bg-white rounded-3xl shadow-2xl shadow-black/40 p-7 text-gray-900">
               {submitted ? (
                 <div className="text-center py-8">
-                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600 animate-bounce">
+                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 animate-bounce">
                     <div className="w-8 h-8"><Icons.CheckCircle /></div>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
                   <p className="text-sm text-gray-500 mb-6">Our virtual office expert will call you shortly.</p>
                   <button id="submit-another-btn" onClick={() => { setSubmitted(false); setFormData({ name:"",email:"",mobile:"",purpose:"",city:"",message:"" }); }}
-                    className="text-[#1A56DB] text-sm font-bold hover:underline cursor-pointer">
+                    className="text-[#1A56DB] hover:text-blue-700 text-sm font-bold hover:underline cursor-pointer">
                     Submit another request
                   </button>
                 </div>
@@ -482,7 +482,7 @@ export default function VirtualSpace() {
                     </button>
                   </form>
 
-                  <div className="flex justify-between mt-4 pt-4 border-t border-gray-100/50">
+                  <div className="flex justify-between mt-4 pt-4 shadow-[inset_0_1px_0_0_rgba(0,0,0,0.05)]">
                     {[
                       { icon: Icons.Lock,         label: "100% Secure" },
                       { icon: Icons.Lightning,     label: "Quick Response" },
@@ -512,7 +512,7 @@ export default function VirtualSpace() {
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">
           <div className="flex animate-ticker whitespace-nowrap">
             {[...logos,...logos].map((logo, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 flex-shrink-0 mx-2 hover:bg-blue-50/30 transition-all duration-200 cursor-default shadow-sm">
+              <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 flex-shrink-0 mx-2 hover:bg-[#1A56DB]/5 transition-all duration-200 cursor-default shadow-sm">
                 <BrandLogo name={logo} />
               </div>
             ))}
@@ -523,7 +523,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           TABS — USE CASES
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 py-16 sm:py-20">
+      <section className="bg-gray-50 py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-50 text-[#1A56DB]">Use Cases</span>
@@ -571,14 +571,14 @@ export default function VirtualSpace() {
                   <div className="space-y-4">
                     {activeTabData.features.map((f, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0 p-1">
+                        <div className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 flex-shrink-0 p-1">
                           <Icons.Check />
                         </div>
                         <span className="text-gray-700 text-sm font-medium">{f}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-8 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                  <div className="mt-8 p-4 bg-blue-50 rounded-2xl shadow-sm">
                     <p className="text-xs text-blue-700 font-semibold">💡 Pro Tip: Our team will guide you through every step — from document collection to final approval.</p>
                   </div>
                 </div>
@@ -591,7 +591,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           HOW IT WORKS
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-green-50 text-green-600">Process</span>
@@ -617,7 +617,7 @@ export default function VirtualSpace() {
 
           <div className="text-center mt-12">
             <button id="process-cta-btn" onClick={scrollToForm}
-              className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 hover:shadow-xl hover:shadow-orange-200 cursor-pointer min-h-[48px]">
+              className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-500/20 cursor-pointer min-h-[48px]">
               Start Your Virtual Office Today →
             </button>
           </div>
@@ -627,7 +627,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           DOCUMENTS SECTION
       ══════════════════════════════════════════════════════════════════ */}
-      <section ref={docsRef} className="bg-gray-50 py-16 sm:py-20">
+      <section ref={docsRef} className="bg-gray-50 py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-blue-50 text-[#1A56DB]">Documents</span>
@@ -637,7 +637,7 @@ export default function VirtualSpace() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
             {/* Left: Visual card */}
-            <div className="bg-gradient-to-br from-[#0B1530] via-[#1A56DB] to-[#1e40af] rounded-3xl p-10 shadow-2xl relative overflow-hidden text-center">
+            <div className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] rounded-3xl p-10 shadow-2xl relative overflow-hidden text-center">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />
               <div className="w-24 h-24 mx-auto mb-6 text-blue-300/80 relative z-10"><Icons.FileText /></div>
@@ -645,7 +645,7 @@ export default function VirtualSpace() {
               <p className="text-blue-200 text-sm relative z-10">Official, government-accepted paperwork — ready for you</p>
               <div className="mt-6 flex flex-wrap justify-center gap-2 relative z-10">
                 {["GST Ready","MCA Compliant","Bank Accepted","Court Valid"].map(tag => (
-                  <span key={tag} className="bg-white/10 text-white/80 text-[10px] font-semibold px-3 py-1 rounded-full border border-white/15">{tag}</span>
+                  <span key={tag} className="bg-white/5 text-white/80 text-[10px] font-semibold px-3 py-1 rounded-full shadow-sm">{tag}</span>
                 ))}
               </div>
             </div>
@@ -661,7 +661,7 @@ export default function VirtualSpace() {
                     <h4 className="font-bold text-gray-900 text-sm group-hover:text-[#1A56DB] transition-colors">{doc.title}</h4>
                     <p className="text-gray-500 text-xs mt-1 leading-relaxed">{doc.desc}</p>
                   </div>
-                  <div className="ml-auto flex-shrink-0 w-5 h-5 text-green-500 mt-0.5"><Icons.CheckCircle /></div>
+                  <div className="ml-auto flex-shrink-0 w-5 h-5 text-emerald-500 mt-0.5"><Icons.CheckCircle /></div>
                 </div>
               ))}
             </div>
@@ -672,7 +672,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           E-COMMERCE PLATFORMS
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-purple-50 text-purple-600">E-Commerce</span>
@@ -701,20 +701,20 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           WHY CHOOSE US — Dark Section
       ══════════════════════════════════════════════════════════════════ */}
-      <section ref={whyUsRef} className="bg-gradient-to-br from-[#0B1530] via-[#1A56DB] to-[#1e40af] py-16 sm:py-20 text-white relative overflow-hidden">
+      <section ref={whyUsRef} className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] py-20 sm:py-24 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
-            <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full text-blue-400 bg-blue-400/10 border border-blue-400/20">Why FilingBy</span>
+            <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full text-[#60a5fa] bg-blue-500/10 shadow-sm">Why FilingBy</span>
             <h2 className="text-white text-2xl sm:text-3xl font-bold mt-3">Why 22,000+ Businesses Choose FilingBy</h2>
             <p className="text-blue-300 text-sm mt-2">The most trusted virtual office provider in India</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChooseUs.map((f, i) => (
-              <div key={i} className="rounded-2xl p-6 bg-white/5 hover:bg-white/10 transition-all duration-300 group cursor-default shadow-sm">
+              <div key={i} className="rounded-2xl p-6 bg-white/5 hover:bg-white/[0.08] transition-all duration-300 group cursor-default shadow-md">
                 <div className={`w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center ${f.color} mb-5 p-2.5 group-hover:scale-110 transition-transform`}>
                   <f.icon />
                 </div>
@@ -729,7 +729,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           Active States Coverage GRID
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 py-16 sm:py-20">
+      <section className="bg-gray-50 py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-50 text-indigo-600">Coverage</span>
@@ -741,7 +741,7 @@ export default function VirtualSpace() {
             {states.map((state) => (
               <div key={state.name} onClick={scrollToForm}
                 className="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer flex items-center gap-3 active:scale-95 group justify-center">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#1A56DB] flex-shrink-0 group-hover:bg-blue-100 transition-colors p-2">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#1A56DB] flex-shrink-0 group-hover:bg-blue-100 transition-colors p-2 shadow-sm">
                   <Icons.MapPin />
                 </div>
                 <div>
@@ -757,7 +757,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           TESTIMONIALS
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-white py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-yellow-50 text-yellow-600">Reviews</span>
@@ -781,7 +781,7 @@ export default function VirtualSpace() {
                   <p className="mb-6 text-sm leading-relaxed text-gray-600 italic">"{rev.text}"</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 ${rev.color}`}>
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${rev.color}`}>
                     {rev.initials}
                   </div>
                   <div>
@@ -799,7 +799,7 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           FAQ
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gray-50 py-16 sm:py-20">
+      <section className="bg-gray-50 py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-gray-200 text-gray-700">FAQ</span>
@@ -809,7 +809,7 @@ export default function VirtualSpace() {
 
           <div className="max-w-3xl mx-auto space-y-3">
             {faqs.map((faq, i) => (
-              <div key={i} className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${openFaq === i ? "ring-1 ring-blue-500/10 shadow-md" : "hover:shadow-md"}`}>
+              <div key={i} className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 shadow-sm ${openFaq === i ? "shadow-md bg-blue-50/30" : "hover:shadow-md"}`}>
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between p-5 text-left cursor-pointer focus:outline-none gap-4">
                   <div className="flex items-center gap-3">
@@ -836,13 +836,13 @@ export default function VirtualSpace() {
       {/* ══════════════════════════════════════════════════════════════════
           FINAL CTA
       ══════════════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] py-20 text-center text-white relative overflow-hidden">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] py-20 sm:py-24 text-center text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-650/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="w-16 h-16 mx-auto mb-6 text-blue-300/80"><Icons.Building /></div>
+          <div className="w-16 h-16 mx-auto mb-6 text-blue-300/30"><Icons.Building /></div>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">
             Ready to Get Your<br />
             <span className="text-[#F97316]">Premium Virtual Office?</span>
@@ -853,11 +853,11 @@ export default function VirtualSpace() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button id="final-cta-primary" onClick={scrollToForm}
-              className="w-full sm:w-auto rounded-full bg-white px-8 py-3.5 text-sm font-bold text-[#1A56DB] hover:bg-blue-50 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-xl">
+              className="w-full sm:w-auto rounded-full bg-[#F97316] text-white px-8 py-3.5 text-sm font-bold hover:bg-orange-500 transition-all active:scale-95 cursor-pointer min-h-[48px] shadow-lg shadow-orange-500/20">
               Get Free Consultation →
             </button>
             <a href={`tel:${settings?.vs_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} id="final-cta-secondary"
-              className="w-full sm:w-auto rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition-all active:scale-95 text-center min-h-[48px] flex items-center justify-center gap-2">
+              className="w-full sm:w-auto rounded-full bg-white/10 backdrop-blur-md px-8 py-3.5 text-sm font-semibold text-white hover:bg-white/15 transition-all active:scale-95 text-center min-h-[48px] flex items-center justify-center gap-2 shadow-md">
               <div className="w-4 h-4"><Icons.Phone /></div>
               Talk to Expert
             </a>
@@ -870,8 +870,8 @@ export default function VirtualSpace() {
               { icon: Icons.Lightning, label: "7-Day Setup" },
               { icon: Icons.ShieldCheck, label: "100% Compliant" },
             ].map(b => (
-              <div key={b.label} className="flex items-center gap-2 text-xs text-blue-200 font-medium">
-                <div className="w-4 h-4 text-green-400"><b.icon /></div>
+              <div key={b.label} className="flex items-center gap-2 text-xs text-gray-350 font-medium">
+                <div className="w-4 h-4 text-emerald-400"><b.icon /></div>
                 {b.label}
               </div>
             ))}
@@ -887,7 +887,6 @@ export default function VirtualSpace() {
       <div className="fixed bottom-6 right-5 z-50 group">
         <div className="pointer-events-none absolute bottom-16 right-0 rounded-xl bg-gray-900 px-3 py-2 text-xs text-white whitespace-nowrap opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
           Chat with us on WhatsApp
-          <div className="absolute top-full right-4 border-4 border-transparent border-t-gray-900" />
         </div>
         <a href={settings?.vs_whatsapp_url ? `${settings.vs_whatsapp_url}?text=Hi%2C%20I%20need%20help%20with%20a%20virtual%20office%20on%20FilingBy.com` : "https://wa.me/917567126945?text=Hi%2C%20I%20need%20help%20with%20a%20virtual%20office%20on%20FilingBy.com"}
           target="_blank" rel="noopener noreferrer"
