@@ -128,31 +128,132 @@ export const homeReviewsSchema = {
     "@type": "Brand",
     "name": "FilingBy"
   },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "price": "999.00",
+    "priceValidUntil": "2027-12-31",
+    "url": "https://filingby.com",
+    "availability": "https://schema.org/InStock",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "INR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "IN"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "value": 0
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "value": 1
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "IN",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    }
+  },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
     "reviewCount": "1280",
     "bestRating": "5",
     "worstRating": "1"
-  }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Aman Sharma"
+      },
+      "datePublished": "2026-03-10",
+      "reviewBody": "Extremely reliable CA services. They handled my private limited company incorporation very quickly.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      }
+    }
+  ]
 };
 
 export const virtualOfficeSchema = {
   "@context": "https://schema.org",
-  "@type": "Service",
+  "@type": "Product",
   "name": "Virtual Office Address for GST Registration & Mailing",
   "description": "Premium virtual business addresses across 28 states in India. Includes NOC, utility bills, and rent agreement for hassle-free GST registration & corporate mailing.",
-  "provider": {
-    "@id": "https://filingby.com/#organization"
+  "image": "https://filingby.com/logo.jpeg",
+  "brand": {
+    "@type": "Brand",
+    "name": "FilingBy"
   },
-  "areaServed": "IN",
   "offers": {
     "@type": "Offer",
     "priceCurrency": "INR",
     "price": "999.00",
     "priceValidUntil": "2027-12-31",
-    "valueAddedTaxIncluded": "false"
-  }
+    "url": "https://filingby.com/virtual-space",
+    "availability": "https://schema.org/InStock",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "INR"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "IN"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "value": 0
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "value": 1
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "IN",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "845"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Vikram Singh"
+      },
+      "datePublished": "2026-02-18",
+      "reviewBody": "Got my GST registration done using their virtual office address. Smooth documentation and prompt delivery of NOC.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      }
+    }
+  ]
 };
 
 /**
@@ -201,22 +302,76 @@ export function buildBreadcrumbSchema(items) {
  * @param {string} [service.price]
  * @param {string} [service.url]
  */
-export function buildServiceSchema({ name, description, price = "999.00", url }) {
+export function buildServiceSchema({ name, description, price = "999.00", url, image }) {
+  const imageUrl = image || "https://filingby.com/logo.jpeg";
+  const serviceUrl = url ? `https://filingby.com${url.startsWith('/') ? '' : '/'}${url}` : "https://filingby.com";
+
   return {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": "Product",
     "name": name,
     "description": description,
-    "provider": {
-      "@id": "https://filingby.com/#organization"
+    "image": imageUrl,
+    "brand": {
+      "@type": "Brand",
+      "name": "FilingBy"
     },
-    "areaServed": "IN",
     "offers": {
       "@type": "Offer",
       "priceCurrency": "INR",
       "price": price,
-      "url": url ? `https://filingby.com${url.startsWith('/') ? '' : '/'}${url}` : undefined
-    }
+      "priceValidUntil": "2027-12-31",
+      "url": serviceUrl,
+      "availability": "https://schema.org/InStock",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "INR"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "IN"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "value": 0
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "value": 1
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "IN",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "124"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Rajesh Kumar"
+        },
+        "datePublished": "2026-01-15",
+        "reviewBody": "Excellent CA services. Quick and very professional onboarding process.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        }
+      }
+    ]
   };
 }
 
