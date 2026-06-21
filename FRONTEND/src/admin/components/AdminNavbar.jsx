@@ -29,6 +29,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
         { id: "blogs", label: "Blogs" },
+        { id: "reviews", label: "Reviews" },
         { id: "settings", label: "Settings" },
       ]
     : [
@@ -38,6 +39,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
         { id: "locations", label: "Locations" },
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
+        { id: "reviews", label: "Reviews" },
         { id: "settings", label: "Settings" },
       ];
 
@@ -224,7 +226,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
                 className={`flex items-center px-3 py-1.5 rounded-md text-xs font-bold transition-colors whitespace-nowrap cursor-pointer ${
                   activeTab === tab.id
                     ? "bg-[#1A56DB] text-white"
-                    : "text-gray-650 hover:text-[#1A56DB] hover:bg-gray-50 border border-gray-150"
+                    : "text-gray-650 hover:text-[#1A56DB] hover:bg-gray-50 border border-gray-200"
                 }`}
               >
                 {tab.label}

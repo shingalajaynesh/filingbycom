@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildCityVirtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 
 // Standard brand logos helper
-function BrandLogo({ name }) {
+function BrandLogo({ name, imageUrl }) {
+  if (imageUrl) {
+    return (
+      <div className="flex items-center select-none h-5 opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+        <img src={optimizeCloudinaryUrl(imageUrl)} alt={name} className="h-full object-contain max-w-[100px] invert brightness-0" />
+      </div>
+    );
+  }
   const configs = {
     Swiggy: { bg: "from-orange-500 to-red-500", letter: "S", color: "text-white", text: "swiggy" },
     Amazon: { bg: "from-yellow-400 to-orange-400", letter: "a", color: "text-gray-900", text: "amazon" },
@@ -27,10 +36,25 @@ function BrandLogo({ name }) {
   );
 }
 
+const DEFAULT_REVIEWS = [
+  { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
+  { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
+  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
+  { initials: "AM", color: "bg-indigo-650", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
+  { initials: "AF", color: "bg-[#0E1528]",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
+  { initials: "KD", color: "bg-emerald-700",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
+];
+
 export default function VirtualOfficeCity() {
   const { city } = useParams();
   const navigate = useNavigate();
   const { locations, settings } = useSharedData();
+
+  const clientLogos = settings?.vs_client_logos && settings.vs_client_logos.length > 0
+    ? settings.vs_client_logos
+    : [
+        { name: "Swiggy" }, { name: "Amazon" }, { name: "Flipkart" }, { name: "Zepto" }, { name: "Blinkit" }
+      ];
 
   // Extract city slug from route (e.g. from `/virtual-office-delhi` or `/virtual-office/:city`)
   const currentPath = window.location.pathname;
@@ -44,6 +68,8 @@ export default function VirtualOfficeCity() {
     }
   }
 
+  const dbCity = locations.find(loc => loc.slug === detectedCitySlug);
+
   const [openFaq, setOpenFaq] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -56,6 +82,8 @@ export default function VirtualOfficeCity() {
     city: "",
   });
 
+  const [dynamicReviews, setDynamicReviews] = useState([]);
+
   // Pre-fill target city on mount or path change
   useEffect(() => {
     setFormData(prev => ({
@@ -63,6 +91,26 @@ export default function VirtualOfficeCity() {
       city: detectedCitySlug.charAt(0).toUpperCase() + detectedCitySlug.slice(1)
     }));
   }, [detectedCitySlug]);
+
+  useEffect(() => {
+    const fetchCityReviews = async () => {
+      if (!dbCity?._id) return;
+      try {
+        const API_BASE = (
+          import.meta.env.VITE_API_URL || 
+          import.meta.env.VITE_BACKEND_URL || 
+          "http://localhost:3000"
+        ).replace(/\/$/, "");
+        const res = await axios.get(`${API_BASE}/reviews?pageType=location&virtualLocation=${dbCity._id}`);
+        if (res.data.success && res.data.reviews?.length > 0) {
+          setDynamicReviews(res.data.reviews);
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic reviews:", err);
+      }
+    };
+    fetchCityReviews();
+  }, [dbCity?._id]);
 
   // Data Map for Cities
   const cityInfo = {
@@ -126,7 +174,6 @@ export default function VirtualOfficeCity() {
     }
   };
 
-  const dbCity = locations.find(loc => loc.slug === detectedCitySlug);
 
   // Fallback for custom search/generic cities
   const defaultCity = dbCity || cityInfo[detectedCitySlug] || {
@@ -274,11 +321,9 @@ export default function VirtualOfficeCity() {
             <div className="pt-6 border-t border-white/10 max-w-lg">
               <p className="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-4">COMPLIANCE TRUSTED BY TEAMS FROM</p>
               <div className="flex flex-wrap gap-6 items-center">
-                <BrandLogo name="Swiggy" />
-                <BrandLogo name="Amazon" />
-                <BrandLogo name="Flipkart" />
-                <BrandLogo name="Zepto" />
-                <BrandLogo name="Blinkit" />
+                {clientLogos.slice(0, 5).map((logo, index) => (
+                  <BrandLogo key={index} name={logo.name} imageUrl={logo.imageUrl} />
+                ))}
               </div>
             </div>
           </div>
@@ -420,7 +465,7 @@ export default function VirtualOfficeCity() {
               <div className="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
                 {(addr.image || (addr.photos && addr.photos.length > 0)) ? (
                   <img
-                    src={addr.image || addr.photos[0]}
+                    src={optimizeCloudinaryUrl(addr.image || addr.photos[0])}
                     alt={addr.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750"
                   />
@@ -541,16 +586,22 @@ export default function VirtualOfficeCity() {
 
           <div className="lg:col-span-8 bg-white rounded-3xl p-4 shadow-md flex flex-col h-[400px] border-0">
             <h4 className="text-[10px] font-black text-gray-900 mb-2 uppercase tracking-widest pl-2">Google Map Index Location</h4>
-            <iframe
-              src={defaultCity.mapEmbed}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title={`Virtual office map in ${defaultCity.name}`}
-              className="rounded-2xl flex-grow"
-            ></iframe>
+            {defaultCity.mapEmbed ? (
+              <iframe
+                src={defaultCity.mapEmbed}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                title={`Virtual office map in ${defaultCity.name}`}
+                className="rounded-2xl flex-grow"
+              ></iframe>
+            ) : (
+              <div className="flex-grow bg-slate-50 rounded-2xl flex items-center justify-center text-gray-400 font-semibold text-xs border border-dashed border-gray-200">
+                Map View Unavailable
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -571,6 +622,68 @@ export default function VirtualOfficeCity() {
           >
             Calculate Stamp NOC Charges
           </button>
+        </div>
+      </section>
+
+      {/* Testimonials / Reviews Section */}
+      <section className="max-w-screen-xl mx-auto px-4 py-16">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
+            Customer Testimonials
+          </span>
+          <h2 className="text-2xl md:text-4xl font-black text-gray-950 mt-4 leading-tight">
+            Highly Rated Virtual Office Service in {defaultCity.name}
+          </h2>
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="flex gap-0.5 text-yellow-400">
+              {[1,2,3,4,5].map(i => (
+                <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-gray-650 text-sm font-semibold">4.7 / 5 · Google Rated</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, i) => {
+            const name = rev.authorName || rev.name;
+            const text = rev.comment || rev.text;
+            const rating = rev.rating || 5;
+            const initials = rev.initials || name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+            const color = rev.color || "bg-[#1A56DB]";
+            const designation = rev.businessName || "Virtual Office Client";
+
+            return (
+              <div key={i} className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group border border-gray-100/50">
+                <div>
+                  <div className="flex gap-0.5 text-yellow-400 mb-4">
+                    {Array.from({ length: rating }).map((_, s) => (
+                      <svg key={s} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                    {Array.from({ length: 5 - rating }).map((_, s) => (
+                      <svg key={s} className="w-4 h-4 fill-current text-gray-200" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="mb-6 text-xs md:text-sm leading-relaxed text-gray-600 italic">"{text}"</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${color}`}>
+                    {initials}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
+                    <p className="text-xs text-gray-400">{designation}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 

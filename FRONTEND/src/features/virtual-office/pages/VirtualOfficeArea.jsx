@@ -1,10 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
+
+const DEFAULT_REVIEWS = [
+  { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
+  { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
+  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
+  { initials: "AM", color: "bg-indigo-650", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
+  { initials: "AF", color: "bg-[#0E1528]",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
+  { initials: "KD", color: "bg-emerald-700",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
+];
 
 export default function VirtualOfficeArea() {
   const { city, area } = useParams();
@@ -24,6 +35,37 @@ export default function VirtualOfficeArea() {
       areaSlug = match[2].toLowerCase();
     }
   }
+
+  const dbCity = locations.find(loc => loc.slug === citySlug);
+  const dbArea = dbCity?.addresses?.find(a => a.slug === areaSlug);
+
+  const [dynamicReviews, setDynamicReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchAreaReviews = async () => {
+      if (!dbCity?._id) return;
+      try {
+        const API_BASE = (
+          import.meta.env.VITE_API_URL || 
+          import.meta.env.VITE_BACKEND_URL || 
+          "http://localhost:3000"
+        ).replace(/\/$/, "");
+        const res = await axios.get(`${API_BASE}/reviews?pageType=location&virtualLocation=${dbCity._id}&officeCenter=${areaSlug}`);
+        if (res.data.success && res.data.reviews?.length > 0) {
+          setDynamicReviews(res.data.reviews);
+        } else {
+          // fallback to city level
+          const cityRes = await axios.get(`${API_BASE}/reviews?pageType=location&virtualLocation=${dbCity._id}`);
+          if (cityRes.data.success && cityRes.data.reviews?.length > 0) {
+            setDynamicReviews(cityRes.data.reviews);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic reviews:", err);
+      }
+    };
+    fetchAreaReviews();
+  }, [dbCity?._id, areaSlug]);
 
   const [activePhoto, setActivePhoto] = useState(0);
   const [submitting, setSubmitting] = useState(false);
@@ -100,8 +142,7 @@ export default function VirtualOfficeArea() {
     }
   };
 
-  const dbCity = locations.find(loc => loc.slug === citySlug);
-  const dbArea = dbCity?.addresses?.find(a => a.slug === areaSlug);
+
 
   const selectedArea = dbArea || areaData[areaSlug] || {
     name: `${areaSlug.charAt(0).toUpperCase() + areaSlug.slice(1)} Workspace`,
@@ -197,7 +238,7 @@ export default function VirtualOfficeArea() {
               <div className="relative h-96 rounded-2xl overflow-hidden border-0 bg-gray-155 flex items-center justify-center">
                 {(selectedArea.photos && selectedArea.photos.length > 0) || selectedArea.image ? (
                   <img
-                    src={(selectedArea.photos && selectedArea.photos.length > 0) ? selectedArea.photos[activePhoto] : selectedArea.image}
+                    src={optimizeCloudinaryUrl((selectedArea.photos && selectedArea.photos.length > 0) ? selectedArea.photos[activePhoto] : selectedArea.image)}
                     alt="Workspace interior"
                     className="w-full h-full object-cover"
                   />
@@ -216,7 +257,7 @@ export default function VirtualOfficeArea() {
                     onClick={() => setActivePhoto(index)}
                     className={`h-20 rounded-xl overflow-hidden ring-2 transition-all cursor-pointer ${activePhoto === index ? "ring-[#1A56DB] scale-95 opacity-100" : "ring-transparent opacity-60 hover:opacity-100"}`}
                   >
-                    <img src={ph} alt="thumbnail" className="w-full h-full object-cover" />
+                    <img src={optimizeCloudinaryUrl(ph)} alt="thumbnail" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -258,29 +299,37 @@ export default function VirtualOfficeArea() {
                     title: "GST Registration Package",
                     price: selectedArea.priceGST,
                     badge: "Best Value",
+                    description: selectedArea.descGST || "Get premium business registration address with complete legal NOCs and inspection support.",
                     inclusions: ["Government NOC for GST filings", "Electricity & utility bills proof", "Stamped Rent Agreement", "Physical officer inspection spot", "Dedicated representative assistance"]
                   },
                   {
                     title: "Business Address & Mail Package",
                     price: selectedArea.priceMail,
                     badge: "Professional",
+                    description: selectedArea.descMail || "Monetize professional commercial address on cards/site with scanning & logs.",
                     inclusions: ["Premium mailing address for site/cards", "Courier handling & logging", "Scan & Forward digital updates", "Access to meeting spots (Chargeable)"]
                   },
                   {
                     title: "MCA Company Incorporation",
                     price: selectedArea.priceIncorp,
                     badge: "Corporate",
+                    description: selectedArea.descIncorp || "Satisfy Registrar of Companies (ROC) legal standards with zero compliance delays.",
                     inclusions: ["ROC compliant NOC from land owner", "Director proof utility copy", "Consent Letter & structural NOCs", "Board placement in lobby"]
                   }
                 ].map((plan, pIdx) => (
                   <div key={pIdx} className="bg-slate-50/60 rounded-3xl p-6 hover:bg-slate-50 transition-all border-0 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="space-y-3">
+                    <div className="space-y-3 flex-1">
                       <div className="flex items-center gap-2">
                         <h4 className="text-base font-black text-gray-900">{plan.title}</h4>
                         <span className="text-[9px] font-black text-orange-650 bg-orange-50 px-2 py-0.5 rounded">{plan.badge}</span>
                       </div>
-
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {plan.description && (
+                        <p className="text-[11px] text-gray-500 font-semibold leading-relaxed mt-1">
+                          {plan.description}
+                        </p>
+                      )}
+                      
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
                         {plan.inclusions.map((inc, iIdx) => (
                           <li key={iIdx} className="text-[10px] text-gray-500 font-semibold flex items-center gap-1.5">
                             <span className="text-[#1A56DB] text-xs">⚡</span>
@@ -410,19 +459,87 @@ export default function VirtualOfficeArea() {
             {/* Interactive Location Map */}
             <div className="bg-white rounded-3xl p-4 border-0 shadow-md h-72 flex flex-col justify-between">
               <h4 className="text-[10px] font-black text-gray-900 uppercase tracking-widest pl-2 mb-2">Google Map Location</h4>
-              <iframe
-                src={selectedArea.mapEmbed}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title={`Map of ${selectedArea.name}`}
-                className="rounded-2xl flex-grow"
-              ></iframe>
+              {selectedArea.mapEmbed ? (
+                <iframe
+                  src={selectedArea.mapEmbed}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  title={`Map of ${selectedArea.name}`}
+                  className="rounded-2xl flex-grow"
+                ></iframe>
+              ) : (
+                <div className="flex-grow bg-slate-50 rounded-2xl flex items-center justify-center text-gray-400 font-semibold text-xs border border-dashed border-gray-200">
+                  Map View Unavailable
+                </div>
+              )}
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials / Reviews Section */}
+      <section className="max-w-screen-xl mx-auto px-4 py-16 border-t border-gray-200/50">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-[10px] font-black uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
+            Customer Testimonials
+          </span>
+          <h2 className="text-2xl md:text-4xl font-black text-gray-950 mt-4 leading-tight">
+            Highly Rated Virtual Office Service in {selectedArea.name}
+          </h2>
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <div className="flex gap-0.5 text-yellow-400">
+              {[1,2,3,4,5].map(i => (
+                <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-gray-650 text-sm font-semibold">4.7 / 5 · Google Rated</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, i) => {
+            const name = rev.authorName || rev.name;
+            const text = rev.comment || rev.text;
+            const rating = rev.rating || 5;
+            const initials = rev.initials || name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+            const color = rev.color || "bg-[#1A56DB]";
+            const designation = rev.businessName || "Virtual Office Client";
+
+            return (
+              <div key={i} className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group border border-gray-100/50">
+                <div>
+                  <div className="flex gap-0.5 text-yellow-400 mb-4">
+                    {Array.from({ length: rating }).map((_, s) => (
+                      <svg key={s} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                    {Array.from({ length: 5 - rating }).map((_, s) => (
+                      <svg key={s} className="w-4 h-4 fill-current text-gray-200" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="mb-6 text-xs md:text-sm leading-relaxed text-gray-650 italic">"{text}"</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${color}`}>
+                    {initials}
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
+                    <p className="text-xs text-gray-400">{designation}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

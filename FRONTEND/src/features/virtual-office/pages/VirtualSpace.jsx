@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
 import { virtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
+import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 // ─── SVG Icon Library ──────────────────────────────────────────────────────
 const Icons = {
@@ -144,7 +146,14 @@ const Icons = {
 };
 
 // ─── Brand Logo Renderer ───────────────────────────────────────────────────
-function BrandLogo({ name }) {
+function BrandLogo({ name, imageUrl }) {
+  if (imageUrl) {
+    return (
+      <div className="flex items-center select-none h-6">
+        <img src={optimizeCloudinaryUrl(imageUrl)} alt={name} className="h-full object-contain max-w-[120px]" />
+      </div>
+    );
+  }
   const configs = {
     Swiggy:    { bg: "from-orange-500 to-red-500",   letter: "S", color: "text-white", text: "swiggy" },
     Amazon:    { bg: "from-yellow-400 to-orange-400", letter: "a", color: "text-gray-900", text: "amazon" },
@@ -186,6 +195,26 @@ export default function VirtualSpace() {
   const [activeTab,    setActiveTab]    = useState("gst");
 
   const { submitInquiry, settings } = useSharedData();
+  const [dynamicReviews, setDynamicReviews] = useState([]);
+
+  useEffect(() => {
+    const fetchHomeReviews = async () => {
+      try {
+        const API_BASE = (
+          import.meta.env.VITE_API_URL || 
+          import.meta.env.VITE_BACKEND_URL || 
+          "http://localhost:3000"
+        ).replace(/\/$/, "");
+        const res = await axios.get(`${API_BASE}/reviews?pageType=home&portal=virtual-space`);
+        if (res.data.success && res.data.reviews?.length > 0) {
+          setDynamicReviews(res.data.reviews);
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic reviews:", err);
+      }
+    };
+    fetchHomeReviews();
+  }, []);
 
   useEffect(() => {
     const fn = () => setShowBackTop(window.scrollY > 300);
@@ -219,7 +248,22 @@ export default function VirtualSpace() {
   };
 
   // ── Data ────────────────────────────────────────────────────────────────
-  const logos = ["Swiggy","Saregama","Relaxo","Aramex","HTC","Flipkart","Amazon","Myntra","Meesho","JioMart","Blinkit","Zepto"];
+  const clientLogos = settings?.vs_client_logos && settings.vs_client_logos.length > 0
+    ? settings.vs_client_logos
+    : [
+        { name: "Swiggy" }, { name: "Saregama" }, { name: "Relaxo" }, { name: "Aramex" }, { name: "HTC" }, { name: "Flipkart" },
+        { name: "Amazon" }, { name: "Myntra" }, { name: "Meesho" }, { name: "JioMart" }, { name: "Blinkit" }, { name: "Zepto" }
+      ];
+
+  const officePhotos = settings?.vs_office_photos && settings.vs_office_photos.length > 0
+    ? settings.vs_office_photos
+    : [
+        { name: "Executive Suite Lobby", imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+        { name: "Premium Hot Desks", imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" },
+        { name: "Corporate Meeting Boardroom", imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+        { name: "Sleek Private Cabins", imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80" },
+        { name: "Modern Co-Working Lounge", imageUrl: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" }
+      ];
 
   const stats = [
     { icon: Icons.Users,     value: "22,000+", label: "Happy Clients",    color: "text-blue-400",   bgColor: "bg-white/10" },
@@ -309,7 +353,7 @@ export default function VirtualSpace() {
     { name: "Maharashtra",    city: "Mumbai",       icon: Icons.Building },
   ];
 
-  const reviews = [
+  const DEFAULT_REVIEWS = [
     { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
     { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
     { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
@@ -511,9 +555,9 @@ export default function VirtualSpace() {
         </div>
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">
           <div className="flex animate-ticker whitespace-nowrap">
-            {[...logos,...logos].map((logo, i) => (
+            {[...clientLogos,...clientLogos].map((logo, i) => (
               <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 flex-shrink-0 mx-2 hover:bg-[#1A56DB]/5 transition-all duration-200 cursor-default shadow-sm">
-                <BrandLogo name={logo} />
+                <BrandLogo name={logo.name} imageUrl={logo.imageUrl} />
               </div>
             ))}
           </div>
@@ -620,6 +664,39 @@ export default function VirtualSpace() {
               className="bg-[#F97316] text-white px-8 py-3.5 rounded-full font-bold hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-500/20 cursor-pointer min-h-[48px]">
               Start Your Virtual Office Today →
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════
+          DYNAMIC OFFICE GALLERY
+      ══════════════════════════════════════════════════════════════════ */}
+      <section className="bg-slate-50 py-16 overflow-hidden border-t border-slate-100">
+        <div className="max-w-screen-xl mx-auto px-4 mb-10 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
+            Our Premium Infrastructure
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-4 tracking-tight leading-tight">
+            Vibrant, Compliance-Ready Workspace Environments
+          </h2>
+          <p className="text-gray-500 text-xs sm:text-sm mt-2 max-w-xl mx-auto font-medium">
+            Explore our state-of-the-art office locations featuring professional boardrooms, high-speed connectivity, and modern business lounges.
+          </p>
+        </div>
+        
+        <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-slate-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-slate-50 after:to-transparent after:z-10">
+          <div className="flex animate-ticker whitespace-nowrap gap-4">
+            {officePhotos.map((photo, i) => (
+              <div key={i} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
+              </div>
+            ))}
+            {/* Loop for infinite scroll */}
+            {officePhotos.map((photo, i) => (
+              <div key={`dup-${i}`} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -772,26 +849,40 @@ export default function VirtualSpace() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {reviews.map((rev, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-                <div>
-                  <div className="flex gap-0.5 mb-4">
-                    {[1,2,3,4,5].map(s => <div key={s} className="w-4 h-4 text-yellow-400"><Icons.Star /></div>)}
-                  </div>
-                  <p className="mb-6 text-sm leading-relaxed text-gray-600 italic">"{rev.text}"</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${rev.color}`}>
-                    {rev.initials}
-                  </div>
+            {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, i) => {
+              const name = rev.authorName || rev.name;
+              const text = rev.comment || rev.text;
+              const rating = rev.rating || 5;
+              const initials = rev.initials || name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+              const color = rev.color || "bg-[#1A56DB]";
+              const designation = rev.businessName || "Virtual Office Client";
+
+              return (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-900">{rev.name}</h4>
-                    <p className="text-xs text-gray-400">Virtual Office Client</p>
+                    <div className="flex gap-0.5 mb-4">
+                      {Array.from({ length: rating }).map((_, s) => (
+                        <div key={s} className="w-4 h-4 text-yellow-400"><Icons.Star /></div>
+                      ))}
+                      {Array.from({ length: 5 - rating }).map((_, s) => (
+                        <div key={s} className="w-4 h-4 text-gray-250"><Icons.Star /></div>
+                      ))}
+                    </div>
+                    <p className="mb-6 text-sm leading-relaxed text-gray-600 italic">"{text}"</p>
                   </div>
-                  <div className="ml-auto w-5 h-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity"><Icons.CheckCircle /></div>
+                  <div className="flex items-center gap-3">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${color}`}>
+                      {initials}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
+                      <p className="text-xs text-gray-400">{designation}</p>
+                    </div>
+                    <div className="ml-auto w-5 h-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity"><Icons.CheckCircle /></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,31 +1,40 @@
 class MemoryCache {
-  constructor() {
-    this.cache = new Map();
-  }
+  #cache = new Map();
+  #maxSize = 100;
 
   get(key) {
-    const item = this.cache.get(key);
+    const item = this.#cache.get(key);
     if (!item) return null;
-
-    // Check if item has expired (using TTL)
     if (Date.now() > item.expiresAt) {
-      this.cache.delete(key);
+      this.#cache.delete(key);
       return null;
     }
     return item.value;
   }
 
-  set(key, value, ttlMs = 5 * 60 * 1000) { // Default TTL: 5 minutes
-    const expiresAt = Date.now() + ttlMs;
-    this.cache.set(key, { value, expiresAt });
+  set(key, value, ttlMs = 300000) {
+    // Lazy cleanup of expired items on write to keep memory footprint minimal
+    for (const [k, item] of this.#cache.entries()) {
+      if (Date.now() > item.expiresAt) {
+        this.#cache.delete(k);
+      }
+    }
+
+    // Limit cache size to prevent memory leaks
+    if (this.#cache.size >= this.#maxSize) {
+      const oldestKey = this.#cache.keys().next().value;
+      this.#cache.delete(oldestKey);
+    }
+
+    this.#cache.set(key, { value, expiresAt: Date.now() + ttlMs });
   }
 
   delete(key) {
-    this.cache.delete(key);
+    this.#cache.delete(key);
   }
 
   clear() {
-    this.cache.clear();
+    this.#cache.clear();
   }
 }
 

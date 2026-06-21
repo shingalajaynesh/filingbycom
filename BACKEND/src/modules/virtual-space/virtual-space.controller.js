@@ -132,8 +132,29 @@ class VirtualSpaceController {
   // Submit coworking/space partner request
   createPartnerApplication = async (req, res) => {
     try {
-      const { spaceName, ownerName, email, mobile, city, spaceType, deskCount, address, price, image, description, amenities } = req.body;
-      if (!spaceName || !ownerName || !email || !mobile || !city || !spaceType || !deskCount || !address || !price) {
+      const { 
+        spaceName, 
+        ownerName, 
+        email, 
+        mobile, 
+        city, 
+        spaceType, 
+        deskCount, 
+        address, 
+        price, 
+        image, 
+        images, 
+        description, 
+        amenities,
+        priceGST,
+        priceIncorp,
+        priceMail,
+        descGST,
+        descIncorp,
+        descMail
+      } = req.body;
+
+      if (!spaceName || !ownerName || !email || !mobile || !city || !spaceType || !address || !price) {
         return res.status(400).json({ success: false, message: "Missing required fields" });
       }
 
@@ -144,12 +165,19 @@ class VirtualSpaceController {
         mobile,
         city,
         spaceType,
-        deskCount: Number(deskCount),
+        deskCount: deskCount ? Number(deskCount) : undefined,
         address,
         price,
-        image: image || "",
+        image: image || (images && images.length > 0 ? images[0] : ""),
+        images: images || [],
         description: description || "",
         amenities: amenities || [],
+        priceGST: priceGST || String(price),
+        priceIncorp: priceIncorp || String(Number(price) + 300),
+        priceMail: priceMail || String(Math.max(100, Number(price) - 400)),
+        descGST: descGST || "",
+        descIncorp: descIncorp || "",
+        descMail: descMail || ""
       });
 
       return res.status(201).json({ success: true, message: "Partner application submitted successfully", application });
@@ -575,9 +603,30 @@ class VirtualSpaceController {
   updatePartnerStatus = async (req, res) => {
     try {
       const { id } = req.params;
-      const { status } = req.body;
+      const { 
+        status, 
+        spaceName, 
+        ownerName, 
+        email, 
+        mobile, 
+        city, 
+        spaceType, 
+        deskCount, 
+        address, 
+        price, 
+        images, 
+        description, 
+        amenities, 
+        priceGST, 
+        priceIncorp, 
+        priceMail,
+        descGST,
+        descIncorp,
+        descMail
+      } = req.body;
+
       const validStatuses = ["Pending", "Approved", "Rejected"];
-      if (!validStatuses.includes(status)) {
+      if (status && !validStatuses.includes(status)) {
         return res.status(400).json({ success: false, message: "Invalid status value" });
       }
 
@@ -586,11 +635,36 @@ class VirtualSpaceController {
         return res.status(404).json({ success: false, message: "Application not found" });
       }
 
-      const oldStatus = application.status;
-      application.status = status;
+      // Update editable fields if passed
+      if (spaceName !== undefined) application.spaceName = spaceName;
+      if (ownerName !== undefined) application.ownerName = ownerName;
+      if (email !== undefined) application.email = email;
+      if (mobile !== undefined) application.mobile = mobile;
+      if (city !== undefined) application.city = city;
+      if (spaceType !== undefined) application.spaceType = spaceType;
+      if (deskCount !== undefined) application.deskCount = deskCount ? Number(deskCount) : undefined;
+      if (address !== undefined) application.address = address;
+      if (price !== undefined) application.price = String(price);
+      if (images !== undefined) {
+        application.images = images;
+        if (images.length > 0) application.image = images[0];
+      }
+      if (description !== undefined) application.description = description;
+      if (amenities !== undefined) application.amenities = amenities;
+      if (priceGST !== undefined) application.priceGST = String(priceGST);
+      if (priceIncorp !== undefined) application.priceIncorp = String(priceIncorp);
+      if (priceMail !== undefined) application.priceMail = String(priceMail);
+      if (descGST !== undefined) application.descGST = descGST;
+      if (descIncorp !== undefined) application.descIncorp = descIncorp;
+      if (descMail !== undefined) application.descMail = descMail;
+
+      if (status !== undefined) {
+        application.status = status;
+      }
+
       await application.save();
 
-      if (status === "Approved") {
+      if (application.status === "Approved") {
         // Find or create VirtualLocation for this city
         const citySlug = application.city.toLowerCase().trim().replace(/\s+/g, "-");
         let location = await VirtualLocation.findOne({ slug: citySlug });
@@ -600,8 +674,8 @@ class VirtualSpaceController {
             name: application.city.trim(),
             state: application.city.trim(),
             tagline: `Premium corporate address options in ${application.city.trim()}`,
-            rate: application.price || "999",
-            image: application.image || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+            rate: application.priceGST || application.price || "999",
+            image: application.image || (application.images && application.images.length > 0 ? application.images[0] : "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"),
             addresses: [],
             faqs: [
               { q: `Is physical verification supported in ${application.city.trim()}?`, a: `Yes, our representatives assist in managing site inspections at our ${application.city.trim()} centers by arranging the physical desk and documentation.` },
@@ -610,33 +684,62 @@ class VirtualSpaceController {
           });
         }
 
-        // Check if this address already exists under this city to avoid duplicates
+        // Sync/Update logic
         const addressSlug = application.spaceName.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-");
-        const exists = location.addresses.some(addr => addr.slug === addressSlug);
-        if (!exists) {
-          const basePriceVal = Number(application.price) || 999;
-          const priceGST = String(basePriceVal);
-          const priceIncorp = String(basePriceVal + 300);
-          const priceMail = String(Math.max(100, basePriceVal - 400));
-          
-          location.addresses.push({
-            name: application.spaceName.trim(),
-            slug: addressSlug,
-            address: application.address.trim(),
-            feature: `Onboarded Workspace (${application.spaceType})`,
-            image: application.image || "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-            priceGST,
-            priceIncorp,
-            priceMail,
-            amenities: application.amenities && application.amenities.length > 0 
-              ? application.amenities 
-              : ["High-speed Wi-Fi", "Courier Handling", "Meeting Rooms", "GST Officer Desk"],
-            description: application.description || `Excellent prime commercial desk space at ${application.spaceName.trim()}. Suitable for virtual registration, company registration, and trade license processing.`,
-            photos: [application.image].filter(Boolean)
-          });
-          
-          await location.save();
-          locationCache.clear();
+        const defaultGST = application.priceGST || String(Number(application.price) || 999);
+        const defaultIncorp = application.priceIncorp || String((Number(application.price) || 999) + 300);
+        const defaultMail = application.priceMail || String(Math.max(100, (Number(application.price) || 999) - 400));
+        const mainImage = application.image || (application.images && application.images.length > 0 ? application.images[0] : "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80");
+
+        let addrIndex = location.addresses.findIndex(addr => addr.partnerApplicationId === String(application._id));
+        if (addrIndex === -1) {
+          addrIndex = location.addresses.findIndex(addr => addr.slug === addressSlug);
+        }
+
+        const newAddressObj = {
+          name: application.spaceName.trim(),
+          slug: addressSlug,
+          address: application.address.trim(),
+          feature: `Onboarded Workspace (${application.spaceType})`,
+          image: mainImage,
+          priceGST: defaultGST,
+          priceIncorp: defaultIncorp,
+          priceMail: defaultMail,
+          descGST: application.descGST || "",
+          descIncorp: application.descIncorp || "",
+          descMail: application.descMail || "",
+          amenities: application.amenities && application.amenities.length > 0 
+            ? application.amenities 
+            : ["High-speed Wi-Fi", "Courier Handling", "Meeting Rooms", "GST Officer Desk"],
+          description: application.description || `Excellent prime commercial desk space at ${application.spaceName.trim()}. Suitable for virtual registration, company registration, and trade license processing.`,
+          photos: application.images && application.images.length > 0 ? application.images : [mainImage].filter(Boolean),
+          partnerApplicationId: String(application._id)
+        };
+
+        if (addrIndex !== -1) {
+          location.addresses[addrIndex] = {
+            ...location.addresses[addrIndex].toObject(),
+            ...newAddressObj
+          };
+        } else {
+          location.addresses.push(newAddressObj);
+        }
+
+        await location.save();
+        locationCache.clear();
+      } else {
+        // If status changes away from Approved, remove from addresses list to prevent it showing up
+        const citySlug = application.city.toLowerCase().trim().replace(/\s+/g, "-");
+        let location = await VirtualLocation.findOne({ slug: citySlug });
+        if (location) {
+          const initialLength = location.addresses.length;
+          location.addresses = location.addresses.filter(addr => 
+            addr.partnerApplicationId !== String(application._id) && addr.slug !== application.spaceName.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-")
+          );
+          if (location.addresses.length !== initialLength) {
+            await location.save();
+            locationCache.clear();
+          }
         }
       }
 

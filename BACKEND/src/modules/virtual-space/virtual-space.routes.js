@@ -4,13 +4,17 @@ import verifyAdmin from "../../middleware/admin.middleware.js";
 import { verifyUser } from "../../middleware/auth.middleware.js";
 import VirtualSpaceController from "./virtual-space.controller.js";
 
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ 
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }
+});
 
 const virtualSpaceRouter = express.Router();
 
 // ─── Public Endpoints ────────────────────────────────────────────────────────
 virtualSpaceRouter.post("/virtual-space/inquiries", VirtualSpaceController.createInquiry);
 virtualSpaceRouter.post("/virtual-space/partner-onboarding", VirtualSpaceController.createPartnerApplication);
+virtualSpaceRouter.post("/virtual-space/upload-image", upload.single("image"), VirtualSpaceController.uploadImage);
 virtualSpaceRouter.post("/virtual-space/quotes", VirtualSpaceController.createQuoteLead);
 virtualSpaceRouter.get("/virtual-space/locations", VirtualSpaceController.getLocations);
 virtualSpaceRouter.get("/virtual-space/locations/:slug", VirtualSpaceController.getLocationBySlug);

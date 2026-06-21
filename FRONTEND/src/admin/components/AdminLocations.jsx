@@ -386,67 +386,69 @@ export default function AdminLocations() {
       ) : locations.length === 0 ? (
         <div className="text-center py-12 text-gray-400 font-semibold text-sm">No locations found. Add your first city to get started.</div>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gray-100 text-gray-400 text-[10px] font-black uppercase tracking-wider">
-                <th className="py-3.5 px-4">City / Area Name</th>
-                <th className="py-3.5 px-4">Slug</th>
-                <th className="py-3.5 px-4">State</th>
-                <th className="py-3.5 px-4">Starting Rate</th>
-                <th className="py-3.5 px-4 text-center">Centers Count</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredLocations.length === 0 ? (
+        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <td colSpan="6" className="py-12 text-center text-gray-500 text-sm font-semibold">
-                    No locations found matching "{searchTerm}"
-                  </td>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-550 uppercase tracking-wider">City / Area Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-550 uppercase tracking-wider">Slug</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-550 uppercase tracking-wider">State</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-gray-550 uppercase tracking-wider">Starting Rate</th>
+                  <th className="px-6 py-3 text-center text-xs font-bold text-gray-550 uppercase tracking-wider">Centers Count</th>
+                  <th className="px-6 py-3 text-right text-xs font-bold text-gray-550 uppercase tracking-wider">Actions</th>
                 </tr>
-              ) : (
-                filteredLocations.map((loc) => (
-                <tr key={loc._id} className="border-b border-gray-50 hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-4">
-                    <div className="flex items-center gap-3">
-                      {loc.image && (
-                        <img src={loc.image} alt={loc.name} className="w-10 h-10 object-cover rounded-lg bg-gray-50 flex-shrink-0" />
-                      )}
-                      <div>
-                        <span className="font-extrabold text-sm text-gray-900 block">{loc.name}</span>
-                        <span className="text-[10px] text-gray-400 font-medium line-clamp-1 max-w-xs">{loc.tagline}</span>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredLocations.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" className="px-6 py-12 text-center text-gray-500 text-sm font-semibold">
+                      No locations found matching "{searchTerm}"
+                    </td>
+                  </tr>
+                ) : (
+                  filteredLocations.map((loc) => (
+                  <tr key={loc._id} className="hover:bg-gray-50 transition-colors">
+                    <td className="py-4 px-6">
+                      <div className="flex items-center gap-3">
+                        {loc.image && (
+                          <img src={loc.image} alt={loc.name} className="w-10 h-10 object-cover rounded-lg bg-gray-50 flex-shrink-0" />
+                        )}
+                        <div>
+                          <span className="font-extrabold text-sm text-gray-900 block">{loc.name}</span>
+                          <span className="text-[10px] text-gray-400 font-medium line-clamp-1 max-w-xs">{loc.tagline}</span>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="py-4 px-4 text-xs font-semibold text-slate-500">/{loc.slug}</td>
-                  <td className="py-4 px-4">
-                    <span className="px-2.5 py-1 text-[10px] font-bold bg-blue-50 text-blue-700 rounded-full">{loc.state}</span>
-                  </td>
-                  <td className="py-4 px-4 font-black text-xs text-gray-800">₹{loc.rate}/mo</td>
-                  <td className="py-4 px-4 text-center">
-                    <span className="px-2 py-0.5 text-[10px] font-black bg-slate-100 text-slate-700 rounded-md">
-                      {loc.addresses ? loc.addresses.length : 0} centers
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 text-right space-x-2">
-                    <button
-                      onClick={() => handleOpenModal(loc)}
-                      className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-lg cursor-pointer border-0 transition-colors"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDeleteLocation(loc._id)}
-                      className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-lg cursor-pointer border-0 transition-colors"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              )))}
-            </tbody>
-          </table>
+                    </td>
+                    <td className="py-4 px-6 text-xs font-semibold text-slate-500">/{loc.slug}</td>
+                    <td className="py-4 px-6">
+                      <span className="px-2.5 py-1 text-[10px] font-bold bg-blue-50 text-blue-700 rounded-full">{loc.state}</span>
+                    </td>
+                    <td className="py-4 px-6 font-black text-xs text-gray-800">₹{loc.rate}/mo</td>
+                    <td className="py-4 px-6 text-center">
+                      <span className="px-2 py-0.5 text-[10px] font-black bg-slate-100 text-slate-700 rounded-md">
+                        {loc.addresses ? loc.addresses.length : 0} centers
+                      </span>
+                    </td>
+                    <td className="py-4 px-6 text-right space-x-2">
+                      <button
+                        onClick={() => handleOpenModal(loc)}
+                        className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs rounded-lg cursor-pointer border-0 transition-colors"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteLocation(loc._id)}
+                        className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 font-bold text-xs rounded-lg cursor-pointer border-0 transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                )))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
@@ -614,7 +616,7 @@ export default function AdminLocations() {
                             <button
                               type="button"
                               onClick={() => handleOpenAddressModal(aIdx)}
-                              className="px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-800 border border-gray-250 text-[10px] font-bold rounded"
+                              className="px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-800 border border-gray-200 text-[10px] font-bold rounded"
                             >
                               Edit
                             </button>
@@ -696,7 +698,7 @@ export default function AdminLocations() {
               <button
                 type="button"
                 onClick={handleCloseModal}
-                className="px-4.5 py-2.5 sm:py-3 bg-white hover:bg-gray-100 text-gray-950 border border-gray-250 text-xs font-bold rounded-xl cursor-pointer"
+                className="px-4.5 py-2.5 sm:py-3 bg-white hover:bg-gray-100 text-gray-955 border border-gray-200 text-xs font-bold rounded-xl cursor-pointer"
               >
                 Cancel
               </button>
@@ -901,7 +903,7 @@ export default function AdminLocations() {
               <button
                 type="button"
                 onClick={() => setIsAddressModalOpen(false)}
-                className="px-4 py-2 bg-white hover:bg-gray-100 text-gray-950 border border-gray-250 text-xs font-bold rounded-xl"
+                className="px-4 py-2 bg-white hover:bg-gray-100 text-gray-955 border border-gray-200 text-xs font-bold rounded-xl"
               >
                 Discard
               </button>

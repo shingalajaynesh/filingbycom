@@ -17,6 +17,7 @@ export function AdminProvider({ children }) {
   const [historyOrders, setHistoryOrders] = useState([]);
   const [services, setServices] = useState([]);
   const [mainServices, setMainServices] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   // Fetch Orders
   const fetchOrders = useCallback(async (filter, portal) => {
@@ -253,9 +254,10 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
-  const updatePartnerStatus = useCallback(async (id, status) => {
+  const updatePartnerStatus = useCallback(async (id, payload) => {
     try {
-      const res = await axios.patch(`${API_BASE}/admin/virtual-space/partner-onboarding/${id}/status`, { status }, {
+      const requestData = typeof payload === "string" ? { status: payload } : payload;
+      const res = await axios.patch(`${API_BASE}/admin/virtual-space/partner-onboarding/${id}/status`, requestData, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
@@ -430,12 +432,82 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
+  // Reviews
+  const fetchAdminReviews = useCallback(async (portal) => {
+    try {
+      const url = portal ? `${API_BASE}/admin/reviews?portal=${portal}` : `${API_BASE}/admin/reviews`;
+      const res = await axios.get(url, { withCredentials: true });
+      if (res.data.success) {
+        setReviews(res.data.reviews || []);
+      }
+      return res.data;
+    } catch (err) {
+      throw new Error(err.response?.data?.message || err.message || "Failed to fetch reviews");
+    }
+  }, []);
+
+  const addReview = useCallback(async (reviewData) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/reviews`, reviewData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      const data = res.data;
+      if (data.success) {
+        setReviews(prev => [data.review, ...prev]);
+        toast.success("Review added successfully");
+      }
+      return data;
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to add review";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  const updateReview = useCallback(async (id, reviewData) => {
+    try {
+      const res = await axios.put(`${API_BASE}/admin/reviews/${id}`, reviewData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      const data = res.data;
+      if (data.success) {
+        setReviews(prev => prev.map(r => r._id === id ? data.review : r));
+        toast.success("Review updated successfully");
+      }
+      return data;
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to update review";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  const deleteReview = useCallback(async (id) => {
+    try {
+      const res = await axios.delete(`${API_BASE}/admin/reviews/${id}`, {
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        setReviews(prev => prev.filter(r => r._id !== id));
+        toast.success("Review deleted successfully");
+      }
+      return res.data;
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to delete review";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
   return (
     <AdminContext.Provider value={{
       activeOrders,
       historyOrders,
       services,
       mainServices,
+      reviews,
       fetchOrders,
       updateOrderStatus,
       updatePaymentStatus,
@@ -464,7 +536,11 @@ export function AdminProvider({ children }) {
       adminUpdateVirtualOrder,
       adminDeleteVirtualOrder,
       adminAddMailLog,
-      adminAddVerificationAudit
+      adminAddVerificationAudit,
+      fetchAdminReviews,
+      addReview,
+      updateReview,
+      deleteReview
     }}>
       {children}
     </AdminContext.Provider>

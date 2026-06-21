@@ -54,7 +54,8 @@ const samplePosts = [
     author: "FilingBy Legal Desk",
     readTime: 6,
     isPublished: true,
-    publishedAt: new Date("2026-06-12T09:00:00.000Z") // 2026 (Recent)
+    publishedAt: new Date("2026-06-12T09:00:00.000Z"),
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "How to Register a Private Limited Company in India: A Step-by-Step Overview",
@@ -101,7 +102,8 @@ const samplePosts = [
     author: "FilingBy Corporate Services Team",
     readTime: 8,
     isPublished: true,
-    publishedAt: new Date("2025-10-15T11:30:00.000Z") // 2025
+    publishedAt: new Date("2025-10-15T11:30:00.000Z"),
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "Virtual Office for GST Registration: Everything You Need to Know",
@@ -142,7 +144,8 @@ const samplePosts = [
     author: "FilingBy Virtual Office Desk",
     readTime: 5,
     isPublished: true,
-    publishedAt: new Date("2024-11-20T14:00:00.000Z") // 2024
+    publishedAt: new Date("2024-11-20T14:00:00.000Z"),
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "Income Tax Return (ITR) Filing: A Guide for Salaried Individuals",
@@ -184,7 +187,8 @@ const samplePosts = [
     author: "FilingBy Tax Desk",
     readTime: 5,
     isPublished: true,
-    publishedAt: new Date("2023-07-10T10:00:00.000Z") // 2023
+    publishedAt: new Date("2023-07-10T10:00:00.000Z"),
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "LLP vs Private Limited Company: Which is Better for Your Startup?",
@@ -240,7 +244,8 @@ const samplePosts = [
     author: "FilingBy Corporate Law Experts",
     readTime: 7,
     isPublished: true,
-    publishedAt: new Date("2022-09-18T08:15:00.000Z") // 2022
+    publishedAt: new Date("2022-09-18T08:15:00.000Z"),
+    image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "Trademark Registration in India: Process, Timeline & Pricing",
@@ -276,7 +281,8 @@ const samplePosts = [
     author: "FilingBy IP Desk",
     readTime: 6,
     isPublished: true,
-    publishedAt: new Date("2021-04-10T15:45:00.000Z") // 2021 (5 Years Ago)
+    publishedAt: new Date("2021-04-10T15:45:00.000Z"),
+    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "How to Reply to a GST Notice: Types of Notices & Practical Steps",
@@ -311,7 +317,8 @@ const samplePosts = [
     author: "FilingBy Tax & Audit Desk",
     readTime: 7,
     isPublished: true,
-    publishedAt: new Date("2023-12-05T09:30:00.000Z") // 2023
+    publishedAt: new Date("2023-12-05T09:30:00.000Z"),
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "FSSAI Food License Guide: Registration Categories, Documents & Fees",
@@ -350,7 +357,8 @@ const samplePosts = [
     author: "FilingBy Food Licensing Team",
     readTime: 6,
     isPublished: true,
-    publishedAt: new Date("2024-03-24T10:00:00.000Z") // 2024
+    publishedAt: new Date("2024-03-24T10:00:00.000Z"),
+    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop"
   }
 ];
 

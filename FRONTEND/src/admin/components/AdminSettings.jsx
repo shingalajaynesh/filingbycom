@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 
 export default function AdminSettings({ portal }) {
-  const { fetchAdminSettings, updateSettings } = useAdminContext();
+  const { fetchAdminSettings, updateSettings, uploadImage } = useAdminContext();
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   
@@ -18,7 +18,11 @@ export default function AdminSettings({ portal }) {
     vs_contact_phone: "+91 75671 26945",
     vs_whatsapp_url: "https://wa.me/917567126945",
     vs_contact_email: "support@filingby.com",
-    vs_contact_address: "402-405 Compliance Center Hub, Adajan, Surat, Gujarat - 395009"
+    vs_contact_address: "402-405 Compliance Center Hub, Adajan, Surat, Gujarat - 395009",
+    ca_client_logos: [],
+    vs_client_logos: [],
+    ca_office_photos: [],
+    vs_office_photos: []
   });
 
   useEffect(() => {
@@ -48,6 +52,122 @@ export default function AdminSettings({ portal }) {
     }));
   };
 
+  const [newLogo, setNewLogo] = useState({ name: "", imageUrl: "" });
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+
+  const [newPhoto, setNewPhoto] = useState({ name: "", imageUrl: "" });
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
+
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingPhoto(true);
+    const toastId = toast.loading("Uploading photo to Cloudinary...");
+    try {
+      const res = await uploadImage(file);
+      if (res.success) {
+        setNewPhoto(prev => ({ ...prev, imageUrl: res.url }));
+        toast.success("Photo uploaded successfully");
+      } else {
+        toast.error(res.message || "Failed to upload photo");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Error uploading photo");
+    } finally {
+      setUploadingPhoto(false);
+      toast.dismiss(toastId);
+    }
+  };
+
+  const handleAddPhoto = () => {
+    if (!newPhoto.name.trim()) {
+      toast.error("Please enter a photo label/name");
+      return;
+    }
+    if (!newPhoto.imageUrl) {
+      toast.error("Please upload a photo");
+      return;
+    }
+
+    const key = portal === "ca-portal" ? "ca_office_photos" : "vs_office_photos";
+    const currentList = settings[key] || [];
+    
+    const newItem = {
+      id: Date.now().toString(),
+      name: newPhoto.name.trim(),
+      imageUrl: newPhoto.imageUrl
+    };
+
+    handleChange(key, [...currentList, newItem]);
+    setNewPhoto({ name: "", imageUrl: "" });
+    const fileInput = document.getElementById("photo-file-picker");
+    if (fileInput) fileInput.value = "";
+  };
+
+  const handleRemovePhoto = (id) => {
+    const key = portal === "ca-portal" ? "ca_office_photos" : "vs_office_photos";
+    const currentList = settings[key] || [];
+    const updatedList = currentList.filter(item => item.id !== id);
+    handleChange(key, updatedList);
+  };
+
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadingLogo(true);
+    const toastId = toast.loading("Uploading logo to Cloudinary...");
+    try {
+      const res = await uploadImage(file);
+      if (res.success) {
+        setNewLogo(prev => ({ ...prev, imageUrl: res.url }));
+        toast.success("Logo uploaded successfully");
+      } else {
+        toast.error(res.message || "Failed to upload logo");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Error uploading logo");
+    } finally {
+      setUploadingLogo(false);
+      toast.dismiss(toastId);
+    }
+  };
+
+  const handleAddLogo = () => {
+    if (!newLogo.name.trim()) {
+      toast.error("Please enter a brand name");
+      return;
+    }
+    if (!newLogo.imageUrl) {
+      toast.error("Please upload a logo image");
+      return;
+    }
+
+    const key = portal === "ca-portal" ? "ca_client_logos" : "vs_client_logos";
+    const currentList = settings[key] || [];
+    
+    const newItem = {
+      id: Date.now().toString(),
+      name: newLogo.name.trim(),
+      imageUrl: newLogo.imageUrl
+    };
+
+    handleChange(key, [...currentList, newItem]);
+    setNewLogo({ name: "", imageUrl: "" });
+    const fileInput = document.getElementById("logo-file-picker");
+    if (fileInput) fileInput.value = "";
+  };
+
+  const handleRemoveLogo = (id) => {
+    const key = portal === "ca-portal" ? "ca_client_logos" : "vs_client_logos";
+    const currentList = settings[key] || [];
+    const updatedList = currentList.filter(item => item.id !== id);
+    handleChange(key, updatedList);
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -60,14 +180,18 @@ export default function AdminSettings({ portal }) {
               ca_contact_phone: settings.ca_contact_phone,
               ca_whatsapp_url: settings.ca_whatsapp_url,
               ca_contact_email: settings.ca_contact_email,
-              ca_contact_address: settings.ca_contact_address
+              ca_contact_address: settings.ca_contact_address,
+              ca_client_logos: settings.ca_client_logos || [],
+              ca_office_photos: settings.ca_office_photos || []
             }
           : {
               vs_announcement_text: settings.vs_announcement_text,
               vs_contact_phone: settings.vs_contact_phone,
               vs_whatsapp_url: settings.vs_whatsapp_url,
               vs_contact_email: settings.vs_contact_email,
-              vs_contact_address: settings.vs_contact_address
+              vs_contact_address: settings.vs_contact_address,
+              vs_client_logos: settings.vs_client_logos || [],
+              vs_office_photos: settings.vs_office_photos || []
             }
       };
 
@@ -87,7 +211,7 @@ export default function AdminSettings({ portal }) {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 bg-white border border-gray-150 rounded-2xl shadow-sm gap-4 min-h-[300px]">
+      <div className="flex flex-col items-center justify-center p-12 bg-white border border-gray-200 rounded-2xl shadow-sm gap-4 min-h-[300px]">
         <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
         <p className="text-gray-500 text-sm font-medium">Loading settings...</p>
       </div>
@@ -95,7 +219,7 @@ export default function AdminSettings({ portal }) {
   }
 
   return (
-    <div className="bg-white border border-gray-250 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
+    <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden transition-all duration-300">
       <div className="p-6 border-b border-gray-100 bg-gray-50">
         <h2 className="text-lg font-bold text-gray-900">
           {portal === "ca-portal" ? "💼 CA Portal Configuration" : "🏢 Virtual Space Configuration"}
@@ -293,6 +417,174 @@ export default function AdminSettings({ portal }) {
             </div>
           </>
         )}
+
+        {/* Dynamic Client Logos Management Section */}
+        <div className="border-t border-gray-200 pt-6 mt-6 space-y-4">
+          <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
+            <span>🛡️</span> Client Brand Logos (Marquee Ticker)
+          </h3>
+          <p className="text-xs text-gray-500">
+            Configure the brands displayed in the 'Trusted By' scrolling banner. Transparent PNG logos with low heights are recommended.
+          </p>
+
+          {/* Current Logos Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gray-50 p-4 rounded-xl border border-gray-200">
+            {(portal === "ca-portal" ? settings.ca_client_logos : settings.vs_client_logos)?.length > 0 ? (
+              (portal === "ca-portal" ? settings.ca_client_logos : settings.vs_client_logos).map((logo) => (
+                <div key={logo.id} className="relative group bg-white border border-gray-200 p-3 rounded-lg flex flex-col items-center justify-center gap-2 hover:shadow-sm transition-all h-28">
+                  <div className="h-10 flex items-center justify-center w-full">
+                    <img src={logo.imageUrl} alt={logo.name} className="h-full object-contain max-w-[120px]" />
+                  </div>
+                  <span className="text-[10px] font-bold text-gray-700 text-center truncate w-full">{logo.name}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveLogo(logo.id)}
+                    className="absolute top-1.5 right-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-sm transition-all cursor-pointer opacity-90 hover:opacity-100"
+                    title="Remove Logo"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full py-6 text-center text-xs text-gray-400 font-medium">
+                No custom client logos configured. Falling back to default brand list.
+              </div>
+            )}
+          </div>
+
+          {/* Add Logo Form */}
+          <div className="bg-slate-50 border border-gray-200 rounded-xl p-4 space-y-4">
+            <h4 className="text-xs font-bold text-gray-700 uppercase">Add New Client Logo</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-gray-600 uppercase block">Brand Name</label>
+                <input
+                  type="text"
+                  value={newLogo.name}
+                  onChange={(e) => setNewLogo(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="e.g. Swiggy"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs bg-white text-gray-900 focus:ring-2 focus:ring-blue-100 outline-none"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-gray-600 uppercase block">Logo Image File</label>
+                <input
+                  type="file"
+                  id="logo-file-picker"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                  disabled={uploadingLogo}
+                  className="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {newLogo.imageUrl && (
+              <div className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-150 w-fit">
+                <span className="text-[9px] font-bold text-gray-400 uppercase">Uploaded Preview:</span>
+                <div className="h-8 max-w-[120px] flex items-center justify-center">
+                  <img src={newLogo.imageUrl} alt="Preview" className="h-full object-contain" />
+                </div>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleAddLogo}
+              disabled={uploadingLogo || !newLogo.name.trim() || !newLogo.imageUrl}
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-50 cursor-pointer"
+            >
+              + Add Logo to List
+            </button>
+          </div>
+        </div>
+
+        {/* Dynamic Office Photos Management Section */}
+        <div className="border-t border-gray-200 pt-6 mt-6 space-y-4">
+          <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
+            <span>🏢</span> Office Workspace Photos (Auto-Scroll Section)
+          </h3>
+          <p className="text-xs text-gray-500">
+            Configure the photos displayed in the 'Our Workspaces' auto-scrolling section of the homepage.
+          </p>
+
+          {/* Current Photos Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gray-50 p-4 rounded-xl border border-gray-200">
+            {(portal === "ca-portal" ? settings.ca_office_photos : settings.vs_office_photos)?.length > 0 ? (
+              (portal === "ca-portal" ? settings.ca_office_photos : settings.vs_office_photos).map((photo) => (
+                <div key={photo.id} className="relative group bg-white border border-gray-200 p-2 rounded-lg flex flex-col items-center justify-center gap-2 hover:shadow-sm transition-all h-36">
+                  <div className="h-20 flex items-center justify-center w-full overflow-hidden rounded-md">
+                    <img src={photo.imageUrl} alt={photo.name} className="h-full w-full object-cover" />
+                  </div>
+                  <span className="text-[10px] font-bold text-gray-700 text-center truncate w-full px-1">{photo.name}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemovePhoto(photo.id)}
+                    className="absolute top-1.5 right-1.5 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-sm transition-all cursor-pointer opacity-90 hover:opacity-100"
+                    title="Remove Photo"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full py-6 text-center text-xs text-gray-400 font-medium">
+                No office photos configured. Falling back to default office list.
+              </div>
+            )}
+          </div>
+
+          {/* Add Photo Form */}
+          <div className="bg-slate-50 border border-gray-200 rounded-xl p-4 space-y-4">
+            <h4 className="text-xs font-bold text-gray-700 uppercase">Add New Office Photo</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-gray-600 uppercase block">Photo Label / Room Name</label>
+                <input
+                  type="text"
+                  value={newPhoto.name}
+                  onChange={(e) => setNewPhoto(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="e.g. Modern Co-Working Lounge"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs bg-white text-gray-900 focus:ring-2 focus:ring-blue-100 outline-none"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-gray-600 uppercase block">Office Image File</label>
+                <input
+                  type="file"
+                  id="photo-file-picker"
+                  accept="image/*"
+                  onChange={handlePhotoUpload}
+                  disabled={uploadingPhoto}
+                  className="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 file:cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {newPhoto.imageUrl && (
+              <div className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-150 w-fit">
+                <span className="text-[9px] font-bold text-gray-400 uppercase">Uploaded Preview:</span>
+                <div className="h-16 w-24 overflow-hidden rounded-md flex items-center justify-center">
+                  <img src={newPhoto.imageUrl} alt="Preview" className="h-full w-full object-cover" />
+                </div>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleAddPhoto}
+              disabled={uploadingPhoto || !newPhoto.name.trim() || !newPhoto.imageUrl}
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-50 cursor-pointer"
+            >
+              + Add Photo to List
+            </button>
+          </div>
+        </div>
 
         <div className="border-t border-gray-100 pt-5 flex items-center justify-end gap-3">
           <button

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Search from "../components/Search.jsx";
 import PopularServices from "../components/PopularServices.jsx";
 import SEO from "../../../shared/components/SEO.jsx";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { localBusinessSchema, websiteSchema, homeReviewsSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
+import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 const HOME_FAQS = [
   {
@@ -29,8 +31,36 @@ const HOME_FAQS = [
   }
 ];
 
+const DEFAULT_REVIEWS = [
+  {
+    rating: 5,
+    comment: "FilingBy handled our GST registration and company incorporation seamlessly. Highly professional team!",
+    authorName: "Rahul Mehta",
+    businessName: "Mehta Enterprises"
+  },
+  {
+    rating: 5,
+    comment: "Got our trademark registered in just 3 days. The process was completely online and hassle-free.",
+    authorName: "Priya Sharma",
+    businessName: "PS Fashion Studio"
+  },
+  {
+    rating: 5,
+    comment: "Their CA team files our monthly GST returns on time every month. No stress, no penalties!",
+    authorName: "Vikram Patel",
+    businessName: "Patel Trading Co."
+  }
+];
+
 // Brand logo renderer helper for visual brand logo display
-function BrandLogo({ name }) {
+function BrandLogo({ name, imageUrl }) {
+  if (imageUrl) {
+    return (
+      <div className="flex items-center select-none h-6">
+        <img src={optimizeCloudinaryUrl(imageUrl)} alt={name} className="h-full object-contain max-w-[120px]" />
+      </div>
+    );
+  }
   switch (name) {
     case "Swiggy":
       return (
@@ -122,7 +152,77 @@ function BrandLogo({ name }) {
 export default function Home() {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
-  const { settings } = useSharedData();
+  const { settings, locations } = useSharedData();
+  const [dynamicReviews, setDynamicReviews] = useState([]);
+
+  // Find a popular office address from locations
+  let popularCenter = null;
+  if (locations && locations.length > 0) {
+    for (const loc of locations) {
+      if (loc.addresses && loc.addresses.length > 0) {
+        const found = loc.addresses.find(addr => addr.image || (addr.photos && addr.photos.length > 0));
+        if (found) {
+          popularCenter = {
+            name: found.name,
+            address: found.address,
+            image: found.image || found.photos?.[0],
+            feature: found.feature || "Premium Address",
+            state: loc.name,
+            rate: found.priceGST || loc.rate || "999"
+          };
+          break;
+        }
+      }
+    }
+  }
+
+  // Fallback if no dynamic locations are loaded/seeded yet
+  if (!popularCenter) {
+    popularCenter = {
+      name: "Adajan Compliance Hub",
+      address: "304, Prime Shoppers, Near Green Arcade, Adajan, Surat, Gujarat - 395009",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+      feature: "Prime Commercial Hub, Direct Connectivity",
+      state: "Surat, Gujarat",
+      rate: "999"
+    };
+  }
+
+  const clientLogos = settings?.ca_client_logos && settings.ca_client_logos.length > 0
+    ? settings.ca_client_logos
+    : [
+        { name: "Swiggy" }, { name: "Saregama" }, { name: "Relaxo" }, { name: "Aramex" }, { name: "HTC" }, { name: "Flipkart" },
+        { name: "Amazon" }, { name: "Myntra" }, { name: "Meesho" }, { name: "JioMart" }, { name: "Blinkit" }, { name: "Zepto" }
+      ];
+
+  const officePhotos = settings?.ca_office_photos && settings.ca_office_photos.length > 0
+    ? settings.ca_office_photos
+    : [
+        { name: "Team Collaboration", imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" },
+        { name: "Compliance & Advisory Desks", imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" },
+        { name: "Expert Consultation Desk", imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80" },
+        { name: "Corporate Head Office", imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+        { name: "Strategic Compliance Advisory", imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" }
+      ];
+
+  useEffect(() => {
+    const fetchHomeReviews = async () => {
+      try {
+        const API_BASE = (
+          import.meta.env.VITE_API_URL || 
+          import.meta.env.VITE_BACKEND_URL || 
+          "http://localhost:3000"
+        ).replace(/\/$/, "");
+        const res = await axios.get(`${API_BASE}/reviews?pageType=home&portal=ca-portal`);
+        if (res.data.success && res.data.reviews?.length > 0) {
+          setDynamicReviews(res.data.reviews);
+        }
+      } catch (err) {
+        console.error("Failed to load dynamic reviews:", err);
+      }
+    };
+    fetchHomeReviews();
+  }, []);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-gray-900">
@@ -177,26 +277,20 @@ export default function Home() {
           </p>
           <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-16 before:bg-gradient-to-r before:from-gray-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-16 after:bg-gradient-to-l after:from-gray-50 after:to-transparent after:z-10">
             <div className="flex animate-ticker whitespace-nowrap">
-              {[
-                "Swiggy", "Saregama", "Relaxo", "Aramex", "HTC", "Flipkart",
-                "Amazon", "Myntra", "Meesho", "JioMart", "Blinkit", "Zepto"
-              ].map((logo, index) => (
+              {clientLogos.map((logo, index) => (
                 <div
                   key={`logo-1-${index}`}
                   className="bg-white rounded-xl px-6 py-3 border border-gray-100 text-sm font-bold text-gray-550 flex-shrink-0 mx-2 shadow-sm"
                 >
-                  <BrandLogo name={logo} />
+                  <BrandLogo name={logo.name} imageUrl={logo.imageUrl} />
                 </div>
               ))}
-              {[
-                "Swiggy", "Saregama", "Relaxo", "Aramex", "HTC", "Flipkart",
-                "Amazon", "Myntra", "Meesho", "JioMart", "Blinkit", "Zepto"
-              ].map((logo, index) => (
+              {clientLogos.map((logo, index) => (
                 <div
                   key={`logo-2-${index}`}
                   className="bg-white rounded-xl px-6 py-3 border border-gray-100 text-sm font-bold text-gray-550 flex-shrink-0 mx-2 shadow-sm"
                 >
-                  <BrandLogo name={logo} />
+                  <BrandLogo name={logo.name} imageUrl={logo.imageUrl} />
                 </div>
               ))}
             </div>
@@ -241,6 +335,37 @@ export default function Home() {
                 <h3 className="mb-2 font-bold text-gray-900">{title}</h3>
                 <p className="text-sm text-gray-500">{desc}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic Office Photos Gallery */}
+      <section className="bg-slate-50 py-16 overflow-hidden border-t border-slate-100">
+        <div className="max-w-screen-xl mx-auto px-4 mb-10 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
+            Our Team & Workspace
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-4 tracking-tight leading-tight">
+            Dedicated CA, CS & Advisory Workspace
+          </h2>
+          <p className="text-gray-500 text-xs sm:text-sm mt-2 max-w-xl mx-auto font-medium">
+            Take a look at our professional team members and executive head office setups designed to streamline your business compliances.
+          </p>
+        </div>
+        
+        <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-slate-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-slate-50 after:to-transparent after:z-10">
+          <div className="flex animate-ticker whitespace-nowrap gap-4">
+            {officePhotos.map((photo, i) => (
+              <div key={i} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
+              </div>
+            ))}
+            {/* Loop for infinite scroll */}
+            {officePhotos.map((photo, i) => (
+              <div key={`dup-${i}`} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
+              </div>
             ))}
           </div>
         </div>
@@ -323,36 +448,39 @@ export default function Home() {
 
               {/* Right Column: Premium Compliance Panel */}
               <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
-                <div className="w-full max-w-sm rounded-2xl border border-slate-700 bg-slate-800/80 backdrop-blur p-6 shadow-xl relative overflow-hidden">
-                  {/* Glowing tag */}
-                  <div className="absolute right-0 top-0 bg-gradient-to-l from-green-500 to-emerald-400 text-slate-950 font-extrabold text-[10px] px-3.5 py-1 rounded-bl-xl uppercase tracking-wider">
-                    Ready to Use
+                <div className="w-full max-w-sm rounded-3xl border border-slate-700 bg-slate-850/95 backdrop-blur shadow-2xl relative overflow-hidden flex flex-col">
+                  {/* Card Image Header */}
+                  <div className="relative h-44 w-full bg-slate-950/80 overflow-hidden">
+                    <img 
+                      src={optimizeCloudinaryUrl(popularCenter.image)} 
+                      alt={popularCenter.name} 
+                      className="w-full h-full object-cover opacity-90 transition-transform duration-500" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+                    {/* Glowing tag */}
+                    <div className="absolute right-0 top-0 bg-gradient-to-l from-green-500 to-emerald-400 text-slate-950 font-extrabold text-[10px] px-3.5 py-1 rounded-bl-xl uppercase tracking-wider">
+                      Ready to Use
+                    </div>
+                    <div className="absolute bottom-3 left-4">
+                      <h4 className="text-white font-black text-lg leading-tight drop-shadow-md">
+                        {popularCenter.name}
+                      </h4>
+                      <p className="text-orange-400 text-xs font-bold mt-0.5 drop-shadow">
+                        ★ Popular Workspace Center
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M9 22V12h6v10" />
-                        <path d="M3 9h18" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-base">Elite Business Center</h4>
-                      <p className="text-xs text-slate-400">Commercial Business Address</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
+                  <div className="p-5 space-y-4">
                     {/* State Selector Preview */}
                     <div className="bg-slate-900/60 rounded-xl p-3 border border-slate-700/50 space-y-1">
                       <div className="flex justify-between items-center text-[10px] text-slate-400 uppercase font-semibold">
-                        <span>Selected State</span>
+                        <span>Selected Center Location</span>
                         <span className="text-green-400 font-bold">● Available</span>
                       </div>
-                      <div className="flex items-center justify-between text-sm text-white font-semibold">
-                        <span>Delhi NCR, India</span>
-                        <span className="text-slate-400 text-xs">Change State</span>
+                      <div className="flex items-center justify-between text-xs text-white font-bold">
+                        <span className="truncate max-w-[200px]">{popularCenter.state}</span>
+                        <span className="text-orange-400 text-xs font-black bg-orange-400/10 px-2 py-0.5 rounded">₹{popularCenter.rate}/mo</span>
                       </div>
                     </div>
 
@@ -467,46 +595,34 @@ export default function Home() {
             What Our Clients Say
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3 md:gap-6">
-            {[
-              [
-                "⭐⭐⭐⭐⭐",
-                "FilingBy handled our GST registration and company incorporation seamlessly. Highly professional team!",
-                "Rahul Mehta",
-                "Mehta Enterprises",
-              ],
-              [
-                "⭐⭐⭐⭐⭐",
-                "Got our trademark registered in just 3 days. The process was completely online and hassle-free.",
-                "Priya Sharma",
-                "PS Fashion Studio",
-              ],
-              [
-                "⭐⭐⭐⭐⭐",
-                "Their CA team files our monthly GST returns on time every month. No stress, no penalties!",
-                "Vikram Patel",
-                "Patel Trading Co.",
-              ],
-            ].map(([stars, quote, name, biz]) => (
+            {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, index) => (
               <article
-                key={name}
+                key={index}
                 className="rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6"
               >
-                <p className="mb-4 text-yellow-400">{stars}</p>
+                <div className="flex items-center text-yellow-400 mb-4">
+                  {Array.from({ length: rev.rating || 5 }).map((_, i) => (
+                    <span key={i}>★</span>
+                  ))}
+                  {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
+                    <span key={i} className="text-gray-300">★</span>
+                  ))}
+                </div>
                 <p className="mb-4 text-sm leading-relaxed text-gray-600 italic">
-                  "{quote}"
+                  "{rev.comment}"
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-[#1A56DB]">
-                    {name
-                      .split(" ")
+                    {rev.authorName
+                      ?.split(" ")
                       .map((n) => n[0])
-                      .join("")}
+                      .join("") || "C"}
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">
-                      {name}
+                      {rev.authorName}
                     </p>
-                    <p className="text-xs text-gray-500">{biz}</p>
+                    <p className="text-xs text-gray-500">{rev.businessName}</p>
                   </div>
                 </div>
               </article>

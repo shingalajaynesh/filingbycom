@@ -23,6 +23,10 @@ const blogPostSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    image: {
+      type: String,
+      required: false,
+    },
     metaTitle: {
       type: String,
       trim: true,

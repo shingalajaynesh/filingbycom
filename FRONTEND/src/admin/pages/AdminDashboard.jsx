@@ -15,6 +15,7 @@ import AdminLocations from "../components/AdminLocations";
 import AdminVirtualBookings from "../components/AdminVirtualBookings";
 import AdminSettings from "../components/AdminSettings";
 import AdminBlogs from "../components/AdminBlogs";
+import AdminReviews from "../components/AdminReviews";
 
 export default function AdminDashboard() {
   const [currentPortal, setCurrentPortal] = useState(() => {
@@ -69,6 +70,8 @@ export default function AdminDashboard() {
               ? "Manage Popular Services"
               : activeTab === "blogs"
               ? "Manage Blogs & Knowledge Base"
+              : activeTab === "reviews"
+              ? "Manage Reviews & Testimonials"
               : activeTab === "settings"
               ? "Portal Settings"
               : "Portal Settings"}
@@ -90,6 +93,8 @@ export default function AdminDashboard() {
               ? "Manage services that appear on the homepage Popular Services section"
               : activeTab === "blogs"
               ? "Write, edit, publish, and delete compliance articles to build topical authority"
+              : activeTab === "reviews"
+              ? "Publish, edit, approve, and delete customer reviews for homepage and service pages"
               : activeTab === "settings"
               ? "Manage configuration fields and text components dynamically"
               : "Manage configuration fields and text components dynamically"}
@@ -111,6 +116,7 @@ export default function AdminDashboard() {
         {activeTab === "nav-services" && <AdminServices portal={currentPortal} type="nav" />}
         {activeTab === "popular-services" && <AdminServices portal={currentPortal} type="popular" />}
         {activeTab === "blogs" && <AdminBlogs />}
+        {activeTab === "reviews" && <AdminReviews portal={currentPortal} />}
         {activeTab === "settings" && <AdminSettings portal={currentPortal} />}
       </main>
     </div>
