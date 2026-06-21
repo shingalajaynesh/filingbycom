@@ -13,7 +13,7 @@ export default function AdminLocations() {
   const [activeFormTab, setActiveFormTab] = useState("basic"); // basic, workspaces, faqs
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { fetchAdminLocations, saveLocation, deleteLocation: deleteLocAPI } = useAdminContext();
+  const { fetchAdminLocations, saveLocation, deleteLocation: deleteLocAPI, uploadImage, deleteImage } = useAdminContext();
 
   // Form state for location (city level)
   const [formData, setFormData] = useState({
@@ -97,7 +97,18 @@ export default function AdminLocations() {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const [pendingUploads, setPendingUploads] = useState([]);
+
+  const handleCloseModal = async () => {
+    // Cleanup any pending uploaded images if the user cancels
+    if (pendingUploads.length > 0) {
+      toast.loading("Cleaning up unsaved images...", { id: "cleanup" });
+      for (const url of pendingUploads) {
+        await deleteImage(url);
+      }
+      toast.success("Cleanup complete", { id: "cleanup" });
+      setPendingUploads([]);
+    }
     setIsModalOpen(false);
     setEditingLocation(null);
   };
@@ -126,11 +137,14 @@ export default function AdminLocations() {
       const res = await saveLocation(isEdit, id, formData);
 
       if (res.success) {
+        setPendingUploads([]); // successfully saved to DB, so don't delete them
         toast.success(isEdit ? "City updated successfully!" : "City added successfully!");
-        handleCloseModal();
+        setIsModalOpen(false);
+        setEditingLocation(null);
         fetchLocations();
       } else {
         toast.error(res.message || "Failed to save location");
+        // We do not delete pending uploads here, so the user can fix the validation error and try again.
       }
     } catch (err) {
       handleFrontendError(err, "Failed to save location");
@@ -177,6 +191,63 @@ export default function AdminLocations() {
       ...prev,
       faqs: prev.faqs.filter((_, i) => i !== index)
     }));
+  };
+
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleImageUpload = async (e, field, isAddress = false) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const res = await uploadImage(file);
+      if (res.success) {
+        setPendingUploads(prev => [...prev, res.url]);
+        if (isAddress) {
+          setAddressData(prev => ({ ...prev, [field]: res.url }));
+        } else {
+          setFormData(prev => ({ ...prev, [field]: res.url }));
+        }
+        toast.success("Image uploaded successfully");
+      } else {
+        toast.error(res.message || "Failed to upload image");
+      }
+    } catch (err) {
+      handleFrontendError(err, "Failed to upload image");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handlePhotosUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+
+    setIsUploading(true);
+    try {
+      const newUrls = [];
+      for (const file of files) {
+        const res = await uploadImage(file);
+        if (res.success) {
+          newUrls.push(res.url);
+          setPendingUploads(prev => [...prev, res.url]);
+        } else {
+          toast.error(res.message || "Failed to upload one of the photos");
+        }
+      }
+      
+      setAddressData(prev => {
+        const currentPhotos = prev.photosStr ? prev.photosStr.split(",").map(s => s.trim()).filter(Boolean) : [];
+        const combined = [...currentPhotos, ...newUrls];
+        return { ...prev, photosStr: combined.join(", ") };
+      });
+      if (newUrls.length > 0) toast.success("Photos uploaded successfully");
+    } catch (err) {
+      handleFrontendError(err, "Failed to upload photos");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   // --- WORKSPACE (ADDRESS) MANAGMENT HANDLERS ---
@@ -484,15 +555,18 @@ export default function AdminLocations() {
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <label className="text-[10px] font-black text-gray-500 uppercase block mb-1">Cover Image URL</label>
-                    <input
-                      type="text"
-                      name="image"
-                      value={formData.image}
-                      onChange={handleInputChange}
-                      placeholder="https://images.unsplash.com/photo-xxx"
-                      className="w-full text-xs font-semibold px-4.5 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
-                    />
+                    <label className="text-[10px] font-black text-gray-500 uppercase block mb-1">Cover Image</label>
+                    <div className="flex gap-2 items-center">
+                      {formData.image && <img src={formData.image} alt="Cover" className="h-10 w-10 object-cover rounded" />}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload(e, 'image')}
+                        disabled={isUploading}
+                        className="w-full text-xs font-semibold px-4.5 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
+                      />
+                    </div>
+                    {isUploading && <span className="text-[10px] text-blue-500 mt-1 block">Uploading...</span>}
                   </div>
                   <div className="md:col-span-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase block mb-1">Google Maps Embed Embed URL (Index Location)</label>
@@ -776,15 +850,17 @@ export default function AdminLocations() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Center Cover Image URL</label>
-                  <input
-                    type="text"
-                    name="image"
-                    value={addressData.image}
-                    onChange={handleAddressInputChange}
-                    placeholder="https://images.unsplash.com/photo-xxx"
-                    className="w-full text-xs font-semibold px-4.5 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
-                  />
+                  <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Center Cover Image</label>
+                  <div className="flex gap-2 items-center">
+                    {addressData.image && <img src={addressData.image} alt="Cover" className="h-10 w-10 object-cover rounded" />}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e, 'image', true)}
+                      disabled={isUploading}
+                      className="w-full text-xs font-semibold px-4.5 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none"
+                    />
+                  </div>
                 </div>
                 <div>
                   <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Google Maps Embed URL</label>
@@ -800,13 +876,22 @@ export default function AdminLocations() {
               </div>
 
               <div>
-                <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Gallery Image URLs (comma separated)</label>
+                <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Gallery Images</label>
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handlePhotosUpload}
+                  disabled={isUploading}
+                  className="w-full text-xs font-semibold px-4.5 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none mb-2"
+                />
+                {isUploading && <span className="text-[10px] text-blue-500 block mb-2">Uploading photos...</span>}
                 <textarea
                   name="photosStr"
                   rows="2"
                   value={addressData.photosStr}
                   onChange={handleAddressInputChange}
-                  placeholder="https://image1.com, https://image2.com"
+                  placeholder="https://image1.com, https://image2.com (URLs auto-populated upon upload)"
                   className="w-full text-xs font-semibold px-4.5 py-2.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none resize-none"
                 />
               </div>

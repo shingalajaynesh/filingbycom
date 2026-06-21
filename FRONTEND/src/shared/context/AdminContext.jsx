@@ -322,6 +322,33 @@ export function AdminProvider({ children }) {
     }
   }, []);
 
+  const uploadImage = useCallback(async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/upload-image`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
+  const deleteImage = useCallback(async (url) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/virtual-space/delete-image`, { url }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
+  }, []);
+
   // Admin Virtual Orders
   const adminGetVirtualOrders = useCallback(async () => {
     try {
@@ -429,6 +456,8 @@ export function AdminProvider({ children }) {
       fetchAdminLocations,
       saveLocation,
       deleteLocation,
+      uploadImage,
+      deleteImage,
       fetchAdminSettings,
       updateSettings,
       adminGetVirtualOrders,

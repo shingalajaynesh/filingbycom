@@ -60,7 +60,7 @@ export default function Locations() {
           slug: loc.slug,
           count: loc.addresses ? loc.addresses.length : 0,
           price: loc.rate || "999",
-          image: loc.image || "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+          image: loc.image || "",
           addresses: loc.addresses ? loc.addresses.map(a => ({ name: a.name, slug: a.slug })) : []
         });
       }
@@ -163,12 +163,16 @@ export default function Locations() {
                   >
                     <div>
                       {/* Image block */}
-                      <div className="relative h-56 overflow-hidden">
-                        <img 
-                          src={city.image} 
-                          alt={`Virtual Office in ${city.name}`} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
-                        />
+                      <div className="relative h-56 overflow-hidden bg-gray-100 flex items-center justify-center">
+                        {city.image ? (
+                          <img 
+                            src={city.image} 
+                            alt={`Virtual Office in ${city.name}`} 
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
+                          />
+                        ) : (
+                          <span className="text-gray-400 font-medium text-sm">No Image</span>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                         <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
                           Starting ₹{city.price}/mo
@@ -231,12 +235,16 @@ export default function Locations() {
                     >
                       <div>
                         {/* Image block */}
-                        <div className="relative h-56 overflow-hidden">
-                          <img 
-                            src={city.image} 
-                            alt={`Virtual Office in ${city.name}`} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
-                          />
+                        <div className="relative h-56 overflow-hidden bg-gray-100 flex items-center justify-center">
+                          {city.image ? (
+                            <img 
+                              src={city.image} 
+                              alt={`Virtual Office in ${city.name}`} 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
+                            />
+                          ) : (
+                            <span className="text-gray-400 font-medium text-sm">No Image</span>
+                          )}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                           <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
                             Starting ₹{city.price}/mo

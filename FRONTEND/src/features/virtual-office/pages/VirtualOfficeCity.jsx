@@ -417,12 +417,16 @@ export default function VirtualOfficeCity() {
               className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 flex flex-col group border-0"
             >
               {/* Card Photo header */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={addr.image}
-                  alt={addr.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750"
-                />
+              <div className="relative h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                {(addr.image || (addr.photos && addr.photos.length > 0)) ? (
+                  <img
+                    src={addr.image || addr.photos[0]}
+                    alt={addr.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750"
+                  />
+                ) : (
+                  <span className="text-gray-400 font-medium text-sm">No Image</span>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <span className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-wider text-green-700 bg-green-50 px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm">
                   100% GST Verifiable

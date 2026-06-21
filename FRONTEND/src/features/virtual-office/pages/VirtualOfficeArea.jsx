@@ -194,19 +194,23 @@ export default function VirtualOfficeArea() {
             <div className="bg-white rounded-3xl p-4 md:p-6 border-0 shadow-md space-y-4">
               <h3 className="text-base font-black text-gray-900 px-2 uppercase tracking-wide">Workspace Photographs</h3>
 
-              <div className="relative h-96 rounded-2xl overflow-hidden border-0 bg-gray-155">
-                <img
-                  src={selectedArea.photos[activePhoto]}
-                  alt="Workspace interior"
-                  className="w-full h-full object-cover"
-                />
+              <div className="relative h-96 rounded-2xl overflow-hidden border-0 bg-gray-155 flex items-center justify-center">
+                {(selectedArea.photos && selectedArea.photos.length > 0) || selectedArea.image ? (
+                  <img
+                    src={(selectedArea.photos && selectedArea.photos.length > 0) ? selectedArea.photos[activePhoto] : selectedArea.image}
+                    alt="Workspace interior"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-gray-400 font-medium">No Image Uploaded</span>
+                )}
                 <span className="absolute bottom-4 right-4 text-[10px] font-black bg-black/60 backdrop-blur-sm text-white px-3 py-1.5 rounded-full">
-                  Photo {activePhoto + 1} of {selectedArea.photos.length}
+                  Photo {activePhoto + 1} of {selectedArea.photos && selectedArea.photos.length > 0 ? selectedArea.photos.length : 1}
                 </span>
               </div>
 
               <div className="grid grid-cols-4 gap-3">
-                {selectedArea.photos.map((ph, index) => (
+                {selectedArea.photos && selectedArea.photos.length > 0 && selectedArea.photos.map((ph, index) => (
                   <div
                     key={index}
                     onClick={() => setActivePhoto(index)}

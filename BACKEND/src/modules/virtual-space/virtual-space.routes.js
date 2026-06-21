@@ -1,7 +1,10 @@
 import express from "express";
+import multer from "multer";
 import verifyAdmin from "../../middleware/admin.middleware.js";
 import { verifyUser } from "../../middleware/auth.middleware.js";
 import VirtualSpaceController from "./virtual-space.controller.js";
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 const virtualSpaceRouter = express.Router();
 
@@ -33,6 +36,9 @@ virtualSpaceRouter.get("/admin/virtual-space/quotes", verifyAdmin, VirtualSpaceC
 virtualSpaceRouter.patch("/admin/virtual-space/inquiries/:id/status", verifyAdmin, VirtualSpaceController.updateInquiryStatus);
 virtualSpaceRouter.patch("/admin/virtual-space/partner-onboarding/:id/status", verifyAdmin, VirtualSpaceController.updatePartnerStatus);
 virtualSpaceRouter.patch("/admin/virtual-space/quotes/:id/status", verifyAdmin, VirtualSpaceController.updateQuoteStatus);
+
+virtualSpaceRouter.post("/admin/virtual-space/upload-image", verifyAdmin, upload.single("image"), VirtualSpaceController.uploadImage);
+virtualSpaceRouter.post("/admin/virtual-space/delete-image", verifyAdmin, VirtualSpaceController.deleteImage);
 
 virtualSpaceRouter.post("/admin/virtual-space/locations", verifyAdmin, VirtualSpaceController.createLocation);
 virtualSpaceRouter.put("/admin/virtual-space/locations/:id", verifyAdmin, VirtualSpaceController.updateLocation);

@@ -8,6 +8,7 @@ import VirtualLocation from "../../models/VirtualLocation.model.js";
 import User from "../../models/User.model.js";
 import { generateInvoiceNumber } from "../../services/invoice.service.js";
 import { locationCache } from "../../services/cache.service.js";
+import { uploadToCloudinary, deleteFromCloudinary } from "../../utils/cloudinaryUtils.js";
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID || "test_key",
@@ -234,6 +235,44 @@ class VirtualSpaceController {
     }
   };
 
+  // Upload an image to Cloudinary
+  uploadImage = async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: "No image file provided" });
+      }
+
+      const result = await uploadToCloudinary(req.file.buffer, "virtual_spaces");
+      
+      return res.status(200).json({ 
+        success: true, 
+        message: "Image uploaded successfully", 
+        url: result.secure_url 
+      });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // Delete an image from Cloudinary (used for cleanup)
+  deleteImage = async (req, res) => {
+    try {
+      const { url } = req.body;
+      if (!url) {
+        return res.status(400).json({ success: false, message: "No image URL provided" });
+      }
+
+      const deleted = await deleteFromCloudinary(url);
+      if (deleted) {
+        return res.status(200).json({ success: true, message: "Image deleted successfully" });
+      } else {
+        return res.status(400).json({ success: false, message: "Failed to delete image" });
+      }
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
   // Create workspace location details
   createLocation = async (req, res) => {
     try {
@@ -247,7 +286,7 @@ class VirtualSpaceController {
         return res.status(400).json({ success: false, message: "Location slug already exists" });
       }
 
-      await VirtualLocation.create({
+      const location = await VirtualLocation.create({
         slug: slug.toLowerCase(),
         name,
         state,
@@ -272,6 +311,11 @@ class VirtualSpaceController {
       const { id } = req.params;
       const { slug, name, state, tagline, rate, image, mapEmbed, addresses, faqs } = req.body;
 
+      const oldLocation = await VirtualLocation.findById(id).lean();
+      if (!oldLocation) {
+        return res.status(404).json({ success: false, message: "Location not found" });
+      }
+
       const location = await VirtualLocation.findByIdAndUpdate(
         id,
         {
@@ -288,8 +332,25 @@ class VirtualSpaceController {
         { new: true, runValidators: true }
       );
 
-      if (!location) {
-        return res.status(404).json({ success: false, message: "Location not found" });
+      // Cleanup Old Cloudinary Images
+      const extractUrls = (loc) => {
+        const urls = [];
+        if (loc.image) urls.push(loc.image);
+        if (loc.addresses) {
+          loc.addresses.forEach(addr => {
+            if (addr.image) urls.push(addr.image);
+            if (addr.photos) urls.push(...addr.photos);
+          });
+        }
+        return urls;
+      };
+
+      const oldUrls = extractUrls(oldLocation);
+      const newUrls = extractUrls(location);
+
+      const urlsToDelete = oldUrls.filter(url => !newUrls.includes(url));
+      for (const url of urlsToDelete) {
+        await deleteFromCloudinary(url);
       }
 
       locationCache.clear();
@@ -303,10 +364,32 @@ class VirtualSpaceController {
   deleteLocation = async (req, res) => {
     try {
       const { id } = req.params;
-      const location = await VirtualLocation.findByIdAndDelete(id);
+      
+      const location = await VirtualLocation.findById(id).lean();
       if (!location) {
         return res.status(404).json({ success: false, message: "Location not found" });
       }
+
+      // Cleanup Cloudinary Images
+      const extractUrls = (loc) => {
+        const urls = [];
+        if (loc.image) urls.push(loc.image);
+        if (loc.addresses) {
+          loc.addresses.forEach(addr => {
+            if (addr.image) urls.push(addr.image);
+            if (addr.photos) urls.push(...addr.photos);
+          });
+        }
+        return urls;
+      };
+
+      const urlsToDelete = extractUrls(location);
+      for (const url of urlsToDelete) {
+        await deleteFromCloudinary(url);
+      }
+
+      await VirtualLocation.findByIdAndDelete(id);
+
       locationCache.clear();
       return res.status(200).json({ success: true, message: "Location deleted successfully" });
     } catch (error) {
