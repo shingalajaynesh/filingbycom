@@ -71,8 +71,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
             rel="noreferrer"
             className="flex items-center rounded-md px-2 py-1.5 hover:bg-gray-50 transition-colors flex-shrink-0"
           >
-            <span className="text-xl font-extrabold text-[#1A56DB]">FilingBy</span>
-            <span className="text-xl font-extrabold text-[#F97316]">.com</span>
+            <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
           </a>
 
           <div className="flex items-center gap-1 sm:gap-2">
@@ -159,8 +158,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
               rel="noreferrer"
               className="flex items-center rounded-md px-1.5 py-1 hover:bg-gray-50 transition-colors flex-shrink-0"
             >
-              <span className="text-lg font-extrabold text-[#1A56DB]">FilingBy</span>
-              <span className="text-lg font-extrabold text-[#F97316]">.com</span>
+              <img src="/logo.png" alt="FilingBy.com" className="h-7 w-auto object-contain" />
             </a>
 
             <div className="flex items-center gap-2">

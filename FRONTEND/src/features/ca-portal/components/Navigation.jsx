@@ -175,8 +175,7 @@ export default function Navigation() {
           {/* COL 1: Logo — fixed LEFT, never moves */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center bg-blue-50 rounded-xl px-3 py-1.5 hover:bg-blue-100 transition-colors">
-              <span className="text-xl font-extrabold text-[#1A56DB]">FilingBy</span>
-              <span className="text-xl font-extrabold text-[#F97316]">.com</span>
+              <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
             </a>
           </div>
 
@@ -480,8 +479,7 @@ export default function Navigation() {
 
           {/* LEFT: Logo */}
           <a href="/" className="flex items-center bg-blue-50 rounded-xl px-3 py-1.5">
-            <span className="text-lg font-bold text-[#1A56DB]">FilingBy</span>
-            <span className="text-lg font-bold text-[#F97316]">.com</span>
+            <img src="/logo.png" alt="FilingBy.com" className="h-7 w-auto object-contain" />
           </a>
 
           {/* RIGHT: Profile + Hamburger */}

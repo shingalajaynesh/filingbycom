@@ -64,8 +64,7 @@ export default function AdminLogin() {
                 href="/"
                 className="flex items-center px-5 py-2.5"
               >
-                <span className="text-2xl font-extrabold text-[#1A56DB]">FilingBy</span>
-                <span className="text-2xl font-extrabold text-[#F97316]">.com</span>
+                <img src="/logo.png" alt="FilingBy.com" className="h-10 w-auto object-contain" />
               </a>
             </div>
 

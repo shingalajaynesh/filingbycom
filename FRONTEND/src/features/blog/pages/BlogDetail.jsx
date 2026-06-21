@@ -6,8 +6,8 @@ import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
-  import.meta.env.VITE_API_URL || 
-  import.meta.env.VITE_BACKEND_URL || 
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_BACKEND_URL ||
   "http://localhost:3000"
 ).replace(/\/$/, "");
 
@@ -28,7 +28,7 @@ export default function BlogDetail() {
         if (res.data.success) {
           const fetchedPost = res.data.post;
           setPost(fetchedPost);
-          
+
           // Fetch related posts from the same category
           try {
             const relatedRes = await axios.get(`${API_BASE}/blogs`, {
@@ -110,10 +110,10 @@ export default function BlogDetail() {
 
   const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
     : "";
 
   return (
@@ -183,7 +183,7 @@ export default function BlogDetail() {
               </div>
 
               {/* HTML Blog Content */}
-              <div 
+              <div
                 className="mt-8 prose prose-slate max-w-none text-slate-650 text-sm sm:text-base leading-relaxed space-y-6"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
@@ -223,14 +223,14 @@ export default function BlogDetail() {
               <p className="mt-3 text-xs leading-relaxed text-slate-500">
                 Skip the complicated filings. Our qualified CA, CS, and corporate legal professionals process everything online with transparent pricing.
               </p>
-              
+
               <button
                 onClick={() => navigate("/dashboard")}
                 className="mt-6 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-xs font-semibold text-white hover:bg-blue-700 transition cursor-pointer text-center"
               >
                 Launch Application
               </button>
-              
+
               <a
                 href="https://wa.me/917567126945"
                 target="_blank"
