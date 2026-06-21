@@ -43,8 +43,7 @@ export default function Footer() {
           {/* Column 1: Brand info */}
           <div className="space-y-4">
             <a href="/" className="inline-flex items-center bg-white/5 rounded-xl px-3.5 py-2 border border-white/10 hover:bg-white/10 transition-colors">
-              <span className="text-xl font-extrabold text-[#1A56DB]">FilingBy</span>
-              <span className="text-xl font-extrabold text-[#F97316]">.com</span>
+              <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
             </a>
             <p className="text-sm text-blue-100/70 leading-relaxed">
               Expert CA & CS assisted compliance services for Indian businesses. Fast, secure, transparent, and completely online.

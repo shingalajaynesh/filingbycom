@@ -242,8 +242,7 @@ export default function VirtualOfficeNavigation() {
           {/* COL 1: Logo */}
           <div className="flex-shrink-0">
             <button onClick={() => goto("/virtual-space")} className="flex items-center bg-blue-50 rounded-xl px-3 py-1.5 hover:bg-blue-100 transition-colors border-none cursor-pointer">
-              <span className="text-xl font-extrabold text-[#1A56DB]">FilingBy</span>
-              <span className="text-xl font-extrabold text-[#F97316]">.com</span>
+              <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
               <span className="ml-1.5 px-2 py-0.5 rounded-md bg-[#1A56DB] text-white text-[9px] font-black uppercase tracking-wider">Virtual Office</span>
             </button>
           </div>
@@ -564,8 +563,7 @@ export default function VirtualOfficeNavigation() {
         <div className="flex lg:hidden items-center justify-between h-14 w-full">
           {/* Logo */}
           <button onClick={() => goto("/virtual-space")} className="flex items-center bg-blue-50 rounded-xl px-2.5 py-1 hover:bg-blue-100 transition-colors border-none cursor-pointer">
-            <span className="text-md font-extrabold text-[#1A56DB]">FilingBy</span>
-            <span className="text-md font-extrabold text-[#F97316]">.com</span>
+            <img src="/logo.png" alt="FilingBy.com" className="h-7 w-auto object-contain" />
             <span className="ml-1 px-1.5 py-0.5 rounded bg-[#1A56DB] text-white text-[8px] font-black uppercase tracking-wider">VO</span>
           </button>
 
