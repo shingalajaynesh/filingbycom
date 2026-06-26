@@ -1,4 +1,5 @@
 import BlogPost from "../../models/BlogPost.model.js";
+import { uploadToCloudinary, deleteFromCloudinary } from "../../utils/cloudinaryUtils.js";
 
 class BlogController {
   // ─── Get All Blog Posts (Public & Admin) ──────────────────────────────────
@@ -94,6 +95,7 @@ class BlogController {
         author,
         readTime,
         isPublished,
+        image,
       } = req.body;
 
       // Auto-generate slug if not provided
@@ -121,6 +123,7 @@ class BlogController {
         author,
         readTime,
         isPublished,
+        image,
       });
 
       await newPost.save();
@@ -148,7 +151,18 @@ class BlogController {
         author,
         readTime,
         isPublished,
+        image,
       } = req.body;
+
+      const existingPost = await BlogPost.findById(id);
+      if (!existingPost) {
+        return res.status(404).json({ success: false, message: "Blog post not found" });
+      }
+
+      // Cleanup Old Cloudinary Images
+      if (existingPost.image && existingPost.image !== image) {
+        await deleteFromCloudinary(existingPost.image);
+      }
 
       const updateData = {
         title,
@@ -162,6 +176,7 @@ class BlogController {
         author,
         readTime,
         isPublished,
+        image,
       };
 
       if (slug) {
@@ -180,10 +195,6 @@ class BlogController {
         runValidators: true,
       });
 
-      if (!post) {
-        return res.status(404).json({ success: false, message: "Blog post not found" });
-      }
-
       return res.status(200).json({ success: true, post });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
@@ -194,14 +205,38 @@ class BlogController {
   deletePost = async (req, res) => {
     try {
       const { id } = req.params;
-      const post = await BlogPost.findByIdAndDelete(id);
-
-      if (!post) {
+      const existingPost = await BlogPost.findById(id);
+      if (!existingPost) {
         return res.status(404).json({ success: false, message: "Blog post not found" });
       }
 
+      // Cleanup Cloudinary Image if it exists
+      if (existingPost.image) {
+        await deleteFromCloudinary(existingPost.image);
+      }
+
+      await BlogPost.findByIdAndDelete(id);
+
       return res.status(200).json({ success: true, message: "Blog post deleted successfully" });
     } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Upload Blog Image (Admin Only) ───────────────────────────────────────
+  uploadImage = async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ success: false, message: "No image file provided" });
+      }
+
+      const result = await uploadToCloudinary(req.file.buffer, "blogs");
+      return res.status(200).json({
+        success: true,
+        url: result.secure_url,
+      });
+    } catch (error) {
+      console.error("Blog Image Upload Error:", error);
       return res.status(500).json({ success: false, message: error.message });
     }
   };

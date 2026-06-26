@@ -9,10 +9,14 @@ const addressSchema = new mongoose.Schema({
   priceGST: { type: String, default: "999" },
   priceIncorp: { type: String, default: "1,299" },
   priceMail: { type: String, default: "599" },
+  descGST: { type: String, default: "" },
+  descIncorp: { type: String, default: "" },
+  descMail: { type: String, default: "" },
   amenities: [String],
   description: { type: String, default: "" },
   mapEmbed: { type: String, default: "" },
   photos: [String],
+  partnerApplicationId: { type: String, default: "" },
 });
 
 const faqSchema = new mongoose.Schema({

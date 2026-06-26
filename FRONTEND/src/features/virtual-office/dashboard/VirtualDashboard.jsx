@@ -151,20 +151,10 @@ export default function VirtualDashboard() {
               padding-bottom: 20px;
               margin-bottom: 30px;
             }
-            .logo-section h2 {
-              margin: 0;
-              font-size: 24px;
-              font-weight: 800;
-              color: #1A56DB;
-              letter-spacing: -0.5px;
-            }
-            .logo-section p {
-              margin: 2px 0 0 0;
-              font-size: 11px;
-              font-weight: 600;
-              text-transform: uppercase;
-              letter-spacing: 1px;
-              color: #64748b;
+            .logo-section img {
+              height: 96px;
+              width: auto;
+              display: block;
             }
             .invoice-title {
               text-align: right;
@@ -183,7 +173,7 @@ export default function VirtualDashboard() {
             }
             .details-grid {
               display: grid;
-              grid-template-cols: 1fr 1fr;
+              grid-template-columns: repeat(3, 1fr);
               gap: 30px;
               margin-bottom: 40px;
             }
@@ -271,8 +261,7 @@ export default function VirtualDashboard() {
           <div class="invoice-card">
             <div class="header">
               <div class="logo-section">
-                <h2>FilingBy</h2>
-                <p>Corporate Services Platform</p>
+                <img src="${window.location.origin}/logo.png" alt="Logo" />
               </div>
               <div class="invoice-title">
                 <h1>TAX INVOICE</h1>
@@ -281,6 +270,13 @@ export default function VirtualDashboard() {
             </div>
             
             <div class="details-grid">
+              <div class="detail-block">
+                <h3>Billed By:</h3>
+                <p class="name">FilingBy Solutions Private Limited</p>
+                <p>${settings?.vs_contact_address || "402-405 Compliance Center Hub, Adajan, Surat, Gujarat - 395009"}</p>
+                <p>Email: ${settings?.vs_contact_email || "support@filingby.com"}</p>
+                <p>Phone: ${settings?.vs_contact_phone || "+91 75671 26945"}</p>
+              </div>
               <div class="detail-block">
                 <h3>Billed To:</h3>
                 <p class="name">${clientName}</p>

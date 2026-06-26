@@ -33,7 +33,6 @@ const partnerApplicationSchema = new mongoose.Schema(
     },
     deskCount: {
       type: Number,
-      required: true,
     },
     address: {
       type: String,
@@ -46,6 +45,34 @@ const partnerApplicationSchema = new mongoose.Schema(
       trim: true,
     },
     image: {
+      type: String,
+      default: "",
+    },
+    images: {
+      type: [String],
+      default: [],
+    },
+    priceGST: {
+      type: String,
+      default: "",
+    },
+    priceIncorp: {
+      type: String,
+      default: "",
+    },
+    priceMail: {
+      type: String,
+      default: "",
+    },
+    descGST: {
+      type: String,
+      default: "",
+    },
+    descIncorp: {
+      type: String,
+      default: "",
+    },
+    descMail: {
       type: String,
       default: "",
     },

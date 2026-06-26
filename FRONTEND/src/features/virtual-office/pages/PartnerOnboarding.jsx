@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
 import { useUserContext } from "../../../shared/context/UserContext.jsx";
+
+const API_BASE_CLEANED = (
+  import.meta.env.VITE_API_URL || 
+  import.meta.env.VITE_BACKEND_URL || 
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 const DEFAULT_AMENITIES = [
   "High-speed Wi-Fi",
@@ -28,7 +35,6 @@ export default function PartnerOnboarding() {
     }
   }, [profile, navigate, location.state]);
 
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     spaceName: "",
     ownerName: "",
@@ -40,15 +46,33 @@ export default function PartnerOnboarding() {
     address: "",
     price: "",
     image: "",
+    images: [],
+    priceGST: "",
+    priceIncorp: "",
+    priceMail: "",
+    descGST: "",
+    descIncorp: "",
+    descMail: "",
     description: "",
     amenities: []
   });
 
   const [submitting, setSubmitting] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => {
+      const updated = { ...prev, [name]: value };
+      // Auto-fill plan prices based on base price if not manually edited
+      if (name === "price") {
+        if (!prev.priceGST) updated.priceGST = value;
+        if (!prev.priceIncorp) updated.priceIncorp = value ? String(Number(value) + 300) : "";
+        if (!prev.priceMail) updated.priceMail = value ? String(Math.max(100, Number(value) - 400)) : "";
+      }
+      return updated;
+    });
   };
 
   const handleAmenityChange = (amenity) => {
@@ -59,6 +83,54 @@ export default function PartnerOnboarding() {
         : [...current, amenity];
       return { ...prev, amenities: updated };
     });
+  };
+
+  const handleImageUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (!files || files.length === 0) return;
+
+    setUploading(true);
+    const toastId = toast.loading(`Uploading ${files.length} image(s)...`);
+
+    try {
+      const uploadedUrls = [];
+      for (const file of files) {
+        const uploaderData = new FormData();
+        uploaderData.append("image", file);
+
+        const res = await axios.post(
+          `${API_BASE_CLEANED}/virtual-space/upload-image`,
+          uploaderData,
+          {
+            headers: { "Content-Type": "multipart/form-data" }
+          }
+        );
+
+        if (res.data.success) {
+          uploadedUrls.push(res.data.url);
+        } else {
+          toast.error(res.data.message || `Failed to upload ${file.name}`);
+        }
+      }
+
+      if (uploadedUrls.length > 0) {
+        setFormData(prev => {
+          const newImages = [...(prev.images || []), ...uploadedUrls];
+          return {
+            ...prev,
+            images: newImages,
+            image: newImages[0] || ""
+          };
+        });
+        toast.success(`Successfully uploaded ${uploadedUrls.length} image(s)`);
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Error uploading one or more images. Please try again.");
+    } finally {
+      setUploading(false);
+      toast.dismiss(toastId);
+    }
   };
 
   const { submitPartnerApplication } = useSharedData();
@@ -73,13 +145,23 @@ export default function PartnerOnboarding() {
       toast.error("Please enter a valid monthly price.");
       return;
     }
+    if (!formData.images || formData.images.length < 4) {
+      toast.error("Please upload a minimum of 4 workspace images.");
+      return;
+    }
 
     setSubmitting(true);
     try {
       const payload = {
         ...formData,
-        deskCount: Number(formData.deskCount) || 10,
-        price: String(formData.price)
+        deskCount: formData.deskCount ? Number(formData.deskCount) : undefined,
+        price: String(formData.price),
+        priceGST: formData.priceGST ? String(formData.priceGST) : String(formData.price),
+        priceIncorp: formData.priceIncorp ? String(formData.priceIncorp) : String(Number(formData.price) + 300),
+        priceMail: formData.priceMail ? String(formData.priceMail) : String(Math.max(100, Number(formData.price) - 400)),
+        descGST: formData.descGST || "",
+        descIncorp: formData.descIncorp || "",
+        descMail: formData.descMail || ""
       };
 
       const data = await submitPartnerApplication(payload);
@@ -152,18 +234,17 @@ export default function PartnerOnboarding() {
           </div>
 
           {/* Image Preview Block */}
-          {formData.image && (
-            <div className="bg-white rounded-2xl shadow-sm p-4 space-y-2 border border-gray-150">
-              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Property Image Preview</span>
-              <div className="w-full h-48 rounded-xl overflow-hidden bg-gray-100 relative">
-                <img
-                  src={formData.image}
-                  alt="Property Preview"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80";
-                  }}
-                />
+          {formData.images && formData.images.length > 0 && (
+            <div className="bg-white rounded-2xl shadow-sm p-4 space-y-3 border border-gray-150">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block animate-pulse">
+                Uploaded Workspace Images ({formData.images.length})
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                {formData.images.map((img, idx) => (
+                  <div key={idx} className="w-full h-24 rounded-lg overflow-hidden bg-gray-100 relative border border-gray-100 hover:scale-[1.02] transition-transform">
+                    <img src={img} alt={`Preview ${idx + 1}`} className="w-full h-full object-cover" />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -254,11 +335,10 @@ export default function PartnerOnboarding() {
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Space Desk Capacity</label>
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Space Desk Capacity (Optional)</label>
                   <input
                     type="number"
                     name="deskCount"
-                    required
                     value={formData.deskCount}
                     onChange={handleInputChange}
                     placeholder="e.g. 50"
@@ -285,10 +365,10 @@ export default function PartnerOnboarding() {
                 </select>
               </div>
 
-              {/* NEW: Price & Image URL */}
-              <div className="grid grid-cols-2 gap-4">
+              {/* NEW: Price & Workspace Image Upload */}
+              <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Monthly Cost for GST Desk (₹)</label>
+                  <label className="text-[10px] font-bold text-gray-655 uppercase block mb-1">Base Monthly Cost for Partner Share (₹)</label>
                   <input
                     type="number"
                     name="price"
@@ -299,16 +379,160 @@ export default function PartnerOnboarding() {
                     className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
                   />
                 </div>
+
+                {/* Plan Pricing & Descriptions Configuration */}
+                <div className="bg-slate-50 p-4 rounded-xl border border-gray-200 space-y-4">
+                  <span className="text-[10px] font-black uppercase text-gray-500 block tracking-wider">
+                    Plan Prices & Custom Descriptions (Optional Customization)
+                  </span>
+                  
+                  {/* Plan 1: GST Registration */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">GST Desk Public Price (₹/mo)</label>
+                      <input
+                        type="number"
+                        name="priceGST"
+                        value={formData.priceGST}
+                        onChange={handleInputChange}
+                        placeholder="e.g. 999"
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">GST Plan Description</label>
+                      <input
+                        type="text"
+                        name="descGST"
+                        value={formData.descGST}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Premium address with NOC, utility bills, inspection..."
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Plan 2: Company Incorporation */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">MCA/Incorp Public Price (₹/mo)</label>
+                      <input
+                        type="number"
+                        name="priceIncorp"
+                        value={formData.priceIncorp}
+                        onChange={handleInputChange}
+                        placeholder="e.g. 1299"
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">Incorp Plan Description</label>
+                      <input
+                        type="text"
+                        name="descIncorp"
+                        value={formData.descIncorp}
+                        onChange={handleInputChange}
+                        placeholder="e.g. ROC compliant NOC, Consent Letter, Board placement..."
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Plan 3: Mailing Address */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">Mailing Address Public Price (₹/mo)</label>
+                      <input
+                        type="number"
+                        name="priceMail"
+                        value={formData.priceMail}
+                        onChange={handleInputChange}
+                        placeholder="e.g. 599"
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[9px] font-bold text-gray-600 uppercase block mb-1">Mailing Plan Description</label>
+                      <input
+                        type="text"
+                        name="descMail"
+                        value={formData.descMail}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Courier logging, scan & forward mail, receptionist..."
+                        className="w-full text-xs font-semibold px-4 py-2.5 rounded-xl border-0 bg-white focus:ring-2 focus:ring-[#1A56DB]/25 outline-none text-gray-900"
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div>
-                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace Image URL</label>
-                  <input
-                    type="text"
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                    placeholder="Paste a direct image link (optional)"
-                    className="w-full text-xs font-semibold px-4 py-3 rounded-xl border-0 bg-gray-100/60 focus:bg-white focus:ring-2 focus:ring-[#1A56DB]/25 transition-all outline-none text-gray-900 placeholder-gray-400"
-                  />
+                  <label className="text-[10px] font-bold text-gray-650 uppercase block mb-1">Workspace Photos (Minimum 4 images required)</label>
+                  <div className="mt-2 space-y-4">
+                    {/* Image Grid / Thumbnails */}
+                    {formData.images && formData.images.length > 0 && (
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
+                        {formData.images.map((imgUrl, index) => (
+                          <div key={index} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-150 border border-gray-200">
+                            <img src={imgUrl} alt={`Workspace ${index + 1}`} className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFormData(prev => {
+                                  const newImages = prev.images.filter((_, i) => i !== index);
+                                  return {
+                                    ...prev,
+                                    images: newImages,
+                                    image: newImages.length > 0 ? newImages[0] : ""
+                                  };
+                                });
+                              }}
+                              className="absolute top-1 right-1 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-sm opacity-90 transition-all cursor-pointer"
+                              title="Remove image"
+                            >
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                            {index === 0 && (
+                              <span className="absolute bottom-1 left-1 bg-blue-600 text-white text-[8px] font-extrabold uppercase px-1.5 py-0.5 rounded shadow">Cover</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Upload Trigger Dropzone */}
+                    <div className="relative">
+                      <input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        disabled={uploading}
+                        className="hidden"
+                        id="onboarding-images-upload"
+                      />
+                      <label
+                        htmlFor="onboarding-images-upload"
+                        className={`flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl p-6 cursor-pointer bg-gray-50/50 hover:bg-gray-100 hover:border-gray-400 transition-all ${
+                          uploading ? "opacity-50 pointer-events-none" : ""
+                        }`}
+                      >
+                        <svg className="w-8 h-8 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-xs font-bold text-gray-700">
+                          {uploading ? "Uploading images..." : "Click to Upload Workspace Photos"}
+                        </span>
+                        <span className="text-[10px] text-gray-550 mt-1">PNG, JPG or WEBP up to 5MB</span>
+                      </label>
+                    </div>
+                    {formData.images.length < 4 && (
+                      <p className="text-[11px] font-semibold text-orange-500">
+                        ⚠️ Please upload at least {4 - formData.images.length} more image{4 - formData.images.length > 1 ? "s" : ""} to complete registration.
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -362,7 +586,7 @@ export default function PartnerOnboarding() {
 
               <button
                 type="submit"
-                disabled={submitting}
+                disabled={submitting || uploading || formData.images.length < 4}
                 className="w-full py-3 bg-[#F97316] hover:bg-orange-500 text-white rounded-xl font-bold transition-all active:scale-95 text-xs tracking-wider uppercase cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed mt-2"
               >
                 {submitting ? "Submitting Application..." : "Submit Onboarding Application"}

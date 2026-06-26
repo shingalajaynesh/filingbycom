@@ -1,4 +1,4 @@
-# FilingBy Frontend Architecture & Guidelines
+# FilingBy Frontend Architecture & Guidelines .
 
 Welcome to the **FilingBy.com** Frontend developer guide. This document details our module structure, code conventions, state flows, and scalability patterns. It is designed to guide developers of all skill levels to produce stable, clean, and professional React code.
 

@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
+import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
@@ -182,6 +183,17 @@ export default function BlogDetail() {
                 </div>
               </div>
 
+              {/* Cover Image */}
+              {post.image && (
+                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-100 aspect-video md:aspect-[21/9] bg-slate-50 shadow-sm">
+                  <img
+                    src={optimizeCloudinaryUrl(post.image)}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
               {/* HTML Blog Content */}
               <div
                 className="mt-8 prose prose-slate max-w-none text-slate-650 text-sm sm:text-base leading-relaxed space-y-6"
@@ -277,22 +289,41 @@ export default function BlogDetail() {
                 <article
                   key={item.slug}
                   onClick={() => navigate(`/blog/${item.slug}`)}
-                  className="rounded-2xl border border-slate-100 bg-white p-5 text-left transition hover:border-blue-200 hover:shadow-md cursor-pointer flex flex-col justify-between"
+                  className="group rounded-2xl border border-slate-100 bg-white overflow-hidden text-left transition hover:border-blue-200 hover:shadow-md cursor-pointer flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wide text-[#1A56DB] bg-blue-50 px-2 py-0.5 rounded-full">
-                      {item.category}
-                    </span>
-                    <h3 className="mt-3 text-sm font-bold text-slate-900 line-clamp-2 hover:text-blue-600">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs text-slate-500 line-clamp-2">
-                      {item.excerpt}
+                    {item.image ? (
+                      <div className="overflow-hidden aspect-video w-full border-b border-slate-50 bg-slate-50">
+                        <img
+                          src={optimizeCloudinaryUrl(item.image)}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div className="aspect-video w-full bg-slate-50 border-b border-slate-50 flex items-center justify-center text-slate-350">
+                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="p-5 pb-0">
+                      <span className="text-[10px] font-bold uppercase tracking-wide text-[#1A56DB] bg-blue-50 px-2 py-0.5 rounded-full">
+                        {item.category}
+                      </span>
+                      <h3 className="mt-3 text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-xs text-slate-500 line-clamp-2">
+                        {item.excerpt}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-5 pt-4">
+                    <p className="text-[10px] font-bold text-[#1A56DB] uppercase tracking-wide">
+                      Read Guide →
                     </p>
                   </div>
-                  <p className="mt-4 text-[10px] font-bold text-[#1A56DB] uppercase tracking-wide">
-                    Read Guide →
-                  </p>
                 </article>
               ))}
             </div>

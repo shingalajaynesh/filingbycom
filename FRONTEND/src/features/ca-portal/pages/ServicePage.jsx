@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useUser } from "@clerk/clerk-react";
 import { m } from 'framer-motion';
+import axios from 'axios';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
 import SEO from '../../../shared/components/SEO.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
@@ -19,6 +20,7 @@ export default function ServicePage() {
   const [serviceData, setServiceData] = useState(null);
   const [relatedServices, setRelatedServices] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
+  const [serviceReviews, setServiceReviews] = useState([]);
 
   useEffect(() => {
     if (services && services.length > 0) {
@@ -40,6 +42,29 @@ export default function ServicePage() {
       setPageLoading(false);
     }
   }, [slug, services, cacheLoading]);
+
+  useEffect(() => {
+    if (serviceData?._id) {
+      const fetchServiceReviews = async () => {
+        try {
+          const API_BASE = (
+            import.meta.env.VITE_API_URL || 
+            import.meta.env.VITE_BACKEND_URL || 
+            "http://localhost:3000"
+          ).replace(/\/$/, "");
+          const res = await axios.get(`${API_BASE}/reviews?pageType=service&service=${serviceData._id}`);
+          if (res.data.success) {
+            setServiceReviews(res.data.reviews || []);
+          }
+        } catch (err) {
+          console.error("Failed to fetch service reviews:", err);
+        }
+      };
+      fetchServiceReviews();
+    } else {
+      setServiceReviews([]);
+    }
+  }, [serviceData]);
 
   // Perform background caching refresh only once when slug changes
   useEffect(() => {
@@ -209,6 +234,53 @@ export default function ServicePage() {
           </m.aside>
         </div>
  
+        {serviceReviews.length > 0 && (
+          <m.section 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-1">What Our Clients Say About This Service</h2>
+            <p className="text-sm text-gray-500 mb-6">Verified feedback from business owners and founders</p>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {serviceReviews.map((rev, idx) => (
+                <article
+                  key={idx}
+                  className="rounded-2xl border border-gray-100 bg-slate-50 p-5 text-left"
+                >
+                  <div className="flex items-center text-yellow-400 mb-3">
+                    {Array.from({ length: rev.rating || 5 }).map((_, i) => (
+                      <span key={i}>★</span>
+                    ))}
+                    {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
+                      <span key={i} className="text-gray-300">★</span>
+                    ))}
+                  </div>
+                  <p className="mb-4 text-sm leading-relaxed text-gray-605 italic">
+                    "{rev.comment}"
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-[#1A56DB]">
+                      {rev.authorName
+                        ?.split(" ")
+                        .map((n) => n[0])
+                        .join("") || "C"}
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-905 font-semibold">
+                        {rev.authorName}
+                      </p>
+                      <p className="text-[10px] text-gray-500">{rev.businessName}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </m.section>
+        )}
+
         {relatedServices.length > 0 && (
           <m.section 
             initial={{ y: 20, opacity: 0 }}

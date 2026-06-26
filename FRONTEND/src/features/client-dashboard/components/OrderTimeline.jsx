@@ -30,7 +30,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
       month: "long",
       year: "numeric"
     });
-    
+
     const clientName = clerkUser?.fullName || `${clerkUser?.firstName || "Client"} ${clerkUser?.lastName || ""}`.trim() || "Valued Client";
     const clientEmail = clerkUser?.primaryEmailAddress?.emailAddress || "N/A";
     const clientPhone = clerkUser?.primaryPhoneNumber?.phoneNumber || "N/A";
@@ -70,21 +70,10 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
               padding-bottom: 30px;
               margin-bottom: 40px;
             }
-            .logo-area h1 {
-              font-size: 28px;
-              font-weight: 800;
-              color: #1e3a8a;
-              margin: 0;
-              letter-spacing: -0.5px;
-            }
-            .logo-area span {
-              color: #f59e0b;
-            }
-            .logo-area p {
-              margin: 4px 0 0 0;
-              font-size: 12px;
-              color: #64748b;
-              font-weight: 500;
+            .logo-area img {
+              height: 54px;
+              width: auto;
+              display: block;
             }
             .invoice-details {
               text-align: right;
@@ -205,8 +194,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
           <div class="invoice-card">
             <div class="header">
               <div class="logo-area">
-                <h1>Filing<span>By</span>.com</h1>
-                <p>Tax & Corporate Compliance Solutions</p>
+                <img src="${window.location.origin}/logo.png" alt="Logo" />
               </div>
               <div class="invoice-details">
                 <h2>INVOICE</h2>
