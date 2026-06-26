@@ -24,6 +24,13 @@ adminRouter.post("/admin/services",       verifyAdmin, ServiceController.createS
 adminRouter.put("/admin/services/:id",    verifyAdmin, ServiceController.updateService);
 adminRouter.delete("/admin/services/:id", verifyAdmin, ServiceController.deleteService);
 
+adminRouter.post("/admin/services/reorder", verifyAdmin, ServiceController.reorderItems);
+
+// ── Semi Services (Protected) ─────────────────────────────────────────────────
+adminRouter.post("/admin/semi-services",       verifyAdmin, ServiceController.createSemiService);
+adminRouter.put("/admin/semi-services/:id",    verifyAdmin, ServiceController.updateSemiService);
+adminRouter.delete("/admin/semi-services/:id", verifyAdmin, ServiceController.deleteSemiService);
+
 // ─── Main Services (Protected) ──────────────────────────────────────────────
 adminRouter.post("/admin/settings",           verifyAdmin, SettingController.updateSettings);
 adminRouter.get("/admin/main-services",       verifyAdmin, ServiceController.getAllMainServices);

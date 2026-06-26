@@ -45,6 +45,11 @@ const serviceSchema = new mongoose.Schema(
       ref: "MainService",
       required: false,
     },
+    semiService: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "SemiService",
+      required: false,
+    },
     order: {
       type: Number,
       required: true,

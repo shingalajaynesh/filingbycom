@@ -17,6 +17,7 @@ export function AdminProvider({ children }) {
   const [historyOrders, setHistoryOrders] = useState([]);
   const [services, setServices] = useState([]);
   const [mainServices, setMainServices] = useState([]);
+  const [semiServices, setSemiServices] = useState([]);
 
   // Fetch Orders
   const fetchOrders = useCallback(async (filter, portal) => {
@@ -99,16 +100,21 @@ export function AdminProvider({ children }) {
   // Fetch Services
   const fetchServicesData = useCallback(async (portal) => {
     try {
-      const [res1, res2] = await Promise.all([
+      const [res1, res2, res3] = await Promise.all([
         axios.get(`${API_BASE}/services?portal=${portal}`),
-        axios.get(`${API_BASE}/admin/main-services?portal=${portal}`, { withCredentials: true })
+        axios.get(`${API_BASE}/admin/main-services?portal=${portal}`, { withCredentials: true }),
+        axios.get(`${API_BASE}/semi-services?portal=${portal}`)
       ]);
       const data1 = res1.data;
       const data2 = res2.data;
+      const data3 = res3.data;
       
       setServices(data1.services || []);
       if (data2.success) {
         setMainServices(data2.mainServices || []);
+      }
+      if (data3 && data3.success) {
+        setSemiServices(data3.semiServices || []);
       }
     } catch (err) {
       throw new Error(err.response?.data?.message || err.message || "Failed to fetch services");
@@ -214,6 +220,72 @@ export function AdminProvider({ children }) {
       return { success: true };
     } catch (err) {
       const msg = err.response?.data?.message || err.message || "Failed to delete main service";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  // ─── Semi Services APIs ───
+  const addSemiService = useCallback(async (serviceData, portal) => {
+    try {
+      const res = await axios.post(`${API_BASE}/admin/semi-services`, { ...serviceData, portal }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      const resData = res.data;
+      setSemiServices(prev => [...prev, resData.semiService].sort((a,b) => a.order - b.order));
+      toast.success("Semi service added successfully");
+      return { success: true };
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to add semi service";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  const updateSemiService = useCallback(async (id, serviceData) => {
+    try {
+      const res = await axios.put(`${API_BASE}/admin/semi-services/${id}`, serviceData, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      const resData = res.data;
+      setSemiServices(prev => prev.map(s => s._id === id ? resData.semiService : s).sort((a,b) => a.order - b.order));
+      toast.success("Semi service updated successfully");
+      return { success: true };
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to update semi service";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  const deleteSemiService = useCallback(async (id) => {
+    try {
+      await axios.delete(`${API_BASE}/admin/semi-services/${id}`, {
+        withCredentials: true,
+      });
+      setSemiServices(prev => prev.filter(s => s._id !== id));
+      toast.success("Semi service deleted successfully");
+      return { success: true };
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to delete semi service";
+      toast.error(msg);
+      return { success: false, message: msg };
+    }
+  }, []);
+
+  // Reorder Items
+  const reorderItems = useCallback(async (type, items) => {
+    try {
+      await axios.post(`${API_BASE}/admin/services/reorder`, { type, items }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      // Optionally re-fetch services data or rely on optimistic updates passed from component
+      return { success: true };
+    } catch (err) {
+      const msg = err.response?.data?.message || err.message || "Failed to reorder items";
       toast.error(msg);
       return { success: false, message: msg };
     }
@@ -447,6 +519,11 @@ export function AdminProvider({ children }) {
       addMainService,
       updateMainService,
       deleteMainService,
+      semiServices,
+      addSemiService,
+      updateSemiService,
+      deleteSemiService,
+      reorderItems,
       fetchInquiries,
       updateInquiryStatus,
       fetchPartners,

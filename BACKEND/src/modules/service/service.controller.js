@@ -1,5 +1,6 @@
 import Service from "../../models/Service.model.js";
 import MainService from "../../models/MainService.model.js";
+import SemiService from "../../models/SemiService.model.js";
 import { serviceCache } from "../../services/cache.service.js";
 
 class ServiceController {
@@ -90,6 +91,7 @@ class ServiceController {
       const filter = portal ? { portal } : {};
       const services = await Service.find(filter)
         .populate("mainService")
+        .populate("semiService")
         .sort({ order: 1, createdAt: -1 })
         .lean();
       
@@ -105,7 +107,7 @@ class ServiceController {
     try {
       const { 
         name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
-        mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+        mainService, semiService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
       } = req.body;
 
       // Check if slug already exists
@@ -125,6 +127,7 @@ class ServiceController {
         tag,
         portal,
         mainService,
+        semiService,
         order,
         navSection, 
         isActive, 
@@ -148,7 +151,7 @@ class ServiceController {
       const { id } = req.params;
       const { 
         name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
-        mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+        mainService, semiService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
       } = req.body;
 
       // If updating slug, check if another service has the new slug
@@ -163,7 +166,7 @@ class ServiceController {
         id,
         { 
           name, description, priceText, basePrice, icon, billingCycle, slug, tag, portal,
-          mainService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
+          mainService, semiService, order, navSection, isActive, isPopular, documentsRequired, processSteps, faqs
         },
         { new: true, runValidators: true }
       );
@@ -191,6 +194,112 @@ class ServiceController {
 
       serviceCache.clear();
       return res.status(200).json({ success: true, message: "Service deleted successfully" });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+  // ─── Get All Semi Services (Public) ─────────────────────────────────────────
+  getAllSemiServices = async (req, res) => {
+    try {
+      const { portal } = req.query;
+      const cacheKey = `semiServices_${portal || "all"}`;
+      const cached = serviceCache.get(cacheKey);
+      if (cached) {
+        return res.status(200).json({ success: true, semiServices: cached });
+      }
+
+      const filter = portal ? { portal } : {};
+      const semiServices = await SemiService.find(filter).populate("mainService").sort({ order: 1, createdAt: -1 }).lean();
+      
+      serviceCache.set(cacheKey, semiServices);
+      return res.status(200).json({ success: true, semiServices });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Create Semi Service (Admin) ────────────────────────────────────────────
+  createSemiService = async (req, res) => {
+    try {
+      const { name, mainService, order, isActive, portal } = req.body;
+      const existing = await SemiService.findOne({ name, mainService }).lean();
+      if (existing) {
+        return res.status(400).json({ success: false, message: "SemiService with this name already exists in this category" });
+      }
+      const semiService = new SemiService({ name, mainService, order, isActive, portal });
+      await semiService.save();
+      serviceCache.clear();
+      return res.status(201).json({ success: true, semiService });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Update Semi Service (Admin) ────────────────────────────────────────────
+  updateSemiService = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, mainService, order, isActive, portal } = req.body;
+      if (name) {
+        const existing = await SemiService.findOne({ name, mainService, _id: { $ne: id } }).lean();
+        if (existing) {
+          return res.status(400).json({ success: false, message: "Another SemiService with this name already exists in this category" });
+        }
+      }
+      const semiService = await SemiService.findByIdAndUpdate(
+        id,
+        { name, mainService, order, isActive, portal },
+        { new: true, runValidators: true }
+      );
+      if (!semiService) return res.status(404).json({ success: false, message: "SemiService not found" });
+      serviceCache.clear();
+      return res.status(200).json({ success: true, semiService });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Delete Semi Service (Admin) ────────────────────────────────────────────
+  deleteSemiService = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const semiService = await SemiService.findByIdAndDelete(id);
+      if (!semiService) return res.status(404).json({ success: false, message: "SemiService not found" });
+      
+      // Also update any services that had this semiService
+      await Service.updateMany({ semiService: id }, { $unset: { semiService: "" } });
+
+      serviceCache.clear();
+      return res.status(200).json({ success: true, message: "SemiService deleted successfully" });
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Reorder Items (Admin) ──────────────────────────────────────────────────
+  reorderItems = async (req, res) => {
+    try {
+      const { type, items } = req.body; 
+      // type can be 'main', 'semi', or 'service'
+      // items is an array of { id, order }
+
+      if (!items || !Array.isArray(items)) {
+        return res.status(400).json({ success: false, message: "Invalid items array" });
+      }
+
+      let Model;
+      if (type === 'main') Model = MainService;
+      else if (type === 'semi') Model = SemiService;
+      else if (type === 'service') Model = Service;
+      else return res.status(400).json({ success: false, message: "Invalid type" });
+
+      const updatePromises = items.map(item => 
+        Model.findByIdAndUpdate(item.id, { order: item.order })
+      );
+
+      await Promise.all(updatePromises);
+      serviceCache.clear();
+      return res.status(200).json({ success: true, message: "Reordered successfully" });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
     }

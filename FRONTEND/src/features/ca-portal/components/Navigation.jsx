@@ -5,7 +5,7 @@ import { useSharedData } from '../../../shared/context/SharedDataContext';
 import { usePortalAuth } from '../../../routes/RouteGuards';
 
 export default function Navigation() {
-  const { services, mainServices, settings } = useSharedData();
+  const { services, mainServices, semiServices, settings } = useSharedData();
   const [navData, setNavData] = useState([]);
   const [open, setOpen] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,8 +39,6 @@ export default function Navigation() {
       return;
     }
 
-
-
     const navMap = {};
     mainServices.filter(m => m.isActive !== false && (m.portal === "ca-portal" || !m.portal)).forEach(main => {
       navMap[main._id] = {
@@ -51,25 +49,63 @@ export default function Navigation() {
       };
     });
     
+    // Process SemiServices
+    if (semiServices && semiServices.length > 0) {
+      semiServices.filter(s => s.isActive !== false && (s.portal === "ca-portal" || !s.portal)).forEach(semi => {
+        const mainId = semi.mainService?._id || semi.mainService;
+        if (mainId && navMap[mainId]) {
+           navMap[mainId].sections[semi._id] = {
+              id: semi._id,
+              heading: semi.name,
+              order: semi.order || 0,
+              items: []
+           };
+        }
+      });
+    }
+
     services.filter(s => s.isActive !== false && (s.portal === "ca-portal" || !s.portal)).forEach(service => {
       const mainId = service.mainService?._id || service.mainService;
-      const section = service.navSection || 'General';
+      const semiId = service.semiService?._id || service.semiService;
       
       if (mainId && navMap[mainId]) {
-        if (!navMap[mainId].sections[section]) {
-          navMap[mainId].sections[section] = { heading: section, items: [] };
+        if (semiId && navMap[mainId].sections[semiId]) {
+           navMap[mainId].sections[semiId].items.push({
+             label: service.name,
+             slug: service.slug,
+             order: service.order || 0
+           });
+        } else {
+           // Fallback for services without a valid semi-service
+           // Try to find an existing section with the same name (legacy matching)
+           const sectionName = service.navSection || 'General';
+           const existingSection = Object.values(navMap[mainId].sections).find(s => s.heading.toLowerCase() === sectionName.toLowerCase());
+
+           if (existingSection) {
+              existingSection.items.push({
+                 label: service.name,
+                 slug: service.slug,
+                 order: service.order || 0
+              });
+           } else {
+              if (!navMap[mainId].sections[sectionName]) {
+                 navMap[mainId].sections[sectionName] = { id: sectionName, heading: sectionName, order: 999, items: [] };
+              }
+              navMap[mainId].sections[sectionName].items.push({
+                label: service.name,
+                slug: service.slug,
+                order: service.order || 0
+              });
+           }
         }
-        navMap[mainId].sections[section].items.push({
-          label: service.name,
-          slug: service.slug,
-          order: service.order || 0
-        });
-      } else {
+      } else if (!mainId) {
+        // Fallback for services without a main service
         if (!navMap['other']) {
           navMap['other'] = { id: 'other', label: 'Other Services', order: 999, sections: {} };
         }
+        const section = service.navSection || 'General';
         if (!navMap['other'].sections[section]) {
-          navMap['other'].sections[section] = { heading: section, items: [] };
+          navMap['other'].sections[section] = { id: section, heading: section, order: 999, items: [] };
         }
         navMap['other'].sections[section].items.push({
           label: service.name,
@@ -83,14 +119,16 @@ export default function Navigation() {
       .sort((a, b) => a.order - b.order)
       .map(cat => ({
         ...cat,
-        sections: Object.values(cat.sections).map(sec => ({
-          ...sec,
-          items: sec.items.sort((a, b) => a.order - b.order)
-        }))
+        sections: Object.values(cat.sections)
+          .sort((a, b) => a.order - b.order)
+          .map(sec => ({
+            ...sec,
+            items: sec.items.sort((a, b) => a.order - b.order)
+          }))
       }));
     
     setNavData(formattedNavData);
-  }, [services, mainServices, settings]);
+  }, [services, mainServices, semiServices, settings]);
 
   const getInitials = (firstName, lastName) => {
     if (!firstName && !lastName) return 'U';

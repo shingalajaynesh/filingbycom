@@ -3,25 +3,17 @@ import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
 
-const ICONS = [
-  "building",
-  "document",
-  "trademark",
-  "wallet",
-  "handshake",
-  "chart",
-  "file",
-  "globe",
-  "receipt",
-  "landmark",
-  "scale",
-];
+import CategoryModal from "./modals/CategoryModal";
+import SemiCategoryModal from "./modals/SemiCategoryModal";
+import ServiceModal from "./modals/ServiceModal";
+import CategoryList from "./lists/CategoryList";
 
 export default function AdminServices({ portal, type = 'nav' }) {
   const { 
-    services, mainServices, loading, fetchServicesData,
+    services, mainServices, semiServices, loading, fetchServicesData,
     addService, updateService, deleteService,
-    addMainService, updateMainService, deleteMainService
+    addMainService, updateMainService, deleteMainService,
+    addSemiService, updateSemiService, deleteSemiService, reorderItems
   } = useAdminContext();
 
   const [error, setError] = useState(null);
@@ -46,56 +38,35 @@ export default function AdminServices({ portal, type = 'nav' }) {
   // Modals state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMainModalOpen, setIsMainModalOpen] = useState(false);
-  const [expandedCategory, setExpandedCategory] = useState(null);
-
-
+  const [isSemiModalOpen, setIsSemiModalOpen] = useState(false);
 
   // Forms state
   const [editingService, setEditingService] = useState(null);
   const [editingMainService, setEditingMainService] = useState(null);
+  const [editingSemiService, setEditingSemiService] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState('basic');
 
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    basePrice: 0,
-    order: 0,
-    billingCycle: "Fixed",
-    icon: "document",
-    slug: "",
-    tag: "",
-    mainService: "",
-    navSection: "",
-    isActive: type === 'nav',
-    isPopular: type === 'popular',
-    documentsRequired: [""],
-    processSteps: [""],
-    faqs: [{ q: "", a: "" }],
+    name: "", description: "", basePrice: 0, order: 1, billingCycle: "Fixed", icon: "document", slug: "", tag: "", mainService: "", semiService: "", navSection: "", isActive: type === 'nav', isPopular: type === 'popular', documentsRequired: [""], processSteps: [""], faqs: [{ q: "", a: "" }],
   });
 
   const [mainFormData, setMainFormData] = useState({
-    name: "",
-    order: 0,
-    isActive: true,
+    name: "", order: 1, isActive: true,
+  });
+
+  const [semiFormData, setSemiFormData] = useState({
+    name: "", mainService: "", order: 1, isActive: true,
   });
 
   // --- Handlers for Main Service Modal ---
   const handleOpenMainModal = (main = null) => {
     if (main) {
       setEditingMainService(main);
-      setMainFormData({
-        name: main.name,
-        order: main.order,
-        isActive: main.isActive,
-      });
+      setMainFormData({ name: main.name, order: main.order, isActive: main.isActive });
     } else {
       setEditingMainService(null);
-      setMainFormData({
-        name: "",
-        order: mainServices.length + 1,
-        isActive: true,
-      });
+      setMainFormData({ name: "", order: mainServices.length + 1, isActive: true });
     }
     setIsMainModalOpen(true);
   };
@@ -115,18 +86,12 @@ export default function AdminServices({ portal, type = 'nav' }) {
 
   const handleMainSubmit = async (e) => {
     e.preventDefault();
-    if (!mainFormData.name.trim()) {
-      toast.error("Category Name is required");
-      return;
-    }
+    if (!mainFormData.name.trim()) return toast.error("Category Name is required");
     setSubmitting(true);
     try {
-      let res;
-      if (editingMainService) {
-        res = await updateMainService(editingMainService._id, mainFormData);
-      } else {
-        res = await addMainService(mainFormData, portal);
-      }
+      const res = editingMainService 
+        ? await updateMainService(editingMainService._id, mainFormData)
+        : await addMainService(mainFormData, portal);
       if (res.success) {
         toast.success(editingMainService ? "Category updated successfully!" : "Category added successfully!");
         handleCloseMainModal();
@@ -151,12 +116,92 @@ export default function AdminServices({ portal, type = 'nav' }) {
   };
 
   // --- Handlers for Semi Service Modal ---
-  const handleOpenModal = (service = null, defaultMainId = "") => {
+  const handleOpenSemiModal = (semi = null, defaultMainId = "") => {
+    if (semi) {
+      setEditingSemiService(semi);
+      setSemiFormData({
+        name: semi.name, mainService: semi.mainService?._id || semi.mainService || "", order: semi.order, isActive: semi.isActive,
+      });
+    } else {
+      setEditingSemiService(null);
+      setSemiFormData({
+        name: "", mainService: defaultMainId, order: semiServices.filter(s => s.mainService === defaultMainId).length + 1, isActive: true,
+      });
+    }
+    setIsSemiModalOpen(true);
+  };
+
+  const handleCloseSemiModal = () => {
+    setIsSemiModalOpen(false);
+    setEditingSemiService(null);
+  };
+
+  const handleSemiChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setSemiFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : (name === "order" ? Number(value) : value),
+    }));
+  };
+
+  const handleSemiSubmit = async (e) => {
+    e.preventDefault();
+    if (!semiFormData.name.trim() || !semiFormData.mainService) return toast.error("Name and Main Category are required");
+    setSubmitting(true);
+    try {
+      const res = editingSemiService 
+        ? await updateSemiService(editingSemiService._id, semiFormData)
+        : await addSemiService(semiFormData, portal);
+      if (res.success) {
+        toast.success(editingSemiService ? "Semi-Category updated successfully!" : "Semi-Category added successfully!");
+        handleCloseSemiModal();
+      } else {
+        toast.error(res.message || "Failed to save semi-category");
+      }
+    } catch (err) {
+      handleFrontendError(err, "Failed to save semi-category");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleDeleteSemi = async (id) => {
+    if (window.confirm("Are you sure you want to delete this Semi-Category? Services inside it will lose this association.")) {
+      try {
+        await deleteSemiService(id);
+      } catch (err) {
+        handleFrontendError(err, "Failed to delete semi-category", { showAlert: true });
+      }
+    }
+  };
+
+  // --- Handlers for Drag and Drop Reordering (Framer Motion) ---
+  const handleReorderList = async (itemType, newList) => {
+    // Assign new orders based on array index + 1 so it starts from 1
+    const items = newList.map((item, i) => ({
+      id: item._id,
+      order: ++i
+    }));
+
+    setSubmitting(true);
+    try {
+      await reorderItems(itemType, items);
+      await fetchServicesData(portal);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // --- Handlers for Service Modal ---
+  const handleOpenModal = (service = null, defaultMainId = "", defaultSemiId = "") => {
     if (service) {
       setEditingService(service);
       setFormData({ 
         ...service,
         mainService: service.mainService?._id || service.mainService || "",
+        semiService: service.semiService?._id || service.semiService || "",
         documentsRequired: service.documentsRequired?.length ? service.documentsRequired : [""],
         processSteps: service.processSteps?.length ? service.processSteps : [""],
         faqs: service.faqs?.length ? service.faqs : [{ q: "", a: "" }],
@@ -164,21 +209,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
     } else {
       setEditingService(null);
       setFormData({
-        name: "",
-        description: "",
-        basePrice: 0,
-        order: 0,
-        billingCycle: "Fixed",
-        icon: "document",
-        slug: "",
-        tag: "",
-        mainService: defaultMainId,
-        navSection: "",
-        isActive: type === 'nav',
-        isPopular: type === 'popular',
-        documentsRequired: [""],
-        processSteps: [""],
-        faqs: [{ q: "", a: "" }],
+        name: "", description: "", basePrice: 0, order: 1, billingCycle: "Fixed", icon: "document", slug: "", tag: "", mainService: defaultMainId, semiService: defaultSemiId, navSection: "", isActive: type === 'nav', isPopular: type === 'popular', documentsRequired: [""], processSteps: [""], faqs: [{ q: "", a: "" }],
       });
     }
     setActiveTab('basic');
@@ -210,10 +241,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
     setFormData({ ...formData, faqs: newFaqs });
   };
 
-  const addArrayItem = (field, defaultVal = "") => {
-    setFormData({ ...formData, [field]: [...formData[field], defaultVal] });
-  };
-
+  const addArrayItem = (field, defaultVal = "") => setFormData({ ...formData, [field]: [...formData[field], defaultVal] });
   const removeArrayItem = (field, index) => {
     const newArray = [...formData[field]];
     newArray.splice(index, 1);
@@ -222,25 +250,13 @@ export default function AdminServices({ portal, type = 'nav' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.name.trim()) {
-      toast.error("Service Name is required.");
-      setActiveTab('basic');
-      return;
-    }
-    if (!formData.slug.trim()) {
-      toast.error("Slug is required (URL friendly).");
-      setActiveTab('basic');
-      return;
-    }
-    if (formData.basePrice === "" || formData.basePrice < 0) {
-      toast.error("Valid Base Price is required.");
+    if (!formData.name.trim() || !formData.slug.trim() || formData.basePrice === "" || formData.basePrice < 0) {
+      toast.error("Valid Name, Slug, and Base Price are required.");
       setActiveTab('basic');
       return;
     }
 
     setSubmitting(true);
-    
     const cleanedData = {
         ...formData,
         documentsRequired: formData.documentsRequired.filter(d => d.trim() !== ""),
@@ -249,12 +265,10 @@ export default function AdminServices({ portal, type = 'nav' }) {
     };
 
     try {
-      let res;
-      if (editingService) {
-        res = await updateService(editingService._id, cleanedData);
-      } else {
-        res = await addService(cleanedData, portal);
-      }
+      const res = editingService 
+        ? await updateService(editingService._id, cleanedData)
+        : await addService(cleanedData, portal);
+      
       if (res.success) {
         toast.success(editingService ? "Service updated successfully!" : "Service added successfully!");
         handleCloseModal();
@@ -291,7 +305,7 @@ export default function AdminServices({ portal, type = 'nav' }) {
     return (
       <div className="flex flex-col items-center justify-center py-24 gap-3">
         <p className="text-red-600 font-medium">{error}</p>
-        <button onClick={refetch} className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors">
+        <button onClick={refetch} className="mt-2 px-4 py-2 rounded-md bg-[#1A56DB] text-white text-sm font-semibold hover:bg-blue-700 transition-colors border-none cursor-pointer">
           Retry
         </button>
       </div>
@@ -357,146 +371,22 @@ export default function AdminServices({ portal, type = 'nav' }) {
         </div>
       </div>
 
-
-
       {type === 'nav' ? (
-        <div className="space-y-4">
-          {mainServices.length === 0 ? (
-            <div className="p-12 text-center bg-white border border-gray-200 rounded-lg shadow-sm text-gray-500 text-sm">
-              No categories found. Click "Add Category" to create one.
-            </div>
-          ) : (
-            mainServices.map(main => {
-              const semiServices = displayServices.filter(s => s.mainService?._id === main._id || s.mainService === main._id).sort((a,b) => (a.order || 0) - (b.order || 0));
-              const isExpanded = expandedCategory === main._id || (searchTerm && semiServices.length > 0);
-              
-              return (
-                <div key={main._id} className="border border-gray-200 rounded-lg shadow-sm bg-white overflow-hidden">
-                  <div className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors">
-                    <button 
-                      className="flex-1 flex items-center gap-3 text-left"
-                      onClick={() => setExpandedCategory(isExpanded ? null : main._id)}
-                    >
-                      <h3 className="text-md font-bold text-gray-900">{main.name}</h3>
-                      <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-semibold">
-                        Order: {main.order}
-                      </span>
-                      {!main.isActive && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 text-xs font-semibold">
-                          Hidden
-                        </span>
-                      )}
-                      <span className="text-xs text-gray-500 ml-2">{semiServices.length} items</span>
-                    </button>
-                    <div className="flex items-center gap-4">
-                      <button onClick={() => handleOpenMainModal(main)} className="text-xs font-bold text-blue-600 hover:underline">Edit Category</button>
-                      <button onClick={() => handleDeleteMain(main._id)} className="text-xs font-bold text-red-600 hover:underline">Delete</button>
-                      <button onClick={() => setExpandedCategory(isExpanded ? null : main._id)}>
-                        <svg className={`w-5 h-5 text-gray-500 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-
-                  {isExpanded && (
-                    <div className="p-4 border-t border-gray-200 bg-gray-50">
-                      <div className="flex justify-end mb-4">
-                        <button
-                          onClick={() => handleOpenModal(null, main._id)}
-                          className="text-sm font-bold text-[#1A56DB] hover:underline flex items-center gap-1"
-                        >
-                          + Add Service to {main.name}
-                        </button>
-                      </div>
-                      
-                      {semiServices.length === 0 ? (
-                        <p className="text-center text-sm text-gray-500 py-4">No services in this category.</p>
-                      ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {semiServices.map((service) => (
-                            <div key={service._id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow relative">
-                              <div className="absolute top-4 right-4 flex gap-2">
-                                <button onClick={() => handleOpenModal(service)} className="text-blue-600 hover:text-blue-800" title="Edit">
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                                </button>
-                                <button onClick={() => handleDelete(service._id)} className="text-red-500 hover:text-red-700" title="Delete">
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                                </button>
-                              </div>
-                              <h4 className="font-bold text-gray-900 pr-12">{service.name}</h4>
-                              <p className="text-xs text-gray-500 mb-2 truncate" title={service.slug}>{service.slug}</p>
-                              
-                              <div className="flex items-center justify-between text-sm mt-4">
-                                <span className="font-medium text-gray-900">₹{service.basePrice?.toLocaleString("en-IN")}</span>
-                                <span className="text-gray-500 text-xs bg-gray-100 px-2 py-1 rounded">Order: {service.order || 0}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          )}
-
-          {/* Collapsible card for Uncategorized/Other Services */}
-          {uncategorizedServices.length > 0 && (() => {
-            const isExpanded = expandedCategory === 'other';
-            return (
-              <div className="border border-amber-200 rounded-lg shadow-sm bg-amber-50/10 overflow-hidden">
-                <div className="w-full flex items-center justify-between p-4 bg-amber-50/20 hover:bg-amber-50/30 transition-colors">
-                  <button 
-                    className="flex-1 flex items-center gap-3 text-left"
-                    onClick={() => setExpandedCategory(isExpanded ? null : 'other')}
-                  >
-                    <h3 className="text-md font-bold text-amber-900">Other Services (Uncategorized)</h3>
-                    <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
-                      Fallback Category
-                    </span>
-                    <span className="text-xs text-gray-500 ml-2">{uncategorizedServices.length} items</span>
-                  </button>
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs text-amber-600 font-medium hidden sm:inline">Visible on public site under "Other Services" dropdown</span>
-                    <button onClick={() => setExpandedCategory(isExpanded ? null : 'other')}>
-                      <svg className={`w-5 h-5 text-gray-550 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                {isExpanded && (
-                  <div className="p-4 border-t border-gray-200 bg-gray-50/50">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {uncategorizedServices.map((service) => (
-                        <div key={service._id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow relative">
-                          <div className="absolute top-4 right-4 flex gap-2">
-                            <button onClick={() => handleOpenModal(service)} className="text-blue-600 hover:text-blue-800" title="Edit">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                            </button>
-                            <button onClick={() => handleDelete(service._id)} className="text-red-500 hover:text-red-700" title="Delete">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                            </button>
-                          </div>
-                          <h4 className="font-bold text-gray-900 pr-12">{service.name}</h4>
-                          <p className="text-xs text-gray-500 mb-2 truncate" title={service.slug}>{service.slug}</p>
-                          
-                          <div className="flex items-center justify-between text-sm mt-4">
-                            <span className="font-medium text-gray-900">₹{service.basePrice?.toLocaleString("en-IN")}</span>
-                            <span className="text-gray-500 text-xs bg-gray-100 px-2 py-1 rounded">Order: {service.order || 0}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })()}
-        </div>
+        <CategoryList 
+          mainServices={mainServices.sort((a,b) => (a.order || 0) - (b.order || 0))}
+          semiServices={semiServices}
+          displayServices={displayServices}
+          searchTerm={searchTerm}
+          handleReorderMain={(newOrder) => handleReorderList('main', newOrder)}
+          handleReorderSemi={(mainId, newOrder) => handleReorderList('semi', newOrder)}
+          handleReorderService={(semiId, newOrder) => handleReorderList('service', newOrder)}
+          handleOpenMainModal={handleOpenMainModal}
+          handleDeleteMain={handleDeleteMain}
+          handleOpenSemiModal={handleOpenSemiModal}
+          handleDeleteSemi={handleDeleteSemi}
+          handleOpenServiceModal={handleOpenModal}
+          handleDeleteService={handleDelete}
+        />
       ) : (
         <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -537,8 +427,8 @@ export default function AdminServices({ portal, type = 'nav' }) {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button onClick={() => handleOpenModal(service)} className="text-blue-600 hover:text-blue-900 mr-4">Edit</button>
-                      <button onClick={() => handleDelete(service._id)} className="text-red-600 hover:text-red-900">Delete</button>
+                      <button onClick={() => handleOpenModal(service)} className="text-blue-600 hover:text-blue-900 mr-4 border-none bg-transparent cursor-pointer">Edit</button>
+                      <button onClick={() => handleDelete(service._id)} className="text-red-600 hover:text-red-900 border-none bg-transparent cursor-pointer">Delete</button>
                     </td>
                   </tr>
                 ))
@@ -548,255 +438,75 @@ export default function AdminServices({ portal, type = 'nav' }) {
         </div>
       )}
 
-      {/* MODAL FOR MAIN SERVICE (CATEGORY) */}
-      {isMainModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden flex flex-col">
-            <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-900">
-                {editingMainService ? "Edit Category" : "Add New Category"}
-              </h3>
-              <button onClick={handleCloseMainModal} className="text-gray-400 hover:text-gray-500">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-            <div className="p-6">
-              <form id="main-service-form" onSubmit={handleMainSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
-                  <input required type="text" name="name" value={mainFormData.name} onChange={handleMainChange} placeholder="e.g. GST Services" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
+      {uncategorizedServices.length > 0 && type === 'nav' && (
+        <div className="mt-4 border border-amber-200 rounded-lg shadow-sm bg-amber-50/10 overflow-hidden">
+          <div className="w-full flex items-center justify-between p-4 bg-amber-50/20 hover:bg-amber-50/30 transition-colors">
+            <h3 className="text-md font-bold text-amber-900 flex-1">Other Services (Uncategorized)</h3>
+            <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-semibold">
+              Fallback Category
+            </span>
+          </div>
+          <div className="p-4 border-t border-gray-200 bg-gray-50/50">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {uncategorizedServices.map((service) => (
+                <div key={service._id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow relative">
+                  <div className="absolute top-4 right-4 flex gap-2">
+                    <button onClick={() => handleOpenModal(service)} className="text-blue-600 hover:text-blue-800 border-none bg-transparent cursor-pointer" title="Edit">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                    </button>
+                    <button onClick={() => handleDelete(service._id)} className="text-red-500 hover:text-red-700 border-none bg-transparent cursor-pointer" title="Delete">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </button>
+                  </div>
+                  <h4 className="font-bold text-gray-900 pr-12">{service.name}</h4>
+                  <p className="text-xs text-gray-500 mb-2 truncate" title={service.slug}>{service.slug}</p>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Static Order</label>
-                  <input required type="number" name="order" value={mainFormData.order} onChange={handleMainChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                  <p className="text-xs text-gray-500 mt-1">Lower numbers appear first in the navigation bar.</p>
-                </div>
-                <div className="flex items-center gap-2 mt-4">
-                  <input type="checkbox" name="isActive" id="mainIsActive" checked={mainFormData.isActive} onChange={handleMainChange} className="w-4 h-4 text-[#1A56DB] border-gray-300 rounded focus:ring-[#1A56DB]" />
-                  <label htmlFor="mainIsActive" className="text-sm font-medium text-gray-700">Active (Visible in Navigation)</label>
-                </div>
-              </form>
-            </div>
-            <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-3 flex-shrink-0">
-              <button type="button" onClick={handleCloseMainModal} className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button type="submit" form="main-service-form" disabled={submitting} className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1A56DB] hover:bg-blue-700 disabled:opacity-50">
-                {submitting ? "Saving..." : "Save Category"}
-              </button>
+              ))}
             </div>
           </div>
         </div>
       )}
 
-      {/* MODAL FOR SEMI SERVICE */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-900">
-                {editingService ? "Edit Service" : "Add New Service"}
-              </h3>
-              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-500">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-            
-            <div className="flex border-b border-gray-200 bg-gray-50">
-              <button onClick={() => setActiveTab('basic')} className={`px-4 py-3 text-sm font-medium ${activeTab === 'basic' ? 'border-b-2 border-[#1A56DB] text-[#1A56DB]' : 'text-gray-500 hover:text-gray-700'}`}>Basic Info</button>
-              {type === 'nav' && (
-                <button onClick={() => setActiveTab('nav')} className={`px-4 py-3 text-sm font-medium ${activeTab === 'nav' ? 'border-b-2 border-[#1A56DB] text-[#1A56DB]' : 'text-gray-500 hover:text-gray-700'}`}>Navigation Setup</button>
-              )}
-              {type === 'popular' && (
-                <button onClick={() => setActiveTab('nav')} className={`px-4 py-3 text-sm font-medium ${activeTab === 'nav' ? 'border-b-2 border-[#1A56DB] text-[#1A56DB]' : 'text-gray-500 hover:text-gray-700'}`}>Placement Setup</button>
-              )}
-              <button onClick={() => setActiveTab('details')} className={`px-4 py-3 text-sm font-medium ${activeTab === 'details' ? 'border-b-2 border-[#1A56DB] text-[#1A56DB]' : 'text-gray-500 hover:text-gray-700'}`}>Documents & FAQs</button>
-            </div>
+      {/* MODALS */}
+      <CategoryModal
+        isOpen={isMainModalOpen}
+        onClose={handleCloseMainModal}
+        editingMainService={editingMainService}
+        mainFormData={mainFormData}
+        handleMainChange={handleMainChange}
+        handleMainSubmit={handleMainSubmit}
+        submitting={submitting}
+      />
 
-            <div className="p-6 overflow-y-auto flex-1">
-              <form id="service-form" onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* BASIC INFO TAB */}
-                {activeTab === 'basic' && (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Service Name</label>
-                      <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Slug (URL friendly)</label>
-                      <input required type="text" name="slug" value={formData.slug} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                      <textarea name="description" value={formData.description} onChange={handleChange} rows="2" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Base Price</label>
-                        <input required type="number" name="basePrice" min="0" value={formData.basePrice} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Billing Cycle</label>
-                        <select name="billingCycle" value={formData.billingCycle} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm">
-                          <option value="Fixed">Fixed</option>
-                          <option value="Month">Month</option>
-                          <option value="Quarter">Quarter</option>
-                          <option value="Year">Year</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Icon</label>
-                        <select name="icon" value={formData.icon} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm">
-                          {ICONS.map((icon) => (
-                            <option key={icon} value={icon}>{icon.charAt(0).toUpperCase() + icon.slice(1)}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Tag (Optional)</label>
-                        <input type="text" name="tag" placeholder="e.g. Most Popular" value={formData.tag} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                      </div>
-                    </div>
-                  </div>
-                )}
+      <SemiCategoryModal
+        isOpen={isSemiModalOpen}
+        onClose={handleCloseSemiModal}
+        editingSemiService={editingSemiService}
+        semiFormData={semiFormData}
+        handleSemiChange={handleSemiChange}
+        handleSemiSubmit={handleSemiSubmit}
+        mainServices={mainServices}
+        submitting={submitting}
+      />
 
-                {/* NAVIGATION/PLACEMENT SETUP TAB */}
-                {activeTab === 'nav' && (
-                  <div className="space-y-4">
-                    {type === 'nav' && (
-                      <div className="flex items-center justify-between p-4 bg-blue-50 border border-blue-100 rounded-lg">
-                        <div>
-                          <h4 className="text-sm font-bold text-[#1A56DB]">Active in Navigation</h4>
-                          <p className="text-xs text-blue-800">If toggled off, this service will not appear in the top navbar.</p>
-                        </div>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                          <input type="checkbox" name="isActive" checked={formData.isActive} onChange={handleChange} className="sr-only peer" />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#1A56DB]"></div>
-                        </label>
-                      </div>
-                    )}
-
-                    {type === 'popular' && (
-                      <div className="flex items-center justify-between p-4 bg-orange-50 border border-orange-100 rounded-lg">
-                        <div>
-                          <h4 className="text-sm font-bold text-orange-600">Featured as Popular Service</h4>
-                          <p className="text-xs text-orange-800">If toggled on, this service appears in the Popular Services section on the homepage.</p>
-                        </div>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                          <input type="checkbox" name="isPopular" checked={formData.isPopular} onChange={handleChange} className="sr-only peer" />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
-                        </label>
-                      </div>
-                    )}
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Category (Main Service)</label>
-                      <select name="mainService" value={formData.mainService} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm">
-                        <option value="">-- No Category --</option>
-                        {mainServices.map(main => (
-                           <option key={main._id} value={main._id}>{main.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Static Order</label>
-                      <input required type="number" name="order" value={formData.order} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                      <p className="text-xs text-gray-500 mt-1">Order this service appears inside its category dropdown.</p>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Nav Section (e.g. Registration)</label>
-                      <input type="text" name="navSection" value={formData.navSection} onChange={handleChange} placeholder="Group heading inside the dropdown" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] focus:border-[#1A56DB] sm:text-sm" />
-                    </div>
-                  </div>
-                )}
-
-                {/* DETAILS & FAQS TAB */}
-                {activeTab === 'details' && (
-                  <div className="space-y-8">
-                    
-                    {/* Documents Required */}
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="block text-sm font-medium text-gray-700">Documents Required</label>
-                        <button type="button" onClick={() => addArrayItem('documentsRequired')} className="text-xs text-[#1A56DB] font-medium">+ Add Document</button>
-                      </div>
-                      <div className="space-y-2">
-                        {formData.documentsRequired.map((doc, index) => (
-                          <div key={index} className="flex gap-2">
-                            <input type="text" value={doc} onChange={(e) => handleArrayChange('documentsRequired', index, e.target.value)} placeholder={`Document ${index + 1}`} className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                            <button type="button" onClick={() => removeArrayItem('documentsRequired', index)} className="p-2 text-red-500 hover:bg-red-50 rounded-md">
-                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Process Steps */}
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="block text-sm font-medium text-gray-700">Process Steps</label>
-                        <button type="button" onClick={() => addArrayItem('processSteps')} className="text-xs text-[#1A56DB] font-medium">+ Add Step</button>
-                      </div>
-                      <div className="space-y-2">
-                        {formData.processSteps.map((step, index) => (
-                          <div key={index} className="flex gap-2">
-                            <input type="text" value={step} onChange={(e) => handleArrayChange('processSteps', index, e.target.value)} placeholder={`Step ${index + 1}`} className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                            <button type="button" onClick={() => removeArrayItem('processSteps', index)} className="p-2 text-red-500 hover:bg-red-50 rounded-md">
-                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* FAQs */}
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <label className="block text-sm font-medium text-gray-700">FAQs</label>
-                        <button type="button" onClick={() => addArrayItem('faqs', { q: "", a: "" })} className="text-xs text-[#1A56DB] font-medium">+ Add FAQ</button>
-                      </div>
-                      <div className="space-y-4">
-                        {formData.faqs.map((faq, index) => (
-                          <div key={index} className="flex gap-2 p-3 border border-gray-200 rounded-lg bg-gray-50">
-                            <div className="flex-1 space-y-2">
-                              <input type="text" value={faq.q} onChange={(e) => handleFaqChange(index, 'q', e.target.value)} placeholder="Question" className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                              <textarea value={faq.a} onChange={(e) => handleFaqChange(index, 'a', e.target.value)} placeholder="Answer" rows="2" className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1A56DB] sm:text-sm" />
-                            </div>
-                            <button type="button" onClick={() => removeArrayItem('faqs', index)} className="p-2 text-red-500 hover:bg-red-100 rounded-md self-start">
-                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-              </form>
-            </div>
-
-            <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-3 flex-shrink-0">
-              <button
-                type="button"
-                onClick={handleCloseModal}
-                className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A56DB]"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                form="service-form"
-                disabled={submitting}
-                className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1A56DB] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1A56DB] disabled:opacity-50"
-              >
-                {submitting ? "Saving..." : "Save Service"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ServiceModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        type={type}
+        editingService={editingService}
+        formData={formData}
+        handleChange={handleChange}
+        handleArrayChange={handleArrayChange}
+        handleFaqChange={handleFaqChange}
+        addArrayItem={addArrayItem}
+        removeArrayItem={removeArrayItem}
+        handleSubmit={handleSubmit}
+        mainServices={mainServices}
+        semiServices={semiServices}
+        submitting={submitting}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </div>
   );
 }

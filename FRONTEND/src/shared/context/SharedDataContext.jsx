@@ -31,6 +31,15 @@ export function SharedDataProvider({ children }) {
       return [];
     }
   });
+
+  const [semiServices, setSemiServices] = useState(() => {
+    try {
+      const cached = localStorage.getItem("shared_semiServices");
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
   
   const [settings, setSettings] = useState(() => {
     try {
@@ -84,26 +93,30 @@ export function SharedDataProvider({ children }) {
 
     globalFetchPromise = (async () => {
       try {
-        const [servicesRes, mainServicesRes, settingsRes, locationsRes] = await Promise.all([
+        const [servicesRes, mainServicesRes, semiServicesRes, settingsRes, locationsRes] = await Promise.all([
           axios.get(`${API_BASE}/services`).catch(() => ({ data: { services: [] } })),
           axios.get(`${API_BASE}/main-services`).catch(() => ({ data: { mainServices: [] } })),
+          axios.get(`${API_BASE}/semi-services`).catch(() => ({ data: { semiServices: [] } })),
           axios.get(`${API_BASE}/settings`).catch(() => ({ data: { success: true, settings: {} } })),
           axios.get(`${API_BASE}/virtual-space/locations`).catch(() => ({ data: { success: true, locations: [] } }))
         ]);
 
         const servicesData = servicesRes.data;
         const mainServicesData = mainServicesRes.data;
+        const semiServicesData = semiServicesRes.data;
         const settingsData = settingsRes.data;
         const locationsData = locationsRes.data;
 
         if (servicesData.success !== false && mainServicesData.success !== false) {
           const freshServices = servicesData.services || [];
           const freshMainServices = mainServicesData.mainServices || [];
+          const freshSemiServices = semiServicesData.semiServices || [];
           const freshSettings = settingsData.settings || {};
           const freshLocations = locationsData.locations || [];
 
           setServices(freshServices);
           setMainServices(freshMainServices);
+          setSemiServices(freshSemiServices);
           setSettings(freshSettings);
           setLocations(freshLocations);
           
@@ -113,6 +126,7 @@ export function SharedDataProvider({ children }) {
           try {
             localStorage.setItem("shared_services", JSON.stringify(freshServices));
             localStorage.setItem("shared_mainServices", JSON.stringify(freshMainServices));
+            localStorage.setItem("shared_semiServices", JSON.stringify(freshSemiServices));
             localStorage.setItem("shared_settings", JSON.stringify(freshSettings));
             localStorage.setItem("shared_locations", JSON.stringify(freshLocations));
           } catch (e) {
@@ -182,6 +196,7 @@ export function SharedDataProvider({ children }) {
     <SharedDataContext.Provider value={{ 
       services, 
       mainServices, 
+      semiServices,
       settings,
       locations, 
       loading, 

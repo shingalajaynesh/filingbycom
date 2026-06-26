@@ -16,6 +16,7 @@ router.get("/profile", authenticateToken, UserController.getProfile);
 router.get("/settings", SettingController.getPublicSettings);
 router.get("/services", ServiceController.getAllServices);
 router.get("/main-services", ServiceController.getAllMainServices);
+router.get("/semi-services", ServiceController.getAllSemiServices);
 
 // ── Orders (Protected) ───────────────────────────────────────────────────────
 router.post("/orders/razorpay", authenticateToken, OrderController.createRazorpayOrder);
