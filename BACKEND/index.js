@@ -20,6 +20,7 @@ import adminRouter from "./src/modules/admin/admin.routes.js";
 import virtualSpaceRouter from "./src/modules/virtual-space/virtual-space.routes.js";
 import blogRouter from "./src/modules/blog/blog.routes.js";
 import reviewRouter from "./src/modules/review/review.routes.js";
+import partnershipDeedRouter from "./src/modules/partnership-deed/partnership-deed.routes.js";
 import logger from "./src/services/logger.service.js";
 import { requestLogger } from "./src/middleware/logger.middleware.js";
 import helmet from "helmet";
@@ -137,6 +138,7 @@ app.use(adminRouter);
 app.use(virtualSpaceRouter);
 app.use(blogRouter);
 app.use(reviewRouter);
+app.use(partnershipDeedRouter);
 
 // Centralized error handling middleware
 app.use(globalErrorHandler);

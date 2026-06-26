@@ -16,6 +16,7 @@ import AdminVirtualBookings from "../components/AdminVirtualBookings";
 import AdminSettings from "../components/AdminSettings";
 import AdminBlogs from "../components/AdminBlogs";
 import AdminReviews from "../components/AdminReviews";
+import AdminPartnershipDeeds from "../components/AdminPartnershipDeeds";
 
 export default function AdminDashboard() {
   const [currentPortal, setCurrentPortal] = useState(() => {
@@ -118,6 +119,7 @@ export default function AdminDashboard() {
         {activeTab === "blogs" && <AdminBlogs />}
         {activeTab === "reviews" && <AdminReviews portal={currentPortal} />}
         {activeTab === "settings" && <AdminSettings portal={currentPortal} />}
+        {activeTab === "partnership-deeds" && <AdminPartnershipDeeds />}
       </main>
     </div>
   );

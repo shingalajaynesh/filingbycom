@@ -32,3 +32,4 @@ adminRouter.put("/admin/main-services/:id",   verifyAdmin, ServiceController.upd
 adminRouter.delete("/admin/main-services/:id",verifyAdmin, ServiceController.deleteMainService);
 
 export default adminRouter;
+

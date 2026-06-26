@@ -26,6 +26,7 @@ export default function AdminNavbar({ activeTab, onTabChange, currentPortal, onP
     ? [
         { id: "orders", label: "Orders" },
         { id: "history", label: "History" },
+        { id: "partnership-deeds", label: "Partnership Deeds" },
         { id: "nav-services", label: "Navigation Services" },
         { id: "popular-services", label: "Popular Services" },
         { id: "blogs", label: "Blogs" },

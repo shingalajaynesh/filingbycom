@@ -1,22 +1,24 @@
 import { useNavigate } from 'react-router-dom';
+import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 const actions = [
   { icon: "📋", label: "New GST Filing", color: "bg-green-50 hover:bg-green-100/80 text-green-700 border-green-100", tab: null, slug: "gst-registration" },
   { icon: "💰", label: "File ITR", color: "bg-blue-50 hover:bg-blue-100/80 text-blue-700 border-blue-100", tab: null, slug: "itr-1-filing" },
   { icon: "🏢", label: "Register Company", color: "bg-purple-50 hover:bg-purple-100/80 text-purple-700 border-purple-100", tab: null, slug: "private-limited-company" },
+  { icon: "📜", label: "Partnership Deed", color: "bg-teal-50 hover:bg-teal-100/80 text-teal-700 border-teal-100", tab: null, slug: null, path: "/dashboard/partnership-deed" },
   { icon: "™️", label: "Trademark", color: "bg-orange-50 hover:bg-orange-100/80 text-orange-700 border-orange-100", tab: null, slug: "trademark-registration" },
   { icon: "📁", label: "Upload Docs", color: "bg-yellow-50 hover:bg-yellow-100/80 text-yellow-800 border-yellow-100", tab: "documents", slug: null },
   { icon: "🎧", label: "Get Support", color: "bg-red-50 hover:bg-red-100/80 text-red-700 border-red-100", tab: "support", slug: null },
 ];
-
-import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 export default function QuickActions({ onNavigate }) {
   const navigate = useNavigate();
   const { settings } = useSharedData();
 
   const handleActionClick = (action) => {
-    if (action.slug) {
+    if (action.path) {
+      navigate(action.path);
+    } else if (action.slug) {
       navigate(`/services/${action.slug}`);
     } else if (action.tab === 'documents') {
       window.open(settings?.ca_whatsapp_url || "https://wa.me/917567126945", "_blank");

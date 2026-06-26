@@ -44,6 +44,7 @@ const Register = lazy(() => import("../features/auth/components/Register"));
 const ClientDashboard = lazy(() => import("../features/client-dashboard/pages/ClientDashboard"));
 const VirtualDashboard = lazy(() => import("../features/virtual-office/dashboard/VirtualDashboard"));
 const PartnerDashboard = lazy(() => import("../features/virtual-office/dashboard/PartnerDashboard"));
+const PartnershipDeedPage = lazy(() => import("../features/ca-portal/partnership-deed/pages/PartnershipDeedPage"));
 
 // ── Legal & Policies ──
 const TermsConditions = lazy(() => import("../features/legal/pages/TermsConditions"));
@@ -227,6 +228,14 @@ function AppRoutesContent() {
             element={
               <ProtectedRoute>
                 <ClientDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/partnership-deed"
+            element={
+              <ProtectedRoute>
+                <PartnershipDeedPage />
               </ProtectedRoute>
             }
           />

@@ -1,0 +1,25 @@
+# Root dependencies and build files
+node_modules/
+package-lock.json
+package.json
+
+# Local generated files
+public/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
