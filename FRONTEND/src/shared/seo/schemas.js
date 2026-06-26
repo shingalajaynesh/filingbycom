@@ -150,11 +150,15 @@ export const homeReviewsSchema = {
         "@type": "ShippingDeliveryTime",
         "handlingTime": {
           "@type": "QuantitativeValue",
-          "value": 0
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "d"
         },
         "transitTime": {
           "@type": "QuantitativeValue",
-          "value": 1
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "d"
         }
       }
     },
@@ -220,11 +224,15 @@ export const virtualOfficeSchema = {
         "@type": "ShippingDeliveryTime",
         "handlingTime": {
           "@type": "QuantitativeValue",
-          "value": 0
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "d"
         },
         "transitTime": {
           "@type": "QuantitativeValue",
-          "value": 1
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "d"
         }
       }
     },
@@ -338,11 +346,15 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
           "@type": "ShippingDeliveryTime",
           "handlingTime": {
             "@type": "QuantitativeValue",
-            "value": 0
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "d"
           },
           "transitTime": {
             "@type": "QuantitativeValue",
-            "value": 1
+            "minValue": 1,
+            "maxValue": 3,
+            "unitCode": "d"
           }
         }
       },
