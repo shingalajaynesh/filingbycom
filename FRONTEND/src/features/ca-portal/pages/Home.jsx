@@ -4,6 +4,7 @@ import axios from "axios";
 import Search from "../components/Search.jsx";
 import PopularServices from "../components/PopularServices.jsx";
 import SEO from "../../../shared/components/SEO.jsx";
+import ReviewSubmissionModal from "../../../shared/components/ReviewSubmissionModal.jsx";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { localBusinessSchema, websiteSchema, homeReviewsSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
@@ -154,6 +155,7 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(null);
   const { settings, locations } = useSharedData();
   const [dynamicReviews, setDynamicReviews] = useState([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   // Find a popular office address from locations
   let popularCenter = null;
@@ -594,8 +596,40 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-gray-900">
             What Our Clients Say
           </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3 md:gap-6">
-            {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, index) => (
+            {(() => {
+              const reviewItems = dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS;
+              const reviewCount = reviewItems.length;
+              const averageRating = reviewCount
+                ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
+                : "0.0";
+
+              return (
+                <>
+                  <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:text-left">
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900">What Our Clients Say</h2>
+                      <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-sm sm:justify-start">
+                        <span className="rounded-full bg-white px-4 py-2 font-semibold text-gray-700 shadow-sm ring-1 ring-gray-200">
+                          {reviewCount} reviews
+                        </span>
+                        <span className="rounded-full bg-blue-50 px-4 py-2 font-semibold text-[#1A56DB] ring-1 ring-blue-100">
+                          {averageRating} / 5 average
+                        </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowReviewModal(true)}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                    >
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                      Write a review
+                    </button>
+                  </div>
+
+                  <div className="mt-8 grid gap-4 md:grid-cols-3 md:gap-6">
+                    {reviewItems.map((rev, index) => (
               <article
                 key={index}
                 className="rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6"
@@ -626,10 +660,22 @@ export default function Home() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
+                    ))}
+                  </div>
+                </>
+              );
+            })()}
         </div>
       </section>
+
+      <ReviewSubmissionModal
+        open={showReviewModal}
+        onClose={() => setShowReviewModal(false)}
+        pageType="home"
+        portal="ca-portal"
+        title="Write a review for this page"
+        description="Your feedback will be tied to the Home page and reviewed before it is published."
+      />
 
       {/* FAQ Accordion Section */}
       <section className="bg-gray-50 py-14 sm:py-16 border-t border-b border-gray-100">

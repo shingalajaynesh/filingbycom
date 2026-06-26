@@ -1,8 +1,61 @@
 import Review from "../../models/Review.model.js";
 import Service from "../../models/Service.model.js";
+import VirtualLocation from "../../models/VirtualLocation.model.js";
 import mongoose from "mongoose";
 
 class ReviewController {
+  resolveReviewRelations = async ({ pageType, service, serviceSlug, virtualLocation, virtualLocationSlug, officeCenter, portal }) => {
+    const relations = {
+      pageType,
+      portal: portal || "ca-portal",
+      service: undefined,
+      virtualLocation: undefined,
+      officeCenter: undefined,
+    };
+
+    if (pageType === "service") {
+      const serviceLookup = service || serviceSlug;
+
+      if (!serviceLookup) {
+        throw new Error("Service review requires a service reference.");
+      }
+
+      if (mongoose.Types.ObjectId.isValid(serviceLookup)) {
+        relations.service = serviceLookup;
+      } else {
+        const serviceDoc = await Service.findOne({ slug: serviceLookup }).lean();
+        if (!serviceDoc) {
+          throw new Error("Service not found for this review.");
+        }
+        relations.service = serviceDoc._id;
+      }
+    }
+
+    if (pageType === "location") {
+      const locationLookup = virtualLocation || virtualLocationSlug;
+
+      if (!locationLookup) {
+        throw new Error("Location review requires a location reference.");
+      }
+
+      if (mongoose.Types.ObjectId.isValid(locationLookup)) {
+        relations.virtualLocation = locationLookup;
+      } else {
+        const locationDoc = await VirtualLocation.findOne({ slug: locationLookup }).lean();
+        if (!locationDoc) {
+          throw new Error("Location not found for this review.");
+        }
+        relations.virtualLocation = locationDoc._id;
+      }
+
+      if (officeCenter) {
+        relations.officeCenter = officeCenter;
+      }
+    }
+
+    return relations;
+  };
+
   // ─── Get Reviews (Public) ──────────────────────────────────────────────────
   getReviews = async (req, res) => {
     try {
@@ -51,6 +104,70 @@ class ReviewController {
       return res.status(200).json({ success: true, reviews });
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
+  // ─── Submit Review (Public) ────────────────────────────────────────────────
+  submitReview = async (req, res) => {
+    try {
+      const {
+        authorName,
+        businessName,
+        rating,
+        comment,
+        pageType = "home",
+        portal,
+        service,
+        serviceSlug,
+        virtualLocation,
+        virtualLocationSlug,
+        officeCenter,
+        initials,
+        color,
+      } = req.body;
+
+      if (!authorName || !comment) {
+        return res.status(400).json({ success: false, message: "Author Name and Comment are required." });
+      }
+
+      const relations = await this.resolveReviewRelations({
+        pageType,
+        service,
+        serviceSlug,
+        virtualLocation,
+        virtualLocationSlug,
+        officeCenter,
+        portal,
+      });
+
+      const newReview = new Review({
+        authorName,
+        businessName,
+        rating,
+        comment,
+        pageType,
+        portal: relations.portal,
+        service: relations.service,
+        virtualLocation: relations.virtualLocation,
+        officeCenter: relations.officeCenter,
+        initials,
+        color,
+        isActive: false,
+      });
+
+      await newReview.save();
+
+      const populatedReview = await Review.findById(newReview._id)
+        .populate("service", "name slug portal")
+        .populate("virtualLocation", "name slug");
+
+      return res.status(201).json({
+        success: true,
+        review: populatedReview,
+        message: "Thanks for your review. It has been submitted for approval.",
+      });
+    } catch (error) {
+      return res.status(400).json({ success: false, message: error.message });
     }
   };
 
