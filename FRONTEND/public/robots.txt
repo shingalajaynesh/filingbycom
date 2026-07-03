@@ -4,8 +4,6 @@ Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /virtual-office/dashboard/
 Disallow: /partner/dashboard/
-Disallow: /login/
-Disallow: /register/
 Disallow: /sso-callback/
 
 Sitemap: https://filingby.com/sitemap.xml

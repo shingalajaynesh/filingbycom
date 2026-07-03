@@ -27,8 +27,10 @@ export default function SEO({
   extraSchemas = []
 }) {
   const siteUrl = "https://filingby.com";
-  const path = canonical || "";
-  const canonicalUrl = `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`;
+  const path = canonical !== undefined ? canonical : (typeof window !== "undefined" ? window.location.pathname : "");
+  const canonicalUrl = path
+    ? (path.startsWith("http://") || path.startsWith("https://") ? path : `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`)
+    : null;
 
   // Combine schemas and filter out null/undefined ones
   const allSchemas = [schema, ...extraSchemas].filter(Boolean);
@@ -48,18 +50,18 @@ export default function SEO({
       )}
 
       {/* Canonical Tag */}
-      <link rel="canonical" href={canonicalUrl} />
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Open Graph (Facebook / LinkedIn) */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={canonicalUrl} />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
       {title && <meta property="og:title" content={title} />}
       {description && <meta property="og:description" content={description} />}
       {ogImage && <meta property="og:image" content={ogImage} />}
 
       {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={canonicalUrl} />
+      {canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
       {title && <meta name="twitter:title" content={title} />}
       {description && <meta name="twitter:description" content={description} />}
       {ogImage && <meta name="twitter:image" content={ogImage} />}
