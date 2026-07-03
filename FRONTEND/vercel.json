@@ -1,6 +1,36 @@
 {
   "redirects": [
     {
+      "source": "/pages/partnership-firm-return",
+      "destination": "/services/partnership-firm",
+      "permanent": true
+    },
+    {
+      "source": "/pages/indian-subsidiary-registration",
+      "destination": "/services/indian-subsidiary",
+      "permanent": true
+    },
+    {
+      "source": "/pages/income-tax-audit",
+      "destination": "/services/tax-audit",
+      "permanent": true
+    },
+    {
+      "source": "/account",
+      "destination": "/dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/search",
+      "destination": "/dashboard",
+      "permanent": true
+    },
+    {
       "source": "/pages/csr-audit",
       "destination": "/services/csr-registration",
       "permanent": true

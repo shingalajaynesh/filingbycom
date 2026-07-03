@@ -35,9 +35,16 @@ const DocumentSection = () => {
 
 export default function ClientDashboard() {
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(
-    location.state?.tab || 'overview'
-  );
+  const [activeTab, setActiveTab] = useState(() => {
+    if (location.state?.tab) {
+      return location.state.tab;
+    }
+    const hasSearch = sessionStorage.getItem("dashboard_search_query");
+    if (hasSearch) {
+      return 'new-order';
+    }
+    return 'overview';
+  });
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [notifOpen, setNotifOpen] = useState(false);
   const { orders, ordersLoading: loading, fetchOrders } = useOrderContext();

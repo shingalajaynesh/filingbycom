@@ -1,11 +1,17 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 import ServiceCard from '../../ca-portal/components/ServiceCard';
 
 export default function NewOrderSection() {
   const { services, loading } = useSharedData();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => {
+    return sessionStorage.getItem("dashboard_search_query") || '';
+  });
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  useEffect(() => {
+    sessionStorage.removeItem("dashboard_search_query");
+  }, []);
 
   const filteredServices = useMemo(() => {
     if (!services) return [];
