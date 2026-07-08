@@ -28,8 +28,17 @@ export default function Search() {
         return () => document.removeEventListener('mousedown', handleClick);
     }, []);
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        const query = searchQuery.trim();
+        if (query) {
+            sessionStorage.setItem("dashboard_search_query", query);
+            navigate('/dashboard', { state: { tab: 'new-order' } });
+        }
+    };
+
     return (
-        <div className="search-container relative mx-auto w-full max-w-2xl rounded-2xl bg-white p-2 shadow-2xl">
+        <form onSubmit={handleSearchSubmit} className="search-container relative mx-auto w-full max-w-2xl rounded-2xl bg-white p-2 shadow-2xl">
             <div className="flex flex-col gap-2 sm:flex-row">
                 <input
                     type="text"
@@ -41,7 +50,7 @@ export default function Search() {
                         setShowResults(e.target.value.length > 1);
                     }}
                 />
-                <button className="w-full rounded-xl bg-[#1A56DB] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 sm:w-auto">Search</button>
+                <button type="submit" className="w-full rounded-xl bg-[#1A56DB] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700 sm:w-auto">Search</button>
             </div>
 
             {showResults && filtered.length > 0 && (
@@ -49,6 +58,7 @@ export default function Search() {
                     {filtered.slice(0, 6).map((service) => (
                         <button
                             key={service.slug}
+                            type="button"
                             onClick={() => navigate(`/services/${service.slug}`)}
                             className="flex w-full items-center justify-between border-b border-gray-50 px-5 py-3 text-left transition-colors hover:bg-blue-50"
                         >
@@ -61,6 +71,6 @@ export default function Search() {
                     ))}
                 </div>
             )}
-        </div>
+        </form>
     );
 }

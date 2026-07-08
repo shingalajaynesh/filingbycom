@@ -152,13 +152,13 @@ export const homeReviewsSchema = {
           "@type": "QuantitativeValue",
           "minValue": 0,
           "maxValue": 1,
-          "unitCode": "d"
+          "unitCode": "DAY"
         },
         "transitTime": {
           "@type": "QuantitativeValue",
           "minValue": 1,
           "maxValue": 3,
-          "unitCode": "d"
+          "unitCode": "DAY"
         }
       }
     },
@@ -226,13 +226,13 @@ export const virtualOfficeSchema = {
           "@type": "QuantitativeValue",
           "minValue": 0,
           "maxValue": 1,
-          "unitCode": "d"
+          "unitCode": "DAY"
         },
         "transitTime": {
           "@type": "QuantitativeValue",
           "minValue": 1,
           "maxValue": 3,
-          "unitCode": "d"
+          "unitCode": "DAY"
         }
       }
     },
@@ -348,13 +348,13 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
             "@type": "QuantitativeValue",
             "minValue": 0,
             "maxValue": 1,
-            "unitCode": "d"
+            "unitCode": "DAY"
           },
           "transitTime": {
             "@type": "QuantitativeValue",
             "minValue": 1,
             "maxValue": 3,
-            "unitCode": "d"
+            "unitCode": "DAY"
           }
         }
       },

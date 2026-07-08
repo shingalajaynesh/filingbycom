@@ -5,6 +5,7 @@ import { m } from 'framer-motion';
 import axios from 'axios';
 import CheckoutModal from '../../checkout/components/CheckoutModal';
 import SEO from '../../../shared/components/SEO.jsx';
+import ReviewSubmissionModal from '../../../shared/components/ReviewSubmissionModal.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 
@@ -15,6 +16,7 @@ export default function ServicePage() {
   
   const [openFaq, setOpenFaq] = useState(0);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
   
   const { services, loading: cacheLoading, refresh, settings } = useSharedData();
   const [serviceData, setServiceData] = useState(null);
@@ -234,52 +236,102 @@ export default function ServicePage() {
           </m.aside>
         </div>
  
-        {serviceReviews.length > 0 && (
-          <m.section 
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-          >
-            <h2 className="text-xl font-bold text-gray-900 mb-1">What Our Clients Say About This Service</h2>
-            <p className="text-sm text-gray-500 mb-6">Verified feedback from business owners and founders</p>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {serviceReviews.map((rev, idx) => (
-                <article
-                  key={idx}
-                  className="rounded-2xl border border-gray-100 bg-slate-50 p-5 text-left"
-                >
-                  <div className="flex items-center text-yellow-400 mb-3">
-                    {Array.from({ length: rev.rating || 5 }).map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                    {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
-                      <span key={i} className="text-gray-300">★</span>
-                    ))}
-                  </div>
-                  <p className="mb-4 text-sm leading-relaxed text-gray-605 italic">
-                    "{rev.comment}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-[#1A56DB]">
-                      {rev.authorName
-                        ?.split(" ")
-                        .map((n) => n[0])
-                        .join("") || "C"}
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-905 font-semibold">
-                        {rev.authorName}
-                      </p>
-                      <p className="text-[10px] text-gray-500">{rev.businessName}</p>
+        <m.section 
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+        >
+          {(() => {
+            const reviewCount = serviceReviews.length;
+            const averageRating = reviewCount
+              ? (serviceReviews.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
+              : "0.0";
+
+            return (
+              <>
+                <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-1">What Our Clients Say About This Service</h2>
+                    <p className="text-sm text-gray-500">Verified feedback from business owners and founders</p>
+                    <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                      <span className="rounded-full bg-gray-50 px-4 py-2 font-semibold text-gray-700 ring-1 ring-gray-200">
+                        {reviewCount} reviews
+                      </span>
+                      <span className="rounded-full bg-blue-50 px-4 py-2 font-semibold text-[#1A56DB] ring-1 ring-blue-100">
+                        {averageRating} / 5 average
+                      </span>
                     </div>
                   </div>
-                </article>
-              ))}
-            </div>
-          </m.section>
-        )}
+
+                  <button
+                    type="button"
+                    onClick={() => setShowReviewModal(true)}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                    Write a review
+                  </button>
+                </div>
+
+                <div className="mt-6">
+                  {reviewCount > 0 ? (
+                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                      {serviceReviews.map((rev, idx) => (
+                        <article
+                          key={idx}
+                          className="rounded-2xl border border-gray-100 bg-slate-50 p-5 text-left"
+                        >
+                          <div className="flex items-center text-yellow-400 mb-3">
+                            {Array.from({ length: rev.rating || 5 }).map((_, i) => (
+                              <span key={i}>★</span>
+                            ))}
+                            {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
+                              <span key={i} className="text-gray-300">★</span>
+                            ))}
+                          </div>
+                          <p className="mb-4 text-sm leading-relaxed text-gray-605 italic">
+                            "{rev.comment}"
+                          </p>
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-[#1A56DB]">
+                              {rev.authorName
+                                ?.split(" ")
+                                .map((n) => n[0])
+                                .join("") || "C"}
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-gray-905 font-semibold">
+                                {rev.authorName}
+                              </p>
+                              <p className="text-[10px] text-gray-500">{rev.businessName}</p>
+                            </div>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl border border-dashed border-gray-200 bg-gray-50 px-6 py-10 text-center">
+                      <p className="text-sm font-semibold text-gray-700">No reviews yet for this service.</p>
+                      <p className="mt-1 text-sm text-gray-500">Be the first to leave feedback for this page.</p>
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+          })()}
+        </m.section>
+
+        <ReviewSubmissionModal
+          open={showReviewModal}
+          onClose={() => setShowReviewModal(false)}
+          pageType="service"
+          portal="ca-portal"
+          serviceSlug={slug}
+          title="Write a review for this service"
+          description="Your feedback will be tied to this service page and reviewed before it is published."
+        />
 
         {relatedServices.length > 0 && (
           <m.section 

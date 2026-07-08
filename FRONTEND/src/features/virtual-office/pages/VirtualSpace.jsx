@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
+import ReviewSubmissionModal from "../../../shared/components/ReviewSubmissionModal.jsx";
 import { virtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
@@ -196,6 +197,7 @@ export default function VirtualSpace() {
 
   const { submitInquiry, settings } = useSharedData();
   const [dynamicReviews, setDynamicReviews] = useState([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   useEffect(() => {
     const fetchHomeReviews = async () => {
@@ -836,20 +838,38 @@ export default function VirtualSpace() {
       ══════════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-20 sm:py-24">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-yellow-50 text-yellow-600">Reviews</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-3">Highly Rated Virtual Office Service</h2>
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <div className="flex gap-0.5">
-                {[1,2,3,4].map(i => <div key={i} className="w-5 h-5 text-yellow-400"><Icons.Star /></div>)}
-                <div className="w-5 h-5 text-yellow-300"><Icons.Star /></div>
-              </div>
-              <span className="text-gray-600 text-sm font-semibold">4.7 / 5 · 928 Google Reviews</span>
-            </div>
-          </div>
+          {(() => {
+            const reviewItems = dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS;
+            const reviewCount = reviewItems.length;
+            const averageRating = reviewCount
+              ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
+              : "0.0";
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, i) => {
+            return (
+              <>
+                <div className="text-center mb-12">
+                  <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-yellow-50 text-yellow-600">Reviews</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-3">Highly Rated Virtual Office Service</h2>
+                  <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                    <span className="rounded-full bg-gray-50 px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-gray-200">
+                      {reviewCount} reviews
+                    </span>
+                    <span className="rounded-full bg-yellow-50 px-4 py-2 text-sm font-semibold text-yellow-700 ring-1 ring-yellow-100">
+                      {averageRating} / 5 average
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowReviewModal(true)}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                    >
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                      Write a review
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {reviewItems.map((rev, i) => {
               const name = rev.authorName || rev.name;
               const text = rev.comment || rev.text;
               const rating = rev.rating || 5;
@@ -882,10 +902,22 @@ export default function VirtualSpace() {
                   </div>
                 </div>
               );
-            })}
-          </div>
+                    })}
+                  </div>
+                </>
+              );
+            })()}
         </div>
       </section>
+
+        <ReviewSubmissionModal
+          open={showReviewModal}
+          onClose={() => setShowReviewModal(false)}
+          pageType="home"
+          portal="virtual-space"
+          title="Write a review for Virtual Space"
+          description="Your feedback will be attached to the Virtual Space page and reviewed before it is published."
+        />
 
       {/* ══════════════════════════════════════════════════════════════════
           FAQ

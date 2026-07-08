@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
+import ReviewSubmissionModal from "../../../shared/components/ReviewSubmissionModal.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
@@ -40,6 +41,7 @@ export default function VirtualOfficeArea() {
   const dbArea = dbCity?.addresses?.find(a => a.slug === areaSlug);
 
   const [dynamicReviews, setDynamicReviews] = useState([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   useEffect(() => {
     const fetchAreaReviews = async () => {
@@ -483,27 +485,42 @@ export default function VirtualOfficeArea() {
 
       {/* Testimonials / Reviews Section */}
       <section className="max-w-screen-xl mx-auto px-4 py-16 border-t border-gray-200/50">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[10px] font-black uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
-            Customer Testimonials
-          </span>
-          <h2 className="text-2xl md:text-4xl font-black text-gray-950 mt-4 leading-tight">
-            Highly Rated Virtual Office Service in {selectedArea.name}
-          </h2>
-          <div className="flex items-center justify-center gap-2 mt-3">
-            <div className="flex gap-0.5 text-yellow-400">
-              {[1,2,3,4,5].map(i => (
-                <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-gray-650 text-sm font-semibold">4.7 / 5 · Google Rated</span>
-          </div>
-        </div>
+        {(() => {
+          const reviewItems = dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS;
+          const reviewCount = reviewItems.length;
+          const averageRating = reviewCount
+            ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
+            : "0.0";
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS).map((rev, i) => {
+          return (
+            <>
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
+                  Customer Testimonials
+                </span>
+                <h2 className="text-2xl md:text-4xl font-black text-gray-950 mt-4 leading-tight">
+                  Highly Rated Virtual Office Service in {selectedArea.name}
+                </h2>
+                <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+                  <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-gray-200">
+                    {reviewCount} reviews
+                  </span>
+                  <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-[#1A56DB] ring-1 ring-blue-100">
+                    {averageRating} / 5 average
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setShowReviewModal(true)}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                    Write a review
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reviewItems.map((rev, i) => {
             const name = rev.authorName || rev.name;
             const text = rev.comment || rev.text;
             const rating = rev.rating || 5;
@@ -539,9 +556,23 @@ export default function VirtualOfficeArea() {
                 </div>
               </div>
             );
-          })}
-        </div>
+                })}
+              </div>
+            </>
+          );
+        })()}
       </section>
+
+      <ReviewSubmissionModal
+        open={showReviewModal}
+        onClose={() => setShowReviewModal(false)}
+        pageType="location"
+        portal="virtual-space"
+        virtualLocationSlug={dbCity?.slug || citySlug}
+        officeCenter={areaSlug}
+        title={`Write a review for ${selectedArea.name}`}
+        description="Your feedback will be attached to this area page and reviewed before it is published."
+      />
     </div>
   );
 }

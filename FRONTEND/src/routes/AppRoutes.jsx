@@ -178,6 +178,14 @@ function AppRoutesContent() {
           <Route path="/pages/terms-conditions" element={<Navigate to="/terms-conditions" replace />} />
           <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />
           <Route path="/pages/refund-policy" element={<Navigate to="/default/refund" replace />} />
+          <Route path="/pages/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
+          <Route path="/pages/indian-subsidiary-registration" element={<Navigate to="/services/indian-subsidiary" replace />} />
+          <Route path="/pages/income-tax-audit" element={<Navigate to="/services/tax-audit" replace />} />
+
+          {/* Shopify endpoints redirects */}
+          <Route path="/account" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/cart" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/search" element={<Navigate to="/dashboard" replace />} />
 
           {/* Legacy Shopify products catch-all */}
           <Route path="/products/:slug" element={<RedirectToService />} />

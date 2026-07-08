@@ -6,6 +6,7 @@ const reviewRouter = express.Router();
 
 // ── Public Routes ────────────────────────────────────────────────────────────
 reviewRouter.get("/reviews", ReviewController.getReviews);
+reviewRouter.post("/reviews", ReviewController.submitReview);
 
 // ── Protected Admin Routes ───────────────────────────────────────────────────
 reviewRouter.get("/admin/reviews", verifyAdmin, ReviewController.getAllReviewsAdmin);
