@@ -23,8 +23,16 @@ export function AdminAuthProvider({ children }) {
   const location = useLocation();
 
   const checkAuth = useCallback(async () => {
+    const token = sessionStorage.getItem("admin_token");
+    if (!token) {
+      setIsAuthenticated(false);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axios.get(`${API_BASE}/admin/check-auth`, {
+        headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });
       const data = res.data;
@@ -54,6 +62,7 @@ export function AdminAuthProvider({ children }) {
     });
     const data = res.data;
     if (data.success) {
+      sessionStorage.setItem("admin_token", data.token);
       setIsAuthenticated(true);
       return { success: true };
     }
@@ -68,6 +77,7 @@ export function AdminAuthProvider({ children }) {
     } catch (e) {
       console.error("Logout failed", e);
     }
+    sessionStorage.removeItem("admin_token");
     setIsAuthenticated(false);
     setHasChecked(false);
   }, []);

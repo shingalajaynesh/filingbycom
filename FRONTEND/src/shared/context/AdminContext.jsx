@@ -9,6 +9,17 @@ const API_BASE = (
   "http://localhost:3000"
 ).replace(/\/$/, "");
 
+// Attach admin token automatically to all requests if not already authenticated
+axios.interceptors.request.use((config) => {
+  if (!config.headers.Authorization) {
+    const adminToken = sessionStorage.getItem("admin_token");
+    if (adminToken) {
+      config.headers.Authorization = `Bearer ${adminToken}`;
+    }
+  }
+  return config;
+});
+
 const AdminContext = createContext(null);
 
 export function AdminProvider({ children }) {
