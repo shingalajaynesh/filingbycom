@@ -387,6 +387,61 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
   };
 }
 
+export function buildBlogListingSchema(posts = []) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://filingby.com/blog#collection",
+    "url": "https://filingby.com/blog",
+    "name": "FilingBy Knowledge Hub",
+    "description": "Guides on GST, company registration, tax filing, and virtual office compliance in India.",
+    "isPartOf": {
+      "@id": "https://filingby.com/#website"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": posts.slice(0, 10).map((post, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://filingby.com/blog/${post.slug}`,
+        "name": post.title
+      }))
+    }
+  };
+}
+
+export function buildBlogPostingSchema(post) {
+  if (!post) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `https://filingby.com/blog/${post.slug}#article`,
+    "headline": post.title,
+    "description": post.metaDescription || post.excerpt,
+    "datePublished": post.publishedAt || post.createdAt,
+    "dateModified": post.updatedAt || post.createdAt,
+    "author": {
+      "@type": "Person",
+      "name": post.author || "FilingBy Legal Desk"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "FilingBy.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://filingby.com/logo.jpeg"
+      }
+    },
+    "image": post.image ? [post.image] : ["https://filingby.com/logo.jpeg"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://filingby.com/blog/${post.slug}`
+    },
+    "keywords": Array.isArray(post.tags) ? post.tags.join(", ") : post.tags
+  };
+}
+
 /**
  * Generates City-specific Virtual Office LocalBusiness & Service schemas.
  * @param {string} cityName

@@ -186,6 +186,7 @@ export default function PartnerOnboarding() {
         description="Onboard your commercial space, coworking center, or vacant office as a FilingBy virtual office host. Monetize unused locations and generate steady passive yields."
         keywords="coworking partner program, monetize commercial space, virtual office provider registration, passive real estate income India"
         canonical="/partner-onboarding"
+        noindex
         schema={buildBreadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Virtual Office", url: "/virtual-space" },

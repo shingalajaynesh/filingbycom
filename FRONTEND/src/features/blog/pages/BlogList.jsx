@@ -4,6 +4,8 @@ import axios from "axios";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
 import BlogCard from "../components/BlogCard.jsx";
+import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
+import { buildBlogListingSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL || 
@@ -98,6 +100,13 @@ export default function BlogList() {
         description="Stay up to date with expert Chartered Accountant advice, tax guides, GST compliance rules, startup incorporation tips, and virtual office regulations in India."
         keywords="filingby blog, CA blog india, GST guide, company registration rules, tax compliance articles, startup guides india"
         canonical="/blog"
+        schema={buildBlogListingSchema(posts)}
+        extraSchemas={[
+          buildBreadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Knowledge Hub", url: "/blog" }
+          ])
+        ]}
       />
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -181,8 +190,19 @@ export default function BlogList() {
         ) : (
           <div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+              {posts.map((post, index) => (
+                <div key={post.slug} className="contents">
+                  <BlogCard post={post} />
+                  {index === 2 && (
+                    <div className="md:col-span-2 lg:col-span-3">
+                      <AdSenseBlock
+                        slot={import.meta.env.VITE_ADSENSE_BLOG_LIST_SLOT}
+                        label="Knowledge Hub Sponsor"
+                        className="border-dashed"
+                      />
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
 

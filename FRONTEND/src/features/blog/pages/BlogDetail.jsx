@@ -4,7 +4,8 @@ import axios from "axios";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
-import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
+import { buildBreadcrumbSchema, buildBlogPostingSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL ||
@@ -19,6 +20,21 @@ export default function BlogDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
+
+  const categoryServiceMap = {
+    GST: [
+      { label: "GST Registration", href: "/services/gst-registration" },
+      { label: "GST Return Filing", href: "/services/gst-return-filing" }
+    ],
+    "Company Registration": [
+      { label: "Private Limited Company", href: "/services/private-limited-company" },
+      { label: "LLP Registration", href: "/services/llp-registration" }
+    ],
+    "Virtual Office": [
+      { label: "Virtual Office", href: "/virtual-space" },
+      { label: "All Locations", href: "/locations" }
+    ]
+  };
 
   useEffect(() => {
     const fetchPostDetail = async () => {
@@ -82,32 +98,11 @@ export default function BlogDetail() {
     );
   }
 
-  // Build JSON-LD structured Article schema
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": `https://filingby.com/blog/${post.slug}#article`,
-    "headline": post.title,
-    "description": post.excerpt,
-    "datePublished": post.publishedAt || post.createdAt,
-    "dateModified": post.updatedAt || post.createdAt,
-    "author": {
-      "@type": "Person",
-      "name": post.author || "FilingBy Legal Desk"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "FilingBy.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://filingby.com/logo.jpeg"
-      }
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://filingby.com/blog/${post.slug}`
-    }
-  };
+  const articleSchema = buildBlogPostingSchema(post);
+  const recommendedLinks = categoryServiceMap[post.category] || [
+    { label: "Explore Services", href: "/services/gst-registration" },
+    { label: "Talk to an Expert", href: "/virtual-space" }
+  ];
 
   const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString("en-IN", {
@@ -200,6 +195,31 @@ export default function BlogDetail() {
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
 
+              <div className="mt-8">
+                <AdSenseBlock
+                  slot={import.meta.env.VITE_ADSENSE_BLOG_DETAIL_SLOT}
+                  label="Article Sponsor"
+                />
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-blue-100 bg-blue-50/50 p-6">
+                <h2 className="text-lg font-bold text-slate-900">Next best step</h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  If you want expert help instead of doing it yourself, these are the most relevant FilingBy pages for this topic.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {recommendedLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className="rounded-full bg-white px-4 py-2 text-xs font-bold text-[#1A56DB] shadow-sm ring-1 ring-blue-100 transition hover:bg-blue-600 hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
               {/* Tags Section */}
               {post.tags && post.tags.length > 0 && (
                 <div className="mt-10 border-t border-slate-100 pt-6 flex flex-wrap gap-2">
@@ -252,6 +272,11 @@ export default function BlogDetail() {
                 WhatsApp Advisor
               </a>
             </div>
+
+            <AdSenseBlock
+              slot={import.meta.env.VITE_ADSENSE_BLOG_SIDEBAR_SLOT}
+              label="Sponsored Resource"
+            />
 
             {/* Quick Benefits Ticker */}
             <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">

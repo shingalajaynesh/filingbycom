@@ -69,10 +69,27 @@ const AdminDashboard  = lazy(() => import("../admin/pages/AdminDashboard"));
 // ── 404 NOT FOUND ────────────────────────────────────────────────────────────
 // Reusable boundary view for invalid routes.
 const NotFound = () => (
-  <div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">
-    404 - Page Not Found
-  </div>
+  <>
+    <SEO
+      title="Page Not Found | FilingBy.com"
+      description="The page you are looking for does not exist."
+      canonical="/404"
+      noindex
+    />
+    <div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">
+      404 - Page Not Found
+    </div>
+  </>
 );
+
+function NoIndexRoute({ title, description, children }) {
+  return (
+    <>
+      <SEO title={title} description={description} noindex />
+      {children}
+    </>
+  );
+}
 
 // ── ROUTE LOADER ────────────────────────────────────────────────────────────
 function RouteLoader() {
@@ -124,6 +141,7 @@ function AppRoutesContent() {
   const isVirtualOfficeRoute =
     location.pathname === "/virtual-space" ||
     location.pathname === "/locations" ||
+    location.pathname === "/ecommerce-office" ||
     location.pathname.startsWith("/virtual-office") ||
     location.pathname.startsWith("/partner") ||
     location.pathname === "/about-us" ||
@@ -211,7 +229,8 @@ function AppRoutesContent() {
           <Route path="/virtual-office/:city/:area" element={<VirtualOfficeArea />} />
           
 
-          <Route path="/virtual-office-ecommerce" element={<EcommerceOffice />} />
+          <Route path="/ecommerce-office" element={<EcommerceOffice />} />
+          <Route path="/virtual-office-ecommerce" element={<Navigate to="/ecommerce-office" replace />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-promise" element={<OurPromise />} />
           <Route path="/customer-care" element={<CustomerCare />} />
@@ -258,24 +277,35 @@ function AppRoutesContent() {
           <Route
             path="/login"
             element={
-              <PublicAuthRoute>
-                {/* 3. Note on potential race condition below */}
-                <Login onAuthenticated={() => navigate("/dashboard", { replace: true })} />
-              </PublicAuthRoute>
+              <NoIndexRoute title="Login | FilingBy.com" description="Login to your FilingBy account.">
+                <PublicAuthRoute>
+                  {/* 3. Note on potential race condition below */}
+                  <Login onAuthenticated={() => navigate("/dashboard", { replace: true })} />
+                </PublicAuthRoute>
+              </NoIndexRoute>
             }
           />
           
           <Route
             path="/register"
             element={
-              <PublicAuthRoute>
-                <Register onRegistered={() => navigate("/dashboard", { replace: true })} />
-              </PublicAuthRoute>
+              <NoIndexRoute title="Register | FilingBy.com" description="Create your FilingBy account.">
+                <PublicAuthRoute>
+                  <Register onRegistered={() => navigate("/dashboard", { replace: true })} />
+                </PublicAuthRoute>
+              </NoIndexRoute>
             }
           />
           
           <Route path="/sso-callback" element={<ClerkCallback />} />
-          <Route path="/card" element={<DigitalCard />} />
+          <Route
+            path="/card"
+            element={
+              <NoIndexRoute title="Digital Card | FilingBy.com" description="FilingBy digital business card.">
+                <DigitalCard />
+              </NoIndexRoute>
+            }
+          />
 
           {/* ── Admin Routes ── */}
           <Route path="/admin" element={<AdminLogin />} />
