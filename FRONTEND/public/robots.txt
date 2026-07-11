@@ -7,3 +7,4 @@ Disallow: /partner/dashboard/
 Disallow: /sso-callback/
 
 Sitemap: https://filingby.com/sitemap.xml
+Sitemap: https://api.filingby.com/sitemap.xml
