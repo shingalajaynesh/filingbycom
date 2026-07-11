@@ -364,6 +364,90 @@ async function prerender() {
       );
     }
 
+    // Generate sitemap.xml automatically
+    console.log("Generating sitemap.xml automatically...");
+    const staticUrls = [
+      { path: "", changefreq: "daily", priority: "1.0" },
+      { path: "virtual-space", changefreq: "daily", priority: "1.0" },
+      { path: "locations", changefreq: "weekly", priority: "0.9" },
+      { path: "ecommerce-office", changefreq: "weekly", priority: "0.9" },
+      { path: "about-us", changefreq: "monthly", priority: "0.8" },
+      { path: "our-promise", changefreq: "monthly", priority: "0.8" },
+      { path: "customer-care", changefreq: "monthly", priority: "0.8" },
+      { path: "faq", changefreq: "weekly", priority: "0.8" },
+      { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
+      { path: "blog", changefreq: "daily", priority: "0.8" },
+      { path: "gst-calculator", changefreq: "weekly", priority: "0.9" },
+      { path: "income-tax-calculator", changefreq: "weekly", priority: "0.9" },
+      { path: "roc-tools", changefreq: "weekly", priority: "0.8" },
+      { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
+      { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
+      { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
+    ];
+
+    let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+    sitemapXml += `\n  <!-- Core Static Pages -->`;
+    for (const page of staticUrls) {
+      sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/${page.path}</loc>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`;
+    }
+
+    sitemapXml += `\n\n  <!-- Dynamic CA / Compliance Services -->`;
+    for (const service of services) {
+      sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/services/${service.slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+    }
+
+    sitemapXml += `\n\n  <!-- Dynamic Virtual Office Cities & Areas -->`;
+    for (const loc of locations) {
+      sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/virtual-office-${loc.slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>`;
+      if (loc.addresses && loc.addresses.length > 0) {
+        for (const addr of loc.addresses) {
+          sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/virtual-office-${loc.slug}/${addr.slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>`;
+        }
+      }
+    }
+
+    sitemapXml += `\n\n  <!-- Dynamic Blogs & Guides -->`;
+    for (const post of blogs) {
+      const lastMod = post.updatedAt ? new Date(post.updatedAt).toISOString().split("T")[0] : null;
+      sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/blog/${post.slug}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}
+  </url>`;
+    }
+
+    sitemapXml += `\n</urlset>\n`;
+
+    // Save to dist/sitemap.xml (for current production build)
+    fs.writeFileSync(join(distDir, "sitemap.xml"), sitemapXml, "utf8");
+    // Save to public/sitemap.xml (to persist in static repo folder)
+    const publicSitemapPath = join(__dirname, "../public/sitemap.xml");
+    fs.writeFileSync(publicSitemapPath, sitemapXml, "utf8");
+    console.log("Sitemap.xml generated and updated automatically!");
+
     console.log("Database connection closed.");
     await mongoose.connection.close();
     console.log("Pre-rendering built completed successfully!");
