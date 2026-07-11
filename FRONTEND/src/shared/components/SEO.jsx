@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
  * @param {string} [props.keywords] Page meta keywords
  * @param {string} [props.canonical] Canonical path (e.g. "/virtual-space")
  * @param {string} [props.ogType="website"] Open Graph type
- * @param {string} [props.ogImage="https://filingby.com/logo.jpeg"] Open Graph preview image
+ * @param {string} [props.ogImage="https://www.filingby.com/logo.jpeg"] Open Graph preview image
  * @param {boolean} [props.noindex=false] Whether search engine crawlers should skip indexing this page
  * @param {Object} [props.schema] Main JSON-LD schema object
  * @param {Array<Object>} [props.extraSchemas] Additional JSON-LD schema objects (FAQPage, Breadcrumbs, etc.)
@@ -21,12 +21,12 @@ export default function SEO({
   keywords,
   canonical,
   ogType = "website",
-  ogImage = "https://filingby.com/logo.jpeg",
+  ogImage = "https://www.filingby.com/logo.jpeg",
   noindex = false,
   schema = null,
   extraSchemas = []
 }) {
-  const siteUrl = "https://filingby.com";
+  const siteUrl = "https://www.filingby.com";
   const path = canonical !== undefined ? canonical : (typeof window !== "undefined" ? window.location.pathname : "");
   const canonicalUrl = path
     ? (path.startsWith("http://") || path.startsWith("https://") ? path : `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`)
@@ -35,7 +35,7 @@ export default function SEO({
   const resolvedDescription =
     description ||
     "Expert-assisted GST registration, company incorporation, tax filing, and virtual office services across India.";
-  const resolvedImage = ogImage || "https://filingby.com/logo.jpeg";
+  const resolvedImage = ogImage || "https://www.filingby.com/logo.jpeg";
 
   // Combine schemas and filter out null/undefined ones
   const allSchemas = [schema, ...extraSchemas].filter(Boolean);

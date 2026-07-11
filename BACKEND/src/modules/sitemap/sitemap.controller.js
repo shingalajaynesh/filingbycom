@@ -37,7 +37,7 @@ class SitemapController {
         const priority = path === "" || path === "virtual-space" ? "1.0" : "0.8";
         xml += `
   <url>
-    <loc>https://filingby.com/${path}</loc>
+    <loc>https://www.filingby.com/${path}</loc>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
@@ -47,7 +47,7 @@ class SitemapController {
       for (const service of services) {
         xml += `
   <url>
-    <loc>https://filingby.com/services/${service.slug}</loc>
+    <loc>https://www.filingby.com/services/${service.slug}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;
@@ -57,7 +57,7 @@ class SitemapController {
       for (const loc of locations) {
         xml += `
   <url>
-    <loc>https://filingby.com/virtual-office-${loc.slug}</loc>
+    <loc>https://www.filingby.com/virtual-office-${loc.slug}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>`;
@@ -66,7 +66,7 @@ class SitemapController {
           for (const addr of loc.addresses) {
             xml += `
   <url>
-    <loc>https://filingby.com/virtual-office-${loc.slug}/${addr.slug}</loc>
+    <loc>https://www.filingby.com/virtual-office-${loc.slug}/${addr.slug}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>`;
@@ -79,7 +79,7 @@ class SitemapController {
         const lastMod = post.updatedAt ? new Date(post.updatedAt).toISOString().split("T")[0] : null;
         xml += `
   <url>
-    <loc>https://filingby.com/blog/${post.slug}</loc>
+    <loc>https://www.filingby.com/blog/${post.slug}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}
   </url>`;

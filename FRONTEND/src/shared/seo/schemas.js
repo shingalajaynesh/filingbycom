@@ -35,12 +35,12 @@ export function updateSchemaSettings(settings) {
 export const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://filingby.com/#organization",
+  "@id": "https://www.filingby.com/#organization",
   "name": "FilingBy.com",
-  "url": "https://filingby.com",
+  "url": "https://www.filingby.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://filingby.com/logo.jpeg",
+    "url": "https://www.filingby.com/logo.jpeg",
     "width": 200,
     "height": 60
   },
@@ -63,17 +63,17 @@ export const orgSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://filingby.com/#website",
-  "url": "https://filingby.com",
+  "@id": "https://www.filingby.com/#website",
+  "url": "https://www.filingby.com",
   "name": "FilingBy.com",
   "publisher": {
-    "@id": "https://filingby.com/#organization"
+    "@id": "https://www.filingby.com/#organization"
   },
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "https://filingby.com/services/{search_term_string}"
+      "urlTemplate": "https://www.filingby.com/services/{search_term_string}"
     },
     "query-input": "required name=search_term_string"
   },
@@ -83,12 +83,12 @@ export const websiteSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://filingby.com/#localbusiness",
+  "@id": "https://www.filingby.com/#localbusiness",
   "name": "FilingBy CA & Business Services",
-  "image": "https://filingby.com/logo.jpeg",
+  "image": "https://www.filingby.com/logo.jpeg",
   "telephone": "+91-75671-26945",
   "email": "support@filingby.com",
-  "url": "https://filingby.com",
+  "url": "https://www.filingby.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "301, Business Hub, CG Road",
@@ -122,7 +122,7 @@ export const homeReviewsSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "FilingBy.com CA & Virtual Office Services",
-  "image": "https://filingby.com/logo.jpeg",
+  "image": "https://www.filingby.com/logo.jpeg",
   "description": "GST Registration, Company Incorporation, ITR Filing, and Premium Virtual Office Addresses across India.",
   "brand": {
     "@type": "Brand",
@@ -133,7 +133,7 @@ export const homeReviewsSchema = {
     "priceCurrency": "INR",
     "price": "999.00",
     "priceValidUntil": "2027-12-31",
-    "url": "https://filingby.com",
+    "url": "https://www.filingby.com",
     "availability": "https://schema.org/InStock",
     "shippingDetails": {
       "@type": "OfferShippingDetails",
@@ -197,7 +197,7 @@ export const virtualOfficeSchema = {
   "@type": "Product",
   "name": "Virtual Office Address for GST Registration & Mailing",
   "description": "Premium virtual business addresses across 28 states in India. Includes NOC, utility bills, and rent agreement for hassle-free GST registration & corporate mailing.",
-  "image": "https://filingby.com/logo.jpeg",
+  "image": "https://www.filingby.com/logo.jpeg",
   "brand": {
     "@type": "Brand",
     "name": "FilingBy"
@@ -207,7 +207,7 @@ export const virtualOfficeSchema = {
     "priceCurrency": "INR",
     "price": "999.00",
     "priceValidUntil": "2027-12-31",
-    "url": "https://filingby.com/virtual-space",
+    "url": "https://www.filingby.com/virtual-space",
     "availability": "https://schema.org/InStock",
     "shippingDetails": {
       "@type": "OfferShippingDetails",
@@ -297,7 +297,7 @@ export function buildBreadcrumbSchema(items) {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": item.url ? `https://filingby.com${item.url.startsWith('/') ? '' : '/'}${item.url}` : undefined
+      "item": item.url ? `https://www.filingby.com${item.url.startsWith('/') ? '' : '/'}${item.url}` : undefined
     }))
   };
 }
@@ -311,8 +311,8 @@ export function buildBreadcrumbSchema(items) {
  * @param {string} [service.url]
  */
 export function buildServiceSchema({ name, description, price = "999.00", url, image }) {
-  const imageUrl = image || "https://filingby.com/logo.jpeg";
-  const serviceUrl = url ? `https://filingby.com${url.startsWith('/') ? '' : '/'}${url}` : "https://filingby.com";
+  const imageUrl = image || "https://www.filingby.com/logo.jpeg";
+  const serviceUrl = url ? `https://www.filingby.com${url.startsWith('/') ? '' : '/'}${url}` : "https://www.filingby.com";
 
   return {
     "@context": "https://schema.org",
@@ -391,19 +391,19 @@ export function buildBlogListingSchema(posts = []) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "https://filingby.com/blog#collection",
-    "url": "https://filingby.com/blog",
+    "@id": "https://www.filingby.com/blog#collection",
+    "url": "https://www.filingby.com/blog",
     "name": "FilingBy Knowledge Hub",
     "description": "Guides on GST, company registration, tax filing, and virtual office compliance in India.",
     "isPartOf": {
-      "@id": "https://filingby.com/#website"
+      "@id": "https://www.filingby.com/#website"
     },
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": posts.slice(0, 10).map((post, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `https://filingby.com/blog/${post.slug}`,
+        "url": `https://www.filingby.com/blog/${post.slug}`,
         "name": post.title
       }))
     }
@@ -416,7 +416,7 @@ export function buildBlogPostingSchema(post) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "@id": `https://filingby.com/blog/${post.slug}#article`,
+    "@id": `https://www.filingby.com/blog/${post.slug}#article`,
     "headline": post.title,
     "description": post.metaDescription || post.excerpt,
     "datePublished": post.publishedAt || post.createdAt,
@@ -430,13 +430,13 @@ export function buildBlogPostingSchema(post) {
       "name": "FilingBy.com",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://filingby.com/logo.jpeg"
+        "url": "https://www.filingby.com/logo.jpeg"
       }
     },
-    "image": post.image ? [post.image] : ["https://filingby.com/logo.jpeg"],
+    "image": post.image ? [post.image] : ["https://www.filingby.com/logo.jpeg"],
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://filingby.com/blog/${post.slug}`
+      "@id": `https://www.filingby.com/blog/${post.slug}`
     },
     "keywords": Array.isArray(post.tags) ? post.tags.join(", ") : post.tags
   };
@@ -452,9 +452,9 @@ export function buildCityVirtualOfficeSchema(cityName) {
     "@type": "LocalBusiness",
     "name": `Virtual Office ${cityName} — FilingBy`,
     "description": `Get premium virtual business address in ${cityName} for GST registration, company incorporation, and business mailing with NOC & utility bills.`,
-    "image": "https://filingby.com/logo.jpeg",
+    "image": "https://www.filingby.com/logo.jpeg",
     "telephone": schemaConfig.vs_contact_phone,
-    "url": `https://filingby.com/virtual-office-${cityName.toLowerCase().replace(/\s+/g, '-')}`,
+    "url": `https://www.filingby.com/virtual-office-${cityName.toLowerCase().replace(/\s+/g, '-')}`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": cityName,
