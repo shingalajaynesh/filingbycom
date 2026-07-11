@@ -20,7 +20,7 @@ class AdminController {
     }
 
     const token = jwt.sign({ role: "admin" }, ADMIN_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "8h",
     });
 
     const isProduction = process.env.NODE_ENV === "production";
@@ -29,18 +29,19 @@ class AdminController {
       httpOnly: true,
       secure: isProduction,
       sameSite: isProduction ? "none" : "lax",
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      maxAge: 8 * 60 * 60 * 1000, // 8 hours
     });
 
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      token: token,
     });
   };
 
   // ─── Admin Check Auth ────────────────────────────────────────────────────────
   checkAuth = (req, res) => {
-    const token = req.cookies.admin_token;
+    const token = req.headers.authorization?.split(" ")[1] || req.cookies?.admin_token;
     if (!token) {
       return res.status(401).json({ success: false, authenticated: false });
     }
