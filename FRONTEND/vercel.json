@@ -126,6 +126,41 @@
       "permanent": true
     },
     {
+      "source": "/pages/llp-income-tax-return",
+      "destination": "/services/roc-annual-filing-llp",
+      "permanent": true
+    },
+    {
+      "source": "/pages/niti-aayog-registration",
+      "destination": "/services/ngo-darpan",
+      "permanent": true
+    },
+    {
+      "source": "/pages/moa-amendment-section-8",
+      "destination": "/services/moa-amendment",
+      "permanent": true
+    },
+    {
+      "source": "/pages/trust-income-tax-return",
+      "destination": "/services/itr-7-filing",
+      "permanent": true
+    },
+    {
+      "source": "/pages/removal-of-director",
+      "destination": "/services/director-removal",
+      "permanent": true
+    },
+    {
+      "source": "/account/register",
+      "destination": "/register",
+      "permanent": true
+    },
+    {
+      "source": "/account/login",
+      "destination": "/login",
+      "permanent": true
+    },
+    {
       "source": "/wpm",
       "destination": "/",
       "permanent": true
