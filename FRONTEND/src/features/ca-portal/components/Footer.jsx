@@ -98,7 +98,13 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-blue-100/75">
               {[
                 { label: 'Home', path: '/' },
+                { label: 'GST Calculator', path: '/gst-calculator' },
+                { label: 'Income Tax Calculator', path: '/income-tax-calculator' },
+                { label: 'ROC Tools', path: '/roc-tools' },
                 { label: 'Knowledge Hub (Blog)', path: '/blog' },
+                { label: 'Company Registration Guides', path: '/company-registration-guides' },
+                { label: 'Trademark Search', path: '/trademark-search' },
+                { label: 'Legal Templates', path: '/legal-templates' },
                 { label: 'Locations Directory', path: '/locations' },
                 { label: 'For E-commerce', path: '/virtual-office-ecommerce' },
                 { label: 'About Us', path: '/about-us' },

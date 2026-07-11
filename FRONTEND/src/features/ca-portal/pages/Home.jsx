@@ -8,6 +8,7 @@ import ReviewSubmissionModal from "../../../shared/components/ReviewSubmissionMo
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { localBusinessSchema, websiteSchema, homeReviewsSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
+import { trafficTopics } from "../../resources/data/resourcePages.js";
 
 const HOME_FAQS = [
   {
@@ -303,6 +304,41 @@ export default function Home() {
       <section className="bg-white px-4 py-8 sm:px-6 lg:px-8">
         <PopularServices />
       </section>
+
+      <section className="bg-slate-50 px-4 py-14">
+        <div className="mx-auto max-w-screen-xl">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.35em] text-blue-700">Traffic growth pages</p>
+              <h2 className="mt-3 text-2xl font-bold text-gray-900 sm:text-3xl">
+                Free tools and guides users actually search for
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-6 text-gray-500">
+              These pages are built to capture calculator, comparison, template, and research intent before users are ready to buy.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {trafficTopics.map((topic) => (
+              <button
+                key={topic.path}
+                type="button"
+                onClick={() => navigate(topic.path)}
+                className="rounded-[28px] border border-gray-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
+              >
+                <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
+                  {topic.tag}
+                </span>
+                <h3 className="mt-4 text-xl font-bold text-gray-900">{topic.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-600">{topic.description}</p>
+                <p className="mt-5 text-sm font-semibold text-blue-700">Open page</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>

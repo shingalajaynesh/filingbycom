@@ -21,6 +21,12 @@ const ServicePage    = lazy(() => import("../features/ca-portal/pages/ServicePag
 const DigitalCard    = lazy(() => import("../features/ca-portal/pages/DigitalCard"));
 const BlogList       = lazy(() => import("../features/blog/pages/BlogList"));
 const BlogDetail     = lazy(() => import("../features/blog/pages/BlogDetail"));
+const GstCalculatorPage = lazy(() => import("../features/resources/pages/GstCalculatorPage"));
+const IncomeTaxCalculatorPage = lazy(() => import("../features/resources/pages/IncomeTaxCalculatorPage"));
+const RocToolsPage = lazy(() => import("../features/resources/pages/RocToolsPage"));
+const CompanyRegistrationGuidesPage = lazy(() => import("../features/resources/pages/CompanyRegistrationGuidesPage"));
+const TrademarkSearchPage = lazy(() => import("../features/resources/pages/TrademarkSearchPage"));
+const LegalTemplatesPage = lazy(() => import("../features/resources/pages/LegalTemplatesPage"));
 
 // ── Virtual Office ──
 import VirtualOfficeNavigation from "../features/virtual-office/components/VirtualOfficeNavigation";
@@ -218,6 +224,12 @@ function AppRoutesContent() {
           <Route path="/${t}" element={<Navigate to="/" replace />} />
 
           <Route path="/" element={<Home />} />
+          <Route path="/gst-calculator" element={<GstCalculatorPage />} />
+          <Route path="/income-tax-calculator" element={<IncomeTaxCalculatorPage />} />
+          <Route path="/roc-tools" element={<RocToolsPage />} />
+          <Route path="/company-registration-guides" element={<CompanyRegistrationGuidesPage />} />
+          <Route path="/trademark-search" element={<TrademarkSearchPage />} />
+          <Route path="/legal-templates" element={<LegalTemplatesPage />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/virtual-space" element={<VirtualSpace />} />
           <Route path="/blog" element={<BlogList />} />
