@@ -64,7 +64,8 @@ BACKEND/
         └── whatsapp.service.js   # Admin notification dispatcher via WhatsApp
 ```
 
-### Scope Separation Policy:
+### Scope Separation Policy
+
 - **CA Portal Domain**: All payments, GST/ITR registrations, and standard client CA filings are handled by `models/Order.model.js` and `modules/order/`.
 - **Virtual Space Domain**: All commercial address leasing, landlord NOC certifications, official utility proof uploads, physical couriers mailbox scans, and scheduled tax inspector physical inspections are processed by `models/VirtualOfficeOrder.model.js` and `modules/virtual-space/`. This completely prevents cross-contamination of transactional business logic.
 
