@@ -1,16 +1,16 @@
 import dns from "node:dns";
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
-import mongoose from "../../BACKEND/node_modules/mongoose/index.js";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-// Import backend models for direct schema access
-import Service from "../../BACKEND/src/models/Service.model.js";
-import VirtualLocation from "../../BACKEND/src/models/VirtualLocation.model.js";
-import BlogPost from "../../BACKEND/src/models/BlogPost.model.js";
+// Define dynamic schema-less models for querying to avoid importing backend files and causing multiple mongoose instance conflicts
+const Service = mongoose.models.Service || mongoose.model("Service", new mongoose.Schema({}, { strict: false, collection: "services" }));
+const VirtualLocation = mongoose.models.VirtualLocation || mongoose.model("VirtualLocation", new mongoose.Schema({}, { strict: false, collection: "virtuallocations" }));
+const BlogPost = mongoose.models.BlogPost || mongoose.model("BlogPost", new mongoose.Schema({}, { strict: false, collection: "blogposts" }));
 
 dotenv.config();
 
