@@ -86,6 +86,7 @@ const companyLinks = [
   { icon: UsersIcon, label: "About Us", path: "/about-us", desc: "Our story & mission" },
   { icon: HeartIcon, label: "Our Promise", path: "/our-promise", desc: "What we guarantee to you" },
   { icon: HandshakeIcon, label: "Partner With Us", path: "/partner-onboarding", desc: "Become a FilingBy partner" },
+  { icon: PhoneIcon, label: "Contact Us", path: "/contact-us", desc: "Support coordinates & form" },
 ];
 
 export default function VirtualOfficeNavigation() {

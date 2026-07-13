@@ -6,8 +6,8 @@ export default function PrivacyPolicy() {
       <SEO
         title="Privacy Policy — FilingBy.com"
         description="FilingBy.com Privacy Policy. Learn how we handle your KYC documents, transaction records, and ensure your data remains secure."
-        canonical="/privacy-policy"
-        noindex={true}
+        canonical="/default/privacy-policy"
+        noindex={false}
       />
       <div className="max-w-3xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 space-y-6">
         <h1 className="text-2xl font-black text-gray-900 border-b border-gray-100 pb-4">Privacy Policy</h1>
@@ -23,6 +23,17 @@ export default function PrivacyPolicy() {
 
           <h2 className="text-sm font-bold text-gray-950 uppercase tracking-wide">3. Third Party Sharing</h2>
           <p>We do not share your private numbers or emails with external marketers. Address details are submitted exclusively to official governmental tax panels.</p>
+
+          <h2 className="text-sm font-bold text-gray-950 uppercase tracking-wide">4. Google AdSense & Third-Party Advertising Cookies</h2>
+          <p>
+            We use third-party advertising companies, including Google, to serve ads when you visit our website. These companies may use cookies to serve ads based on your prior visits to our website or other websites on the internet.
+          </p>
+          <p>
+            Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the internet.
+          </p>
+          <p>
+            Users may opt out of personalized advertising by visiting the Google Ads Settings page at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">adssettings.google.com</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.aboutads.info</a>.
+          </p>
         </div>
       </div>
     </div>

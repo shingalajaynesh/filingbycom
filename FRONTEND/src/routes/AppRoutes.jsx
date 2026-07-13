@@ -55,6 +55,7 @@ const PartnerDashboard = lazy(() => import("../features/virtual-office/dashboard
 const TermsConditions = lazy(() => import("../features/legal/pages/TermsConditions"));
 const RefundPolicy    = lazy(() => import("../features/legal/pages/RefundPolicy"));
 const PrivacyPolicy   = lazy(() => import("../features/legal/pages/PrivacyPolicy"));
+const ContactUs       = lazy(() => import("../features/legal/pages/ContactUs"));
 
 // ── Shared Data Context ──
 import { SharedDataProvider } from "../shared/context/SharedDataContext";
@@ -153,6 +154,8 @@ function AppRoutesContent() {
     location.pathname === "/about-us" ||
     location.pathname === "/our-promise" ||
     location.pathname === "/customer-care" ||
+    location.pathname === "/contact-us" ||
+    location.pathname === "/contact" ||
     location.pathname === "/faq" ||
     location.pathname === "/get-live-quote" ||
     location.pathname === "/terms-conditions" ||
@@ -198,8 +201,8 @@ function AppRoutesContent() {
           <Route path="/pages/ngo-registration" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/salary-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
           <Route path="/pages/gst-audit" element={<Navigate to="/services/gst-audit" replace />} />
-          <Route path="/pages/about-us" element={<Navigate to="/about-us" replace />} />
-          <Route path="/pages/terms-conditions" element={<Navigate to="/terms-conditions" replace />} />
+          <Route path="/pages/about-us" element={<AboutUs />} />
+          <Route path="/pages/terms-conditions" element={<TermsConditions />} />
           <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />
           <Route path="/pages/refund-policy" element={<Navigate to="/default/refund" replace />} />
           <Route path="/pages/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
@@ -246,6 +249,8 @@ function AppRoutesContent() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-promise" element={<OurPromise />} />
           <Route path="/customer-care" element={<CustomerCare />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/get-live-quote" element={<GetLiveQuote />} />
           <Route

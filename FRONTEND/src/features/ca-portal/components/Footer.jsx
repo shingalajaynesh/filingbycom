@@ -109,6 +109,7 @@ export default function Footer() {
                 { label: 'For E-commerce', path: '/virtual-office-ecommerce' },
                 { label: 'About Us', path: '/about-us' },
                 { label: 'Our Promise', path: '/our-promise' },
+                { label: 'Contact Us', path: '/contact-us' },
                 { label: 'Customer Care', path: '/customer-care' },
                 { label: 'FAQs', path: '/faq' },
                 { label: 'Partner Onboarding', path: '/partner-onboarding' },

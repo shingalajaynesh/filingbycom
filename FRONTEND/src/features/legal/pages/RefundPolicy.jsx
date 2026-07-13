@@ -6,8 +6,8 @@ export default function RefundPolicy() {
       <SEO
         title="Refund Policy — FilingBy.com"
         description="FilingBy.com Refund Policy. Read details of our 100% money-back guarantee if business registration fails."
-        canonical="/refund-policy"
-        noindex={true}
+        canonical="/default/refund"
+        noindex={false}
       />
       <div className="max-w-3xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 space-y-6">
         <h1 className="text-2xl font-black text-gray-900 border-b border-gray-100 pb-4">Refund Policy</h1>

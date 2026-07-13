@@ -28,6 +28,7 @@ const STATIC_PAGES = [
   { path: "about-us", changefreq: "monthly", priority: "0.8" },
   { path: "our-promise", changefreq: "monthly", priority: "0.8" },
   { path: "customer-care", changefreq: "monthly", priority: "0.8" },
+  { path: "contact-us", changefreq: "monthly", priority: "0.8" },
   { path: "faq", changefreq: "weekly", priority: "0.8" },
   { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
   { path: "blog", changefreq: "daily", priority: "0.8" },
@@ -37,6 +38,9 @@ const STATIC_PAGES = [
   { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
   { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
   { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
+  { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },
+  { path: "default/refund", changefreq: "monthly", priority: "0.5" },
+  { path: "default/privacy-policy", changefreq: "monthly", priority: "0.5" },
 ];
 
 async function generate() {

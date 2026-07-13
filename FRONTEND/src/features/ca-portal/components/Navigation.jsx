@@ -393,6 +393,28 @@ export default function Navigation() {
                   Blog
                 </button>
               </li>
+
+              {/* About Us Link */}
+              <li className="relative flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/about-us')}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[14px] font-bold text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50"
+                >
+                  About Us
+                </button>
+              </li>
+
+              {/* Contact Us Link */}
+              <li className="relative flex-shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/contact-us')}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all duration-150 cursor-pointer text-[14px] font-bold text-gray-900 hover:text-[#1A56DB] hover:bg-blue-50"
+                >
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </nav>
 
@@ -709,6 +731,44 @@ export default function Navigation() {
                   <span className="flex items-center gap-2">
                     <span>📚</span>
                     Knowledge Hub
+                  </span>
+                  <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* About Us Link in mobile menu */}
+              <div className="border-b border-gray-100">
+                <button
+                  onClick={() => {
+                    navigate('/about-us');
+                    setMobileOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-3.5 font-bold text-base text-gray-900 hover:bg-slate-50 rounded-xl transition-all active:scale-95 cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <span>👥</span>
+                    About Us
+                  </span>
+                  <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Contact Us Link in mobile menu */}
+              <div className="border-b border-gray-100">
+                <button
+                  onClick={() => {
+                    navigate('/contact-us');
+                    setMobileOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-3.5 font-bold text-base text-gray-900 hover:bg-slate-50 rounded-xl transition-all active:scale-95 cursor-pointer"
+                >
+                  <span className="flex items-center gap-2">
+                    <span>📞</span>
+                    Contact Us
                   </span>
                   <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

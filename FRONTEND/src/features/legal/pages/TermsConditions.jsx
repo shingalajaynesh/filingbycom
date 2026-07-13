@@ -6,8 +6,8 @@ export default function TermsConditions() {
       <SEO
         title="Terms and Conditions — FilingBy.com"
         description="FilingBy.com Terms & Conditions. Read standard agreements governing the lease of virtual office services in India."
-        canonical="/terms"
-        noindex={true}
+        canonical="/terms-conditions"
+        noindex={false}
       />
       <div className="max-w-3xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 space-y-6">
         <h1 className="text-2xl font-black text-gray-900 border-b border-gray-100 pb-4">Terms and Conditions</h1>
