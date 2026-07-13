@@ -18,3 +18,5 @@ VITE_BACKEND_URL=http://localhost:3000
 - `npm run dev` starts the local dev server.
 - `npm run build` creates a production build.
 - `npm run lint` runs ESLint.
+
+*Note: Environment variables for SEO prerendering are configured on Vercel project settings.*
