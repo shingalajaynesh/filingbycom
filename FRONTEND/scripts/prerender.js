@@ -164,20 +164,7 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
 
 async function prerender() {
   try {
-    if (!process.env.MONGODB_URI) {
-      console.error("MONGODB_URI is not set. Cannot prerender dynamic pages.");
-      process.exit(1);
-    }
-
-    console.log("Connecting to database for prerendering data...");
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("Connected to MongoDB.");
-
-    // Fetch dynamic content
-    const services = await Service.find({ isActive: { $ne: false } }).lean();
-    const locations = await VirtualLocation.find().lean();
-    const blogs = await BlogPost.find({ isPublished: true }).lean();
-
+    // 1. Always prerender static pages
     console.log(`Prerendering ${STATIC_PAGES.length} static pages...`);
     for (const page of STATIC_PAGES) {
       writeHtmlPage(
@@ -189,6 +176,60 @@ async function prerender() {
         `<h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${page.h1}</h1>${page.content}`
       );
     }
+
+    const staticUrls = [
+      { path: "", changefreq: "daily", priority: "1.0" },
+      { path: "virtual-space", changefreq: "daily", priority: "1.0" },
+      { path: "locations", changefreq: "weekly", priority: "0.9" },
+      { path: "ecommerce-office", changefreq: "weekly", priority: "0.9" },
+      { path: "about-us", changefreq: "monthly", priority: "0.8" },
+      { path: "our-promise", changefreq: "monthly", priority: "0.8" },
+      { path: "customer-care", changefreq: "monthly", priority: "0.8" },
+      { path: "faq", changefreq: "weekly", priority: "0.8" },
+      { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
+      { path: "blog", changefreq: "daily", priority: "0.8" },
+      { path: "gst-calculator", changefreq: "weekly", priority: "0.9" },
+      { path: "income-tax-calculator", changefreq: "weekly", priority: "0.9" },
+      { path: "roc-tools", changefreq: "weekly", priority: "0.8" },
+      { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
+      { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
+      { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
+    ];
+
+    if (!process.env.MONGODB_URI) {
+      console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and dynamic sitemap generation.");
+      
+      console.log("Generating static sitemap.xml...");
+      let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+      sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+      sitemapXml += `\n  <!-- Core Static Pages -->`;
+      for (const page of staticUrls) {
+        sitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/${page.path}</loc>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`;
+      }
+      sitemapXml += `\n</urlset>\n`;
+
+      fs.writeFileSync(join(distDir, "sitemap.xml"), sitemapXml, "utf8");
+      const publicSitemapPath = join(__dirname, "../public/sitemap.xml");
+      fs.writeFileSync(publicSitemapPath, sitemapXml, "utf8");
+      console.log("Static sitemap.xml generated and updated successfully!");
+
+      console.log("Pre-rendering built completed successfully (static only)!");
+      process.exit(0);
+    }
+
+    console.log("Connecting to database for prerendering data...");
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("Connected to MongoDB.");
+
+    // Fetch dynamic content
+    const services = await Service.find({ isActive: { $ne: false } }).lean();
+    const locations = await VirtualLocation.find().lean();
+    const blogs = await BlogPost.find({ isPublished: true }).lean();
 
     console.log(`Prerendering ${services.length} CA services...`);
     for (const service of services) {
@@ -366,24 +407,6 @@ async function prerender() {
 
     // Generate sitemap.xml automatically
     console.log("Generating sitemap.xml automatically...");
-    const staticUrls = [
-      { path: "", changefreq: "daily", priority: "1.0" },
-      { path: "virtual-space", changefreq: "daily", priority: "1.0" },
-      { path: "locations", changefreq: "weekly", priority: "0.9" },
-      { path: "ecommerce-office", changefreq: "weekly", priority: "0.9" },
-      { path: "about-us", changefreq: "monthly", priority: "0.8" },
-      { path: "our-promise", changefreq: "monthly", priority: "0.8" },
-      { path: "customer-care", changefreq: "monthly", priority: "0.8" },
-      { path: "faq", changefreq: "weekly", priority: "0.8" },
-      { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
-      { path: "blog", changefreq: "daily", priority: "0.8" },
-      { path: "gst-calculator", changefreq: "weekly", priority: "0.9" },
-      { path: "income-tax-calculator", changefreq: "weekly", priority: "0.9" },
-      { path: "roc-tools", changefreq: "weekly", priority: "0.8" },
-      { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
-      { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
-      { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
-    ];
 
     let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
