@@ -67,7 +67,8 @@ async function generate() {
     console.log(`Fetched ${blogs.length} published blogs.`);
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`;
 
     // Add static pages
     xml += `\n  <!-- Core Static Pages -->`;
@@ -128,7 +129,15 @@ async function generate() {
   <url>
     <loc>https://www.filingby.com/blog/${post.slug}</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}
+    <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}`;
+        if (post.image) {
+          xml += `
+    <image:image>
+      <image:loc>${post.image}</image:loc>
+      <image:title><![CDATA[${post.title}]]></image:title>
+    </image:image>`;
+        }
+        xml += `
   </url>`;
       }
     }
@@ -138,6 +147,80 @@ async function generate() {
     console.log(`Writing sitemap to ${targetSitemapPath}...`);
     fs.writeFileSync(targetSitemapPath, xml, "utf8");
     console.log("Static sitemap.xml generated successfully!");
+
+    // Generate robots.txt
+    const targetRobotsPath = join(__dirname, "../../FRONTEND/public/robots.txt");
+    console.log(`Writing robots.txt to ${targetRobotsPath}...`);
+    const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /virtual-office/dashboard/
+Disallow: /partner/dashboard/
+Disallow: /sso-callback/
+
+Sitemap: https://www.filingby.com/sitemap.xml
+Sitemap: https://www.filingby.com/image-sitemap.xml
+`;
+    fs.writeFileSync(targetRobotsPath, robotsTxt, "utf8");
+    console.log("robots.txt generated successfully!");
+
+    // Generate image-sitemap.xml
+    const targetImageSitemapPath = join(__dirname, "../../FRONTEND/public/image-sitemap.xml");
+    console.log(`Writing image-sitemap.xml to ${targetImageSitemapPath}...`);
+    let imageSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`;
+
+    for (const post of blogs) {
+      if (post.image) {
+        imageSitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/blog/${post.slug}</loc>
+    <image:image>
+      <image:loc>${post.image}</image:loc>
+      <image:title><![CDATA[${post.title}]]></image:title>
+    </image:image>
+  </url>`;
+      }
+    }
+    imageSitemapXml += `\n</urlset>\n`;
+    fs.writeFileSync(targetImageSitemapPath, imageSitemapXml, "utf8");
+    console.log("image-sitemap.xml generated successfully!");
+
+    // Generate feed.xml (RSS Feed)
+    const targetFeedPath = join(__dirname, "../../FRONTEND/public/feed.xml");
+    console.log(`Writing feed.xml to ${targetFeedPath}...`);
+    let feedXml = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FilingBy Knowledge Hub</title>
+    <link>https://www.filingby.com/blog</link>
+    <description>Expert Chartered Accountant advice, tax guides, GST compliance rules, and virtual office regulations in India.</description>
+    <language>en-in</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="https://www.filingby.com/feed.xml" rel="self" type="application/rss+xml" />`;
+
+    const sortedBlogs = [...blogs]
+      .sort((a, b) => new Date(b.publishedAt || b.createdAt) - new Date(a.publishedAt || a.createdAt))
+      .slice(0, 20);
+
+    for (const post of sortedBlogs) {
+      const postLink = `https://www.filingby.com/blog/${post.slug}`;
+      const pubDate = new Date(post.publishedAt || post.createdAt).toUTCString();
+      feedXml += `
+    <item>
+      <title><![CDATA[${post.title}]]></title>
+      <link>${postLink}</link>
+      <guid isPermaLink="true">${postLink}</guid>
+      <description><![CDATA[${post.excerpt || post.content.substring(0, 200).replace(/<[^>]*>/g, "") + "..."}]]></description>
+      <pubDate>${pubDate}</pubDate>
+      ${post.image ? `<enclosure url="${post.image}" length="0" type="image/jpeg" />` : ""}
+    </item>`;
+    }
+    feedXml += `\n  </channel>\n</rss>\n`;
+    fs.writeFileSync(targetFeedPath, feedXml, "utf8");
+    console.log("feed.xml generated successfully!");
 
     await mongoose.connection.close();
     console.log("Database connection closed.");

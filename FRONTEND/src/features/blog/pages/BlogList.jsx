@@ -99,7 +99,7 @@ export default function BlogList() {
         title="Knowledge Hub & Compliance Guides | FilingBy.com"
         description="Stay up to date with expert Chartered Accountant advice, tax guides, GST compliance rules, startup incorporation tips, and virtual office regulations in India."
         keywords="filingby blog, CA blog india, GST guide, company registration rules, tax compliance articles, startup guides india"
-        canonical="/blog"
+        canonical={currentPage > 1 ? `/blog?page=${currentPage}` : "/blog"}
         schema={buildBlogListingSchema(posts)}
         extraSchemas={[
           buildBreadcrumbSchema([

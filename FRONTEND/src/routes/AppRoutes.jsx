@@ -6,7 +6,7 @@
  * - Integrates Clerk user profile state sync hook (useSyncUser).
  */
 
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate, useParams, Link } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
 
@@ -75,19 +75,112 @@ const AdminDashboard  = lazy(() => import("../admin/pages/AdminDashboard"));
 
 // ── 404 NOT FOUND ────────────────────────────────────────────────────────────
 // Reusable boundary view for invalid routes.
-const NotFound = () => (
-  <>
-    <SEO
-      title="Page Not Found | FilingBy.com"
-      description="The page you are looking for does not exist."
-      canonical="/404"
-      noindex
-    />
-    <div className="flex h-screen items-center justify-center text-2xl font-bold text-gray-400">
-      404 - Page Not Found
-    </div>
-  </>
-);
+// Reusable boundary view for invalid routes with premium modern aesthetics.
+const NotFound = () => {
+  const navigate = useNavigate();
+
+  return (
+    <>
+      <SEO
+        title="Page Not Found | FilingBy.com"
+        description="The page you are looking for does not exist."
+        canonical="/404"
+        noindex
+      />
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 px-4 py-16 text-center">
+        {/* Ambient background glows */}
+        <div className="absolute top-1/4 left-1/4 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[100px]" />
+        <div className="absolute bottom-1/4 right-1/4 -z-10 h-80 w-80 rounded-full bg-indigo-500/15 blur-[120px]" />
+
+        {/* Content Box */}
+        <div className="w-full max-w-lg rounded-3xl border border-slate-800/80 bg-slate-900/40 p-8 backdrop-blur-xl shadow-2xl sm:p-12">
+          {/* Animated 404 Header */}
+          <div className="relative">
+            <h1 className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-7xl font-black tracking-tighter text-transparent sm:text-8xl">
+              404
+            </h1>
+            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-500 to-indigo-500 opacity-10 blur-xl" />
+          </div>
+
+          <h2 className="mt-6 text-xl font-bold text-slate-100 sm:text-2xl">
+            Lost in Compliance Space?
+          </h2>
+          <p className="mt-3 text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
+            The page you are looking for has been filed under a different folder or doesn't exist. Let's get you back on track.
+          </p>
+
+          {/* Quick Links Menu */}
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <Link
+              to="/"
+              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-blue-500/50 hover:bg-slate-900/60 group cursor-pointer"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-slate-200 group-hover:text-blue-400">CA Services</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Tax and compliance catalog</p>
+              </div>
+              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-blue-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </Link>
+
+            <Link
+              to="/virtual-space"
+              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-indigo-500/50 hover:bg-slate-900/60 group cursor-pointer"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-slate-200 group-hover:text-indigo-400">Virtual Office</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Business addresses & desks</p>
+              </div>
+              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-indigo-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </Link>
+
+            <Link
+              to="/locations"
+              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-purple-500/50 hover:bg-slate-900/60 group cursor-pointer"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-slate-200 group-hover:text-purple-400">Locations Hub</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Find compliant offices</p>
+              </div>
+              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-purple-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </Link>
+
+            <Link
+              to="/blog"
+              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-emerald-500/50 hover:bg-slate-900/60 group cursor-pointer"
+            >
+              <div>
+                <h3 className="text-xs font-bold text-slate-200 group-hover:text-emerald-400">Knowledge Hub</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Compliance blogs & guides</p>
+              </div>
+              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="mt-8 border-t border-slate-800/80 pt-6">
+            <button
+              onClick={() => navigate(-1)}
+              className="inline-flex items-center gap-2 rounded-full bg-slate-800 px-5 py-2.5 text-xs font-semibold text-slate-200 transition-all hover:bg-slate-700 hover:text-white cursor-pointer"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 function NoIndexRoute({ title, description, children }) {
   return (

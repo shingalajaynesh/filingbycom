@@ -27,6 +27,7 @@ import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import compression from "compression";
 import { globalErrorHandler } from "./src/middleware/error.middleware.js";
+import { redirectMiddleware } from "./src/middleware/redirect.middleware.js";
 
 
 
@@ -130,6 +131,9 @@ app.use(requestLogger);
 
 // Clerk middleware automatically decodes and signs session JWTs for request.auth.
 app.use(clerkMiddleware());
+
+// Mount dynamic redirect middleware to intercept legacy incoming requests
+app.use(redirectMiddleware);
 
 // ── ROUTE CONTROLLER REGISTRY ───────────────────────────────────────────────
 // Mount modular routes for standard users and administrative actions.

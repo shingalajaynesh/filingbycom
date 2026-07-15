@@ -218,7 +218,50 @@ async function prerender() {
       fs.writeFileSync(publicSitemapPath, sitemapXml, "utf8");
       console.log("Static sitemap.xml generated and updated successfully!");
 
-      console.log("Pre-rendering built completed successfully (static only)!");
+      // Static Robots.txt fallback
+      console.log("Generating static robots.txt...");
+      const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /virtual-office/dashboard/
+Disallow: /partner/dashboard/
+Disallow: /sso-callback/
+
+Sitemap: https://www.filingby.com/sitemap.xml
+Sitemap: https://www.filingby.com/image-sitemap.xml
+`;
+      fs.writeFileSync(join(distDir, "robots.txt"), robotsTxt, "utf8");
+      fs.writeFileSync(join(__dirname, "../public/robots.txt"), robotsTxt, "utf8");
+
+      // Static Image Sitemap fallback
+      console.log("Generating static image-sitemap.xml...");
+      const emptyImageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+</urlset>
+`;
+      fs.writeFileSync(join(distDir, "image-sitemap.xml"), emptyImageSitemap, "utf8");
+      fs.writeFileSync(join(__dirname, "../public/image-sitemap.xml"), emptyImageSitemap, "utf8");
+
+      // Static RSS Feed fallback
+      console.log("Generating static feed.xml...");
+      const emptyFeedXml = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FilingBy Knowledge Hub</title>
+    <link>https://www.filingby.com/blog</link>
+    <description>Expert Chartered Accountant advice, tax guides, GST compliance rules, and virtual office regulations in India.</description>
+    <language>en-in</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="https://www.filingby.com/feed.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
+`;
+      fs.writeFileSync(join(distDir, "feed.xml"), emptyFeedXml, "utf8");
+      fs.writeFileSync(join(__dirname, "../public/feed.xml"), emptyFeedXml, "utf8");
+
+      console.log("Pre-rendering build completed successfully (static only)!");
       process.exit(0);
     }
 
@@ -409,7 +452,8 @@ async function prerender() {
     console.log("Generating sitemap.xml automatically...");
 
     let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-    sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+    sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`;
 
     sitemapXml += `\n  <!-- Core Static Pages -->`;
     for (const page of staticUrls) {
@@ -458,7 +502,17 @@ async function prerender() {
   <url>
     <loc>https://www.filingby.com/blog/${post.slug}</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}
+    <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}`;
+      
+      if (post.image) {
+        sitemapXml += `
+    <image:image>
+      <image:loc>${post.image}</image:loc>
+      <image:title><![CDATA[${post.title}]]></image:title>
+    </image:image>`;
+      }
+      
+      sitemapXml += `
   </url>`;
     }
 
@@ -470,6 +524,80 @@ async function prerender() {
     const publicSitemapPath = join(__dirname, "../public/sitemap.xml");
     fs.writeFileSync(publicSitemapPath, sitemapXml, "utf8");
     console.log("Sitemap.xml generated and updated automatically!");
+
+    // Generate robots.txt automatically
+    console.log("Generating robots.txt automatically...");
+    const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /virtual-office/dashboard/
+Disallow: /partner/dashboard/
+Disallow: /sso-callback/
+
+Sitemap: https://www.filingby.com/sitemap.xml
+Sitemap: https://www.filingby.com/image-sitemap.xml
+`;
+    fs.writeFileSync(join(distDir, "robots.txt"), robotsTxt, "utf8");
+    fs.writeFileSync(join(__dirname, "../public/robots.txt"), robotsTxt, "utf8");
+    console.log("robots.txt generated and updated automatically!");
+
+    // Generate image-sitemap.xml automatically
+    console.log("Generating image-sitemap.xml automatically...");
+    let imageSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">`;
+
+    for (const post of blogs) {
+      if (post.image) {
+        imageSitemapXml += `
+  <url>
+    <loc>https://www.filingby.com/blog/${post.slug}</loc>
+    <image:image>
+      <image:loc>${post.image}</image:loc>
+      <image:title><![CDATA[${post.title}]]></image:title>
+    </image:image>
+  </url>`;
+      }
+    }
+    imageSitemapXml += `\n</urlset>\n`;
+    fs.writeFileSync(join(distDir, "image-sitemap.xml"), imageSitemapXml, "utf8");
+    fs.writeFileSync(join(__dirname, "../public/image-sitemap.xml"), imageSitemapXml, "utf8");
+    console.log("image-sitemap.xml generated and updated automatically!");
+
+    // Generate feed.xml (RSS Feed) automatically
+    console.log("Generating feed.xml (RSS Feed) automatically...");
+    let feedXml = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FilingBy Knowledge Hub</title>
+    <link>https://www.filingby.com/blog</link>
+    <description>Expert Chartered Accountant advice, tax guides, GST compliance rules, and virtual office regulations in India.</description>
+    <language>en-in</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <atom:link href="https://www.filingby.com/feed.xml" rel="self" type="application/rss+xml" />`;
+
+    const sortedBlogs = [...blogs]
+      .sort((a, b) => new Date(b.publishedAt || b.createdAt) - new Date(a.publishedAt || a.createdAt))
+      .slice(0, 20);
+
+    for (const post of sortedBlogs) {
+      const postLink = `https://www.filingby.com/blog/${post.slug}`;
+      const pubDate = new Date(post.publishedAt || post.createdAt).toUTCString();
+      feedXml += `
+    <item>
+      <title><![CDATA[${post.title}]]></title>
+      <link>${postLink}</link>
+      <guid isPermaLink="true">${postLink}</guid>
+      <description><![CDATA[${post.excerpt || post.content.substring(0, 200).replace(/<[^>]*>/g, "") + "..."}]]></description>
+      <pubDate>${pubDate}</pubDate>
+      ${post.image ? `<enclosure url="${post.image}" length="0" type="image/jpeg" />` : ""}
+    </item>`;
+    }
+    feedXml += `\n  </channel>\n</rss>\n`;
+    fs.writeFileSync(join(distDir, "feed.xml"), feedXml, "utf8");
+    fs.writeFileSync(join(__dirname, "../public/feed.xml"), feedXml, "utf8");
+    console.log("feed.xml (RSS Feed) generated and updated automatically!");
 
     console.log("Database connection closed.");
     await mongoose.connection.close();
