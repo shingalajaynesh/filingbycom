@@ -12,6 +12,20 @@ const Service = mongoose.models.Service || mongoose.model("Service", new mongoos
 const VirtualLocation = mongoose.models.VirtualLocation || mongoose.model("VirtualLocation", new mongoose.Schema({}, { strict: false, collection: "virtuallocations" }));
 const BlogPost = mongoose.models.BlogPost || mongoose.model("BlogPost", new mongoose.Schema({}, { strict: false, collection: "blogposts" }));
 
+function escapeXml(unsafe) {
+  if (!unsafe) return "";
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
 dotenv.config();
 
 // Resolve paths
@@ -507,7 +521,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
     for (const page of staticUrls) {
       sitemapXml += `
   <url>
-    <loc>https://www.filingby.com/${page.path}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/${page.path}`)}</loc>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`;
@@ -517,17 +531,17 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
     for (const service of services) {
       sitemapXml += `
   <url>
-    <loc>https://www.filingby.com/services/${service.slug}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/services/${service.slug}`)}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`;
     }
 
-    sitemapXml += `\n\n  <!-- Dynamic Virtual Office Cities & Areas -->`;
+    sitemapXml += `\n\n  <!-- Dynamic Virtual Office Cities and Areas -->`;
     for (const loc of locations) {
       sitemapXml += `
   <url>
-    <loc>https://www.filingby.com/virtual-office-${loc.slug}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/virtual-office-${loc.slug}`)}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>`;
@@ -535,7 +549,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
         for (const addr of loc.addresses) {
           sitemapXml += `
   <url>
-    <loc>https://www.filingby.com/virtual-office-${loc.slug}/${addr.slug}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/virtual-office-${loc.slug}/${addr.slug}`)}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>`;
@@ -543,19 +557,19 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       }
     }
 
-    sitemapXml += `\n\n  <!-- Dynamic Blogs & Guides -->`;
+    sitemapXml += `\n\n  <!-- Dynamic Blogs and Guides -->`;
     for (const post of blogs) {
       const lastMod = post.updatedAt ? new Date(post.updatedAt).toISOString().split("T")[0] : null;
       sitemapXml += `
   <url>
-    <loc>https://www.filingby.com/blog/${post.slug}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/blog/${post.slug}`)}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}`;
       
       if (post.image) {
         sitemapXml += `
     <image:image>
-      <image:loc>${post.image}</image:loc>
+      <image:loc>${escapeXml(post.image)}</image:loc>
       <image:title><![CDATA[${post.title}]]></image:title>
     </image:image>`;
       }
@@ -600,9 +614,9 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       if (post.image) {
         imageSitemapXml += `
   <url>
-    <loc>https://www.filingby.com/blog/${post.slug}</loc>
+    <loc>${escapeXml(`https://www.filingby.com/blog/${post.slug}`)}</loc>
     <image:image>
-      <image:loc>${post.image}</image:loc>
+      <image:loc>${escapeXml(post.image)}</image:loc>
       <image:title><![CDATA[${post.title}]]></image:title>
     </image:image>
   </url>`;
@@ -639,7 +653,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       <guid isPermaLink="true">${postLink}</guid>
       <description><![CDATA[${post.excerpt || post.content.substring(0, 200).replace(/<[^>]*>/g, "") + "..."}]]></description>
       <pubDate>${pubDate}</pubDate>
-      ${post.image ? `<enclosure url="${post.image}" length="0" type="image/jpeg" />` : ""}
+      ${post.image ? `<enclosure url="${escapeXml(post.image)}" length="0" type="image/jpeg" />` : ""}
     </item>`;
     }
     feedXml += `\n  </channel>\n</rss>\n`;

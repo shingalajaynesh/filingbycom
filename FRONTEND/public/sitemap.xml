@@ -835,7 +835,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Dynamic Virtual Office Cities & Areas -->
+  <!-- Dynamic Virtual Office Cities and Areas -->
   <url>
     <loc>https://www.filingby.com/virtual-office-mumbai</loc>
     <changefreq>weekly</changefreq>
@@ -922,14 +922,14 @@
     <priority>0.85</priority>
   </url>
 
-  <!-- Dynamic Blogs & Guides -->
+  <!-- Dynamic Blogs and Guides -->
   <url>
     <loc>https://www.filingby.com/blog/gst-registration-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[GST Registration Guide: Requirements, Process & Timeline]]></image:title>
     </image:image>
   </url>
@@ -939,7 +939,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[How to Register a Private Limited Company in India: A Step-by-Step Overview]]></image:title>
     </image:image>
   </url>
@@ -949,7 +949,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Virtual Office for GST Registration: Everything You Need to Know]]></image:title>
     </image:image>
   </url>
@@ -959,7 +959,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Income Tax Return (ITR) Filing: A Guide for Salaried Individuals]]></image:title>
     </image:image>
   </url>
@@ -969,7 +969,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[LLP vs Private Limited Company: Which is Better for Your Startup?]]></image:title>
     </image:image>
   </url>
@@ -979,7 +979,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Trademark Registration in India: Process, Timeline & Pricing]]></image:title>
     </image:image>
   </url>
@@ -989,7 +989,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[How to Reply to a GST Notice: Types of Notices & Practical Steps]]></image:title>
     </image:image>
   </url>
@@ -999,7 +999,7 @@
     <priority>0.7</priority>
     <lastmod>2026-06-21</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop</image:loc>
+      <image:loc>https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[FSSAI Food License Guide: Registration Categories, Documents & Fees]]></image:title>
     </image:image>
   </url>
