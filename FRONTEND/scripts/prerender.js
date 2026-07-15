@@ -95,6 +95,14 @@ const STATIC_PAGES = [
   }
 ];
 
+const NOINDEX_PAGES = [
+  { path: "login", title: "Log In | FilingBy.com" },
+  { path: "register", title: "Register | FilingBy.com" },
+  { path: "dashboard", title: "Client Dashboard | FilingBy.com" },
+  { path: "virtual-office/dashboard", title: "Virtual Office Dashboard | FilingBy.com" },
+  { path: "partner/dashboard", title: "Partner Dashboard | FilingBy.com" }
+];
+
 // Helper to sanitize HTML file creation
 function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, pageSchema, pageContent) {
   const targetDir = join(distDir, routePath);
@@ -162,6 +170,33 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
   fs.writeFileSync(join(targetDir, "index.html"), parsedHtml, "utf8");
 }
 
+function writeNoIndexHtmlPage(routePath, pageTitle) {
+  const targetDir = join(distDir, routePath);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+
+  const seoMetadata = `
+  <title>${pageTitle}</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <link rel="canonical" href="https://www.filingby.com/${routePath}" />
+  `;
+
+  // Clean default head SEO from template and inject route-specific SEO tags
+  let parsedHtml = templateHtml.replace(
+    /<!-- Primary SEO \(defaults — react-helmet-async overrides per page\) -->[\s\S]+?<!-- Preconnect for performance -->/,
+    `<!-- Preconnect for performance -->`
+  );
+  
+  parsedHtml = parsedHtml.replace(
+    /<\/head>/,
+    `${seoMetadata}\n</head>`
+  );
+
+  fs.writeFileSync(join(targetDir, "index.html"), parsedHtml, "utf8");
+}
+
 async function prerender() {
   try {
     // 1. Always prerender static pages
@@ -175,6 +210,11 @@ async function prerender() {
         null,
         `<h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${page.h1}</h1>${page.content}`
       );
+    }
+
+    console.log(`Prerendering ${NOINDEX_PAGES.length} noindex pages...`);
+    for (const page of NOINDEX_PAGES) {
+      writeNoIndexHtmlPage(page.path, page.title);
     }
 
     const staticUrls = [
@@ -197,30 +237,41 @@ async function prerender() {
     ];
 
     if (!process.env.MONGODB_URI) {
-      console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and dynamic sitemap generation.");
+      console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and sitemap generation.");
       
-      console.log("Generating static sitemap.xml...");
-      let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-      sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-      sitemapXml += `\n  <!-- Core Static Pages -->`;
-      for (const page of staticUrls) {
-        sitemapXml += `
+      // Check if we already have pre-generated files in public/ (committed from local builds)
+      const filesToCopy = ["sitemap.xml", "image-sitemap.xml", "robots.txt", "feed.xml"];
+      let copiedCount = 0;
+      for (const file of filesToCopy) {
+        const publicFile = join(__dirname, `../public/${file}`);
+        if (fs.existsSync(publicFile)) {
+          fs.copyFileSync(publicFile, join(distDir, file));
+          copiedCount++;
+        }
+      }
+      
+      if (copiedCount === filesToCopy.length) {
+        console.log("Successfully copied pre-generated sitemaps, robots.txt, and feed.xml from public/ to dist/.");
+      } else {
+        console.log("Pre-generated files missing in public/. Generating static fallbacks...");
+        // Re-generate standard static fallbacks as a safe backup...
+        let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+        sitemapXml += `\n  <!-- Core Static Pages -->`;
+        for (const page of staticUrls) {
+          sitemapXml += `
   <url>
     <loc>https://www.filingby.com/${page.path}</loc>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>`;
-      }
-      sitemapXml += `\n</urlset>\n`;
+        }
+        sitemapXml += `\n</urlset>\n`;
 
-      fs.writeFileSync(join(distDir, "sitemap.xml"), sitemapXml, "utf8");
-      const publicSitemapPath = join(__dirname, "../public/sitemap.xml");
-      fs.writeFileSync(publicSitemapPath, sitemapXml, "utf8");
-      console.log("Static sitemap.xml generated and updated successfully!");
+        fs.writeFileSync(join(distDir, "sitemap.xml"), sitemapXml, "utf8");
+        fs.writeFileSync(join(__dirname, "../public/sitemap.xml"), sitemapXml, "utf8");
 
-      // Static Robots.txt fallback
-      console.log("Generating static robots.txt...");
-      const robotsTxt = `User-agent: *
+        const robotsTxt = `User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /dashboard/
@@ -231,22 +282,18 @@ Disallow: /sso-callback/
 Sitemap: https://www.filingby.com/sitemap.xml
 Sitemap: https://www.filingby.com/image-sitemap.xml
 `;
-      fs.writeFileSync(join(distDir, "robots.txt"), robotsTxt, "utf8");
-      fs.writeFileSync(join(__dirname, "../public/robots.txt"), robotsTxt, "utf8");
+        fs.writeFileSync(join(distDir, "robots.txt"), robotsTxt, "utf8");
+        fs.writeFileSync(join(__dirname, "../public/robots.txt"), robotsTxt, "utf8");
 
-      // Static Image Sitemap fallback
-      console.log("Generating static image-sitemap.xml...");
-      const emptyImageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+        const emptyImageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 </urlset>
 `;
-      fs.writeFileSync(join(distDir, "image-sitemap.xml"), emptyImageSitemap, "utf8");
-      fs.writeFileSync(join(__dirname, "../public/image-sitemap.xml"), emptyImageSitemap, "utf8");
+        fs.writeFileSync(join(distDir, "image-sitemap.xml"), emptyImageSitemap, "utf8");
+        fs.writeFileSync(join(__dirname, "../public/image-sitemap.xml"), emptyImageSitemap, "utf8");
 
-      // Static RSS Feed fallback
-      console.log("Generating static feed.xml...");
-      const emptyFeedXml = `<?xml version="1.0" encoding="UTF-8" ?>
+        const emptyFeedXml = `<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FilingBy Knowledge Hub</title>
@@ -258,10 +305,11 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
   </channel>
 </rss>
 `;
-      fs.writeFileSync(join(distDir, "feed.xml"), emptyFeedXml, "utf8");
-      fs.writeFileSync(join(__dirname, "../public/feed.xml"), emptyFeedXml, "utf8");
-
-      console.log("Pre-rendering build completed successfully (static only)!");
+        fs.writeFileSync(join(distDir, "feed.xml"), emptyFeedXml, "utf8");
+        fs.writeFileSync(join(__dirname, "../public/feed.xml"), emptyFeedXml, "utf8");
+      }
+      
+      console.log("Pre-rendering build completed successfully!");
       process.exit(0);
     }
 

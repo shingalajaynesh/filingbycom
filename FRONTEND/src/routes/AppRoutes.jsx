@@ -427,6 +427,8 @@ function AppRoutesContent() {
           <Route path="/locations" element={<Locations />} />
           <Route path="/virtual-office/:city" element={<VirtualOfficeCity />} />
           <Route path="/virtual-office/:city/:area" element={<VirtualOfficeArea />} />
+          <Route path="/virtual-office-:city" element={<VirtualOfficeCity />} />
+          <Route path="/virtual-office-:city/:area" element={<VirtualOfficeArea />} />
           
 
           <Route path="/ecommerce-office" element={<EcommerceOffice />} />

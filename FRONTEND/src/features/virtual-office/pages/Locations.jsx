@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
@@ -193,26 +193,26 @@ export default function Locations() {
                         <h4 className="text-gray-500 text-[10px] font-extrabold uppercase tracking-widest mt-4 mb-2">Popular Sub-Locations:</h4>
                         <div className="flex flex-wrap gap-2">
                           {city.addresses.map((addr) => (
-                            <button
+                            <Link
                               key={addr.slug}
-                              onClick={() => navigate(`/virtual-office-${city.slug}/${addr.slug}`)}
-                              className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95"
+                              to={`/virtual-office-${city.slug}/${addr.slug}`}
+                              className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95 text-center inline-block"
                             >
                               {addr.name}
-                            </button>
+                            </Link>
                           ))}
                         </div>
                       </div>
                     </div>
 
                     <div className="p-6 pt-0 mt-2">
-                      <button
-                        onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                        className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer"
+                      <Link
+                        to={`/virtual-office-${city.slug}`}
+                        className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer text-center inline-flex"
                       >
                         <span>Explore All Spaces</span>
                         <span className="group-hover:translate-x-1.5 transition-transform">➔</span>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 ))}
@@ -262,26 +262,26 @@ export default function Locations() {
                           <h4 className="text-gray-500 text-[10px] font-extrabold uppercase tracking-widest mb-2.5">Available Areas:</h4>
                           <div className="flex flex-wrap gap-2">
                             {city.addresses.map((addr) => (
-                              <button
+                              <Link
                                 key={addr.slug}
-                                onClick={() => navigate(`/virtual-office-${city.slug}/${addr.slug}`)}
-                                className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95"
+                                to={`/virtual-office-${city.slug}/${addr.slug}`}
+                                className="text-[10px] bg-slate-50 hover:bg-[#1A56DB] text-slate-700 hover:text-white rounded-full px-3 py-1.5 font-bold transition-all duration-200 cursor-pointer border-0 shadow-sm active:scale-95 text-center inline-block"
                               >
                                 {addr.name}
-                              </button>
+                              </Link>
                             ))}
                           </div>
                         </div>
                       </div>
 
                       <div className="p-6 pt-0 mt-2">
-                        <button
-                          onClick={() => navigate(`/virtual-office-${city.slug}`)}
-                          className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer"
+                        <Link
+                          to={`/virtual-office-${city.slug}`}
+                          className="w-full py-3.5 bg-gradient-to-r from-[#1A56DB] to-[#1e40af] hover:from-blue-700 hover:to-blue-800 text-white rounded-2xl text-xs font-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 border-0 cursor-pointer text-center inline-flex"
                         >
                           <span>Explore Office Hubs</span>
                           <span className="group-hover:translate-x-1.5 transition-transform">➔</span>
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   ))}
