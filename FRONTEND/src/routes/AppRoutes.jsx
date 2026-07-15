@@ -7,9 +7,10 @@
  */
 
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate, useParams, Link } from "react-router-dom";
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, startTransition } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { initGTM, pushToDataLayer, trackEvent } from "../shared/utils/gtm";
+import { preloadBlogDetailRoute, preloadBlogListRoute } from "../features/blog/blogData";
 
 // ── FEATURE COMPONENT IMPORTS ────────────────────────────────────────────────
 // ── CA Portal ──
@@ -20,8 +21,8 @@ import FloatingActions from "../features/ca-portal/components/FloatingActions";
 import Home from "../features/ca-portal/pages/Home";
 const ServicePage    = lazy(() => import("../features/ca-portal/pages/ServicePage"));
 const DigitalCard    = lazy(() => import("../features/ca-portal/pages/DigitalCard"));
-const BlogList       = lazy(() => import("../features/blog/pages/BlogList"));
-const BlogDetail     = lazy(() => import("../features/blog/pages/BlogDetail"));
+const BlogList       = lazy(() => preloadBlogListRoute());
+const BlogDetail     = lazy(() => preloadBlogDetailRoute());
 const GstCalculatorPage = lazy(() => import("../features/resources/pages/GstCalculatorPage"));
 const IncomeTaxCalculatorPage = lazy(() => import("../features/resources/pages/IncomeTaxCalculatorPage"));
 const RocToolsPage = lazy(() => import("../features/resources/pages/RocToolsPage"));
@@ -207,6 +208,40 @@ function RouteLoader() {
   );
 }
 
+function DeferredAIAssistant() {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
+    const enable = () => {
+      startTransition(() => {
+        setShouldRender(true);
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      const callbackId = window.requestIdleCallback(enable, { timeout: 2500 });
+      return () => window.cancelIdleCallback(callbackId);
+    }
+
+    const timeoutId = window.setTimeout(enable, 1200);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  if (!shouldRender) {
+    return null;
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <AIAssistant />
+    </Suspense>
+  );
+}
+
 // Dynamic router component to handle dynamic paths and fall back to 404
 function GlobalDynamicRouter() {
   const currentPath = window.location.pathname;
@@ -370,7 +405,7 @@ function AppRoutesContent() {
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}
-      {!isAdminRoute && <AIAssistant />}
+      {!isAdminRoute && <DeferredAIAssistant />}
       
       <Suspense fallback={<RouteLoader />}>
         <Routes>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
+import { prefetchBlogPost } from "../blogData.js";
 
 function formatDate(dateValue) {
   if (!dateValue) return "";
@@ -29,6 +30,9 @@ export default function BlogCard({ post, featured = false }) {
   const publishedLabel = formatDate(publishedAt);
   const updatedLabel = formatDate(updatedAt);
   const readLabel = readingTime || `${readTime || 8} min read`;
+  const handlePrefetch = () => {
+    prefetchBlogPost(slug);
+  };
 
   return (
     <article
@@ -38,6 +42,9 @@ export default function BlogCard({ post, featured = false }) {
     >
       <Link
         to={`/blog/${slug}`}
+        onMouseEnter={handlePrefetch}
+        onFocus={handlePrefetch}
+        onTouchStart={handlePrefetch}
         className={`relative block overflow-hidden bg-slate-100 ${featured ? "aspect-[16/10]" : "aspect-video"}`}
       >
         {image ? (
@@ -98,6 +105,8 @@ export default function BlogCard({ post, featured = false }) {
 
               <Link
                 to={`/blog/${slug}`}
+                onMouseEnter={handlePrefetch}
+                onFocus={handlePrefetch}
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#1A56DB] transition-all group-hover:gap-3"
               >
                 Read more

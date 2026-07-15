@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html.prerender-shell-active #app-root {
+  visibility: hidden;
+}
+
 @theme {
   /* Primary Colors - Deep Navy for authority and trust */
   --color-navy-900: #0A192F;
@@ -150,4 +154,4 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-}
+}

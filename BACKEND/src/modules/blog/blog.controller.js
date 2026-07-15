@@ -9,6 +9,8 @@ class BlogController {
       
       const query = {};
 
+      const parsedLimit = all === "true" ? 1000 : parseInt(limit);
+
       // Regular users only see published posts. Admin can pass "all=true" to see drafts.
       if (!all || all !== "true") {
         query.isPublished = true;
@@ -30,13 +32,13 @@ class BlogController {
         ];
       }
 
-      const skip = (parseInt(page) - 1) * parseInt(limit);
+      const skip = (parseInt(page) - 1) * parsedLimit;
       const total = await BlogPost.countDocuments(query);
       
       const posts = await BlogPost.find(query)
         .sort({ publishedAt: -1, createdAt: -1 })
         .skip(skip)
-        .limit(parseInt(limit))
+        .limit(parsedLimit)
         .lean();
 
       return res.status(200).json({
@@ -45,8 +47,8 @@ class BlogController {
         pagination: {
           total,
           page: parseInt(page),
-          limit: parseInt(limit),
-          pages: Math.ceil(total / parseInt(limit)),
+          limit: parsedLimit,
+          pages: Math.ceil(total / parsedLimit),
         },
       });
     } catch (error) {

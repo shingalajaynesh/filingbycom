@@ -14,15 +14,19 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import './index.css';
 import AppRoutes from './routes/AppRoutes';
+import { preparePrerenderShell } from './shared/utils/prerender';
 
 // Retrieve Clerk key from environment configurations
 const clerkPublishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const mountNode = document.getElementById('app-root') || document.getElementById('root');
+
+preparePrerenderShell();
 
 // ── CONFIGURATION CHECK ──────────────────────────────────────────────────────
 // Ensure the system fails safely with a custom warning UI if environmental
 // keys are missing, avoiding raw blank screen console errors in development.
 if (!clerkPublishableKey) {
-  createRoot(document.getElementById('root')).render(
+  createRoot(mountNode).render(
     <StrictMode>
       <div style={{
         display: 'flex',
@@ -105,7 +109,7 @@ if (!clerkPublishableKey) {
   // - HelmetProvider: Enables thread-safe head tags compilation for SEO
   // - ClerkProvider: Manages authentication sessions and identity synchronization
   // - Toaster: Visual feedback container mapped globally
-  createRoot(document.getElementById('root')).render(
+  createRoot(mountNode).render(
     <StrictMode>
       <HelmetProvider>
         <ClerkProvider publishableKey={clerkPublishableKey} afterSignOutUrl="/login">

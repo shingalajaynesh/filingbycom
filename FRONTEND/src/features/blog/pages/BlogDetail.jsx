@@ -12,12 +12,12 @@ import {
   buildFaqSchema,
 } from "../../../shared/seo/schemas.js";
 import { resolveAuthorProfile, resolveReviewerProfile } from "../contentProfiles.js";
-
-const API_BASE = (
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_BACKEND_URL ||
-  "http://localhost:3000"
-).replace(/\/$/, "");
+import {
+  fetchBlogPost,
+  fetchRelatedBlogPosts,
+  getCachedBlogPost,
+} from "../blogData.js";
+import { getInitialBlogPayload, revealPrerenderShell } from "../../../shared/utils/prerender.js";
 
 const categoryServiceMap = {
   GST: [
@@ -188,43 +188,86 @@ function stripDuplicateArticleSections(htmlContent) {
 export default function BlogDetail() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const initialPayload = getInitialBlogPayload(slug);
+  const initialPost = initialPayload?.post || getCachedBlogPost(slug);
+  const [post, setPost] = useState(initialPost);
+  const [loading, setLoading] = useState(!initialPost);
   const [error, setError] = useState(null);
-  const [relatedPosts, setRelatedPosts] = useState([]);
+  const [relatedPosts, setRelatedPosts] = useState(initialPayload?.relatedPosts || []);
 
   useEffect(() => {
+    const controller = new AbortController();
+    let isActive = true;
+
     const fetchPostDetail = async () => {
-      setLoading(true);
-      setError(null);
-
       try {
-        const res = await axios.get(`${API_BASE}/blogs/${slug}`);
-        if (res.data.success) {
-          const fetchedPost = res.data.post;
-          setPost(fetchedPost);
+        const fetchedPost = await fetchBlogPost(slug, {
+          signal: controller.signal,
+          force: Boolean(initialPayload?.post),
+        });
 
-          try {
-            const relatedRes = await axios.get(`${API_BASE}/blogs`, {
-              params: { category: fetchedPost.category, limit: 4 },
-            });
-            if (relatedRes.data.success) {
-              setRelatedPosts((relatedRes.data.posts || []).filter((item) => item.slug !== slug));
-            }
-          } catch (relatedError) {
-            console.error("Failed to load related posts:", relatedError);
+        if (!isActive) {
+          return;
+        }
+
+        setPost(fetchedPost);
+        setError(null);
+        setLoading(false);
+
+        if (!initialPayload?.relatedPosts?.length && fetchedPost?.category) {
+          const fetchedRelatedPosts = await fetchRelatedBlogPosts(
+            fetchedPost.category,
+            slug,
+            4,
+            controller.signal
+          );
+          if (isActive) {
+            setRelatedPosts(fetchedRelatedPosts);
           }
         }
       } catch (requestError) {
+        if (axios.isCancel(requestError) || requestError.name === "CanceledError" || requestError.name === "AbortError") {
+          return;
+        }
+
         console.error("Failed to load blog details:", requestError);
-        setError("Article not found or server error.");
+        if (isActive) {
+          setError("Article not found or server error.");
+          setLoading(false);
+        }
       } finally {
-        setLoading(false);
+        if (isActive && initialPayload?.post) {
+          revealPrerenderShell();
+        }
       }
     };
 
+    setError(null);
+    setRelatedPosts(initialPayload?.relatedPosts || []);
+
+    if (initialPayload?.post) {
+      setPost(initialPayload.post);
+      setLoading(false);
+      setError(null);
+      revealPrerenderShell();
+    } else {
+      setPost(initialPost || null);
+      setLoading(!initialPost);
+    }
+
     fetchPostDetail();
-  }, [slug]);
+
+    return () => {
+      isActive = false;
+      controller.abort();
+    };
+  }, [initialPayload, initialPost, slug]);
+
+  useEffect(() => {
+    if (post) {
+      revealPrerenderShell();
+    }
+  }, [post]);
 
   if (loading) {
     return (

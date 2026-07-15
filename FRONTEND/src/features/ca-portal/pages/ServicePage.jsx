@@ -8,6 +8,7 @@ import SEO from '../../../shared/components/SEO.jsx';
 import ReviewSubmissionModal from '../../../shared/components/ReviewSubmissionModal.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
+import { getInitialServicePayload, revealPrerenderShell } from '../../../shared/utils/prerender.js';
 import {
   ServiceOverview,
   ServiceBenefits,
@@ -26,14 +27,15 @@ export default function ServicePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { isLoaded, isSignedIn } = useUser();
+  const initialPayload = getInitialServicePayload(slug);
   
   const [openFaq, setOpenFaq] = useState(0);
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   
   const { services, loading: cacheLoading, refresh, settings } = useSharedData();
-  const [serviceData, setServiceData] = useState(null);
-  const [pageLoading, setPageLoading] = useState(true);
+  const [serviceData, setServiceData] = useState(initialPayload?.service || null);
+  const [pageLoading, setPageLoading] = useState(!initialPayload?.service);
   const [serviceReviews, setServiceReviews] = useState([]);
 
   useEffect(() => {
@@ -41,15 +43,21 @@ export default function ServicePage() {
       const currentService = services.find(s => s.slug === slug);
       if (currentService) {
         setServiceData(currentService);
-      } else {
+      } else if (!initialPayload?.service) {
         setServiceData(null);
       }
       setPageLoading(false);
-    } else if (!cacheLoading) {
+    } else if (!cacheLoading && !initialPayload?.service) {
       setServiceData(null);
       setPageLoading(false);
     }
-  }, [slug, services, cacheLoading]);
+  }, [cacheLoading, initialPayload?.service, services, slug]);
+
+  useEffect(() => {
+    if (serviceData?.slug === slug) {
+      revealPrerenderShell();
+    }
+  }, [serviceData, slug]);
 
   useEffect(() => {
     if (serviceData?._id) {

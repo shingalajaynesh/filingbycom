@@ -1,3 +1,4 @@
+/* global process */
 import dns from "node:dns";
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
@@ -24,6 +25,65 @@ function escapeXml(unsafe) {
       default: return c;
     }
   });
+}
+
+function serializeForScript(value) {
+  return JSON.stringify(value)
+    .replace(/</g, "\\u003C")
+    .replace(/>/g, "\\u003E")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+}
+
+function buildBlogSummary(post) {
+  return {
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    category: post.category,
+    readTime: post.readTime,
+    readingTime: post.readingTime,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    author: post.author,
+    image: post.image || post.featuredImage,
+    focusKeyword: post.focusKeyword,
+  };
+}
+
+function buildServiceInitialData(service) {
+  return {
+    kind: "service-page",
+    slug: service.slug,
+    service: {
+      _id: service._id?.toString?.() || service._id,
+      slug: service.slug,
+      name: service.name,
+      description: service.description,
+      category: service.category,
+      basePrice: service.basePrice,
+      updatedAt: service.updatedAt,
+      benefits: service.benefits || [],
+      documentsRequired: service.documentsRequired || [],
+      processSteps: service.processSteps || [],
+      faqs: service.faqs || [],
+    },
+  };
+}
+
+function buildBlogInitialData(post, allBlogs) {
+  const relatedPosts = allBlogs
+    .filter((item) => item.slug !== post.slug && item.category === post.category)
+    .slice(0, 3)
+    .map(buildBlogSummary);
+
+  return {
+    kind: "blog-post",
+    slug: post.slug,
+    post,
+    relatedPosts,
+  };
 }
 
 dotenv.config();
@@ -118,7 +178,7 @@ const NOINDEX_PAGES = [
 ];
 
 // Helper to sanitize HTML file creation
-function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, pageSchema, pageContent) {
+function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, pageSchema, pageContent, initialData = null) {
   const targetDir = join(distDir, routePath);
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
@@ -171,13 +231,17 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
 
   // Inject content into <div id="root">
   const preRenderedContent = `
-    <div class="prerendered-content" style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: -apple-system, sans-serif; line-height: 1.6; color: #334155;">
-      ${pageContent}
+    <div data-prerender-shell="true">
+      <div class="prerendered-content" style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: -apple-system, sans-serif; line-height: 1.6; color: #334155;">
+        ${pageContent}
+      </div>
     </div>
+    <div id="app-root"></div>
+    ${initialData ? `<script id="__FILINGBY_PRERENDER_DATA__" type="application/json">${serializeForScript(initialData)}</script>` : ""}
   `;
 
   parsedHtml = parsedHtml.replace(
-    /<div id="root"><\/div>/,
+    /<div id="root">\s*<div id="app-root"><\/div>\s*<\/div>/,
     `<div id="root">${preRenderedContent}</div>`
   );
 
@@ -388,7 +452,8 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
         description,
         keywords,
         schema,
-        bodyContent
+        bodyContent,
+        buildServiceInitialData(service)
       );
     }
 
@@ -522,7 +587,8 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
         description,
         keywords,
         postSchema,
-        bodyContent
+        bodyContent,
+        buildBlogInitialData(post, blogs)
       );
     }
 
