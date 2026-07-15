@@ -11,6 +11,19 @@ const samplePosts = [
   {
     title: "GST Registration Guide: Requirements, Process & Timeline",
     slug: "gst-registration-guide",
+    seoTitle: "GST Registration Online India: Complete Step-by-Step Guide",
+    seoDescription: "Secure your GSTIN online. Learn turnover limits, documents needed, step-by-step instructions, and CA representation timelines.",
+    focusKeyword: "gst registration online",
+    secondaryKeywords: ["gstin registration", "documents for gst", "gst turnover limit"],
+    searchIntent: "Commercial / Informational",
+    category: "GST",
+    subCategory: "Registration",
+    author: "FilingBy Legal Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "12 mins",
+    featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "GST registration process checklist",
     excerpt: "Learn how to obtain GST registration in India, including documents required, turnover thresholds, step-by-step registration process, and timeline.",
     content: `
       <h2>Introduction to GST Registration</h2>
@@ -33,7 +46,6 @@ const samplePosts = [
         <li><strong>Proof of Business Address:</strong> Utility bill (electricity, water, landline), property tax receipt, or municipal khata copy.</li>
         <li><strong>Proof of Address Occupancy:</strong> If rented, a registered Rent Agreement along with a No Objection Certificate (NOC) from the landlord. If owned, proof of ownership.</li>
         <li><strong>Bank Account Proof:</strong> A cancelled cheque, bank statement, or passbook copy showing bank name, account holder name, and IFSC code.</li>
-        <li><strong>Incorporation Certificate</strong> or partnership deed (for companies/partnerships).</li>
       </ol>
 
       <h2>Step-by-Step Online Application Process</h2>
@@ -42,24 +54,33 @@ const samplePosts = [
       <p><strong>Step 2: Submit Part-B of Application:</strong> Log in with the TRN. Fill in the business details, promoter details, authorized signatory, principal place of business, goods/services description, and upload the required documents.</p>
       <p><strong>Step 3: Verification & ARN Generation:</strong> Submit the form using DSC (Digital Signature Certificate) or EVC (Aadhaar OTP). An Application Reference Number (ARN) is generated to track the status.</p>
       <p><strong>Step 4: Review by Officer:</strong> The GST officer reviews your application. If satisfied, your GSTIN (Goods and Services Tax Identification Number) and Registration Certificate (Form REG-06) will be granted within 3 to 7 working days. If queries arise, a clarification notice (REG-03) will be issued.</p>
-
-      <h2>Conclusion</h2>
-      <p>Getting registered for GST is the first step toward building a legally compliant and scalable business in India. At FilingBy, our dedicated CA/CS experts assist hundreds of founders daily to register their businesses online without visiting government offices.</p>
     `,
-    metaTitle: "GST Registration Online India — Complete Step-by-Step Guide",
-    metaDescription: "Step-by-step guide to GST registration in India. Find turnover limits, mandatory documents, landlord NOC details, and registration timeline. Expert-assisted by FilingBy.",
-    keywords: "gst registration, how to apply for gst, gst registration documents, gst portal, gst registration threshold",
-    category: "GST",
-    tags: ["GST", "Taxation", "Compliance", "Startup Guide"],
-    author: "FilingBy Legal Desk",
-    readTime: 6,
-    isPublished: true,
-    publishedAt: new Date("2026-06-12T09:00:00.000Z"),
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop"
+    faq: [
+      { q: "Is Aadhaar authentication mandatory for GST?", a: "Yes, Aadhaar authentication is mandatory for quick approval without physical site audits." }
+    ],
+    relatedServices: ["gst-registration", "gst-filing"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["rent-agreement"],
+    internalLinks: ["/hubs/gst"],
+    cta: "Get GST Registration with CA Assistance",
+    isPublished: true
   },
   {
     title: "How to Register a Private Limited Company in India: A Step-by-Step Overview",
     slug: "how-to-register-private-limited-company",
+    seoTitle: "Pvt Ltd Company Registration India — Process, Costs & Guidelines",
+    seoDescription: "Learn how to register a Private Limited (Pvt Ltd) company in India. Discover SPICe+ form process, DSC requirements, and minimum criteria for startups.",
+    focusKeyword: "register a private limited company",
+    secondaryKeywords: ["pvt ltd incorporation", "company registration online", "spice form mca"],
+    searchIntent: "Transactional / Informational",
+    category: "Company Setup",
+    subCategory: "Registration",
+    author: "FilingBy Legal Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "15 mins",
+    featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Private limited company incorporation files",
     excerpt: "Ready to start your company? This guide details the step-by-step procedure to incorporate a Private Limited (Pvt Ltd) Company in India through SPICe+.",
     content: `
       <h2>Why Register a Private Limited Company?</h2>
@@ -90,275 +111,592 @@ const samplePosts = [
 
       <h3>Step 5: Get Certificate of Incorporation (COI)</h3>
       <p>MCA processes the application. Once approved, the Registrar of Companies (ROC) issues the Certificate of Incorporation (COI) along with the PAN and TAN numbers.</p>
-
-      <h2>Conclusion</h2>
-      <p>Incorporating a company protects your personal assets and signals corporate maturity to clients and investors. Our team of experienced Chartered Accountants and Company Secretaries at FilingBy handle everything from DSC to COI registration, saving you weeks of paperwork.</p>
     `,
-    metaTitle: "Pvt Ltd Company Registration India — Process, Costs & Guidelines",
-    metaDescription: "Learn how to register a Private Limited (Pvt Ltd) company in India. Discover SPICe+ form process, DSC requirements, and minimum criteria for startups.",
-    keywords: "pvt ltd registration, company incorporation india, spice form mca, start a startup, register company",
-    category: "Company Registration",
-    tags: ["Company", "Startup Setup", "Legal Compliance", "MCA"],
-    author: "FilingBy Corporate Services Team",
-    readTime: 8,
-    isPublished: true,
-    publishedAt: new Date("2025-10-15T11:30:00.000Z"),
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
+    faq: [
+      { q: "What is the minimum capital required to start a Pvt Ltd?", a: "There is no statutory minimum capital requirement; you can incorporate with an authorized capital starting at ₹10,000." }
+    ],
+    relatedServices: ["private-limited-company", "llp-registration"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["nda", "board-resolution"],
+    internalLinks: ["/hubs/company"],
+    cta: "Incorporate Your Pvt Ltd Company Online",
+    isPublished: true
   },
   {
-    title: "Virtual Office for GST Registration: Everything You Need to Know",
-    slug: "virtual-office-for-gst-registration",
-    excerpt: "Struggling to get a physical commercial lease for GST registration? Discover how a legal Virtual Office Address provides valid NOCs and utility bills to help you register.",
-    content: `
-      <h2>The Challenge of Physical Address Verification</h2>
-      <p>For modern startups, e-commerce sellers, and service providers, renting a physical commercial office space is often an expensive and unnecessary burden. However, to obtain a GST registration or register a company in a state, the government requires proof of a physical registered address. This is where a Virtual Office becomes invaluable.</p>
-      
-      <h2>What is a Virtual Office?</h2>
-      <p>A Virtual Office is a service that provides businesses with a professional, legal address in a prime commercial location without the high costs of renting physical desk space. You can use this address for corporate mailing, business card registration, and importantly, GST registration and company incorporation.</p>
-
-      <h2>Is Virtual Office Legal for GST Registration in India?</h2>
-      <p><strong>Yes, absolutely.</strong> Utilizing a virtual office for GST registration is 100% legal under Indian law, provided the service provider supplies the required statutory documents and the business owner maintains proper records.</p>
-      <p>The GST department has strict verification rules, and to pass the registration check successfully, your virtual office provider must furnish:</p>
-      <ul>
-        <li><strong>Registered Rent/Lease Agreement</strong> between the property owner and your business entity.</li>
-        <li><strong>No Objection Certificate (NOC)</strong> from the property owner stating they have no objection to your business registering at their premises.</li>
-        <li><strong>Recent Utility Bill</strong> (electricity or municipal tax receipt) showing the property owner's name and matching the exact address format.</li>
-      </ul>
-
-      <h2>Core Deliverables from FilingBy Virtual Space</h2>
-      <p>When you book a Virtual Space through FilingBy, we deliver complete compliant documents tailored to GST and ROC requirements:</p>
-      <ol>
-        <li><strong>Signage board</strong> placement at the physical location (crucial for unexpected physical inspections by GST officials).</li>
-        <li><strong>Courier & mail handling:</strong> We receive your official mail and courier packs, scan them, and email them to you immediately.</li>
-        <li><strong>Desk space support:</strong> Access to meeting rooms or temporary hot desks for audit verification visits.</li>
-      </ol>
-
-      <h2>Conclusion</h2>
-      <p>FilingBy provides premium virtual offices in 28 states in India, allowing e-commerce traders to register in multiple warehouses, and remote agencies to operate from anywhere legally. Check out our Virtual Space options today starting from just ₹999/month!</p>
-    `,
-    metaTitle: "Is Virtual Office Legal for GST? Required Documents & FAQs",
-    metaDescription: "Yes, virtual offices are legal for GST registration in India. Learn the necessary documents like Landlord NOC, Rent Agreement, and how FilingBy helps.",
-    keywords: "virtual office for gst, gst registration address, virtual office rent agreement, noc landlord, e-commerce warehouse address",
-    category: "Virtual Office",
-    tags: ["Virtual Office", "GST Address", "Compliance", "E-commerce"],
-    author: "FilingBy Virtual Office Desk",
-    readTime: 5,
-    isPublished: true,
-    publishedAt: new Date("2024-11-20T14:00:00.000Z"),
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    title: "Income Tax Return (ITR) Filing: A Guide for Salaried Individuals",
-    slug: "income-tax-return-filing-salaried-individuals",
-    excerpt: "Filing your ITR can be stressful. Read this breakdown of ITR-1 requirements, slab rates, deductions, Form 16 verification, and deadline dates.",
-    content: `
-      <h2>Who Needs to File ITR?</h2>
-      <p>Filing an Income Tax Return (ITR) is mandatory in India if your gross total income exceeds the basic exemption limit. For salaried individuals, filing your tax return is crucial for obtaining home loans, visa approvals, and claiming refund amounts on TDS.</p>
-      
-      <h2>ITR-1 (Sahaj) vs ITR-2: Which Form to Use?</h2>
-      <p>Understanding which ITR form applies to you prevents defective filing notices from the Income Tax Department:</p>
-      <ul>
-        <li><strong>ITR-1 (Sahaj):</strong> For resident individuals who have income from salary/pension, one house property, other sources (interest, etc.), and agricultural income up to ₹5,000, with total income not exceeding ₹50 Lakhs.</li>
-        <li><strong>ITR-2:</strong> For individuals having income exceeding ₹50 Lakhs, or holding directorships, capital gains from shares/property, or income from more than one house property.</li>
-      </ul>
-
-      <h2>Essential Documents Checklist for ITR Filing</h2>
-      <ol>
-        <li><strong>PAN and Aadhaar Cards:</strong> Must be linked as per current IT guidelines.</li>
-        <li><strong>Form 16:</strong> Issued by your employer detailing taxable salary, exemptions (like HRA, LTA), and TDS deducted.</li>
-        <li><strong>AIS (Annual Information Statement) & TIS:</strong> Documents showing all financial transactions, stock trades, dividend income, and interest earned.</li>
-        <li><strong>Investment Proofs:</strong> Details of deductions under Section 80C (PPF, ELSS, LIC), 80D (Health Insurance), and Section 24 (Home Loan Interest).</li>
-      </ol>
-
-      <h2>Important Tax Saving Deductions</h2>
-      <p>Under the Old Tax Regime, you can reduce taxable income using the following sections:</p>
-      <p><strong>Section 80C:</strong> Deductions up to ₹1.5 Lakhs for investments in PPF, EPF, ELSS mutual funds, and Principal repayment of home loans.</p>
-      <p><strong>Section 80D:</strong> Deductions up to ₹25,000 for self/family health insurance premiums (₹50,000 if parents are senior citizens).</p>
-      <p><strong>Section 80CCD(1B):</strong> Additional deduction up to ₹50,000 for contributions to National Pension System (NPS).</p>
-
-      <h2>Conclusion</h2>
-      <p>Filing before the annual July 31st deadline avoids late fees under Section 234F and interest charges on outstanding tax. FilingBy's tax experts check your Form 16 against AIS details, ensuring you maximize deductions safely.</p>
-    `,
-    metaTitle: "ITR-1 Filing Guide for Salaried Employees — Deadlines & Exemption Rules",
-    metaDescription: "A comprehensive guide to filing ITR-1 Sahaj for salaried individuals in India. Learn about Form 16, salary tax slabs, and Section 80C/80D deductions.",
-    keywords: "itr filing, salary tax return, form 16, income tax exemptions, tax slab rates, file taxes online",
-    category: "General",
-    tags: ["ITR Filing", "Income Tax", "Tax Saving", "Salaried Class"],
-    author: "FilingBy Tax Desk",
-    readTime: 5,
-    isPublished: true,
-    publishedAt: new Date("2023-07-10T10:00:00.000Z"),
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    title: "LLP vs Private Limited Company: Which is Better for Your Startup?",
-    slug: "llp-vs-private-limited-company",
-    excerpt: "Deciding between a Limited Liability Partnership (LLP) and a Pvt Ltd Company? Learn key differences in incorporation costs, compliance, and funding.",
-    content: `
-      <h2>Understanding Business Structures in India</h2>
-      <p>Choosing the right business entity structure affects your startup's ability to raise capital, manage taxes, and stay compliant. For teams of founders, the choices usually narrow down to a Limited Liability Partnership (LLP) or a Private Limited (Pvt Ltd) Company.</p>
-      
-      <h2>Comparison Metrics</h2>
-      <table border="1" cellpadding="5" style="border-collapse: collapse; margin-bottom: 20px; width:100%;">
-        <tr style="background-color: #f3f4f6;">
-          <th>Feature</th>
-          <th>LLP (Limited Liability Partnership)</th>
-          <th>Pvt Ltd (Private Limited Company)</th>
-        </tr>
-        <tr>
-          <td><strong>Ownership</strong></td>
-          <td>Partners hold capital and management roles.</td>
-          <td>Shareholders own shares; Board of Directors manages operations.</td>
-        </tr>
-        <tr>
-          <td><strong>VC Funding</strong></td>
-          <td>Rarely funded by VCs. Capital transfer requires deed changes.</td>
-          <td>Preferred by VCs. Easy transfer of shares to investors.</td>
-        </tr>
-        <tr>
-          <td><strong>Compliance Load</strong></td>
-          <td>Low. Audit only required if turnover > ₹40 Lakhs or contribution > ₹25 Lakhs.</td>
-          <td>Moderate to High. Statutory Audit is mandatory from year one.</td>
-        </tr>
-        <tr>
-          <td><strong>Tax on Profit</strong></td>
-          <td>30% + surcharge. No dividend distribution tax.</td>
-          <td>Base rate of 15% or 22% for new entities. Dividends are taxed.</td>
-        </tr>
-      </table>
-
-      <h2>When to Choose an LLP?</h2>
-      <p>An LLP is ideal for small businesses, professional service providers (like consulting agencies, CAs, lawyers), and bootstrapped startups who do not require external venture capital. It offers limited liability protection with lower operational compliance and registration overheads.</p>
-
-      <h2>When to Choose a Private Limited Company?</h2>
-      <p>A Pvt Ltd structure is mandatory if you plan to pitch to Venture Capitalists, raise external equity, allocate ESOPs to employees, or scale globally. The corporate framework is recognized globally and enables clear ownership division.</p>
-
-      <h2>Conclusion</h2>
-      <p>If scaling and venture funding is your target, go with a Private Limited structure. If simplicity and lower administrative costs are what you need, register as an LLP. At FilingBy, we help you incorporate either structure 100% online.</p>
-    `,
-    metaTitle: "LLP vs Pvt Ltd Company — Startup Incorporation Comparison",
-    metaDescription: "LLP or Private Limited? Compare the key differences in registration costs, annual compliance, tax slabs, and VC fundraising criteria in India.",
-    keywords: "llp vs pvt ltd, limited liability partnership, register company india, vc funding startup, company registration comparison",
-    category: "Company Registration",
-    tags: ["LLP", "Company Incorporation", "Startup Guide", "Corporate Law"],
-    author: "FilingBy Corporate Law Experts",
-    readTime: 7,
-    isPublished: true,
-    publishedAt: new Date("2022-09-18T08:15:00.000Z"),
-    image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    title: "Trademark Registration in India: Process, Timeline & Pricing",
+    title: "Trademark Registration Guide: Brand and Logo Protection in India",
     slug: "trademark-registration-india",
-    excerpt: "Protect your brand name, logo, or slogan from duplication. Read our guide on Trademark search, classification classes, TM filing, and examination replies.",
+    seoTitle: "Trademark Registration India Online: Complete Step-by-Step CA Guide",
+    seoDescription: "Secure your brand name and logo. Learn trademark search guidelines, NICE classes, dynamic application steps, and objection replies.",
+    focusKeyword: "trademark registration india",
+    secondaryKeywords: ["brand name protection", "logo registration online", "nice class lookup"],
+    searchIntent: "Transactional",
+    category: "Trademark",
+    subCategory: "Registration",
+    author: "FilingBy Intellectual Property Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "10 mins",
+    featuredImage: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Trademark registration brand filing",
+    excerpt: "Learn how to secure trademark protection for your company name, logo, or tagline in India. Discover NICE classification details and search guidelines.",
     content: `
-      <h2>Why Register a Trademark?</h2>
-      <p>Your brand name, logo, or catchphrase represents your identity and goodwill. Trademark registration grants you exclusive legal ownership of your brand assets, allowing you to sue duplicate copycats and establish franchise credibility.</p>
+      <h2>The Importance of Trademark Registration</h2>
+      <p>A trademark is a unique symbol, design, word, or phrase that distinguishes your goods or services from competitors. Registering your trademark grants exclusive usage rights and prevents third parties from copying your brand identity.</p>
       
-      <h2>Step 1: Conduct a Trademark Search</h2>
-      <p>Before submitting an application, perform a search on the Intellectual Property India database. Your mark must not match any existing registered trademarks in your business industry classes (e.g. Class 9 for software, Class 25 for apparel).</p>
-
-      <h2>Step 2: Submitting Form TM-A</h2>
-      <p>File the trademark application online. Once submitted, you can immediately begin using the <strong>™</strong> symbol next to your brand name, indicating that your application is pending review.</p>
-
-      <h2>Step 3: Trademark Examination & Objection</h2>
-      <p>A trademark examiner reviews your application to ensure it is not descriptive, offensive, or matching a registered brand. If they find issues, they issue a <strong>Trademark Objection</strong> under Section 9 or Section 11, requiring a legal written reply within 30 days.</p>
-
-      <h2>Step 4: Publication in TM Journal</h2>
-      <p>Once accepted by the examiner, the trademark is advertised in the official Trademark Journal for 4 months, allowing third parties to register any oppositions.</p>
-
-      <h2>Step 5: Registration Certificate</h2>
-      <p>If no oppositions are filed, the Registrar of Trademarks grants you the Registration Certificate. You can then legally use the registered <strong>®</strong> symbol next to your brand. A trademark is valid for 10 years and is renewable indefinitely.</p>
-
-      <h2>Conclusion</h2>
-      <p>Securing your brand early prevents competitors from stealing your name. FilingBy handles complete trademark applications, including professional search reports and attorney-assisted filings, starting at competitive prices.</p>
-    `,
-    metaTitle: "Online Trademark Registration India — Process, Search & Classes",
-    metaDescription: "Step-by-step procedure for online Trademark registration in India. Learn about brand name searches, TM classes, objection replies, and registry fees.",
-    keywords: "trademark registration, brand logo search, trademark classes india, tm journal, ipr trademark",
-    category: "General",
-    tags: ["Trademark", "IPR", "Brand Security", "Legal Protection"],
-    author: "FilingBy IP Desk",
-    readTime: 6,
-    isPublished: true,
-    publishedAt: new Date("2021-04-10T15:45:00.000Z"),
-    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    title: "How to Reply to a GST Notice: Types of Notices & Practical Steps",
-    slug: "how-to-reply-gst-notice",
-    excerpt: "Received a notice from the GST department? Learn about common causes, tax mismatch notices (GSTR-1 vs 3B), and how to draft a valid response.",
-    content: `
-      <h2>The Scrutiny under GST law</h2>
-      <p>With tax automation, the GST department frequently issues system-generated notices to taxpayers for mismatch checks or document clarifications. Receiving a notice is common and can be resolved easily by submitting a timely, valid reply.</p>
-      
-      <h2>Common Types of GST Notices</h2>
+      <h2>Steps to Apply for a Trademark Online</h2>
+      <p>The trademark registration is administered by the Office of the Controller General of Patents, Designs and Trade Marks:</p>
       <ul>
-        <li><strong>GSTR-1 vs GSTR-3B Mismatch:</strong> Notice issued when the liability declared in outward supplies (GSTR-1) does not match the actual tax paid (GSTR-3B).</li>
-        <li><strong>ITC Mismatch (GSTR-3B vs GSTR-2B):</strong> Notice checking excess Input Tax Credit claimed compared to what suppliers auto-populated in GSTR-2B.</li>
-        <li><strong>Non-filing Notices:</strong> Issued under Section 46 when a taxpayer fails to submit GSTR-3B or annual GSTR-9 returns on time.</li>
-        <li><strong>Cancellation Notices:</strong> Issued if the taxpayer has not filed returns for six consecutive months or if address verification fails.</li>
+        <li><strong>Step 1: Trademark Search:</strong> Run a detailed search on the official IP India registry database to check if similar active marks exist.</li>
+        <li><strong>Step 2: Class Selection:</strong> Select from 45 NICE classes (Classes 1 to 34 for goods; Classes 35 to 45 for services) representing your industry.</li>
+        <li><strong>Step 3: Application Submission:</strong> File Form TM-A online with details of the applicant, trademark type, and user date (whether the mark is already in use or proposed to be used).</li>
+        <li><strong>Step 4: Examination & Objection:</strong> The registrar examines the application. If found clashing under Section 9 or 11, an examination report is issued, requiring a reply within 30 days.</li>
+        <li><strong>Step 5: Advertisement & Registration:</strong> Once accepted, the mark is advertised in the Trademark Journal for 4 months. If no opposition is filed, the registration certificate is issued.</li>
       </ul>
-
-      <h2>Step-by-Step Response Strategy</h2>
-      <p><strong>Step 1: Check the Notice Details:</strong> Locate the DIN (Document Identification Number) on the official GST portal to verify if the notice is genuine. Identify the sections, deadline date, and mismatch values.</p>
-      <p><strong>Step 2: Collect Supporting Evidence:</strong> Reconcile sales books against tax returns. If it is an ITC mismatch, gather purchase invoices and payment proofs to prove the transactions were genuine.</p>
-      <p><strong>Step 3: Draft Your Response:</strong> Write a professional, point-by-point reply explaining the differences (e.g. typos, timing differences). Attach invoice tables and calculation sheets.</p>
-      <p><strong>Step 4: Upload Response:</strong> Log in to the GST Portal, go to Services > User Services > View Additional Notices, and upload your written reply in PDF format along with supporting excel reconciliations.</p>
-
-      <h2>Conclusion</h2>
-      <p>Ignoring a GST notice leads to tax penalties, interest accruals, or the freezing of your GSTIN registration. At FilingBy, our senior tax consultants review your notice, perform complete book reconciliations, and draft a response reply to satisfy tax audits.</p>
     `,
-    metaTitle: "How to Reply to GST Notice Online — Reconciliation & Mismatch Tips",
-    metaDescription: "Step-by-step instructions to reply to GST notices for GSTR-1, 3B, or 2B ITC mismatches. Avoid penalties and account suspensions with expert CA support.",
-    keywords: "gst notice reply, tax mismatch notice, input tax credit reconciliation, portal gst notice, tax compliance audit",
-    category: "GST",
-    tags: ["GST Notice", "Tax Audit", "Compliance", "Tax Resolution"],
-    author: "FilingBy Tax & Audit Desk",
-    readTime: 7,
-    isPublished: true,
-    publishedAt: new Date("2023-12-05T09:30:00.000Z"),
-    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+    faq: [
+      { q: "How long is a trademark registration valid?", a: "A registered trademark is valid for 10 years from the date of filing and can be renewed indefinitely every 10 years." }
+    ],
+    relatedServices: ["trademark-registration", "trademark-objection"],
+    relatedCalculators: ["/trademark-search"],
+    relatedTemplates: ["nda"],
+    internalLinks: ["/hubs/trademark"],
+    cta: "Apply for Trademark Registration Now",
+    isPublished: true
   },
   {
-    title: "FSSAI Food License Guide: Registration Categories, Documents & Fees",
+    title: "Income Tax Return (ITR) Filing Guide: Steps & Due Dates for AY 2026-27",
+    slug: "income-tax-filing-ay-2026-27",
+    seoTitle: "ITR Filing Online India: Step-by-Step Direct Tax Guide",
+    seoDescription: "Step-by-step guide to filing your Income Tax Return (ITR) online. Find correct ITR forms, tax saving deductions, and penalty rules.",
+    focusKeyword: "income tax filing online",
+    secondaryKeywords: ["itr due date", "tax exemption 80c", "new tax regime vs old"],
+    searchIntent: "Informational",
+    category: "Tax",
+    subCategory: "Filing",
+    author: "FilingBy Tax Consulting Panel",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "14 mins",
+    featuredImage: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Income tax filing return files",
+    excerpt: "Need to file your income tax returns? This guide breaks down ITR-1 to ITR-6 forms, tax saving deductions, and the compliance calendar for AY 2026-27.",
+    content: `
+      <h2>Introduction to Income Tax Returns</h2>
+      <p>Under the Income Tax Act, 1961, filing income tax returns (ITR) is mandatory for individuals, partners, and corporate firms whose income exceeds the basic exemption thresholds. It serves as legal proof of income and is essential for securing home loans and visas.</p>
+      
+      <h2>Guide to ITR Forms Selection</h2>
+      <ul>
+        <li><strong>ITR-1 (Sahaj):</strong> For resident individuals having salary income, one house property, and interest income (up to ₹50 Lakhs).</li>
+        <li><strong>ITR-2:</strong> For individuals and HUFs not having business/professional income (covers capital gains, multiple house properties).</li>
+        <li><strong>ITR-3:</strong> For individuals and HUFs having income from proprietary business or profession.</li>
+        <li><strong>ITR-4 (Sugam):</strong> For individuals, HUFs, and partnership firms opting for presumptive taxation under Sec 44AD/44ADA.</li>
+      </ul>
+    `,
+    faq: [
+      { q: "What is the penalty for filing ITR after the due date?", a: "Late fee of ₹5,000 applies under Section 234F, reduced to ₹1,000 if total income is below ₹5 Lakhs." }
+    ],
+    relatedServices: ["itr-filing", "tax-audit"],
+    relatedCalculators: ["/income-tax-calculator", "/calculators/hra"],
+    relatedTemplates: ["salary-slip"],
+    internalLinks: ["/hubs/tax"],
+    cta: "File Your ITR Online with CA Guidance",
+    isPublished: true
+  },
+  {
+    title: "LLP vs Private Limited Company: Complete Business Comparison",
+    slug: "llp-vs-private-limited-company",
+    seoTitle: "LLP or Private Limited Company Comparison India — Which is Better?",
+    seoDescription: "Detailed comparison between Limited Liability Partnership (LLP) and Private Limited Company (Pvt Ltd) to choose your startup structure.",
+    focusKeyword: "llp vs private limited company",
+    secondaryKeywords: ["llp compared to pvt ltd", "incorporation costs", "startups structure"],
+    searchIntent: "Commercial",
+    category: "Company Setup",
+    subCategory: "Comparison",
+    author: "FilingBy Corporate Legal Team",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "11 mins",
+    featuredImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Co-founders comparing business legal structures",
+    excerpt: "Understand the key differences between a Limited Liability Partnership (LLP) and a Private Limited Company regarding compliance, funding, and ownership.",
+    content: `
+      <h2>The Core Difference</h2>
+      <p>Both LLP and Pvt Ltd structures offer limited liability protection to their members. However, they target different startup trajectories. LLPs are governed under the LLP Act 2008, while Private Limited Companies are regulated under the Companies Act 2013.</p>
+    `,
+    faq: [
+      { q: "Which has a lower compliance burden?", a: "LLPs have lower compliance costs and do not require mandatory audits unless turnover exceeds ₹40 Lakhs or capital contribution exceeds ₹25 Lakhs." }
+    ],
+    relatedServices: ["private-limited-company", "llp-registration"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["nda"],
+    internalLinks: ["/compare/private-limited-company-vs-llp"],
+    cta: "Compare and Register Your Business Online",
+    isPublished: true
+  },
+  {
+    title: "FSSAI Food License Guide: Categories, Documents & Compliance",
     slug: "fssai-food-license-registration",
-    excerpt: "Operating a restaurant, catering company, or e-commerce food brand? Read our breakdown of Basic, State, and Central FSSAI license criteria.",
+    seoTitle: "FSSAI Food License Registration India Online — Guide",
+    seoDescription: "Secure your food business safety license. Understand Basic, State, and Central FSSAI criteria and Swiggy/Zomato onboarding requirements.",
+    focusKeyword: "fssai food license online",
+    secondaryKeywords: ["food safety certificate", "state food license", "fssai renewal"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "FSSAI",
+    author: "FilingBy Food safety Panel",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "9 mins",
+    featuredImage: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Restaurant kitchen food safety audit checklist",
+    excerpt: "Operating a restaurant, cloud kitchen, or e-commerce food brand? Read our breakdown of Basic, State, and Central FSSAI license criteria.",
     content: `
-      <h2>The Importance of Food Safety Registration</h2>
-      <p>The Food Safety and Standards Authority of India (FSSAI) regulates food safety and distribution. Every food business operator (FBO) in India — including manufacturers, cloud kitchens, grocery stores, restaurants, and import exporters — must obtain an FSSAI registration or license before starting operations.</p>
-      
-      <h2>FSSAI License Categories & Eligibility</h2>
-      <ol>
-        <li><strong>FSSAI Basic Registration:</strong> For petty food manufacturers, retailers, and cloud kitchens with an annual turnover of up to ₹12 Lakhs.</li>
-        <li><strong>FSSAI State License:</strong> For mid-sized restaurants, caterers, and manufacturers with an annual turnover between ₹12 Lakhs and ₹20 Crores.</li>
-        <li><strong>FSSAI Central License:</strong> Mandatory for large-scale manufacturers, importers, exporters, government office caterers, and food businesses with an annual turnover exceeding ₹20 Crores.</li>
-      </ol>
-
-      <h2>Documents Needed for FSSAI Registration</h2>
-      <ul>
-        <li>PAN and Aadhaar card of the proprietor or directors.</li>
-        <li>Proof of address of the food processing unit (NOC, Rent Agreement, Utility Bill).</li>
-        <li>Layout plan of the food manufacturing or preparation area (for state/central licenses).</li>
-        <li>Water test analysis report and list of manufacturing equipment (for state/central licenses).</li>
-      </ul>
-
-      <h2>Benefits of Displaying the FSSAI Logo</h2>
-      <p>Displaying your 14-digit FSSAI license number on food packaging and menu cards boosts buyer trust, qualifies you to list on delivery platforms like Zomato and Swiggy, and ensures you pass local food inspector checks without penalties.</p>
-
-      <h2>Conclusion</h2>
-      <p>Operating a food business without an FSSAI license invites severe financial penalties. FilingBy helps you process your FSSAI registration and license certificates online, ensuring you are compliant to launch your food brand quickly.</p>
+      <h2>Food Safety Registrations in India</h2>
+      <p>FSSAI registration is a mandatory safety certificate required for all food business operators (FBO) in India. The licensing tier depends on business turnover and manufacturing capacity.</p>
     `,
-    metaTitle: "FSSAI Food License Registration India — Categories, Fees & Documents",
-    metaDescription: "FSSAI Food safety license guide in India. Understand basic registration, state licenses, central licenses, Swiggy/Zomato listing requirements.",
-    keywords: "fssai registration, food safety license india, basic fssai registration, state food license, fssai renewal online",
-    category: "General",
-    tags: ["FSSAI", "Food License", "Food safety", "Business Startup"],
-    author: "FilingBy Food Licensing Team",
-    readTime: 6,
-    isPublished: true,
-    publishedAt: new Date("2024-03-24T10:00:00.000Z"),
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop"
+    faq: [
+      { q: "Is FSSAI mandatory for cloud kitchens?", a: "Yes, every kitchen selling food online via Swiggy/Zomato must possess an active FSSAI registration." }
+    ],
+    relatedServices: ["fssai-registration", "gst-registration"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["rent-agreement"],
+    internalLinks: ["/hubs/gst"],
+    cta: "Apply for FSSAI Licensing with FilingBy",
+    isPublished: true
+  },
+  {
+    title: "Startup India Recognition: Eligibility & Tax Exemption Benefits",
+    slug: "startup-india-recognition-benefits",
+    seoTitle: "DPIIT Startup India Recognition & Tax Relief Guide",
+    seoDescription: "Register under DPIIT Startup India scheme to claim 80-IAC tax tax exemptions, patent cost rebates, and public tender relaxations.",
+    focusKeyword: "startup india recognition",
+    secondaryKeywords: ["dpiit registration benefits", "80iac tax exemption", "startup funding eligibility"],
+    searchIntent: "Informational",
+    category: "Company Setup",
+    subCategory: "Startup India",
+    author: "FilingBy Startup Incubator Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "12 mins",
+    featuredImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Startup founders planning business growth",
+    excerpt: "Learn how to register under the DPIIT Startup India scheme to access tax holidays, compliance self-certifications, and easy winding-up benefits.",
+    content: `
+      <h2>What is DPIIT Recognition?</h2>
+      <p>The Department for Promotion of Industry and Internal Trade (DPIIT) manages the Startup India program. Eligible companies can apply online to claim corporate advantages.</p>
+    `,
+    faq: [
+      { q: "Is a partnership firm eligible for Startup India?", a: "Yes, registered partnership firms, LLPs, and Private Limited Companies are eligible, provided they are under 10 years old from incorporation." }
+    ],
+    relatedServices: ["private-limited-company", "llp-registration"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["nda"],
+    internalLinks: ["/hubs/company"],
+    cta: "Register Your Startup Under DPIIT Scheme",
+    isPublished: true
+  },
+  {
+    title: "MSME Udyam Registration Guide: Benefits & Online Steps",
+    slug: "msme-udyam-registration-guide",
+    seoTitle: "MSME Udyam Registration Online: Complete Government Benefits Guide",
+    seoDescription: "Get your MSME certificate online. Learn capital thresholds, interest rate concessions, and delayed payment protections.",
+    focusKeyword: "msme udyam registration",
+    secondaryKeywords: ["udyam certificate online", "msme lending rates", "delayed payment protection"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "MSME",
+    author: "FilingBy MSME Help Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "8 mins",
+    featuredImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Small scale business unit factory",
+    excerpt: "Want to secure priority bank loans and government subsidy schemes? Obtain your MSME Udyam registration certificate in a few easy steps.",
+    content: `
+      <h2>The MSME Classification</h2>
+      <p>Micro, Small, and Medium Enterprises (MSMEs) are classified based on investment in plant/machinery and turnover limits. The registration is completely paperless and linked to Aadhaar.</p>
+    `,
+    faq: [
+      { q: "What is the key benefit of MSME certificate?", a: "Protection against delayed payments (buyers must clear dues within 45 days) and collateral-free bank loans." }
+    ],
+    relatedServices: ["msme-registration", "gst-registration"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["rent-agreement"],
+    internalLinks: ["/hubs/gst"],
+    cta: "Get MSME Udyam Registration Certificate",
+    isPublished: true
+  },
+  {
+    title: "Import Export Code (IEC) Registration Guide: Steps & Fees",
+    slug: "import-export-code-iec-guide",
+    seoTitle: "IEC Import Export Code Online India: Complete DGFT Guide",
+    seoDescription: "Apply for your Import Export Code online. Read required documents, customs clearances, and lifetime validity guidelines.",
+    focusKeyword: "import export code registration",
+    secondaryKeywords: ["iec code application", "dgft portal online", "customs registration documents"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "Import Export",
+    author: "FilingBy Cross-Border Compliance Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "9 mins",
+    featuredImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Shipping containers at sea port terminal",
+    excerpt: "Planning to trade globally? Obtain your 10-digit Import Export Code (IEC) from the Director General of Foreign Trade (DGFT) online.",
+    content: `
+      <h2>The Role of IEC in Global Trade</h2>
+      <p>An Import Export Code (IEC) is a primary registration required by custom authorities to clear shipments and receive bank transfers from foreign accounts.</p>
+    `,
+    faq: [
+      { q: "Does the IEC require annual renewals?", a: "The IEC has lifetime validity, but holders must update their details on the DGFT portal annually between April and June." }
+    ],
+    relatedServices: ["iec-registration", "gst-registration"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["rent-agreement"],
+    internalLinks: ["/hubs/gst"],
+    cta: "Apply for Import Export Code Online",
+    isPublished: true
+  },
+  {
+    title: "Professional Tax (PT) in India: State-Wise Slabs & Filings",
+    slug: "professional-tax-india-slabs",
+    seoTitle: "Professional Tax (PT) Registration & State Slab Rates",
+    seoDescription: "Complete guide to professional tax registration, state slab structures (Maharashtra, Karnataka, Gujarat), and employee payroll deductions.",
+    focusKeyword: "professional tax registration",
+    secondaryKeywords: ["pt slab rates", "payroll deductions compliance", "professional tax returns"],
+    searchIntent: "Informational",
+    category: "Tax",
+    subCategory: "Professional Tax",
+    author: "FilingBy Payroll Services Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "10 mins",
+    featuredImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "HR office managing employee payroll taxes",
+    excerpt: "Understand the state-level professional tax compliance rules for employers, salary deduction slabs, and due dates.",
+    content: `
+      <h2>What is Professional Tax?</h2>
+      <p>Professional Tax is a state-level tax levied on salaried employees and professionals. Employers must register, deduct PT from salary payments, and deposit it with the state treasury.</p>
+    `,
+    faq: [
+      { q: "Is professional tax mandatory in all Indian states?", a: "No, states like Delhi, Haryana, and Rajasthan do not levy professional tax." }
+    ],
+    relatedServices: ["pt-registration", "itr-filing"],
+    relatedCalculators: ["/income-tax-calculator", "/calculators/tds"],
+    relatedTemplates: ["salary-slip"],
+    internalLinks: ["/hubs/tax"],
+    cta: "Get Professional Tax Registration Online",
+    isPublished: true
+  },
+  {
+    title: "EPFO & ESIC Employer Registration: Compliance & Slabs",
+    slug: "epfo-esic-employer-registration",
+    seoTitle: "EPF and ESIC Employer Registration Online Compliance Guide",
+    seoDescription: "Obtain EPF & ESIC employer registration. Learn threshold employee counts, contribution percentages, and filing timelines.",
+    focusKeyword: "epfo esic registration",
+    secondaryKeywords: ["epf contribution slabs", "esic employee insurance", "payroll compliance registration"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "Labor Law",
+    author: "FilingBy Employee Welfare Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "11 mins",
+    featuredImage: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Co-workers working in corporate business office",
+    excerpt: "Expanding your payroll? Learn the mandatory employee limits for EPF and ESIC registration and monthly contribution percentages.",
+    content: `
+      <h2>The Core Labor Codes</h2>
+      <p>The Employees Provident Fund (EPF) and Employees State Insurance (ESI) protect employee retirement savings and healthcare options in India.</p>
+    `,
+    faq: [
+      { q: "What is the employee threshold for mandatory EPF registration?", a: "EPF registration is mandatory once a business employs 20 or more workers." }
+    ],
+    relatedServices: ["epf-registration", "pt-registration"],
+    relatedCalculators: ["/income-tax-calculator"],
+    relatedTemplates: ["salary-slip", "employment-agreement"],
+    internalLinks: ["/hubs/tax"],
+    cta: "Register for EPFO and ESIC Online",
+    isPublished: true
+  },
+  {
+    title: "Section 8 NGO Registration: Process & Trust Exemptions",
+    slug: "section-8-ngo-registration-guide",
+    seoTitle: "Section 8 Company Registration India: NGO Setup Guide",
+    seoDescription: "Step-by-step procedure to incorporate a Section 8 NGO company. Read 12A/80G tax benefits, licenses, and MCA rules.",
+    focusKeyword: "section 8 company registration",
+    secondaryKeywords: ["ngo incorporation online", "80g tax exemptions", "mca charity licensing"],
+    searchIntent: "Transactional",
+    category: "Company Setup",
+    subCategory: "Section 8",
+    author: "FilingBy Charitable Trust Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "13 mins",
+    featuredImage: "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Volunteers working at charitable NGO shelter",
+    excerpt: "Incorporate a Section 8 company for charitable, educational, or religious promotion to claim 12A and 80G direct tax exemptions.",
+    content: `
+      <h2>The Section 8 Entity</h2>
+      <p>A Section 8 company is incorporated under the Companies Act 2013 to promote art, science, education, charity, or environmental protection, where profits are strictly reinvested.</p>
+    `,
+    faq: [
+      { q: "Can a Section 8 company pay dividends?", a: "No, Section 8 companies are strictly prohibited from paying dividends to directors or shareholders." }
+    ],
+    relatedServices: ["section-8-company", "private-limited-company"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["board-resolution", "nda"],
+    internalLinks: ["/hubs/company"],
+    cta: "Incorporate a Section 8 NGO Online",
+    isPublished: true
+  },
+  {
+    title: "One Person Company (OPC) Registration: Setup Criteria",
+    slug: "one-person-company-opc-incorporation",
+    seoTitle: "OPC One Person Company Registration India Online Guide",
+    seoDescription: "Learn how to register a One Person Company (OPC) in India. Understand nominee criteria, tax structures, and compliance limits.",
+    focusKeyword: "one person company registration",
+    secondaryKeywords: ["opc incorporation online", "nominee requirements", "sole proprietorship vs opc"],
+    searchIntent: "Transactional",
+    category: "Company Setup",
+    subCategory: "OPC",
+    author: "FilingBy Corporate Advisory Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "11 mins",
+    featuredImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Single business founder workspace desk office",
+    excerpt: "Start your solo venture with limited liability corporate credibility. Discover the nominee requirements and tax rules of One Person Companies.",
+    content: `
+      <h2>Solo Entrepreneurship with Limited Liability</h2>
+      <p>An OPC allows a single promoter to incorporate a separate corporate entity while protecting personal assets, unlike a traditional Sole Proprietorship.</p>
+    `,
+    faq: [
+      { q: "Is a nominee mandatory for an OPC?", a: "Yes, you must nominate another individual who will assume management of the company in the event of the founder's death or incapacity." }
+    ],
+    relatedServices: ["one-person-company", "private-limited-company"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["board-resolution", "nda"],
+    internalLinks: ["/compare/llp-registration-vs-one-person-company"],
+    cta: "Register Your One Person Company Online",
+    isPublished: true
+  },
+  {
+    title: "TDS Payment Slabs & Schedulers: Section-Wise Filing Guide",
+    slug: "tds-payments-deposits-sections",
+    seoTitle: "TDS Section-Wise Tax Rates, Deposits & Return Guidelines",
+    seoDescription: "Understand TDS sections (194C, 194J, 194I) under the Income Tax Act. Learn deposit timelines and quarterly return deadlines.",
+    focusKeyword: "tds registration online",
+    secondaryKeywords: ["tds section rates", "form 26q filing", "tan tax registration"],
+    searchIntent: "Informational",
+    category: "Tax",
+    subCategory: "TDS",
+    author: "FilingBy Direct Tax Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "12 mins",
+    featuredImage: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Tax expert reviews professional billing ledger",
+    excerpt: "Learn how to deduct and deposit TDS under the Income Tax Act. Discover due dates for Form 24Q, 26Q, and Section rates.",
+    content: `
+      <h2>The Concept of TDS</h2>
+      <p>Tax Deducted at Source (TDS) ensures income tax collection at the source of transaction. Payers must deduct tax, deposit it with the government monthly, and file quarterly returns.</p>
+    `,
+    faq: [
+      { q: "What is the due date to deposit monthly TDS?", a: "TDS deducted must be deposited to the government treasury by the 7th of the following calendar month." }
+    ],
+    relatedServices: ["tan-registration", "itr-filing"],
+    relatedCalculators: ["/calculators/tds", "/income-tax-calculator"],
+    relatedTemplates: ["salary-slip"],
+    internalLinks: ["/hubs/tax"],
+    cta: "Manage Your TDS Returns with CA Panel",
+    isPublished: true
+  },
+  {
+    title: "HRA Tax Exemption Calculation Guide: Save on Salary Income",
+    slug: "hra-exemption-calculation-guide",
+    seoTitle: "HRA Exemption Calculation Guide (Section 10(13A))",
+    seoDescription: "Learn how to calculate House Rent Allowance (HRA) exemptions under old tax regimes. Discover landlord PAN and rent receipt rules.",
+    focusKeyword: "calculate hra exemption",
+    secondaryKeywords: ["hra tax exemption rules", "metro city basic salary", "landlord pan requirement"],
+    searchIntent: "Informational",
+    category: "Tax",
+    subCategory: "HRA",
+    author: "FilingBy Employee Tax Panel",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "10 mins",
+    featuredImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Rented house keys on rental agreement contract",
+    excerpt: "Claiming house rent allowance? Discover the three tax rules to maximize your HRA exemptions and decrease your net taxable salaries.",
+    content: `
+      <h2>HRA Exemption Criteria</h2>
+      <p>Taxpayers renting accommodation can claim HRA tax relief under Section 10(13A) of the Income Tax Act. The calculation depends on salary, HRA component, and actual rent paid.</p>
+    `,
+    faq: [
+      { q: "Is landlord PAN mandatory to claim HRA?", a: "Yes, if your annual rent payments exceed ₹1 Lakh, you must submit the landlord's PAN to your employer." }
+    ],
+    relatedServices: ["itr-filing", "pt-registration"],
+    relatedCalculators: ["/calculators/hra", "/income-tax-calculator"],
+    relatedTemplates: ["rent-agreement", "salary-slip"],
+    internalLinks: ["/hubs/tax"],
+    cta: "Calculate and Claim HRA Tax Exemptions",
+    isPublished: true
+  },
+  {
+    title: "Asset Depreciation Slabs: WDV vs SLM Calculation Rules",
+    slug: "depreciation-rates-wdv-slm-rules",
+    seoTitle: "Asset Depreciation Rates (Companies Act & Income Tax Act)",
+    seoDescription: "Understand tax depreciation rates. Learn difference between Written Down Value (WDV) and Straight Line Method (SLM) for capital assets.",
+    focusKeyword: "calculate asset depreciation",
+    secondaryKeywords: ["depreciation rates tax", "wdv method depreciation", "useful asset life companies act"],
+    searchIntent: "Informational",
+    category: "Tax",
+    subCategory: "Depreciation",
+    author: "FilingBy Audits & Valuations Desk",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "11 mins",
+    featuredImage: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Capital machinery assets inside factory unit",
+    excerpt: "Compute company asset depreciation values. Read WDV vs SLM methods, and matching rates under Companies Act Schedule II.",
+    content: `
+      <h2>The Meaning of Depreciation</h2>
+      <p>Depreciation accounts for asset wear and tear over time. For tax purposes, WDV is preferred. For corporate books, SLM based on asset useful life is standard.</p>
+    `,
+    faq: [
+      { q: "Which depreciation method is mandatory for tax filings?", a: "The Income Tax Act 1961 mandates the Written Down Value (WDV) method for computing tax depreciation deductions." }
+    ],
+    relatedServices: ["tax-audit", "private-limited-company"],
+    relatedCalculators: ["/calculators/depreciation", "/income-tax-calculator"],
+    relatedTemplates: ["board-resolution"],
+    internalLinks: ["/hubs/tax"],
+    cta: "Calculate Company Asset Depreciation Rates",
+    isPublished: true
+  },
+  {
+    title: "Trademark Objection Reply Guide: Sections 9 & 11 Objections",
+    slug: "trademark-objection-reply-section-9",
+    seoTitle: "How to File Trademark Objection Reply (Section 9/11) India",
+    seoDescription: "Step-by-step guide to drafting and submitting a trademark objection reply online. Learn common arguments to resolve registry blocks.",
+    focusKeyword: "trademark objection reply",
+    secondaryKeywords: ["section 9 absolute grounds", "section 11 relative grounds", "trademark examination report"],
+    searchIntent: "Transactional",
+    category: "Trademark",
+    subCategory: "Objection",
+    author: "FilingBy Trademark Attorneys",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "12 mins",
+    featuredImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Trademark attorney review legal drafts court gavel",
+    excerpt: "Received a trademark examination report? Learn how to draft and file a professional reply to Section 9 and Section 11 objections within 30 days.",
+    content: `
+      <h2>Receiving an Objection Notice</h2>
+      <p>A trademark objection occurs when the examiner queries your mark under Section 9 (lacks distinctiveness) or Section 11 (matches existing brands). You must upload a written reply in 30 days.</p>
+    `,
+    faq: [
+      { q: "What happens if I miss the 30-day objection deadline?", a: "If you fail to submit a reply within 30 days of report generation, the registry abandons your trademark application." }
+    ],
+    relatedServices: ["trademark-objection", "trademark-registration"],
+    relatedCalculators: ["/trademark-search"],
+    relatedTemplates: ["nda"],
+    internalLinks: ["/hubs/trademark"],
+    cta: "File a Professional Trademark Objection Reply",
+    isPublished: true
+  },
+  {
+    title: "Commercial Rent Agreement Drafting: Clauses & Validation",
+    slug: "commercial-rent-agreement-drafting",
+    seoTitle: "How to Draft a Commercial Rent Agreement for GST & Offices",
+    seoDescription: "Learn standard terms of commercial rental agreements. Read lock-in periods, security deposits, and GST registration requirements.",
+    focusKeyword: "draft commercial rent agreement",
+    secondaryKeywords: ["stamp paper denomination", "registered rent lease", "noc property utility"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "Documentation",
+    author: "FilingBy Real Estate Lawyers",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "10 mins",
+    featuredImage: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Signing commercial property rent agreement lease contract",
+    excerpt: "Setting up your physical office or virtual space? Understand the mandatory lease clauses, security deposit lock-ins, and stamp paper denominations.",
+    content: `
+      <h2>The Legal Lease Framework</h2>
+      <p>A Rent Agreement defines landlord and tenant commitments. For businesses, a valid rent agreement on stamp paper accompanied by a utility bill and NOC is essential to register for GST.</p>
+    `,
+    faq: [
+      { q: "Is registration mandatory for an 11-month lease?", a: "Under the Registration Act 1908, lease agreements for up to 11 months do not require mandatory registration with sub-registrars." }
+    ],
+    relatedServices: ["gst-registration", "virtual-space"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["rent-agreement"],
+    internalLinks: ["/hubs/gst"],
+    cta: "Draft Your Commercial Rent Agreement Now",
+    isPublished: true
+  },
+  {
+    title: "Non-Disclosure Agreement (NDA) Guide: Startup IP Protection",
+    slug: "nda-agreement-startup-protection",
+    seoTitle: "Non-Disclosure Agreement (NDA) Drafting Guidelines for Startups",
+    seoDescription: "Protect your intellectual property. Learn key clauses of mutual and one-way NDAs, confidentiality terms, and stamp duty validations.",
+    focusKeyword: "draft nda agreement",
+    secondaryKeywords: ["mutual non disclosure contract", "confidentiality breach penalties", "protect startup ip"],
+    searchIntent: "Transactional",
+    category: "Licensing",
+    subCategory: "Documentation",
+    author: "FilingBy Intellectual Property Lawyers",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "9 mins",
+    featuredImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Sealed legal business contracts on corporate desk",
+    excerpt: "Sharing code or financial data with potential partners? Draft a legally binding Non-Disclosure Agreement (NDA) to secure your startup secrets.",
+    content: `
+      <h2>Why NDAs are Essential</h2>
+      <p>NDAs restrict business partners, employees, and consultants from disclosing trade secrets, proprietary software, and client ledgers without written consent.</p>
+    `,
+    faq: [
+      { q: "Which stamp paper is required for NDA in India?", a: "NDAs are generally executed on non-judicial stamp paper of ₹100 or ₹200 denomination, varying by state laws." }
+    ],
+    relatedServices: ["private-limited-company", "trademark-registration"],
+    relatedCalculators: ["/trademark-search"],
+    relatedTemplates: ["nda"],
+    internalLinks: ["/hubs/company"],
+    cta: "Get Custom NDA Drafted by Legal Team",
+    isPublished: true
+  },
+  {
+    title: "ROC Annual Filings AOC-4 & MGT-7: Company Compliance Schedulers",
+    slug: "roc-annual-filings-aoc4-mgt7",
+    seoTitle: "ROC Annual Return Filings AOC-4 & MGT-7 Guide",
+    seoDescription: "Avoid late penalties on ROC filings. Complete guide to Form AOC-4 (financial sheets) and MGT-7 (annual return) schedules for companies.",
+    focusKeyword: "roc annual filing online",
+    secondaryKeywords: ["form aoc4 balance sheets", "form mgt7 annual returns", "mca corporate compliance calendar"],
+    searchIntent: "Informational",
+    category: "Company Setup",
+    subCategory: "ROC",
+    author: "FilingBy Company Secretaries (CS)",
+    reviewedBy: "Hiren Patel (FCA)",
+    lastUpdated: new Date("2026-07-15"),
+    readingTime: "12 mins",
+    featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop",
+    imageAlt: "Auditor reviewing corporate financial accounting balance sheets",
+    excerpt: "Keep your Pvt Ltd company active. Read the due dates, audit requirements, and director validation steps for AOC-4 and MGT-7 returns.",
+    content: `
+      <h2>The Mandatory ROC Annual Cycle</h2>
+      <p>Every active company registered under the MCA must file annual returns. Delay in uploads attracts daily penalty fees and risks disqualifying directors.</p>
+    `,
+    faq: [
+      { q: "What is the due date to file Form AOC-4?", a: "Form AOC-4 must be filed within 30 days of the company's Annual General Meeting (AGM)." }
+    ],
+    relatedServices: ["private-limited-company", "llp-registration"],
+    relatedCalculators: ["/calculators/depreciation"],
+    relatedTemplates: ["board-resolution"],
+    internalLinks: ["/hubs/company"],
+    cta: "Manage Your Company ROC Filings with CA Panel",
+    isPublished: true
   }
 ];
 

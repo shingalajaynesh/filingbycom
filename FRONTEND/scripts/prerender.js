@@ -163,7 +163,7 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
     /<!-- Primary SEO \(defaults — react-helmet-async overrides per page\) -->[\s\S]+?<!-- Preconnect for performance -->/,
     `<!-- Preconnect for performance -->`
   );
-  
+
   parsedHtml = parsedHtml.replace(
     /<\/head>/,
     `${seoMetadata}\n</head>`
@@ -202,7 +202,7 @@ function writeNoIndexHtmlPage(routePath, pageTitle) {
     /<!-- Primary SEO \(defaults — react-helmet-async overrides per page\) -->[\s\S]+?<!-- Preconnect for performance -->/,
     `<!-- Preconnect for performance -->`
   );
-  
+
   parsedHtml = parsedHtml.replace(
     /<\/head>/,
     `${seoMetadata}\n</head>`
@@ -252,7 +252,7 @@ async function prerender() {
 
     if (!process.env.MONGODB_URI) {
       console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and sitemap generation.");
-      
+
       // Check if we already have pre-generated files in public/ (committed from local builds)
       const filesToCopy = ["sitemap.xml", "image-sitemap.xml", "robots.txt", "feed.xml"];
       let copiedCount = 0;
@@ -263,7 +263,7 @@ async function prerender() {
           copiedCount++;
         }
       }
-      
+
       if (copiedCount === filesToCopy.length) {
         console.log("Successfully copied pre-generated sitemaps, robots.txt, and feed.xml from public/ to dist/.");
       } else {
@@ -322,7 +322,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
         fs.writeFileSync(join(distDir, "feed.xml"), emptyFeedXml, "utf8");
         fs.writeFileSync(join(__dirname, "../public/feed.xml"), emptyFeedXml, "utf8");
       }
-      
+
       console.log("Pre-rendering build completed successfully!");
       process.exit(0);
     }
@@ -341,7 +341,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       const title = `${service.name} Online India — Fast & Affordable | FilingBy`;
       const description = service.description || `Get expert CA/CS assisted ${service.name} services online in India with transparent pricing.`;
       const keywords = `${service.name.toLowerCase()} online, ${service.name.toLowerCase()} registration, online CA services India`;
-      
+
       const schema = {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -477,14 +477,19 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       const description = post.metaDescription || post.excerpt;
       const keywords = post.keywords || `${post.title.toLowerCase()}, filingby blog`;
       const formattedDate = post.publishedAt ? new Date(post.publishedAt).toLocaleDateString("en-IN") : "";
+      const formattedUpdatedDate = post.lastUpdated ? new Date(post.lastUpdated).toLocaleDateString("en-IN") : formattedDate;
+      const formattedVerifiedDate = post.lastVerifiedAt ? new Date(post.lastVerifiedAt).toLocaleDateString("en-IN") : "";
+      const reviewerName = post.reviewerId === "filingby-content-team" ? "FilingBy Content Team" : "FilingBy Content Team";
 
       const postSchema = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": post.title,
-        "description": post.excerpt,
+        "description": description,
         "datePublished": post.publishedAt,
-        "author": { "@type": "Person", "name": post.author || "FilingBy Legal Desk" }
+        "dateModified": post.lastUpdated || post.updatedAt || post.publishedAt,
+        "author": { "@type": "Person", "name": post.author || "FilingBy Editorial Desk" },
+        "reviewedBy": { "@type": "Organization", "name": reviewerName }
       };
 
       const bodyContent = `
@@ -493,9 +498,20 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
             ${post.category} &bull; ${post.readTime} min read &bull; ${formattedDate}
           </div>
           <h1 style="font-size: 36px; font-weight: 800; color: #0F172A; line-height: 1.25; margin-bottom: 20px;">${post.title}</h1>
+          <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; font-size: 14px; color: #475569;">
+            <span><strong style="color: #0F172A;">Written by:</strong> ${post.author || "FilingBy Editorial Desk"}</span>
+            <span><strong style="color: #0F172A;">Reviewed by:</strong> ${reviewerName}</span>
+            <span><strong style="color: #0F172A;">Last updated:</strong> ${formattedUpdatedDate}</span>
+            ${formattedVerifiedDate ? `<span><strong style="color: #0F172A;">Last verified:</strong> ${formattedVerifiedDate}</span>` : ""}
+          </div>
+          ${post.image ? `<img src="${post.image}" alt="${escapeXml(post.imageAlt || post.title)}" style="width: 100%; height: auto; border-radius: 18px; margin-bottom: 24px;" />` : ""}
           <p style="font-size: 18px; color: #475569; font-style: italic; margin-bottom: 30px; border-left: 4px solid #E2E8F0; padding-left: 15px;">${post.excerpt}</p>
           <div style="margin-top: 30px; font-size: 16px; color: #334155;" class="blog-body">
             ${post.content}
+          </div>
+          <div style="margin-top: 32px; padding: 18px 20px; border: 1px solid #E2E8F0; border-radius: 16px; background: #FFFFFF;">
+            <strong style="display: block; color: #0F172A; margin-bottom: 8px;">Editorial note</strong>
+            <span style="color: #475569;">This article is general information for Indian businesses. It is not legal, tax or accounting advice for your exact facts.</span>
           </div>
         </article>
       `;
@@ -565,7 +581,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
     <loc>${escapeXml(`https://www.filingby.com/blog/${post.slug}`)}</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>${lastMod ? `\n    <lastmod>${lastMod}</lastmod>` : ""}`;
-      
+
       if (post.image) {
         sitemapXml += `
     <image:image>
@@ -573,7 +589,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       <image:title><![CDATA[${post.title}]]></image:title>
     </image:image>`;
       }
-      
+
       sitemapXml += `
   </url>`;
     }

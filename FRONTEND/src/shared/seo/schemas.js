@@ -1,3 +1,5 @@
+import { resolveAuthorProfile, resolveReviewerProfile } from "../../features/blog/contentProfiles.js";
+
 /**
  * schemas.js
  * Central library for structured JSON-LD schemas.
@@ -359,7 +361,9 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
-      "reviewCount": "124"
+      "reviewCount": "124",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "review": [
       {
@@ -405,6 +409,15 @@ export function buildBlogListingSchema(posts = []) {
 export function buildBlogPostingSchema(post) {
   if (!post) return null;
 
+  const imageSource = post.featuredImage || post.image || "https://www.filingby.com/logo.jpeg";
+  const authorProfile = resolveAuthorProfile(post);
+  const reviewerProfile = resolveReviewerProfile(post);
+  const keywords = [
+    post.focusKeyword,
+    ...(Array.isArray(post.secondaryKeywords) ? post.secondaryKeywords : []),
+    ...(Array.isArray(post.tags) ? post.tags : [])
+  ].filter(Boolean);
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -412,11 +425,17 @@ export function buildBlogPostingSchema(post) {
     "headline": post.title,
     "description": post.metaDescription || post.excerpt,
     "datePublished": post.publishedAt || post.createdAt,
-    "dateModified": post.updatedAt || post.createdAt,
+    "dateModified": post.lastUpdated || post.updatedAt || post.createdAt,
     "author": {
       "@type": "Person",
-      "name": post.author || "FilingBy Legal Desk"
+      "name": authorProfile.name
     },
+    "reviewedBy": reviewerProfile?.name
+      ? {
+          "@type": reviewerProfile.schemaType || "Organization",
+          "name": reviewerProfile.name
+        }
+      : undefined,
     "publisher": {
       "@type": "Organization",
       "name": "FilingBy.com",
@@ -425,12 +444,12 @@ export function buildBlogPostingSchema(post) {
         "url": "https://www.filingby.com/logo.jpeg"
       }
     },
-    "image": post.image ? [post.image] : ["https://www.filingby.com/logo.jpeg"],
+    "image": [imageSource],
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://www.filingby.com/blog/${post.slug}`
     },
-    "keywords": Array.isArray(post.tags) ? post.tags.join(", ") : post.tags
+    "keywords": keywords.join(", ")
   };
 }
 

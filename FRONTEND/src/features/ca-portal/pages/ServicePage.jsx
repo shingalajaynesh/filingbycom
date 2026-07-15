@@ -8,6 +8,19 @@ import SEO from '../../../shared/components/SEO.jsx';
 import ReviewSubmissionModal from '../../../shared/components/ReviewSubmissionModal.jsx';
 import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from '../../../shared/seo/schemas.js';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
+import {
+  ServiceOverview,
+  ServiceBenefits,
+  ServiceDocuments,
+  ServiceTimeline,
+  ServiceFees,
+  ServiceFAQ,
+  RelatedServices,
+  RelatedBlogs,
+  ComparisonTable,
+  CTASection,
+  ExpertReview
+} from '../components/SEOContentComponents.jsx';
 
 export default function ServicePage() {
   const { slug } = useParams();
@@ -20,7 +33,6 @@ export default function ServicePage() {
   
   const { services, loading: cacheLoading, refresh, settings } = useSharedData();
   const [serviceData, setServiceData] = useState(null);
-  const [relatedServices, setRelatedServices] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
   const [serviceReviews, setServiceReviews] = useState([]);
 
@@ -29,12 +41,6 @@ export default function ServicePage() {
       const currentService = services.find(s => s.slug === slug);
       if (currentService) {
         setServiceData(currentService);
-        
-        // Find related services in same category
-        const related = services
-          .filter(s => s.category === currentService.category && s.slug !== slug && s.isActive !== false)
-          .slice(0, 4);
-        setRelatedServices(related);
       } else {
         setServiceData(null);
       }
@@ -140,99 +146,41 @@ export default function ServicePage() {
  
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="contents lg:col-span-2 lg:flex lg:flex-col lg:gap-6">
-            <m.article 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="order-1 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#1A56DB]">Service detail</p>
-              <h1 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl">{serviceData.name}</h1>
-              <p className="mt-4 max-w-2xl text-gray-600">{serviceData.description}</p>
-              <div className="mt-5 flex flex-wrap gap-3 text-sm">
-                <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Expert CA/CS Support</span>
-                <span className="rounded-full bg-green-50 px-3 py-1 text-green-700">✓ Fast Processing</span>
-              </div>
-            </m.article>
- 
-            {documentsRequired.length > 0 && (
-              <m.article 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="order-3 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-              >
-                <h2 className="text-xl font-semibold text-gray-900">Documents Required</h2>
-                <ul className="mt-4 space-y-3 text-sm text-gray-600">
-                  {documentsRequired.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3"><span className="mt-1 h-2 w-2 rounded-full bg-[#1A56DB]" /> <span>{item}</span></li>
-                  ))}
-                </ul>
-              </m.article>
-            )}
- 
-            {processSteps.length > 0 && (
-              <m.article 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="order-4 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-              >
-                <h2 className="text-xl font-semibold text-gray-900">Our Process</h2>
-                <div className="mt-5 space-y-4">
-                  {processSteps.map((step, index) => (
-                    <div key={index} className="flex gap-4 rounded-2xl bg-slate-50 p-4">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1A56DB] text-sm font-bold text-white">{index + 1}</span>
-                      <p className="text-sm text-gray-600">{step}</p>
-                    </div>
-                  ))}
-                </div>
-              </m.article>
-            )}
- 
-            {faqs.length > 0 && (
-              <m.article 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="order-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-              >
-                <h2 className="text-xl font-semibold text-gray-900">FAQs</h2>
-                <div className="mt-5 space-y-3">
-                  {faqs.map((faq, index) => (
-                    <div key={index} className="rounded-2xl border border-gray-100 bg-slate-50 p-4">
-                      <button type="button" onClick={() => setOpenFaq(openFaq === index ? -1 : index)} className="flex w-full items-center justify-between text-left text-sm font-semibold text-gray-800">
-                        {faq.q}
-                        <span className="text-[#1A56DB]">{openFaq === index ? '−' : '+'}</span>
-                      </button>
-                      {openFaq === index && <p className="mt-3 text-sm text-gray-600">{faq.a}</p>}
-                    </div>
-                  ))}
-                </div>
-              </m.article>
-            )}
+            <ExpertReview updatedDate={serviceData.updatedAt} />
+            <ServiceOverview name={serviceData.name} description={serviceData.description} />
+            <ComparisonTable slug={slug} />
+            <ServiceBenefits name={serviceData.name} benefits={serviceData.benefits} />
+            <ServiceDocuments documents={documentsRequired} />
+            <ServiceTimeline steps={processSteps} />
+            <ServiceFees basePrice={serviceData.basePrice || 999} name={serviceData.name} />
+            <ServiceFAQ faqs={faqs} openFaq={openFaq} setOpenFaq={setOpenFaq} />
+            <RelatedServices services={services} currentCategory={serviceData.category} currentSlug={slug} />
+            <RelatedBlogs currentCategory={serviceData.category} />
           </div>
  
           <m.aside 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="order-2 lg:order-none lg:sticky lg:top-24 lg:self-start"
+            className="order-2 lg:order-none lg:sticky lg:top-24 lg:self-start lg:flex lg:flex-col lg:gap-6"
           >
             <div className="rounded-3xl border border-[#1A56DB] bg-white p-6 shadow-lg">
               <p className="text-sm text-gray-500">Starting from</p>
               <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹{serviceData.basePrice?.toLocaleString('en-IN')}/-</p>
-              <p className="mt-1 text-xs text-gray-400">+ Govt. fees as applicable</p>
+              <p className="mt-1 text-xs text-slate-400">+ Govt. fees as applicable</p>
               <button
                 onClick={handleGetStarted}
-                className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700"
+                className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 cursor-pointer"
               >
                 Get Started
               </button>
-              <a href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"} target="_blank" rel="noreferrer" className="mt-3 flex w-full items-center justify-center rounded-full border border-green-500 px-4 py-3 text-sm font-semibold text-green-600 hover:bg-green-50">WhatsApp Now</a>
-              <a href={`tel:${settings?.ca_contact_phone?.replace(/\s+/g, '') || "+917567126945"}`} className="mt-3 flex w-full items-center justify-center rounded-full border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50">Call Us</a>
-              <div className="mt-6 space-y-3 border-t border-gray-100 pt-4 text-sm text-gray-600">{['100% Online Process', 'Expert CA & CS Team', '50,000+ Happy Clients'].map((item) => <div key={item} className="flex items-center gap-2"><span>✓</span> {item}</div>)}</div>
             </div>
+            
+            <CTASection 
+              name={serviceData.name} 
+              whatsappUrl={settings?.ca_whatsapp_url} 
+              phone={settings?.ca_contact_phone} 
+            />
           </m.aside>
         </div>
  
@@ -332,29 +280,26 @@ export default function ServicePage() {
           title="Write a review for this service"
           description="Your feedback will be tied to this service page and reviewed before it is published."
         />
-
-        {relatedServices.length > 0 && (
-          <m.section 
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
-          >
-            <h2 className="text-xl font-semibold text-gray-900">Related Services</h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {relatedServices.map((item) => (
-                <button key={item.slug} onClick={() => navigate(`/services/${item.slug}`)} className="rounded-2xl border border-gray-100 p-4 text-left transition hover:border-blue-200 hover:shadow-md">
-                  <p className="text-sm font-semibold text-gray-800">{item.name}</p>
-                  <p className="mt-2 text-sm text-blue-600">View Details →</p>
-                </button>
-              ))}
-            </div>
-          </m.section>
-        )}
       </section>
- 
- 
+
+      {/* Sticky Mobile CTA Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 p-4 lg:hidden flex gap-3 shadow-[0_-8px_30px_rgb(0,0,0,0.12)]">
+        <button
+          onClick={handleGetStarted}
+          className="flex-1 bg-[#1A56DB] text-white py-3 rounded-full text-xs font-black text-center cursor-pointer border-0"
+        >
+          Get Started
+        </button>
+        <a
+          href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-center bg-green-50 border border-green-400 text-green-600 px-5 py-3 rounded-full text-xs font-bold"
+        >
+          WhatsApp
+        </a>
+      </div>
+
       <CheckoutModal
         isOpen={showCheckoutModal}
         onClose={() => setShowCheckoutModal(false)}

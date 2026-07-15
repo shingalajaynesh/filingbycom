@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
@@ -8,25 +8,62 @@ import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
 import { buildBlogListingSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
-  import.meta.env.VITE_API_URL || 
-  import.meta.env.VITE_BACKEND_URL || 
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_BACKEND_URL ||
   "http://localhost:3000"
 ).replace(/\/$/, "");
 
-const CATEGORIES = ["All", "GST", "Company Registration", "Virtual Office"];
+const CATEGORIES = [
+  "All",
+  "GST",
+  "Company Registration",
+  "LLP",
+  "Trademark",
+  "Income Tax",
+  "TDS",
+  "Virtual Office",
+  "Startup India",
+  "MSME",
+  "FSSAI",
+  "IEC",
+  "ROC Compliance",
+];
+
+const READER_SECTIONS = [
+  {
+    title: "Start a new business",
+    description: "Best for founders choosing the right structure, registration path, and first compliance setup.",
+    categories: ["Company Registration", "LLP", "Startup India"],
+  },
+  {
+    title: "Run compliance properly",
+    description: "Best for businesses handling GST, TDS, ROC filings, and recurring statutory deadlines.",
+    categories: ["GST", "TDS", "ROC Compliance"],
+  },
+  {
+    title: "Expand and formalise",
+    description: "Best for MSMEs adding licences, registrations, and growth-readiness for new channels or exports.",
+    categories: ["MSME", "FSSAI", "IEC"],
+  },
+];
+
+function getCategoryHref(category) {
+  return category === "All" ? "/blog" : `/blog?category=${encodeURIComponent(category)}`;
+}
 
 export default function BlogList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "All";
+  const currentPage = Number.parseInt(searchParams.get("page") || "1", 10);
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ page: 1, limit: 9, total: 0, pages: 1 });
-  const currentPage = parseInt(searchParams.get("page") || "1");
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
+
       try {
         const params = {
           page: currentPage,
@@ -47,8 +84,8 @@ export default function BlogList() {
           setPosts(res.data.posts || []);
           setPagination(res.data.pagination || { page: 1, limit: 9, total: 0, pages: 1 });
         }
-      } catch (err) {
-        console.error("Failed to load blog posts:", err);
+      } catch (error) {
+        console.error("Failed to load blog posts:", error);
       } finally {
         setLoading(false);
       }
@@ -57,34 +94,46 @@ export default function BlogList() {
     fetchPosts();
   }, [activeCategory, currentPage, searchParams]);
 
+  const featuredPosts = useMemo(() => posts.slice(0, 3), [posts]);
+  const latestPosts = useMemo(() => posts.slice(3), [posts]);
+
+  const readingMinutes = useMemo(() => {
+    return posts.reduce((total, post) => total + Number.parseInt(post.readTime || "0", 10), 0);
+  }, [posts]);
+
   const handleCategoryChange = (category) => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", "1");
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("page", "1");
+
     if (category === "All") {
-      newParams.delete("category");
+      nextParams.delete("category");
     } else {
-      newParams.set("category", category);
+      nextParams.set("category", category);
     }
-    setSearchParams(newParams);
+
+    setSearchParams(nextParams);
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", "1");
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("page", "1");
+
     if (searchQuery.trim()) {
-      newParams.set("search", searchQuery.trim());
+      nextParams.set("search", searchQuery.trim());
     } else {
-      newParams.delete("search");
+      nextParams.delete("search");
     }
-    setSearchParams(newParams);
+
+    setSearchParams(nextParams);
   };
 
-  const handlePageChange = (newPage) => {
-    if (newPage < 1 || newPage > pagination.pages) return;
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set("page", newPage.toString());
-    setSearchParams(newParams);
+  const handlePageChange = (nextPage) => {
+    if (nextPage < 1 || nextPage > pagination.pages) return;
+
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("page", nextPage.toString());
+    setSearchParams(nextParams);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -92,149 +141,245 @@ export default function BlogList() {
     <m.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-slate-50 py-10 text-slate-900"
+      transition={{ duration: 0.45 }}
+      className="min-h-screen bg-slate-50 text-gray-900"
     >
       <SEO
         title="Knowledge Hub & Compliance Guides | FilingBy.com"
-        description="Stay up to date with expert Chartered Accountant advice, tax guides, GST compliance rules, startup incorporation tips, and virtual office regulations in India."
-        keywords="filingby blog, CA blog india, GST guide, company registration rules, tax compliance articles, startup guides india"
+        description="Explore FilingBy's knowledge hub for GST, tax, registration, startup, and compliance guides written for Indian business owners, MSMEs, and founders."
+        keywords="filingby blog, GST guides india, company registration articles, startup compliance blog, tax guides for businesses"
         canonical={currentPage > 1 ? `/blog?page=${currentPage}` : "/blog"}
         schema={buildBlogListingSchema(posts)}
         extraSchemas={[
           buildBreadcrumbSchema([
             { name: "Home", url: "/" },
-            { name: "Knowledge Hub", url: "/blog" }
-          ])
+            { name: "Knowledge Hub", url: "/blog" },
+          ]),
         ]}
       />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
-            Topical Knowledge Hub
-          </span>
-          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-            Legal & Tax Compliance Made Simple
-          </h1>
-          <p className="mt-3 text-slate-500 text-sm sm:text-base leading-relaxed">
-            Read expert guides and articles designed to help Indian startups, e-commerce sellers, and business owners navigate GST registration, company filings, and tax laws.
-          </p>
-        </div>
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-12 text-white sm:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_360px] lg:items-end">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-white backdrop-blur">
+                FilingBy Knowledge Hub
+              </div>
+              <h1 className="mt-5 max-w-4xl text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+                Learn business compliance in simple language before you file, register, or decide.
+              </h1>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-blue-100 sm:text-base">
+                Practical explainers on GST, company registration, LLP, trademark, income tax, TDS, Startup India,
+                MSME, FSSAI, IEC, ROC compliance, and virtual office matters for Indian business owners and founders.
+              </p>
+            </div>
 
-        {/* Filter & Search Bar */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-100 pb-6 mb-8">
-          {/* Categories Tab */}
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
+            <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl shadow-xl">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-blue-100">Editorial Snapshot</p>
+              <div className="mt-5 grid grid-cols-3 gap-3">
+                <div className="rounded-2xl bg-white/10 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">{pagination.total || posts.length}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-blue-100">Articles</p>
+                </div>
+                <div className="rounded-2xl bg-white/10 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">{readingMinutes || 0}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-blue-100">Min Read</p>
+                </div>
+                <div className="rounded-2xl bg-white/10 p-4 text-center">
+                  <p className="text-2xl font-bold text-white">{CATEGORIES.length - 1}</p>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-blue-100">Topics</p>
+                </div>
+              </div>
+
+              <form onSubmit={handleSearchSubmit} className="mt-5">
+                <label htmlFor="knowledge-hub-search" className="sr-only">
+                  Search guides
+                </label>
+                <div className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                  <svg className="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    id="knowledge-hub-search"
+                    type="text"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    placeholder="Search GST, ROC, company registration, tax..."
+                    className="w-full border-0 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="rounded-full bg-[#1A56DB] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-blue-700"
+                  >
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto -mt-8 max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-gray-100 bg-white p-5 shadow-lg sm:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Browse by topic</p>
+              <h2 className="mt-2 text-2xl font-bold text-gray-900">Find the right guide faster</h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-6 text-gray-500">
+              Use topics to narrow down registrations, tax filings, statutory compliance, business setup, and industry-specific approvals.
+            </p>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            {CATEGORIES.map((category) => (
               <button
-                key={cat}
+                key={category}
                 type="button"
-                onClick={() => handleCategoryChange(cat)}
-                className={`rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition cursor-pointer ${
-                  activeCategory === cat
+                onClick={() => handleCategoryChange(category)}
+                className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] transition ${
+                  activeCategory === category
                     ? "bg-[#1A56DB] text-white shadow-sm"
-                    : "bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200"
+                    : "border border-gray-200 bg-gray-50 text-gray-700 hover:border-blue-200 hover:bg-blue-50 hover:text-[#1A56DB]"
                 }`}
               >
-                {cat}
+                {category}
               </button>
             ))}
           </div>
-
-          {/* Search Form */}
-          <form onSubmit={handleSearchSubmit} className="relative w-full max-w-sm">
-            <input
-              type="text"
-              placeholder="Search guides..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-slate-250 bg-white py-2 pl-4 pr-10 text-xs font-medium text-slate-900 placeholder-slate-400 focus:border-[#1A56DB] focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#1A56DB] cursor-pointer"
-            >
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </button>
-          </form>
         </div>
+      </section>
 
-        {/* Post Grid */}
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-3">
+          {READER_SECTIONS.map((section) => (
+            <div key={section.title} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Reader Path</p>
+              <h2 className="mt-3 text-xl font-bold text-gray-900">{section.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-gray-600">{section.description}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {section.categories.map((category) => (
+                  <Link
+                    key={category}
+                    to={getCategoryHref(category)}
+                    className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-[#1A56DB] transition hover:bg-blue-100"
+                  >
+                    {category}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 lg:px-8">
         {loading ? (
-          <div className="flex min-h-[300px] flex-col items-center justify-center gap-4">
-            <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
-            <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider">Loading articles...</p>
+          <div className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-3xl border border-gray-100 bg-white shadow-sm">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#1A56DB] border-t-transparent" />
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-slate-500">Loading articles</p>
           </div>
         ) : posts.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-3xl border border-slate-100 shadow-sm">
-            <span className="text-4xl">📚</span>
-            <h3 className="mt-4 text-base font-bold text-slate-900">No Articles Found</h3>
-            <p className="mt-2 text-xs text-slate-500 max-w-xs mx-auto">
-              We couldn't find any articles matching your search criteria. Try changing filters or keyword search.
+          <div className="rounded-3xl border border-gray-100 bg-white px-6 py-16 text-center shadow-sm">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">No matching articles</p>
+            <h2 className="mt-4 text-3xl font-bold text-gray-900">Nothing matched that search</h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-gray-500">
+              Try a broader keyword or switch to another topic. This hub covers GST, company registration, tax, ROC,
+              trademark, Startup India, MSME, and more.
             </p>
             <button
+              type="button"
               onClick={() => {
                 setSearchParams({});
                 setSearchQuery("");
               }}
-              className="mt-4 rounded-full bg-slate-100 border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-200 cursor-pointer"
+              className="mt-6 rounded-full bg-[#1A56DB] px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-blue-700"
             >
-              Reset Filters
+              Reset filters
             </button>
           </div>
         ) : (
-          <div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post, index) => (
-                <div key={post.slug} className="contents">
-                  <BlogCard post={post} />
-                  {index === 2 && (
-                    <div className="md:col-span-2 lg:col-span-3">
-                      <AdSenseBlock
-                        slot={import.meta.env.VITE_ADSENSE_BLOG_LIST_SLOT}
-                        label="Knowledge Hub Sponsor"
-                        className="border-dashed"
-                      />
-                    </div>
-                  )}
+          <>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">
+                  {activeCategory === "All" ? "Featured reading" : `${activeCategory} guides`}
+                </p>
+                <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">
+                  Start with the most important articles first
+                </h2>
+              </div>
+              <p className="max-w-xl text-sm leading-6 text-gray-500">
+                These articles are a good starting point if you want clarity before taking any filing or registration step.
+              </p>
+            </div>
+
+            <div className="mt-8 grid items-start gap-6 lg:grid-cols-12">
+              {featuredPosts[0] ? (
+                <div className="self-start lg:col-span-7">
+                  <BlogCard post={featuredPosts[0]} featured />
                 </div>
+              ) : null}
+
+              <div className="grid self-start gap-6 lg:col-span-5">
+                {featuredPosts.slice(1).map((post) => (
+                  <BlogCard key={post.slug} post={post} />
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <AdSenseBlock
+                slot={import.meta.env.VITE_ADSENSE_BLOG_LIST_SLOT}
+                label="Knowledge Hub Sponsor"
+                className="border-dashed"
+              />
+            </div>
+
+            <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Latest articles</p>
+                <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">Explore more practical guides</h2>
+              </div>
+              <p className="max-w-xl text-sm leading-6 text-gray-500">
+                Every article is written for non-lawyers who still need dependable, business-ready guidance.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {(latestPosts.length > 0 ? latestPosts : posts).map((post) => (
+                <BlogCard key={post.slug} post={post} />
               ))}
             </div>
 
-            {/* Pagination Controls */}
-            {pagination.pages > 1 && (
-              <div className="mt-12 flex items-center justify-center gap-2">
+            {pagination.pages > 1 ? (
+              <div className="mt-14 flex items-center justify-center gap-3">
                 <button
+                  type="button"
                   onClick={() => handlePageChange(pagination.page - 1)}
                   disabled={pagination.page === 1}
-                  className="rounded-full border border-slate-250 bg-white p-2.5 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white cursor-pointer"
+                  className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-700 transition hover:border-blue-200 hover:text-[#1A56DB] disabled:cursor-not-allowed disabled:opacity-45"
                 >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
+                  Previous
                 </button>
-                <span className="text-xs font-bold text-slate-500 tracking-wider">
+                <span className="rounded-full border border-gray-200 bg-white px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-700">
                   Page {pagination.page} of {pagination.pages}
                 </span>
                 <button
+                  type="button"
                   onClick={() => handlePageChange(pagination.page + 1)}
                   disabled={pagination.page === pagination.pages}
-                  className="rounded-full border border-slate-250 bg-white p-2.5 text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white cursor-pointer"
+                  className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-700 transition hover:border-blue-200 hover:text-[#1A56DB] disabled:cursor-not-allowed disabled:opacity-45"
                 >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <polyline points="9 18 15 12 9 6" />
-                  </svg>
+                  Next
                 </button>
               </div>
-            )}
-          </div>
+            ) : null}
+          </>
         )}
-      </div>
+      </section>
     </m.main>
   );
 }

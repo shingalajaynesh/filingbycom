@@ -28,6 +28,13 @@ const RocToolsPage = lazy(() => import("../features/resources/pages/RocToolsPage
 const CompanyRegistrationGuidesPage = lazy(() => import("../features/resources/pages/CompanyRegistrationGuidesPage"));
 const TrademarkSearchPage = lazy(() => import("../features/resources/pages/TrademarkSearchPage"));
 const LegalTemplatesPage = lazy(() => import("../features/resources/pages/LegalTemplatesPage"));
+const ComparisonPage = lazy(() => import("../features/ca-portal/pages/ComparisonPage"));
+const CalculatorPage = lazy(() => import("../features/ca-portal/pages/CalculatorPage"));
+const LegalTemplateDetailsPage = lazy(() => import("../features/ca-portal/pages/LegalTemplatesPage"));
+const TopicHubPage = lazy(() => import("../features/ca-portal/pages/TopicHubPage"));
+const UserComplianceDashboard = lazy(() => import("../features/client-dashboard/pages/UserComplianceDashboard"));
+const ComplianceToolsPage = lazy(() => import("../features/ca-portal/pages/ComplianceToolsPage"));
+const AIAssistant = lazy(() => import("../features/ca-portal/components/AIAssistant"));
 
 // ── Virtual Office ──
 import VirtualOfficeNavigation from "../features/virtual-office/components/VirtualOfficeNavigation";
@@ -66,6 +73,7 @@ import { AdminProvider } from "../shared/context/AdminContext";
 import SEO from "../shared/components/SEO";
 import ScrollToTop from "../shared/components/ScrollToTop";
 import { orgSchema, websiteSchema } from "../shared/seo/schemas";
+import { PortalCard, PortalPageShell } from "../features/ca-portal/components/PortalPageShell";
 
 // ── Admin Control Room ──
 import { ProtectedRoute, PublicAuthRoute, ClerkCallback } from "./RouteGuards";
@@ -73,6 +81,7 @@ import { AdminAuthProvider } from "../admin/context/AdminAuthContext";
 import AdminRouteGuard from "../admin/AdminRouteGuard";
 const AdminLogin      = lazy(() => import("../admin/pages/AdminLogin"));
 const AdminDashboard  = lazy(() => import("../admin/pages/AdminDashboard"));
+const HIDE_NAVIGATION_PATHS = ["/login", "/register", "/card"];
 
 // ── 404 NOT FOUND ────────────────────────────────────────────────────────────
 // Reusable boundary view for invalid routes.
@@ -88,87 +97,81 @@ const NotFound = () => {
         canonical="/404"
         noindex
       />
-      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 px-4 py-16 text-center">
-        {/* Ambient background glows */}
-        <div className="absolute top-1/4 left-1/4 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[100px]" />
-        <div className="absolute bottom-1/4 right-1/4 -z-10 h-80 w-80 rounded-full bg-indigo-500/15 blur-[120px]" />
-
-        {/* Content Box */}
-        <div className="w-full max-w-lg rounded-3xl border border-slate-800/80 bg-slate-900/40 p-8 backdrop-blur-xl shadow-2xl sm:p-12">
-          {/* Animated 404 Header */}
-          <div className="relative">
-            <h1 className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-7xl font-black tracking-tighter text-transparent sm:text-8xl">
-              404
-            </h1>
-            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-500 to-indigo-500 opacity-10 blur-xl" />
+      <PortalPageShell
+        badge="Page Boundary"
+        title="This page could not be found"
+        description="The link may be outdated, the route may have changed, or the page may no longer exist. Start from one of the main FilingBy sections below."
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "404" }
+        ]}
+      >
+        <PortalCard className="text-center">
+          <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-[2rem] bg-[#1A56DB]/5 text-5xl font-black text-[#1A56DB]">
+            404
           </div>
-
-          <h2 className="mt-6 text-xl font-bold text-slate-100 sm:text-2xl">
-            Lost in Compliance Space?
-          </h2>
-          <p className="mt-3 text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
-            The page you are looking for has been filed under a different folder or doesn't exist. Let's get you back on track.
+          <h2 className="mt-6 text-2xl font-black text-slate-950">Lost in Compliance Space?</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+            The page you are looking for may have moved into a different part of the website. These sections are the best places to continue.
           </p>
-
-          {/* Quick Links Menu */}
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             <Link
               to="/"
-              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-blue-500/50 hover:bg-slate-900/60 group cursor-pointer"
+              className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:border-blue-200 hover:bg-white cursor-pointer"
             >
               <div>
-                <h3 className="text-xs font-bold text-slate-200 group-hover:text-blue-400">CA Services</h3>
+                <h3 className="text-xs font-bold text-slate-800 group-hover:text-[#1A56DB]">CA Services</h3>
                 <p className="text-[10px] text-slate-500 mt-0.5">Tax and compliance catalog</p>
               </div>
-              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-blue-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1A56DB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </Link>
 
             <Link
               to="/virtual-space"
-              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-indigo-500/50 hover:bg-slate-900/60 group cursor-pointer"
+              className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:border-blue-200 hover:bg-white cursor-pointer"
             >
               <div>
-                <h3 className="text-xs font-bold text-slate-200 group-hover:text-indigo-400">Virtual Office</h3>
-                <p className="text-[10px] text-slate-500 mt-0.5">Business addresses & desks</p>
+                <h3 className="text-xs font-bold text-slate-800 group-hover:text-[#1A56DB]">Virtual Office</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Business addresses and desks</p>
               </div>
-              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-indigo-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1A56DB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </Link>
 
             <Link
               to="/locations"
-              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-purple-500/50 hover:bg-slate-900/60 group cursor-pointer"
+              className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:border-blue-200 hover:bg-white cursor-pointer"
             >
               <div>
-                <h3 className="text-xs font-bold text-slate-200 group-hover:text-purple-400">Locations Hub</h3>
+                <h3 className="text-xs font-bold text-slate-800 group-hover:text-[#1A56DB]">Locations Hub</h3>
                 <p className="text-[10px] text-slate-500 mt-0.5">Find compliant offices</p>
               </div>
-              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-purple-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1A56DB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </Link>
 
             <Link
               to="/blog"
-              className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-950/40 p-4 text-left transition-all hover:border-emerald-500/50 hover:bg-slate-900/60 group cursor-pointer"
+              className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition-all hover:border-blue-200 hover:bg-white cursor-pointer"
             >
               <div>
-                <h3 className="text-xs font-bold text-slate-200 group-hover:text-emerald-400">Knowledge Hub</h3>
-                <p className="text-[10px] text-slate-500 mt-0.5">Compliance blogs & guides</p>
+                <h3 className="text-xs font-bold text-slate-800 group-hover:text-[#1A56DB]">Knowledge Hub</h3>
+                <p className="text-[10px] text-slate-500 mt-0.5">Compliance blogs and guides</p>
               </div>
-              <svg className="h-4 w-4 text-slate-500 transition-transform group-hover:translate-x-1 group-hover:text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-[#1A56DB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6" />
               </svg>
             </Link>
           </div>
 
-          <div className="mt-8 border-t border-slate-800/80 pt-6">
+          <div className="mt-8 border-t border-slate-200 pt-6">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 rounded-full bg-slate-800 px-5 py-2.5 text-xs font-semibold text-slate-200 transition-all hover:bg-slate-700 hover:text-white cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-slate-800 cursor-pointer"
             >
               <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <line x1="19" y1="12" x2="5" y2="12" />
@@ -177,8 +180,8 @@ const NotFound = () => {
               Go Back
             </button>
           </div>
-        </div>
-      </div>
+        </PortalCard>
+      </PortalPageShell>
     </>
   );
 };
@@ -347,17 +350,16 @@ function AppRoutesContent() {
     location.pathname === "/default/refund" ||
     location.pathname === "/default/privacy-policy";
 
-  const hideNavigationPaths = ["/login", "/register", "/card"];
   const isAdminRoute = location.pathname.startsWith("/admin");
-  const showCANavigation = !isVirtualOfficeRoute && !hideNavigationPaths.includes(location.pathname) && !isAdminRoute;
+  const showCANavigation = !isVirtualOfficeRoute && !HIDE_NAVIGATION_PATHS.includes(location.pathname) && !isAdminRoute;
   const showVirtualOfficeNavigation = isVirtualOfficeRoute && !isAdminRoute;
-  const showGlobalFooter = !isAdminRoute && !hideNavigationPaths.includes(location.pathname) && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard" && location.pathname !== "/partner/dashboard";
+  const showGlobalFooter = !isAdminRoute && !HIDE_NAVIGATION_PATHS.includes(location.pathname) && location.pathname !== "/dashboard" && location.pathname !== "/virtual-office/dashboard" && location.pathname !== "/partner/dashboard";
 
   // Track last visited portal to direct login/register redirects
   useEffect(() => {
     if (isVirtualOfficeRoute) {
       sessionStorage.setItem("last_portal", "virtual-space");
-    } else if (!hideNavigationPaths.includes(location.pathname) && !isAdminRoute) {
+    } else if (!HIDE_NAVIGATION_PATHS.includes(location.pathname) && !isAdminRoute) {
       sessionStorage.setItem("last_portal", "ca-portal");
     }
   }, [location.pathname, isVirtualOfficeRoute, isAdminRoute]);
@@ -368,6 +370,7 @@ function AppRoutesContent() {
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}
+      {!isAdminRoute && <AIAssistant />}
       
       <Suspense fallback={<RouteLoader />}>
         <Routes>
@@ -418,6 +421,13 @@ function AppRoutesContent() {
           <Route path="/company-registration-guides" element={<CompanyRegistrationGuidesPage />} />
           <Route path="/trademark-search" element={<TrademarkSearchPage />} />
           <Route path="/legal-templates" element={<LegalTemplatesPage />} />
+          <Route path="/compare/:slug1-vs-:slug2" element={<ComparisonPage />} />
+          <Route path="/calculators/:calcSlug" element={<CalculatorPage />} />
+          <Route path="/templates" element={<Navigate to="/legal-templates" replace />} />
+          <Route path="/templates/:slug" element={<LegalTemplateDetailsPage />} />
+          <Route path="/hubs/:hubSlug" element={<TopicHubPage />} />
+          <Route path="/dashboard/compliance" element={<UserComplianceDashboard />} />
+          <Route path="/tools/:toolSlug" element={<ComplianceToolsPage />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/virtual-space" element={<VirtualSpace />} />
           <Route path="/blog" element={<BlogList />} />

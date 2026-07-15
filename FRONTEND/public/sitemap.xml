@@ -924,83 +924,303 @@
 
   <!-- Dynamic Blogs and Guides -->
   <url>
-    <loc>https://www.filingby.com/blog/gst-registration-guide</loc>
+    <loc>https://www.filingby.com/blog/advance-tax-for-founders-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GST Registration Guide: Requirements, Process & Timeline]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Advance Tax for Founders, Freelancers and Growing Businesses: A Practical Planning Guide]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/how-to-register-private-limited-company</loc>
+    <loc>https://www.filingby.com/blog/authorised-capital-and-shareholding-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[How to Register a Private Limited Company in India: A Step-by-Step Overview]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Choosing Authorised Capital and Shareholding at Incorporation: A Straightforward Guide for Founders]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration</loc>
+    <loc>https://www.filingby.com/blog/composition-scheme-vs-regular-gst</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Virtual Office for GST Registration: Everything You Need to Know]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Composition Scheme vs Regular GST: Which Option Suits a Small Business Better?]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/income-tax-return-filing-salaried-individuals</loc>
+    <loc>https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Income Tax Return (ITR) Filing: A Guide for Salaried Individuals]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI Basic vs State vs Central Licence: How Food Businesses Should Decide]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/llp-vs-private-limited-company</loc>
+    <loc>https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP vs Private Limited Company: Which is Better for Your Startup?]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI for Cloud Kitchens and Home Food Businesses: What Early-Stage Food Brands Should Know]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/trademark-registration-india</loc>
+    <loc>https://www.filingby.com/blog/gst-for-ecommerce-sellers-india</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Registration in India: Process, Timeline & Pricing]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST for E-commerce Sellers in India: What Amazon, Flipkart and D2C Brands Must Get Right]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/how-to-reply-gst-notice</loc>
+    <loc>https://www.filingby.com/blog/gst-registration-for-service-businesses-india</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[How to Reply to a GST Notice: Types of Notices & Practical Steps]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST Registration for Service Businesses in India: Practical Guide for Agencies, Consultants and SaaS Startups]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/fssai-food-license-registration</loc>
+    <loc>https://www.filingby.com/blog/gst-registration-with-virtual-office-india</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-06-21</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&amp;w=800&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[FSSAI Food License Guide: Registration Categories, Documents & Fees]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Using a Virtual Office for GST Registration: What Actually Works for Founders]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/private-limited-company-registration-india-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Private Limited Company Registration in India: Founder-Focused Step-by-Step Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[IEC Registration for First-Time Exporters: A Calm and Practical Starting Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/late-tds-return-and-correction-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Late TDS Return and Correction Statements: How to Clean Up Mistakes Without Panic]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-annual-compliance-calendar-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Annual Compliance Calendar: What Partners Should Track Through the Year]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-registration-for-consultants-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Registration for Consultants, Agencies and Professional Firms: Is It the Right Fit?]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP vs Private Limited for Bootstrapped Startups: A Decision Framework That Goes Beyond Theory]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/lut-under-gst-for-exporters</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LUT Under GST for Exporters: When to Use It, How to File It and What Founders Often Miss]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[MSME Benefits After Udyam Registration: What Business Owners Can Realistically Expect]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Presumptive Taxation Under Sections 44AD and 44ADA: What Small Businesses and Professionals Should Understand]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ROC Compliance Calendar for Private Limited Companies: A Working Guide for Founders]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ROC Forms Every Startup Should Track After Incorporation]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/spice-plus-filing-mistakes-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[SPICe+ Filing Mistakes Founders Should Avoid During Company Registration]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-benefits-and-documents-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India Benefits and Documents: What Founders Should Expect Before Applying]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-registration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India Registration Guide: DPIIT Recognition Explained for Founders]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/tan-registration-and-tds-setup-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TAN Registration and TDS Setup for New Businesses: A Practical Starting Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/tax-audit-applicability-guide-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Tax Audit Applicability for MSMEs and Startups: How to Know When the Requirement Becomes Real]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1600&amp;h=900&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TDS on Professional Fees, Contracts and Rent: A Practical Working Guide for Business Owners]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-objection-reply-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Objection Reply Guide: How to Respond Without Making the Situation Worse]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-search-and-class-selection-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Search and Class Selection in India: How to Avoid Filing the Wrong Brand Application]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/udyam-registration-for-service-business-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Udyam Registration for Service Businesses: Why Consultants, Agencies and Firms Should Care]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/virtual-office-for-company-registration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Virtual Office for Company Registration: What Founders Should Check Before Using One]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-07-15</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Virtual Office for GST Registration: How to Choose a Package That Holds Up in Practice]]></image:title>
     </image:image>
   </url>
 </urlset>
