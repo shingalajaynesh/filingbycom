@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSignUp } from "@clerk/clerk-react";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
+import { trackEvent } from "../../../shared/utils/gtm";
 
 
 // 1. Extract the pending UI to keep the main component clean
@@ -66,7 +67,8 @@ export default function Register() {
     try {
       const lastPortal = sessionStorage.getItem("last_portal");
       const target = lastPortal === "virtual-space" ? "/virtual-office/dashboard" : "/dashboard";
-
+ 
+      trackEvent("signup_start", { method: "google" });
       await signUp.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
@@ -83,6 +85,7 @@ export default function Register() {
       return setError("Enter your first name, last name, and email to continue.");
     }
     setError("");
+    trackEvent("signup_start", { method: "email" });
     setStep(2);
   };
 
@@ -107,6 +110,7 @@ export default function Register() {
       if (signUpAttempt.status === "complete" && signUpAttempt.createdSessionId) {
         sessionStorage.setItem("justRegistered", "true");
         setRegistrationPending(true);
+        trackEvent("signup_success", { method: "email" });
         await setActive({ session: signUpAttempt.createdSessionId });
         return;
       }
@@ -135,6 +139,7 @@ export default function Register() {
       if (verificationAttempt.status === "complete" && verificationAttempt.createdSessionId) {
         sessionStorage.setItem("justRegistered", "true");
         setRegistrationPending(true);
+        trackEvent("signup_success", { method: "email" });
         await setActive({ session: verificationAttempt.createdSessionId });
         return;
       }

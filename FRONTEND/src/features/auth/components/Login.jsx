@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSignIn } from "@clerk/clerk-react";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
+import { trackEvent } from "../../../shared/utils/gtm";
 
 
 // Removed the unused `onAuthenticated` prop, as useSyncUser now handles routing
@@ -33,6 +34,7 @@ export default function Login() {
     const target = lastPortal === "virtual-space" ? "/virtual-office/dashboard" : "/dashboard";
 
     try {
+      trackEvent("login_start", { method: "google" });
       await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: `${window.location.origin}/sso-callback`,
@@ -47,6 +49,7 @@ export default function Login() {
   const handleContinue = () => {
     if (!formData.email.trim()) return setError("Enter your email to continue.");
     setError("");
+    trackEvent("login_start", { method: "email" });
     setStep("password");
   };
 
@@ -65,17 +68,19 @@ export default function Login() {
 
       if (signInAttempt.status === "complete" && signInAttempt.createdSessionId) {
         // useSyncUser hook will detect this session creation and handle routing
+        trackEvent("login_success", { method: "email" });
         await setActive({ session: signInAttempt.createdSessionId });
         return;
       }
-
+ 
       const passwordAttempt = await signInAttempt.attemptFirstFactor({
         strategy: "password",
         password: formData.password,
       });
-
+ 
       if (passwordAttempt.status === "complete" && passwordAttempt.createdSessionId) {
         // useSyncUser hook will detect this session creation and handle routing
+        trackEvent("login_success", { method: "email" });
         await setActive({ session: passwordAttempt.createdSessionId });
         return;
       }

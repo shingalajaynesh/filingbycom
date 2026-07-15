@@ -7,8 +7,9 @@
  */
 
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate, useParams, Link } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
+import { initGTM, pushToDataLayer, trackEvent } from "../shared/utils/gtm";
 
 // ── FEATURE COMPONENT IMPORTS ────────────────────────────────────────────────
 // ── CA Portal ──
@@ -232,6 +233,97 @@ function RedirectToService() {
 function AppRoutesContent() {
   const location = useLocation();
   const navigate = useNavigate();
+  const isFirstRender = useRef(true);
+
+  // Initialize GTM once globally if VITE_GTM_ID env exists
+  useEffect(() => {
+    const gtmId = import.meta.env.VITE_GTM_ID;
+    if (gtmId) {
+      initGTM(gtmId);
+    }
+  }, []);
+
+  // Track virtual page views on route change (excluding first load to prevent double pageviews)
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    if (import.meta.env.VITE_GTM_ID) {
+      pushToDataLayer({
+        event: "virtual_page_view",
+        page_path: location.pathname + location.search,
+        page_title: document.title
+      });
+    }
+  }, [location.pathname, location.search]);
+
+  // Global click tracker for contact, phone, email, external link, and download clicks
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      const target = e.target.closest("a, button");
+      if (!target) return;
+
+      const href = target.getAttribute("href") || "";
+      const text = (target.innerText || target.getAttribute("aria-label") || "").trim();
+
+      // 1. WhatsApp Clicks
+      if (href.includes("wa.me") || href.includes("whatsapp.com") || href.includes("api.whatsapp.com")) {
+        trackEvent("whatsapp_click", {
+          link_url: href,
+          button_text: text || "WhatsApp"
+        });
+      }
+      // 2. Phone Clicks
+      else if (href.startsWith("tel:")) {
+        trackEvent("phone_click", {
+          phone_number: href.replace("tel:", ""),
+          button_text: text || "Call"
+        });
+      }
+      // 3. Email Clicks
+      else if (href.startsWith("mailto:")) {
+        trackEvent("email_click", {
+          email_address: href.replace("mailto:", ""),
+          button_text: text || "Email"
+        });
+      }
+      // 4. File Downloads
+      else if (href.includes("/download") || href.endsWith(".pdf") || href.endsWith(".doc") || href.endsWith(".docx") || target.hasAttribute("download")) {
+        trackEvent("file_download", {
+          file_url: href,
+          file_name: text || href.split("/").pop()
+        });
+      }
+      // 5. External Link Clicks
+      else if (href.startsWith("http") && !href.includes("filingby.com") && !href.includes(window.location.hostname)) {
+        trackEvent("external_link_click", {
+          link_url: href,
+          link_text: text || "External Link"
+        });
+      }
+      // 6. Generic CTA Clicks (Apply Now, Get Started, Talk to Expert, Get Quote, Book Now)
+      else if (text) {
+        const lowerText = text.toLowerCase();
+        if (
+          lowerText.includes("apply now") || 
+          lowerText.includes("get started") || 
+          lowerText.includes("talk to expert") || 
+          lowerText.includes("get quote") || 
+          lowerText.includes("book now")
+        ) {
+          trackEvent("service_cta_click", {
+            button_name: text,
+            page_path: window.location.pathname
+          });
+        }
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, []);
 
   // Sync logged-in Clerk profile states with local databases automatically.
   // Now handled by UserProvider inside AppRoutes

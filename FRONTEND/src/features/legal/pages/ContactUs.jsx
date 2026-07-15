@@ -2,6 +2,7 @@ import { useState } from "react";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { trackEvent } from "../../../shared/utils/gtm";
 
 export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
@@ -50,6 +51,10 @@ export default function ContactUs() {
     if (validate()) {
       setTicketId(Math.floor(100000 + Math.random() * 900000));
       setSubmitted(true);
+      trackEvent("contact_form_submit", {
+        form_name: "contact_us",
+        subject: formData.subject
+      });
     }
   };
 
@@ -83,12 +88,12 @@ export default function ContactUs() {
 
       {/* Main Grid */}
       <section className="max-w-screen-xl mx-auto px-4 py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        
+
         {/* Contact details - Left Fold */}
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm space-y-5 hover:shadow-md transition-all duration-300">
             <h3 className="text-lg font-black text-gray-900 border-b border-gray-100 pb-3">Corporate Desk</h3>
-            
+
             <div className="space-y-4 text-xs font-medium text-gray-650">
               <div className="flex items-start gap-4">
                 <span className="text-2xl mt-1">📞</span>
@@ -154,7 +159,7 @@ export default function ContactUs() {
         <div className="lg:col-span-7 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 md:p-8">
           <h3 className="text-lg font-black tracking-tight mb-2">Send us a Message</h3>
           <p className="text-xs text-gray-500 font-medium mb-6">Fill out the form below and one of our CAs or legal representatives will contact you shortly.</p>
-          
+
           {submitted ? (
             <div className="py-12 text-center space-y-4 animate-fadeIn">
               <span className="text-5xl text-green-500">📥</span>
@@ -162,7 +167,7 @@ export default function ContactUs() {
               <p className="text-xs text-gray-650 font-medium">
                 We have registered your query under ID **#FB-{ticketId}**. A representative will call or email you shortly.
               </p>
-              <button 
+              <button
                 onClick={() => {
                   setSubmitted(false);
                   setTicketId(null);

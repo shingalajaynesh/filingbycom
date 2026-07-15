@@ -4,6 +4,7 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { trackEvent } from "../utils/gtm";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL || 
@@ -116,6 +117,8 @@ export function UserProvider({ children }) {
           sessionStorage.removeItem("justRegistered");
           navigate("/login", { replace: true });
         } else if (isAuthPage) {
+          const provider = user?.externalAccounts?.[0]?.providerType || "email";
+          trackEvent("login_success", { method: provider });
           const lastPortal = sessionStorage.getItem("last_portal") || "ca-portal";
           const target = lastPortal === "virtual-space"
             ? (resData.user?.isPartner ? "/partner/dashboard" : "/virtual-office/dashboard")

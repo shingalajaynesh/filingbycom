@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import SEO from "../../../shared/components/SEO.jsx";
+import { trackEvent } from "../../../shared/utils/gtm";
 import ReviewSubmissionModal from "../../../shared/components/ReviewSubmissionModal.jsx";
 import { buildCityVirtualOfficeSchema, buildFaqSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
@@ -38,12 +39,12 @@ function BrandLogo({ name, imageUrl }) {
 }
 
 const DEFAULT_REVIEWS = [
-  { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
-  { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
-  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
-  { initials: "AM", color: "bg-indigo-650", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
-  { initials: "AF", color: "bg-[#0E1528]",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
-  { initials: "KD", color: "bg-emerald-700",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
+  { initials: "AB", color: "bg-blue-600", name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
+  { initials: "AA", color: "bg-emerald-600", name: "Anson Antony", text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
+  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel", text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
+  { initials: "AM", color: "bg-indigo-650", name: "Aman", text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
+  { initials: "AF", color: "bg-[#0E1528]", name: "Ashfaq", text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
+  { initials: "KD", color: "bg-emerald-700", name: "Kunal Debnath", text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
 ];
 
 export default function VirtualOfficeCity() {
@@ -54,8 +55,8 @@ export default function VirtualOfficeCity() {
   const clientLogos = settings?.vs_client_logos && settings.vs_client_logos.length > 0
     ? settings.vs_client_logos
     : [
-        { name: "Swiggy" }, { name: "Amazon" }, { name: "Flipkart" }, { name: "Zepto" }, { name: "Blinkit" }
-      ];
+      { name: "Swiggy" }, { name: "Amazon" }, { name: "Flipkart" }, { name: "Zepto" }, { name: "Blinkit" }
+    ];
 
   // Extract city slug from route (e.g. from `/virtual-office-delhi` or `/virtual-office/:city`)
   const currentPath = window.location.pathname;
@@ -99,8 +100,8 @@ export default function VirtualOfficeCity() {
       if (!dbCity?._id) return;
       try {
         const API_BASE = (
-          import.meta.env.VITE_API_URL || 
-          import.meta.env.VITE_BACKEND_URL || 
+          import.meta.env.VITE_API_URL ||
+          import.meta.env.VITE_BACKEND_URL ||
           "http://localhost:3000"
         ).replace(/\/$/, "");
         const res = await axios.get(`${API_BASE}/reviews?pageType=location&virtualLocation=${dbCity._id}`);
@@ -218,6 +219,11 @@ export default function VirtualOfficeCity() {
       if (data.success) {
         setSubmitted(true);
         toast.success("Inquiry submitted successfully!");
+        trackEvent("generate_lead", {
+          form_name: "virtual_office_city_inquiry",
+          city: formData.city,
+          purpose: formData.purpose
+        });
       } else {
         toast.error(data.message || "Failed to submit inquiry");
       }
@@ -665,41 +671,41 @@ export default function VirtualOfficeCity() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {reviewItems.map((rev, i) => {
-            const name = rev.authorName || rev.name;
-            const text = rev.comment || rev.text;
-            const rating = rev.rating || 5;
-            const initials = rev.initials || name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
-            const color = rev.color || "bg-[#1A56DB]";
-            const designation = rev.businessName || "Virtual Office Client";
+                  const name = rev.authorName || rev.name;
+                  const text = rev.comment || rev.text;
+                  const rating = rev.rating || 5;
+                  const initials = rev.initials || name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+                  const color = rev.color || "bg-[#1A56DB]";
+                  const designation = rev.businessName || "Virtual Office Client";
 
-            return (
-              <div key={i} className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group border border-gray-100/50">
-                <div>
-                  <div className="flex gap-0.5 text-yellow-400 mb-4">
-                    {Array.from({ length: rating }).map((_, s) => (
-                      <svg key={s} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                    {Array.from({ length: 5 - rating }).map((_, s) => (
-                      <svg key={s} className="w-4 h-4 fill-current text-gray-200" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="mb-6 text-xs md:text-sm leading-relaxed text-gray-600 italic">"{text}"</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${color}`}>
-                    {initials}
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
-                    <p className="text-xs text-gray-400">{designation}</p>
-                  </div>
-                </div>
-              </div>
-            );
+                  return (
+                    <div key={i} className="bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group border border-gray-100/50">
+                      <div>
+                        <div className="flex gap-0.5 text-yellow-400 mb-4">
+                          {Array.from({ length: rating }).map((_, s) => (
+                            <svg key={s} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                          {Array.from({ length: 5 - rating }).map((_, s) => (
+                            <svg key={s} className="w-4 h-4 fill-current text-gray-200" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="mb-6 text-xs md:text-sm leading-relaxed text-gray-600 italic">"{text}"</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white flex-shrink-0 shadow-sm ${color}`}>
+                          {initials}
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
+                          <p className="text-xs text-gray-400">{designation}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
                 })}
               </div>
             </>

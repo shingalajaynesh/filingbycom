@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@clerk/clerk-react";
 import toast from "react-hot-toast";
 import SEO from "../../../shared/components/SEO.jsx";
+import { trackEvent } from "../../../shared/utils/gtm";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { useOrderContext } from "../../../shared/context/OrderContext.jsx";
@@ -28,19 +29,19 @@ export default function GetLiveQuote() {
   const availableCities = locations && locations.length > 0
     ? locations.map(loc => ({ name: loc.name, slug: loc.slug }))
     : [
-        { name: "Surat", slug: "surat" },
-        { name: "Mumbai", slug: "mumbai" }
-      ];
+      { name: "Surat", slug: "surat" },
+      { name: "Mumbai", slug: "mumbai" }
+    ];
 
   const calculateQuote = async () => {
     let base = 999;
     if (formData.purpose === "incorporation") base = 1299;
     if (formData.purpose === "gst") base = 1199;
-    
+
     // Add business type weight
     if (formData.businessType === "pvt-ltd") base += 200;
     if (formData.businessType === "llp") base += 100;
-    
+
     // Add city specific weights
     const metroCities = ["mumbai", "delhi", "bangalore"];
     if (formData.city && metroCities.includes(formData.city.toLowerCase())) {
@@ -56,6 +57,13 @@ export default function GetLiveQuote() {
       if (data.success) {
         setPriceEstimate(base);
         setStep(3);
+        trackEvent("generate_lead", {
+          form_name: "live_quote_wizard",
+          city: formData.city,
+          purpose: formData.purpose,
+          business_type: formData.businessType,
+          estimated_price: base
+        });
       } else {
         toast.error(data.message || "Failed to calculate quote lead");
       }
@@ -86,7 +94,7 @@ export default function GetLiveQuote() {
 
     try {
       setSubmitting(true);
-      
+
       // Determine default address names based on city
       let addressName = `${formData.city} Business Suite`;
       if (formData.city.toLowerCase() === "surat") {
@@ -103,6 +111,12 @@ export default function GetLiveQuote() {
       if (!keyOrder) {
         throw new Error("Failed to initialize payment gateway order details.");
       }
+
+      trackEvent("checkout_start", {
+        service_name: `Virtual Office Address - ${formData.city}`,
+        price: priceEstimate,
+        purpose: formData.purpose
+      });
 
       const sdkLoaded = await loadRazorpay();
       if (!sdkLoaded) {
@@ -134,13 +148,32 @@ export default function GetLiveQuote() {
             const data = await verifyVirtualPayment(verificationPayload);
             if (data.success) {
               toast.success("Payment successful! Leased address created on dashboard.");
+              trackEvent("payment_success", {
+                service_name: `Virtual Office Address - ${formData.city}`,
+                price: priceEstimate,
+                payment_method: "online_razorpay",
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id
+              });
               navigate("/virtual-office/dashboard");
             } else {
               toast.error(data.message || "Payment verification failed.");
+              trackEvent("payment_failed", {
+                service_name: `Virtual Office Address - ${formData.city}`,
+                price: priceEstimate,
+                payment_method: "online_razorpay",
+                error_message: data.message || "Payment verification failed"
+              });
             }
           } catch (err) {
             console.error(err);
             toast.error(err.message || "Verification failed.");
+            trackEvent("payment_failed", {
+              service_name: `Virtual Office Address - ${formData.city}`,
+              price: priceEstimate,
+              payment_method: "online_razorpay",
+              error_message: err.message || "Verification catch error"
+            });
           } finally {
             setSubmitting(false);
           }
@@ -162,6 +195,15 @@ export default function GetLiveQuote() {
       };
 
       const rzp = new window.Razorpay(options);
+      rzp.on("payment.failed", function (response) {
+        toast.error(response.error.description || "Payment failed");
+        trackEvent("payment_failed", {
+          service_name: `Virtual Office Address - ${formData.city}`,
+          price: priceEstimate,
+          payment_method: "online_razorpay",
+          error_message: response.error.description || "Razorpay gateway payment failed"
+        });
+      });
       rzp.open();
     } catch (err) {
       console.error(err);
@@ -189,7 +231,7 @@ export default function GetLiveQuote() {
         ])}
       />
       <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 md:p-8 animate-fadeInUp">
-        
+
         {/* Step Indicator */}
         <div className="flex justify-between items-center mb-8 pb-4 border-b border-gray-100/50">
           <h2 className="text-lg font-black text-gray-900">Virtual Office Quote Calculator</h2>
@@ -199,7 +241,7 @@ export default function GetLiveQuote() {
         {step === 1 && (
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Select Office Location & Purpose</h3>
-            
+
             <div>
               <label className="text-[10px] font-bold text-gray-500 uppercase block mb-1">Target City</label>
               <select
@@ -263,7 +305,7 @@ export default function GetLiveQuote() {
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-gray-700 uppercase tracking-wider mb-2">Share Contact Details</h3>
             <p className="text-[11px] text-gray-400 font-medium">Pricing estimations are compiled instantly and a hard copy sample is shared on WhatsApp.</p>
-            
+
             <div>
               <label className="text-[10px] font-bold text-gray-500 uppercase block mb-1">Full Name</label>
               <input

@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 import { m, AnimatePresence } from "framer-motion";
 import { useOrderContext } from "../../../shared/context/OrderContext";
+import { trackEvent } from "../../../shared/utils/gtm";
 
 export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
   const [loading, setLoading] = useState(false);
   const { getToken } = useAuth();
   const { createRazorpayOrder, verifyPayment, createCashOrder } = useOrderContext();
 
-  // We handle early return using AnimatePresence now
-  // if (!isOpen || !service) return null;
+  useEffect(() => {
+    if (isOpen && service) {
+      trackEvent("checkout_start", {
+        service_id: service._id,
+        service_name: service.name,
+        price: service.basePrice
+      });
+    }
+  }, [isOpen, service]);
 
   const loadRazorpay = () => {
     return new Promise((resolve) => {
@@ -63,12 +71,27 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
             });
             if (verifyData.success) {
               toast.success("Payment successful! Order placed.");
+              trackEvent("payment_success", {
+                service_id: service._id,
+                service_name: service.name,
+                price: service.basePrice,
+                payment_method: "online_razorpay",
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id
+              });
               onSuccess();
             } else {
               throw new Error(verifyData.message);
             }
           } catch (err) {
             toast.error(err.message || "Payment verification failed");
+            trackEvent("payment_failed", {
+              service_id: service._id,
+              service_name: service.name,
+              price: service.basePrice,
+              payment_method: "online_razorpay",
+              error_message: err.message || "Payment verification failed"
+            });
           }
         },
         theme: { color: "#1A56DB" },
@@ -77,6 +100,13 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
       const rzp = new window.Razorpay(options);
       rzp.on("payment.failed", function (response) {
         toast.error(response.error.description || "Payment failed");
+        trackEvent("payment_failed", {
+          service_id: service._id,
+          service_name: service.name,
+          price: service.basePrice,
+          payment_method: "online_razorpay",
+          error_message: response.error.description || "Razorpay gateway payment failed"
+        });
       });
       rzp.open();
     } catch (error) {
@@ -99,6 +129,12 @@ export default function CheckoutModal({ isOpen, onClose, service, onSuccess }) {
       const data = await createCashOrder(service._id);
       if (data.success) {
         toast.success("Order placed successfully! You can pay by cash later.");
+        trackEvent("payment_success", {
+          service_id: service._id,
+          service_name: service.name,
+          price: service.basePrice,
+          payment_method: "cash"
+        });
         onSuccess();
       } else {
         throw new Error(data.message);
