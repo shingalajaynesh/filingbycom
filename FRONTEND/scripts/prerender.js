@@ -166,6 +166,102 @@ const STATIC_PAGES = [
     keywords: "knowledge hub blog, compliance guides, legal updates, business filing tips",
     h1: "Knowledge Hub & Compliance Guides",
     content: "<p>Stay informed with the latest statutory updates, step-by-step registration guides, and tax planning strategies written by our network of chartered accountants and corporate secretaries.</p>"
+  },
+  {
+    path: "virtual-space",
+    title: "Virtual Office India — GST Registration Address in Surat & Mumbai | FilingBy",
+    description: "Get a premium virtual office address in Surat or Mumbai for GST registration, company mailing address, or ecommerce seller registration (VPOB/PPOB). Starting at ₹999/month. NOC & utility bills included.",
+    keywords: "virtual office India, virtual office GST registration, virtual office address India, VPOB registration, virtual office Mumbai, virtual office Surat, virtual office for Amazon seller",
+    h1: "Virtual Office for GST & Business Registration",
+    content: "<p>Get a premium virtual office address in India's top business locations for GST registration, company incorporation, and mailing address. Our services start at just ₹999/month and include all mandatory legal documentation: a commercial rent agreement, landlord NOC, and latest utility bills.</p><h3>Features of Our Virtual Office Space</h3><ul><li>100% Compliant Documentation for GST Registration (VPOB & PPOB)</li><li>Professional Business Address in Premium Commercial Parks</li><li>Complete Mail Handling & Forwarding Services</li><li>Access to Meeting Rooms and Coworking Spaces</li></ul>"
+  },
+  {
+    path: "ecommerce-office",
+    title: "Virtual Office for E-Commerce Sellers — Amazon VPOB, Flipkart PPOB | FilingBy",
+    description: "Register as Amazon/Flipkart/Meesho seller with our virtual office address. VPOB (Virtual Principal Place of Business) and PPOB solutions starting ₹999/month. All platforms accepted.",
+    keywords: "virtual office ecommerce India, Amazon VPOB India, Flipkart PPOB address, Meesho seller address, ecommerce GST registration India, virtual office seller registration",
+    h1: "Virtual Office for E-Commerce Sellers",
+    content: "<p>Expand your e-commerce operations in India with our Virtual Principal Place of Business (VPOB) and Principal Place of Business (PPOB) virtual office services. Easily onboard on Amazon Fulfilment Centers (FCs), Flipkart Assured hubs, Meesho, Zepto, and Blinkit in any state.</p><h3>VPOB Benefits for E-Commerce Brands</h3><ul><li>Register for GST in multiple states to store inventory in local fulfilment centers</li><li>Fast-track documentation (NOC, Rent Agreement, Utility Bills)</li><li>Zero physical office management overheads</li><li>100% compliant documentation matching GST requirements</li></ul>"
+  },
+  {
+    path: "gst-calculator",
+    title: "GST Calculator Online India | Inclusive and Exclusive GST Tool",
+    description: "Use FilingBy's GST calculator to compute inclusive and exclusive GST amounts with instant CGST, SGST, and IGST breakup.",
+    keywords: "GST calculator, GST inclusive calculator, GST exclusive calculator, CGST SGST IGST calculator",
+    h1: "Online GST Calculator",
+    content: "<p>Calculate GST inclusive and exclusive pricing online for goods and services in India. View instant CGST, SGST, and IGST breakdowns for standard tax rates (5%, 12%, 18%, and 28%).</p>"
+  },
+  {
+    path: "income-tax-calculator",
+    title: "Income Tax Calculator India FY 2025-26 | Old vs New Regime",
+    description: "Estimate your income tax under old and new regimes for FY 2025-26 with FilingBy's practical tax calculator for resident individuals.",
+    keywords: "income tax calculator India, old vs new regime calculator, FY 2025-26 tax calculator, ITR calculator",
+    h1: "Income Tax Calculator (FY 2025-26)",
+    content: "<p>Compare your estimated income tax liabilities between the Old Tax Regime and the New Tax Regime for Financial Year 2025-26. Standard deductions and exemptions are computed automatically.</p>"
+  },
+  {
+    path: "roc-tools",
+    title: "ROC Tools and Annual Compliance Resources | FilingBy",
+    description: "Explore ROC tools, annual filing checklists, and compliance shortcuts for private limited companies, LLPs, and directors.",
+    keywords: "ROC tools, ROC annual filing, LLP annual filing, AOC-4, MGT-7, DIN eKYC",
+    h1: "ROC Compliance Tools & Checklists",
+    content: "<p>Access essential ROC and MCA compliance tools. Verify due dates, calculate filing fees, and review checklist requirements for filing annual returns (AOC-4, MGT-7, LLPs, and Director KYC).</p>"
+  },
+  {
+    path: "company-registration-guides",
+    title: "Company Registration Guides India | Pvt Ltd, LLP, OPC and More",
+    description: "Compare business structures in India with FilingBy's company registration guides for Pvt Ltd, LLP, OPC, and proprietorship decisions.",
+    keywords: "company registration guide India, private limited vs LLP, OPC registration, proprietorship guide",
+    h1: "Company Registration & Business Entity Guides",
+    content: "<p>Read step-by-step guides on choosing and registering the right business structure in India. Compare Private Limited Company, Limited Liability Partnership (LLP), One Person Company (OPC), and Sole Proprietorship models.</p>"
+  },
+  {
+    path: "trademark-search",
+    title: "Trademark Search Guide India | Check Brand Availability",
+    description: "Use FilingBy's trademark search guide to review brand name availability, classes, and next steps before filing in India.",
+    keywords: "trademark search India, brand name check, IP India public search, trademark class search",
+    h1: "Trademark Search & Brand Availability Guide",
+    content: "<p>Learn how to conduct a trademark search on the official IP India public database. Avoid name rejection issues by checking brand availability, classification, and trademark criteria.</p>"
+  },
+  {
+    path: "legal-templates",
+    title: "Legal Templates and Agreements for Businesses | FilingBy",
+    description: "Explore common legal templates and agreement categories for startups, founders, employers, and growing businesses.",
+    keywords: "legal templates India, NDA draft, employment agreement, shareholders agreement, legal notice draft",
+    h1: "Legal Templates & Business Contracts",
+    content: "<p>Download standard legal templates and drafting agreements for Indian startups and businesses. Access NDA templates, Service Level Agreements (SLAs), and founder agreements.</p>"
+  },
+  {
+    path: "terms-conditions",
+    title: "Terms and Conditions — FilingBy.com",
+    description: "FilingBy.com Terms & Conditions. Read standard agreements governing the lease of virtual office services in India.",
+    keywords: "terms and conditions, legal agreement, service terms filingby",
+    h1: "Terms and Conditions",
+    content: "<p>Welcome to FilingBy.com. These Terms and Conditions govern your use of our virtual office services, agreements, and support interfaces. Review our standard terms, compliance responsibilities, and billing terms.</p>"
+  },
+  {
+    path: "default/refund",
+    title: "Refund Policy — FilingBy.com",
+    description: "FilingBy.com Refund Policy. Read details of our 100% money-back guarantee if business registration fails.",
+    keywords: "refund policy, money back guarantee, filingby refund",
+    h1: "Refund Policy",
+    content: "<p>At FilingBy.com, we stand by the quality of our workspaces. We offer a 100% money-back guarantee in case of registration rejections due to documentation errors directly attributable to us.</p>"
+  },
+  {
+    path: "default/privacy-policy",
+    title: "Privacy Policy — FilingBy.com",
+    description: "FilingBy.com Privacy Policy. Learn how we handle your KYC documents, transaction records, and ensure your data remains secure.",
+    keywords: "privacy policy, data security, privacy statement filingby",
+    h1: "Privacy Policy",
+    content: "<p>FilingBy.com respects client privacy. This Privacy Policy details how we collect, store, and utilize details regarding your company registrations and transactions. We ensure robust security protocols for all KYC document uploads.</p>"
+  },
+  {
+    path: "contact-us",
+    title: "Contact Us — FilingBy.com | Customer Support & Business Desk",
+    description: "Have queries about GST registration, company incorporation, or virtual offices? Contact the FilingBy team via phone, email, or chat for expert support.",
+    keywords: "contact FilingBy, FilingBy phone number, GST registration support, CA portal help, corporate address support",
+    h1: "Contact Us",
+    content: "<p>Need guidance with business registration, CA consultations, or virtual offices? Contact our dedicated compliance support desk for instant help over phone calls, email, or WhatsApp chat.</p>"
   }
 ];
 

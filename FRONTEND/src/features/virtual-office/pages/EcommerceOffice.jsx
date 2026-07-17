@@ -41,7 +41,7 @@ export default function EcommerceOffice() {
       <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] text-white pt-24 pb-16 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-        
+
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-6 animate-fadeInUp">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
@@ -68,7 +68,7 @@ export default function EcommerceOffice() {
             <div className="bg-white rounded-2xl p-6 shadow-2xl text-gray-900">
               <h3 className="text-lg font-black tracking-tight mb-2">Request VPOB Pricing</h3>
               <p className="text-xs text-gray-500 font-medium mb-4">Select target state for Amazon/Flipkart hub approvals.</p>
-              
+
               {submitted ? (
                 <div className="py-8 text-center space-y-4">
                   <span className="text-4xl text-green-500">✅</span>
@@ -207,12 +207,12 @@ export default function EcommerceOffice() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
                   <p className="text-xs text-gray-500 font-medium leading-relaxed">{plan.desc}</p>
-                  
+
                   <div className="border-t border-gray-200 pt-4">
                     <span className="text-3xl font-black text-gray-900">₹{plan.rate}</span>
                     <span className="text-xs font-semibold text-gray-500">/month</span>
                   </div>
-                  
+
                   <ul className="space-y-2 pt-4">
                     {plan.features.map((feat) => (
                       <li key={feat} className="flex items-center gap-2 text-xs text-gray-650 font-medium">
@@ -222,7 +222,7 @@ export default function EcommerceOffice() {
                     ))}
                   </ul>
                 </div>
-                
+
                 <button
                   onClick={() => navigate("/get-live-quote")}
                   className="w-full mt-8 py-3.5 bg-[#1A56DB] hover:bg-blue-700 text-white rounded-xl font-bold text-xs tracking-wider uppercase active:scale-95 transition-all cursor-pointer shadow-lg shadow-blue-500/25"
