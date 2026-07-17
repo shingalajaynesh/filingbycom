@@ -485,14 +485,7 @@ function AppRoutesContent() {
           <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/get-live-quote" element={<GetLiveQuote />} />
-          <Route
-            path="/partner-onboarding"
-            element={
-              <ProtectedRoute>
-                <PartnerOnboarding />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/partner-onboarding" element={<PartnerOnboarding />} />
           
           <Route path="/terms-conditions" element={<TermsConditions />} />
           <Route path="/default/refund" element={<RefundPolicy />} />
