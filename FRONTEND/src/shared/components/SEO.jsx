@@ -27,7 +27,10 @@ export default function SEO({
   extraSchemas = []
 }) {
   const siteUrl = "https://www.filingby.com";
-  const path = canonical !== undefined ? canonical : (typeof window !== "undefined" ? window.location.pathname : "");
+  const rawPath = canonical !== undefined
+    ? canonical
+    : (typeof window !== "undefined" ? `${window.location.pathname}${window.location.search}` : "");
+  const path = typeof rawPath === "string" ? rawPath.trim() : "";
   const canonicalUrl = path
     ? (path.startsWith("http://") || path.startsWith("https://") ? path : `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`)
     : null;

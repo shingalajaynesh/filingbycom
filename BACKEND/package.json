@@ -12,6 +12,7 @@
     "blogs:audit": "node scripts/auditBlogQuality.js",
     "blogs:generate": "node scripts/generateBlogBatch.js",
     "blogs:seed": "node scripts/seedBlogsMarkdown.js",
+    "seo:apply-july-2026": "node scripts/applyJuly2026SeoActions.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

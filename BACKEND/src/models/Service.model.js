@@ -10,6 +10,21 @@ const serviceSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    seoTitle: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    seoDescription: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    seoKeywords: {
+      type: String,
+      required: false,
+      trim: true,
+    },
     basePrice: {
       type: Number,
       required: true,

@@ -230,8 +230,8 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-gray-900">
       <SEO
-        title="FilingBy.com — CA Services Online | GST, Company Registration, Trademark, ITR Filing India"
-        description="FilingBy.com is India's trusted digital CA, CS, and legal compliance platform. Get expert assistance with GST registration, PVT LTD incorporation, trademark filing, ITR filings, and virtual office addresses. 100% online."
+        title="Online CA Services in India | GST, Company Registration, Trademark and ITR Filing | FilingBy"
+        description="FilingBy helps Indian businesses with GST registration, private limited company registration, trademark filing, ITR filing, ROC compliance and virtual office services with expert assistance online."
         keywords="GST registration online, private limited company registration India, trademark filing, income tax return filing, virtual office India, professional tax registration, startup business setup"
         canonical="/"
         schema={localBusinessSchema}

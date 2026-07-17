@@ -36,6 +36,7 @@ const TopicHubPage = lazy(() => import("../features/ca-portal/pages/TopicHubPage
 const UserComplianceDashboard = lazy(() => import("../features/client-dashboard/pages/UserComplianceDashboard"));
 const ComplianceToolsPage = lazy(() => import("../features/ca-portal/pages/ComplianceToolsPage"));
 const AIAssistant = lazy(() => import("../features/ca-portal/components/AIAssistant"));
+const PanCardPage = lazy(() => import("../features/ca-portal/pages/PanCardPage"));
 
 // ── Virtual Office ──
 import VirtualOfficeNavigation from "../features/virtual-office/components/VirtualOfficeNavigation";
@@ -264,6 +265,30 @@ function RedirectToService() {
   return <Navigate to={`/services/${slug}`} replace />;
 }
 
+const LEGACY_BLOG_REDIRECTS = {
+  "gst-registration-guide": "/blog/gst-registration-for-service-businesses-india",
+  "how-to-register-private-limited-company": "/blog/private-limited-company-registration-india-guide",
+  "virtual-office-for-gst-registration": "/blog/virtual-office-for-gst-registration-guide",
+  "virtual-office-for-company-registration": "/blog/virtual-office-for-company-registration-guide",
+  "llp-vs-private-limited-company": "/blog/llp-vs-private-limited-for-bootstrapped-startups",
+  "fssai-food-license-registration": "/blog/fssai-basic-vs-state-vs-central-guide",
+  "startup-india-recognition-benefits": "/blog/startup-india-benefits-and-documents-guide",
+  "trademark-registration-india": "/services/trademark-registration",
+  "income-tax-filing-ay-2026-27": "/services/itr-filing",
+  "income-tax-return-filing-salaried-individuals": "/services/itr-1-filing"
+};
+
+function RedirectLegacyBlog() {
+  const { slug } = useParams();
+  const destination = LEGACY_BLOG_REDIRECTS[slug];
+
+  if (!destination) {
+    return <BlogDetail />;
+  }
+
+  return <Navigate to={destination} replace />;
+}
+
 /**
  * AppRoutesContent component handles layout determinations and path routing.
  * Evaluates path structures to conditionally render matching navigation bars.
@@ -414,7 +439,7 @@ function AppRoutesContent() {
           <Route path="/pages/trust-compliance" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/trust-audit" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/moa-amendment-public-private-limited" element={<Navigate to="/services/moa-amendment" replace />} />
-          <Route path="/pages/pan-card" element={<Navigate to="/services/tan-registration" replace />} />
+          <Route path="/pages/pan-card" element={<Navigate to="/services/pan-card" replace />} />
           <Route path="/pages/private-limited-company-winding-up" element={<Navigate to="/services/pvt-winding-up" replace />} />
           <Route path="/pages/ngo-compliance" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/llp-compliance" element={<Navigate to="/services/roc-annual-filing-llp" replace />} />
@@ -463,10 +488,11 @@ function AppRoutesContent() {
           <Route path="/hubs/:hubSlug" element={<TopicHubPage />} />
           <Route path="/dashboard/compliance" element={<UserComplianceDashboard />} />
           <Route path="/tools/:toolSlug" element={<ComplianceToolsPage />} />
+          <Route path="/services/pan-card" element={<PanCardPage />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/virtual-space" element={<VirtualSpace />} />
           <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/blog/:slug" element={<RedirectLegacyBlog />} />
           
           {/* Cloned Pages for address.co */}
           <Route path="/locations" element={<Locations />} />

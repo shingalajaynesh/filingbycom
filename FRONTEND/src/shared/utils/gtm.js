@@ -3,9 +3,16 @@
  * Handles dynamic script injection, data layer pushes, and custom event tracking.
  */
 
+const TRACKING_HOSTS = new Set(["www.filingby.com"]);
+
+export function shouldEnableTracking(hostname) {
+  if (typeof window === "undefined") return false;
+  return TRACKING_HOSTS.has(hostname || window.location.hostname);
+}
+
 // Initialize GTM container dynamically
 export function initGTM(containerId) {
-  if (typeof window === "undefined" || !containerId) return;
+  if (typeof window === "undefined" || !containerId || !shouldEnableTracking()) return;
 
   // Prevent duplicate script execution
   if (window.GTM_INITIALIZED) return;
@@ -36,7 +43,7 @@ export function initGTM(containerId) {
 
 // Push generic objects safely to the dataLayer without breaking SSR
 export function pushToDataLayer(data) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !shouldEnableTracking()) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(data);
 }

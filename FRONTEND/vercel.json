@@ -34,6 +34,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "filingby.com"
+        }
+      ],
+      "destination": "https://www.filingby.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/pages/partnership-firm-return",
       "destination": "/services/partnership-firm",
       "permanent": true
@@ -85,7 +96,7 @@
     },
     {
       "source": "/pages/pan-card",
-      "destination": "/services/tan-registration",
+      "destination": "/services/pan-card",
       "permanent": true
     },
     {
@@ -151,6 +162,56 @@
     {
       "source": "/pages/refund-policy",
       "destination": "/default/refund",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gst-registration-guide",
+      "destination": "/blog/gst-registration-for-service-businesses-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-register-private-limited-company",
+      "destination": "/blog/private-limited-company-registration-india-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/virtual-office-for-gst-registration",
+      "destination": "/blog/virtual-office-for-gst-registration-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/virtual-office-for-company-registration",
+      "destination": "/blog/virtual-office-for-company-registration-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/llp-vs-private-limited-company",
+      "destination": "/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fssai-food-license-registration",
+      "destination": "/blog/fssai-basic-vs-state-vs-central-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/startup-india-recognition-benefits",
+      "destination": "/blog/startup-india-benefits-and-documents-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/trademark-registration-india",
+      "destination": "/services/trademark-registration",
+      "permanent": true
+    },
+    {
+      "source": "/blog/income-tax-filing-ay-2026-27",
+      "destination": "/services/itr-filing",
+      "permanent": true
+    },
+    {
+      "source": "/blog/income-tax-return-filing-salaried-individuals",
+      "destination": "/services/itr-1-filing",
       "permanent": true
     },
     {
