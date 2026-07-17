@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,8 @@ relatedServices:
   - "llp-registration"
 relatedBlogs:
   - "startup-india-benefits-and-documents-guide"
+  - "startup-india-vs-msme-registration-guide"
+  - "startup-india-patent-benefits-guide"
 topicHub: "/blog?category=Startup%20India"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -71,33 +73,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for startup india registration guide"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for startup india registration guide"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for startup india registration guide"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for startup india registration guide"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for startup india registration guide"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for startup india registration guide"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "Startup India Portal"
     url: "https://www.startupindia.gov.in/"
@@ -105,11 +107,21 @@ references:
   - title: "DPIIT Resources"
     url: "https://dpiit.gov.in/"
     publisher: "Department for Promotion of Industry and Internal Trade"
+sources:
+  - title: "Startup India Portal"
+    organisation: "Startup India"
+    url: "https://www.startupindia.gov.in/"
+    kind: "reference"
+  - title: "DPIIT Resources"
+    organisation: "Department for Promotion of Industry and Internal Trade"
+    url: "https://dpiit.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Startup India Registration Guide: DPIIT Recognition Explained for Founders

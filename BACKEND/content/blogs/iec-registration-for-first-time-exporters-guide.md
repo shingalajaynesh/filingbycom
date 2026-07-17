@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "12 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -30,7 +30,8 @@ relatedServices:
   - "iec-registration"
   - "gst-registration"
 relatedBlogs:
-
+  - "iec-amendment-and-surrender-guide"
+  - "exporter-onboarding-documents-guide"
 topicHub: "/blog?category=IEC"
 relatedCalculators:
   - "/gst-calculator"
@@ -71,33 +72,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for iec registration for first time exporters"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for iec registration for first time exporters"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for iec registration for first time exporters"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for iec registration for first time exporters"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for iec registration for first time exporters"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for iec registration for first time exporters"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "DGFT Portal"
     url: "https://www.dgft.gov.in/"
@@ -105,11 +106,21 @@ references:
   - title: "GST Portal"
     url: "https://www.gst.gov.in/"
     publisher: "Goods and Services Tax Network"
+sources:
+  - title: "DGFT Portal"
+    organisation: "Directorate General of Foreign Trade"
+    url: "https://www.dgft.gov.in/"
+    kind: "reference"
+  - title: "GST Portal"
+    organisation: "Goods and Services Tax Network"
+    url: "https://www.gst.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # IEC Registration for First-Time Exporters: A Calm and Practical Starting Guide

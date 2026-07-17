@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -32,6 +32,9 @@ relatedServices:
 relatedBlogs:
   - "private-limited-company-registration-india-guide"
   - "spice-plus-filing-mistakes-guide"
+  - "opc-vs-private-limited-company-guide-india"
+  - "company-name-approval-guide-india"
+  - "company-incorporation-documents-checklist-guide"
 topicHub: "/blog?category=Company%20Registration"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -72,33 +75,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for authorised capital and shareholding guide"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for authorised capital and shareholding guide"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for authorised capital and shareholding guide"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for authorised capital and shareholding guide"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for authorised capital and shareholding guide"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for authorised capital and shareholding guide"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "MCA Services Portal"
     url: "https://www.mca.gov.in/"
@@ -106,11 +109,21 @@ references:
   - title: "Companies Act and Rules Resources"
     url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
     publisher: "Ministry of Corporate Affairs"
+sources:
+  - title: "MCA Services Portal"
+    organisation: "Ministry of Corporate Affairs"
+    url: "https://www.mca.gov.in/"
+    kind: "reference"
+  - title: "Companies Act and Rules Resources"
+    organisation: "Ministry of Corporate Affairs"
+    url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Choosing Authorised Capital and Shareholding at Incorporation: A Straightforward Guide for Founders

@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "12 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,8 @@ relatedServices:
   - "itr-filing"
 relatedBlogs:
   - "roc-forms-every-startup-should-track-guide"
+  - "adt-1-aoc-4-mgt-7-guide"
+  - "director-kyc-din-compliance-guide"
 topicHub: "/blog?category=ROC%20Compliance"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -70,33 +72,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for roc compliance calendar private limited"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for roc compliance calendar private limited"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for roc compliance calendar private limited"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for roc compliance calendar private limited"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for roc compliance calendar private limited"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for roc compliance calendar private limited"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "MCA Services Portal"
     url: "https://www.mca.gov.in/"
@@ -104,11 +106,21 @@ references:
   - title: "Company Forms and Filing Resources"
     url: "https://www.mca.gov.in/content/mca/global/en/e-filing/company-forms-download-eforms.html"
     publisher: "Ministry of Corporate Affairs"
+sources:
+  - title: "MCA Services Portal"
+    organisation: "Ministry of Corporate Affairs"
+    url: "https://www.mca.gov.in/"
+    kind: "reference"
+  - title: "Company Forms and Filing Resources"
+    organisation: "Ministry of Corporate Affairs"
+    url: "https://www.mca.gov.in/content/mca/global/en/e-filing/company-forms-download-eforms.html"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # ROC Compliance Calendar for Private Limited Companies: A Working Guide for Founders

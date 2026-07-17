@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,9 @@ relatedServices:
   - "private-limited-company"
 relatedBlogs:
   - "trademark-objection-reply-guide"
+  - "trademark-hearing-preparation-guide"
+  - "trademark-renewal-restoration-guide"
+  - "trademark-assignment-licensing-guide"
 topicHub: "/blog?category=Trademark"
 relatedCalculators:
   - "/trademark-search"
@@ -71,33 +74,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for trademark search and class selection"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for trademark search and class selection"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for trademark search and class selection"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for trademark search and class selection"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for trademark search and class selection"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for trademark search and class selection"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "IP India Trademark Services"
     url: "https://ipindia.gov.in/"
@@ -105,11 +108,21 @@ references:
   - title: "Trademark Search and Journal"
     url: "https://tmrsearch.ipindia.gov.in/tmrpublicsearch/"
     publisher: "IP India"
+sources:
+  - title: "IP India Trademark Services"
+    organisation: "Office of the Controller General of Patents, Designs and Trade Marks"
+    url: "https://ipindia.gov.in/"
+    kind: "reference"
+  - title: "Trademark Search and Journal"
+    organisation: "IP India"
+    url: "https://tmrsearch.ipindia.gov.in/tmrpublicsearch/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Trademark Search and Class Selection in India: How to Avoid Filing the Wrong Brand Application

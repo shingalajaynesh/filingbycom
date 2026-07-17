@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "12 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -32,6 +32,9 @@ relatedServices:
 relatedBlogs:
   - "presumptive-taxation-44ad-44ada-guide"
   - "advance-tax-for-founders-guide"
+  - "itr-filing-for-freelancers-guide-india"
+  - "section-80c-80d-deductions-guide-india"
+  - "income-tax-notice-143-1-139-9-guide"
 topicHub: "/blog?category=Income%20Tax"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -71,33 +74,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for tax audit applicability guide"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for tax audit applicability guide"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for tax audit applicability guide"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for tax audit applicability guide"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for tax audit applicability guide"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for tax audit applicability guide"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "Income Tax Department e-Filing Portal"
     url: "https://www.incometax.gov.in/"
@@ -105,11 +108,21 @@ references:
   - title: "Income Tax Rules and Circulars"
     url: "https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx"
     publisher: "Income Tax Department"
+sources:
+  - title: "Income Tax Department e-Filing Portal"
+    organisation: "Income Tax Department"
+    url: "https://www.incometax.gov.in/"
+    kind: "reference"
+  - title: "Income Tax Rules and Circulars"
+    organisation: "Income Tax Department"
+    url: "https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Tax Audit Applicability for MSMEs and Startups: How to Know When the Requirement Becomes Real

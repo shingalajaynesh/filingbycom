@@ -4,10 +4,13 @@ import { fileURLToPath } from "node:url";
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.resolve(SCRIPT_DIR, "..", "content", "blogs");
-const LAST_UPDATED = "2026-07-15";
+const LAST_UPDATED = "2026-07-17";
 const AUTHOR = "FilingBy Editorial Desk";
 const AUTHOR_ID = "filingby-editorial-desk";
 const REVIEWER_ID = "filingby-content-team";
+const REVIEWED_BY = "Hiren Patel (FCA)";
+const REVIEWED_BY_TITLE = "Chartered Accountant";
+const REVIEWER_EXPERIENCE = "15+ Years Experience";
 
 const topicHubMap = {
   GST: "/blog?category=GST",
@@ -137,6 +140,245 @@ const categoryImages = {
     "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
   ]
 };
+
+const categoryPlaybook = {
+  GST: {
+    subCategory: "Compliance",
+    searchIntent: "Informational",
+    primaryAudience: "founders, finance teams, marketplaces, exporters and service businesses handling GST decisions with real billing impact",
+    legalContext: "The issue sits within the CGST Act, SGST or UTGST rules, portal workflows on the GST common portal and the practical record trail expected during review or follow-up.",
+    portal: "GST portal",
+    relatedServices: ["gst-registration", "gst-filing"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["gst-document-checklist"],
+    internalLinks: ["/blog?category=GST", "/services/gst-registration", "/services/gst-return-filing"]
+  },
+  "Company Registration": {
+    subCategory: "Incorporation",
+    searchIntent: "Commercial",
+    primaryAudience: "founders, co-founders, early operators and advisors planning a company setup that can survive banking, contracts and fundraising scrutiny",
+    legalContext: "The process is shaped by the Companies Act, MCA incorporation rules, SPICe+ workflow, DIN and DSC requirements and post-incorporation record keeping under MCA systems.",
+    portal: "MCA portal",
+    relatedServices: ["private-limited-company"],
+    relatedCalculators: [],
+    relatedTemplates: ["founder-document-checklist"],
+    internalLinks: ["/blog?category=Company%20Registration", "/services/private-limited-company"]
+  },
+  LLP: {
+    subCategory: "Compliance",
+    searchIntent: "Commercial",
+    primaryAudience: "consultants, agencies, professionals and small teams comparing flexible ownership with lower compliance overhead",
+    legalContext: "LLP decisions are governed by the LLP Act, MCA filing requirements, partner identification rules and the practical drafting quality of the LLP agreement.",
+    portal: "MCA portal",
+    relatedServices: ["llp-registration"],
+    relatedCalculators: [],
+    relatedTemplates: ["llp-agreement-checklist"],
+    internalLinks: ["/blog?category=LLP", "/services/llp-registration"]
+  },
+  Trademark: {
+    subCategory: "Protection",
+    searchIntent: "Commercial",
+    primaryAudience: "brand owners, startups, product companies and service businesses trying to protect naming, reputation and future brand expansion",
+    legalContext: "Trademark decisions interact with the Trade Marks Act, classification logic, registry practice, hearing procedure and long-term evidence of actual business use.",
+    portal: "IP India portal",
+    relatedServices: ["trademark-registration", "trademark-objection"],
+    relatedCalculators: [],
+    relatedTemplates: ["trademark-use-evidence-checklist"],
+    internalLinks: ["/blog?category=Trademark", "/services/trademark-registration", "/services/trademark-objection"]
+  },
+  "Income Tax": {
+    subCategory: "ITR",
+    searchIntent: "Informational",
+    primaryAudience: "founders, salaried professionals, freelancers and growing businesses who need tax decisions explained without finance jargon",
+    legalContext: "Income-tax compliance depends on the Income-tax Act, filing forms, deduction rules, record quality, notices and the distinction between planning, reporting and assessment.",
+    portal: "Income Tax e-Filing portal",
+    relatedServices: ["itr-filing", "tax-audit"],
+    relatedCalculators: ["/income-tax-calculator"],
+    relatedTemplates: ["income-tax-document-checklist"],
+    internalLinks: ["/blog?category=Income%20Tax", "/services/itr-filing", "/income-tax-calculator"]
+  },
+  TDS: {
+    subCategory: "Compliance",
+    searchIntent: "Informational",
+    primaryAudience: "finance teams, founders and business operators who deduct, deposit, reconcile or explain TDS in day-to-day commercial work",
+    legalContext: "TDS work is shaped by deduction sections, deposit timelines, return filing rules, PAN capture quality, TRACES logic and the linkage between vendor records and tax reporting.",
+    portal: "Income Tax and TRACES portal",
+    relatedServices: ["tds-return-filing"],
+    relatedCalculators: [],
+    relatedTemplates: ["tds-vendor-master-checklist"],
+    internalLinks: ["/blog?category=TDS", "/services/tds-return-filing"]
+  },
+  "Virtual Office": {
+    subCategory: "Registration",
+    searchIntent: "Commercial",
+    primaryAudience: "lean teams, out-of-state founders and growing businesses trying to use a registered address without taking a full commercial lease",
+    legalContext: "Virtual office decisions are judged through the documentary standards expected in GST, MCA, banking and vendor onboarding contexts rather than through marketing claims alone.",
+    portal: "GST or MCA portal depending on use case",
+    relatedServices: ["virtual-office", "gst-registration"],
+    relatedCalculators: ["/gst-calculator"],
+    relatedTemplates: ["virtual-office-comparison-sheet"],
+    internalLinks: ["/virtual-space", "/locations", "/services/gst-registration"]
+  },
+  "Startup India": {
+    subCategory: "DPIIT",
+    searchIntent: "Informational",
+    primaryAudience: "startup founders deciding whether recognition benefits justify the document work and eligibility review",
+    legalContext: "Startup India recognition depends on DPIIT eligibility, entity structure, innovation framing, supporting records and how recognition links with tax, IPR and fundraising strategy.",
+    portal: "Startup India portal",
+    relatedServices: ["private-limited-company"],
+    relatedCalculators: [],
+    relatedTemplates: ["startup-recognition-document-checklist"],
+    internalLinks: ["/blog?category=Startup%20India", "/services/private-limited-company"]
+  },
+  MSME: {
+    subCategory: "Udyam",
+    searchIntent: "Informational",
+    primaryAudience: "service businesses, manufacturers, agencies and founders using Udyam registration for credibility, benefits and payment protection",
+    legalContext: "MSME planning is linked with Udyam registration rules, investment and turnover classification, payment protection remedies and scheme-specific eligibility conditions.",
+    portal: "Udyam portal",
+    relatedServices: ["msme-registration"],
+    relatedCalculators: [],
+    relatedTemplates: ["msme-benefit-checklist"],
+    internalLinks: ["/blog?category=MSME", "/services/msme-registration"]
+  },
+  FSSAI: {
+    subCategory: "Food Licensing",
+    searchIntent: "Commercial",
+    primaryAudience: "food business operators, cloud kitchens, packaged food brands and restaurant teams that need licensing and operations to align",
+    legalContext: "FSSAI compliance sits across FoSCoS licensing workflow, category-specific conditions, food safety record keeping, labelling standards and practical inspection readiness.",
+    portal: "FoSCoS portal",
+    relatedServices: ["fssai-registration"],
+    relatedCalculators: [],
+    relatedTemplates: ["fssai-document-checklist"],
+    internalLinks: ["/blog?category=FSSAI", "/services/fssai-registration"]
+  },
+  IEC: {
+    subCategory: "DGFT",
+    searchIntent: "Informational",
+    primaryAudience: "new exporters, importers and cross-border founders who need DGFT paperwork to work smoothly with banks, customs and GST",
+    legalContext: "IEC matters are shaped by DGFT systems, bank validation, business constitution records, cross-border document flow and the practical sequence of export onboarding.",
+    portal: "DGFT portal",
+    relatedServices: ["iec-registration"],
+    relatedCalculators: [],
+    relatedTemplates: ["exporter-document-checklist"],
+    internalLinks: ["/blog?category=IEC", "/services/iec-registration"]
+  },
+  "ROC Compliance": {
+    subCategory: "Annual Filing",
+    searchIntent: "Informational",
+    primaryAudience: "company founders, directors and finance teams trying to avoid ROC surprises, penalties and missed form deadlines",
+    legalContext: "ROC compliance depends on Companies Act filing rules, form timelines, board and shareholder records, director KYC obligations and clean secretarial documentation.",
+    portal: "MCA portal",
+    relatedServices: ["private-limited-company"],
+    relatedCalculators: [],
+    relatedTemplates: ["roc-compliance-checklist"],
+    internalLinks: ["/blog?category=ROC%20Compliance", "/services/private-limited-company"]
+  }
+};
+
+function buildDefaultComparison(topic) {
+  return {
+    heading: topic.comparisonHeading || "Decision snapshot",
+    headers: ["Situation", "What to check", "Why it matters"],
+    rows: topic.comparisonRows || [
+      ["Urgent filing pressure", "Whether the legal trigger is real and the documents are ready", "It prevents rushed submissions and rework"],
+      ["Routine planning stage", "Whether the business can align records before filing", "Better preparation usually means faster approval"],
+      ["Growth or expansion stage", "How this decision affects contracts, tax and onboarding", "The filing should support the next stage of the business"],
+      ["Post-approval reality", "Whether internal systems will be updated after approval", "A certificate is useful only when records also improve"]
+    ]
+  };
+}
+
+function buildDefaultProcessSteps(topic, playbook) {
+  return [
+    {
+      title: `Clarify why ${topic.focusKeyword} matters now`,
+      body: `Before opening the ${playbook.portal}, define the actual trigger. It may be a customer requirement, a funding process, an annual deadline, a structure change or a clean-up exercise. The filing route becomes much clearer once the business reason is written down properly.`
+    },
+    {
+      title: "Review the entity, address and authorised person details",
+      body: "Most practical delays start with identity mismatch, address inconsistency or weak authorisation. A quick pre-check of names, PAN-linked records, addresses and signatory details usually saves more time than any later correction effort."
+    },
+    {
+      title: "Prepare the document pack before the first portal draft",
+      body: "A business that gathers documents in advance can answer queries calmly. Prepare the core support papers, rename them clearly and make sure the factual story is consistent across each record."
+    },
+    {
+      title: `Complete the ${playbook.portal} workflow with commercial accuracy`,
+      body: "While filling the form, focus not only on legal correctness but also on how the record will be read later by banks, vendors, customers, officers or investors. The best filing is the one that keeps working after approval too."
+    },
+    {
+      title: "Handle clarifications directly and with evidence",
+      body: "If the system or reviewer raises a query, answer it with simple factual support. Avoid emotional notes, generic copy-paste responses or unclear attachments. Most queries reduce once the evidence is better organised."
+    },
+    {
+      title: "Update post-approval systems immediately",
+      body: "Once the filing is approved or accepted, update invoices, contracts, internal trackers, vendor records and future compliance calendars. This is where the business turns the filing into something actually useful."
+    }
+  ];
+}
+
+function buildDefaultFaqs(topic, playbook) {
+  return [
+    {
+      q: `Is ${topic.focusKeyword} only relevant when a deadline arrives?`,
+      a: `No. The strongest results usually come when the business reviews the issue before a deadline or commercial promise creates pressure. Early clarity reduces errors and makes the ${playbook.portal} workflow simpler.`
+    },
+    {
+      q: "Can a small business handle this without overcomplicating the process?",
+      a: "Yes, provided the facts are clear, the document pack is organised and the team understands what changes after the filing. Complexity often comes from weak preparation, not only from the law."
+    },
+    {
+      q: "Why do these applications or filings get delayed in practice?",
+      a: "The most common reasons are inconsistent records, unclear supporting documents, internal ownership confusion and last-minute submissions. Clean paperwork usually improves outcomes more than aggressive follow-up."
+    },
+    {
+      q: "When should professional help be considered?",
+      a: "It becomes especially useful where the issue affects contracts, tax, funding, licensing, interstate activity or founder relationships, or where a wrong filing could create long-tail compliance problems."
+    }
+  ];
+}
+
+function topicFactory(config) {
+  const playbook = categoryPlaybook[config.category] || categoryPlaybook["Company Registration"];
+  return {
+    searchIntent: playbook.searchIntent,
+    subCategory: playbook.subCategory,
+    primaryAudience: playbook.primaryAudience,
+    intentAngle: `${config.title} is rarely a narrow formality. It changes how the business prepares documents, answers stakeholder questions and avoids costly rework later.`,
+    whyNow: `Many business owners look up ${config.focusKeyword} only when a deadline, client, regulator or internal clean-up pushes the issue to the surface. Understanding the process early usually saves money and management time.`,
+    legalContext: playbook.legalContext,
+    comparison: buildDefaultComparison(config),
+    processSteps: buildDefaultProcessSteps(config, playbook),
+    documents: config.documents || [
+      "Primary identity and contact records of the owner, entity or authorised signatory",
+      "Address proof and core business constitution documents relevant to the filing",
+      "Supporting bank, tax or registration records that connect with the same filing trail",
+      "A simple internal checklist showing what is being filed and why",
+      "A shared folder of signed proofs, acknowledgements and follow-up notes"
+    ],
+    mistakes: config.mistakes || [
+      "Starting the filing because of pressure rather than because the facts are ready",
+      "Using mismatched names, addresses or supporting records",
+      "Ignoring how the filing changes later operations and record keeping",
+      "Relying on memory instead of using one clean checklist and archive",
+      "Sending a weak clarification response when direct evidence would work better"
+    ],
+    proTips: config.proTips || [
+      "Prepare the record trail before opening the portal form",
+      "Align finance, operations and the authorised signatory in advance",
+      "Keep one dated folder of all documents and acknowledgements",
+      "Review the post-approval impact before you submit"
+    ],
+    faqs: config.faqs || buildDefaultFaqs(config, playbook),
+    relatedServices: playbook.relatedServices,
+    relatedCalculators: playbook.relatedCalculators,
+    relatedTemplates: playbook.relatedTemplates,
+    internalLinks: playbook.internalLinks,
+    cta: `Need help with ${config.focusKeyword}? FilingBy can help you review the documents, the filing route and the practical business impact before you proceed.`,
+    ...config
+  };
+}
 
 const topics = [
   {
@@ -2118,7 +2360,381 @@ const topics = [
     relatedTemplates: ["post-incorporation-form-tracker"],
     internalLinks: ["/blog?category=ROC%20Compliance", "/services/private-limited-company"],
     cta: "If you want a startup-friendly checklist of ROC actions after incorporation, FilingBy can help you build one around your actual company events."
-  }
+  },
+  topicFactory({
+    filename: "gst-cancellation-and-revocation-guide.md",
+    title: "GST Cancellation and Revocation in India: When to Cancel, How to Apply and How to Restore a GSTIN",
+    slug: "gst-cancellation-and-revocation-guide-india",
+    seoTitle: "GST Cancellation and Revocation Guide in India",
+    seoDescription: "Learn when GST cancellation makes sense, how revocation works, the portal process, timelines, risks and common mistakes for Indian businesses.",
+    focusKeyword: "gst cancellation and revocation guide",
+    secondaryKeywords: ["cancel gst registration", "revocation of gst cancellation", "gst registration cancellation process"],
+    category: "GST",
+    subCategory: "Cancellation",
+    excerpt: "A practical GST cancellation and revocation guide for businesses closing, restructuring or cleaning up old registrations.",
+    comparisonHeading: "GST cancellation vs revocation snapshot",
+    comparisonRows: [
+      ["Voluntary cancellation", "Whether the business actually needs the GSTIN anymore", "A wrong cancellation can disrupt billing and vendor trust"],
+      ["Officer-led cancellation", "Why the registration was flagged and what records are weak", "The response strategy affects restoration chances"],
+      ["Revocation after cancellation", "Whether timelines and pending returns are under control", "Delay can make recovery harder"],
+      ["Dormant but restartable business", "Whether suspension or correction is better than cancellation", "The wrong move creates future re-registration work"]
+    ]
+  }),
+  topicFactory({
+    filename: "gstr-1-vs-gstr-3b-reconciliation-guide.md",
+    title: "GSTR-1 vs GSTR-3B Reconciliation: A Practical Monthly Control Guide for Growing Businesses",
+    slug: "gstr-1-vs-gstr-3b-reconciliation-guide",
+    seoTitle: "GSTR-1 vs GSTR-3B Reconciliation Guide for Businesses",
+    seoDescription: "Understand how to reconcile GSTR-1 and GSTR-3B, identify mismatch risks, fix common errors and build a monthly GST control routine.",
+    focusKeyword: "gstr-1 vs gstr-3b reconciliation guide",
+    secondaryKeywords: ["gst return reconciliation", "gstr1 and 3b mismatch", "monthly gst control"],
+    category: "GST",
+    subCategory: "Returns",
+    excerpt: "A founder-friendly guide to reconciling outward supplies, tax liability and return values before GST mismatches become notices."
+  }),
+  topicFactory({
+    filename: "gst-lut-vs-refund-for-exporters-guide.md",
+    title: "GST LUT vs Refund for Exporters: Which Route Makes More Sense for Cash Flow and Compliance?",
+    slug: "gst-lut-vs-refund-for-exporters-guide",
+    seoTitle: "GST LUT vs Refund Guide for Exporters in India",
+    seoDescription: "Compare LUT and refund routes for exporters under GST. Learn how each affects cash flow, filing, documentation and working capital planning.",
+    focusKeyword: "gst lut vs refund for exporters",
+    secondaryKeywords: ["export under lut vs igst refund", "gst export refund guide", "lut or refund exporter"],
+    category: "GST",
+    subCategory: "Exports",
+    excerpt: "A strategic guide for exporters comparing LUT and refund routes with a practical cash flow lens.",
+    comparisonHeading: "LUT route vs IGST refund route",
+    comparisonRows: [
+      ["Export under LUT", "Working capital preserved because tax is not paid upfront", "Useful when cash discipline matters"],
+      ["Export with IGST payment and refund", "Tax paid first and recovered later", "May work where refund process is planned well"],
+      ["New exporter", "Whether documents and process control are mature enough", "The simpler route often reduces early mistakes"],
+      ["Scaling exporter", "How refund timelines affect margins and liquidity", "Tax route becomes an operations decision too"]
+    ]
+  }),
+  topicFactory({
+    filename: "opc-vs-private-limited-company-guide.md",
+    title: "OPC vs Private Limited Company in India: Which Structure Fits a Solo Founder Better?",
+    slug: "opc-vs-private-limited-company-guide-india",
+    seoTitle: "OPC vs Private Limited Company Guide for Solo Founders",
+    seoDescription: "Compare One Person Company and Private Limited Company in India for solo founders, including control, compliance, fundraising and conversion considerations.",
+    focusKeyword: "opc vs private limited company guide",
+    secondaryKeywords: ["one person company vs pvt ltd", "solo founder company structure", "opc or private limited"],
+    category: "Company Registration",
+    subCategory: "Structure Choice",
+    excerpt: "A practical structure guide for solo founders deciding between an OPC and a private limited company."
+  }),
+  topicFactory({
+    filename: "company-name-approval-guide-india.md",
+    title: "Company Name Approval in India: How to Choose, Check and File Without Wasting a Resubmission Cycle",
+    slug: "company-name-approval-guide-india",
+    seoTitle: "Company Name Approval Guide in India",
+    seoDescription: "Learn how MCA name approval works in India, how to choose better company names, avoid conflicts and reduce SPICe+ resubmission risk.",
+    focusKeyword: "company name approval guide india",
+    secondaryKeywords: ["mca company name approval", "reserve company name india", "company name rejection reasons"],
+    category: "Company Registration",
+    subCategory: "Name Approval",
+    excerpt: "A founder-focused guide to MCA company name approval, conflict checks and practical name selection."
+  }),
+  topicFactory({
+    filename: "company-incorporation-documents-checklist-guide.md",
+    title: "Company Incorporation Documents Checklist: What Founders Should Prepare Before Filing SPICe+",
+    slug: "company-incorporation-documents-checklist-guide",
+    seoTitle: "Company Incorporation Documents Checklist for SPICe+",
+    seoDescription: "A clear checklist of documents needed for company incorporation in India, including director KYC, address proof, office proof and practical preparation tips.",
+    focusKeyword: "company incorporation documents checklist",
+    secondaryKeywords: ["spice plus documents", "documents for private limited company registration", "company registration checklist india"],
+    category: "Company Registration",
+    subCategory: "Documents",
+    excerpt: "A clean pre-filing checklist for founders who want fewer SPICe+ surprises and faster document readiness."
+  }),
+  topicFactory({
+    filename: "llp-to-private-limited-conversion-guide.md",
+    title: "LLP to Private Limited Conversion: When It Makes Sense and What Founders Should Prepare",
+    slug: "llp-to-private-limited-conversion-guide",
+    seoTitle: "LLP to Private Limited Conversion Guide in India",
+    seoDescription: "Understand when converting an LLP into a private limited company makes business sense and what founders should prepare before starting the process.",
+    focusKeyword: "llp to private limited conversion guide",
+    secondaryKeywords: ["convert llp to private limited", "llp conversion company", "llp vs company growth stage"],
+    category: "LLP",
+    subCategory: "Conversion",
+    excerpt: "A growth-stage guide for founders considering whether an LLP has become too limiting for capital, governance or expansion."
+  }),
+  topicFactory({
+    filename: "designated-partner-dsc-dpin-guide.md",
+    title: "Designated Partner DSC and DPIN Guide: What LLP Founders Must Finish Before Filing",
+    slug: "designated-partner-dsc-dpin-guide",
+    seoTitle: "Designated Partner DSC and DPIN Guide for LLP Registration",
+    seoDescription: "Learn how DSC and DPIN preparation works for LLP designated partners, what documents are needed and how to avoid filing delays.",
+    focusKeyword: "designated partner dsc dpin guide",
+    secondaryKeywords: ["llp dsc guide", "dpin for designated partner", "llp registration documents partners"],
+    category: "LLP",
+    subCategory: "Pre-Incorporation",
+    excerpt: "A preparatory guide for LLP founders who want to complete the partner identity layer cleanly before MCA filing starts."
+  }),
+  topicFactory({
+    filename: "llp-agreement-drafting-guide.md",
+    title: "LLP Agreement Drafting Guide: Clauses Partners Should Not Leave Vague",
+    slug: "llp-agreement-drafting-guide-india",
+    seoTitle: "LLP Agreement Drafting Guide for Partners in India",
+    seoDescription: "A practical LLP agreement drafting guide covering profit share, decision rights, exits, capital contribution and common drafting mistakes.",
+    focusKeyword: "llp agreement drafting guide",
+    secondaryKeywords: ["llp agreement clauses", "llp partnership terms", "llp agreement checklist"],
+    category: "LLP",
+    subCategory: "Agreement",
+    excerpt: "A business-first drafting guide for LLP partners who want the agreement to work in real life, not only on paper."
+  }),
+  topicFactory({
+    filename: "trademark-hearing-preparation-guide.md",
+    title: "Trademark Hearing Preparation Guide: What to Expect and How to Prepare a Better Case",
+    slug: "trademark-hearing-preparation-guide",
+    seoTitle: "Trademark Hearing Preparation Guide in India",
+    seoDescription: "Understand how trademark hearings work in India, what documents matter, how to prepare arguments and what founders should expect before the hearing date.",
+    focusKeyword: "trademark hearing preparation guide",
+    secondaryKeywords: ["trademark hearing india", "how to prepare trademark hearing", "trademark objection hearing"],
+    category: "Trademark",
+    subCategory: "Hearing",
+    excerpt: "A practical guide for businesses that have moved beyond the written objection stage and now need to prepare for a trademark hearing."
+  }),
+  topicFactory({
+    filename: "trademark-renewal-restoration-guide.md",
+    title: "Trademark Renewal and Restoration Guide: How to Keep a Valuable Brand Right Alive",
+    slug: "trademark-renewal-restoration-guide",
+    seoTitle: "Trademark Renewal and Restoration Guide in India",
+    seoDescription: "Learn how trademark renewal and restoration work in India, including timelines, records, use evidence and common mistakes to avoid.",
+    focusKeyword: "trademark renewal and restoration guide",
+    secondaryKeywords: ["renew trademark india", "trademark restoration process", "trademark renewal documents"],
+    category: "Trademark",
+    subCategory: "Renewal",
+    excerpt: "A long-term brand maintenance guide for companies that do not want an old trademark asset to quietly lapse."
+  }),
+  topicFactory({
+    filename: "trademark-assignment-licensing-guide.md",
+    title: "Trademark Assignment and Licensing Guide: How Founders Should Handle Brand Rights Properly",
+    slug: "trademark-assignment-licensing-guide",
+    seoTitle: "Trademark Assignment and Licensing Guide for Founders",
+    seoDescription: "A practical trademark assignment and licensing guide for startups and businesses handling ownership, brand use rights and commercial structuring.",
+    focusKeyword: "trademark assignment and licensing guide",
+    secondaryKeywords: ["trademark assignment india", "trademark licensing agreement", "brand rights transfer guide"],
+    category: "Trademark",
+    subCategory: "Commercialisation",
+    excerpt: "A practical ownership and licensing guide for founders managing brand rights during restructuring, partnerships or expansion."
+  }),
+  topicFactory({
+    filename: "itr-filing-for-freelancers-guide.md",
+    title: "ITR Filing for Freelancers in India: What to Track, What to Claim and How to Stay Ready",
+    slug: "itr-filing-for-freelancers-guide-india",
+    seoTitle: "ITR Filing Guide for Freelancers in India",
+    seoDescription: "A practical ITR guide for freelancers in India covering records, deductions, presumptive taxation choices, TDS and filing readiness.",
+    focusKeyword: "itr filing for freelancers guide",
+    secondaryKeywords: ["freelancer itr india", "itr for consultants", "freelancer tax return guide"],
+    category: "Income Tax",
+    subCategory: "Freelancer Tax",
+    excerpt: "A practical return-filing guide for freelancers and independent consultants who want fewer surprises at tax time."
+  }),
+  topicFactory({
+    filename: "section-80c-80d-deductions-guide.md",
+    title: "Section 80C and 80D Deductions Guide: What Actually Helps Before You Rush to Invest",
+    slug: "section-80c-80d-deductions-guide-india",
+    seoTitle: "Section 80C and 80D Deductions Guide in India",
+    seoDescription: "Understand how Section 80C and 80D deductions work in India, what qualifies, what records matter and common mistakes taxpayers make.",
+    focusKeyword: "section 80c and 80d deductions guide",
+    secondaryKeywords: ["80c deduction guide", "80d health insurance deduction", "income tax deduction planning india"],
+    category: "Income Tax",
+    subCategory: "Deductions",
+    excerpt: "A practical deductions guide for taxpayers who want to separate genuine tax planning from year-end panic investing."
+  }),
+  topicFactory({
+    filename: "income-tax-notice-143-1-139-9-guide.md",
+    title: "Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language",
+    slug: "income-tax-notice-143-1-139-9-guide",
+    seoTitle: "Income Tax Notice Guide for 143(1) and 139(9)",
+    seoDescription: "A plain-English guide to common income tax notices in India, including 143(1) intimation, 139(9) defective return and how to respond calmly.",
+    focusKeyword: "income tax notice 143 1 139 9 guide",
+    secondaryKeywords: ["income tax notice guide india", "defective return notice", "143(1) intimation explained"],
+    category: "Income Tax",
+    subCategory: "Notices",
+    excerpt: "A practical notice-handling guide for taxpayers who want to respond with facts instead of panic."
+  }),
+  topicFactory({
+    filename: "tds-on-salary-vs-professional-fees-guide.md",
+    title: "TDS on Salary vs Professional Fees: Why the Difference Matters More Than Many Businesses Think",
+    slug: "tds-on-salary-vs-professional-fees-guide",
+    seoTitle: "TDS on Salary vs Professional Fees Guide",
+    seoDescription: "Understand the difference between TDS on salary and TDS on professional fees, and how classification mistakes create payroll, vendor and compliance issues.",
+    focusKeyword: "tds on salary vs professional fees guide",
+    secondaryKeywords: ["section 192 vs 194j", "salary or consultant tds", "employee vs freelancer tax deduction"],
+    category: "TDS",
+    subCategory: "Classification",
+    excerpt: "A classification guide for founders and finance teams deciding whether a payout is really salary or professional fees."
+  }),
+  topicFactory({
+    filename: "tds-lower-deduction-certificate-guide.md",
+    title: "Lower or Nil TDS Certificate Guide: When It Helps and What Businesses Should Check First",
+    slug: "tds-lower-deduction-certificate-guide",
+    seoTitle: "Lower or Nil TDS Certificate Guide in India",
+    seoDescription: "Learn how lower or nil TDS certificates work in India, when they help cash flow and what deductors and deductees should verify before relying on them.",
+    focusKeyword: "tds lower deduction certificate guide",
+    secondaryKeywords: ["nil tds certificate", "lower deduction certificate india", "how to use tds certificate"],
+    category: "TDS",
+    subCategory: "Certificates",
+    excerpt: "A cash-flow-focused TDS guide for businesses and professionals dealing with lower deduction certificates."
+  }),
+  topicFactory({
+    filename: "form-16-vs-form-16a-guide.md",
+    title: "Form 16 vs Form 16A: What Taxpayers and Finance Teams Should Understand Clearly",
+    slug: "form-16-vs-form-16a-guide",
+    seoTitle: "Form 16 vs Form 16A Guide in India",
+    seoDescription: "Understand the difference between Form 16 and Form 16A, who issues them, where they are used and what mistakes to avoid during tax filing.",
+    focusKeyword: "form 16 vs form 16a guide",
+    secondaryKeywords: ["difference between form 16 and 16a", "tds certificate guide", "salary tds vs non salary tds"],
+    category: "TDS",
+    subCategory: "Certificates",
+    excerpt: "A practical explanation of two TDS certificates that are often confused in return filing and finance workflows."
+  }),
+  topicFactory({
+    filename: "virtual-office-documents-checklist-guide.md",
+    title: "Virtual Office Documents Checklist: What to Verify Before You Pay for an Address Package",
+    slug: "virtual-office-documents-checklist-guide",
+    seoTitle: "Virtual Office Documents Checklist for Registration Use",
+    seoDescription: "A practical virtual office documents checklist covering agreement quality, NOC, address proof and what businesses should verify before purchase.",
+    focusKeyword: "virtual office documents checklist guide",
+    secondaryKeywords: ["virtual office document checklist", "virtual office agreement documents", "virtual office noc proof"],
+    category: "Virtual Office",
+    subCategory: "Documents",
+    excerpt: "A pre-purchase checklist for founders who want to check document quality before choosing a virtual office package."
+  }),
+  topicFactory({
+    filename: "coworking-vs-virtual-office-registration-guide.md",
+    title: "Coworking vs Virtual Office for Registration Use: Which Setup Makes More Sense for Lean Teams?",
+    slug: "coworking-vs-virtual-office-registration-guide",
+    seoTitle: "Coworking vs Virtual Office Guide for Registration Use",
+    seoDescription: "Compare coworking and virtual office setups for GST, company registration and practical business use, with a focus on documents, cost and scalability.",
+    focusKeyword: "coworking vs virtual office registration guide",
+    secondaryKeywords: ["coworking vs virtual office", "address for gst registration", "registration address options india"],
+    category: "Virtual Office",
+    subCategory: "Comparison",
+    excerpt: "A comparison guide for startups balancing compliance, work style, address credibility and cost."
+  }),
+  topicFactory({
+    filename: "startup-india-vs-msme-guide.md",
+    title: "Startup India vs MSME Registration: What Founders Should Prioritise and Why",
+    slug: "startup-india-vs-msme-registration-guide",
+    seoTitle: "Startup India vs MSME Registration Guide for Founders",
+    seoDescription: "Compare Startup India recognition and MSME registration for founders, including eligibility, benefits, timing and practical decision points.",
+    focusKeyword: "startup india vs msme registration guide",
+    secondaryKeywords: ["startup india or udyam", "dpiit vs msme", "founder registration priority guide"],
+    category: "Startup India",
+    subCategory: "Comparison",
+    excerpt: "A practical founder guide comparing Startup India recognition and Udyam registration without mixing up their purposes."
+  }),
+  topicFactory({
+    filename: "startup-india-patent-benefits-guide.md",
+    title: "Startup India Patent Benefits Guide: What the Recognition Can and Cannot Really Help With",
+    slug: "startup-india-patent-benefits-guide",
+    seoTitle: "Startup India Patent Benefits Guide for Startups",
+    seoDescription: "Learn how Startup India recognition can support patent filing, facilitator access and cost efficiency, and what founders should prepare before relying on those benefits.",
+    focusKeyword: "startup india patent benefits guide",
+    secondaryKeywords: ["startup india patent rebate", "dpiit patent benefits", "startup patent support india"],
+    category: "Startup India",
+    subCategory: "IP Support",
+    excerpt: "A practical guide for startups exploring whether Startup India recognition can meaningfully support patent planning."
+  }),
+  topicFactory({
+    filename: "udyam-update-modification-guide.md",
+    title: "Udyam Update and Modification Guide: How to Keep MSME Records Accurate as the Business Changes",
+    slug: "udyam-update-modification-guide",
+    seoTitle: "Udyam Update and Modification Guide",
+    seoDescription: "Understand how Udyam updates and modifications work when business details change, and why clean MSME records matter after registration too.",
+    focusKeyword: "udyam update and modification guide",
+    secondaryKeywords: ["update udyam registration", "msme modification process", "change details in udyam"],
+    category: "MSME",
+    subCategory: "Updates",
+    excerpt: "A maintenance guide for MSMEs that need their registration records to keep pace with business reality."
+  }),
+  topicFactory({
+    filename: "msme-payment-delay-samadhan-guide.md",
+    title: "MSME Payment Delay and Samadhan Guide: How Small Businesses Should Prepare Before Raising a Claim",
+    slug: "msme-payment-delay-samadhan-guide",
+    seoTitle: "MSME Payment Delay and Samadhan Guide",
+    seoDescription: "A practical MSME Samadhan guide covering delayed payments, evidence preparation, commercial judgment and what small businesses should know before filing a claim.",
+    focusKeyword: "msme payment delay samadhan guide",
+    secondaryKeywords: ["msme samadhan claim guide", "delayed payment msme", "recover payment from buyer msme"],
+    category: "MSME",
+    subCategory: "Payments",
+    excerpt: "A practical receivables guide for MSMEs dealing with delayed customer payments and considering Samadhan."
+  }),
+  topicFactory({
+    filename: "fssai-renewal-and-modification-guide.md",
+    title: "FSSAI Renewal and Modification Guide: How Food Businesses Should Plan Changes Without Disruption",
+    slug: "fssai-renewal-and-modification-guide",
+    seoTitle: "FSSAI Renewal and Modification Guide in India",
+    seoDescription: "Learn how FSSAI renewal and licence modification work, when changes should be updated and what food businesses should prepare in advance.",
+    focusKeyword: "fssai renewal and modification guide",
+    secondaryKeywords: ["renew fssai licence", "fssai modification process", "fssai update business details"],
+    category: "FSSAI",
+    subCategory: "Renewal",
+    excerpt: "A practical guide for food businesses managing licence continuity while operations, products or addresses change."
+  }),
+  topicFactory({
+    filename: "fssai-labelling-compliance-guide.md",
+    title: "FSSAI Labelling Compliance Guide: What Packaged Food Brands Should Check Before Printing",
+    slug: "fssai-labelling-compliance-guide",
+    seoTitle: "FSSAI Labelling Compliance Guide for Packaged Food Brands",
+    seoDescription: "A practical FSSAI labelling guide for packaged food businesses covering product information, launch readiness and common errors that create rework.",
+    focusKeyword: "fssai labelling compliance guide",
+    secondaryKeywords: ["food label compliance india", "fssai packaging label guide", "packaged food label rules"],
+    category: "FSSAI",
+    subCategory: "Labelling",
+    excerpt: "A launch-readiness guide for food brands that want packaging and compliance to align before products hit the market."
+  }),
+  topicFactory({
+    filename: "iec-amendment-and-surrender-guide.md",
+    title: "IEC Amendment and Surrender Guide: When Importers and Exporters Need to Update DGFT Records",
+    slug: "iec-amendment-and-surrender-guide",
+    seoTitle: "IEC Amendment and Surrender Guide in India",
+    seoDescription: "Understand IEC amendment and surrender in India, including address changes, constitution updates, closure situations and practical record checks.",
+    focusKeyword: "iec amendment and surrender guide",
+    secondaryKeywords: ["amend iec details", "surrender iec code", "dgft iec modification guide"],
+    category: "IEC",
+    subCategory: "Updates",
+    excerpt: "A practical guide for exporters and importers keeping DGFT records aligned with business changes."
+  }),
+  topicFactory({
+    filename: "exporter-onboarding-documents-guide.md",
+    title: "Exporter Onboarding Documents Guide: What Banks, Buyers and Compliance Teams Commonly Expect",
+    slug: "exporter-onboarding-documents-guide",
+    seoTitle: "Exporter Onboarding Documents Guide for New Exporters",
+    seoDescription: "A practical exporter onboarding document guide covering IEC, GST, bank, KYC and commercial paperwork needed to look ready with buyers and banks.",
+    focusKeyword: "exporter onboarding documents guide",
+    secondaryKeywords: ["documents for new exporter", "export business onboarding checklist", "bank documents for exporter"],
+    category: "IEC",
+    subCategory: "Export Setup",
+    excerpt: "A document-readiness guide for first-time exporters who want fewer delays with banks, buyers and internal teams."
+  }),
+  topicFactory({
+    filename: "adt-1-aoc-4-mgt-7-guide.md",
+    title: "ADT-1, AOC-4 and MGT-7 Guide: The ROC Forms Private Limited Companies Must Track Properly",
+    slug: "adt-1-aoc-4-mgt-7-guide",
+    seoTitle: "ADT-1, AOC-4 and MGT-7 ROC Forms Guide",
+    seoDescription: "Understand what ADT-1, AOC-4 and MGT-7 do, when they matter and how private limited companies should prepare for each ROC filing.",
+    focusKeyword: "adt 1 aoc 4 mgt 7 guide",
+    secondaryKeywords: ["roc annual filing forms guide", "aoc4 mgt7 explained", "adt1 filing company"],
+    category: "ROC Compliance",
+    subCategory: "Annual Forms",
+    excerpt: "A practical guide to the core ROC forms that shape annual company compliance discipline."
+  }),
+  topicFactory({
+    filename: "director-kyc-din-compliance-guide.md",
+    title: "Director KYC and DIN Compliance Guide: Small Lapses That Create Big ROC Filing Problems",
+    slug: "director-kyc-din-compliance-guide",
+    seoTitle: "Director KYC and DIN Compliance Guide",
+    seoDescription: "Learn how DIN and director KYC compliance works, why it blocks ROC filings when missed and how to build a cleaner control process.",
+    focusKeyword: "director kyc din compliance guide",
+    secondaryKeywords: ["din kyc guide", "director compliance mca", "director kyc filing"],
+    category: "ROC Compliance",
+    subCategory: "Director Compliance",
+    excerpt: "A practical guide for companies that want to stop simple director compliance misses from delaying bigger ROC work."
+  })
 ];
 
 function buildImageGallery(topic) {
@@ -2158,13 +2774,19 @@ function buildFaqYaml(faqs) {
 
 function buildGalleryYaml(gallery) {
   return gallery
-    .map((image) => `  - url: "${image.url}"\n    alt: "${image.alt.replace(/"/g, '\\"')}"\n    caption: "${image.caption.replace(/"/g, '\\"')}"`)
+    .map((image) => `  - url: "${image.url}"\n    alt: "${image.alt.replace(/"/g, '\\"')}"\n    caption: "${image.caption.replace(/"/g, '\\"')}"\n    width: ${image.width}\n    height: ${image.height}`)
     .join("\n");
 }
 
 function buildReferencesYaml(items) {
   return items
     .map((item) => `  - title: "${item.title.replace(/"/g, '\\"')}"\n    url: "${item.url}"\n    publisher: "${item.publisher.replace(/"/g, '\\"')}"`)
+    .join("\n");
+}
+
+function buildSourcesYaml(items) {
+  return items
+    .map((item) => `  - title: "${item.title.replace(/"/g, '\\"')}"\n    organisation: "${item.publisher.replace(/"/g, '\\"')}"\n    url: "${item.url}"\n    kind: "reference"`)
     .join("\n");
 }
 
@@ -2528,10 +3150,15 @@ category: "${topic.category}"
 subCategory: "${topic.subCategory}"
 author: "${AUTHOR}"
 authorId: "${AUTHOR_ID}"
+reviewedBy: "${REVIEWED_BY}"
 reviewerId: "${REVIEWER_ID}"
+reviewedByTitle: "${REVIEWED_BY_TITLE}"
+reviewerExperience: "${REVIEWER_EXPERIENCE}"
 readingTime: "${readingMinutes} mins"
 lastUpdated: "${LAST_UPDATED}"
 featuredImage: "${(categoryImages[topic.category] || categoryImages["Company Registration"])[0]}"
+featuredImageWidth: 1200
+featuredImageHeight: 675
 imageAlt: "Featured image for ${topic.focusKeyword}"
 excerpt: "${topic.excerpt.replace(/"/g, '\\"')}"
 cta: "${topic.cta.replace(/"/g, '\\"')}"
@@ -2557,8 +3184,11 @@ imageGallery:
 ${buildGalleryYaml(gallery)}
 references:
 ${buildReferencesYaml(references)}
+sources:
+${buildSourcesYaml(references)}
 versionHistory:
 ${buildVersionHistoryYaml(versionHistory)}
+status: "published"
 ---
 
 ${body}`;

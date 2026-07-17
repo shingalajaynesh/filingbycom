@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "12 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,8 @@ relatedServices:
   - "gst-registration"
 relatedBlogs:
   - "msme-benefits-after-udyam-registration-guide"
+  - "udyam-update-modification-guide"
+  - "msme-payment-delay-samadhan-guide"
 topicHub: "/blog?category=MSME"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -71,33 +73,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for udyam registration for service business"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521790797524-b2497295b8a0?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for udyam registration for service business"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for udyam registration for service business"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for udyam registration for service business"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1521790797524-b2497295b8a0?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for udyam registration for service business"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for udyam registration for service business"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "Udyam Registration Portal"
     url: "https://udyamregistration.gov.in/"
@@ -105,11 +107,21 @@ references:
   - title: "MSME Ministry"
     url: "https://msme.gov.in/"
     publisher: "Ministry of Micro, Small and Medium Enterprises"
+sources:
+  - title: "Udyam Registration Portal"
+    organisation: "Ministry of MSME"
+    url: "https://udyamregistration.gov.in/"
+    kind: "reference"
+  - title: "MSME Ministry"
+    organisation: "Ministry of Micro, Small and Medium Enterprises"
+    url: "https://msme.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Udyam Registration for Service Businesses: Why Consultants, Agencies and Firms Should Care

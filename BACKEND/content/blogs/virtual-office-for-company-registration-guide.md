@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,8 @@ relatedServices:
   - "private-limited-company"
 relatedBlogs:
   - "virtual-office-for-gst-registration-guide"
+  - "virtual-office-documents-checklist-guide"
+  - "coworking-vs-virtual-office-registration-guide"
 topicHub: "/virtual-space"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -71,33 +73,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for virtual office for company registration"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for virtual office for company registration"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for virtual office for company registration"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for virtual office for company registration"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1497366412874-3415097a27e7?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for virtual office for company registration"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for virtual office for company registration"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "GST Portal"
     url: "https://www.gst.gov.in/"
@@ -105,11 +107,21 @@ references:
   - title: "MCA Services Portal"
     url: "https://www.mca.gov.in/"
     publisher: "Ministry of Corporate Affairs"
+sources:
+  - title: "GST Portal"
+    organisation: "Goods and Services Tax Network"
+    url: "https://www.gst.gov.in/"
+    kind: "reference"
+  - title: "MCA Services Portal"
+    organisation: "Ministry of Corporate Affairs"
+    url: "https://www.mca.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Virtual Office for Company Registration: What Founders Should Check Before Using One

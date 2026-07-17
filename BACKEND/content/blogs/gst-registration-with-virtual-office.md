@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -34,6 +34,7 @@ relatedBlogs:
   - "gst-for-ecommerce-sellers-india"
   - "lut-under-gst-for-exporters"
   - "composition-scheme-vs-regular-gst"
+  - "gst-cancellation-and-revocation-guide-india"
 topicHub: "/blog?category=GST"
 relatedCalculators:
   - "/gst-calculator"
@@ -74,33 +75,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for virtual office for gst registration"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for virtual office for gst registration"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for virtual office for gst registration"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for virtual office for gst registration"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for virtual office for gst registration"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for virtual office for gst registration"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "GST Portal"
     url: "https://www.gst.gov.in/"
@@ -108,11 +109,21 @@ references:
   - title: "CBIC GST Instructions and Updates"
     url: "https://cbic-gst.gov.in/"
     publisher: "Central Board of Indirect Taxes and Customs"
+sources:
+  - title: "GST Portal"
+    organisation: "Goods and Services Tax Network"
+    url: "https://www.gst.gov.in/"
+    kind: "reference"
+  - title: "CBIC GST Instructions and Updates"
+    organisation: "Central Board of Indirect Taxes and Customs"
+    url: "https://cbic-gst.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # Using a Virtual Office for GST Registration: What Actually Works for Founders

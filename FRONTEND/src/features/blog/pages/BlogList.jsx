@@ -34,16 +34,19 @@ const READER_SECTIONS = [
     title: "Start a new business",
     description: "Best for founders choosing the right structure, registration path, and first compliance setup.",
     categories: ["Company Registration", "LLP", "Startup India"],
+    href: "/blog?category=Company%20Registration",
   },
   {
     title: "Run compliance properly",
     description: "Best for businesses handling GST, TDS, ROC filings, and recurring statutory deadlines.",
     categories: ["GST", "TDS", "ROC Compliance"],
+    href: "/blog?category=GST",
   },
   {
     title: "Expand and formalise",
     description: "Best for MSMEs adding licences, registrations, and growth-readiness for new channels or exports.",
     categories: ["MSME", "FSSAI", "IEC"],
+    href: "/blog?category=MSME",
   },
 ];
 
@@ -255,22 +258,27 @@ export default function BlogList() {
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="grid gap-4 md:grid-cols-3">
           {READER_SECTIONS.map((section) => (
-            <div key={section.title} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+            <Link
+              key={section.title}
+              to={section.href}
+              className="group rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1A56DB] focus-visible:ring-offset-2"
+            >
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Reader Path</p>
-              <h2 className="mt-3 text-xl font-bold text-gray-900">{section.title}</h2>
+              <h2 className="mt-3 text-xl font-bold text-gray-900 transition group-hover:text-[#1A56DB]">
+                {section.title}
+              </h2>
               <p className="mt-3 text-sm leading-6 text-gray-600">{section.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {section.categories.map((category) => (
-                  <Link
+                  <span
                     key={category}
-                    to={getCategoryHref(category)}
-                    className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-[#1A56DB] transition hover:bg-blue-100"
+                    className="rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-[#1A56DB] transition group-hover:bg-blue-100"
                   >
                     {category}
-                  </Link>
+                  </span>
                 ))}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

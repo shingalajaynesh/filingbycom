@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "12 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -31,6 +31,8 @@ relatedServices:
   - "gst-registration"
 relatedBlogs:
   - "fssai-basic-vs-state-vs-central-guide"
+  - "fssai-renewal-and-modification-guide"
+  - "fssai-labelling-compliance-guide"
 topicHub: "/blog?category=FSSAI"
 relatedCalculators:
   - "/gst-calculator"
@@ -70,33 +72,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for fssai for cloud kitchen"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for fssai for cloud kitchen"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for fssai for cloud kitchen"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for fssai for cloud kitchen"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for fssai for cloud kitchen"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for fssai for cloud kitchen"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "FoSCoS Portal"
     url: "https://foscos.fssai.gov.in/"
@@ -104,11 +106,21 @@ references:
   - title: "FSSAI Official Website"
     url: "https://www.fssai.gov.in/"
     publisher: "Food Safety and Standards Authority of India"
+sources:
+  - title: "FoSCoS Portal"
+    organisation: "Food Safety and Standards Authority of India"
+    url: "https://foscos.fssai.gov.in/"
+    kind: "reference"
+  - title: "FSSAI Official Website"
+    organisation: "Food Safety and Standards Authority of India"
+    url: "https://www.fssai.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # FSSAI for Cloud Kitchens and Home Food Businesses: What Early-Stage Food Brands Should Know

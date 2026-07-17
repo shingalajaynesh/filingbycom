@@ -18,7 +18,7 @@ reviewerId: "filingby-content-team"
 reviewedByTitle: "Chartered Accountant"
 reviewerExperience: "15+ Years Experience"
 readingTime: "13 mins"
-lastUpdated: "2026-07-15"
+lastUpdated: "2026-07-17"
 featuredImage: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
@@ -32,6 +32,9 @@ relatedServices:
 relatedBlogs:
   - "tds-on-professional-fees-contracts-rent-guide"
   - "late-tds-return-and-correction-guide"
+  - "tds-on-salary-vs-professional-fees-guide"
+  - "tds-lower-deduction-certificate-guide"
+  - "form-16-vs-form-16a-guide"
 topicHub: "/blog?category=TDS"
 relatedCalculators:
   - "/income-tax-calculator"
@@ -72,33 +75,33 @@ imageGallery:
   - url: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
     alt: "Founder reviewing compliance checklist for tan registration and tds setup"
     caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Government portal workflow screen for tan registration and tds setup"
     caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1200&auto=format&fit=crop"
     alt: "Business document stack for tan registration and tds setup"
     caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
     alt: "Advisor discussion with founder for tan registration and tds setup"
     caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
     alt: "Operations and finance coordination for tan registration and tds setup"
     caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
   - url: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1200&auto=format&fit=crop"
     alt: "Certificate and post-approval planning for tan registration and tds setup"
     caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: 1200
-    height: 900
+    width: undefined
+    height: undefined
 references:
   - title: "Income Tax e-Filing for TDS"
     url: "https://www.incometax.gov.in/"
@@ -106,11 +109,21 @@ references:
   - title: "TRACES Portal"
     url: "https://www.tdscpc.gov.in/"
     publisher: "TDS Reconciliation Analysis and Correction Enabling System"
+sources:
+  - title: "Income Tax e-Filing for TDS"
+    organisation: "Income Tax Department"
+    url: "https://www.incometax.gov.in/"
+    kind: "reference"
+  - title: "TRACES Portal"
+    organisation: "TDS Reconciliation Analysis and Correction Enabling System"
+    url: "https://www.tdscpc.gov.in/"
+    kind: "reference"
 versionHistory:
   - date: "July 2026"
     change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
   - date: "July 2026"
     change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+status: "published"
 ---
 
 # TAN Registration and TDS Setup for New Businesses: A Practical Starting Guide
