@@ -401,7 +401,7 @@ export default function DigitalCard() {
     const phone = (settings?.ca_contact_phone || "+91 75671 26945").replace(/\s+/g, "");
     const email = settings?.ca_contact_email || "support@filingby.com";
     const address = settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India";
-    const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:FilingBy.com\r\nORG:FilingBy.com\r\nTITLE:Business Registration & Compliance Experts\r\nTEL;TYPE=WORK,VOICE:${phone}\r\nEMAIL;TYPE=WORK:${email}\r\nURL:https://filingby.com\r\nADR;TYPE=WORK:;;${address}\r\nNOTE:India's trusted platform for business registration, GST, ITR, Trademark & all compliance needs.\r\nEND:VCARD`;
+    const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:FilingBy.com\r\nORG:FilingBy.com\r\nTITLE:Business Registration & Compliance Experts\r\nTEL;TYPE=WORK,VOICE:${phone}\r\nEMAIL;TYPE=WORK:${email}\r\nURL:https://www.filingby.com\r\nADR;TYPE=WORK:;;${address}\r\nNOTE:India's trusted platform for business registration, GST, ITR, Trademark & all compliance needs.\r\nEND:VCARD`;
     const blob = new Blob([vcard], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -419,17 +419,17 @@ export default function DigitalCard() {
     const shareData = {
       title: 'FilingBy.com — Business Registration & Compliance',
       text: `Check out FilingBy.com — India's trusted platform for company registration, GST, ITR & more.`,
-      url: 'https://filingby.com',
+      url: 'https://www.filingby.com/card',
     };
     if (navigator.share) {
       try { await navigator.share(shareData); } catch { /* cancelled */ }
     } else {
       try {
-        await navigator.clipboard.writeText('https://filingby.com');
+        await navigator.clipboard.writeText('https://www.filingby.com/card');
         showToast('🔗 Link copied to clipboard!');
       } catch {
         const ta = document.createElement('textarea');
-        ta.value = 'https://filingby.com';
+        ta.value = 'https://www.filingby.com/card';
         document.body.appendChild(ta);
         ta.select();
         document.execCommand('copy');
@@ -451,13 +451,13 @@ export default function DigitalCard() {
         title="FilingBy.com Digital Business Card — Contact Info & Services"
         description="Connect with FilingBy.com. Download our contact card (vCard), chat on WhatsApp, or view our legal & compliance services. We assist with GST, ITR, company incorporation, and virtual office addresses."
         keywords="FilingBy business card, FilingBy contact details, CA services Surat, digital business card"
-        canonical="/digital-card"
+        canonical="/card"
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
           "name": "FilingBy.com Digital Business Card",
           "description": "Contact information and compliance services details for FilingBy.com.",
-          "url": "https://filingby.com/digital-card"
+          "url": "https://www.filingby.com/card"
         }}
       />
       {/* Google Fonts */}
@@ -553,7 +553,7 @@ export default function DigitalCard() {
               target="_self"
             />
             <SocialIcon
-              href="https://filingby.com"
+              href="https://www.filingby.com"
               bg={`linear-gradient(135deg, ${TOKEN.navy}, #1A56DB)`}
               icon="fas fa-globe"
               label="Website"
@@ -575,7 +575,7 @@ export default function DigitalCard() {
               value={settings?.ca_contact_email || "support@filingby.com"}
             />
             <ContactItem
-              href="https://filingby.com"
+              href="https://www.filingby.com"
               icon="fas fa-globe"
               label="Website"
               value="filingby.com"

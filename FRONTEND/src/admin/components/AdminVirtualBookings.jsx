@@ -436,7 +436,7 @@ export default function AdminVirtualBookings() {
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold text-slate-400 uppercase flex justify-between">
                         <span>No Objection Certificate (NOC) URL</span>
-                        <button type="button" onClick={() => seedAdminFile("nocFile", "https://filingby.com/legal/noc_signed_adajan.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Sample NOC</button>
+                        <button type="button" onClick={() => seedAdminFile("nocFile", "https://www.filingby.com/legal/noc_signed_adajan.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Sample NOC</button>
                       </label>
                       <input
                         type="text"
@@ -451,7 +451,7 @@ export default function AdminVirtualBookings() {
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold text-slate-400 uppercase flex justify-between">
                         <span>Utility / Electricity Bill URL</span>
-                        <button type="button" onClick={() => seedAdminFile("utilityBillFile", "https://filingby.com/legal/utility_bill_electricity.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Sample Bill</button>
+                        <button type="button" onClick={() => seedAdminFile("utilityBillFile", "https://www.filingby.com/legal/utility_bill_electricity.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Sample Bill</button>
                       </label>
                       <input
                         type="text"
@@ -466,7 +466,7 @@ export default function AdminVirtualBookings() {
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold text-slate-400 uppercase flex justify-between">
                         <span>Rent Agreement Lease URL</span>
-                        <button type="button" onClick={() => seedAdminFile("rentAgreementFile", "https://filingby.com/legal/lease_agreement_signed.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Lease PDF</button>
+                        <button type="button" onClick={() => seedAdminFile("rentAgreementFile", "https://www.filingby.com/legal/lease_agreement_signed.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Lease PDF</button>
                       </label>
                       <input
                         type="text"
@@ -481,7 +481,7 @@ export default function AdminVirtualBookings() {
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold text-slate-400 uppercase flex justify-between">
                         <span>Consent Letter URL</span>
-                        <button type="button" onClick={() => seedAdminFile("consentLetterFile", "https://filingby.com/legal/consent_letter.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Consent PDF</button>
+                        <button type="button" onClick={() => seedAdminFile("consentLetterFile", "https://www.filingby.com/legal/consent_letter.pdf")} className="text-[9px] text-[#1A56DB] underline">Seed Consent PDF</button>
                       </label>
                       <input
                         type="text"

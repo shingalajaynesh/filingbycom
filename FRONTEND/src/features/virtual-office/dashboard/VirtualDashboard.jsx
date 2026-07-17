@@ -793,7 +793,7 @@ export default function VirtualDashboard() {
                     />
                     <button
                       type="button"
-                      onClick={() => loadMockDocument("panCard", "https://filingby.com/mock/pan_card_doc.pdf")}
+                      onClick={() => loadMockDocument("panCard", "https://www.filingby.com/mock/pan_card_doc.pdf")}
                       className="text-[9px] font-bold text-[#1A56DB] hover:underline mt-1 bg-transparent border-0"
                     >
                       [Auto Fill Sample]
@@ -811,7 +811,7 @@ export default function VirtualDashboard() {
                     />
                     <button
                       type="button"
-                      onClick={() => loadMockDocument("aadhaarCard", "https://filingby.com/mock/aadhaar_card_doc.pdf")}
+                      onClick={() => loadMockDocument("aadhaarCard", "https://www.filingby.com/mock/aadhaar_card_doc.pdf")}
                       className="text-[9px] font-bold text-[#1A56DB] hover:underline mt-1 bg-transparent border-0"
                     >
                       [Auto Fill Sample]

@@ -85,8 +85,8 @@ const seed = async () => {
       invoiceNumber: "FB-INV-2026-0002",
       invoiceDate: new Date(),
       clientDocuments: {
-        panCard: "https://filingby.com/mock/pan_card.pdf",
-        aadhaarCard: "https://filingby.com/mock/aadhaar_card.pdf",
+        panCard: "https://www.filingby.com/mock/pan_card.pdf",
+        aadhaarCard: "https://www.filingby.com/mock/aadhaar_card.pdf",
         photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300",
         companyName: "Shingala Enterprises Pvt Ltd",
         incorporationCert: "",

@@ -9,6 +9,11 @@ export function initGTM(containerId) {
 
   // Prevent duplicate script execution
   if (window.GTM_INITIALIZED) return;
+  if (document.querySelector(`script[src*="googletagmanager.com/gtm.js?id=${containerId}"]`)) {
+    window.GTM_INITIALIZED = true;
+    window.dataLayer = window.dataLayer || [];
+    return;
+  }
   window.GTM_INITIALIZED = true;
 
   window.dataLayer = window.dataLayer || [];

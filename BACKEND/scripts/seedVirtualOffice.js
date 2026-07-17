@@ -63,7 +63,7 @@ const seed = async () => {
           sender: "GST Department, Ward 3",
           category: "GST Department",
           actionTaken: "Scanned & Emailed",
-          attachmentUrl: "https://filingby.com/mock/gst_verification_letter.pdf",
+          attachmentUrl: "https://www.filingby.com/mock/gst_verification_letter.pdf",
           notes: "Physical verification notice received. Scanned and sent to registered email.",
           dateReceived: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
         },

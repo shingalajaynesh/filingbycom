@@ -540,6 +540,7 @@ function AppRoutesContent() {
           />
           
           <Route path="/sso-callback" element={<ClerkCallback />} />
+          <Route path="/digital-card" element={<Navigate to="/card" replace />} />
           <Route
             path="/card"
             element={
