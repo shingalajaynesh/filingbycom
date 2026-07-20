@@ -398,8 +398,16 @@ export default function ServicePage() {
   const documentsRequired = serviceData.documentsRequired || [];
   const seoTitle =
     serviceData.seoTitle || seoOverride?.title || `${serviceData.name} Online India - Fast and Affordable | FilingBy`;
-  const seoDescription =
-    serviceData.seoDescription || seoOverride?.description || serviceData.description || `Get expert-assisted ${serviceData.name} services online in India.`;
+  let seoDescription =
+    serviceData.seoDescription || seoOverride?.description || serviceData.description || "";
+  if (!seoDescription) {
+    seoDescription = `Get expert-assisted ${serviceData.name} services online in India. Flat-rate pricing, secure document upload, and 100% compliance guaranteed.`;
+  } else if (seoDescription.length < 120) {
+    seoDescription = `${seoDescription.trim()} Secure online filing, transparent flat-rate pricing, and dedicated expert support for businesses across India.`;
+  }
+  if (seoDescription.length > 160) {
+    seoDescription = seoDescription.substring(0, 157) + "...";
+  }
   const seoKeywords =
     serviceData.seoKeywords ||
     seoOverride?.keywords ||
@@ -440,6 +448,10 @@ export default function ServicePage() {
           <span>/</span>
           <span className="font-medium text-gray-900">{serviceData.name}</span>
         </nav>
+
+        <h1 className="text-3xl font-black text-slate-950 sm:text-4xl mb-6">
+          {seoOverride?.title || `${serviceData.name} Online India`}
+        </h1>
  
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="contents lg:col-span-2 lg:flex lg:flex-col lg:gap-6">

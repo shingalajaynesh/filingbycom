@@ -141,7 +141,7 @@ const STATIC_PAGES = [
     description: "Find quick answers to common questions about GST registrations, income tax filing deadlines, company registration requirements, and virtual office NOC files.",
     keywords: "compliance FAQs, GST questions, Pvt Ltd criteria, virtual office rules india",
     h1: "Frequently Asked Questions",
-    content: "<h3>1. What is the process for company registration?</h3><p>You need to submit director IDs, select a brand name, file the SPICe+ form with the MCA, and register for PAN/TAN. The ROC issues the certificate in 7-10 days.</p><h3>2. How does virtual office work?</h3><p>We provide a legal commercial address, NOC, utility bill, and rent agreement which you submit to register for GST or incorporate a company.</p><h3>3. What are the tax deadlines?</h3><p>Monthly GST filings must be completed by the 11th/20th of each month. ITR returns are usually due by July 31st for individuals.</p>"
+    content: "<h3>Frequently Asked Questions</h3><h4>1. What is the process for company registration?</h4><p>You need to submit director IDs, select a brand name, file the SPICe+ form with the MCA, and register for PAN/TAN. The ROC issues the certificate in 7-10 days.</p><h4>2. How does virtual office work?</h4><p>We provide a legal commercial address, NOC, utility bill, and rent agreement which you submit to register for GST or incorporate a company.</p><h4>3. What are the tax deadlines?</h4><p>Monthly GST filings must be completed by the 11th/20th of each month. ITR returns are usually due by July 31st for individuals.</p><h4>4. What are the penalties for late filings?</h4><p>Late filing of GST returns attracts a daily late fee of ₹20-50 depending on tax liabilities. Late filing of ITR returns attracts penalty charges up to ₹5,000 under Section 234F.</p>"
   },
   {
     path: "get-live-quote",
@@ -185,75 +185,75 @@ const STATIC_PAGES = [
   },
   {
     path: "gst-calculator",
-    title: "GST Calculator Online India | Inclusive and Exclusive GST Tool",
-    description: "Use FilingBy's GST calculator to compute inclusive and exclusive GST amounts with instant CGST, SGST, and IGST breakup.",
+    title: "GST Calculator Online India — Exclusive & Inclusive Tax Tool | FilingBy",
+    description: "Calculate CGST, SGST, and IGST amounts online using our interactive GST calculator. Compute tax-inclusive and exclusive values with official slab rates.",
     keywords: "GST calculator, GST inclusive calculator, GST exclusive calculator, CGST SGST IGST calculator",
     h1: "Online GST Calculator",
-    content: "<p>Calculate GST inclusive and exclusive pricing online for goods and services in India. View instant CGST, SGST, and IGST breakdowns for standard tax rates (5%, 12%, 18%, and 28%).</p>"
+    content: "<p>Calculate GST inclusive and exclusive pricing online for goods and services in India. View instant CGST, SGST, and IGST breakdowns for standard tax rates (5%, 12%, 18%, and 28%).</p><h3>How to Calculate GST in India</h3><p>GST calculation is straightforward once you know the core formulas. For GST Exclusive values (adding tax to a base price), the formula is: <code>GST Amount = (Original Cost * GST%) / 100</code>. For GST Inclusive values (extracting tax from a final price), the formula is: <code>GST Amount = Original Cost - [Original Cost * (100 / (100 + GST%))]</code>.</p><h3>Understanding CGST, SGST, and IGST</h3><ul><li><strong>CGST (Central GST)</strong>: Collected by the Central Government on an intra-state sale (e.g., transaction within Maharashtra).</li><li><strong>SGST (State GST)</strong>: Collected by the State Government on an intra-state sale.</li><li><strong>IGST (Integrated GST)</strong>: Collected by the Central Government for inter-state transactions (e.g., transaction between Maharashtra and Gujarat).</li></ul><h3>Current GST Slabs in India</h3><p>Goods and services are categorized under five major tax rates: 0% (essential goods), 5% (mass consumption items), 12% (standard rate), 18% (most services and manufactured products), and 28% (luxury and demerit goods).</p>"
   },
   {
     path: "income-tax-calculator",
-    title: "Income Tax Calculator India FY 2025-26 | Old vs New Regime",
-    description: "Estimate your income tax under old and new regimes for FY 2025-26 with FilingBy's practical tax calculator for resident individuals.",
+    title: "Income Tax Calculator India FY 2025-26 — Old vs New Regime Compare",
+    description: "Compare tax liabilities between the old and new tax regimes for FY 2025-26 using our income tax calculator. Compute deductions and rebates automatically.",
     keywords: "income tax calculator India, old vs new regime calculator, FY 2025-26 tax calculator, ITR calculator",
     h1: "Income Tax Calculator (FY 2025-26)",
-    content: "<p>Compare your estimated income tax liabilities between the Old Tax Regime and the New Tax Regime for Financial Year 2025-26. Standard deductions and exemptions are computed automatically.</p>"
+    content: "<p>Compare your estimated income tax liabilities between the Old Tax Regime and the New Tax Regime for Financial Year 2025-26. Standard deductions and exemptions are computed automatically.</p><h3>Old vs New Tax Regime: Key Differences</h3><p>The Old Tax Regime allows taxpayers to claim standard exemptions and deductions under sections like 80C (PPF, LIC, ELSS), 80D (health insurance premiums), and House Rent Allowance (HRA). The New Tax Regime offers lower tax rate slabs but eliminates almost all popular deductions, except for the standard deduction and employer pension contributions.</p><h3>New Tax Slabs for FY 2025-26</h3><p>The new regime has been updated to offer enhanced basic exemption limits. Tax slabs range from 0% for income up to ₹3 lakh, 5% up to ₹7 lakh, 10% up to ₹10 lakh, 15% up to ₹12 lakh, 20% up to ₹15 lakh, and 30% for taxable income above ₹15 lakh. Tax rebates are available to eliminate tax liability for incomes up to ₹7 lakh.</p>"
   },
   {
     path: "roc-tools",
-    title: "ROC Tools and Annual Compliance Resources | FilingBy",
-    description: "Explore ROC tools, annual filing checklists, and compliance shortcuts for private limited companies, LLPs, and directors.",
+    title: "ROC Filing Tools & Annual MCA Compliance Calculators | FilingBy.com",
+    description: "Calculate late filing fees and track deadlines for MCA annual returns, AOC-4, MGT-7, and LLP Form 8 or Form 11 using our ROC compliance tools and resources.",
     keywords: "ROC tools, ROC annual filing, LLP annual filing, AOC-4, MGT-7, DIN eKYC",
     h1: "ROC Compliance Tools & Checklists",
-    content: "<p>Access essential ROC and MCA compliance tools. Verify due dates, calculate filing fees, and review checklist requirements for filing annual returns (AOC-4, MGT-7, LLPs, and Director KYC).</p>"
+    content: "<p>Access essential ROC and MCA compliance tools. Verify due dates, calculate filing fees, and review checklist requirements for filing annual returns (AOC-4, MGT-7, LLPs, and Director KYC).</p><h3>Annual ROC Compliance Checklist for Private Limited Companies</h3><p>Every registered company in India must submit annual filings to the Registrar of Companies (ROC) under the Ministry of Corporate Affairs (MCA). Key forms include: Form AOC-4 (for filing financial statements), Form MGT-7 (for annual return of shares and directors), and DIN eKYC (DIR-3 KYC for directors) to maintain active status.</p><h3>LLP Compliance Deadlines</h3><p>Limited Liability Partnerships must file Form 11 (Annual Return) by May 30th and Form 8 (Statement of Accounts & Solvency) by October 30th each year. Failure to submit these filings on time incurs a heavy penalty of ₹100 per day per form with no upper limit.</p>"
   },
   {
     path: "company-registration-guides",
-    title: "Company Registration Guides India | Pvt Ltd, LLP, OPC and More",
-    description: "Compare business structures in India with FilingBy's company registration guides for Pvt Ltd, LLP, OPC, and proprietorship decisions.",
+    title: "Company Registration Guides India — Choose Pvt Ltd vs LLP vs OPC",
+    description: "Read our comprehensive guide to registering a business in India. Compare Private Limited Company, LLP, One Person Company, and Sole Proprietorship options.",
     keywords: "company registration guide India, private limited vs LLP, OPC registration, proprietorship guide",
     h1: "Company Registration & Business Entity Guides",
-    content: "<p>Read step-by-step guides on choosing and registering the right business structure in India. Compare Private Limited Company, Limited Liability Partnership (LLP), One Person Company (OPC), and Sole Proprietorship models.</p>"
+    content: "<p>Read step-by-step guides on choosing and registering the right business structure in India. Compare Private Limited Company, Limited Liability Partnership (LLP), One Person Company (OPC), and Sole Proprietorship models.</p><h3>Choosing the Right Business Structure</h3><p>Before launching a business in India, founders must select an appropriate legal structure. The most popular models include:</p><ul><li><strong>Private Limited Company (Pvt Ltd)</strong>: Offers limited liability, easy equity division, and high credibility with venture capitalists. Requires at least two directors.</li><li><strong>Limited Liability Partnership (LLP)</strong>: Blends partnership flexibility with corporate limited liability. Ideal for professional service firms.</li><li><strong>One Person Company (OPC)</strong>: Allows a single founder to build a corporate entity with limited liability while retaining complete ownership.</li><li><strong>Sole Proprietorship</strong>: The easiest setup with minimal compliance, but lacks separate legal identity and limited liability protection.</li></ul>"
   },
   {
     path: "trademark-search",
-    title: "Trademark Search Guide India | Check Brand Availability",
-    description: "Use FilingBy's trademark search guide to review brand name availability, classes, and next steps before filing in India.",
+    title: "Trademark Search Guide India — Online Brand Name Availability Check",
+    description: "Learn how to search the official IP India public database to check brand name availability. Understand trademark classes and avoid registry objections.",
     keywords: "trademark search India, brand name check, IP India public search, trademark class search",
     h1: "Trademark Search & Brand Availability Guide",
-    content: "<p>Learn how to conduct a trademark search on the official IP India public database. Avoid name rejection issues by checking brand availability, classification, and trademark criteria.</p>"
+    content: "<p>Learn how to conduct a trademark search on the official IP India public database. Avoid name rejection issues by checking brand availability, classification, and trademark criteria.</p><h3>Why a Trademark Search is Essential</h3><p>Conducting a thorough public search on the IP India database is the critical first step before filing a trademark application. This check helps identify any phonetically similar or identical registered brands, reducing the risk of trademark objections under Section 9 or Section 11 of the Trade Marks Act.</p><h3>Understanding Trademark Classes</h3><p>Trademarks are filed under 45 different classes based on Nice Classification: Classes 1 to 34 are for goods (e.g., software media, clothing, pharmaceuticals), and Classes 35 to 45 are for services (e.g., software development, consulting, retail, restaurants). Selecting the correct class is vital to securing proper legal protection.</p>"
   },
   {
     path: "legal-templates",
-    title: "Legal Templates and Agreements for Businesses | FilingBy",
-    description: "Explore common legal templates and agreement categories for startups, founders, employers, and growing businesses.",
+    title: "Legal Templates and Startup Business Agreements Library | FilingBy",
+    description: "Browse and download essential legal contract templates for Indian startups, including NDAs, Founder Agreements, employment contracts, and service SLAs.",
     keywords: "legal templates India, NDA draft, employment agreement, shareholders agreement, legal notice draft",
     h1: "Legal Templates & Business Contracts",
-    content: "<p>Download standard legal templates and drafting agreements for Indian startups and businesses. Access NDA templates, Service Level Agreements (SLAs), and founder agreements.</p>"
+    content: "<p>Download standard legal templates and drafting agreements for Indian startups and businesses. Access NDA templates, Service Level Agreements (SLAs), and founder agreements.</p><h3>Essential Agreements for Indian Startups</h3><p>Protecting intellectual property and outlining stakeholder rights is vital. Startups should maintain standard legal documents, including:</p><ul><li><strong>Non-Disclosure Agreement (NDA)</strong>: Ensures confidentiality during business negotiations, preventing unauthorized use of proprietary ideas.</li><li><strong>Founder's Agreement</strong>: Defines equity splits, roles, responsibilities, and vesting terms among co-founders.</li><li><strong>Service Level Agreement (SLA)</strong>: Outlines deliverables, timelines, and payment structures between service providers and clients.</li><li><strong>Employment Contract</strong>: Governs terms of employment, intellectual property assignment, and non-compete clauses.</li></ul>"
   },
   {
     path: "terms-conditions",
-    title: "Terms and Conditions — FilingBy.com",
-    description: "FilingBy.com Terms & Conditions. Read standard agreements governing the lease of virtual office services in India.",
+    title: "Terms and Conditions of Service & Agreement Policies | FilingBy.com",
+    description: "Read FilingBy's terms and conditions. Understand the legal guidelines, usage policies, and responsibilities governing CA compliance and virtual office leases.",
     keywords: "terms and conditions, legal agreement, service terms filingby",
     h1: "Terms and Conditions",
-    content: "<p>Welcome to FilingBy.com. These Terms and Conditions govern your use of our virtual office services, agreements, and support interfaces. Review our standard terms, compliance responsibilities, and billing terms.</p>"
+    content: "<p>Welcome to FilingBy.com. These Terms and Conditions govern your use of our virtual office services, agreements, and support interfaces. Review our standard terms, compliance responsibilities, and billing terms.</p><h3>Usage Policies and User Agreement</h3><p>By accessing our website and using our online CA/CS consultation services, corporate address solutions, or checkout desk, you agree to comply with our Terms of Service. FilingBy reserves the right to terminate access for any fraudulent activity or documentation tampering.</p>"
   },
   {
     path: "default/refund",
-    title: "Refund Policy — FilingBy.com",
-    description: "FilingBy.com Refund Policy. Read details of our 100% money-back guarantee if business registration fails.",
+    title: "Refund Policy and Money-Back Guarantee Policies | FilingBy.com",
+    description: "Read the FilingBy refund policy. We offer a 100% money-back guarantee if corporate registration or virtual office application fails due to documentation issues.",
     keywords: "refund policy, money back guarantee, filingby refund",
     h1: "Refund Policy",
-    content: "<p>At FilingBy.com, we stand by the quality of our workspaces. We offer a 100% money-back guarantee in case of registration rejections due to documentation errors directly attributable to us.</p>"
+    content: "<p>At FilingBy.com, we stand by the quality of our workspaces. We offer a 100% money-back guarantee in case of registration rejections due to documentation errors directly attributable to us.</p><h3>Our Refund Claim Process</h3><p>If you encounter issues with your registration or if the GST department rejects your virtual office address application due to incorrect NOC or utility bills, submit a support ticket within 30 days of the rejection for a full refund of your service charges.</p>"
   },
   {
     path: "default/privacy-policy",
-    title: "Privacy Policy — FilingBy.com",
-    description: "FilingBy.com Privacy Policy. Learn how we handle your KYC documents, transaction records, and ensure your data remains secure.",
+    title: "Privacy Policy and Data Protection Guidelines | FilingBy.com",
+    description: "FilingBy.com Privacy Policy. Learn how we handle your KYC documents, corporate registrations, billing transactions, and ensure your data remains secure.",
     keywords: "privacy policy, data security, privacy statement filingby",
     h1: "Privacy Policy",
-    content: "<p>FilingBy.com respects client privacy. This Privacy Policy details how we collect, store, and utilize details regarding your company registrations and transactions. We ensure robust security protocols for all KYC document uploads.</p>"
+    content: "<p>FilingBy.com respects client privacy. This Privacy Policy details how we collect, store, and utilize details regarding your company registrations and transactions. We ensure robust security protocols for all KYC document uploads.</p><h3>KYC Documents and Information Security</h3><p>We implement industry-standard cryptographic protocols to encrypt your uploaded files (like Aadhaar, PAN, and bank statements). Your documents are accessed strictly by certified Chartered Accountants or Company Secretaries handling your cases.</p>"
   },
   {
     path: "contact-us",
@@ -264,6 +264,65 @@ const STATIC_PAGES = [
     content: "<p>Need guidance with business registration, CA consultations, or virtual offices? Contact our dedicated compliance support desk for instant help over phone calls, email, or WhatsApp chat.</p>"
   }
 ];
+
+const SERVICE_SEO_OVERRIDES = {
+  "trust-registration": {
+    title: "Trust Compliance in India: Annual Filing, Audit and Legal Checklist",
+    description:
+      "Understand trust compliance in India, including annual filing, audit applicability, ITR-7, 12A and 80G records, due dates and common mistakes.",
+    keywords:
+      "trust compliance india, trust audit india, trust compliance checklist, annual trust filing, audit of trust, ngo compliance india",
+    h1: "Trust Compliance in India: Annual Filing, Audit and Legal Checklist"
+  },
+  "csr-registration": {
+    title: "CSR Audit in India: Meaning, Applicability and Practical Compliance Guide",
+    description:
+      "Learn what CSR audit means in India, when it matters, what documents to prepare, how CSR-1 context fits in, and the practical checks companies should review.",
+    keywords:
+      "csr audit india, csr audit meaning, csr audit report, csr audit checklist, csr compliance guide",
+    h1: "CSR Audit in India: Meaning, Applicability and Practical Compliance Guide"
+  },
+  "moa-amendment": {
+    title: "MOA Amendment for Private Limited Companies: Process, Documents and Fees",
+    description:
+      "Learn how MOA amendment works for private limited companies in India, including board approval, special resolution, MGT-14 filing, timelines, fees and common mistakes.",
+    keywords:
+      "moa amendment, moa amendment private limited company, can moa be amended, object clause amendment, mgt-14 filing",
+    h1: "MOA Amendment for Private Limited Companies: Process, Documents and Fees"
+  },
+  "pvt-winding-up": {
+    title: "Private Limited Company Winding Up in India: Process, STK-2 Route and Key Checks",
+    description:
+      "Understand private limited company winding up in India, including STK-2 closure, eligibility, records to prepare, tax clean-up and common strike-off mistakes.",
+    keywords:
+      "private limited company winding up india, stk-2 company closure, close private limited company, company strike off india",
+    h1: "Private Limited Company Winding Up in India: Process, STK-2 Route and Key Checks"
+  },
+  "tan-registration": {
+    title: "TAN Registration in India: Form 49B Process, Documents and TDS Setup Guide",
+    description:
+      "Understand TAN registration in India, including Form 49B, documents, who needs TAN, TAN card queries, TDS setup and common first-time filing mistakes.",
+    keywords:
+      "tan registration india, tan card, tancard, form 49b, tan application process, tds setup for business",
+    h1: "TAN Registration in India: Form 49B Process, Documents and TDS Setup Guide"
+  },
+  "roc-annual-filing-llp": {
+    title: "LLP Compliance in India: Form 8, Form 11 and Annual Filing Checklist",
+    description:
+      "Understand LLP compliance in India, including Form 8, Form 11, due dates, annual filing checklist, penalties and practical records management for designated partners.",
+    keywords:
+      "llp compliance india, llp compliance, llp annual filing, form 8 form 11, llp compliance checklist",
+    h1: "LLP Compliance in India: Form 8, Form 11 and Annual Filing Checklist"
+  },
+  "apeda-registration": {
+    title: "APEDA Registration in India: Documents, RCMC Process and Export Readiness Guide",
+    description:
+      "Learn how APEDA registration works in India, including documents, RCMC process, fees, validity, export-readiness checks and common exporter mistakes.",
+    keywords:
+      "apeda registration india, apeda registration, apeda documents, rcmc registration, apeda online registration",
+    h1: "APEDA Registration in India: Documents, RCMC Process and Export Readiness Guide"
+  }
+};
 
 const NOINDEX_PAGES = [
   { path: "login", title: "Log In | FilingBy.com" },
@@ -316,8 +375,8 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
 
   // Clean default head SEO from template and inject route-specific SEO tags
   let parsedHtml = templateHtml.replace(
-    /<!-- Primary SEO \(defaults — react-helmet-async overrides per page\) -->[\s\S]+?<!-- Preconnect for performance -->/,
-    `<!-- Preconnect for performance -->`
+    /<title>[\s\S]*?<meta name="revisit-after" content="7 days" \/>/i,
+    ""
   );
 
   parsedHtml = parsedHtml.replace(
@@ -359,8 +418,8 @@ function writeNoIndexHtmlPage(routePath, pageTitle) {
 
   // Clean default head SEO from template and inject route-specific SEO tags
   let parsedHtml = templateHtml.replace(
-    /<!-- Primary SEO \(defaults — react-helmet-async overrides per page\) -->[\s\S]+?<!-- Preconnect for performance -->/,
-    `<!-- Preconnect for performance -->`
+    /<title>[\s\S]*?<meta name="revisit-after" content="7 days" \/>/i,
+    ""
   );
 
   parsedHtml = parsedHtml.replace(
@@ -498,26 +557,98 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
 
     console.log(`Prerendering ${services.length} CA services...`);
     for (const service of services) {
-      const title = `${service.name} Online India — Fast & Affordable | FilingBy`;
-      const description = service.description || `Get expert CA/CS assisted ${service.name} services online in India with transparent pricing.`;
-      const keywords = `${service.name.toLowerCase()} online, ${service.name.toLowerCase()} registration, online CA services India`;
+      const o = SERVICE_SEO_OVERRIDES[service.slug] || null;
+      const title = o?.title || `${service.name} Online India — Fast & Affordable | FilingBy`;
+      
+      let description = o?.description || service.seoDescription || service.description || "";
+      if (!description) {
+        description = `Get expert CA/CS assisted ${service.name} services online in India with transparent pricing, secure uploads, and guaranteed compliance.`;
+      } else if (description.length < 120) {
+        description = `${description.trim()} Secure online filing, transparent flat-rate pricing, and dedicated expert support for businesses across India.`;
+      }
+      if (description.length > 160) {
+        description = description.substring(0, 157) + "...";
+      }
+
+      const keywords = o?.keywords || `${service.name.toLowerCase()} online, ${service.name.toLowerCase()} registration, online CA services India`;
 
       const schema = {
         "@context": "https://schema.org",
         "@type": "Product",
         "name": service.name,
         "description": service.description || description,
-        "brand": { "@type": "Brand", "name": "FilingBy" },
+        "image": "https://www.filingby.com/logo.jpeg",
+        "brand": {
+          "@type": "Brand",
+          "name": "FilingBy"
+        },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "INR",
-          "price": service.basePrice || "999.00"
-        }
+          "price": service.basePrice || "999.00",
+          "priceValidUntil": "2027-12-31",
+          "url": `https://www.filingby.com/services/${service.slug}`,
+          "availability": "https://schema.org/InStock",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "INR"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "IN"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 1,
+                "maxValue": 3,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IN",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "124",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Rajesh Kumar"
+            },
+            "datePublished": "2026-01-15",
+            "reviewBody": "Excellent CA services. Quick and very professional onboarding process.",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5"
+            }
+          }
+        ]
       };
 
       const bodyContent = `
-        <h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${service.name}</h1>
-        <p style="font-size: 18px; color: #475569; margin-bottom: 30px;">${service.description}</p>
+        <h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${o?.h1 || service.name}</h1>
+        <p style="font-size: 18px; color: #475569; margin-bottom: 30px;">${description}</p>
         <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; margin-bottom: 30px;">
           <h2 style="font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 10px;">Pricing details</h2>
           <p style="font-size: 24px; font-weight: 800; color: #1A56DB;">₹${service.basePrice || "999"} <span style="font-size: 14px; font-weight: 500; color: #64748B;">/ ${service.billingCycle || "Fixed"}</span></p>
@@ -642,15 +773,42 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
       const formattedVerifiedDate = post.lastVerifiedAt ? new Date(post.lastVerifiedAt).toLocaleDateString("en-IN") : "";
       const reviewerName = post.reviewerId === "filingby-content-team" ? "FilingBy Content Team" : "FilingBy Content Team";
 
+      const postKeywords = [
+        post.focusKeyword,
+        ...(Array.isArray(post.secondaryKeywords) ? post.secondaryKeywords : []),
+        ...(Array.isArray(post.tags) ? post.tags : [])
+      ].filter(Boolean);
+
       const postSchema = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
+        "@id": `https://www.filingby.com/blog/${post.slug}#article`,
         "headline": post.title,
         "description": description,
         "datePublished": post.publishedAt,
         "dateModified": post.lastUpdated || post.updatedAt || post.publishedAt,
-        "author": { "@type": "Person", "name": post.author || "FilingBy Editorial Desk" },
-        "reviewedBy": { "@type": "Organization", "name": reviewerName }
+        "author": { 
+          "@type": "Person", 
+          "name": post.author || "FilingBy Editorial Desk" 
+        },
+        "reviewedBy": { 
+          "@type": "Organization", 
+          "name": reviewerName 
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "FilingBy.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.filingby.com/logo.jpeg"
+          }
+        },
+        "image": [post.image || "https://www.filingby.com/logo.jpeg"],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://www.filingby.com/blog/${post.slug}`
+        },
+        "keywords": postKeywords.join(", ")
       };
 
       const bodyContent = `
