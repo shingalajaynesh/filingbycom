@@ -5,6 +5,7 @@ import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
 import BlogCard from "../components/BlogCard.jsx";
 import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
+import AdsterraNativeBanner from "../../../shared/components/AdsterraNativeBanner.jsx";
 import { buildBlogListingSchema, buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 
 const API_BASE = (
@@ -338,12 +339,13 @@ export default function BlogList() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
               <AdSenseBlock
                 slot={import.meta.env.VITE_ADSENSE_BLOG_LIST_SLOT}
                 label="Knowledge Hub Sponsor"
                 className="border-dashed"
               />
+              <AdsterraNativeBanner label="Partner Banner" className="border-dashed" />
             </div>
 
             <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

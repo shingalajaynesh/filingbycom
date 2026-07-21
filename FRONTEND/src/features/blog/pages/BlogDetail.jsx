@@ -5,6 +5,7 @@ import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
+import AdsterraNativeBanner from "../../../shared/components/AdsterraNativeBanner.jsx";
 import BlogCard from "../components/BlogCard.jsx";
 import {
   buildBlogPostingSchema,
@@ -615,8 +616,9 @@ export default function BlogDetail() {
               </div>
             </section>
 
-            <div className="mt-8">
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
               <AdSenseBlock slot={import.meta.env.VITE_ADSENSE_BLOG_DETAIL_SLOT} label="Article Sponsor" />
+              <AdsterraNativeBanner label="Partner Banner" />
             </div>
 
             {post.tags && post.tags.length > 0 ? (
@@ -715,7 +717,30 @@ export default function BlogDetail() {
               </a>
             </div>
 
-            <AdSenseBlock slot={import.meta.env.VITE_ADSENSE_BLOG_SIDEBAR_SLOT} label="Sponsored Resource" />
+            {import.meta.env.VITE_ADSTERRA_SMARTLINK && (
+               <div className="rounded-[28px] border border-dashed border-amber-300 bg-amber-50/30 p-5 shadow-sm">
+                 <span className="inline-block rounded-full bg-amber-100 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-amber-800">
+                   Featured Deal
+                 </span>
+                 <h3 className="mt-3 text-sm font-bold text-gray-900">Explore Premium Offers</h3>
+                 <p className="mt-2 text-xs leading-5 text-gray-600">
+                   Access exclusive tools, discounts, and verified services selected for Indian startups and businesses.
+                 </p>
+                 <a
+                   href={import.meta.env.VITE_ADSTERRA_SMARTLINK}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="mt-4 flex w-full items-center justify-center rounded-full bg-amber-500 px-4 py-2.5 text-center text-xs font-bold uppercase tracking-[0.15em] text-white transition hover:bg-amber-600"
+                 >
+                   Claim Offer <i className="fa-solid fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                 </a>
+               </div>
+             )}
+
+            <div className="space-y-6">
+              <AdSenseBlock slot={import.meta.env.VITE_ADSENSE_BLOG_SIDEBAR_SLOT} label="Sponsored Resource" />
+              <AdsterraNativeBanner label="Recommended Offer" />
+            </div>
           </aside>
         </div>
 
