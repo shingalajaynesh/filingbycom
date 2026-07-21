@@ -5,6 +5,35 @@
  * Helmet (dynamic SEO), and mounts the main routing tree.
  */
 
+// Catch chunk loading and CSS stylesheet errors (common during new deployments when hashes change)
+if (typeof window !== "undefined") {
+  window.addEventListener("error", (e) => {
+    const isChunkError = 
+      e.message && (
+        e.message.toLowerCase().includes("failed to fetch dynamically imported module") ||
+        e.message.toLowerCase().includes("error loading dynamically imported module")
+      );
+      
+    const isCssError = 
+      e.target && 
+      e.target.tagName === "LINK" && 
+      e.target.rel === "stylesheet" && 
+      e.target.href && 
+      e.target.href.includes("/assets/");
+
+    if (isChunkError || isCssError) {
+      const lastReload = sessionStorage.getItem("chunk_error_reload");
+      const now = Date.now();
+      
+      // Prevent infinite reloading loop (max once every 10 seconds)
+      if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+        sessionStorage.setItem("chunk_error_reload", now.toString());
+        window.location.reload();
+      }
+    }
+  }, true);
+}
+
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
