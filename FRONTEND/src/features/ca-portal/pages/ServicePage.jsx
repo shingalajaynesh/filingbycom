@@ -22,6 +22,23 @@ import {
   CTASection,
   ExpertReview
 } from '../components/SEOContentComponents.jsx';
+import { PortalPageShell, PortalCard } from '../components/PortalPageShell.jsx';
+
+const LEGACY_SERVICE_SLUG_MAP = {
+  "udyam-registration-msme": "/services/msme-registration",
+  "udyam-registration": "/services/msme-registration",
+  "partnership-firm-return": "/services/partnership-firm",
+  "income-tax": "/services/itr-1-filing",
+  "income-tax-return": "/services/itr-1-filing",
+  "income-tax-return-filing": "/services/itr-1-filing",
+  "salary-return-filing": "/services/itr-1-filing",
+  "gst-invoicing-filing-software": "/services/gst-return-filing",
+  "gst-annual-return-filing-gstr-9": "/services/gst-return-filing",
+  "one-person-company": "/services/one-person-company",
+  "opc-registration": "/services/one-person-company",
+  "darpan-registration": "/services/ngo-darpan",
+  "ngo-darpan-registration": "/services/ngo-darpan"
+};
 
 const SERVICE_SEO_OVERRIDES = {
   "trust-registration": {
@@ -373,7 +390,73 @@ export default function ServicePage() {
   }
 
   if (!serviceData) {
-    return <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-gray-600">Service not found.</div>;
+    const directRedirect = LEGACY_SERVICE_SLUG_MAP[slug];
+    if (directRedirect) {
+      window.location.replace(directRedirect);
+      return null;
+    }
+
+    const lowerSlug = (slug || "").toLowerCase();
+    let suggestedUrl = "/";
+    let suggestedLabel = "CA Services Catalog";
+
+    if (lowerSlug.includes("gst")) {
+      suggestedUrl = "/services/gst-registration";
+      suggestedLabel = "GST Registration";
+    } else if (lowerSlug.includes("msme") || lowerSlug.includes("udyam")) {
+      suggestedUrl = "/services/msme-registration";
+      suggestedLabel = "MSME Registration";
+    } else if (lowerSlug.includes("itr") || lowerSlug.includes("tax") || lowerSlug.includes("income") || lowerSlug.includes("salary")) {
+      suggestedUrl = "/services/itr-1-filing";
+      suggestedLabel = "ITR Return Filing";
+    } else if (lowerSlug.includes("company") || lowerSlug.includes("pvt") || lowerSlug.includes("opc") || lowerSlug.includes("firm")) {
+      suggestedUrl = "/services/private-limited-company";
+      suggestedLabel = "Company Incorporation";
+    } else if (lowerSlug.includes("trademark")) {
+      suggestedUrl = "/services/trademark-registration";
+      suggestedLabel = "Trademark Registration";
+    } else if (lowerSlug.includes("virtual") || lowerSlug.includes("office") || lowerSlug.includes("address")) {
+      suggestedUrl = "/virtual-space";
+      suggestedLabel = "Virtual Office India";
+    }
+
+    return (
+      <PortalPageShell
+        badge="Service Directory"
+        title="Service Moved or Updated"
+        description="The compliance service page you requested has been updated or merged into our core CA services catalog. Explore our services below or speak with an expert."
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "Services", to: "/" },
+          { label: "Service Finder" }
+        ]}
+      >
+        <PortalCard className="text-center">
+          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1A56DB]/5 text-4xl text-[#1A56DB]">
+            📋
+          </div>
+          <h2 className="mt-6 text-2xl font-black text-slate-950">Looking for {suggestedLabel}?</h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600">
+            We couldn't find an exact page for <code className="rounded bg-slate-100 px-2 py-1 font-mono text-xs text-slate-800">{slug}</code>, but you can continue directly to {suggestedLabel} or view all FilingBy services.
+          </p>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              to={suggestedUrl}
+              className="inline-flex items-center justify-center rounded-2xl bg-[#1A56DB] px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-700 cursor-pointer"
+            >
+              Go to {suggestedLabel}
+            </Link>
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-6 py-3.5 text-sm font-bold text-slate-700 transition-all hover:bg-slate-100 cursor-pointer"
+            >
+              View Full CA Services Catalog
+            </Link>
+          </div>
+        </PortalCard>
+      </PortalPageShell>
+    );
   }
 
   const handleGetStarted = () => {
@@ -389,7 +472,7 @@ export default function ServicePage() {
 
   const handleCheckoutSuccess = () => {
     setShowCheckoutModal(false);
-    window.location.href = '/dashboard'; 
+    window.location.href = '/dashboard';
   };
 
   const seoOverride = SERVICE_SEO_OVERRIDES[slug] || null;

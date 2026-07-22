@@ -230,6 +230,51 @@
       "permanent": true
     },
     {
+      "source": "/collections",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/collections/income-tax",
+      "destination": "/services/itr-1-filing",
+      "permanent": true
+    },
+    {
+      "source": "/collections/gst-invoicing-filing-software",
+      "destination": "/services/gst-return-filing",
+      "permanent": true
+    },
+    {
+      "source": "/collections/gst-annual-return-filing-gstr-9",
+      "destination": "/services/gst-return-filing",
+      "permanent": true
+    },
+    {
+      "source": "/collections/one-person-company",
+      "destination": "/services/one-person-company",
+      "permanent": true
+    },
+    {
+      "source": "/collections/darpan-registration",
+      "destination": "/services/ngo-darpan",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:slug",
+      "destination": "/services/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/services/udyam-registration-msme",
+      "destination": "/services/msme-registration",
+      "permanent": true
+    },
+    {
+      "source": "/services/partnership-firm-return",
+      "destination": "/services/partnership-firm",
+      "permanent": true
+    },
+    {
       "source": "/pages/llp-income-tax-return",
       "destination": "/services/roc-annual-filing-llp",
       "permanent": true

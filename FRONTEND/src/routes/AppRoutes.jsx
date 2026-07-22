@@ -473,6 +473,19 @@ function AppRoutesContent() {
           {/* Legacy Shopify products catch-all */}
           <Route path="/products/:slug" element={<RedirectToService />} />
 
+          {/* Legacy Shopify collections redirects */}
+          <Route path="/collections" element={<Navigate to="/" replace />} />
+          <Route path="/collections/income-tax" element={<Navigate to="/services/itr-1-filing" replace />} />
+          <Route path="/collections/gst-invoicing-filing-software" element={<Navigate to="/services/gst-return-filing" replace />} />
+          <Route path="/collections/gst-annual-return-filing-gstr-9" element={<Navigate to="/services/gst-return-filing" replace />} />
+          <Route path="/collections/one-person-company" element={<Navigate to="/services/one-person-company" replace />} />
+          <Route path="/collections/darpan-registration" element={<Navigate to="/services/ngo-darpan" replace />} />
+          <Route path="/collections/:slug" element={<RedirectToService />} />
+
+          {/* Legacy service alias redirects */}
+          <Route path="/services/udyam-registration-msme" element={<Navigate to="/services/msme-registration" replace />} />
+          <Route path="/services/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
+
           {/* Obsolete Shopify internal tracking/assets routes */}
           <Route path="/wpm" element={<Navigate to="/" replace />} />
           <Route path="/b" element={<Navigate to="/" replace />} />
