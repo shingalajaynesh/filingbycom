@@ -1,4 +1,25 @@
 import { useEffect, useId, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { isAdSenseEligibleRoute } from "../utils/adsensePolicy.js";
+
+const ADSENSE_SCRIPT_ID = "filingby-adsense-script";
+
+function loadAdSenseScript(client) {
+  if (typeof document === "undefined" || !client) {
+    return;
+  }
+
+  if (document.getElementById(ADSENSE_SCRIPT_ID)) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = ADSENSE_SCRIPT_ID;
+  script.async = true;
+  script.crossOrigin = "anonymous";
+  script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(client)}`;
+  document.head.appendChild(script);
+}
 
 export default function AdSenseBlock({
   slot,
@@ -7,26 +28,31 @@ export default function AdSenseBlock({
   style = {},
   label = "Sponsored"
 }) {
+  const location = useLocation();
   const client = import.meta.env.VITE_ADSENSE_CLIENT || "ca-pub-6303291083449043";
   const adRef = useRef(null);
   const pushedRef = useRef(false);
   const titleId = useId();
+  const isEligibleRoute = isAdSenseEligibleRoute(location.pathname);
 
   useEffect(() => {
-    if (!slot || !client || pushedRef.current || !adRef.current || typeof window === "undefined") {
+    if (!slot || !client || !isEligibleRoute || pushedRef.current || !adRef.current || typeof window === "undefined") {
       return;
     }
 
     try {
       window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.pauseAdRequests = 0;
+      window.ADSENSE_ALLOWED = true;
+      loadAdSenseScript(client);
       window.adsbygoogle.push({});
       pushedRef.current = true;
     } catch (error) {
       console.error("AdSense failed to initialize:", error);
     }
-  }, [client, slot]);
+  }, [client, isEligibleRoute, slot]);
 
-  if (!slot || !client || (typeof window !== "undefined" && window.ADSENSE_ALLOWED === false)) {
+  if (!slot || !client || !isEligibleRoute || (typeof window !== "undefined" && window.ADSENSE_ALLOWED === false)) {
     return null;
   }
 

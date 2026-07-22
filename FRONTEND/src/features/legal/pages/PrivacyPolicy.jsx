@@ -32,6 +32,9 @@ export default function PrivacyPolicy() {
             Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our site and/or other sites on the internet.
           </p>
           <p>
+            Google and its partners may place or read cookies, use web beacons, IP addresses, and similar identifiers as part of ad serving and measurement on eligible content pages. You can learn more at <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">How Google uses data when you use our partners' sites or apps</a>.
+          </p>
+          <p>
             Users may opt out of personalized advertising by visiting the Google Ads Settings page at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">adssettings.google.com</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.aboutads.info</a>.
           </p>
         </div>
