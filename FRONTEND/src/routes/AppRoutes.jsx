@@ -74,6 +74,7 @@ import { OrderProvider } from "../shared/context/OrderContext";
 import { AdminProvider } from "../shared/context/AdminContext";
 import SEO from "../shared/components/SEO";
 import ScrollToTop from "../shared/components/ScrollToTop";
+import AdSenseController from "../shared/components/AdSenseController";
 import { orgSchema, websiteSchema } from "../shared/seo/schemas";
 import { PortalCard, PortalPageShell } from "../features/ca-portal/components/PortalPageShell";
 
@@ -426,6 +427,7 @@ function AppRoutesContent() {
 
   return (
     <LazyMotion features={domAnimation} strict>
+      <AdSenseController />
       <SEO schema={orgSchema} extraSchemas={[websiteSchema]} />
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
@@ -542,25 +544,31 @@ function AppRoutesContent() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
-                <ClientDashboard />
-              </ProtectedRoute>
+              <NoIndexRoute title="Client Dashboard | FilingBy.com" description="Manage your compliance requests and filings.">
+                <ProtectedRoute>
+                  <ClientDashboard />
+                </ProtectedRoute>
+              </NoIndexRoute>
             }
           />
           <Route
             path="/virtual-office/dashboard"
             element={
-              <ProtectedRoute>
-                <VirtualDashboard />
-              </ProtectedRoute>
+              <NoIndexRoute title="Virtual Office Dashboard | FilingBy.com" description="Manage your virtual office spaces and documents.">
+                <ProtectedRoute>
+                  <VirtualDashboard />
+                </ProtectedRoute>
+              </NoIndexRoute>
             }
           />
           <Route
             path="/partner/dashboard"
             element={
-              <ProtectedRoute>
-                <PartnerDashboard />
-              </ProtectedRoute>
+              <NoIndexRoute title="Partner Dashboard | FilingBy.com" description="Partner portal dashboard.">
+                <ProtectedRoute>
+                  <PartnerDashboard />
+                </ProtectedRoute>
+              </NoIndexRoute>
             }
           />
           
@@ -599,17 +607,25 @@ function AppRoutesContent() {
           />
 
           {/* ── Admin Routes ── */}
-          <Route path="/admin" element={<AdminLogin />} />
+          <Route
+            path="/admin"
+            element={
+              <NoIndexRoute title="Admin Portal | FilingBy.com" description="FilingBy admin portal login.">
+                <AdminLogin />
+              </NoIndexRoute>
+            }
+          />
           <Route
             path="/admin/dashboard"
             element={
-              <AdminRouteGuard>
-                <AdminDashboard />
-              </AdminRouteGuard>
+              <NoIndexRoute title="Admin Control Room | FilingBy.com" description="FilingBy internal admin control room.">
+                <AdminRouteGuard>
+                  <AdminDashboard />
+                </AdminRouteGuard>
+              </NoIndexRoute>
             }
           />
-          
-          {/* 4. Use the extracted component */}
+
           <Route path="*" element={<GlobalDynamicRouter />} />
         </Routes>
       </Suspense>
@@ -623,7 +639,6 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      {/* AdminAuthProvider wraps everything so admin context is available everywhere */}
       <AdminAuthProvider>
         <AdminProvider>
           <UserProvider>

@@ -26,7 +26,7 @@ export default function AdSenseBlock({
     }
   }, [client, slot]);
 
-  if (!slot || !client) {
+  if (!slot || !client || (typeof window !== "undefined" && window.ADSENSE_ALLOWED === false)) {
     return null;
   }
 
