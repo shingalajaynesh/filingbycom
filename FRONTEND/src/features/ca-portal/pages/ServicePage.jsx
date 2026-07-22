@@ -403,6 +403,9 @@ export default function ServicePage() {
     if (lowerSlug.includes("gst")) {
       suggestedUrl = "/services/gst-registration";
       suggestedLabel = "GST Registration";
+    } else if (lowerSlug.includes("duns")) {
+      suggestedUrl = "/services/duns-number";
+      suggestedLabel = "DUNS Number Registration";
     } else if (lowerSlug.includes("msme") || lowerSlug.includes("udyam")) {
       suggestedUrl = "/services/udyam-registration";
       suggestedLabel = "MSME Registration";
