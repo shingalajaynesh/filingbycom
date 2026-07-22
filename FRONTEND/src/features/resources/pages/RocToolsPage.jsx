@@ -8,7 +8,7 @@ export default function RocToolsPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="ROC Tools and Annual Compliance Resources | FilingBy"
-        description="Explore ROC tools, annual filing checklists, and compliance shortcuts for private limited companies, LLPs, and directors."
+        description="Access practical ROC compliance tools, annual filing checklists, DIN status resources, and director filing calculators for private limited companies and LLPs."
         keywords="ROC tools, ROC annual filing, LLP annual filing, AOC-4, MGT-7, DIN eKYC"
         canonical="/roc-tools"
         extraSchemas={[

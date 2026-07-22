@@ -7,7 +7,7 @@ export default function TrademarkSearchPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="Trademark Search Guide India | Check Brand Availability"
-        description="Use FilingBy's trademark search guide to review brand name availability, classes, and next steps before filing in India."
+        description="Check brand name availability in India with FilingBy's trademark search guide. Learn trademark class selection, registration steps, and protection strategies."
         keywords="trademark search India, brand name check, IP India public search, trademark class search"
         canonical="/trademark-search"
         extraSchemas={[

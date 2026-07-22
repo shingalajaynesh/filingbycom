@@ -36,7 +36,7 @@ export default function FaqPage() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="Virtual Office FAQs — GST, Mail Handling & Audit Desk Help | FilingBy"
-        description="Find immediate answers to questions about virtual office setups in India. Learn about GST compliance, physical inspections, mailing procedures, and refund guarantees."
+        description="Find answers to common virtual office questions in India. Learn about GST registration compliance, physical site inspections, mail handling, and refund rules."
         keywords="virtual office FAQ, virtual office registration questions, GST verification support, mail forwarding India"
         canonical="/faq"
         schema={buildFaqSchema(flatFaqs)}

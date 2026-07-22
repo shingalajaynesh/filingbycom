@@ -380,8 +380,8 @@ export default function VirtualSpace() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-gray-900">
       <SEO
-        title="Virtual Office India — GST Registration Address in Surat & Mumbai | FilingBy"
-        description="Get a premium virtual office address in Surat or Mumbai for GST registration, company mailing address, or ecommerce seller registration (VPOB/PPOB). Starting at ₹999/month. NOC & utility bills included."
+        title="Virtual Office India — Official GST & Business Address | FilingBy"
+        description="Get a premium virtual office address in India for GST registration, corporate mailing, and ecommerce VPOB/PPOB. Starting ₹999/month with NOC and utility bills."
         keywords="virtual office India, virtual office GST registration, virtual office address India, VPOB registration, virtual office Mumbai, virtual office Surat, virtual office for Amazon seller"
         canonical="/virtual-space"
         schema={virtualOfficeSchema}

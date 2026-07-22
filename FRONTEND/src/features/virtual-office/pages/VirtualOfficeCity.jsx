@@ -238,8 +238,8 @@ export default function VirtualOfficeCity() {
   return (
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
-        title={`Virtual Office in ${defaultCity.name} — GST Address ₹${defaultCity.rate}/mo | FilingBy`}
-        description={`Get a premium virtual office in ${defaultCity.name} for GST registration, company address, or ecommerce seller registration. Includes NOC, utility bills & rent agreement. Starting ₹${defaultCity.rate}/month.`}
+        title={`Virtual Office in ${defaultCity.name} — GST Address | FilingBy`}
+        description={`Get a virtual office in ${defaultCity.name} for GST registration, company address, and ecommerce VPOB/PPOB. Includes NOC, utility bills, and agreement from ₹${defaultCity.rate}/month.`}
         keywords={`virtual office ${defaultCity.name.toLowerCase()}, virtual office address ${defaultCity.name.toLowerCase()}, GST registration ${defaultCity.name.toLowerCase()}, business address ${defaultCity.name.toLowerCase()} India`}
         canonical={`/virtual-office-${detectedCitySlug}`}
         schema={buildCityVirtualOfficeSchema(defaultCity.name)}

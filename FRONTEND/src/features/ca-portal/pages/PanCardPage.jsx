@@ -27,7 +27,7 @@ export default function PanCardPage() {
   return (
     <>
       <SEO
-        title="PAN Card Assistance in India: Application, Correction and Document Guidance"
+        title="PAN Card Assistance India — Application & Correction | FilingBy"
         description="Get PAN card assistance in India for new applications, corrections, document guidance, and help understanding when PAN support is needed instead of TAN."
         keywords="pan card assistance india, pan application help, pan correction support, pan vs tan, pan documents india"
         canonical="/services/pan-card"

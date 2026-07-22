@@ -11,7 +11,7 @@ export default function AboutUs() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="About FilingBy.com — India's Trusted CA & Virtual Office Platform"
-        description="FilingBy.com simplifies GST registration, company incorporation, and virtual office services for Indian entrepreneurs. 50,000+ businesses registered. 150+ CA/CS professionals. Founded 2018."
+        description="Learn about FilingBy.com — India's trusted platform for online CA services, business incorporation, tax compliance, and virtual office addresses for startups."
         keywords="about FilingBy, CA services company India, virtual office company India, GST registration company"
         canonical="/about-us"
         schema={orgSchema}

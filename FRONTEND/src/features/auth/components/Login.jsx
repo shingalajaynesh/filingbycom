@@ -107,7 +107,7 @@ export default function Login() {
       transition={{ duration: 0.5 }}
       className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(14,31,60,0.2),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(212,175,55,0.16),transparent_35%),linear-gradient(135deg,#e9eef8_0%,#f7f8fb_45%,#dde7f8_100%)] px-4 py-5 sm:px-6 lg:px-8"
     >
-      <SEO title="Log In | FilingBy.com" noindex={true} />
+      <SEO title="Client Log In & Compliance Account Portal | FilingBy.com" description="Sign in to your FilingBy account to manage corporate orders, track GST return filings, upload compliance documents, and access virtual office addresses." noindex={true} />
       <div className="mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-7xl overflow-hidden rounded-[2.25rem] border border-white/60 bg-white/60 shadow-[0_40px_120px_rgba(15,23,42,0.16)] backdrop-blur-2xl lg:grid-cols-2">
         <m.section
           initial={{ x: -30, opacity: 0 }}
@@ -133,7 +133,7 @@ export default function Login() {
             <div className="rounded-4xl border border-slate-300/80 bg-[#eef1f5]/90 p-5 shadow-[20px_30px_15px_rgba(15,23,42,0.3)] sm:p-8">
               <div className="mb-5 sm:mb-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 sm:text-sm">Sign in</p>
-                <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Welcome back</h2>
+                <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Welcome back</h1>
                 <p className="mt-2 text-sm leading-6 text-slate-600 sm:hidden">Use your email to continue.</p>
               </div>
 

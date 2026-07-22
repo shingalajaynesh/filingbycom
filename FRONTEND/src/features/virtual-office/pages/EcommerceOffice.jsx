@@ -28,7 +28,7 @@ export default function EcommerceOffice() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="Virtual Office for E-Commerce Sellers — Amazon VPOB, Flipkart PPOB | FilingBy"
-        description="Register as Amazon/Flipkart/Meesho seller with our virtual office address. VPOB (Virtual Principal Place of Business) and PPOB solutions starting ₹999/month. All platforms accepted."
+        description="Get a virtual office address for Amazon, Flipkart, and Meesho VPOB/PPOB seller registration in India. Fast documentation starting ₹999/month for ecommerce."
         keywords="virtual office ecommerce India, Amazon VPOB India, Flipkart PPOB address, Meesho seller address, ecommerce GST registration India, virtual office seller registration"
         canonical="/ecommerce-office"
         schema={buildBreadcrumbSchema([

@@ -94,8 +94,8 @@ const NotFound = () => {
   return (
     <>
       <SEO
-        title="Page Not Found | FilingBy.com"
-        description="The page you are looking for does not exist."
+        title="404 Page Not Found & Directory Guide | FilingBy.com"
+        description="The page you requested could not be found. Use FilingBy's quick directory links to navigate to CA services, virtual offices, calculators, or blogs."
         canonical="/404"
         noindex
       />
@@ -435,6 +435,8 @@ function AppRoutesContent() {
       <Suspense fallback={<RouteLoader />}>
         <Routes>
           {/* Legacy Shopify page redirects */}
+          <Route path="/pages" element={<Navigate to="/" replace />} />
+          <Route path="/pages/income-tax-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
           <Route path="/pages/csr-audit" element={<Navigate to="/services/csr-registration" replace />} />
           <Route path="/pages/trust-compliance" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/trust-audit" element={<Navigate to="/services/trust-registration" replace />} />
@@ -449,6 +451,11 @@ function AppRoutesContent() {
           <Route path="/pages/ngo-registration" element={<Navigate to="/services/trust-registration" replace />} />
           <Route path="/pages/salary-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
           <Route path="/pages/gst-audit" element={<Navigate to="/services/gst-audit" replace />} />
+          <Route path="/pages/llp-income-tax-return" element={<Navigate to="/services/roc-annual-filing-llp" replace />} />
+          <Route path="/pages/niti-aayog-registration" element={<Navigate to="/services/ngo-darpan" replace />} />
+          <Route path="/pages/moa-amendment-section-8" element={<Navigate to="/services/moa-amendment" replace />} />
+          <Route path="/pages/trust-income-tax-return" element={<Navigate to="/services/itr-7-filing" replace />} />
+          <Route path="/pages/removal-of-director" element={<Navigate to="/services/director-removal" replace />} />
           <Route path="/pages/about-us" element={<AboutUs />} />
           <Route path="/pages/terms-conditions" element={<TermsConditions />} />
           <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />
@@ -456,6 +463,7 @@ function AppRoutesContent() {
           <Route path="/pages/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
           <Route path="/pages/indian-subsidiary-registration" element={<Navigate to="/services/indian-subsidiary" replace />} />
           <Route path="/pages/income-tax-audit" element={<Navigate to="/services/tax-audit" replace />} />
+          <Route path="/pages/:slug" element={<RedirectToService />} />
 
           {/* Shopify endpoints redirects */}
           <Route path="/account" element={<Navigate to="/dashboard" replace />} />

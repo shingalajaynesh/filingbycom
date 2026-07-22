@@ -8,7 +8,7 @@ export default function CompanyRegistrationGuidesPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="Company Registration Guides India | Pvt Ltd, LLP, OPC and More"
-        description="Compare business structures in India with FilingBy's company registration guides for Pvt Ltd, LLP, OPC, and proprietorship decisions."
+        description="Compare business entity types in India with FilingBy's incorporation guides. Make informed decisions between Private Limited, LLP, OPC, and Proprietorship."
         keywords="company registration guide India, private limited vs LLP, OPC registration, proprietorship guide"
         canonical="/company-registration-guides"
         extraSchemas={[

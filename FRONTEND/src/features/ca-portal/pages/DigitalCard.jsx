@@ -448,8 +448,8 @@ export default function DigitalCard() {
   return (
     <>
       <SEO
-        title="FilingBy.com Digital Business Card — Contact Info & Services"
-        description="Connect with FilingBy.com. Download our contact card (vCard), chat on WhatsApp, or view our legal & compliance services. We assist with GST, ITR, company incorporation, and virtual office addresses."
+        title="Digital Business Card & Contact Desk | FilingBy.com"
+        description="Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices."
         keywords="FilingBy business card, FilingBy contact details, CA services Surat, digital business card"
         canonical="/card"
         schema={{

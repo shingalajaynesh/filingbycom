@@ -9,7 +9,7 @@ export default function OurPromise() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="Our Promise — 100% Refund Guarantee & SLA | FilingBy"
-        description="Read about FilingBy's service commitment. We promise a 100% refund policy if registration fails, quick tax inspection support, and express 24-hour document dispatch."
+        description="Read FilingBy's service guarantee: 100% money-back refund if registration fails, express 24-hour document dispatch, and dedicated tax inspection support."
         keywords="FilingBy refund policy, virtual office SLA, tax inspection support, transparent CA pricing"
         canonical="/our-promise"
         schema={buildBreadcrumbSchema([

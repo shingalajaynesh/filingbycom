@@ -45,6 +45,16 @@
       "permanent": true
     },
     {
+      "source": "/pages",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/income-tax-return-filing",
+      "destination": "/services/itr-1-filing",
+      "permanent": true
+    },
+    {
       "source": "/pages/partnership-firm-return",
       "destination": "/services/partnership-firm",
       "permanent": true
@@ -242,6 +252,11 @@
     {
       "source": "/pages/removal-of-director",
       "destination": "/services/director-removal",
+      "permanent": true
+    },
+    {
+      "source": "/pages/:slug",
+      "destination": "/services/:slug",
       "permanent": true
     },
     {

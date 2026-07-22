@@ -31,7 +31,7 @@ export default function CustomerCare() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="FilingBy Customer Support & Helpline — 24/7 Compliance Desk"
-        description="Need help with your business registration or virtual office address? Get in touch with FilingBy's customer support center. Contact us via phone, email, or chat."
+        description="Contact FilingBy customer support for assistance with GST registration, company incorporation, tax filings, or virtual office addresses via phone, chat, or email."
         keywords="FilingBy customer support, contact FilingBy, virtual office help India, CA support email"
         canonical="/customer-care"
         schema={buildBreadcrumbSchema([

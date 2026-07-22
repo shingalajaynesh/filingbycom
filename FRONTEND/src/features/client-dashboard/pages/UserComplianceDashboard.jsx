@@ -27,7 +27,7 @@ export default function UserComplianceDashboard() {
     <main className="min-h-screen bg-slate-50 text-slate-900 py-10 px-4 sm:px-6 lg:px-8">
       <SEO
         title="Personalized Business Compliance Dashboard | FilingBy"
-        description="Monitor corporate filings, GST returns, and tax calendars in a single consolidated workspace dashboard."
+        description="Manage your corporate filings, GST return schedules, tax calendars, and compliance documents in your personalized FilingBy business management dashboard."
         canonical="/dashboard/compliance"
         extraSchemas={[
           buildBreadcrumbSchema([

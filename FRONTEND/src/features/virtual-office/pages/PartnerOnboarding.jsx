@@ -183,7 +183,7 @@ export default function PartnerOnboarding() {
     <div className="bg-gray-50 min-h-screen pb-16">
       <SEO
         title="Partner Onboarding — Monetize Commercial Properties | FilingBy"
-        description="Onboard your commercial space, coworking center, or vacant office as a FilingBy virtual office host. Monetize unused locations and generate steady passive yields."
+        description="Partner with FilingBy to monetize your commercial property or coworking space as a virtual office host. Earn recurring passive yields with zero hassle."
         keywords="coworking partner program, monetize commercial space, virtual office provider registration, passive real estate income India"
         canonical="/partner-onboarding"
         noindex

@@ -89,7 +89,7 @@ export default function Locations() {
     <div className="bg-gray-50 min-h-screen pb-20">
       <SEO
         title="Virtual Office Locations in India — All Major Cities | FilingBy"
-        description="Find virtual office locations across Delhi, Mumbai, Bangalore, Chennai, Hyderabad, Kolkata, Pune and 100+ cities in India. Premium business addresses for GST registration starting ₹999/month."
+        description="Explore FilingBy virtual office locations across 100+ Indian cities including Delhi, Mumbai, and Bangalore. Official GST registration addresses from ₹999/mo."
         keywords="virtual office locations India, virtual office cities India, virtual office Delhi Mumbai Bangalore, business address India"
         canonical="/locations"
         schema={buildBreadcrumbSchema([

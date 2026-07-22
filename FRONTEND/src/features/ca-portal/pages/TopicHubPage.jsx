@@ -76,7 +76,7 @@ export default function TopicHubPage() {
   return (
     <>
       <SEO
-        title={`${hubData.name} - Regulatory Procedures and Services | FilingBy`}
+        title={`${hubData.name} — Compliance Hub | FilingBy`}
         description={hubData.desc}
         canonical={`/hubs/${hubSlug}`}
         extraSchemas={[

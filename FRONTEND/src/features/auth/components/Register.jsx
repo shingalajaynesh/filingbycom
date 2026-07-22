@@ -163,7 +163,7 @@ export default function Register() {
   if (registrationPending) {
     return (
       <>
-        <SEO title="Sign Up | FilingBy.com" noindex={true} />
+        <SEO title="Create Business Account & Sign Up Online | FilingBy.com" description="Create a free FilingBy account to access expert online CA services, company registration tools, tax filing support, and virtual office addresses in India." noindex={true} />
         <PendingScreen />
       </>
     );
@@ -171,7 +171,7 @@ export default function Register() {
 
   return (
     <>
-      <SEO title="Sign Up | FilingBy.com" noindex={true} />
+        <SEO title="Create Business Account & Sign Up Online | FilingBy.com" description="Create a free FilingBy account to access expert online CA services, company registration tools, tax filing support, and virtual office addresses in India." noindex={true} />
       <m.main
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -203,7 +203,7 @@ export default function Register() {
             <div className="rounded-4xl border border-slate-300/80 bg-[#eef1f5]/90 p-5 shadow-[20px_30px_15px_rgba(15,23,42,0.3)] sm:p-8">
               <div className="mb-5 sm:mb-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 sm:text-sm">Sign up</p>
-                <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Create your account</h2>
+                <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Create your account</h1>
                 <p className="mt-2 text-sm leading-6 text-slate-600 sm:hidden">
                   {step === 3 ? "Verify your email." : "Register in two quick steps."}
                 </p>

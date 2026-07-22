@@ -59,7 +59,7 @@ export default function GstCalculatorPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="GST Calculator Online India | Inclusive and Exclusive GST Tool"
-        description="Use FilingBy's GST calculator to compute inclusive and exclusive GST amounts with instant CGST, SGST, and IGST breakup."
+        description="Calculate GST amounts online in India with FilingBy's free GST calculator. Compute inclusive and exclusive GST rates with CGST, SGST, and IGST breakdowns."
         keywords="GST calculator, GST inclusive calculator, GST exclusive calculator, CGST SGST IGST calculator"
         canonical="/gst-calculator"
         extraSchemas={[

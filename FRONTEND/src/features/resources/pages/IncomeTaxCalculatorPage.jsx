@@ -105,7 +105,7 @@ export default function IncomeTaxCalculatorPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="Income Tax Calculator India FY 2025-26 | Old vs New Regime"
-        description="Estimate your income tax under old and new regimes for FY 2025-26 with FilingBy's practical tax calculator for resident individuals."
+        description="Calculate your income tax for FY 2025-26 (AY 2026-27) under Old vs New tax regimes with FilingBy's free online Indian tax estimator for salaried and pros."
         keywords="income tax calculator India, old vs new regime calculator, FY 2025-26 tax calculator, ITR calculator"
         canonical="/income-tax-calculator"
         extraSchemas={[

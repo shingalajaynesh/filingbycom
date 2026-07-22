@@ -26,11 +26,11 @@ export default function DashboardOverview({ orders = [], setActiveTab, onOrderCl
       {/* 1. Welcome Banner */}
       <div className="bg-gradient-to-r from-[#1A56DB] to-[#1e40af] rounded-2xl p-5 sm:p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div className="space-y-1">
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex flex-wrap items-center gap-x-2">
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex flex-wrap items-center gap-x-2">
             <span>{greeting},</span>
             <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent">{userName}</span>
             <span>! 👋</span>
-          </h2>
+          </h1>
           <p className="text-xs sm:text-sm text-blue-100 font-medium">
             You have {pendingDocsCount} pending document {pendingDocsCount === 1 ? 'upload' : 'uploads'}.
           </p>

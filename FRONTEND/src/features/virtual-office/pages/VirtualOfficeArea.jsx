@@ -197,7 +197,7 @@ export default function VirtualOfficeArea() {
     <div className="bg-gray-50 min-h-screen pb-20">
       <SEO
         title={`Virtual Office in ${selectedArea.name}, ${cityName} | FilingBy`}
-        description={`Get NOC & bills for GST and Company registration at ${selectedArea.name}, ${cityName}. Direct representative support, premium interior photos, starting ₹${selectedArea.priceGST}/mo.`}
+        description={`Get a virtual office address at ${selectedArea.name}, ${cityName} for GST and company registration. Includes NOC, utility bills, and agreement starting ₹${selectedArea.priceGST}/mo.`}
         keywords={`virtual office ${areaSlug}, virtual office ${cityName}, GST address ${areaSlug}, VPOB ${cityName}`}
         canonical={`/virtual-office-${citySlug}/${areaSlug}`}
         schema={buildBreadcrumbSchema([

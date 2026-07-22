@@ -396,8 +396,17 @@ export default function ServicePage() {
   const faqs = mergeFaqs(serviceData.faqs || [], seoOverride?.faqs || []);
   const processSteps = serviceData.processSteps || [];
   const documentsRequired = serviceData.documentsRequired || [];
-  const seoTitle =
-    serviceData.seoTitle || seoOverride?.title || `${serviceData.name} Online India - Fast and Affordable | FilingBy`;
+  let seoTitle =
+    serviceData.seoTitle || seoOverride?.title || `${serviceData.name} Online India | FilingBy`;
+  if (seoTitle.length > 68) {
+    seoTitle = `${serviceData.name} Online | FilingBy`;
+  }
+  if (seoTitle.length > 68) {
+    seoTitle = `${serviceData.name} | FilingBy`;
+  }
+  if (seoTitle.length > 68) {
+    seoTitle = seoTitle.substring(0, 65).trim() + "...";
+  }
   let seoDescription =
     serviceData.seoDescription || seoOverride?.description || serviceData.description || "";
   if (!seoDescription) {

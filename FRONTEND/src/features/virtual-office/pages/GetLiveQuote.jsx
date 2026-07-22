@@ -221,7 +221,7 @@ export default function GetLiveQuote() {
     <div className="bg-gray-50 min-h-screen pb-16 flex items-center justify-center pt-24 px-4">
       <SEO
         title="Get a Live Virtual Office Quote — Instant Price Estimation | FilingBy"
-        description="Use our interactive virtual office quote calculator to get instant estimates for GST registration and company incorporation addresses in India."
+        description="Calculate instant pricing for virtual office addresses in India. Get live quotes for GST registration, company incorporation, and mailing services in seconds."
         keywords="virtual office pricing calculator, virtual office cost India, VPOB address cost estimation"
         canonical="/get-live-quote"
         schema={buildBreadcrumbSchema([

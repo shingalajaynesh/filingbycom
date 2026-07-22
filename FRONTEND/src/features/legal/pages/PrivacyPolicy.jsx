@@ -4,8 +4,8 @@ export default function PrivacyPolicy() {
   return (
     <div className="bg-gray-50 min-h-screen py-24 px-4">
       <SEO
-        title="Privacy Policy — FilingBy.com"
-        description="FilingBy.com Privacy Policy. Learn how we handle your KYC documents, transaction records, and ensure your data remains secure."
+        title="Privacy Policy & Data Security Standards | FilingBy.com"
+        description="Read FilingBy.com's Privacy Policy. Learn how we encrypt and protect your KYC documents, business records, and payment information with strict confidentiality."
         canonical="/default/privacy-policy"
         noindex={false}
       />

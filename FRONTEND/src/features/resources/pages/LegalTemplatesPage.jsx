@@ -8,7 +8,7 @@ export default function LegalTemplatesPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="Legal Templates and Agreements for Businesses | FilingBy"
-        description="Explore common legal templates and agreement categories for startups, founders, employers, and growing businesses."
+        description="Download customizable legal templates and business agreements in India. Access non-disclosure agreements, founder contracts, employment terms, and NDAs."
         keywords="legal templates India, NDA draft, employment agreement, shareholders agreement, legal notice draft"
         canonical="/legal-templates"
         extraSchemas={[
