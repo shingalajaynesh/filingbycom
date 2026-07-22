@@ -25,8 +25,8 @@ import {
 import { PortalPageShell, PortalCard } from '../components/PortalPageShell.jsx';
 
 const LEGACY_SERVICE_SLUG_MAP = {
-  "udyam-registration-msme": "/services/msme-registration",
-  "udyam-registration": "/services/msme-registration",
+  "msme-registration": "/services/udyam-registration",
+  "udyam-registration-msme": "/services/udyam-registration",
   "partnership-firm-return": "/services/partnership-firm",
   "income-tax": "/services/itr-1-filing",
   "income-tax-return": "/services/itr-1-filing",
@@ -404,7 +404,7 @@ export default function ServicePage() {
       suggestedUrl = "/services/gst-registration";
       suggestedLabel = "GST Registration";
     } else if (lowerSlug.includes("msme") || lowerSlug.includes("udyam")) {
-      suggestedUrl = "/services/msme-registration";
+      suggestedUrl = "/services/udyam-registration";
       suggestedLabel = "MSME Registration";
     } else if (lowerSlug.includes("itr") || lowerSlug.includes("tax") || lowerSlug.includes("income") || lowerSlug.includes("salary")) {
       suggestedUrl = "/services/itr-1-filing";

@@ -483,7 +483,8 @@ function AppRoutesContent() {
           <Route path="/collections/:slug" element={<RedirectToService />} />
 
           {/* Legacy service alias redirects */}
-          <Route path="/services/udyam-registration-msme" element={<Navigate to="/services/msme-registration" replace />} />
+          <Route path="/services/msme-registration" element={<Navigate to="/services/udyam-registration" replace />} />
+          <Route path="/services/udyam-registration-msme" element={<Navigate to="/services/udyam-registration" replace />} />
           <Route path="/services/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
 
           {/* Obsolete Shopify internal tracking/assets routes */}

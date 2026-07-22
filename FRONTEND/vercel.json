@@ -265,8 +265,13 @@
       "permanent": true
     },
     {
+      "source": "/services/msme-registration",
+      "destination": "/services/udyam-registration",
+      "permanent": true
+    },
+    {
       "source": "/services/udyam-registration-msme",
-      "destination": "/services/msme-registration",
+      "destination": "/services/udyam-registration",
       "permanent": true
     },
     {

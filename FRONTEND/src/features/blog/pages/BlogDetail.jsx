@@ -54,7 +54,7 @@ const categoryServiceMap = {
     { label: "LLP Registration", href: "/services/llp-registration" },
   ],
   MSME: [
-    { label: "MSME Registration", href: "/services/msme-registration" },
+    { label: "MSME Registration", href: "/services/udyam-registration" },
     { label: "GST Registration", href: "/services/gst-registration" },
   ],
   FSSAI: [
@@ -83,7 +83,8 @@ const serviceLinkMap = {
   "tax-audit": { label: "Tax Audit", href: "/services/tax-audit" },
   "virtual-office": { label: "Virtual Office", href: "/virtual-space" },
   "virtual-space": { label: "Virtual Office", href: "/virtual-space" },
-  "msme-registration": { label: "MSME Registration", href: "/services/msme-registration" },
+  "msme-registration": { label: "MSME Registration", href: "/services/udyam-registration" },
+  "udyam-registration": { label: "MSME Registration", href: "/services/udyam-registration" },
   "fssai-registration": { label: "FSSAI Registration", href: "/services/fssai-registration" },
   "iec-registration": { label: "IEC Registration", href: "/services/iec-registration" },
   "tds-return-filing": { label: "TDS Return Filing", href: "/services/tds-return-filing" },
@@ -121,7 +122,8 @@ function resolveResourceLabel(value) {
     "/services/tax-audit": "Tax Audit Support",
     "/services/fssai-registration": "FSSAI Registration Service",
     "/services/iec-registration": "IEC Registration Service",
-    "/services/msme-registration": "MSME Registration Service",
+    "/services/udyam-registration": "MSME / Udyam Registration Service",
+    "/services/msme-registration": "MSME / Udyam Registration Service",
     "/services/tds-return-filing": "TDS Return Filing Service",
   };
 
