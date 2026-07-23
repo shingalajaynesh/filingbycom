@@ -42,6 +42,11 @@ const STATIC_PAGES = [
   { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },
   { path: "default/refund", changefreq: "monthly", priority: "0.5" },
   { path: "default/privacy-policy", changefreq: "monthly", priority: "0.5" },
+  { path: "default/cookie-policy", changefreq: "monthly", priority: "0.5" },
+  { path: "default/disclaimer", changefreq: "monthly", priority: "0.5" },
+  { path: "default/editorial-policy", changefreq: "monthly", priority: "0.5" },
+  { path: "default/corrections-policy", changefreq: "monthly", priority: "0.5" },
+  { path: "editorial-team", changefreq: "monthly", priority: "0.6" },
 ];
 
 async function generate() {

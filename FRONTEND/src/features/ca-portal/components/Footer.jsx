@@ -156,11 +156,16 @@ export default function Footer() {
         {/* Bottom Line */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-blue-100/50">
           <p>© 2026 FilingBy.com. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
             {[
               { label: 'Privacy Policy', path: '/default/privacy-policy' },
+              { label: 'Cookie Policy', path: '/default/cookie-policy' },
               { label: 'Terms of Service', path: '/terms-conditions' },
               { label: 'Refund Policy', path: '/default/refund' },
+              { label: 'Disclaimer', path: '/default/disclaimer' },
+              { label: 'Editorial Policy', path: '/default/editorial-policy' },
+              { label: 'Corrections Policy', path: '/default/corrections-policy' },
+              { label: 'Editorial Team', path: '/editorial-team' },
             ].map((policy) => (
               <button
                 key={policy.label}

@@ -262,6 +262,46 @@ const STATIC_PAGES = [
     keywords: "contact FilingBy, FilingBy phone number, GST registration support, CA portal help, corporate address support",
     h1: "Contact Us",
     content: "<p>Need guidance with business registration, CA consultations, or virtual offices? Contact our dedicated compliance support desk for instant help over phone calls, email, or WhatsApp chat.</p>"
+  },
+  {
+    path: "default/cookie-policy",
+    title: "Cookie Policy & Tracking Preferences | FilingBy.com",
+    description: "Learn how FilingBy.com uses cookies, advertising identifiers, analytical tools, and consent settings to ensure secure browsing and personalized compliance experiences.",
+    keywords: "cookie policy, cookies filingby, advertising cookies, consent management",
+    h1: "Cookie Policy",
+    content: "<p>This Cookie Policy explains how FilingBy.com uses cookies, web beacons, Google AdSense cookies, and consent controls to manage user sessions, analytics, and monetization.</p>"
+  },
+  {
+    path: "default/disclaimer",
+    title: "Legal & Tax Disclaimer | FilingBy.com",
+    description: "FilingBy.com legal disclaimer. Important information regarding professional CA/CS assistance, general informational content, government filings, and legal limitations.",
+    keywords: "legal disclaimer, tax disclaimer, filingby disclaimer, professional advisory limits",
+    h1: "Legal & Tax Disclaimer",
+    content: "<p>Content published on FilingBy.com is provided for general informational and educational purposes only and does not constitute formal legal, tax, or financial advice.</p>"
+  },
+  {
+    path: "default/editorial-policy",
+    title: "Editorial Policy & Fact-Checking Standards | FilingBy.com",
+    description: "FilingBy editorial policy. Learn how our editorial desk researches, fact-checks, updates, and reviews business compliance guides, tax filing articles, and legal resources.",
+    keywords: "editorial policy, fact checking, editorial standards, compliance research",
+    h1: "Editorial Policy",
+    content: "<p>At FilingBy.com, our editorial desk researches business compliance guides using primary government sources, statutory MCA/GST circulars, and human expert verification.</p>"
+  },
+  {
+    path: "default/corrections-policy",
+    title: "Corrections & Fact-Checking Policy | FilingBy.com",
+    description: "FilingBy corrections policy. Learn how we handle factual updates, regulatory changes, reader feedback, and corrections across our business compliance knowledge hub.",
+    keywords: "corrections policy, fact checking updates, regulatory updates filingby",
+    h1: "Corrections & Updates Policy",
+    content: "<p>FilingBy.com is committed to maintaining factual accuracy across all published articles, statutory calculators, and business guides.</p>"
+  },
+  {
+    path: "editorial-team",
+    title: "Editorial Team & Compliance Reviewers | FilingBy.com",
+    description: "Meet the FilingBy Editorial Desk and Content Team behind our Indian business compliance guides, tax filing instructions, and virtual office guides.",
+    keywords: "editorial team, filingby authors, compliance reviewers, editorial desk",
+    h1: "FilingBy Editorial Desk & Content Team",
+    content: "<p>Learn about the FilingBy Editorial Desk and Content Team responsible for researching, reviewing, and updating statutory compliance content across India.</p>"
   }
 ];
 

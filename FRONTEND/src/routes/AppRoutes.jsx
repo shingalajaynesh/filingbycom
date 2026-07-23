@@ -66,6 +66,12 @@ const TermsConditions = lazy(() => import("../features/legal/pages/TermsConditio
 const RefundPolicy    = lazy(() => import("../features/legal/pages/RefundPolicy"));
 const PrivacyPolicy   = lazy(() => import("../features/legal/pages/PrivacyPolicy"));
 const ContactUs       = lazy(() => import("../features/legal/pages/ContactUs"));
+const CookiePolicy    = lazy(() => import("../features/legal/pages/CookiePolicy"));
+const Disclaimer      = lazy(() => import("../features/legal/pages/Disclaimer"));
+const EditorialPolicy = lazy(() => import("../features/legal/pages/EditorialPolicy"));
+const CorrectionsPolicy = lazy(() => import("../features/legal/pages/CorrectionsPolicy"));
+const EditorialTeam   = lazy(() => import("../features/legal/pages/EditorialTeam"));
+import CookieConsentBanner from "../shared/components/CookieConsentBanner";
 
 // ── Shared Data Context ──
 import { SharedDataProvider } from "../shared/context/SharedDataContext";
@@ -433,6 +439,7 @@ function AppRoutesContent() {
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}
       {!isAdminRoute && <DeferredAIAssistant />}
+      {!isAdminRoute && <CookieConsentBanner />}
       
       <Suspense fallback={<RouteLoader />}>
         <Routes>
@@ -540,6 +547,11 @@ function AppRoutesContent() {
           <Route path="/terms-conditions" element={<TermsConditions />} />
           <Route path="/default/refund" element={<RefundPolicy />} />
           <Route path="/default/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/default/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/default/disclaimer" element={<Disclaimer />} />
+          <Route path="/default/editorial-policy" element={<EditorialPolicy />} />
+          <Route path="/default/corrections-policy" element={<CorrectionsPolicy />} />
+          <Route path="/editorial-team" element={<EditorialTeam />} />
           
           <Route
             path="/dashboard"
