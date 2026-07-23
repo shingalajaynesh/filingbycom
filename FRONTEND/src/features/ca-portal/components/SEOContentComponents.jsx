@@ -203,19 +203,21 @@ export function RelatedServices({ services, currentCategory, currentSlug }) {
 }
 
 export function RelatedBlogs({ currentCategory }) {
+  const categoryLabel = currentCategory || "compliance";
   return (
     <div className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8 mt-6">
       <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">Latest Guides & Updates</h3>
       <div className="mt-4">
         <Link
           to="/blog"
+          aria-label={`Explore FilingBy Knowledge Hub guides for ${categoryLabel}`}
           className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50 p-4 hover:border-blue-500 hover:bg-blue-50/10 transition-all group"
         >
           <div>
             <span className="block text-xs font-bold text-slate-700 group-hover:text-blue-600">FilingBy Knowledge Hub</span>
-            <span className="block text-[10px] text-slate-400 mt-1">Read expert legal and tax guides on {currentCategory || "compliance"}</span>
+            <span className="block text-[10px] text-slate-400 mt-1">Read expert legal and tax guides on {categoryLabel}</span>
           </div>
-          <span className="text-xs font-black text-[#1A56DB]">Visit Blog</span>
+          <span className="text-xs font-black text-[#1A56DB]">Explore guides</span>
         </Link>
       </div>
     </div>

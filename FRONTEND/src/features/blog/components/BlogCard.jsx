@@ -50,7 +50,7 @@ export default function BlogCard({ post, featured = false }) {
         {image ? (
           <img
             src={optimizeCloudinaryUrl(image)}
-            alt={title}
+            alt={title || "FilingBy business compliance guide"}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
@@ -90,7 +90,7 @@ export default function BlogCard({ post, featured = false }) {
             featured ? "text-[2rem] sm:text-[2.15rem]" : "text-xl"
           }`}
         >
-          <Link to={`/blog/${slug}`}>{title}</Link>
+          <Link to={`/blog/${slug}`} aria-label={`Read guide: ${title}`}>{title}</Link>
         </h3>
 
         <p className={`mt-3 text-gray-600 ${featured ? "text-sm leading-6" : "text-sm leading-6"}`}>{excerpt}</p>
@@ -107,9 +107,10 @@ export default function BlogCard({ post, featured = false }) {
                 to={`/blog/${slug}`}
                 onMouseEnter={handlePrefetch}
                 onFocus={handlePrefetch}
+                aria-label={`Read article: ${title}`}
                 className="inline-flex items-center gap-2 text-sm font-bold text-[#1A56DB] transition-all group-hover:gap-3"
               >
-                Read more
+                Read guide
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />

@@ -38,6 +38,7 @@ const STATIC_PAGES = [
   { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
   { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
   { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
+  { path: "services/pan-card", changefreq: "weekly", priority: "0.9" },
   { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },
   { path: "default/refund", changefreq: "monthly", priority: "0.5" },
   { path: "default/privacy-policy", changefreq: "monthly", priority: "0.5" },

@@ -29,11 +29,12 @@ export default function SEO({
   const siteUrl = "https://www.filingby.com";
   const rawPath = canonical !== undefined
     ? canonical
-    : (typeof window !== "undefined" ? `${window.location.pathname}${window.location.search}` : "");
-  const path = typeof rawPath === "string" ? rawPath.trim() : "";
-  const canonicalUrl = path
-    ? (path.startsWith("http://") || path.startsWith("https://") ? path : `${siteUrl}${path.startsWith("/") ? "" : "/"}${path}`)
-    : null;
+    : (typeof window !== "undefined" ? window.location.pathname : "");
+  const path = typeof rawPath === "string" ? rawPath.split("?")[0].trim() : "";
+  const cleanPath = path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
+  const canonicalUrl = cleanPath
+    ? (cleanPath.startsWith("http://") || cleanPath.startsWith("https://") ? cleanPath : `${siteUrl}${cleanPath.startsWith("/") ? "" : "/"}${cleanPath}`)
+    : siteUrl;
 
   const hasMeta = Boolean(title || description);
   let resolvedTitle = title ? title.trim() : "";
@@ -57,7 +58,7 @@ export default function SEO({
       {hasMeta && <meta name="theme-color" content="#1A56DB" />}
 
       {/* Robots Indexing Control */}
-      {hasMeta && (noindex ? (
+      {noindex ? (
         <>
           <meta name="robots" content="noindex, nofollow" />
           <meta name="googlebot" content="noindex, nofollow" />
@@ -67,7 +68,7 @@ export default function SEO({
           <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
           <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         </>
-      ))}
+      )}
 
       {/* Canonical Tag */}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
