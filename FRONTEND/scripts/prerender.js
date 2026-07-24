@@ -302,6 +302,22 @@ const STATIC_PAGES = [
     keywords: "editorial team, filingby authors, compliance reviewers, editorial desk",
     h1: "FilingBy Editorial Desk & Content Team",
     content: "<p>Learn about the FilingBy Editorial Desk and Content Team responsible for researching, reviewing, and updating statutory compliance content across India.</p>"
+  },
+  {
+    path: "card",
+    title: "Digital Business Card & Contact Desk | FilingBy.com",
+    description: "Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices.",
+    keywords: "FilingBy business card, FilingBy contact details, CA services Surat, digital business card",
+    h1: "FilingBy Digital Business Card",
+    content: "<p>FilingBy.com digital business card and contact desk. Connect with our chartered accountants, download vCard details, and access online tax and compliance services.</p>"
+  },
+  {
+    path: "digital-card",
+    title: "Digital Business Card & Contact Desk | FilingBy.com",
+    description: "Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices.",
+    keywords: "FilingBy business card, FilingBy contact details, CA services Surat, digital business card",
+    h1: "FilingBy Digital Business Card",
+    content: "<p>FilingBy.com digital business card and contact desk. Connect with our chartered accountants, download vCard details, and access online tax and compliance services.</p>"
   }
 ];
 
