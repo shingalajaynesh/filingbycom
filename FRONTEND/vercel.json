@@ -345,6 +345,26 @@
       "permanent": true
     },
     {
+      "source": "/contact",
+      "destination": "/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/digital-card",
+      "destination": "/card",
+      "permanent": true
+    },
+    {
+      "source": "/templates",
+      "destination": "/legal-templates",
+      "permanent": true
+    },
+    {
+      "source": "/virtual-office-ecommerce",
+      "destination": "/ecommerce-office",
+      "permanent": true
+    },
+    {
       "source": "/\\${t}",
       "destination": "/",
       "permanent": true

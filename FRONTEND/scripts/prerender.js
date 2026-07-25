@@ -318,7 +318,28 @@ const STATIC_PAGES = [
     keywords: "FilingBy business card, FilingBy contact details, CA services Surat, digital business card",
     h1: "FilingBy Digital Business Card",
     content: "<p>FilingBy.com digital business card and contact desk. Connect with our chartered accountants, download vCard details, and access online tax and compliance services.</p>"
+  },
+  {
+    path: "partner-onboarding",
+    title: "Partner Onboarding — Become a Workspace Provider | FilingBy.com",
+    description: "List your commercial office space or virtual location on FilingBy. Join India's leading compliance and virtual address provider network.",
+    keywords: "partner onboarding, list virtual office, property partner india, workspace partner",
+    h1: "Become a FilingBy Partner",
+    content: "<p>List your commercial property, office spaces, or corporate address network on FilingBy. Connect with thousands of startups and businesses across India looking for verified virtual offices and business registrations.</p>"
   }
+];
+
+const NOINDEX_PAGES = [
+  { path: "login", title: "Log In | FilingBy.com" },
+  { path: "register", title: "Register | FilingBy.com" },
+  { path: "dashboard", title: "Client Dashboard | FilingBy.com" },
+  { path: "dashboard/compliance", title: "User Compliance Dashboard | FilingBy.com" },
+  { path: "virtual-office/dashboard", title: "Virtual Office Dashboard | FilingBy.com" },
+  { path: "partner/dashboard", title: "Partner Dashboard | FilingBy.com" },
+  { path: "admin", title: "Admin Portal | FilingBy.com" },
+  { path: "admin/dashboard", title: "Admin Control Room | FilingBy.com" },
+  { path: "sso-callback", title: "SSO Callback | FilingBy.com" },
+  { path: "404", title: "404 Page Not Found | FilingBy.com" }
 ];
 
 const SERVICE_SEO_OVERRIDES = {
@@ -380,13 +401,6 @@ const SERVICE_SEO_OVERRIDES = {
   }
 };
 
-const NOINDEX_PAGES = [
-  { path: "login", title: "Log In | FilingBy.com" },
-  { path: "register", title: "Register | FilingBy.com" },
-  { path: "dashboard", title: "Client Dashboard | FilingBy.com" },
-  { path: "virtual-office/dashboard", title: "Virtual Office Dashboard | FilingBy.com" },
-  { path: "partner/dashboard", title: "Partner Dashboard | FilingBy.com" }
-];
 
 // Helper to sanitize HTML file creation
 function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, pageSchema, pageContent, initialData = null) {
@@ -504,6 +518,9 @@ async function prerender() {
     console.log(`Prerendering ${NOINDEX_PAGES.length} noindex pages...`);
     for (const page of NOINDEX_PAGES) {
       writeNoIndexHtmlPage(page.path, page.title);
+    }
+    if (fs.existsSync(join(distDir, "404/index.html"))) {
+      fs.copyFileSync(join(distDir, "404/index.html"), join(distDir, "404.html"));
     }
 
     const staticUrls = [
