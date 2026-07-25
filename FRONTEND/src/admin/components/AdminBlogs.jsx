@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../shared/utils/cloudinary";
 
 const API_BASE = (
   import.meta.env.VITE_API_URL || 
@@ -251,9 +252,9 @@ export default function AdminBlogs() {
                 <tr key={post._id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 max-w-md">
                     <div className="flex items-center gap-3">
-                      {post.image ? (
+                      {isValidImageUrl(post.image) ? (
                         <img
-                          src={post.image}
+                          src={optimizeCloudinaryUrl(post.image)}
                           alt={post.title}
                           className="w-12 h-12 rounded-lg object-cover bg-gray-50 border border-gray-100 flex-shrink-0"
                         />
@@ -412,10 +413,10 @@ export default function AdminBlogs() {
                   <label className="block text-xs font-bold text-gray-750 uppercase">Cover Image</label>
                   <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                     <div className="relative w-full sm:w-48 h-28 border border-dashed border-gray-350 rounded-xl overflow-hidden flex items-center justify-center bg-gray-50 group">
-                      {formData.image ? (
+                      {isValidImageUrl(formData.image) ? (
                         <>
                           <img
-                            src={formData.image}
+                            src={optimizeCloudinaryUrl(formData.image)}
                             alt="Cover preview"
                             className="w-full h-full object-cover"
                           />

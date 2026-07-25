@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../shared/utils/cloudinary";
 
 export default function AdminSettings({ portal }) {
   const { fetchAdminSettings, updateSettings, uploadImage } = useAdminContext();
@@ -433,7 +434,9 @@ export default function AdminSettings({ portal }) {
               (portal === "ca-portal" ? settings.ca_client_logos : settings.vs_client_logos).map((logo) => (
                 <div key={logo.id} className="relative group bg-white border border-gray-200 p-3 rounded-lg flex flex-col items-center justify-center gap-2 hover:shadow-sm transition-all h-28">
                   <div className="h-10 flex items-center justify-center w-full">
-                    <img src={logo.imageUrl} alt={logo.name} className="h-full object-contain max-w-[120px]" />
+                    {isValidImageUrl(logo.imageUrl) && (
+                      <img src={optimizeCloudinaryUrl(logo.imageUrl)} alt={logo.name} className="h-full object-contain max-w-[120px]" />
+                    )}
                   </div>
                   <span className="text-[10px] font-bold text-gray-700 text-center truncate w-full">{logo.name}</span>
                   <button
@@ -482,11 +485,11 @@ export default function AdminSettings({ portal }) {
               </div>
             </div>
 
-            {newLogo.imageUrl && (
+            {isValidImageUrl(newLogo.imageUrl) && (
               <div className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-150 w-fit">
                 <span className="text-[9px] font-bold text-gray-400 uppercase">Uploaded Preview:</span>
                 <div className="h-8 max-w-[120px] flex items-center justify-center">
-                  <img src={newLogo.imageUrl} alt="Preview" className="h-full object-contain" />
+                  <img src={optimizeCloudinaryUrl(newLogo.imageUrl)} alt="Preview" className="h-full object-contain" />
                 </div>
               </div>
             )}
@@ -517,7 +520,9 @@ export default function AdminSettings({ portal }) {
               (portal === "ca-portal" ? settings.ca_office_photos : settings.vs_office_photos).map((photo) => (
                 <div key={photo.id} className="relative group bg-white border border-gray-200 p-2 rounded-lg flex flex-col items-center justify-center gap-2 hover:shadow-sm transition-all h-36">
                   <div className="h-20 flex items-center justify-center w-full overflow-hidden rounded-md">
-                    <img src={photo.imageUrl} alt={photo.name} className="h-full w-full object-cover" />
+                    {isValidImageUrl(photo.imageUrl) && (
+                      <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name} className="h-full w-full object-cover" />
+                    )}
                   </div>
                   <span className="text-[10px] font-bold text-gray-700 text-center truncate w-full px-1">{photo.name}</span>
                   <button
@@ -566,11 +571,11 @@ export default function AdminSettings({ portal }) {
               </div>
             </div>
 
-            {newPhoto.imageUrl && (
+            {isValidImageUrl(newPhoto.imageUrl) && (
               <div className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-150 w-fit">
                 <span className="text-[9px] font-bold text-gray-400 uppercase">Uploaded Preview:</span>
                 <div className="h-16 w-24 overflow-hidden rounded-md flex items-center justify-center">
-                  <img src={newPhoto.imageUrl} alt="Preview" className="h-full w-full object-cover" />
+                  <img src={optimizeCloudinaryUrl(newPhoto.imageUrl)} alt="Preview" className="h-full w-full object-cover" />
                 </div>
               </div>
             )}

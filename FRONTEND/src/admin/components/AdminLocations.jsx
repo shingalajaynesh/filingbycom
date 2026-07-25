@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import toast from "react-hot-toast";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../shared/utils/cloudinary";
 
 export default function AdminLocations() {
   const [locations, setLocations] = useState([]);
@@ -411,8 +412,8 @@ export default function AdminLocations() {
                   <tr key={loc._id} className="hover:bg-gray-50 transition-colors">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
-                        {loc.image && (
-                          <img src={loc.image} alt={loc.name} className="w-10 h-10 object-cover rounded-lg bg-gray-50 flex-shrink-0" />
+                        {isValidImageUrl(loc.image) && (
+                          <img src={optimizeCloudinaryUrl(loc.image)} alt={loc.name} className="w-10 h-10 object-cover rounded-lg bg-gray-50 flex-shrink-0" />
                         )}
                         <div>
                           <span className="font-extrabold text-sm text-gray-900 block">{loc.name}</span>
@@ -559,7 +560,7 @@ export default function AdminLocations() {
                   <div className="md:col-span-2">
                     <label className="text-[10px] font-black text-gray-500 uppercase block mb-1">Cover Image</label>
                     <div className="flex gap-2 items-center">
-                      {formData.image && <img src={formData.image} alt="Cover" className="h-10 w-10 object-cover rounded" />}
+                      {isValidImageUrl(formData.image) && <img src={optimizeCloudinaryUrl(formData.image)} alt="Cover" className="h-10 w-10 object-cover rounded" />}
                       <input
                         type="file"
                         accept="image/*"
@@ -854,7 +855,7 @@ export default function AdminLocations() {
                 <div>
                   <label className="text-[9px] font-black text-gray-500 uppercase block mb-1">Center Cover Image</label>
                   <div className="flex gap-2 items-center">
-                    {addressData.image && <img src={addressData.image} alt="Cover" className="h-10 w-10 object-cover rounded" />}
+                    {isValidImageUrl(addressData.image) && <img src={optimizeCloudinaryUrl(addressData.image)} alt="Cover" className="h-10 w-10 object-cover rounded" />}
                     <input
                       type="file"
                       accept="image/*"

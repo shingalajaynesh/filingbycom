@@ -6,6 +6,7 @@ import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext";
 import { useUserContext } from "../../../shared/context/UserContext.jsx";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 const API_BASE_CLEANED = (
   import.meta.env.VITE_API_URL || 
@@ -243,7 +244,9 @@ export default function PartnerOnboarding() {
               <div className="grid grid-cols-2 gap-2">
                 {formData.images.map((img, idx) => (
                   <div key={idx} className="w-full h-24 rounded-lg overflow-hidden bg-gray-100 relative border border-gray-100 hover:scale-[1.02] transition-transform">
-                    <img src={img} alt={`Preview ${idx + 1}`} className="w-full h-full object-cover" />
+                    {isValidImageUrl(img) && (
+                      <img src={optimizeCloudinaryUrl(img)} alt={`Preview ${idx + 1}`} className="w-full h-full object-cover" />
+                    )}
                   </div>
                 ))}
               </div>
@@ -474,7 +477,9 @@ export default function PartnerOnboarding() {
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
                         {formData.images.map((imgUrl, index) => (
                           <div key={index} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-150 border border-gray-200">
-                            <img src={imgUrl} alt={`Workspace ${index + 1}`} className="w-full h-full object-cover" />
+                            {isValidImageUrl(imgUrl) && (
+                              <img src={optimizeCloudinaryUrl(imgUrl)} alt={`Workspace ${index + 1}`} className="w-full h-full object-cover" />
+                            )}
                             <button
                               type="button"
                               onClick={() => {

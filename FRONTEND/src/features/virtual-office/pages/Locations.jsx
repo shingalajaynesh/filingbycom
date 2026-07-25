@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 export default function Locations() {
   const { locations, settings } = useSharedData();
@@ -164,9 +165,9 @@ export default function Locations() {
                     <div>
                       {/* Image block */}
                       <div className="relative h-56 overflow-hidden bg-gray-100 flex items-center justify-center">
-                        {city.image ? (
+                        {isValidImageUrl(city.image) ? (
                           <img 
-                            src={city.image} 
+                            src={optimizeCloudinaryUrl(city.image)} 
                             alt={`Virtual Office in ${city.name}`} 
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
                           />
@@ -236,9 +237,9 @@ export default function Locations() {
                       <div>
                         {/* Image block */}
                         <div className="relative h-56 overflow-hidden bg-gray-100 flex items-center justify-center">
-                          {city.image ? (
+                          {isValidImageUrl(city.image) ? (
                             <img 
-                              src={city.image} 
+                              src={optimizeCloudinaryUrl(city.image)} 
                               alt={`Virtual Office in ${city.name}`} 
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750" 
                             />

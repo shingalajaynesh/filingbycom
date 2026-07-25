@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useAdminContext } from "../../shared/context/AdminContext";
 import { handleFrontendError } from "../../shared/utils/errorHandler";
+import { isValidImageUrl, optimizeCloudinaryUrl } from "../../shared/utils/cloudinary";
 
 const API_BASE_CLEANED = (
   import.meta.env.VITE_API_URL || 
@@ -365,10 +366,10 @@ export default function PartnersTable() {
                   <td className="px-6 py-4">
                     <div className="flex gap-3.5 items-start">
                       <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-200 shadow-sm relative">
-                        {item.images && item.images.length > 0 ? (
-                          <img src={item.images[0]} alt="Workspace" className="w-full h-full object-cover" />
-                        ) : item.image ? (
-                          <img src={item.image} alt="Workspace" className="w-full h-full object-cover" />
+                        {isValidImageUrl(item.images?.[0]) ? (
+                          <img src={optimizeCloudinaryUrl(item.images[0])} alt="Workspace" className="w-full h-full object-cover" />
+                        ) : isValidImageUrl(item.image) ? (
+                          <img src={optimizeCloudinaryUrl(item.image)} alt="Workspace" className="w-full h-full object-cover" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-xs font-bold text-gray-400">No Image</div>
                         )}
@@ -788,7 +789,11 @@ export default function PartnersTable() {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200">
                     {editForm.images.map((url, idx) => (
                       <div key={idx} className="relative group aspect-square rounded-lg overflow-hidden border border-gray-250">
-                        <img src={url} alt={`Workspace img ${idx + 1}`} className="w-full h-full object-cover" />
+                        {isValidImageUrl(url) ? (
+                          <img src={optimizeCloudinaryUrl(url)} alt={`Workspace img ${idx + 1}`} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-xs font-bold text-gray-400">Invalid</div>
+                        )}
                         <button
                           type="button"
                           onClick={() => {
