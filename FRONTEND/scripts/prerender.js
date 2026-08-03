@@ -330,6 +330,10 @@ const STATIC_PAGES = [
 ];
 
 const NOINDEX_PAGES = [
+  { path: "get-live-quote", title: "Get a Live Quote | FilingBy.com" },
+  { path: "partner-onboarding", title: "Partner Onboarding | FilingBy.com" },
+  { path: "card", title: "Digital Business Card | FilingBy.com" },
+  { path: "digital-card", title: "Digital Business Card | FilingBy.com" },
   { path: "login", title: "Log In | FilingBy.com" },
   { path: "register", title: "Register | FilingBy.com" },
   { path: "dashboard", title: "Client Dashboard | FilingBy.com" },
@@ -341,6 +345,8 @@ const NOINDEX_PAGES = [
   { path: "sso-callback", title: "SSO Callback | FilingBy.com" },
   { path: "404", title: "404 Page Not Found | FilingBy.com" }
 ];
+
+const NOINDEX_ROUTE_PATHS = new Set(NOINDEX_PAGES.map((page) => page.path));
 
 const SERVICE_SEO_OVERRIDES = {
   "trust-registration": {
@@ -540,7 +546,7 @@ async function prerender() {
       { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
       { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
       { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
-    ];
+    ].filter((page) => !NOINDEX_ROUTE_PATHS.has(page.path));
 
     if (!process.env.MONGODB_URI) {
       console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and sitemap generation.");

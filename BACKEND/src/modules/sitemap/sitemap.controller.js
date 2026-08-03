@@ -11,7 +11,6 @@ const STATIC_PAGES = [
   "our-promise",
   "customer-care",
   "faq",
-  "get-live-quote",
   "blog",
   "gst-calculator",
   "income-tax-calculator",

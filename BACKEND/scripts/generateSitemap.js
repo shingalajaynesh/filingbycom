@@ -30,7 +30,6 @@ const STATIC_PAGES = [
   { path: "customer-care", changefreq: "monthly", priority: "0.8" },
   { path: "contact-us", changefreq: "monthly", priority: "0.8" },
   { path: "faq", changefreq: "weekly", priority: "0.8" },
-  { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
   { path: "blog", changefreq: "daily", priority: "0.8" },
   { path: "gst-calculator", changefreq: "weekly", priority: "0.9" },
   { path: "income-tax-calculator", changefreq: "weekly", priority: "0.9" },

@@ -5,19 +5,20 @@ Use this checklist prior to requesting Google AdSense review in your Google AdSe
 ---
 
 ## 1. Technical & Verification Setup
-- [x] **AdSense Verification Script**: Active in production `<head>` (`<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6303291083449043" crossorigin="anonymous"></script>`).
-- [x] **Publisher ID Verification**: Matches `ca-pub-6303291083449043` across `index.html`, `AdSenseBlock.jsx`, and `ads.txt`.
+- [x] **AdSense Ownership Verification Tag**: Active in production `<head>` (`<meta name="google-adsense-account" content="ca-pub-6303291083449043" />`).
+- [x] **No Auto-Ads Global Script Injection**: Global `adsbygoogle.js` omitted from `<head>` to prevent Auto Ads from injecting ads into calculators, forms, city directories, header, footer, or utility pages.
+- [x] **Publisher ID Verification**: Matches `ca-pub-6303291083449043` across `index.html` and `ads.txt`.
 - [x] **ads.txt Validation**: Returns HTTP 200 at `https://www.filingby.com/ads.txt` in plain text with no HTML shell or BOM.
 - [x] **robots.txt Access**: Explicitly allows `Googlebot` and `Mediapartners-Google` without blocking ad crawlers.
-- [x] **Sitemap Integrity**: `https://www.filingby.com/sitemap.xml` contains canonical indexable URLs only, excluding login, register, admin, and dashboards.
+- [x] **Sitemap Integrity**: `https://www.filingby.com/sitemap.xml` contains canonical indexable URLs only, excluding login, register, admin, quote tools, and dashboards.
 - [x] **HTTPS & Canonicals**: Clean 301 redirects from HTTP to HTTPS and non-www `filingby.com` to `www.filingby.com`.
 
 ---
 
-## 2. Monetization Route Scoping
-- [x] **Route Allowlist Implemented**: `isAdSenseEligibleRoute(pathname)` restricts Google ads strictly to `/blog` and `/blog/*`.
-- [x] **Protected Routes Monitored**: Zero ads displayed on login, register, password reset, client dashboards, admin portals, quote tools, or payment forms.
-- [x] **No Empty Ad Units**: Placeholder boxes and empty ad containers are hidden prior to official approval.
+## 2. Monetization Route Scoping & Publisher Content Guards
+- [x] **Review-Mode Monetization Disabled**: `AdSenseBlock.jsx` and `AdSenseController.jsx` are no-op shims during review, and no AdSense component is mounted in the active app tree.
+- [x] **No Google-Served Ads Anywhere During Review**: Zero Google ad requests display on homepage, blog, calculators, quote generator (`/get-live-quote`), digital card (`/card`), location directories, legal documents, login, register, client dashboards, or admin portals.
+- [x] **Article Content Preserved**: Blog article pages remain long-form, source-backed publisher content, but without Google ad placements until site approval is granted.
 
 ---
 

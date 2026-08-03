@@ -224,6 +224,7 @@ export default function GetLiveQuote() {
         description="Calculate instant pricing for virtual office addresses in India. Get live quotes for GST registration, company incorporation, and mailing services in seconds."
         keywords="virtual office pricing calculator, virtual office cost India, VPOB address cost estimation"
         canonical="/get-live-quote"
+        noindex
         schema={buildBreadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Virtual Office", url: "/virtual-space" },

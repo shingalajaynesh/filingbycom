@@ -452,6 +452,7 @@ export default function DigitalCard() {
         description="Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices."
         keywords="FilingBy business card, FilingBy contact details, CA services Surat, digital business card"
         canonical="/card"
+        noindex
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",

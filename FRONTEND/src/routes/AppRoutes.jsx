@@ -80,7 +80,6 @@ import { OrderProvider } from "../shared/context/OrderContext";
 import { AdminProvider } from "../shared/context/AdminContext";
 import SEO from "../shared/components/SEO";
 import ScrollToTop from "../shared/components/ScrollToTop";
-import AdSenseController from "../shared/components/AdSenseController";
 import { orgSchema, websiteSchema } from "../shared/seo/schemas";
 import { PortalCard, PortalPageShell } from "../features/ca-portal/components/PortalPageShell";
 
@@ -204,6 +203,15 @@ function NoIndexRoute({ title, description, children }) {
   );
 }
 
+function NoIndexRedirect({ to }) {
+  return (
+    <>
+      <SEO title="Redirecting | FilingBy.com" description="This FilingBy page has moved to a current resource." noindex />
+      <Navigate to={to} replace />
+    </>
+  );
+}
+
 // ── ROUTE LOADER ────────────────────────────────────────────────────────────
 function RouteLoader() {
   return (
@@ -269,7 +277,7 @@ function GlobalDynamicRouter() {
 // Helper to redirect legacy Shopify product URLs dynamically to services
 function RedirectToService() {
   const { slug } = useParams();
-  return <Navigate to={`/services/${slug}`} replace />;
+  return <NoIndexRedirect to={`/services/${slug}`} />;
 }
 
 const LEGACY_BLOG_REDIRECTS = {
@@ -293,7 +301,7 @@ function RedirectLegacyBlog() {
     return <BlogDetail />;
   }
 
-  return <Navigate to={destination} replace />;
+  return <NoIndexRedirect to={destination} />;
 }
 
 /**
@@ -433,7 +441,6 @@ function AppRoutesContent() {
 
   return (
     <LazyMotion features={domAnimation} strict>
-      <AdSenseController />
       <SEO schema={orgSchema} extraSchemas={[websiteSchema]} />
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
@@ -444,66 +451,66 @@ function AppRoutesContent() {
       <Suspense fallback={<RouteLoader />}>
         <Routes>
           {/* Legacy Shopify page redirects */}
-          <Route path="/pages" element={<Navigate to="/" replace />} />
-          <Route path="/pages/income-tax-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
-          <Route path="/pages/csr-audit" element={<Navigate to="/services/csr-registration" replace />} />
-          <Route path="/pages/trust-compliance" element={<Navigate to="/services/trust-registration" replace />} />
-          <Route path="/pages/trust-audit" element={<Navigate to="/services/trust-registration" replace />} />
-          <Route path="/pages/moa-amendment-public-private-limited" element={<Navigate to="/services/moa-amendment" replace />} />
-          <Route path="/pages/pan-card" element={<Navigate to="/services/pan-card" replace />} />
-          <Route path="/pages/private-limited-company-winding-up" element={<Navigate to="/services/pvt-winding-up" replace />} />
-          <Route path="/pages/ngo-compliance" element={<Navigate to="/services/trust-registration" replace />} />
-          <Route path="/pages/llp-compliance" element={<Navigate to="/services/roc-annual-filing-llp" replace />} />
-          <Route path="/pages/start-application" element={<Navigate to="/register" replace />} />
-          <Route path="/pages/apeda-registration" element={<Navigate to="/services/apeda-registration" replace />} />
-          <Route path="/pages/tan-card" element={<Navigate to="/services/tan-registration" replace />} />
-          <Route path="/pages/ngo-registration" element={<Navigate to="/services/trust-registration" replace />} />
-          <Route path="/pages/salary-return-filing" element={<Navigate to="/services/itr-1-filing" replace />} />
-          <Route path="/pages/gst-audit" element={<Navigate to="/services/gst-audit" replace />} />
-          <Route path="/pages/llp-income-tax-return" element={<Navigate to="/services/roc-annual-filing-llp" replace />} />
-          <Route path="/pages/niti-aayog-registration" element={<Navigate to="/services/ngo-darpan" replace />} />
-          <Route path="/pages/moa-amendment-section-8" element={<Navigate to="/services/moa-amendment" replace />} />
-          <Route path="/pages/trust-income-tax-return" element={<Navigate to="/services/itr-7-filing" replace />} />
-          <Route path="/pages/removal-of-director" element={<Navigate to="/services/director-removal" replace />} />
+          <Route path="/pages" element={<NoIndexRedirect to="/" />} />
+          <Route path="/pages/income-tax-return-filing" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
+          <Route path="/pages/csr-audit" element={<NoIndexRedirect to="/services/csr-registration" />} />
+          <Route path="/pages/trust-compliance" element={<NoIndexRedirect to="/services/trust-registration" />} />
+          <Route path="/pages/trust-audit" element={<NoIndexRedirect to="/services/trust-registration" />} />
+          <Route path="/pages/moa-amendment-public-private-limited" element={<NoIndexRedirect to="/services/moa-amendment" />} />
+          <Route path="/pages/pan-card" element={<NoIndexRedirect to="/services/pan-card" />} />
+          <Route path="/pages/private-limited-company-winding-up" element={<NoIndexRedirect to="/services/pvt-winding-up" />} />
+          <Route path="/pages/ngo-compliance" element={<NoIndexRedirect to="/services/trust-registration" />} />
+          <Route path="/pages/llp-compliance" element={<NoIndexRedirect to="/services/roc-annual-filing-llp" />} />
+          <Route path="/pages/start-application" element={<NoIndexRedirect to="/register" />} />
+          <Route path="/pages/apeda-registration" element={<NoIndexRedirect to="/services/apeda-registration" />} />
+          <Route path="/pages/tan-card" element={<NoIndexRedirect to="/services/tan-registration" />} />
+          <Route path="/pages/ngo-registration" element={<NoIndexRedirect to="/services/trust-registration" />} />
+          <Route path="/pages/salary-return-filing" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
+          <Route path="/pages/gst-audit" element={<NoIndexRedirect to="/services/gst-audit" />} />
+          <Route path="/pages/llp-income-tax-return" element={<NoIndexRedirect to="/services/roc-annual-filing-llp" />} />
+          <Route path="/pages/niti-aayog-registration" element={<NoIndexRedirect to="/services/ngo-darpan" />} />
+          <Route path="/pages/moa-amendment-section-8" element={<NoIndexRedirect to="/services/moa-amendment" />} />
+          <Route path="/pages/trust-income-tax-return" element={<NoIndexRedirect to="/services/itr-7-filing" />} />
+          <Route path="/pages/removal-of-director" element={<NoIndexRedirect to="/services/director-removal" />} />
           <Route path="/pages/about-us" element={<AboutUs />} />
           <Route path="/pages/terms-conditions" element={<TermsConditions />} />
-          <Route path="/pages/privacy-policy" element={<Navigate to="/default/privacy-policy" replace />} />
-          <Route path="/pages/refund-policy" element={<Navigate to="/default/refund" replace />} />
-          <Route path="/pages/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
-          <Route path="/pages/indian-subsidiary-registration" element={<Navigate to="/services/indian-subsidiary" replace />} />
-          <Route path="/pages/income-tax-audit" element={<Navigate to="/services/tax-audit" replace />} />
+          <Route path="/pages/privacy-policy" element={<NoIndexRedirect to="/default/privacy-policy" />} />
+          <Route path="/pages/refund-policy" element={<NoIndexRedirect to="/default/refund" />} />
+          <Route path="/pages/partnership-firm-return" element={<NoIndexRedirect to="/services/partnership-firm" />} />
+          <Route path="/pages/indian-subsidiary-registration" element={<NoIndexRedirect to="/services/indian-subsidiary" />} />
+          <Route path="/pages/income-tax-audit" element={<NoIndexRedirect to="/services/tax-audit" />} />
           <Route path="/pages/:slug" element={<RedirectToService />} />
 
           {/* Shopify endpoints redirects */}
-          <Route path="/account" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/cart" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/search" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/account" element={<NoIndexRedirect to="/dashboard" />} />
+          <Route path="/cart" element={<NoIndexRedirect to="/dashboard" />} />
+          <Route path="/search" element={<NoIndexRedirect to="/dashboard" />} />
 
           {/* Legacy Shopify products catch-all */}
           <Route path="/products/:slug" element={<RedirectToService />} />
 
           {/* Legacy Shopify collections redirects */}
-          <Route path="/collections" element={<Navigate to="/" replace />} />
-          <Route path="/collections/income-tax" element={<Navigate to="/services/itr-1-filing" replace />} />
-          <Route path="/collections/gst-invoicing-filing-software" element={<Navigate to="/services/gst-return-filing" replace />} />
-          <Route path="/collections/gst-annual-return-filing-gstr-9" element={<Navigate to="/services/gst-return-filing" replace />} />
-          <Route path="/collections/one-person-company" element={<Navigate to="/services/one-person-company" replace />} />
-          <Route path="/collections/darpan-registration" element={<Navigate to="/services/ngo-darpan" replace />} />
+          <Route path="/collections" element={<NoIndexRedirect to="/" />} />
+          <Route path="/collections/income-tax" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
+          <Route path="/collections/gst-invoicing-filing-software" element={<NoIndexRedirect to="/services/gst-return-filing" />} />
+          <Route path="/collections/gst-annual-return-filing-gstr-9" element={<NoIndexRedirect to="/services/gst-return-filing" />} />
+          <Route path="/collections/one-person-company" element={<NoIndexRedirect to="/services/one-person-company" />} />
+          <Route path="/collections/darpan-registration" element={<NoIndexRedirect to="/services/ngo-darpan" />} />
           <Route path="/collections/:slug" element={<RedirectToService />} />
 
           {/* Legacy service alias redirects */}
-          <Route path="/services/msme-registration" element={<Navigate to="/services/udyam-registration" replace />} />
-          <Route path="/services/udyam-registration-msme" element={<Navigate to="/services/udyam-registration" replace />} />
-          <Route path="/services/partnership-firm-return" element={<Navigate to="/services/partnership-firm" replace />} />
+          <Route path="/services/msme-registration" element={<NoIndexRedirect to="/services/udyam-registration" />} />
+          <Route path="/services/udyam-registration-msme" element={<NoIndexRedirect to="/services/udyam-registration" />} />
+          <Route path="/services/partnership-firm-return" element={<NoIndexRedirect to="/services/partnership-firm" />} />
 
           {/* Obsolete Shopify internal tracking/assets routes */}
-          <Route path="/wpm" element={<Navigate to="/" replace />} />
-          <Route path="/b" element={<Navigate to="/" replace />} />
-          <Route path="/cdn" element={<Navigate to="/" replace />} />
-          <Route path="/v1/produce" element={<Navigate to="/" replace />} />
-          <Route path="/%24%7Bt%7D" element={<Navigate to="/" replace />} />
-          <Route path="/$%7Bt%7D" element={<Navigate to="/" replace />} />
-          <Route path="/${t}" element={<Navigate to="/" replace />} />
+          <Route path="/wpm" element={<NoIndexRedirect to="/" />} />
+          <Route path="/b" element={<NoIndexRedirect to="/" />} />
+          <Route path="/cdn" element={<NoIndexRedirect to="/" />} />
+          <Route path="/v1/produce" element={<NoIndexRedirect to="/" />} />
+          <Route path="/%24%7Bt%7D" element={<NoIndexRedirect to="/" />} />
+          <Route path="/$%7Bt%7D" element={<NoIndexRedirect to="/" />} />
+          <Route path="/${t}" element={<NoIndexRedirect to="/" />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/gst-calculator" element={<GstCalculatorPage />} />
@@ -514,7 +521,7 @@ function AppRoutesContent() {
           <Route path="/legal-templates" element={<LegalTemplatesPage />} />
           <Route path="/compare/:slug1-vs-:slug2" element={<ComparisonPage />} />
           <Route path="/calculators/:calcSlug" element={<CalculatorPage />} />
-          <Route path="/templates" element={<Navigate to="/legal-templates" replace />} />
+          <Route path="/templates" element={<NoIndexRedirect to="/legal-templates" />} />
           <Route path="/templates/:slug" element={<LegalTemplateDetailsPage />} />
           <Route path="/hubs/:hubSlug" element={<TopicHubPage />} />
           <Route path="/dashboard/compliance" element={<UserComplianceDashboard />} />
@@ -534,15 +541,29 @@ function AppRoutesContent() {
           
 
           <Route path="/ecommerce-office" element={<EcommerceOffice />} />
-          <Route path="/virtual-office-ecommerce" element={<Navigate to="/ecommerce-office" replace />} />
+          <Route path="/virtual-office-ecommerce" element={<NoIndexRedirect to="/ecommerce-office" />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-promise" element={<OurPromise />} />
           <Route path="/customer-care" element={<CustomerCare />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/contact" element={<Navigate to="/contact-us" replace />} />
+          <Route path="/contact" element={<NoIndexRedirect to="/contact-us" />} />
           <Route path="/faq" element={<FaqPage />} />
-          <Route path="/get-live-quote" element={<GetLiveQuote />} />
-          <Route path="/partner-onboarding" element={<PartnerOnboarding />} />
+          <Route
+            path="/get-live-quote"
+            element={
+              <NoIndexRoute title="Get a Live Quote | FilingBy.com" description="Request a custom FilingBy service quote.">
+                <GetLiveQuote />
+              </NoIndexRoute>
+            }
+          />
+          <Route
+            path="/partner-onboarding"
+            element={
+              <NoIndexRoute title="Partner Onboarding | FilingBy.com" description="Submit a workspace partner onboarding request.">
+                <PartnerOnboarding />
+              </NoIndexRoute>
+            }
+          />
           
           <Route path="/terms-conditions" element={<TermsConditions />} />
           <Route path="/default/refund" element={<RefundPolicy />} />
@@ -608,7 +629,7 @@ function AppRoutesContent() {
           />
           
           <Route path="/sso-callback" element={<ClerkCallback />} />
-          <Route path="/digital-card" element={<Navigate to="/card" replace />} />
+          <Route path="/digital-card" element={<NoIndexRedirect to="/card" />} />
           <Route
             path="/card"
             element={

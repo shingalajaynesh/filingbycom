@@ -4,7 +4,6 @@ import axios from "axios";
 import { m } from "framer-motion";
 import SEO from "../../../shared/components/SEO.jsx";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
-import AdSenseBlock from "../../../shared/components/AdSenseBlock.jsx";
 import BlogCard from "../components/BlogCard.jsx";
 import {
   buildBlogPostingSchema,
@@ -18,6 +17,7 @@ import {
   getCachedBlogPost,
 } from "../blogData.js";
 import { getInitialBlogPayload, revealPrerenderShell } from "../../../shared/utils/prerender.js";
+
 
 const categoryServiceMap = {
   GST: [
@@ -617,10 +617,6 @@ export default function BlogDetail() {
               </div>
             </section>
 
-            <div className="mt-8">
-              <AdSenseBlock slot={import.meta.env.VITE_ADSENSE_BLOG_DETAIL_SLOT} label="Article Sponsor" />
-            </div>
-
             {post.tags && post.tags.length > 0 ? (
               <section className="mt-8 rounded-[28px] border border-gray-100 bg-white p-6 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Tags</p>
@@ -637,6 +633,7 @@ export default function BlogDetail() {
                 </div>
               </section>
             ) : null}
+
           </article>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
@@ -717,9 +714,6 @@ export default function BlogDetail() {
               </a>
             </div>
 
-            <div className="space-y-6">
-              <AdSenseBlock slot={import.meta.env.VITE_ADSENSE_BLOG_SIDEBAR_SLOT} label="Sponsored Resource" />
-            </div>
           </aside>
         </div>
 
