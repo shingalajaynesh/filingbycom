@@ -552,7 +552,7 @@ async function prerender() {
       console.warn("WARNING: MONGODB_URI is not set. Skipping dynamic page pre-rendering and sitemap generation.");
 
       // Check if we already have pre-generated files in public/ (committed from local builds)
-      const filesToCopy = ["sitemap.xml", "image-sitemap.xml", "robots.txt", "feed.xml"];
+      const filesToCopy = ["sitemap.xml", "image-sitemap.xml", "robots.txt", "feed.xml", "ads.txt"];
       let copiedCount = 0;
       for (const file of filesToCopy) {
         const publicFile = join(__dirname, `../public/${file}`);
@@ -563,7 +563,7 @@ async function prerender() {
       }
 
       if (copiedCount === filesToCopy.length) {
-        console.log("Successfully copied pre-generated sitemaps, robots.txt, and feed.xml from public/ to dist/.");
+        console.log("Successfully copied pre-generated sitemaps, robots.txt, feed.xml, and ads.txt from public/ to dist/.");
       } else {
         console.log("Pre-generated files missing in public/. Generating static fallbacks...");
         // Re-generate standard static fallbacks as a safe backup...
@@ -1018,6 +1018,13 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
     fs.writeFileSync(join(distDir, "robots.txt"), robotsTxt, "utf8");
     fs.writeFileSync(join(__dirname, "../public/robots.txt"), robotsTxt, "utf8");
     console.log("robots.txt generated and updated automatically!");
+
+    // Generate/sync ads.txt automatically
+    console.log("Syncing ads.txt automatically...");
+    const adsTxt = "google.com, pub-6303291083449043, DIRECT, f08c47fec0942fa0\n";
+    fs.writeFileSync(join(distDir, "ads.txt"), adsTxt, "utf8");
+    fs.writeFileSync(join(__dirname, "../public/ads.txt"), adsTxt, "utf8");
+    console.log("ads.txt verified and synced automatically!");
 
     // Generate image-sitemap.xml automatically
     console.log("Generating image-sitemap.xml automatically...");

@@ -2,38 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://www.filingby.com/blog/composition-scheme-vs-regular-gst</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Composition Scheme vs Regular GST: Which Option Suits a Small Business Better?]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/director-kyc-din-compliance-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Director KYC and DIN Compliance Guide: Small Lapses That Create Big ROC Filing Problems]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[ADT-1, AOC-4 and MGT-7 Guide: The ROC Forms Private Limited Companies Must Track Properly]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/company-name-approval-guide-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Company Name Approval in India: How to Choose, Check and File Without Wasting a Resubmission Cycle]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/company-incorporation-documents-checklist-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Company Incorporation Documents Checklist: What Founders Should Prepare Before Filing SPICe+]]></image:title>
     </image:image>
   </url>
   <url>
@@ -51,17 +23,31 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/company-incorporation-documents-checklist-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Company Incorporation Documents Checklist: What Founders Should Prepare Before Filing SPICe+]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/company-name-approval-guide-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Company Name Approval in India: How to Choose, Check and File Without Wasting a Resubmission Cycle]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/composition-scheme-vs-regular-gst</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Composition Scheme vs Regular GST: Which Option Suits a Small Business Better?]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/coworking-vs-virtual-office-registration-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Coworking vs Virtual Office for Registration Use: Which Setup Makes More Sense for Lean Teams?]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/exporter-onboarding-documents-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Exporter Onboarding Documents Guide: What Banks, Buyers and Compliance Teams Commonly Expect]]></image:title>
     </image:image>
   </url>
   <url>
@@ -72,52 +58,24 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/director-kyc-din-compliance-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Director KYC and DIN Compliance Guide: Small Lapses That Create Big ROC Filing Problems]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/exporter-onboarding-documents-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Exporter Onboarding Documents Guide: What Banks, Buyers and Compliance Teams Commonly Expect]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/form-16-vs-form-16a-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Form 16 vs Form 16A: What Taxpayers and Finance Teams Should Understand Clearly]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/gst-registration-for-service-businesses-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GST Registration for Service Businesses in India: Practical Guide for Agencies, Consultants and SaaS Startups]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/fssai-renewal-and-modification-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[FSSAI Renewal and Modification Guide: How Food Businesses Should Plan Changes Without Disruption]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/gst-for-ecommerce-sellers-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GST for E-commerce Sellers in India: What Amazon, Flipkart and D2C Brands Must Get Right]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/gst-cancellation-and-revocation-guide-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GST Cancellation and Revocation in India: When to Cancel, How to Apply and How to Restore a GSTIN]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/gst-registration-with-virtual-office-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Using a Virtual Office for GST Registration: What Actually Works for Founders]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[FSSAI for Cloud Kitchens and Home Food Businesses: What Early-Stage Food Brands Should Know]]></image:title>
     </image:image>
   </url>
   <url>
@@ -128,10 +86,38 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI for Cloud Kitchens and Home Food Businesses: What Early-Stage Food Brands Should Know]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/fssai-labelling-compliance-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[FSSAI Labelling Compliance Guide: What Packaged Food Brands Should Check Before Printing]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/fssai-renewal-and-modification-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI Renewal and Modification Guide: How Food Businesses Should Plan Changes Without Disruption]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/gst-cancellation-and-revocation-guide-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST Cancellation and Revocation in India: When to Cancel, How to Apply and How to Restore a GSTIN]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/gst-for-ecommerce-sellers-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST for E-commerce Sellers in India: What Amazon, Flipkart and D2C Brands Must Get Right]]></image:title>
     </image:image>
   </url>
   <url>
@@ -142,52 +128,17 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/itr-filing-for-freelancers-guide-india</loc>
+    <loc>https://www.filingby.com/blog/gst-registration-for-service-businesses-india</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[ITR Filing for Freelancers in India: What to Track, What to Claim and How to Stay Ready]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST Registration for Service Businesses in India: Practical Guide for Agencies, Consultants and SaaS Startups]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/llp-annual-compliance-calendar-india</loc>
+    <loc>https://www.filingby.com/blog/gst-registration-with-virtual-office-india</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Annual Compliance Calendar: What Partners Should Track Through the Year]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-registration-for-consultants-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Registration for Consultants, Agencies and Professional Firms: Is It the Right Fit?]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/late-tds-return-and-correction-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Late TDS Return and Correction Statements: How to Clean Up Mistakes Without Panic]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-agreement-drafting-guide-india</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Agreement Drafting Guide: Clauses Partners Should Not Leave Vague]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[IEC Registration for First-Time Exporters: A Calm and Practical Starting Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Using a Virtual Office for GST Registration: What Actually Works for Founders]]></image:title>
     </image:image>
   </url>
   <url>
@@ -212,24 +163,52 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide</loc>
+    <loc>https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[MSME Benefits After Udyam Registration: What Business Owners Can Realistically Expect]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[IEC Registration for First-Time Exporters: A Calm and Practical Starting Guide]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide</loc>
+    <loc>https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[ROC Forms Every Startup Should Track After Incorporation]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups</loc>
+    <loc>https://www.filingby.com/blog/itr-filing-for-freelancers-guide-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ITR Filing for Freelancers in India: What to Track, What to Claim and How to Stay Ready]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/late-tds-return-and-correction-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Late TDS Return and Correction Statements: How to Clean Up Mistakes Without Panic]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-agreement-drafting-guide-india</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP vs Private Limited for Bootstrapped Startups: A Decision Framework That Goes Beyond Theory]]></image:title>
+      <image:title><![CDATA[LLP Agreement Drafting Guide: Clauses Partners Should Not Leave Vague]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-annual-compliance-calendar-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Annual Compliance Calendar: What Partners Should Track Through the Year]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-registration-for-consultants-india</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Registration for Consultants, Agencies and Professional Firms: Is It the Right Fit?]]></image:title>
     </image:image>
   </url>
   <url>
@@ -240,6 +219,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP vs Private Limited for Bootstrapped Startups: A Decision Framework That Goes Beyond Theory]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/lut-under-gst-for-exporters</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
@@ -247,10 +233,10 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide</loc>
+    <loc>https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[ROC Compliance Calendar for Private Limited Companies: A Working Guide for Founders]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[MSME Benefits After Udyam Registration: What Business Owners Can Realistically Expect]]></image:title>
     </image:image>
   </url>
   <url>
@@ -275,38 +261,24 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ROC Compliance Calendar for Private Limited Companies: A Working Guide for Founders]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ROC Forms Every Startup Should Track After Incorporation]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/section-80c-80d-deductions-guide-india</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Section 80C and 80D Deductions Guide: What Actually Helps Before You Rush to Invest]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[TDS on Professional Fees, Contracts and Rent: A Practical Working Guide for Business Owners]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/tan-registration-and-tds-setup-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[TAN Registration and TDS Setup for New Businesses: A Practical Starting Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[TDS on Salary vs Professional Fees: Why the Difference Matters More Than Many Businesses Think]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/startup-india-registration-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India Registration Guide: DPIIT Recognition Explained for Founders]]></image:title>
     </image:image>
   </url>
   <url>
@@ -317,10 +289,10 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/startup-india-vs-msme-registration-guide</loc>
+    <loc>https://www.filingby.com/blog/startup-india-benefits-and-documents-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India vs MSME Registration: What Founders Should Prioritise and Why]]></image:title>
+      <image:title><![CDATA[Startup India Benefits and Documents: What Founders Should Expect Before Applying]]></image:title>
     </image:image>
   </url>
   <url>
@@ -331,17 +303,31 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/startup-india-registration-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India Registration Guide: DPIIT Recognition Explained for Founders]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-vs-msme-registration-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India vs MSME Registration: What Founders Should Prioritise and Why]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/tan-registration-and-tds-setup-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TAN Registration and TDS Setup for New Businesses: A Practical Starting Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/tax-audit-applicability-guide-india</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Tax Audit Applicability for MSMEs and Startups: How to Know When the Requirement Becomes Real]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/startup-india-benefits-and-documents-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India Benefits and Documents: What Founders Should Expect Before Applying]]></image:title>
     </image:image>
   </url>
   <url>
@@ -352,31 +338,17 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/trademark-renewal-restoration-guide</loc>
+    <loc>https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Renewal and Restoration Guide: How to Keep a Valuable Brand Right Alive]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TDS on Professional Fees, Contracts and Rent: A Practical Working Guide for Business Owners]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/udyam-update-modification-guide</loc>
+    <loc>https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Udyam Update and Modification Guide: How to Keep MSME Records Accurate as the Business Changes]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-objection-reply-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Objection Reply Guide: How to Respond Without Making the Situation Worse]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-search-and-class-selection-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Search and Class Selection in India: How to Avoid Filing the Wrong Brand Application]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TDS on Salary vs Professional Fees: Why the Difference Matters More Than Many Businesses Think]]></image:title>
     </image:image>
   </url>
   <url>
@@ -387,13 +359,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/virtual-office-for-company-registration-guide</loc>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Virtual Office for Company Registration: What Founders Should Check Before Using One]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/trademark-hearing-preparation-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
@@ -401,10 +366,24 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration-guide</loc>
+    <loc>https://www.filingby.com/blog/trademark-objection-reply-guide</loc>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Virtual Office for GST Registration: How to Choose a Package That Holds Up in Practice]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Objection Reply Guide: How to Respond Without Making the Situation Worse]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-renewal-restoration-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Renewal and Restoration Guide: How to Keep a Valuable Brand Right Alive]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-search-and-class-selection-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Search and Class Selection in India: How to Avoid Filing the Wrong Brand Application]]></image:title>
     </image:image>
   </url>
   <url>
@@ -415,10 +394,31 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/udyam-update-modification-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Udyam Update and Modification Guide: How to Keep MSME Records Accurate as the Business Changes]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/virtual-office-documents-checklist-guide</loc>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Virtual Office Documents Checklist: What to Verify Before You Pay for an Address Package]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/virtual-office-for-company-registration-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Virtual Office for Company Registration: What Founders Should Check Before Using One]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration-guide</loc>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Virtual Office for GST Registration: How to Choose a Package That Holds Up in Practice]]></image:title>
     </image:image>
   </url>
 </urlset>

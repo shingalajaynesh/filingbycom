@@ -237,7 +237,7 @@ export default function Home() {
         schema={localBusinessSchema}
         extraSchemas={[websiteSchema, homeReviewsSchema, buildFaqSchema(HOME_FAQS)]}
       />
-      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-12 text-white  sm:py-16">
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-12 text-white sm:py-16">
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white backdrop-blur">
             🇮🇳 India's Trusted Legal & Compliance Platform
@@ -253,19 +253,15 @@ export default function Home() {
           <Search />
 
           <div className="mx-auto mt-8 grid max-w-lg grid-cols-2 gap-4 sm:max-w-2xl sm:grid-cols-4 sm:gap-6">
-            {["50,000+", "4.9★", "100+", "10+"].map((value, idx) => (
-              <div key={value} className="text-center text-white">
-                <p className="text-2xl font-bold text-white">{value}</p>
-                <p className="text-xs text-blue-200">
-                  {
-                    [
-                      "Happy Clients",
-                      "Google Rating",
-                      "Services",
-                      "Years Experience",
-                    ][idx]
-                  }
-                </p>
+            {[
+              { value: "100%", label: "Online Process" },
+              { value: "24-72h", label: "Filing SLA" },
+              { value: "28 States", label: "Pan-India Coverage" },
+              { value: "CA Assisted", label: "Expert Review" },
+            ].map((item) => (
+              <div key={item.label} className="text-center text-white">
+                <p className="text-2xl font-bold text-white">{item.value}</p>
+                <p className="text-xs text-blue-200">{item.label}</p>
               </div>
             ))}
           </div>
@@ -276,10 +272,10 @@ export default function Home() {
       <section className="bg-gray-50 py-10 overflow-hidden border-b border-gray-100">
         <div className="max-w-screen-xl mx-auto px-4 text-center">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">
-            Trusted by startup founders and leading Indian brands
+            Compatible workspace &amp; GST compliance solutions for sellers on major e-commerce platforms &amp; business networks
           </p>
           <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-16 before:bg-gradient-to-r before:from-gray-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-16 after:bg-gradient-to-l after:from-gray-50 after:to-transparent after:z-10">
-            <div className="flex animate-ticker whitespace-nowrap">
+            <div className="flex animate-ticker-logos whitespace-nowrap">
               {clientLogos.map((logo, index) => (
                 <div
                   key={`logo-1-${index}`}
@@ -339,6 +335,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works Section */}
       <section className="bg-white px-4 py-16">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl font-bold text-gray-900">How It Works</h2>
@@ -382,10 +379,10 @@ export default function Home() {
       <section className="bg-slate-50 py-16 overflow-hidden border-t border-slate-100">
         <div className="max-w-screen-xl mx-auto px-4 mb-10 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-[#1A56DB] bg-blue-50 px-3.5 py-1.5 rounded-full">
-            Our Team & Workspace
+            Our Team &amp; Workspace
           </span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-4 tracking-tight leading-tight">
-            Dedicated CA, CS & Advisory Workspace
+            Dedicated CA, CS &amp; Advisory Workspace
           </h2>
           <p className="text-gray-500 text-xs sm:text-sm mt-2 max-w-xl mx-auto font-medium">
             Take a look at our professional team members and executive head office setups designed to streamline your business compliances.
@@ -393,7 +390,7 @@ export default function Home() {
         </div>
         
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-slate-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-slate-50 after:to-transparent after:z-10">
-          <div className="flex animate-ticker whitespace-nowrap gap-4">
+          <div className="flex animate-ticker-photos whitespace-nowrap gap-4">
             {officePhotos.map((photo, i) => (
               <div key={i} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
@@ -442,7 +439,7 @@ export default function Home() {
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
-                    <span>Official NOC & Utility Bills</span>
+                    <span>Official NOC &amp; Utility Bills</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
@@ -458,7 +455,7 @@ export default function Home() {
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
-                    <span>Courier & Mail Handling</span>
+                    <span>Courier &amp; Mail Handling</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
@@ -487,7 +484,6 @@ export default function Home() {
               {/* Right Column: Premium Compliance Panel */}
               <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end">
                 <div className="w-full max-w-sm rounded-3xl border border-slate-700 bg-slate-850/95 backdrop-blur shadow-2xl relative overflow-hidden flex flex-col">
-                  {/* Card Image Header */}
                   <div className="relative h-44 w-full bg-slate-950/80 overflow-hidden">
                     <img 
                       src={optimizeCloudinaryUrl(popularCenter.image)} 
@@ -565,7 +561,7 @@ export default function Home() {
             FilingBy Trust Factor
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mt-4 mb-10">
-            Why 50,000+ Businesses Trust FilingBy
+            Why Indian Businesses Choose FilingBy
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -576,7 +572,7 @@ export default function Home() {
                   </svg>
                 ),
                 title: "Expert CA & CS Team",
-                desc: "Qualified corporate professionals with 10+ years of legal & compliance experience.",
+                desc: "Qualified corporate professionals providing comprehensive legal, ROC, and tax compliance assistance.",
                 bg: "bg-blue-500/10",
               },
               {
@@ -760,7 +756,7 @@ export default function Home() {
             Ready to Start Your Business Journey?
           </h2>
           <p className="mb-8 text-blue-100">
-            Join 50,000+ entrepreneurs who trust FilingBy.com
+            Start your business registration and compliance journey with FilingBy today.
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <button

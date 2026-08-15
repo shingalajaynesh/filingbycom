@@ -24,7 +24,7 @@ html.prerender-shell-active #app-root {
   --color-accent-gold: #D4AF37;
 }
 
-/* Optional: Set the default base styles for the whole website */
+/* Base styles for the whole website */
 @layer base {
   html, body {
     overflow-x: hidden;
@@ -143,10 +143,42 @@ html.prerender-shell-active #app-root {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Default Ticker (e.g. general use) - smooth and slow */
 .animate-ticker {
   display: flex;
   width: max-content;
-  animation: ticker 30s linear infinite;
+  animation: ticker 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Brand Logos Ticker - smooth gentle flow (60s) */
+.animate-ticker-logos {
+  display: flex;
+  width: max-content;
+  animation: ticker 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-logos:hover {
+  animation-play-state: paused;
+}
+
+/* Office Workspace Photos Ticker - extra relaxed, slow gallery glide (80s) */
+.animate-ticker-photos,
+.animate-ticker-slow {
+  display: flex;
+  width: max-content;
+  animation: ticker 80s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-photos:hover,
+.animate-ticker-slow:hover {
+  animation-play-state: paused;
 }
 
 .glass {

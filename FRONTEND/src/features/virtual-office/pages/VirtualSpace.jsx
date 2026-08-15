@@ -268,10 +268,10 @@ export default function VirtualSpace() {
       ];
 
   const stats = [
-    { icon: Icons.Users,     value: "22,000+", label: "Happy Clients",    color: "text-blue-400",   bgColor: "bg-white/10" },
-    { icon: Icons.Star,      value: "4.7★",    label: "Google Rating",    color: "text-yellow-400", bgColor: "bg-white/10" },
-    { icon: Icons.Globe,     value: "2",        label: "States Covered",   color: "text-emerald-400",  bgColor: "bg-white/10" },
-    { icon: Icons.Lightning, value: "7 Days",   label: "Setup Time",       color: "text-blue-300", bgColor: "bg-white/10" },
+    { icon: Icons.ShieldCheck, value: "100% Legal", label: "Stamp & NOC Verified", color: "text-blue-400", bgColor: "bg-white/10" },
+    { icon: Icons.Lightning, value: "24-48 Hrs", label: "Documentation SLA", color: "text-yellow-400", bgColor: "bg-white/10" },
+    { icon: Icons.Globe, value: "28 States", label: "Pan-India Network", color: "text-emerald-400", bgColor: "bg-white/10" },
+    { icon: Icons.Refresh, value: "Full Refund", label: "Compliance Guarantee", color: "text-blue-300", bgColor: "bg-white/10" },
   ];
 
   const tabs = [
@@ -330,7 +330,7 @@ export default function VirtualSpace() {
     { icon: Icons.Refresh,     title: "Easy Stress-Free Refunds",      desc: "Full no-questions-asked refunds if your GST application has issues",           color: "text-emerald-500", bg: "bg-emerald-500/10" },
     { icon: Icons.CheckCircle, title: "Complete Registration Help",    desc: "Expert handling of GST and company registration — swiftly and accurately",     color: "text-blue-500",   bg: "bg-blue-500/10" },
     { icon: Icons.ShieldCheck, title: "Fully Compliant Addresses",     desc: "Government-accepted virtual addresses ensuring seamless business operations",   color: "text-blue-600", bg: "bg-blue-500/10" },
-    { icon: Icons.Trophy,      title: "Trusted by 22,000+ Businesses", desc: "Rated 4.7 stars by thousands of businesses, from startups to enterprise brands", color: "text-blue-500", bg: "bg-blue-500/10" },
+    { icon: Icons.Trophy,      title: "Transparent Statutory Documentation", desc: "Every agreement is paired with municipal electricity bills and owner NOCs ready for GST and MCA scrutiny.", color: "text-blue-500", bg: "bg-blue-500/10" },
   ];
 
   const steps = [
@@ -419,7 +419,7 @@ export default function VirtualSpace() {
               {/* Trust badge */}
               <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 mb-6 shadow-md">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
-                <span className="text-white text-xs font-semibold">🇮🇳 22,000+ Businesses Across India</span>
+                <span className="text-white text-xs font-semibold">🇮🇳 Pan-India Virtual Office Network</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.1] mb-5 tracking-tight">
@@ -442,14 +442,10 @@ export default function VirtualSpace() {
                 ))}
               </div>
 
-              {/* Google Rating */}
+              {/* Quality Guarantee Badge */}
               <div className="flex items-center gap-3 w-fit bg-white/5 backdrop-blur-md rounded-2xl px-4 py-3 mb-8 shadow-md">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4].map(i => <div key={i} className="w-4 h-4 text-yellow-400"><Icons.Star /></div>)}
-                  <div className="w-4 h-4 text-yellow-400/50"><Icons.Star /></div>
-                </div>
-                <span className="text-white font-bold text-sm">4.7</span>
-                <span className="text-blue-200 text-xs">· 928 verified reviews</span>
+                <div className="w-5 h-5 text-emerald-400"><Icons.ShieldCheck /></div>
+                <span className="text-white font-semibold text-xs sm:text-sm">100% Government-Accepted Documentation &amp; Dedicated Desk Support</span>
               </div>
 
               {/* CTA Buttons */}
@@ -552,11 +548,11 @@ export default function VirtualSpace() {
       ══════════════════════════════════════════════════════════════════ */}
       <section className="bg-white py-10 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4 mb-6 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Trusted by India's leading brands</p>
-          <h2 className="text-xl font-bold text-gray-900 mt-1">22,000+ Virtual Office Clients Served &amp; Counting</h2>
+          <p className="text-xs font-bold uppercase tracking-widest text-gray-400">Supported Platforms &amp; Networks</p>
+          <h2 className="text-xl font-bold text-gray-900 mt-1">Compatible Virtual Office Solutions for E-Commerce &amp; MSMEs</h2>
         </div>
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-white before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-white after:to-transparent after:z-10">
-          <div className="flex animate-ticker whitespace-nowrap">
+          <div className="flex animate-ticker-logos whitespace-nowrap">
             {[...clientLogos,...clientLogos].map((logo, i) => (
               <div key={i} className="bg-gray-50 rounded-2xl px-5 py-3 flex-shrink-0 mx-2 hover:bg-[#1A56DB]/5 transition-all duration-200 cursor-default shadow-sm">
                 <BrandLogo name={logo.name} imageUrl={logo.imageUrl} />
@@ -687,7 +683,7 @@ export default function VirtualSpace() {
         </div>
         
         <div className="relative w-full overflow-hidden before:absolute before:left-0 before:top-0 before:bottom-0 before:w-20 before:bg-gradient-to-r before:from-slate-50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:bottom-0 after:w-20 after:bg-gradient-to-l after:from-slate-50 after:to-transparent after:z-10">
-          <div className="flex animate-ticker whitespace-nowrap gap-4">
+          <div className="flex animate-ticker-photos whitespace-nowrap gap-4">
             {officePhotos.map((photo, i) => (
               <div key={i} className="w-80 h-52 flex-shrink-0 rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <img src={optimizeCloudinaryUrl(photo.imageUrl)} alt={photo.name || "Office Space"} className="w-full h-full object-cover select-none" />
@@ -787,8 +783,8 @@ export default function VirtualSpace() {
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
             <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full text-[#60a5fa] bg-blue-500/10 shadow-sm">Why FilingBy</span>
-            <h2 className="text-white text-2xl sm:text-3xl font-bold mt-3">Why 22,000+ Businesses Choose FilingBy</h2>
-            <p className="text-blue-300 text-sm mt-2">The most trusted virtual office provider in India</p>
+            <h2 className="text-white text-2xl sm:text-3xl font-bold mt-3">Why Growing Businesses Choose FilingBy</h2>
+            <p className="text-blue-300 text-sm mt-2">Transparent virtual office &amp; compliance management across India</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -971,7 +967,7 @@ export default function VirtualSpace() {
             <span className="text-[#F97316]">Premium Virtual Office?</span>
           </h2>
           <p className="text-blue-100 mb-8 max-w-lg mx-auto text-sm sm:text-base leading-relaxed">
-            Join 22,000+ businesses who trust FilingBy for a credible, government-accepted business address across India.
+            Get a credible, government-accepted business address for GST &amp; company registration across India.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">

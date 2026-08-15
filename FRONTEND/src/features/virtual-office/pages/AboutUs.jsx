@@ -43,10 +43,10 @@ export default function AboutUs() {
       <section className="max-w-screen-xl mx-auto px-4 -mt-8 relative z-20">
         <div className="bg-white rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { value: "50,000+", label: "Businesses Registered" },
-            { value: "99.4%", label: "Client Retention Rate" },
-            { value: "150+", label: "CA/CS Professional Panel" },
-            { value: "28+", label: "States Covered" },
+            { value: "100%", label: "Online & Paperless" },
+            { value: "24-48h", label: "Draft SLA Turnaround" },
+            { value: "28 States", label: "Pan-India Coverage" },
+            { value: "Zero", label: "Hidden Administrative Fees" },
           ].map((metric) => (
             <div key={metric.label} className="space-y-1">
               <p className="text-2xl md:text-3xl font-black text-[#1A56DB]">{metric.value}</p>
@@ -95,7 +95,7 @@ export default function AboutUs() {
           <div className="relative z-10 space-y-4">
             <h3 className="text-xl md:text-2xl font-black">Ready to scale your business?</h3>
             <p className="text-gray-300 text-xs md:text-sm max-w-lg mx-auto leading-relaxed">
-              Join thousands of Indian founders who run their corporate registries safely through FilingBy virtual spaces.
+              Join Indian entrepreneurs and businesses who manage their corporate registries and compliance through FilingBy.
             </p>
             <div className="flex justify-center gap-4 pt-2">
               <button 

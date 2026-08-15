@@ -161,29 +161,7 @@ export const homeReviewsSchema = {
       "applicableCountry": "IN",
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
     }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "1280",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": "Aman Sharma"
-      },
-      "datePublished": "2026-03-10",
-      "reviewBody": "Extremely reliable CA services. They handled my private limited company incorporation very quickly.",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      }
-    }
-  ]
+  }
 };
 
 export const virtualOfficeSchema = {
@@ -235,27 +213,7 @@ export const virtualOfficeSchema = {
       "applicableCountry": "IN",
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
     }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "845"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": "Vikram Singh"
-      },
-      "datePublished": "2026-02-18",
-      "reviewBody": "Got my GST registration done using their virtual office address. Smooth documentation and prompt delivery of NOC.",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      }
-    }
-  ]
+  }
 };
 
 /**
@@ -357,29 +315,7 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
         "applicableCountry": "IN",
         "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
       }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "124",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Rajesh Kumar"
-        },
-        "datePublished": "2026-01-15",
-        "reviewBody": "Excellent CA services. Quick and very professional onboarding process.",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5"
-        }
-      }
-    ]
+    }
   };
 }
 

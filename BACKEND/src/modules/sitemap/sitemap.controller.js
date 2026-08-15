@@ -134,6 +134,19 @@ class SitemapController {
     }
   };
 
+  // GET /ads.txt
+  getAdsTxt = async (req, res) => {
+    try {
+      const adsTxt = "google.com, pub-6303291083449043, DIRECT, f08c47fec0942fa0\n";
+      res.header("Content-Type", "text/plain; charset=utf-8");
+      res.header("Cache-Control", "public, max-age=3600, must-revalidate");
+      res.header("Access-Control-Allow-Origin", "*");
+      return res.status(200).send(adsTxt);
+    } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+    }
+  };
+
   // GET /robots.txt
   getRobotsTxt = async (req, res) => {
     try {
@@ -148,7 +161,9 @@ Disallow: /sso-callback/
 Sitemap: https://www.filingby.com/sitemap.xml
 Sitemap: https://www.filingby.com/image-sitemap.xml
 `;
-      res.header("Content-Type", "text/plain");
+      res.header("Content-Type", "text/plain; charset=utf-8");
+      res.header("Cache-Control", "public, max-age=3600, must-revalidate");
+      res.header("Access-Control-Allow-Origin", "*");
       return res.status(200).send(robots);
     } catch (error) {
       return res.status(500).json({ success: false, message: error.message });

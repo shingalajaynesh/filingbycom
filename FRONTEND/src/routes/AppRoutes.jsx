@@ -35,7 +35,6 @@ const LegalTemplateDetailsPage = lazy(() => import("../features/ca-portal/pages/
 const TopicHubPage = lazy(() => import("../features/ca-portal/pages/TopicHubPage"));
 const UserComplianceDashboard = lazy(() => import("../features/client-dashboard/pages/UserComplianceDashboard"));
 const ComplianceToolsPage = lazy(() => import("../features/ca-portal/pages/ComplianceToolsPage"));
-const AIAssistant = lazy(() => import("../features/ca-portal/components/AIAssistant"));
 const PanCardPage = lazy(() => import("../features/ca-portal/pages/PanCardPage"));
 
 // ── Virtual Office ──
@@ -224,39 +223,6 @@ function RouteLoader() {
   );
 }
 
-function DeferredAIAssistant() {
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return undefined;
-    }
-
-    const enable = () => {
-      startTransition(() => {
-        setShouldRender(true);
-      });
-    };
-
-    if ("requestIdleCallback" in window) {
-      const callbackId = window.requestIdleCallback(enable, { timeout: 2500 });
-      return () => window.cancelIdleCallback(callbackId);
-    }
-
-    const timeoutId = window.setTimeout(enable, 1200);
-    return () => window.clearTimeout(timeoutId);
-  }, []);
-
-  if (!shouldRender) {
-    return null;
-  }
-
-  return (
-    <Suspense fallback={null}>
-      <AIAssistant />
-    </Suspense>
-  );
-}
 
 // Dynamic router component to handle dynamic paths and fall back to 404
 function GlobalDynamicRouter() {
@@ -445,7 +411,6 @@ function AppRoutesContent() {
       {showCANavigation && <Navigation />}
       {showVirtualOfficeNavigation && <VirtualOfficeNavigation />}
       {!isAdminRoute && <FloatingActions />}
-      {!isAdminRoute && <DeferredAIAssistant />}
       {!isAdminRoute && <CookieConsentBanner />}
       
       <Suspense fallback={<RouteLoader />}>

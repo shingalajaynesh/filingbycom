@@ -36,9 +36,9 @@ export default function EditorialPolicy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide border-l-4 border-blue-600 pl-3">3. Responsible AI & Human Expert Oversight</h2>
+            <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide border-l-4 border-blue-600 pl-3">3. Editorial Quality & Human Expert Oversight</h2>
             <p>
-              We utilize modern editorial software to assist with draft outlines, formatting, and structural proofing. However, all technical tax calculations, statutory deadlines, legal steps, and government form requirements are systematically verified and edited by human compliance specialists before publication.
+              All technical tax calculations, statutory deadlines, legal steps, and government form requirements published on our platform are systematically researched, verified, and reviewed by qualified compliance specialists and corporate experts before publication.
             </p>
           </section>
 

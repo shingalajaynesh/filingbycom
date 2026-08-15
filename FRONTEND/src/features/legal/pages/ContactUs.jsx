@@ -118,7 +118,7 @@ export default function ContactUs() {
               <div className="flex items-start gap-4">
                 <span className="text-2xl mt-1">💬</span>
                 <div>
-                  <p className="font-bold text-gray-400 uppercase tracking-wider text-[10px]">WhatsApp Live Assistant</p>
+                  <p className="font-bold text-gray-400 uppercase tracking-wider text-[10px]">WhatsApp Live Support</p>
                   <a href={settings?.vs_whatsapp_url || "https://wa.me/917567126945"} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-600 hover:underline">
                     Chat with an expert
                   </a>

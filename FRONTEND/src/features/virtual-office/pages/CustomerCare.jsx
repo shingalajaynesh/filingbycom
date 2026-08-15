@@ -88,7 +88,7 @@ export default function CustomerCare() {
               <div className="flex items-start gap-3">
                 <span className="text-xl">💬</span>
                 <div>
-                  <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">WhatsApp Live Assistant</p>
+                  <p className="font-bold text-gray-900 uppercase tracking-wider text-[10px] text-gray-400">WhatsApp Live Support</p>
                   <a href={settings?.vs_whatsapp_url || "https://wa.me/917567126945"} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-green-600 hover:underline">Chat on WhatsApp</a>
                 </div>
               </div>

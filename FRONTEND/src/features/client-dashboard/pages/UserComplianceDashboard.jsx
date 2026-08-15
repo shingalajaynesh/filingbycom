@@ -48,7 +48,7 @@ export default function UserComplianceDashboard() {
             to="/get-live-quote"
             className="px-5 py-3 bg-blue-600 hover:bg-blue-750 text-white rounded-full text-xs font-bold transition-all border-none"
           >
-            Assign CA Assistant
+            Assign Dedicated CA
           </Link>
         </div>
 
