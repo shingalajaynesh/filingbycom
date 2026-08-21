@@ -700,29 +700,7 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
             "applicableCountry": "IN",
             "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
           }
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "124",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Rajesh Kumar"
-            },
-            "datePublished": "2026-01-15",
-            "reviewBody": "Excellent CA services. Quick and very professional onboarding process.",
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5"
-            }
-          }
-        ]
+        }
       };
 
       const bodyContent = `
