@@ -112,6 +112,87 @@ const templateHtml = fs.readFileSync(templatePath, "utf8");
 // Static route metadata
 const STATIC_PAGES = [
   {
+    path: "",
+    title: "Online CA Services in India | Business & Tax Filing | FilingBy",
+    description: "FilingBy provides expert GST registration, company incorporation, trademark filing, ITR filing, ROC compliance, and virtual office services across India.",
+    keywords: "GST registration online, private limited company registration India, trademark filing, income tax return filing, virtual office India, professional tax registration, startup business setup, CA services online",
+    h1: "Start, Manage & Grow Your Business with Online CA Services",
+    content: `
+      <p style="font-size: 18px; color: #475569; margin-bottom: 24px; line-height: 1.6;">
+        FilingBy.com connects Indian entrepreneurs, growing startups, and established enterprises with qualified Chartered Accountants (CAs), Company Secretaries (CSs), and corporate legal advisors. Manage GST registrations, corporate filings, income tax returns, trademark registrations, and virtual office addresses 100% online with transparent flat-rate pricing.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin: 30px 0;">
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">GST Registration &amp; Filing</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">New GSTIN registration, regular monthly GSTR-1 &amp; GSTR-3B filings, annual returns (GSTR-9), and LUT filing for exporters with end-to-end CA assistance.</p>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">Company Incorporation</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Incorporate Private Limited (Pvt Ltd), Limited Liability Partnership (LLP), One Person Company (OPC), or Section 8 non-profit entities via SPICe+ MCA filing.</p>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">Virtual Office for GST (28 States)</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Premium commercial office addresses with landlord NOC, registered rent agreements, and latest electricity bills in Mumbai, Surat, Delhi, Bangalore, and Pune.</p>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">Trademark &amp; IP Protection</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Brand name search, trademark class selection (Classes 1-45), online application filing with the Trade Marks Registry, and examination reply drafting.</p>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">Income Tax Return (ITR) Filing</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Expert CA assisted ITR-1, ITR-2, ITR-3, and ITR-4 filing for salaried individuals, traders, professionals, and small businesses for AY 2026-27.</p>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">ROC &amp; MCA Annual Compliance</h3>
+          <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Filing annual financial statements (AOC-4), annual return of shares (MGT-7), LLP Form 8 &amp; 11, and DIR-3 KYC for active corporate directors.</p>
+        </div>
+      </div>
+
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Free Compliance &amp; Tax Calculators</h2>
+      <p style="font-size: 15px; color: #475569; margin-bottom: 18px;">Access our free interactive tax calculators and compliance checklists designed for Indian businesses and tax filers:</p>
+      <ul style="padding-left: 20px; margin-bottom: 30px; line-height: 1.8; color: #334155;">
+        <li><a href="/gst-calculator" style="color: #1A56DB; font-weight: 600;">Online GST Calculator</a> — Compute CGST, SGST, and IGST breakdowns for 5%, 12%, 18%, and 28% slabs.</li>
+        <li><a href="/income-tax-calculator" style="color: #1A56DB; font-weight: 600;">Income Tax Calculator (FY 2025-26)</a> — Compare tax liability between Old and New Tax Regimes with automated rebate calculations.</li>
+        <li><a href="/roc-tools" style="color: #1A56DB; font-weight: 600;">ROC Compliance Tools</a> — Track MCA annual return due dates, statutory penalty rules, and LLP compliance checklists.</li>
+        <li><a href="/company-registration-guides" style="color: #1A56DB; font-weight: 600;">Company Registration Guide</a> — Compare Private Limited, LLP, One Person Company, and Sole Proprietorship options.</li>
+        <li><a href="/trademark-search" style="color: #1A56DB; font-weight: 600;">Trademark Public Search Guide</a> — Search brand name availability across IP India public registry classes.</li>
+        <li><a href="/legal-templates" style="color: #1A56DB; font-weight: 600;">Legal Templates &amp; Business Contracts</a> — Download standard NDA, Founders Agreement, and SLA drafting formats.</li>
+      </ul>
+
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">How It Works: 100% Online CA Process</h2>
+      <ol style="padding-left: 20px; margin-bottom: 30px; line-height: 1.8; color: #334155;">
+        <li><strong>Step 1: Select Service &amp; Share Details</strong> — Choose your service (GST, Company Registration, ITR, or Virtual Office) and provide basic business information.</li>
+        <li><strong>Step 2: Secure Document Upload</strong> — Upload required identity proofs and address documents via our encrypted client portal.</li>
+        <li><strong>Step 3: CA Review &amp; Statutory Filing</strong> — Our qualified chartered accountants and legal experts review your case, prepare the forms, and file them directly on official government portals (MCA, GSTN, Income Tax, IP India).</li>
+      </ol>
+
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Why Indian Businesses Trust FilingBy</h2>
+      <ul style="padding-left: 20px; margin-bottom: 30px; line-height: 1.8; color: #334155;">
+        <li><strong>Verified Professionals:</strong> Every application is handled and reviewed by licensed Chartered Accountants, Company Secretaries, or Advocates.</li>
+        <li><strong>Flat-Rate Transparent Pricing:</strong> Zero hidden consultation charges. You pay clear upfront service fees.</li>
+        <li><strong>Fast Turnaround SLA:</strong> Applications submitted within 24 to 72 business hours.</li>
+        <li><strong>Money-Back Guarantee:</strong> 100% refund policy if registration fails due to documentation errors on our side.</li>
+      </ul>
+
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Frequently Asked Questions</h2>
+      <div style="margin-top: 16px;">
+        <div style="margin-bottom: 20px;">
+          <strong style="color: #0F172A; font-size: 16px;">Q: What documents are required for Private Limited company registration?</strong>
+          <p style="margin-top: 6px; color: #475569;">A: Directors need PAN card, Aadhaar/Passport, recent bank statement or electricity bill, and registered office proof (landlord NOC, rent agreement, utility bill).</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <strong style="color: #0F172A; font-size: 16px;">Q: How long does GST registration take?</strong>
+          <p style="margin-top: 6px; color: #475569;">A: GST registration is typically granted within 3 to 7 working days upon submission of Aadhaar-authenticated application to the GSTN portal.</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <strong style="color: #0F172A; font-size: 16px;">Q: Can I use a virtual office for Amazon and Flipkart seller registration?</strong>
+          <p style="margin-top: 6px; color: #475569;">A: Yes. Our virtual offices provide Virtual Principal Place of Business (VPOB) and Principal Place of Business (PPOB) documentation accepted by major e-commerce platforms across all Indian states.</p>
+        </div>
+      </div>
+    `
+  },
+  {
     path: "about-us",
     title: "About Us | FilingBy.com — India's Trusted Compliance Portal",
     description: "Learn about FilingBy's mission, our network of experienced CAs, CSs, and legal professionals, and how we help businesses with seamless compliances.",
@@ -142,14 +223,6 @@ const STATIC_PAGES = [
     keywords: "compliance FAQs, GST questions, Pvt Ltd criteria, virtual office rules india",
     h1: "Frequently Asked Questions",
     content: "<h3>Frequently Asked Questions</h3><h4>1. What is the process for company registration?</h4><p>You need to submit director IDs, select a brand name, file the SPICe+ form with the MCA, and register for PAN/TAN. The ROC issues the certificate in 7-10 days.</p><h4>2. How does virtual office work?</h4><p>We provide a legal commercial address, NOC, utility bill, and rent agreement which you submit to register for GST or incorporate a company.</p><h4>3. What are the tax deadlines?</h4><p>Monthly GST filings must be completed by the 11th/20th of each month. ITR returns are usually due by July 31st for individuals.</p><h4>4. What are the penalties for late filings?</h4><p>Late filing of GST returns attracts a daily late fee of ₹20-50 depending on tax liabilities. Late filing of ITR returns attracts penalty charges up to ₹5,000 under Section 234F.</p>"
-  },
-  {
-    path: "get-live-quote",
-    title: "Get a Live Quote — Custom Pricing Estimate | FilingBy",
-    description: "Use our interactive pricing tool to get a custom, instant quotation for corporate filings, GST registration, accounting, and virtual office packages.",
-    keywords: "calculate filing costs, custom CA quote, business registration price calculator",
-    h1: "Request a Custom Quote",
-    content: "<p>Use our interactive live pricing tool to configure the exact corporate filing services, bookkeeping hours, and local virtual office addresses your business requires to get a custom price estimation instantly.</p>"
   },
   {
     path: "locations",
@@ -232,6 +305,62 @@ const STATIC_PAGES = [
     content: "<p>Download standard legal templates and drafting agreements for Indian startups and businesses. Access NDA templates, Service Level Agreements (SLAs), and founder agreements.</p><h3>Essential Agreements for Indian Startups</h3><p>Protecting intellectual property and outlining stakeholder rights is vital. Startups should maintain standard legal documents, including:</p><ul><li><strong>Non-Disclosure Agreement (NDA)</strong>: Ensures confidentiality during business negotiations, preventing unauthorized use of proprietary ideas.</li><li><strong>Founder's Agreement</strong>: Defines equity splits, roles, responsibilities, and vesting terms among co-founders.</li><li><strong>Service Level Agreement (SLA)</strong>: Outlines deliverables, timelines, and payment structures between service providers and clients.</li><li><strong>Employment Contract</strong>: Governs terms of employment, intellectual property assignment, and non-compete clauses.</li></ul>"
   },
   {
+    path: "hubs/gst",
+    title: "GST Compliance & Tax Resource Hub | FilingBy.com",
+    description: "Complete GST resource hub for Indian businesses. Access GST registration, return filing, amendment, LUT filing guides, and tax calculators in one place.",
+    keywords: "GST hub, GST compliance portal, GST tools India, GST services guide",
+    h1: "GST Compliance & Tax Resource Hub",
+    content: "<p>All key GST resources, service routes, calculators, and statutory guidelines for Indian businesses. Manage GST registration, GSTR-1/3B filing, LUT export filing, and tax computation 100% online.</p>"
+  },
+  {
+    path: "hubs/company",
+    title: "Company Incorporation & Startup Resource Hub | FilingBy.com",
+    description: "Step-by-step guides, entity comparisons, service routes, and startup incorporation resources for Private Limited, LLP, and OPC companies in India.",
+    keywords: "company incorporation hub, startup registration guides, pvt ltd llp resources",
+    h1: "Company Incorporation & Startup Resource Hub",
+    content: "<p>Comprehensive company incorporation and corporate governance resources. Compare business structures, calculate filing timelines, and file SPICe+ forms with the Ministry of Corporate Affairs.</p>"
+  },
+  {
+    path: "compare/private-limited-company-vs-llp",
+    title: "Private Limited Company vs LLP: Which is Better for Your Business? | FilingBy",
+    description: "Detailed comparison between Private Limited Company and LLP in India. Compare registration costs, MCA compliance, tax rates, funding eligibility, and founder liability.",
+    keywords: "pvt ltd vs llp, private limited vs limited liability partnership, compare business structures india",
+    h1: "Private Limited Company vs LLP: Full Comparison",
+    content: "<p>Compare a Private Limited Company and a Limited Liability Partnership (LLP) to choose the structure that best fits your business goals, capital requirements, and compliance budget.</p><h3>Key Differences</h3><ul><li><strong>Funding &amp; Equity:</strong> Private Limited is preferred by venture capitalists and angel investors due to easy share issuance. LLPs are suitable for bootstrapped and partner-managed businesses.</li><li><strong>Annual Compliance:</strong> LLPs require Form 8 and Form 11 filing with lower audit requirements. Private Limited companies require statutory audits, AOC-4, and MGT-7 filings.</li></ul>"
+  },
+  {
+    path: "compare/trademark-vs-patent",
+    title: "Trademark vs Patent Registration: Differences & Protection Scope | FilingBy",
+    description: "Understand the differences between Trademark and Patent registration in India. Learn what each protects, validity periods, costs, and filing procedures.",
+    keywords: "trademark vs patent, IP protection differences, intellectual property india",
+    h1: "Trademark vs Patent: Complete Guide",
+    content: "<p>Understand the difference between brand protection (Trademark) and invention protection (Patent) under Indian Intellectual Property laws.</p><h3>Scope &amp; Validity</h3><ul><li><strong>Trademark:</strong> Protects brand names, logos, slogans, and symbols for 10 years (renewable indefinitely).</li><li><strong>Patent:</strong> Protects novel inventions, industrial designs, and technical processes for 20 years (non-renewable).</li></ul>"
+  },
+  {
+    path: "calculators/hra",
+    title: "HRA Exemption Calculator Online India — Section 10(13A) Tax Relief | FilingBy",
+    description: "Calculate your House Rent Allowance (HRA) tax exemption amount under Section 10(13A) of the Income Tax Act for metro and non-metro cities.",
+    keywords: "HRA calculator, house rent allowance exemption, section 10 13A calculator",
+    h1: "HRA Tax Exemption Calculator",
+    content: "<p>Calculate your HRA tax exemption and taxable house rent allowance details under Section 10(13A) of the Income Tax Act. HRA exemption is computed as the lowest of actual HRA received, rent paid minus 10% of basic salary, or 50%/40% of salary for metro/non-metro locations.</p>"
+  },
+  {
+    path: "calculators/tds",
+    title: "TDS Calculator Online India — Section-wise Tax Deduction | FilingBy",
+    description: "Compute TDS deductions for contractor payments (194C), professional fees (194J), and rent (194I) under Indian Income Tax rules.",
+    keywords: "TDS calculator, tax deducted at source calculator, 194C 194J 194I TDS rates",
+    h1: "TDS (Tax Deducted at Source) Calculator",
+    content: "<p>Compute section-wise TDS deductions for contractor payments, professional services, commission, and rent under standard Income Tax Department provisions.</p>"
+  },
+  {
+    path: "calculators/depreciation",
+    title: "Asset Depreciation Calculator India — SLM vs WDV Method | FilingBy",
+    description: "Calculate company asset depreciation under Companies Act and Income Tax Act using Straight Line Method (SLM) and Written Down Value (WDV) methods.",
+    keywords: "depreciation calculator, SLM vs WDV calculator, asset depreciation companies act",
+    h1: "Asset Depreciation Calculator",
+    content: "<p>Calculate annual asset depreciation using both the Straight-Line Method (SLM) and Written Down Value (WDV) method in accordance with Schedule II of the Companies Act, 2013 and Section 32 of the Income Tax Act.</p>"
+  },
+  {
     path: "terms-conditions",
     title: "Terms and Conditions of Service & Agreement Policies | FilingBy.com",
     description: "Read FilingBy's terms and conditions. Understand the legal guidelines, usage policies, and responsibilities governing CA compliance and virtual office leases.",
@@ -302,30 +431,6 @@ const STATIC_PAGES = [
     keywords: "editorial team, filingby authors, compliance reviewers, editorial desk",
     h1: "FilingBy Editorial Desk & Content Team",
     content: "<p>Learn about the FilingBy Editorial Desk and Content Team responsible for researching, reviewing, and updating statutory compliance content across India.</p>"
-  },
-  {
-    path: "card",
-    title: "Digital Business Card & Contact Desk | FilingBy.com",
-    description: "Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices.",
-    keywords: "FilingBy business card, FilingBy contact details, CA services Surat, digital business card",
-    h1: "FilingBy Digital Business Card",
-    content: "<p>FilingBy.com digital business card and contact desk. Connect with our chartered accountants, download vCard details, and access online tax and compliance services.</p>"
-  },
-  {
-    path: "digital-card",
-    title: "Digital Business Card & Contact Desk | FilingBy.com",
-    description: "Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices.",
-    keywords: "FilingBy business card, FilingBy contact details, CA services Surat, digital business card",
-    h1: "FilingBy Digital Business Card",
-    content: "<p>FilingBy.com digital business card and contact desk. Connect with our chartered accountants, download vCard details, and access online tax and compliance services.</p>"
-  },
-  {
-    path: "partner-onboarding",
-    title: "Partner Onboarding — Become a Workspace Provider | FilingBy.com",
-    description: "List your commercial office space or virtual location on FilingBy. Join India's leading compliance and virtual address provider network.",
-    keywords: "partner onboarding, list virtual office, property partner india, workspace partner",
-    h1: "Become a FilingBy Partner",
-    content: "<p>List your commercial property, office spaces, or corporate address network on FilingBy. Connect with thousands of startups and businesses across India looking for verified virtual offices and business registrations.</p>"
   }
 ];
 
@@ -416,7 +521,7 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
   }
 
   const siteUrl = "https://www.filingby.com";
-  const canonicalUrl = `${siteUrl}/${routePath.replace(/\/$/, "")}`;
+  const canonicalUrl = routePath ? `${siteUrl}/${routePath.replace(/\/$/, "")}` : `${siteUrl}/`;
 
   // Assemble custom metadata block
   const seoMetadata = `
@@ -460,7 +565,7 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
     `${seoMetadata}\n</head>`
   );
 
-  // Inject content into <div id="root">
+  // Inject content into <div id="root"> replacing entire template root container
   const preRenderedContent = `
     <div data-prerender-shell="true">
       <div class="prerendered-content" style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: -apple-system, sans-serif; line-height: 1.6; color: #334155;">
@@ -472,8 +577,8 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
   `;
 
   parsedHtml = parsedHtml.replace(
-    /<div id="root">\s*<div id="app-root"><\/div>\s*<\/div>/,
-    `<div id="root">${preRenderedContent}</div>`
+    /<div id="root">[\s\S]*?<\/body>/i,
+    `<div id="root">${preRenderedContent}</div>\n</body>`
   );
 
   fs.writeFileSync(join(targetDir, "index.html"), parsedHtml, "utf8");
@@ -501,6 +606,11 @@ function writeNoIndexHtmlPage(routePath, pageTitle) {
   parsedHtml = parsedHtml.replace(
     /<\/head>/,
     `${seoMetadata}\n</head>`
+  );
+
+  parsedHtml = parsedHtml.replace(
+    /<div id="root">[\s\S]*?<\/body>/i,
+    `<div id="root"><div id="app-root"></div></div>\n</body>`
   );
 
   fs.writeFileSync(join(targetDir, "index.html"), parsedHtml, "utf8");
@@ -538,7 +648,6 @@ async function prerender() {
       { path: "our-promise", changefreq: "monthly", priority: "0.8" },
       { path: "customer-care", changefreq: "monthly", priority: "0.8" },
       { path: "faq", changefreq: "weekly", priority: "0.8" },
-      { path: "get-live-quote", changefreq: "monthly", priority: "0.8" },
       { path: "blog", changefreq: "daily", priority: "0.8" },
       { path: "gst-calculator", changefreq: "weekly", priority: "0.9" },
       { path: "income-tax-calculator", changefreq: "weekly", priority: "0.9" },
@@ -546,6 +655,22 @@ async function prerender() {
       { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
       { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
       { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
+      { path: "hubs/gst", changefreq: "weekly", priority: "0.8" },
+      { path: "hubs/company", changefreq: "weekly", priority: "0.8" },
+      { path: "compare/private-limited-company-vs-llp", changefreq: "weekly", priority: "0.8" },
+      { path: "compare/trademark-vs-patent", changefreq: "weekly", priority: "0.8" },
+      { path: "calculators/hra", changefreq: "weekly", priority: "0.8" },
+      { path: "calculators/tds", changefreq: "weekly", priority: "0.8" },
+      { path: "calculators/depreciation", changefreq: "weekly", priority: "0.8" },
+      { path: "contact-us", changefreq: "monthly", priority: "0.7" },
+      { path: "editorial-team", changefreq: "monthly", priority: "0.7" },
+      { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },
+      { path: "default/refund", changefreq: "monthly", priority: "0.5" },
+      { path: "default/privacy-policy", changefreq: "monthly", priority: "0.5" },
+      { path: "default/cookie-policy", changefreq: "monthly", priority: "0.5" },
+      { path: "default/disclaimer", changefreq: "monthly", priority: "0.5" },
+      { path: "default/editorial-policy", changefreq: "monthly", priority: "0.5" },
+      { path: "default/corrections-policy", changefreq: "monthly", priority: "0.5" },
     ].filter((page) => !NOINDEX_ROUTE_PATHS.has(page.path));
 
     if (!process.env.MONGODB_URI) {
