@@ -437,8 +437,8 @@ function AppRoutesContent() {
           <Route path="/pages/moa-amendment-section-8" element={<NoIndexRedirect to="/services/moa-amendment" />} />
           <Route path="/pages/trust-income-tax-return" element={<NoIndexRedirect to="/services/itr-7-filing" />} />
           <Route path="/pages/removal-of-director" element={<NoIndexRedirect to="/services/director-removal" />} />
-          <Route path="/pages/about-us" element={<AboutUs />} />
-          <Route path="/pages/terms-conditions" element={<TermsConditions />} />
+          <Route path="/pages/about-us" element={<NoIndexRedirect to="/about-us" />} />
+          <Route path="/pages/terms-conditions" element={<NoIndexRedirect to="/terms-conditions" />} />
           <Route path="/pages/privacy-policy" element={<NoIndexRedirect to="/default/privacy-policy" />} />
           <Route path="/pages/refund-policy" element={<NoIndexRedirect to="/default/refund" />} />
           <Route path="/pages/partnership-firm-return" element={<NoIndexRedirect to="/services/partnership-firm" />} />

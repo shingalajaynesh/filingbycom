@@ -675,12 +675,12 @@ export default function BlogDetail() {
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1A56DB]">Article details</p>
               <div className="mt-4 space-y-4">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Focus keyword</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Primary Subject</p>
                   <p className="mt-1 text-sm font-semibold text-gray-900">{post.focusKeyword || post.category}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Search intent</p>
-                  <p className="mt-1 text-sm leading-6 text-gray-600">{post.searchIntent || "Informational guide"}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Content Format</p>
+                  <p className="mt-1 text-sm leading-6 text-gray-600">{post.searchIntent || "Educational Guide"}</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">Published</p>

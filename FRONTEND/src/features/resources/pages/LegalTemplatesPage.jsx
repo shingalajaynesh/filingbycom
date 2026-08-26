@@ -1,58 +1,145 @@
 import { Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
-import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
-import { legalTemplateCards } from "../data/resourcePages.js";
+import { buildBreadcrumbSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
+import { legalTemplateCards, resourceFaqs } from "../data/resourcePages.js";
 
 export default function LegalTemplatesPage() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
-        title="Legal Templates and Agreements for Businesses | FilingBy"
-        description="Download customizable legal templates and business agreements in India. Access non-disclosure agreements, founder contracts, employment terms, and NDAs."
-        keywords="legal templates India, NDA draft, employment agreement, shareholders agreement, legal notice draft"
+        title="Legal Templates & Business Contracts India | Founder Agreements & NDAs"
+        description="Comprehensive guide to drafting legally enforceable business contracts in India. Access blueprints for NDAs, Founders Agreements, Employment Contracts, and SHAs."
+        keywords="legal templates India, NDA draft, employment agreement, shareholders agreement, founders agreement vesting, Indian Contract Act 1872"
         canonical="/legal-templates"
         extraSchemas={[
           buildBreadcrumbSchema([
             { name: "Home", url: "/" },
             { name: "Legal Templates", url: "/legal-templates" }
-          ])
+          ]),
+          buildFaqSchema(resourceFaqs.legalTemplates)
         ]}
       />
 
+      {/* Hero Header */}
       <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-16 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="mx-auto max-w-6xl relative z-10">
-          <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Template hub</p>
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-blue-200 backdrop-blur-md">
+            <span>Corporate Contract Desk</span>
+          </div>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
-            Legal templates and drafting categories that attract practical search intent
+            Legal Templates &amp; Business Contract Blueprints
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100 sm:text-base">
-            These pages are useful both for SEO and for lead generation because users searching for a document often become drafting or review customers soon after.
+            Essential drafting standards, mandatory statutory clauses, and execution protocols for Indian startups and commercial enterprises under the Indian Contract Act, 1872.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-10">
+      {/* Agreement Categories */}
+      <section className="mx-auto max-w-6xl px-4 py-10 space-y-8">
         <div className="grid gap-6 lg:grid-cols-2">
           {legalTemplateCards.map((card) => (
-            <article key={card.title} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-md">
-              <h2 className="text-2xl font-semibold text-slate-900">{card.title}</h2>
-              <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
-                {card.items.map((item) => (
-                  <li key={item} className="rounded-2xl bg-gray-50 px-4 py-3">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <article key={card.title} className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col justify-between hover:border-blue-200 transition">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900">{card.title}</h2>
+                <p className="mt-2 text-xs leading-5 text-slate-600">{card.summary}</p>
+                <ul className="mt-4 space-y-2 text-xs text-slate-700">
+                  {card.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 rounded-xl bg-slate-50 p-2.5">
+                      <span className="text-blue-600 font-bold">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <Link
                 to={card.servicePath}
-                className="mt-5 inline-flex rounded-full bg-[#1A56DB] px-5 py-3 text-sm font-semibold text-white"
+                className="mt-6 inline-flex justify-center rounded-full bg-[#1A56DB] px-5 py-2.5 text-xs font-bold text-white hover:bg-blue-700 transition"
               >
-                View drafting service
+                Custom Drafting Support →
               </Link>
             </article>
           ))}
         </div>
+
+        {/* Mandatory Boilerplate Clauses */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900">Mandatory Clauses for Enforceability in India</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">1. Governing Law &amp; Jurisdiction</h3>
+              <p className="mt-1 text-xs text-slate-600">Must explicitly specify the laws of the Republic of India and exclusive jurisdiction of competent courts (e.g. courts of Mumbai/Delhi).</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">2. Dispute Resolution &amp; Arbitration</h3>
+              <p className="mt-1 text-xs text-slate-600">Specifies seated arbitration under the Arbitration and Conciliation Act, 1996 for fast-track dispute resolution outside conventional litigation.</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">3. IP Assignment &amp; Work-for-Hire</h3>
+              <p className="mt-1 text-xs text-slate-600">Guarantees that all intellectual property, source code, designs, and inventions created by contractors/staff vest exclusively with the company.</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">4. Confidentiality &amp; Trade Secrets</h3>
+              <p className="mt-1 text-xs text-slate-600">Defines proprietary data boundaries and extends confidentiality obligations beyond agreement termination (typically 2 to 5 years).</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">5. Founder Equity Vesting</h3>
+              <p className="mt-1 text-xs text-slate-600">Establishes 4-year reverse vesting with a 1-year cliff to protect early-stage startup cap tables if a co-founder departs prematurely.</p>
+            </div>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <h3 className="text-sm font-bold text-slate-900">6. Stamp Duty &amp; Execution</h3>
+              <p className="mt-1 text-xs text-slate-600">Requires physical execution on state-appropriate non-judicial stamp paper or verified digital e-stamping for court admissibility.</p>
+            </div>
+          </div>
+        </article>
+
+        {/* Official Sources & Verification */}
+        <article className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-700">Official Statutory References</p>
+              <p className="mt-1 text-sm text-slate-700">
+                Commercial agreements and statutory obligations in India are regulated under:
+              </p>
+              <div className="mt-3 flex flex-wrap gap-4 text-xs font-semibold">
+                <a
+                  href="https://www.indiacode.nic.in/handle/123456789/2187"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 underline hover:text-blue-900"
+                >
+                  The Indian Contract Act, 1872 (India Code) ↗
+                </a>
+                <a
+                  href="https://www.indiacode.nic.in/handle/123456789/1978"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 underline hover:text-blue-900"
+                >
+                  The Arbitration and Conciliation Act, 1996 (India Code) ↗
+                </a>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-white p-4 border border-blue-200 text-xs text-slate-600 shadow-sm shrink-0">
+              <p><strong>Reviewed by:</strong> FilingBy Corporate Legal &amp; Drafting Desk</p>
+              <p className="mt-1"><strong>Last Updated:</strong> August 2026 (Statutory Indian Law Compliant)</p>
+            </div>
+          </div>
+        </article>
+
+        {/* FAQs */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900">Legal Templates &amp; Contracts FAQs</h2>
+          <div className="mt-6 space-y-4">
+            {resourceFaqs.legalTemplates.map((faq) => (
+              <div key={faq.q} className="rounded-2xl bg-slate-50 p-5">
+                <h3 className="text-base font-semibold text-slate-900">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </article>
       </section>
     </main>
   );

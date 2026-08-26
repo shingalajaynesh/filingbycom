@@ -162,7 +162,7 @@ const SERVICE_SEO_OVERRIDES = {
     keywords:
       "private limited company winding up india, stk-2 company closure, close private limited company, company strike off india",
     intro:
-      "This page addresses search intent around private limited company winding up, strike-off preparation, STK-2 suitability and the clean-up work businesses should complete before filing.",
+      "Comprehensive statutory guidance on private limited company winding up, strike-off preparation, STK-2 suitability, and compliance clean-up before MCA submission.",
     faqs: [
       {
         q: "What is the fastest route for private limited company winding up?",
@@ -259,7 +259,7 @@ function IntentSnapshot({ title, body, facts = [], checkpoints = [], onPrimaryAc
     <article className="overflow-hidden rounded-3xl border border-[#1A56DB]/10 bg-[linear-gradient(135deg,rgba(26,86,219,0.07),rgba(56,189,248,0.04))] p-6 shadow-sm sm:p-8">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="max-w-3xl">
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#1A56DB]">Search intent snapshot</p>
+          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#1A56DB]">Compliance Highlights</p>
           <h2 className="mt-3 text-2xl font-black text-slate-950 sm:text-3xl">{title}</h2>
           {body ? <p className="mt-4 text-sm leading-7 text-slate-600">{body}</p> : null}
           {facts.length > 0 ? (
@@ -277,7 +277,7 @@ function IntentSnapshot({ title, body, facts = [], checkpoints = [], onPrimaryAc
         <div className="w-full max-w-xs rounded-[1.75rem] border border-slate-200/80 bg-white/90 p-5 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Next step</p>
           <p className="mt-3 text-sm font-semibold leading-6 text-slate-800">
-            Move from search research to a clear document and filing plan.
+            Review required documents and begin statutory filing with our CA/CS team.
           </p>
           <button
             type="button"

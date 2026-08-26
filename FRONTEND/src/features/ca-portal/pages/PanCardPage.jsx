@@ -6,16 +6,20 @@ import { PortalCTA, PortalCard, PortalPageShell } from "../components/PortalPage
 
 const PAN_FAQS = [
   {
-    q: "Is PAN the same as TAN?",
-    a: "No. PAN is used for income-tax identity and financial reporting, while TAN is for deducting or collecting tax at source. They solve different compliance needs."
+    q: "What is the difference between PAN and TAN?",
+    a: "A Permanent Account Number (PAN) is a unique 10-digit alphanumeric identity issued by the Income Tax Department to track financial transactions and income tax assessments. A Tax Deduction and Collection Account Number (TAN) is required specifically by entities that deduct or collect tax at source (TDS/TCS)."
   },
   {
-    q: "Can FilingBy help if I am not sure whether I need PAN or TAN support?",
-    a: "Yes. If you are unsure, start with a short consultation so the team can confirm whether you need PAN application help, PAN correction support, or TAN registration for TDS compliance."
+    q: "What documents are required for a new PAN card application?",
+    a: "For individual applicants: Proof of Identity (Aadhaar, Passport, Voter ID), Proof of Address, and Proof of Date of Birth. For companies and LLPs: Certificate of Incorporation (COI) and registered office address proof."
   },
   {
-    q: "What should I keep ready before asking for PAN-related help?",
-    a: "Keep the applicant type, identity documents, address proof, and the reason for the request ready, especially if the case involves a new application, correction, or business onboarding."
+    q: "Can FilingBy help with PAN card corrections or duplicate PAN cards?",
+    a: "Yes. FilingBy assists with name corrections, date of birth updates, signature/photo updates, address changes, and issuing duplicate physical/electronic PAN cards."
+  },
+  {
+    q: "Can a foreigner or NRI apply for an Indian PAN card?",
+    a: "Yes. Foreign individuals, NRIs, and foreign corporate entities investing in India or generating taxable Indian income can apply for an Indian PAN card using Form 49AA with notarized and apostilled identity and address documents."
   }
 ];
 
@@ -27,9 +31,9 @@ export default function PanCardPage() {
   return (
     <>
       <SEO
-        title="PAN Card Assistance India — Application & Correction | FilingBy"
-        description="Get PAN card assistance in India for new applications, corrections, document guidance, and help understanding when PAN support is needed instead of TAN."
-        keywords="pan card assistance india, pan application help, pan correction support, pan vs tan, pan documents india"
+        title="PAN Card Assistance India — New Application & Correction | FilingBy"
+        description="Get fast PAN card assistance in India. Dedicated support for new PAN applications, Form 49A/49AA filings, data corrections, NRI PAN cards, and TAN registration guidance."
+        keywords="pan card assistance india, pan application help, pan correction support, pan vs tan, nri pan card india"
         canonical="/services/pan-card"
         schema={null}
         extraSchemas={[
@@ -43,45 +47,45 @@ export default function PanCardPage() {
       />
 
       <PortalPageShell
-        badge="PAN Support"
-        title="PAN card help for applications, corrections, and confusion between PAN and TAN"
-        description="This page is designed for legacy PAN-card searches and for visitors who need quick help understanding whether the next step is PAN support, TAN registration, or a simple document review."
+        badge="Tax Identity Support"
+        title="PAN Card Assistance for Individuals, NRIs &amp; Commercial Entities"
+        description="Comprehensive statutory guidance for new PAN applications (Form 49A / 49AA), data corrections, reprint requests, and business tax identity onboarding."
         breadcrumbs={[
           { label: "Home", to: "/" },
           { label: "PAN Card Assistance" }
         ]}
       >
         <PortalCard
-          eyebrow="Quick Answer"
-          title="Start here if the search was for PAN card, not TAN"
-          description="PAN and TAN are different compliance requirements. If you came from an older PAN page, this destination keeps the search intent aligned and helps you choose the right next step."
+          eyebrow="Tax Identity Essentials"
+          title="Understanding Your PAN &amp; Tax Registration Requirements"
+          description="A Permanent Account Number (PAN) is the cornerstone of Indian financial compliance. Review your filing category to ensure accurate processing:"
         >
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl bg-slate-50 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Best for</p>
-              <p className="mt-2 text-sm font-semibold text-slate-800">New PAN requests, corrections, and document checks</p>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1A56DB]">Individual &amp; NRI PAN</p>
+              <p className="mt-2 text-sm font-semibold text-slate-800">Form 49A for Indian residents and Form 49AA for NRIs and foreign citizens</p>
             </div>
-            <div className="rounded-2xl bg-slate-50 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Common confusion</p>
-              <p className="mt-2 text-sm font-semibold text-slate-800">PAN is not the same as TAN for TDS or TCS work</p>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1A56DB]">Corporate &amp; LLP PAN</p>
+              <p className="mt-2 text-sm font-semibold text-slate-800">Integrated PAN allotment during SPICe+ MCA incorporation</p>
             </div>
-            <div className="rounded-2xl bg-slate-50 p-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Fastest next step</p>
-              <p className="mt-2 text-sm font-semibold text-slate-800">Share the use case and get routed to the correct filing flow</p>
+            <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1A56DB]">Corrections &amp; Updates</p>
+              <p className="mt-2 text-sm font-semibold text-slate-800">Update name, father's name, DOB, or request re-issuance of physical cards</p>
             </div>
           </div>
         </PortalCard>
 
         <PortalCard
-          title="What to check before you proceed"
-          description="These are the most common cases where users land on a PAN query but need a clearer route."
+          title="Mandatory Document Checklist for PAN Application"
+          description="Prepare the following verified KYC documents before submitting your request:"
         >
           <div className="grid gap-4 md:grid-cols-2">
             {[
-              "You need a new PAN application for an individual or business entity.",
-              "You need a PAN correction because details, spelling, or supporting documents changed.",
-              "You are onboarding a business and need to confirm whether the requirement is PAN, TAN, or both.",
-              "You want document guidance before starting a tax or compliance application."
+              "Proof of Identity: Aadhaar Card, Passport, Voter ID, or Driving Licence.",
+              "Proof of Address: Utility Bill (under 2 months old), Bank Statement, or Passport.",
+              "Proof of Date of Birth: Birth Certificate, Matriculation Certificate, or Passport.",
+              "For NRIs / Foreigners: Apostilled / Embassy-attested passport and overseas address proof."
             ].map((item, index) => (
               <div key={item} className="flex items-start gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-4">
                 <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1A56DB]/10 text-xs font-black text-[#1A56DB]">
@@ -94,28 +98,28 @@ export default function PanCardPage() {
         </PortalCard>
 
         <PortalCard
-          title="Related paths"
-          description="If your actual requirement is different, use one of these direct routes."
+          title="Related Tax Registration Pathways"
+          description="If you need employer TDS registration or broader business compliance support:"
         >
           <div className="grid gap-3 sm:grid-cols-2">
             <Link
               to="/services/tan-registration"
               className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-[#1A56DB] hover:bg-slate-50"
             >
-              <p className="text-sm font-bold text-slate-900">TAN registration</p>
-              <p className="mt-1 text-sm leading-6 text-slate-600">Use this if the need is TDS or TCS setup and deductor registration.</p>
+              <p className="text-sm font-bold text-slate-900">TAN Registration (TDS Deductors)</p>
+              <p className="mt-1 text-sm leading-6 text-slate-600">Required by employers and businesses deducting tax under TDS provisions.</p>
             </Link>
             <Link
               to="/contact-us"
               className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-[#1A56DB] hover:bg-slate-50"
             >
-              <p className="text-sm font-bold text-slate-900">Ask for manual guidance</p>
-              <p className="mt-1 text-sm leading-6 text-slate-600">Use this if you want the team to confirm the correct service before you start.</p>
+              <p className="text-sm font-bold text-slate-900">Consult a Tax Professional</p>
+              <p className="mt-1 text-sm leading-6 text-slate-600">Get personalized guidance on business entity taxation and registration.</p>
             </Link>
           </div>
         </PortalCard>
 
-        <PortalCard title="Frequently asked questions">
+        <PortalCard title="Frequently Asked Questions">
           <div className="space-y-3">
             {PAN_FAQS.map((faq) => (
               <div key={faq.q} className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
@@ -127,8 +131,8 @@ export default function PanCardPage() {
         </PortalCard>
 
         <PortalCTA
-          title="Need help choosing the right tax-registration path?"
-          description="Talk to the FilingBy team before you start the application so the request lands on the correct workflow the first time."
+          title="Need Assistance with PAN Application or Corrections?"
+          description="Speak with FilingBy's tax advisory desk to ensure smooth submission with zero document errors."
           primary={
             <a
               href={whatsappUrl}

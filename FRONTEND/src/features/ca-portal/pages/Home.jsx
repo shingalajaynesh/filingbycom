@@ -305,13 +305,13 @@ export default function Home() {
         <div className="mx-auto max-w-screen-xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.35em] text-blue-700">Traffic growth pages</p>
+              <p className="text-xs font-bold uppercase tracking-[0.35em] text-blue-700">Compliance &amp; Tax Tools</p>
               <h2 className="mt-3 text-2xl font-bold text-gray-900 sm:text-3xl">
-                Free tools and guides users actually search for
+                Free Business Calculators &amp; Statutory Guides
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-gray-500">
-              These pages are built to capture calculator, comparison, template, and research intent before users are ready to buy.
+              Access interactive tax estimators, business entity selection frameworks, MCA annual compliance checklists, and verified legal templates.
             </p>
           </div>
 

@@ -1,79 +1,173 @@
+import { Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
-import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
-import { trademarkChecklist } from "../data/resourcePages.js";
+import { buildBreadcrumbSchema, buildFaqSchema } from "../../../shared/seo/schemas.js";
+import { trademarkChecklist, resourceFaqs } from "../data/resourcePages.js";
 
 export default function TrademarkSearchPage() {
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
-        title="Trademark Search Guide India | Check Brand Availability"
-        description="Check brand name availability in India with FilingBy's trademark search guide. Learn trademark class selection, registration steps, and protection strategies."
-        keywords="trademark search India, brand name check, IP India public search, trademark class search"
+        title="Trademark Search Guide India | IP India Public Database & Class Finder"
+        description="Comprehensive guide to conducting official trademark searches on the IP India registry. Learn Wordmark, Phonetic, and Vienna code searching across 45 Nice classes."
+        keywords="trademark search India, IP India public search, trademark class finder, phonetic search trademark, Section 9 11 objections Trade Marks Act"
         canonical="/trademark-search"
         extraSchemas={[
           buildBreadcrumbSchema([
             { name: "Home", url: "/" },
-            { name: "Trademark Search", url: "/trademark-search" }
-          ])
+            { name: "Trademark Search Guide", url: "/trademark-search" }
+          ]),
+          buildFaqSchema(resourceFaqs.trademark)
         ]}
       />
 
-      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-16 relative overflow-hidden">
+      {/* Hero Header */}
+      <section className="bg-gradient-to-br from-[#0F172A] via-[#1A56DB] to-[#1e40af] px-4 py-16 relative overflow-hidden text-white">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-3xl relative z-10 text-white">
-            <p className="text-xs font-bold uppercase tracking-widest text-blue-200">Brand protection</p>
-            <h1 className="mt-4 text-4xl font-black leading-tight text-white sm:text-5xl">
-              Trademark search guide for founders before they file
-            </h1>
-            <p className="mt-4 text-sm leading-relaxed text-blue-100 sm:text-base">
-              A good search reduces avoidable objections and rework. Use this page to understand the process, then move into the official registry search or a filing service.
-            </p>
+        <div className="mx-auto max-w-6xl relative z-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-blue-200 backdrop-blur-md">
+            <span>Brand Protection Blueprint</span>
           </div>
+          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
+            Trademark Search Guide &amp; IP India Registry Protocol
+          </h1>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100 sm:text-base">
+            Learn how to perform official brand availability searches, identify conflicting marks, classify goods and services across 45 Nice classes, and prevent statutory examination objections.
+          </p>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 lg:grid-cols-[1fr_0.9fr]">
-        <article className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">Trademark search checklist</h2>
-          <div className="mt-5 space-y-3">
-            {trademarkChecklist.map((item, index) => (
-              <div key={item} className="flex gap-4 rounded-2xl bg-gray-50 p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#1A56DB] text-sm font-semibold text-white">
-                  {index + 1}
-                </span>
-                <p className="text-sm leading-6 text-slate-700">{item}</p>
+      {/* Search Methodology & Checklist */}
+      <section className="mx-auto max-w-6xl px-4 py-10 space-y-8">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h2 className="text-2xl font-bold text-slate-900">7-Step IP India Search Methodology</h2>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Before filing Form TM-A with the Trade Marks Registry, follow this systematic clearance protocol:
+            </p>
+            <div className="mt-5 space-y-3">
+              {trademarkChecklist.map((item, index) => (
+                <div key={item} className="flex gap-4 rounded-2xl bg-slate-50 p-4 border border-slate-100">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1A56DB] text-xs font-bold text-white">
+                    {index + 1}
+                  </span>
+                  <p className="text-xs leading-5 text-slate-700 font-medium">{item}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <aside className="space-y-6">
+            <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900">Official Government Portal</h3>
+              <p className="mt-2 text-xs leading-5 text-slate-600">
+                The Trade Marks Registry provides a free online database to search existing marks, applications, and registered trademarks:
+              </p>
+              <a
+                href="https://tmrsearch.ipindia.gov.in/tmrpublicsearch/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full justify-center rounded-full bg-[#1A56DB] px-4 py-2.5 text-xs font-bold text-white hover:bg-blue-700 transition"
+              >
+                Open IP India Public Search Portal ↗
+              </a>
+            </div>
+
+            <div className="rounded-3xl bg-[#0F172A] p-6 text-white shadow-sm">
+              <h3 className="text-lg font-bold">Need Trademark Filing Assistance?</h3>
+              <p className="mt-2 text-xs leading-5 text-slate-300">
+                FilingBy handles complete trademark search clearance, class categorization, TM-A filing, and reply to examination reports.
+              </p>
+              <Link
+                to="/services/trademark-registration"
+                className="mt-4 block rounded-full bg-white px-4 py-2.5 text-center text-xs font-bold text-[#1A56DB] hover:bg-slate-100 transition"
+              >
+                Start Trademark Registration →
+              </Link>
+            </div>
+          </aside>
+        </div>
+
+        {/* 3 Search Types & Objection Grounds */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Search Query Modes on IP India</h3>
+            <div className="mt-4 space-y-3 text-xs text-slate-600 leading-relaxed">
+              <div className="rounded-2xl bg-slate-50 p-3.5 border border-slate-100">
+                <h4 className="font-bold text-slate-900">1. Wordmark Search ('Contains' &amp; 'Start With')</h4>
+                <p className="mt-1">Searches character sequences. Always search using 'Contains' to find marks containing your brand name within larger words.</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-3.5 border border-slate-100">
+                <h4 className="font-bold text-slate-900">2. Phonetic Search</h4>
+                <p className="mt-1">Identifies marks that sound identical when spoken, even with altered spelling (e.g. 'Quick' vs 'Kwik').</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-3.5 border border-slate-100">
+                <h4 className="font-bold text-slate-900">3. Vienna Classification Search</h4>
+                <p className="mt-1">International figurative classification system used to search visual logo shapes, animals, geometric patterns, and icons.</p>
+              </div>
+            </div>
+          </article>
+
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Common Examination Objections</h3>
+            <div className="mt-4 space-y-3 text-xs text-slate-600 leading-relaxed">
+              <div className="rounded-2xl bg-rose-50/50 p-3.5 border border-rose-100">
+                <h4 className="font-bold text-rose-950">Section 9: Absolute Grounds of Refusal</h4>
+                <p className="mt-1 text-slate-700">Applies to marks devoid of distinctive character, laudatory terms (e.g. 'Best', 'Premium'), or generic names describing the product's function.</p>
+              </div>
+              <div className="rounded-2xl bg-amber-50/50 p-3.5 border border-amber-100">
+                <h4 className="font-bold text-amber-950">Section 11: Relative Grounds of Refusal</h4>
+                <p className="mt-1 text-slate-700">Applies when a mark is identical or deceptively similar to an earlier existing trademark for identical or similar goods/services.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        {/* Official Sources & Verification */}
+        <article className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 sm:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-blue-700">Official Government References</p>
+              <p className="mt-1 text-sm text-slate-700">
+                Intellectual property registrations in India are administered by the Office of the Controller General of Patents, Designs and Trade Marks (CGPDTM):
+              </p>
+              <div className="mt-3 flex flex-wrap gap-4 text-xs font-semibold">
+                <a
+                  href="https://ipindia.gov.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 underline hover:text-blue-900"
+                >
+                  IP India Official Portal (Trade Marks Registry) ↗
+                </a>
+                <a
+                  href="https://tmrsearch.ipindia.gov.in/tmrpublicsearch/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 underline hover:text-blue-900"
+                >
+                  Trade Marks Public Search System (TMR Database) ↗
+                </a>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-white p-4 border border-blue-200 text-xs text-slate-600 shadow-sm shrink-0">
+              <p><strong>Reviewed by:</strong> FilingBy IP &amp; Trademark Attorneys</p>
+              <p className="mt-1"><strong>Last Updated:</strong> August 2026 (Trade Marks Act, 1999 Compliant)</p>
+            </div>
+          </div>
+        </article>
+
+        {/* FAQs */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-900">Trademark Search &amp; Filing FAQs</h2>
+          <div className="mt-6 space-y-4">
+            {resourceFaqs.trademark.map((faq) => (
+              <div key={faq.q} className="rounded-2xl bg-slate-50 p-5">
+                <h3 className="text-base font-semibold text-slate-900">{faq.q}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{faq.a}</p>
               </div>
             ))}
           </div>
         </article>
-
-        <aside className="space-y-6">
-          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">Official search portal</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              The Government of India's official public trademark search portal is the most important place to verify exact and similar marks.
-            </p>
-            <a
-              href="https://tmrsearch.ipindia.gov.in/tmrpublicsearch/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex rounded-full bg-[#1A56DB] px-5 py-3 text-sm font-semibold text-white"
-            >
-              Open IP India Public Search
-            </a>
-          </div>
-
-          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">When to get expert help</h2>
-            <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-              <li>If similar marks show up in the same class.</li>
-              <li>If you need advice on class selection.</li>
-              <li>If your brand includes a logo plus a wordmark.</li>
-              <li>If you want a filing strategy after the search.</li>
-            </ul>
-          </div>
-        </aside>
       </section>
     </main>
   );
