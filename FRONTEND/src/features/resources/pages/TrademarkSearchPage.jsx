@@ -122,6 +122,54 @@ export default function TrademarkSearchPage() {
           </article>
         </div>
 
+        {/* Worked Case Studies & Search Analysis */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 1: Overcoming Section 11 Phonetic Conflict</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              An applicant wishes to register "NOVASTACK" for cloud infrastructure software in Class 42:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Search Protocol:</strong> Wordmark search finds no exact match. Phonetic search identifies "NOVO-STACK" registered in Class 42.</p>
+              <p><strong>Risk Assessment:</strong> High probability of Section 11 objection due to identical phonetic sound and overlapping software services.</p>
+              <p><strong>Remedy / Action:</strong> Applicant prefixes with distinct coined prefix "AERONOVA STACK" and files Form TM-A with device logo to ensure registry clearance.</p>
+            </div>
+          </article>
+
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 2: Multi-Class Filing for D2C Beverage Brand</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              An organic energy tea startup plans retail distribution and an online subscription storefront:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Class 30:</strong> Packaged herbal teas and natural beverage concoctions.</p>
+              <p><strong>Class 35:</strong> Online retail store services and advertising for beverages.</p>
+              <p><strong>Filing Strategy:</strong> Multi-class application protects both physical product formulation and digital brand storefront against copycats.</p>
+            </div>
+          </article>
+        </div>
+
+        {/* Assumptions & Limitations */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h3 className="text-xl font-bold text-slate-900">Search Protocol Assumptions &amp; Legal Limitations</h3>
+          <div className="mt-4 grid gap-6 md:grid-cols-2 text-sm text-slate-600 leading-relaxed">
+            <div>
+              <h4 className="font-semibold text-slate-800">Assumptions:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>Search covers registered trademarks, pending applications, and marks advertised in the official Trademark Journal.</li>
+                <li>Classification is evaluated against the 12th Edition of Nice Classification published by WIPO.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-slate-800">Limitations &amp; Exclusions:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>Common law unregistered marks with substantial market goodwill may still initiate passing-off actions.</li>
+                <li>Domain names, state business registries, and international Madrid Protocol filings require supplementary cross-search.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
         {/* Official Sources & Verification */}
         <article className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

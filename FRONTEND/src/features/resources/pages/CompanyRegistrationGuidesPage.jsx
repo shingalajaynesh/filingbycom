@@ -122,6 +122,57 @@ export default function CompanyRegistrationGuidesPage() {
           </div>
         </article>
 
+        {/* Worked Case Study & Decision Logic */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case: Tech Startup with 2 Co-Founders Seeking VC</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Two software engineers in Bengaluru are launching an AI SaaS product with plans to raise ₹2 crore seed funding and grant employee stock options (ESOPs):
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Recommended Structure:</strong> Private Limited Company (Pvt Ltd)</p>
+              <p><strong>Rationale:</strong> Only Pvt Ltd companies can issue preference shares (CCPS), create equity ESOP pools, and offer limited liability protection to founders.</p>
+              <p><strong>Incorporation Filing:</strong> SPICe+ (INC-32) with Part A name reservation, Class-3 DSCs, and AGILE-PRO-S bank account setup.</p>
+              <p className="text-blue-700 font-bold">Estimated Incorporation Timeline: 3 to 5 business days on MCA V3.</p>
+            </div>
+          </article>
+
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case: Professional Architecture &amp; Design Agency</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Three architects are opening a multi-city consulting practice with no immediate plans for outside equity capital:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Recommended Structure:</strong> Limited Liability Partnership (LLP)</p>
+              <p><strong>Rationale:</strong> Provides full limited liability protection with lower annual compliance costs. No statutory audit required if turnover remains under ₹40 lakh.</p>
+              <p><strong>Incorporation Filing:</strong> FiLLiP (Form for Incorporation of LLP) with LLP Agreement Form 3 filed within 30 days.</p>
+              <p className="text-emerald-700 font-bold">Benefit: Profit distributions to partners are tax-free in their personal hands.</p>
+            </div>
+          </article>
+        </div>
+
+        {/* Assumptions & Limitations */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h3 className="text-xl font-bold text-slate-900">Entity Selection Assumptions &amp; Regulatory Limitations</h3>
+          <div className="mt-4 grid gap-6 md:grid-cols-2 text-sm text-slate-600 leading-relaxed">
+            <div>
+              <h4 className="font-semibold text-slate-800">Assumptions:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>All proposed directors/partners hold valid Indian identity (PAN &amp; Aadhaar) or apostilled passport credentials.</li>
+                <li>At least one director is an Indian resident (stayed in India for at least 182 days in the previous financial year).</li>
+                <li>Registered office address proof includes a valid utility bill (less than 2 months old) and landlord NOC.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-slate-800">Limitations &amp; Restrictions:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>Foreign Direct Investment (FDI) under 100% automatic route is permitted for Pvt Ltd and eligible LLPs, but restricted for OPC and Proprietorship.</li>
+                <li>OPC conversion to Pvt Ltd is voluntary anytime, but cannot carry out Non-Banking Financial Investment activities.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
         {/* Official Sources & Verification */}
         <article className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

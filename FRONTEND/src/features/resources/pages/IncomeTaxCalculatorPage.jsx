@@ -59,12 +59,52 @@ function formatCurrency(value) {
   }).format(Math.round(Number.isFinite(value) ? value : 0));
 }
 
+function getSlabBreakdown(taxableIncome, slabs) {
+  let previousLimit = 0;
+  const breakdown = [];
+
+  for (const slab of slabs) {
+    if (taxableIncome <= previousLimit) {
+      breakdown.push({
+        label: slab.label,
+        rate: slab.rate,
+        taxableInSlab: 0,
+        taxInSlab: 0
+      });
+      continue;
+    }
+    const slabUpper = slab.upTo;
+    const taxableSlice = Math.min(taxableIncome, slabUpper) - previousLimit;
+    const taxInSlab = taxableSlice > 0 ? taxableSlice * slab.rate : 0;
+    
+    breakdown.push({
+      label: slab.label,
+      rate: slab.rate,
+      taxableInSlab: Math.max(0, taxableSlice),
+      taxInSlab
+    });
+    
+    previousLimit = slabUpper;
+  }
+
+  return breakdown;
+}
+
 export default function IncomeTaxCalculatorPage() {
-  const [grossIncome, setGrossIncome] = useState("1200000");
+  const [grossIncome, setGrossIncome] = useState("1275000");
   const [salaryIncome, setSalaryIncome] = useState(true);
   const [ageGroup, setAgeGroup] = useState("below60");
   const [oldDeductions, setOldDeductions] = useState("150000");
   const [newDeductions, setNewDeductions] = useState("0");
+
+  const PRESETS = [
+    { label: "₹7.5 Lakh", value: "750000" },
+    { label: "₹10 Lakh", value: "1000000" },
+    { label: "₹12.75 Lakh (Zero Tax)", value: "1275000" },
+    { label: "₹15 Lakh", value: "1500000" },
+    { label: "₹20 Lakh", value: "2000000" },
+    { label: "₹30 Lakh", value: "3000000" }
+  ];
 
   const summary = useMemo(() => {
     const income = Math.max(0, Number(grossIncome) || 0);
@@ -78,15 +118,18 @@ export default function IncomeTaxCalculatorPage() {
     const oldTaxableIncome = Math.max(0, income - oldStandardDeduction - oldDeductionAmount);
     const newTaxableIncome = Math.max(0, income - newStandardDeduction - newDeductionAmount);
 
-    let oldBaseTax = calculateSlabTax(oldTaxableIncome, OLD_SLABS[ageGroup]);
-    let newBaseTax = calculateSlabTax(newTaxableIncome, NEW_SLABS);
+    const oldBaseTax = calculateSlabTax(oldTaxableIncome, OLD_SLABS[ageGroup]);
+    const newBaseTax = calculateSlabTax(newTaxableIncome, NEW_SLABS);
+
+    const oldSlabBreakdown = getSlabBreakdown(oldTaxableIncome, OLD_SLABS[ageGroup]);
+    const newSlabBreakdown = getSlabBreakdown(newTaxableIncome, NEW_SLABS);
 
     // Old Regime 87A rebate: taxable income <= 5L gets rebate up to ₹12,500
     let oldRebate = 0;
     if (oldTaxableIncome <= 500000) {
       oldRebate = Math.min(oldBaseTax, 12500);
     }
-    let oldTaxAfterRebate = Math.max(0, oldBaseTax - oldRebate);
+    const oldTaxAfterRebate = Math.max(0, oldBaseTax - oldRebate);
 
     // New Regime 87A rebate & marginal relief for FY 2025-26:
     // Taxable income <= ₹12,00,000 gets full rebate up to ₹60,000
@@ -101,6 +144,7 @@ export default function IncomeTaxCalculatorPage() {
       const excessIncome = newTaxableIncome - 1200000;
       if (newBaseTax > excessIncome) {
         newTaxAfterRebate = excessIncome;
+        newRebate = newBaseTax - excessIncome;
       }
     }
 
@@ -117,6 +161,8 @@ export default function IncomeTaxCalculatorPage() {
       newTaxableIncome,
       oldBaseTax,
       newBaseTax,
+      oldSlabBreakdown,
+      newSlabBreakdown,
       oldRebate,
       newRebate,
       oldTaxAfterRebate,
@@ -134,8 +180,8 @@ export default function IncomeTaxCalculatorPage() {
     <main className="min-h-screen bg-gray-50 text-gray-900 pb-16">
       <SEO
         title="Income Tax Calculator India FY 2025-26 (AY 2026-27) | Old vs New Regime"
-        description="Calculate income tax for FY 2025-26 (AY 2026-27) under the revised 7-slab New Regime vs Old Regime. Accurate Section 87A rebate and ₹75,000 standard deduction calculator."
-        keywords="income tax calculator FY 2025-26, new tax regime AY 2026-27, old vs new tax regime calculator India, Section 87A rebate, standard deduction 75000"
+        description="Calculate income tax for FY 2025-26 (AY 2026-27) under the revised 7-slab New Regime vs Old Regime. Accurate Section 87A rebate (up to ₹60,000 on ₹12L) and ₹75,000 standard deduction calculator."
+        keywords="income tax calculator FY 2025-26, new tax regime AY 2026-27, old vs new tax regime calculator India, Section 87A rebate 60000, standard deduction 75000"
         canonical="/income-tax-calculator"
         extraSchemas={[
           buildBreadcrumbSchema([
@@ -151,13 +197,13 @@ export default function IncomeTaxCalculatorPage() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
         <div className="mx-auto max-w-6xl relative z-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-blue-200 backdrop-blur-md">
-            <span>Verified for AY 2026-27</span>
+            <span>Verified for AY 2026-27 Statutory Guidelines</span>
           </div>
           <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
             Income Tax Calculator (FY 2025-26 / AY 2026-27)
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-blue-100 sm:text-base">
-            Compare tax liability under the official 7-slab New Tax Regime (Section 115BAC) and the Old Tax Regime with standard deductions, Section 87A rebates, and 4% health & education cess.
+            Compare tax liability under the revised 7-slab New Tax Regime (Section 115BAC) and the Old Tax Regime with updated ₹75,000 standard deduction, Section 87A rebates up to ₹60,000, and 4% health &amp; education cess.
           </p>
         </div>
       </section>
@@ -167,7 +213,28 @@ export default function IncomeTaxCalculatorPage() {
         <article className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="border-b border-gray-100 pb-4">
             <h2 className="text-xl font-bold text-slate-900">Enter Your Income &amp; Deductions</h2>
-            <p className="text-xs text-slate-500 mt-1">Estimates apply to resident individuals under Indian Income Tax Act rules.</p>
+            <p className="text-xs text-slate-500 mt-1">Calculations strictly apply to Indian resident individuals under Income Tax Act rules.</p>
+          </div>
+
+          {/* Quick Presets */}
+          <div className="mt-5">
+            <span className="text-xs font-semibold text-slate-500">Quick Salary Presets:</span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {PRESETS.map((preset) => (
+                <button
+                  key={preset.value}
+                  type="button"
+                  onClick={() => setGrossIncome(preset.value)}
+                  className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition cursor-pointer ${
+                    grossIncome === preset.value
+                      ? "bg-[#1A56DB] text-white shadow-xs"
+                      : "bg-slate-100 text-slate-700 hover:bg-blue-50"
+                  }`}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -180,7 +247,7 @@ export default function IncomeTaxCalculatorPage() {
                 value={grossIncome}
                 onChange={(event) => setGrossIncome(event.target.value)}
                 className="mt-2 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-[#1A56DB] focus:bg-white text-base font-semibold"
-                placeholder="e.g. 1200000"
+                placeholder="e.g. 1275000"
               />
             </label>
 
@@ -190,7 +257,7 @@ export default function IncomeTaxCalculatorPage() {
                 <button
                   type="button"
                   onClick={() => setSalaryIncome(true)}
-                  className={`rounded-2xl px-4 py-2.5 text-sm font-semibold transition cursor-pointer ${
+                  className={`rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition cursor-pointer ${
                     salaryIncome ? "bg-[#1A56DB] text-white shadow-sm" : "bg-gray-100 text-gray-700 hover:bg-blue-50"
                   }`}
                 >
@@ -199,11 +266,11 @@ export default function IncomeTaxCalculatorPage() {
                 <button
                   type="button"
                   onClick={() => setSalaryIncome(false)}
-                  className={`rounded-2xl px-4 py-2.5 text-sm font-semibold transition cursor-pointer ${
+                  className={`rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition cursor-pointer ${
                     !salaryIncome ? "bg-[#0F172A] text-white shadow-sm" : "bg-gray-100 text-gray-700 hover:bg-blue-50"
                   }`}
                 >
-                  Non-Salaried / Pro
+                  Non-Salaried / Business
                 </button>
               </div>
             </div>
@@ -222,7 +289,7 @@ export default function IncomeTaxCalculatorPage() {
             </label>
 
             <label className="block">
-              <span className="text-sm font-semibold text-slate-700">Old Regime Deductions (80C, 80D, HRA, etc.)</span>
+              <span className="text-sm font-semibold text-slate-700">Old Regime Deductions (80C, 80D, HRA, 24b)</span>
               <input
                 type="number"
                 min="0"
@@ -232,7 +299,7 @@ export default function IncomeTaxCalculatorPage() {
                 className="mt-2 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-[#1A56DB] focus:bg-white text-sm"
                 placeholder="e.g. 150000"
               />
-              <span className="text-[11px] text-slate-400 mt-1 block">Sec 80C (up to 1.5L), 80D, Sec 24b Home Loan</span>
+              <span className="text-[11px] text-slate-400 mt-1 block">Sec 80C (up to ₹1.5L), 80D Health, Sec 24b Home Loan Interest</span>
             </label>
 
             <label className="block">
@@ -246,12 +313,12 @@ export default function IncomeTaxCalculatorPage() {
                 className="mt-2 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 outline-none transition focus:border-[#1A56DB] focus:bg-white text-sm"
                 placeholder="e.g. 0"
               />
-              <span className="text-[11px] text-slate-400 mt-1 block">Employer NPS contribution (up to 14% of salary)</span>
+              <span className="text-[11px] text-slate-400 mt-1 block">Employer NPS contribution (allowed under Sec 80CCD(2) up to 14%)</span>
             </label>
           </div>
 
           <div className="mt-6 rounded-2xl border border-blue-100 bg-blue-50/70 p-4 text-xs leading-5 text-blue-900">
-            <strong>Key Rule:</strong> Under the FY 2025-26 New Tax Regime, taxable income up to ₹12,00,000 gets a full Section 87A rebate (zero tax). With the ₹75,000 salaried standard deduction, gross salaries up to ₹12,75,000 pay ₹0 tax.
+            <strong>Key Tax Rule (AY 2026-27):</strong> Under the revised FY 2025-26 New Tax Regime, taxable income up to <strong>₹12,00,000</strong> receives a full Section 87A rebate (up to ₹60,000), resulting in zero net tax. Combined with the <strong>₹75,000</strong> salaried standard deduction, gross salaries up to <strong>₹12,75,000</strong> incur <strong>₹0 tax liability</strong>.
           </div>
         </article>
 
@@ -260,7 +327,7 @@ export default function IncomeTaxCalculatorPage() {
           <div className="rounded-3xl bg-[#0F172A] p-6 text-white shadow-md">
             <p className="text-xs uppercase tracking-[0.3em] text-blue-300 font-bold">Optimal Recommendation</p>
             <h2 className="mt-3 text-3xl font-black text-emerald-400">{summary.betterRegime}</h2>
-            <p className="mt-2 text-sm text-slate-300">
+            <p className="mt-2 text-sm text-slate-300 leading-relaxed">
               {summary.savings > 0 ? (
                 <>You save approx. <strong className="text-white font-bold">{formatCurrency(summary.savings)}</strong> by opting for {summary.betterRegime}.</>
               ) : (
@@ -323,7 +390,7 @@ export default function IncomeTaxCalculatorPage() {
           <article className="rounded-3xl border-2 border-blue-500 bg-blue-50/30 p-6 shadow-sm relative overflow-hidden">
             <div className="flex items-center justify-between">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#1A56DB]">New Tax Regime (Default)</p>
-              <span className="text-xs rounded-full bg-blue-600 px-3 py-1 font-bold text-white">FY 2025-26 Slabs</span>
+              <span className="text-xs rounded-full bg-blue-600 px-3 py-1 font-bold text-white">FY 2025-26 / AY 2026-27</span>
             </div>
             <p className="mt-4 text-3xl font-black text-[#1A56DB]">{formatCurrency(summary.newTotal)}</p>
             <p className="mt-1 text-xs text-slate-500">Total payable tax (including 4% cess)</p>
@@ -348,13 +415,64 @@ export default function IncomeTaxCalculatorPage() {
         </div>
       </section>
 
+      {/* Interactive Slab-by-Slab Calculation Table */}
+      <section className="mx-auto max-w-6xl px-4 pt-10">
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h2 className="text-xl font-bold text-slate-900">Your Slab-by-Slab Calculation in the New Regime</h2>
+          <p className="mt-1 text-xs text-slate-500">
+            See how each slice of your taxable income ({formatCurrency(summary.newTaxableIncome)}) is assessed under the official 7-tier slabs:
+          </p>
+
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
+                  <th className="py-2.5 px-3">Tax Slab Tier</th>
+                  <th className="py-2.5 px-3">Rate</th>
+                  <th className="py-2.5 px-3">Taxable Slice in Slab</th>
+                  <th className="py-2.5 px-3 text-right">Tax Generated</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-600">
+                {summary.newSlabBreakdown.map((row) => (
+                  <tr key={row.label} className={row.taxableInSlab > 0 ? "bg-blue-50/20 font-medium" : ""}>
+                    <td className="py-2.5 px-3 text-slate-900">{row.label}</td>
+                    <td className="py-2.5 px-3">{(row.rate * 100).toFixed(0)}%</td>
+                    <td className="py-2.5 px-3">{formatCurrency(row.taxableInSlab)}</td>
+                    <td className="py-2.5 px-3 text-right font-semibold text-slate-900">{formatCurrency(row.taxInSlab)}</td>
+                  </tr>
+                ))}
+                <tr className="border-t-2 border-slate-200 bg-slate-50 font-bold text-slate-900">
+                  <td className="py-3 px-3" colSpan="3">Total Base Slab Tax</td>
+                  <td className="py-3 px-3 text-right">{formatCurrency(summary.newBaseTax)}</td>
+                </tr>
+                {summary.newRebate > 0 && (
+                  <tr className="bg-emerald-50/50 font-bold text-emerald-700">
+                    <td className="py-2.5 px-3" colSpan="3">Less: Section 87A Tax Rebate (up to ₹60,000)</td>
+                    <td className="py-2.5 px-3 text-right">-{formatCurrency(summary.newRebate)}</td>
+                  </tr>
+                )}
+                <tr className="bg-slate-50 font-bold text-slate-900">
+                  <td className="py-2.5 px-3" colSpan="3">Add: 4% Health &amp; Education Cess</td>
+                  <td className="py-2.5 px-3 text-right">{formatCurrency(summary.newCess)}</td>
+                </tr>
+                <tr className="bg-[#0F172A] font-black text-white text-sm sm:text-base">
+                  <td className="py-3 px-3" colSpan="3">Final Net Tax Payable (New Regime)</td>
+                  <td className="py-3 px-3 text-right text-emerald-400">{formatCurrency(summary.newTotal)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
       {/* Rich Educational, Methodological & Authority Content */}
-      <section className="mx-auto max-w-6xl px-4 pt-12 space-y-8">
+      <section className="mx-auto max-w-6xl px-4 pt-10 space-y-8">
         {/* Official Slabs Table */}
         <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
           <h2 className="text-2xl font-bold text-slate-900">Official New Tax Regime Slabs for FY 2025-26 (AY 2026-27)</h2>
           <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-            The Union Budget revised the tax slabs under Section 115BAC of the Income Tax Act. Below is the statutory 7-tier tax slab structure:
+            The statutory tax slabs under Section 115BAC of the Income Tax Act, 1961 for Assessment Year 2026-27 are structured as follows:
           </p>
 
           <div className="mt-6 overflow-x-auto">
@@ -363,11 +481,11 @@ export default function IncomeTaxCalculatorPage() {
                 <tr className="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
                   <th className="py-3 px-4">Taxable Income Slab (New Regime)</th>
                   <th className="py-3 px-4">Applicable Tax Rate</th>
-                  <th className="py-3 px-4">Cumulative Tax at Slab Limit</th>
+                  <th className="py-3 px-4">Cumulative Tax at Slab Ceiling</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-600">
-                <tr><td className="py-3 px-4 font-medium text-slate-900">₹0 to ₹4,00,000</td><td className="py-3 px-4 font-bold text-emerald-600">Nil (0%)</td><td className="py-3 px-4">₹0</td></tr>
+                <tr><td className="py-3 px-4 font-medium text-slate-900">Up to ₹4,00,000</td><td className="py-3 px-4 font-bold text-emerald-600">Nil (0%)</td><td className="py-3 px-4">₹0</td></tr>
                 <tr><td className="py-3 px-4 font-medium text-slate-900">₹4,00,001 to ₹8,00,000</td><td className="py-3 px-4">5%</td><td className="py-3 px-4">₹20,000</td></tr>
                 <tr><td className="py-3 px-4 font-medium text-slate-900">₹8,00,001 to ₹12,00,000</td><td className="py-3 px-4">10%</td><td className="py-3 px-4">₹60,000 (100% rebated u/s 87A)</td></tr>
                 <tr><td className="py-3 px-4 font-medium text-slate-900">₹12,00,001 to ₹16,00,000</td><td className="py-3 px-4">15%</td><td className="py-3 px-4">₹1,20,000</td></tr>
@@ -379,35 +497,32 @@ export default function IncomeTaxCalculatorPage() {
           </div>
         </article>
 
-        {/* Who Should Use It & Worked Example */}
+        {/* Worked Case Studies */}
         <div className="grid gap-6 md:grid-cols-2">
           <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900">Who Should Use This Calculator?</h3>
-            <ul className="mt-4 space-y-3 text-sm text-slate-600 leading-relaxed">
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Salaried Employees:</strong> Compare Form 16 withholding estimates, evaluate the ₹75,000 standard deduction, and select the optimal declaration for payroll TDS.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Freelancers &amp; Professionals:</strong> Assess presumptive taxation net incomes under Section 44ADA vs regular accounting methods.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Business Owners &amp; Directors:</strong> Calculate tax impact before taking remuneration vs dividend distributions.</span>
-              </li>
-            </ul>
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 1: ₹12.75 Lakh Gross Salary (Zero Tax)</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Demonstration of how the revised slabs and Section 87A rebate create zero tax liability for salaried individuals earning up to ₹12.75L:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Gross Annual Salary:</strong> ₹12,75,000</p>
+              <p><strong>Less: Salaried Standard Deduction:</strong> -₹75,000</p>
+              <p><strong>Net Taxable Income:</strong> ₹12,00,000</p>
+              <p><strong>Base Tax Calculation:</strong> ₹0 (0-4L) + ₹20k (4-8L @5%) + ₹40k (8-12L @10%) = ₹60,000</p>
+              <p><strong>Section 87A Rebate:</strong> -₹60,000 (Full tax rebate for income up to ₹12L)</p>
+              <p className="text-emerald-700 font-black text-sm">Net Tax Payable = ₹0.00 (Zero Tax)</p>
+            </div>
           </article>
 
           <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
-            <h3 className="text-xl font-bold text-slate-900">Real-World Case Study: ₹14 Lakh Salary</h3>
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 2: ₹15 Lakh Salary Comparison</h3>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              Consider a salaried taxpayer earning ₹14,00,000 gross salary with ₹1.5L in 80C deductions and ₹25k in 80D health insurance:
+              Comparison for a salaried taxpayer earning ₹15,00,000 with ₹1.5L in 80C and ₹25k in 80D health insurance:
             </p>
             <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
-              <p><strong>Under Old Regime:</strong> Taxable Income = ₹14L - ₹50k (Std Ded) - ₹1.75L (80C+80D) = ₹11,75,000. Base Tax = ₹1,65,000 + 4% Cess = <strong>₹1,71,600</strong>.</p>
-              <p><strong>Under New Regime:</strong> Taxable Income = ₹14L - ₹75k (Std Ded) = ₹13,25,000. Base Tax = ₹20k (4-8L) + ₹40k (8-12L) + ₹18,750 (12-13.25L @15%) = ₹78,750 + 4% Cess = <strong>₹81,900</strong>.</p>
-              <p className="text-emerald-700 font-bold">Result: New Regime saves ₹89,700 in tax!</p>
+              <p><strong>Old Regime:</strong> Taxable = ₹15L - ₹50k (Std) - ₹1.75L = ₹12,75,000. Base Tax = ₹1,95,000 + 4% Cess = <strong>₹2,02,800</strong>.</p>
+              <p><strong>New Regime:</strong> Taxable = ₹15L - ₹75k (Std) = ₹14,25,000. Base Tax = ₹20k (4-8L) + ₹40k (8-12L) + ₹33,750 (12-14.25L @15%) = ₹93,750 + 4% Cess = <strong>₹97,500</strong>.</p>
+              <p className="text-blue-700 font-bold">New Regime saves ₹1,05,300 in total tax!</p>
             </div>
           </article>
         </div>
@@ -419,16 +534,16 @@ export default function IncomeTaxCalculatorPage() {
             <div>
               <h4 className="font-semibold text-slate-800">Assumptions:</h4>
               <ul className="mt-2 space-y-1.5 list-disc list-inside">
-                <li>Taxpayer is an individual tax resident of India for FY 2025-26.</li>
-                <li>Standard deduction of ₹75,000 (New) or ₹50,000 (Old) applies to salaried/pensioner filers.</li>
-                <li>Section 87A rebate applies to resident individuals with net taxable income up to ₹12,00,000 (New) or ₹5,00,000 (Old).</li>
+                <li>Taxpayer is an individual resident in India under Section 6 of the Income Tax Act for FY 2025-26.</li>
+                <li>Standard deduction of ₹75,000 applies to salaried individuals and family pensioners under Section 115BAC(1A).</li>
+                <li>Section 87A rebate applies to resident individuals with net taxable income up to ₹12,00,000 (New Regime) or ₹5,00,000 (Old Regime).</li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold text-slate-800">Exclusions &amp; Limitations:</h4>
               <ul className="mt-2 space-y-1.5 list-disc list-inside">
-                <li>Special rate incomes (e.g. Short Term Capital Gains u/s 111A @20%, Long Term Capital Gains u/s 112A @12.5%, Virtual Digital Assets @30%) are not calculated here.</li>
-                <li>High-net-worth surcharge slabs (10% above ₹50L, 15% above ₹1Cr, 25% above ₹2Cr under New Regime) are computed separately.</li>
+                <li>Special tax rate incomes (STCG u/s 111A @20%, LTCG u/s 112A @12.5%, Virtual Digital Assets u/s 115BBH @30%) are subject to separate special provisions.</li>
+                <li>High Net Worth Individuals (HNIs) with income exceeding ₹50 lakh are subject to graduated surcharge rates (10%, 15%, 25%).</li>
               </ul>
             </div>
           </div>
@@ -440,7 +555,7 @@ export default function IncomeTaxCalculatorPage() {
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-blue-700">Official Government References</p>
               <p className="mt-1 text-sm text-slate-700">
-                Verified against statutory provisions published by the Income Tax Department, Government of India:
+                Statutory provisions verified against official notifications from the Income Tax Department, Government of India:
               </p>
               <div className="mt-3 flex flex-wrap gap-4 text-xs font-semibold">
                 <a
@@ -449,7 +564,7 @@ export default function IncomeTaxCalculatorPage() {
                   rel="noopener noreferrer"
                   className="text-blue-700 underline hover:text-blue-900"
                 >
-                  Income Tax Department e-Filing Portal (ITR-1 / ITR-2 Guidelines) ↗
+                  Income Tax Department Official e-Filing Portal (ITR Guidelines) ↗
                 </a>
                 <a
                   href="https://incometaxindia.gov.in/pages/charts-and-tables.aspx"
@@ -457,12 +572,12 @@ export default function IncomeTaxCalculatorPage() {
                   rel="noopener noreferrer"
                   className="text-blue-700 underline hover:text-blue-900"
                 >
-                  CBDT Official Tax Rate &amp; Exemption Charts ↗
+                  CBDT Official Tax Rate &amp; Exemption Charts (AY 2026-27) ↗
                 </a>
               </div>
             </div>
             <div className="rounded-2xl bg-white p-4 border border-blue-200 text-xs text-slate-600 shadow-sm shrink-0">
-              <p><strong>Reviewed by:</strong> FilingBy Tax &amp; Legal Desk (Chartered Accountants)</p>
+              <p><strong>Reviewed by:</strong> FilingBy Tax &amp; Legal Advisory Desk (Chartered Accountants)</p>
               <p className="mt-1"><strong>Last Updated:</strong> August 2026 (AY 2026-27 Compliant)</p>
             </div>
           </div>
@@ -483,7 +598,7 @@ export default function IncomeTaxCalculatorPage() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-[#0F172A] p-6 text-white">
             <div>
               <h3 className="text-lg font-bold">Need Assisted ITR Filing by a Chartered Accountant?</h3>
-              <p className="text-xs text-slate-300 mt-1">Get your ITR prepared, verified, and filed online with zero hassle.</p>
+              <p className="text-xs text-slate-300 mt-1">Get your ITR prepared, verified, and filed online with zero errors.</p>
             </div>
             <Link
               to="/services/itr-1-filing"

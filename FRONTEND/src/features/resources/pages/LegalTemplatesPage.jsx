@@ -94,6 +94,54 @@ export default function LegalTemplatesPage() {
           </div>
         </article>
 
+        {/* Worked Case Studies & Contract Blueprints */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 1: Founders' Agreement with 4-Year Reverse Vesting</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Three startup co-founders incorporate with equal 33.3% equity allocations:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Vesting Schedule:</strong> 1-year cliff (0% vested if departure occurs in year 1) + monthly vesting over remaining 36 months (25% per annum).</p>
+              <p><strong>IP Assignment:</strong> All algorithms, patent applications, domain assets, and customer databases vest irrevocably with the company entity.</p>
+              <p><strong>Deadlock Resolution:</strong> Escalation to independent advisory mediator followed by expedited arbitration under the Arbitration &amp; Conciliation Act.</p>
+            </div>
+          </article>
+
+          <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-slate-900">Worked Case 2: Mutual Commercial Non-Disclosure Agreement (NDA)</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Two fintech companies share proprietary API architectures and financial models during merger/integration talks:
+            </p>
+            <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
+              <p><strong>Confidentiality Term:</strong> 3 years from date of disclosure; perpetual for source code and cryptographic trade secrets.</p>
+              <p><strong>Exclusions:</strong> Information already in the public domain or independently proven to be known prior to disclosure.</p>
+              <p className="text-blue-700 font-bold">Admissibility: Executed via digital e-stamping under the Information Technology Act, 2000.</p>
+            </div>
+          </article>
+        </div>
+
+        {/* Assumptions & Limitations */}
+        <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+          <h3 className="text-xl font-bold text-slate-900">Contract Enforceability Assumptions &amp; Limitations</h3>
+          <div className="mt-4 grid gap-6 md:grid-cols-2 text-sm text-slate-600 leading-relaxed">
+            <div>
+              <h4 className="font-semibold text-slate-800">Assumptions:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>Parties entering the agreement have the legal capacity and board authority to bind their respective legal entities.</li>
+                <li>Agreements are executed with lawful consideration and lawful object under Section 10 of the Indian Contract Act, 1872.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-slate-800">Limitations &amp; Statutory Constraints:</h4>
+              <ul className="mt-2 space-y-1.5 list-disc list-inside">
+                <li>Post-employment non-compete covenants are generally void and unenforceable under Section 27 of the Indian Contract Act, 1872.</li>
+                <li>Inadequate stamp duty payment under state-specific stamp acts can result in agreements being impounded by courts until deficiency penalties (up to 10x) are settled.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
         {/* Official Sources & Verification */}
         <article className="rounded-3xl border border-blue-100 bg-blue-50/50 p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
