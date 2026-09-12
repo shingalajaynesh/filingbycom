@@ -1,0 +1,188 @@
+{
+  "sitemap": {
+    "status": 200,
+    "totalCount": 100,
+    "urls": [
+      "https://www.filingby.com/",
+      "https://www.filingby.com/virtual-space",
+      "https://www.filingby.com/ecommerce-office",
+      "https://www.filingby.com/about-us",
+      "https://www.filingby.com/our-promise",
+      "https://www.filingby.com/customer-care",
+      "https://www.filingby.com/faq",
+      "https://www.filingby.com/blog",
+      "https://www.filingby.com/gst-calculator",
+      "https://www.filingby.com/income-tax-calculator",
+      "https://www.filingby.com/roc-tools",
+      "https://www.filingby.com/company-registration-guides",
+      "https://www.filingby.com/trademark-search",
+      "https://www.filingby.com/legal-templates",
+      "https://www.filingby.com/calculators/hra",
+      "https://www.filingby.com/calculators/tds",
+      "https://www.filingby.com/calculators/depreciation",
+      "https://www.filingby.com/contact-us",
+      "https://www.filingby.com/editorial-team",
+      "https://www.filingby.com/terms-conditions",
+      "https://www.filingby.com/default/refund",
+      "https://www.filingby.com/default/privacy-policy",
+      "https://www.filingby.com/default/cookie-policy",
+      "https://www.filingby.com/default/disclaimer",
+      "https://www.filingby.com/default/editorial-policy",
+      "https://www.filingby.com/default/corrections-policy",
+      "https://www.filingby.com/services/gst-registration",
+      "https://www.filingby.com/services/gst-return-filing",
+      "https://www.filingby.com/services/private-limited-company",
+      "https://www.filingby.com/services/llp-registration",
+      "https://www.filingby.com/services/one-person-company",
+      "https://www.filingby.com/services/trademark-registration",
+      "https://www.filingby.com/services/itr-1-filing",
+      "https://www.filingby.com/services/fssai-basic-registration",
+      "https://www.filingby.com/services/iec-registration",
+      "https://www.filingby.com/services/udyam-registration",
+      "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "https://www.filingby.com/services/trust-registration",
+      "https://www.filingby.com/services/startup-india",
+      "https://www.filingby.com/services/roc-annual-filing-llp",
+      "https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide",
+      "https://www.filingby.com/blog/advance-tax-for-founders-guide",
+      "https://www.filingby.com/blog/authorised-capital-and-shareholding-guide",
+      "https://www.filingby.com/blog/company-incorporation-documents-checklist-guide",
+      "https://www.filingby.com/blog/company-name-approval-guide-india",
+      "https://www.filingby.com/blog/composition-vs-regular-gst-scheme",
+      "https://www.filingby.com/blog/coworking-vs-virtual-office-registration-guide",
+      "https://www.filingby.com/blog/designated-partner-dsc-dpin-guide",
+      "https://www.filingby.com/blog/director-kyc-din-compliance-guide",
+      "https://www.filingby.com/blog/exporter-onboarding-documents-guide",
+      "https://www.filingby.com/blog/form-16-vs-form-16a-guide",
+      "https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide",
+      "https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide",
+      "https://www.filingby.com/blog/fssai-labelling-compliance-guide",
+      "https://www.filingby.com/blog/fssai-renewal-and-modification-guide",
+      "https://www.filingby.com/blog/gst-cancellation-and-revocation-guide",
+      "https://www.filingby.com/blog/gst-for-ecommerce-sellers-guide",
+      "https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide",
+      "https://www.filingby.com/blog/gst-registration-guide",
+      "https://www.filingby.com/blog/gst-registration-with-virtual-office",
+      "https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide",
+      "https://www.filingby.com/blog/how-to-register-private-limited-company",
+      "https://www.filingby.com/blog/iec-amendment-and-surrender-guide",
+      "https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide",
+      "https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide",
+      "https://www.filingby.com/blog/itr-filing-for-freelancers-guide",
+      "https://www.filingby.com/blog/late-tds-return-and-correction-guide",
+      "https://www.filingby.com/blog/llp-agreement-drafting-guide",
+      "https://www.filingby.com/blog/llp-annual-compliance-calendar",
+      "https://www.filingby.com/blog/llp-registration-for-consultants",
+      "https://www.filingby.com/blog/llp-to-private-limited-conversion-guide",
+      "https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "https://www.filingby.com/blog/lut-for-exporters-under-gst",
+      "https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide",
+      "https://www.filingby.com/blog/msme-payment-delay-samadhan-guide",
+      "https://www.filingby.com/blog/opc-vs-private-limited-company-guide",
+      "https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide",
+      "https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide",
+      "https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide",
+      "https://www.filingby.com/blog/section-80c-80d-deductions-guide",
+      "https://www.filingby.com/blog/spice-plus-common-mistakes-guide",
+      "https://www.filingby.com/blog/startup-india-benefits-and-documents-guide",
+      "https://www.filingby.com/blog/startup-india-patent-benefits-guide",
+      "https://www.filingby.com/blog/startup-india-registration-guide",
+      "https://www.filingby.com/blog/startup-india-vs-msme-guide",
+      "https://www.filingby.com/blog/tan-registration-and-tds-setup-guide",
+      "https://www.filingby.com/blog/tax-audit-applicability-guide",
+      "https://www.filingby.com/blog/tds-lower-deduction-certificate-guide",
+      "https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide",
+      "https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide",
+      "https://www.filingby.com/blog/trademark-assignment-licensing-guide",
+      "https://www.filingby.com/blog/trademark-hearing-preparation-guide",
+      "https://www.filingby.com/blog/trademark-objection-reply-guide",
+      "https://www.filingby.com/blog/trademark-renewal-restoration-guide",
+      "https://www.filingby.com/blog/trademark-search-and-class-selection-guide",
+      "https://www.filingby.com/blog/udyam-registration-for-service-business-guide",
+      "https://www.filingby.com/blog/udyam-update-modification-guide",
+      "https://www.filingby.com/blog/virtual-office-documents-checklist-guide",
+      "https://www.filingby.com/blog/virtual-office-for-company-registration-guide",
+      "https://www.filingby.com/blog/virtual-office-for-gst-registration-guide"
+    ]
+  },
+  "sitemapPruningCheck": [
+    {
+      "url": "https://www.filingby.com/hubs/gst",
+      "inSitemap": false
+    },
+    {
+      "url": "https://www.filingby.com/hubs/company",
+      "inSitemap": false
+    },
+    {
+      "url": "https://www.filingby.com/compare/private-limited-company-vs-llp",
+      "inSitemap": false
+    },
+    {
+      "url": "https://www.filingby.com/compare/trademark-vs-patent",
+      "inSitemap": false
+    },
+    {
+      "url": "https://www.filingby.com/locations",
+      "inSitemap": false
+    }
+  ],
+  "sitemapProbing": {
+    "statusCounts": {
+      "200": 100,
+      "301": 0,
+      "302": 0,
+      "404": 0,
+      "500": 0,
+      "other": 0
+    },
+    "non200": [],
+    "noindexFound": []
+  },
+  "fssai": {
+    "status": 200,
+    "has15Cr": true,
+    "has50Cr": true,
+    "m12Count": 8,
+    "snippets15Cr": [
+      "ide to India's 2026 FSSAI licensing structure: the revised ₹1.5 Crore Basic and ₹50 Crore State thresholds, FoSCoS workflows, and perpetual",
+      "l Municipal / Registering Authority Up to ₹1.5 Crores (raised from ₹12 Lakhs) Petty food businesses, hawk",
+      "State Food Safety Officer (FSO) ₹1.5 Crores to ₹50 Crores (raised from ₹12L–₹20Cr) Commercial c"
+    ],
+    "snippets50Cr": [
+      "cos food licence categories, fssai central licence criteria 50 crore, fssai licence thresholds 2026, fssai perpetual validity rules, foscos",
+      "cos food licence categories, fssai central licence criteria 50 crore\"} <iframe src=\"https://www.go",
+      "SSAI licensing structure: the revised ₹1.5 Crore Basic and ₹50 Crore State thresholds, FoSCoS workflows, and perpetual licence validity."
+    ],
+    "snippets12Lakh": [
+      "y Up to ₹1.5 Crores (raised from ₹12 Lakhs) Petty food businesses, hawkers, small home kitchens </tr",
+      "rators with annual turnover up to ₹1.5 Crores (raised from ₹12 Lakhs). State Licence covers businesses with turnover above ₹1.5 Crores up to",
+      "h turnover above ₹1.5 Crores up to ₹50 Crores (raised from ₹12 Lakhs–₹20 Crores). Central Licence covers large enterprises with turnover exc",
+      "03Cstrong\\u003E₹1.5 Crores\\u003C/strong\\u003E (raised from ₹12 Lakhs)\\u003C/td\\u003E\\n\\u003Ctd\\u003EPetty food businesses, hawkers, small ho",
+      "rators with annual turnover up to ₹1.5 Crores (raised from ₹12 Lakhs). State Licence covers businesses with turnover above ₹1.5 Crores up to",
+      "h turnover above ₹1.5 Crores up to ₹50 Crores (raised from ₹12 Lakhs–₹20 Crores). Central Licence covers large enterprises with turnover exc",
+      "rators with annual turnover up to ₹1.5 Crores (raised from ₹12 Lakhs). State Licence covers businesses with turnover above ₹1.5 Crores up to",
+      "h turnover above ₹1.5 Crores up to ₹50 Crores (raised from ₹12 Lakhs–₹20 Crores). Central Licence covers large enterprises with turnover exc"
+    ]
+  },
+  "privacyRaw": {
+    "status": 200,
+    "googleAdvertising": true,
+    "cookies": true,
+    "webBeaconsOrIdentifiers": true,
+    "personalizedAds": true,
+    "optOutInfo": true,
+    "contactPrivacyRequests": true
+  },
+  "locations": {
+    "status": 200,
+    "hasNoindex": true,
+    "inSitemap": false
+  },
+  "deadRouteTest": {
+    "url": "https://www.filingby.com/hubs/gst",
+    "status": 404,
+    "isTrue404": true,
+    "hasNoindex": true
+  }
+}

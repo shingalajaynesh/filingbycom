@@ -1,0 +1,53 @@
+{
+  "internalResults": {
+    "200": 94,
+    "404": 0,
+    "3xx": 0,
+    "5xx": 0,
+    "brokenList": []
+  },
+  "govResults": [
+    {
+      "link": "https://www.mca.gov.in/content/mca/global/en/e-filing/company-forms-download-eforms.html",
+      "status": 404
+    },
+    {
+      "link": "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html",
+      "status": 200
+    },
+    {
+      "link": "https://www.mca.gov.in/content/mca/global/en/frequently-asked-questions/v3-filing.html",
+      "status": 404
+    },
+    {
+      "link": "http://incometax.gov.in",
+      "status": "error",
+      "error": "fetch failed"
+    },
+    {
+      "link": "https://www.incometax.gov.in/",
+      "status": 200
+    },
+    {
+      "link": "https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx",
+      "status": 200
+    },
+    {
+      "link": "https://www.incometax.gov.in/iec/foportal/tax-calculator",
+      "status": 404
+    },
+    {
+      "link": "https://www.mca.gov.in/",
+      "status": 404
+    },
+    {
+      "link": "https://www.mca.gov.in/content/mca/global/en/mca/master-data/check-company-name.html",
+      "status": 404
+    },
+    {
+      "link": "https://tmrpublicsearch.ipindia.gov.in/tmrpublicsearch/",
+      "status": "error",
+      "error": "fetch failed"
+    }
+  ]
+}

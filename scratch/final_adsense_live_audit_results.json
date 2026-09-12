@@ -1,0 +1,1819 @@
+{
+  "adsTxt": {
+    "status": 200,
+    "content": "google.com, pub-6303291083449043, DIRECT, f08c47fec0942fa0",
+    "isValid": true
+  },
+  "robotsTxt": {
+    "status": 200,
+    "content": "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /dashboard/\nDisallow: /virtual-office/dashboard/\nDisallow: /partner/dashboard/\nDisallow: /sso-callback/\n\nSitemap: https://www.filingby.com/sitemap.xml\nSitemap: https://www.filingby.com/image-sitemap.xml\n",
+    "hasSitemap": true
+  },
+  "sitemap": {
+    "status": 200,
+    "totalUrls": 105,
+    "urls": [
+      "https://www.filingby.com/",
+      "https://www.filingby.com/virtual-space",
+      "https://www.filingby.com/locations",
+      "https://www.filingby.com/ecommerce-office",
+      "https://www.filingby.com/about-us",
+      "https://www.filingby.com/our-promise",
+      "https://www.filingby.com/customer-care",
+      "https://www.filingby.com/faq",
+      "https://www.filingby.com/blog",
+      "https://www.filingby.com/gst-calculator",
+      "https://www.filingby.com/income-tax-calculator",
+      "https://www.filingby.com/roc-tools",
+      "https://www.filingby.com/company-registration-guides",
+      "https://www.filingby.com/trademark-search",
+      "https://www.filingby.com/legal-templates",
+      "https://www.filingby.com/hubs/gst",
+      "https://www.filingby.com/hubs/company",
+      "https://www.filingby.com/compare/private-limited-company-vs-llp",
+      "https://www.filingby.com/compare/trademark-vs-patent",
+      "https://www.filingby.com/calculators/hra",
+      "https://www.filingby.com/calculators/tds",
+      "https://www.filingby.com/calculators/depreciation",
+      "https://www.filingby.com/contact-us",
+      "https://www.filingby.com/editorial-team",
+      "https://www.filingby.com/terms-conditions",
+      "https://www.filingby.com/default/refund",
+      "https://www.filingby.com/default/privacy-policy",
+      "https://www.filingby.com/default/cookie-policy",
+      "https://www.filingby.com/default/disclaimer",
+      "https://www.filingby.com/default/editorial-policy",
+      "https://www.filingby.com/default/corrections-policy",
+      "https://www.filingby.com/services/gst-registration",
+      "https://www.filingby.com/services/gst-return-filing",
+      "https://www.filingby.com/services/private-limited-company",
+      "https://www.filingby.com/services/llp-registration",
+      "https://www.filingby.com/services/one-person-company",
+      "https://www.filingby.com/services/trademark-registration",
+      "https://www.filingby.com/services/itr-1-filing",
+      "https://www.filingby.com/services/fssai-basic-registration",
+      "https://www.filingby.com/services/iec-registration",
+      "https://www.filingby.com/services/udyam-registration",
+      "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "https://www.filingby.com/services/trust-registration",
+      "https://www.filingby.com/services/startup-india",
+      "https://www.filingby.com/services/roc-annual-filing-llp",
+      "https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide",
+      "https://www.filingby.com/blog/advance-tax-for-founders-guide",
+      "https://www.filingby.com/blog/authorised-capital-and-shareholding-guide",
+      "https://www.filingby.com/blog/company-incorporation-documents-checklist-guide",
+      "https://www.filingby.com/blog/company-name-approval-guide-india",
+      "https://www.filingby.com/blog/composition-vs-regular-gst-scheme",
+      "https://www.filingby.com/blog/coworking-vs-virtual-office-registration-guide",
+      "https://www.filingby.com/blog/designated-partner-dsc-dpin-guide",
+      "https://www.filingby.com/blog/director-kyc-din-compliance-guide",
+      "https://www.filingby.com/blog/exporter-onboarding-documents-guide",
+      "https://www.filingby.com/blog/form-16-vs-form-16a-guide",
+      "https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide",
+      "https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide",
+      "https://www.filingby.com/blog/fssai-labelling-compliance-guide",
+      "https://www.filingby.com/blog/fssai-renewal-and-modification-guide",
+      "https://www.filingby.com/blog/gst-cancellation-and-revocation-guide",
+      "https://www.filingby.com/blog/gst-for-ecommerce-sellers-guide",
+      "https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide",
+      "https://www.filingby.com/blog/gst-registration-guide",
+      "https://www.filingby.com/blog/gst-registration-with-virtual-office",
+      "https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide",
+      "https://www.filingby.com/blog/how-to-register-private-limited-company",
+      "https://www.filingby.com/blog/iec-amendment-and-surrender-guide",
+      "https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide",
+      "https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide",
+      "https://www.filingby.com/blog/itr-filing-for-freelancers-guide",
+      "https://www.filingby.com/blog/late-tds-return-and-correction-guide",
+      "https://www.filingby.com/blog/llp-agreement-drafting-guide",
+      "https://www.filingby.com/blog/llp-annual-compliance-calendar",
+      "https://www.filingby.com/blog/llp-registration-for-consultants",
+      "https://www.filingby.com/blog/llp-to-private-limited-conversion-guide",
+      "https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "https://www.filingby.com/blog/lut-for-exporters-under-gst",
+      "https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide",
+      "https://www.filingby.com/blog/msme-payment-delay-samadhan-guide",
+      "https://www.filingby.com/blog/opc-vs-private-limited-company-guide",
+      "https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide",
+      "https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide",
+      "https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide",
+      "https://www.filingby.com/blog/section-80c-80d-deductions-guide",
+      "https://www.filingby.com/blog/spice-plus-common-mistakes-guide",
+      "https://www.filingby.com/blog/startup-india-benefits-and-documents-guide",
+      "https://www.filingby.com/blog/startup-india-patent-benefits-guide",
+      "https://www.filingby.com/blog/startup-india-registration-guide",
+      "https://www.filingby.com/blog/startup-india-vs-msme-guide",
+      "https://www.filingby.com/blog/tan-registration-and-tds-setup-guide",
+      "https://www.filingby.com/blog/tax-audit-applicability-guide",
+      "https://www.filingby.com/blog/tds-lower-deduction-certificate-guide",
+      "https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide",
+      "https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide",
+      "https://www.filingby.com/blog/trademark-assignment-licensing-guide",
+      "https://www.filingby.com/blog/trademark-hearing-preparation-guide",
+      "https://www.filingby.com/blog/trademark-objection-reply-guide",
+      "https://www.filingby.com/blog/trademark-renewal-restoration-guide",
+      "https://www.filingby.com/blog/trademark-search-and-class-selection-guide",
+      "https://www.filingby.com/blog/udyam-registration-for-service-business-guide",
+      "https://www.filingby.com/blog/udyam-update-modification-guide",
+      "https://www.filingby.com/blog/virtual-office-documents-checklist-guide",
+      "https://www.filingby.com/blog/virtual-office-for-company-registration-guide",
+      "https://www.filingby.com/blog/virtual-office-for-gst-registration-guide"
+    ]
+  },
+  "sitemapAudit": [
+    {
+      "url": "https://www.filingby.com/",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/",
+      "contentType": "Homepage",
+      "words": 572,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/virtual-space",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/virtual-space",
+      "contentType": "Virtual Office Hub",
+      "words": 83,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/locations",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/locations",
+      "contentType": "Virtual Office Hub",
+      "words": 40,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/ecommerce-office",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/ecommerce-office",
+      "contentType": "Virtual Office Hub",
+      "words": 81,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/about-us",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/about-us",
+      "contentType": "Identity/Trust",
+      "words": 295,
+      "substantive": "YES",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/our-promise",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/our-promise",
+      "contentType": "Identity/Trust",
+      "words": 363,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/customer-care",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/customer-care",
+      "contentType": "Identity/Trust",
+      "words": 319,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/faq",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/faq",
+      "contentType": "Other",
+      "words": 138,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/blog",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog",
+      "contentType": "Other",
+      "words": 2812,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/gst-calculator",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/gst-calculator",
+      "contentType": "Calculator/Tool",
+      "words": 216,
+      "substantive": "YES",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/income-tax-calculator",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/income-tax-calculator",
+      "contentType": "Calculator/Tool",
+      "words": 226,
+      "substantive": "YES",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/roc-tools",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/roc-tools",
+      "contentType": "Other",
+      "words": 232,
+      "substantive": "YES",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/company-registration-guides",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/company-registration-guides",
+      "contentType": "Other",
+      "words": 172,
+      "substantive": "NO",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/trademark-search",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/trademark-search",
+      "contentType": "Other",
+      "words": 186,
+      "substantive": "NO",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/legal-templates",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/legal-templates",
+      "contentType": "Other",
+      "words": 152,
+      "substantive": "NO",
+      "risk": "ACCEPTABLE"
+    },
+    {
+      "url": "https://www.filingby.com/hubs/gst",
+      "http": 404,
+      "robots": "noindex, nofollow",
+      "canonical": "https://www.filingby.com/404",
+      "contentType": "Other",
+      "words": 21,
+      "substantive": "NO",
+      "risk": "REMOVE/NOINDEX CANDIDATE"
+    },
+    {
+      "url": "https://www.filingby.com/hubs/company",
+      "http": 404,
+      "robots": "noindex, nofollow",
+      "canonical": "https://www.filingby.com/404",
+      "contentType": "Other",
+      "words": 21,
+      "substantive": "NO",
+      "risk": "REMOVE/NOINDEX CANDIDATE"
+    },
+    {
+      "url": "https://www.filingby.com/compare/private-limited-company-vs-llp",
+      "http": 404,
+      "robots": "noindex, nofollow",
+      "canonical": "https://www.filingby.com/404",
+      "contentType": "Other",
+      "words": 21,
+      "substantive": "NO",
+      "risk": "REMOVE/NOINDEX CANDIDATE"
+    },
+    {
+      "url": "https://www.filingby.com/compare/trademark-vs-patent",
+      "http": 404,
+      "robots": "noindex, nofollow",
+      "canonical": "https://www.filingby.com/404",
+      "contentType": "Other",
+      "words": 21,
+      "substantive": "NO",
+      "risk": "REMOVE/NOINDEX CANDIDATE"
+    },
+    {
+      "url": "https://www.filingby.com/calculators/hra",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/calculators/hra",
+      "contentType": "Calculator/Tool",
+      "words": 130,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/calculators/tds",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/calculators/tds",
+      "contentType": "Calculator/Tool",
+      "words": 85,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/calculators/depreciation",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/calculators/depreciation",
+      "contentType": "Calculator/Tool",
+      "words": 95,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/contact-us",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/contact-us",
+      "contentType": "Identity/Trust",
+      "words": 331,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/editorial-team",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/editorial-team",
+      "contentType": "Identity/Trust",
+      "words": 322,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/terms-conditions",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/terms-conditions",
+      "contentType": "Legal/Trust",
+      "words": 76,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/refund",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/refund",
+      "contentType": "Legal/Trust",
+      "words": 99,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/privacy-policy",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/privacy-policy",
+      "contentType": "Legal/Trust",
+      "words": 69,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/cookie-policy",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/cookie-policy",
+      "contentType": "Legal/Trust",
+      "words": 25,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/disclaimer",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/disclaimer",
+      "contentType": "Legal/Trust",
+      "words": 27,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/editorial-policy",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/editorial-policy",
+      "contentType": "Legal/Trust",
+      "words": 22,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/default/corrections-policy",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/default/corrections-policy",
+      "contentType": "Legal/Trust",
+      "words": 20,
+      "substantive": "NO",
+      "risk": "QUESTIONABLE"
+    },
+    {
+      "url": "https://www.filingby.com/services/gst-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/gst-registration",
+      "contentType": "Core Service",
+      "words": 778,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/gst-return-filing",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/gst-return-filing",
+      "contentType": "Core Service",
+      "words": 776,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/private-limited-company",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/private-limited-company",
+      "contentType": "Core Service",
+      "words": 584,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/llp-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/llp-registration",
+      "contentType": "Core Service",
+      "words": 595,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/one-person-company",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/one-person-company",
+      "contentType": "Core Service",
+      "words": 576,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/trademark-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/trademark-registration",
+      "contentType": "Core Service",
+      "words": 656,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/itr-1-filing",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/itr-1-filing",
+      "contentType": "Core Service",
+      "words": 639,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/fssai-basic-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/fssai-basic-registration",
+      "contentType": "Core Service",
+      "words": 802,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/iec-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/iec-registration",
+      "contentType": "Core Service",
+      "words": 585,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/udyam-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/udyam-registration",
+      "contentType": "Core Service",
+      "words": 922,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "contentType": "Core Service",
+      "words": 643,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/trust-registration",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/trust-registration",
+      "contentType": "Core Service",
+      "words": 737,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/startup-india",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/startup-india",
+      "contentType": "Core Service",
+      "words": 593,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/services/roc-annual-filing-llp",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/services/roc-annual-filing-llp",
+      "contentType": "Core Service",
+      "words": 713,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide",
+      "contentType": "Blog",
+      "words": 1294,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/advance-tax-for-founders-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/advance-tax-for-founders-guide",
+      "contentType": "Blog",
+      "words": 1502,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/authorised-capital-and-shareholding-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/authorised-capital-and-shareholding-guide",
+      "contentType": "Blog",
+      "words": 1257,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/company-incorporation-documents-checklist-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/company-incorporation-documents-checklist-guide",
+      "contentType": "Blog",
+      "words": 1314,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/company-name-approval-guide-india",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/company-name-approval-guide-india",
+      "contentType": "Blog",
+      "words": 1294,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/composition-vs-regular-gst-scheme",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/composition-vs-regular-gst-scheme",
+      "contentType": "Blog",
+      "words": 1526,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/coworking-vs-virtual-office-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/coworking-vs-virtual-office-registration-guide",
+      "contentType": "Blog",
+      "words": 1495,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/designated-partner-dsc-dpin-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/designated-partner-dsc-dpin-guide",
+      "contentType": "Blog",
+      "words": 1922,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/director-kyc-din-compliance-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/director-kyc-din-compliance-guide",
+      "contentType": "Blog",
+      "words": 1300,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/exporter-onboarding-documents-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/exporter-onboarding-documents-guide",
+      "contentType": "Blog",
+      "words": 1447,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/form-16-vs-form-16a-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/form-16-vs-form-16a-guide",
+      "contentType": "Blog",
+      "words": 1626,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide",
+      "contentType": "Blog",
+      "words": 1593,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide",
+      "contentType": "Blog",
+      "words": 1586,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/fssai-labelling-compliance-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/fssai-labelling-compliance-guide",
+      "contentType": "Blog",
+      "words": 1449,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/fssai-renewal-and-modification-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/fssai-renewal-and-modification-guide",
+      "contentType": "Blog",
+      "words": 1380,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gst-cancellation-and-revocation-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gst-cancellation-and-revocation-guide",
+      "contentType": "Blog",
+      "words": 1624,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gst-for-ecommerce-sellers-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gst-for-ecommerce-sellers-guide",
+      "contentType": "Blog",
+      "words": 1555,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide",
+      "contentType": "Blog",
+      "words": 1649,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gst-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gst-registration-guide",
+      "contentType": "Blog",
+      "words": 1663,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gst-registration-with-virtual-office",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gst-registration-with-virtual-office",
+      "contentType": "Blog",
+      "words": 1561,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide",
+      "contentType": "Blog",
+      "words": 1537,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/how-to-register-private-limited-company",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/how-to-register-private-limited-company",
+      "contentType": "Blog",
+      "words": 1366,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/iec-amendment-and-surrender-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/iec-amendment-and-surrender-guide",
+      "contentType": "Blog",
+      "words": 1438,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide",
+      "contentType": "Blog",
+      "words": 1493,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide",
+      "contentType": "Blog",
+      "words": 1393,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/itr-filing-for-freelancers-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/itr-filing-for-freelancers-guide",
+      "contentType": "Blog",
+      "words": 488,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/late-tds-return-and-correction-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/late-tds-return-and-correction-guide",
+      "contentType": "Blog",
+      "words": 1712,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/llp-agreement-drafting-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/llp-agreement-drafting-guide",
+      "contentType": "Blog",
+      "words": 1743,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/llp-annual-compliance-calendar",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/llp-annual-compliance-calendar",
+      "contentType": "Blog",
+      "words": 1749,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/llp-registration-for-consultants",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/llp-registration-for-consultants",
+      "contentType": "Blog",
+      "words": 1550,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/llp-to-private-limited-conversion-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/llp-to-private-limited-conversion-guide",
+      "contentType": "Blog",
+      "words": 1688,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "contentType": "Blog",
+      "words": 1602,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/lut-for-exporters-under-gst",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/lut-for-exporters-under-gst",
+      "contentType": "Blog",
+      "words": 1550,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/msme-benefits-after-udyam-registration-guide",
+      "contentType": "Blog",
+      "words": 1455,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/msme-payment-delay-samadhan-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/msme-payment-delay-samadhan-guide",
+      "contentType": "Blog",
+      "words": 1634,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/opc-vs-private-limited-company-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/opc-vs-private-limited-company-guide",
+      "contentType": "Blog",
+      "words": 1215,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide",
+      "contentType": "Blog",
+      "words": 1432,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide",
+      "contentType": "Blog",
+      "words": 1272,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/roc-forms-every-startup-should-track-guide",
+      "contentType": "Blog",
+      "words": 1452,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/section-80c-80d-deductions-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/section-80c-80d-deductions-guide",
+      "contentType": "Blog",
+      "words": 1361,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/spice-plus-common-mistakes-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/spice-plus-common-mistakes-guide",
+      "contentType": "Blog",
+      "words": 1425,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/startup-india-benefits-and-documents-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/startup-india-benefits-and-documents-guide",
+      "contentType": "Blog",
+      "words": 1388,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/startup-india-patent-benefits-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/startup-india-patent-benefits-guide",
+      "contentType": "Blog",
+      "words": 1506,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/startup-india-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/startup-india-registration-guide",
+      "contentType": "Blog",
+      "words": 1264,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/startup-india-vs-msme-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/startup-india-vs-msme-guide",
+      "contentType": "Blog",
+      "words": 1439,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/tan-registration-and-tds-setup-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/tan-registration-and-tds-setup-guide",
+      "contentType": "Blog",
+      "words": 2109,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/tax-audit-applicability-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/tax-audit-applicability-guide",
+      "contentType": "Blog",
+      "words": 636,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/tds-lower-deduction-certificate-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/tds-lower-deduction-certificate-guide",
+      "contentType": "Blog",
+      "words": 1485,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide",
+      "contentType": "Blog",
+      "words": 1884,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide",
+      "contentType": "Blog",
+      "words": 1634,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/trademark-assignment-licensing-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/trademark-assignment-licensing-guide",
+      "contentType": "Blog",
+      "words": 1493,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/trademark-hearing-preparation-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/trademark-hearing-preparation-guide",
+      "contentType": "Blog",
+      "words": 1466,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/trademark-objection-reply-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/trademark-objection-reply-guide",
+      "contentType": "Blog",
+      "words": 1453,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/trademark-renewal-restoration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/trademark-renewal-restoration-guide",
+      "contentType": "Blog",
+      "words": 1568,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/trademark-search-and-class-selection-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/trademark-search-and-class-selection-guide",
+      "contentType": "Blog",
+      "words": 1306,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/udyam-registration-for-service-business-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/udyam-registration-for-service-business-guide",
+      "contentType": "Blog",
+      "words": 1411,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/udyam-update-modification-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/udyam-update-modification-guide",
+      "contentType": "Blog",
+      "words": 1397,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/virtual-office-documents-checklist-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/virtual-office-documents-checklist-guide",
+      "contentType": "Blog",
+      "words": 1422,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/virtual-office-for-company-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/virtual-office-for-company-registration-guide",
+      "contentType": "Blog",
+      "words": 1487,
+      "substantive": "YES",
+      "risk": "STRONG"
+    },
+    {
+      "url": "https://www.filingby.com/blog/virtual-office-for-gst-registration-guide",
+      "http": 200,
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "canonical": "https://www.filingby.com/blog/virtual-office-for-gst-registration-guide",
+      "contentType": "Blog",
+      "words": 1557,
+      "substantive": "YES",
+      "risk": "STRONG"
+    }
+  ],
+  "blogSample": [
+    {
+      "slug": "presumptive-taxation-44ad-44ada-guide",
+      "url": "https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide",
+      "status": 200,
+      "words": 3625,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "tds-on-salary-vs-professional-fees-guide",
+      "url": "https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide",
+      "status": 200,
+      "words": 4061,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "tds-on-professional-fees-contracts-rent-guide",
+      "url": "https://www.filingby.com/blog/tds-on-professional-fees-contracts-rent-guide",
+      "status": 200,
+      "words": 4588,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "tax-audit-applicability-guide",
+      "url": "https://www.filingby.com/blog/tax-audit-applicability-guide",
+      "status": 200,
+      "words": 3576,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "gst-registration-guide",
+      "url": "https://www.filingby.com/blog/gst-registration-guide",
+      "status": 200,
+      "words": 4205,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "gst-input-tax-credit-rules-guide",
+      "url": "https://www.filingby.com/blog/gst-input-tax-credit-rules-guide",
+      "status": 404,
+      "words": 104,
+      "hasSchema": false,
+      "hasEditorialAuthor": false,
+      "hasTable": false,
+      "hasGovCitations": false,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "gst-e-invoicing-applicability-and-limits-guide",
+      "url": "https://www.filingby.com/blog/gst-e-invoicing-applicability-and-limits-guide",
+      "status": 404,
+      "words": 104,
+      "hasSchema": false,
+      "hasEditorialAuthor": false,
+      "hasTable": false,
+      "hasGovCitations": false,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "gst-annual-return-gstr-9-checklist-guide",
+      "url": "https://www.filingby.com/blog/gst-annual-return-gstr-9-checklist-guide",
+      "status": 404,
+      "words": 104,
+      "hasSchema": false,
+      "hasEditorialAuthor": false,
+      "hasTable": false,
+      "hasGovCitations": false,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "how-to-register-private-limited-company",
+      "url": "https://www.filingby.com/blog/how-to-register-private-limited-company",
+      "status": 200,
+      "words": 3455,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "llp-vs-private-limited-for-bootstrapped-startups",
+      "url": "https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups",
+      "status": 200,
+      "words": 4090,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "roc-compliance-calendar-private-limited-guide",
+      "url": "https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide",
+      "status": 200,
+      "words": 3243,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "trademark-search-and-class-selection-guide",
+      "url": "https://www.filingby.com/blog/trademark-search-and-class-selection-guide",
+      "status": 200,
+      "words": 3265,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "trademark-objection-reply-guide",
+      "url": "https://www.filingby.com/blog/trademark-objection-reply-guide",
+      "status": 200,
+      "words": 3617,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "trademark-renewal-restoration-guide",
+      "url": "https://www.filingby.com/blog/trademark-renewal-restoration-guide",
+      "status": 200,
+      "words": 3842,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "fssai-basic-vs-state-vs-central-guide",
+      "url": "https://www.filingby.com/blog/fssai-basic-vs-state-vs-central-guide",
+      "status": 200,
+      "words": 4061,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "udyam-registration-for-service-business-guide",
+      "url": "https://www.filingby.com/blog/udyam-registration-for-service-business-guide",
+      "status": 200,
+      "words": 3636,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "startup-india-benefits-and-documents-guide",
+      "url": "https://www.filingby.com/blog/startup-india-benefits-and-documents-guide",
+      "status": 200,
+      "words": 3420,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": false,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "iec-registration-documents-and-process-guide",
+      "url": "https://www.filingby.com/blog/iec-registration-documents-and-process-guide",
+      "status": 404,
+      "words": 104,
+      "hasSchema": false,
+      "hasEditorialAuthor": false,
+      "hasTable": false,
+      "hasGovCitations": false,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "virtual-office-for-gst-registration-guide",
+      "url": "https://www.filingby.com/blog/virtual-office-for-gst-registration-guide",
+      "status": 200,
+      "words": 3978,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    },
+    {
+      "slug": "virtual-office-for-company-registration-guide",
+      "url": "https://www.filingby.com/blog/virtual-office-for-company-registration-guide",
+      "status": 200,
+      "words": 3865,
+      "hasSchema": true,
+      "hasEditorialAuthor": true,
+      "hasTable": true,
+      "hasGovCitations": true,
+      "hasWhatsApp": false
+    }
+  ],
+  "coreServices": [
+    {
+      "slug": "gst-registration",
+      "url": "https://www.filingby.com/services/gst-registration",
+      "status": 200,
+      "words": 1567,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/gst-registration",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "gst-return-filing",
+      "url": "https://www.filingby.com/services/gst-return-filing",
+      "status": 200,
+      "words": 1565,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/gst-return-filing",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "private-limited-company",
+      "url": "https://www.filingby.com/services/private-limited-company",
+      "status": 200,
+      "words": 1184,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/private-limited-company",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "llp-registration",
+      "url": "https://www.filingby.com/services/llp-registration",
+      "status": 200,
+      "words": 1204,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/llp-registration",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "one-person-company",
+      "url": "https://www.filingby.com/services/one-person-company",
+      "status": 200,
+      "words": 1167,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/one-person-company",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "trademark-registration",
+      "url": "https://www.filingby.com/services/trademark-registration",
+      "status": 200,
+      "words": 1323,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/trademark-registration",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "itr-1-filing",
+      "url": "https://www.filingby.com/services/itr-1-filing",
+      "status": 200,
+      "words": 1296,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/itr-1-filing",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "fssai-basic-registration",
+      "url": "https://www.filingby.com/services/fssai-basic-registration",
+      "status": 200,
+      "words": 1611,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/fssai-basic-registration",
+      "hasFaq": true,
+      "hasGovDistinction": true
+    },
+    {
+      "slug": "udyam-registration",
+      "url": "https://www.filingby.com/services/udyam-registration",
+      "status": 200,
+      "words": 1784,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/udyam-registration",
+      "hasFaq": true,
+      "hasGovDistinction": true
+    },
+    {
+      "slug": "iec-registration",
+      "url": "https://www.filingby.com/services/iec-registration",
+      "status": 200,
+      "words": 1187,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/iec-registration",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "startup-india",
+      "url": "https://www.filingby.com/services/startup-india",
+      "status": 200,
+      "words": 1204,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/startup-india",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "roc-annual-filing-pvt",
+      "url": "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "status": 200,
+      "words": 1307,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/roc-annual-filing-pvt",
+      "hasFaq": true,
+      "hasGovDistinction": true
+    },
+    {
+      "slug": "roc-annual-filing-llp",
+      "url": "https://www.filingby.com/services/roc-annual-filing-llp",
+      "status": 200,
+      "words": 1433,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/roc-annual-filing-llp",
+      "hasFaq": true,
+      "hasGovDistinction": false
+    },
+    {
+      "slug": "trust-registration",
+      "url": "https://www.filingby.com/services/trust-registration",
+      "status": 200,
+      "words": 1464,
+      "isIndexed": true,
+      "canonical": "https://www.filingby.com/services/trust-registration",
+      "hasFaq": true,
+      "hasGovDistinction": true
+    }
+  ],
+  "secondaryServicesSample": [
+    {
+      "slug": "tax-audit",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "gstr-9c-filing",
+      "status": 404,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "gst-lut-filing",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "section-8-company",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "nidhi-company",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "trademark-objection",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "trademark-renewal",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "itr-2-filing",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "itr-3-filing",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "fssai-state-license",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "fssai-central-license",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "import-export-code-modification",
+      "status": 404,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "startup-india-seed-fund",
+      "status": 404,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "director-kyc-dir-3",
+      "status": 404,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    },
+    {
+      "slug": "society-registration",
+      "status": 200,
+      "isNoindex": true,
+      "isFollow": true,
+      "inSitemap": false
+    }
+  ],
+  "geoPages": [
+    {
+      "city": "delhi",
+      "url": "https://www.filingby.com/virtual-office-delhi",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "mumbai",
+      "url": "https://www.filingby.com/virtual-office-mumbai",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "bangalore",
+      "url": "https://www.filingby.com/virtual-office-bangalore",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "pune",
+      "url": "https://www.filingby.com/virtual-office-pune",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "hyderabad",
+      "url": "https://www.filingby.com/virtual-office-hyderabad",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "chennai",
+      "url": "https://www.filingby.com/virtual-office-chennai",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "kolkata",
+      "url": "https://www.filingby.com/virtual-office-kolkata",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "ahmedabad",
+      "url": "https://www.filingby.com/virtual-office-ahmedabad",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "surat",
+      "url": "https://www.filingby.com/virtual-office-surat",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "jaipur",
+      "url": "https://www.filingby.com/virtual-office-jaipur",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "lucknow",
+      "url": "https://www.filingby.com/virtual-office-lucknow",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "chandigarh",
+      "url": "https://www.filingby.com/virtual-office-chandigarh",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "kochi",
+      "url": "https://www.filingby.com/virtual-office-kochi",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "indore",
+      "url": "https://www.filingby.com/virtual-office-indore",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "bhopal",
+      "url": "https://www.filingby.com/virtual-office-bhopal",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "gurgaon",
+      "url": "https://www.filingby.com/virtual-office-gurgaon",
+      "status": 404,
+      "isNoindex": true,
+      "inSitemap": false
+    },
+    {
+      "city": "noida",
+      "url": "https://www.filingby.com/virtual-office-noida",
+      "status": 200,
+      "isNoindex": true,
+      "inSitemap": false
+    }
+  ],
+  "trustPages": {
+    "about": {
+      "status": 200,
+      "mentionsPlatform": true,
+      "mentionsIndependent": false,
+      "mentionsCAWarning": false,
+      "words": 381
+    },
+    "contact": {
+      "status": 200,
+      "hasEmail": true,
+      "hasPhone": true,
+      "hasOffice": true,
+      "words": 418
+    },
+    "editorialTeam": {
+      "status": 200,
+      "words": 406
+    }
+  },
+  "soft404": [
+    {
+      "url": "https://www.filingby.com/services/random-fake-service-xyz",
+      "status": 404,
+      "isTrue404": true,
+      "hasNoindex": true
+    },
+    {
+      "url": "https://www.filingby.com/blog/random-fake-blog-article-xyz",
+      "status": 404,
+      "isTrue404": true,
+      "hasNoindex": true
+    },
+    {
+      "url": "https://www.filingby.com/calculators/random-fake-calc-xyz",
+      "status": 404,
+      "isTrue404": true,
+      "hasNoindex": true
+    },
+    {
+      "url": "https://www.filingby.com/virtual-office-random-fake-city-xyz",
+      "status": 404,
+      "isTrue404": true,
+      "hasNoindex": true
+    },
+    {
+      "url": "https://www.filingby.com/random-page-12345",
+      "status": 404,
+      "isTrue404": true,
+      "hasNoindex": true
+    }
+  ]
+}
