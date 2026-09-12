@@ -1,297 +1,213 @@
 ---
-title: "SPICe+ Filing Mistakes Founders Should Avoid During Company Registration"
-slug: "spice-plus-filing-mistakes-guide"
-seoTitle: "SPICe+ Filing Mistakes During Company Registration: Founder Guide"
-seoDescription: "Avoid common SPICe+ filing mistakes during company registration in India. Learn what founders should check before submitting incorporation documents on MCA."
-focusKeyword: "spice plus filing mistakes"
+title: "Top 10 SPICe+ Filing Mistakes That Cause MCA Resubmissions and Delays"
+slug: "spice-plus-common-mistakes-guide"
+seoTitle: "SPICe+ Common Mistakes: How to Avoid MCA V3 Rejection Queries"
+seoDescription: "Avoid costly company incorporation delays. Learn the top 10 SPICe+ filing mistakes on MCA V3: utility bill errors, DSC failures, and AGILE-PRO-S mismatches."
+focusKeyword: "spice plus common mistakes guide"
 secondaryKeywords:
-  - "spice plus form errors"
-  - "company registration rejection reasons"
-  - "mca incorporation mistakes"
-searchIntent: "Informational"
+  - "spice plus resubmission reasons mca"
+  - "mca v3 spice plus pre scrutiny errors"
+  - "agile pro s bank account errors"
+  - "registered office utility bill mismatch mca"
+searchIntent: "Informational / Guide"
 category: "Company Registration"
-subCategory: "SPICe+"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
-featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
+subCategory: "Troubleshooting"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "11 mins"
+lastUpdated: "2026-09-12"
+featuredImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for spice plus filing mistakes"
-excerpt: "A practical checklist of the mistakes that trigger avoidable delays and resubmissions in SPICe+ company registration filings."
-cta: "If you want a second pair of eyes on your SPICe+ paperwork before filing, FilingBy can review the package and flag the avoidable mistakes."
+imageAlt: "Accountant troubleshooting error message on MCA V3 SPICe+ web application"
+excerpt: "A practical troubleshooting guide for founders and professionals: how to eliminate the top 10 technical and documentary errors in SPICe+ MCA V3 filings."
+cta: "Stuck with an MCA V3 resubmission query? FilingBy's secretarial team rectifies documentation and clears pending CRC objections."
 isPublished: true
 relatedServices:
   - "private-limited-company"
-  - "trademark-registration"
+  - "roc-annual-filing-pvt"
 relatedBlogs:
-  - "private-limited-company-registration-india-guide"
-  - "authorised-capital-and-shareholding-guide"
-  - "opc-vs-private-limited-company-guide-india"
-  - "company-name-approval-guide-india"
+  - "how-to-register-private-limited-company"
   - "company-incorporation-documents-checklist-guide"
+  - "company-name-approval-guide-india"
 topicHub: "/blog?category=Company%20Registration"
-relatedCalculators:
-  - "/income-tax-calculator"
+relatedCalculators: []
 relatedTemplates:
-  - "incorporation-checklist"
+  - "spice-plus-pre-submission-checklist"
 internalLinks:
   - "/blog?category=Company%20Registration"
   - "/services/private-limited-company"
-  - "/blog?category=Trademark"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Preventable filing errors and their business effect"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "The Cost of a Single Resubmission Cycle"
+  - "Mistake 1: The 60-Day Utility Bill Trap"
+  - "Mistake 2: Landlord Name Discrepancy (NOC vs Electricity Bill)"
+  - "Mistake 3: Address Truncation and PIN Code Disconnects"
+  - "Mistake 4: Capital Discrepancies Across SPICe+, e-MoA & e-AoA"
+  - "Mistake 5: AGILE-PRO-S Bank & Director Photo Validation Failures"
+  - "Mistake 6: DSC Authentication & Web-Signer Glitches on MCA V3"
+  - "Mistake 7: Vague or Prohibited Object Clauses in the e-MoA"
+  - "Mistake 8: Subscriber Shareholding Mathematics and Decimals"
+  - "Mistake 9: Omitting Existing Directorship Disclosures in Form DIR-2"
+  - "Mistake 10: Missing Practicing Professional UDIN and Attestation"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "spice plus filing mistakes should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "A SPICe+ application allows only one resubmission opportunity (a strict 15-day cure window); a second rejection causes the application to lapse, forfeiting government fees."
+  - "Utility bills for the registered office must be less than 2 months old and match the landlord's name on the NOC and rent agreement exactly."
+  - "The capital structure declared in SPICe+ Part B must match the figures stated in Clause V of the e-MoA (INC-33) down to the last rupee."
+  - "MCA V3 web-signer errors are predominantly caused by browser caching, outdated token drivers, or failing to register the DSC under a Business User profile."
 faq:
-  - q: "Is SPICe+ difficult if the company is simple?"
-    a: "The form itself is manageable, but the challenge lies in consistency and documentation. Even simple companies get delayed when basics are not aligned."
-  - q: "What causes the most delays in practice?"
-    a: "Name issues, address proof mismatches and careless attachment preparation are among the most common causes."
-  - q: "Can a founder prepare everything without professional help?"
-    a: "Some founders do, but professional review helps because it catches pattern-based errors that first-time applicants often miss."
-  - q: "Why should business objects matter so early?"
-    a: "Because they become part of the legal record and should reflect the company's intended activity sensibly from the beginning."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for spice plus filing mistakes"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for spice plus filing mistakes"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for spice plus filing mistakes"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for spice plus filing mistakes"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for spice plus filing mistakes"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for spice plus filing mistakes"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "How many resubmissions does the MCA allow for SPICe+?"
+    a: "Under Rule 37 of the Companies (Incorporation) Rules 2014, the Central Registration Centre (CRC) allows one resubmission cycle. The applicant is granted 15 days to rectify all cited defects. If the defects are not cured satisfactorily on resubmission, the application is rejected."
+  - q: "What should I do if the electricity bill is in the name of the property owner's deceased parent?"
+    a: "You cannot submit an electricity bill in a deceased person's name with an NOC signed by the heir without legal proof. You must attach a copy of the registered Will, Succession Certificate, Legal Heirship Certificate, or registered Gift Deed establishing that the signatory is the lawful owner."
+  - q: "Why does the MCA V3 portal reject director passport photos in AGILE-PRO-S?"
+    a: "The AGILE-PRO-S form has rigid image validation parameters: photos must be strictly in JPEG format, under 100 KB in file size, with a white background, and standard aspect ratio. Uploading PNGs or high-resolution camera photos causes validation errors."
+  - q: "Can a company commence business operations if SPICe+ Part B is approved?"
+    a: "Approval of SPICe+ grants legal incorporation, but the company cannot commence business or exercise borrowing powers until the subscribers deposit share capital and Form INC-20A is successfully filed within 180 days."
 references:
-  - title: "MCA Services Portal"
-    url: "https://www.mca.gov.in/"
-    publisher: "Ministry of Corporate Affairs"
-  - title: "Companies Act and Rules Resources"
+  - title: "The Companies (Incorporation) Rules, 2014"
     url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
+    publisher: "Ministry of Corporate Affairs (MCA), Government of India"
+  - title: "MCA V3 Portal FAQ and Troubleshooting Guide"
+    url: "https://www.mca.gov.in/content/mca/global/en/frequently-asked-questions/v3-filing.html"
     publisher: "Ministry of Corporate Affairs"
-sources:
-  - title: "MCA Services Portal"
-    organisation: "Ministry of Corporate Affairs"
-    url: "https://www.mca.gov.in/"
-    kind: "reference"
-  - title: "Companies Act and Rules Resources"
-    organisation: "Ministry of Corporate Affairs"
-    url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
-    kind: "reference"
+  - title: "ICAI Secretarial & Corporate Practice Directives"
+    url: "https://www.icai.org/"
+    publisher: "Institute of Chartered Accountants of India"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: detailed top 10 error analysis, MCA V3 technical diagnostics, and resubmission prevention protocols."
 status: "published"
 ---
 
-# SPICe+ Filing Mistakes Founders Should Avoid During Company Registration
+# Top 10 SPICe+ Filing Mistakes That Cause MCA Resubmissions and Delays
 
-## Introduction
-If you are researching spice plus filing mistakes, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for founders, accountants, startup operators and anyone coordinating incorporation paperwork. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+The introduction of the integrated **SPICe+ (INC-32)** web application on the **MCA V3 portal** was designed to expedite company incorporation in India. By merging company registration, director allocation, tax IDs, and bank account setups into a unified process, the Central Government created a powerful single-window system.
 
-Most SPICe+ delays are not caused by complicated law. They are caused by inconsistent data, unclear object drafting and founder assumptions that the form will 'work itself out'. When incorporation is tied to a contract, funding milestone or launch date, a small resubmission can become a business delay. Preventive checking is much cheaper than reactive fixing. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+However, the automated integration also means the portal has become far more sensitive to **data mismatches and technical inconsistencies**.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+A minor typo in an address, a utility bill that expired by three days, or a capital figure discrepancy between the e-MoA and SPICe+ Part B triggers an immediate **Resubmission Notice** from the Central Registration Centre (CRC).
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+Under the Companies (Incorporation) Rules, 2014, you are granted **only one resubmission attempt (within 15 days)**. If your resubmission fails to clear all objections, your application is formally **Rejected**, forfeiting statutory fees and forcing you to restart the entire filing journey.
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+Here are the top 10 common mistakes founders and accountants make in SPICe+ filings, and how to prevent them.
 
-## Understanding the issue
-SPICe+ is an integrated MCA filing framework. Because it combines multiple registration elements, any mismatch in core data can ripple through the whole filing set. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+---
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+## Mistake 1: The 60-Day Utility Bill Trap
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+Under Rule 25 of the Companies (Incorporation) Rules, the utility bill submitted as proof of the registered office address (electricity, piped gas, telephone, or water bill) must **not be older than two months** on the date the form is electronically submitted.
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
+- **The Common Flaw:** A founder collects an electricity bill dated June 5 during preliminary discussions, but due to name approval debates and drafting delays, SPICe+ Part B is submitted on August 15 (71 days later).
+- **The Result:** Immediate resubmission notice under code *"Utility bill is older than 2 months"*.
+- **Prevention:** Always download the latest current-month electricity bill immediately prior to final digital signature attachment.
 
-## Preventable filing errors and their business effect
-| Error type | Immediate result | Practical business cost |
-| --- | --- | --- |
-| Identity mismatch | Resubmission or clarification | Launch delay and repeat coordination |
-| Weak company name choice | Name rejection | Fresh drafting and time loss |
-| Registered office proof inconsistency | Query or hold | Delay in bank and tax setup |
-| Poor business object drafting | Potential resubmission | Future scope confusion |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Mistake 2: Landlord Name Discrepancy (NOC vs Electricity Bill)
 
-## Government process explained step by step
-### Step 1: Standardise every founder detail before form entry
-Check names, initials, addresses, email IDs, mobile numbers and identity proofs before anyone starts typing into SPICe+. One clean source sheet prevents many common mistakes.
+The CRC cross-checks the registered owner's name across three distinct documents: the utility bill, the No Objection Certificate (NOC), and the Rent Agreement.
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+- **The Common Flaw:** The electricity bill is issued in the name of the builder or previous owner (*"Ramesh Chandra Gupta"*), but the rent agreement and NOC are signed by the current landlord (*"Suresh Gupta"*), without attaching the underlying conveyance deed.
+- **Prevention:** If the utility bill has not yet been updated with the local power discom to reflect the current owner's name, attach a copy of the registered Sale Deed or Municipal Tax Receipt proving that the signatory on the NOC is the lawful titleholder.
 
-### Step 2: Treat the company name as a legal submission, not a branding whim
-A founder should test name options for uniqueness, clarity and future usability. Resubmissions happen because names are too generic, conflict-prone or not aligned with the declared business activity.
+---
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+## Mistake 3: Address Truncation and PIN Code Disconnects
 
-### Step 3: Draft business objects with actual operations in mind
-Objects should reflect what the company genuinely plans to do. Overly vague drafting can weaken clarity while overly narrow drafting can create future discomfort. Sensible, commercially relevant drafting works best.
+The registered office address entered in SPICe+ Part B generates the official legal address printed on your Certificate of Incorporation and PAN/TAN cards.
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+- **The Common Flaw:** Entering an abbreviated address on the web form (*"Plot 4B, Ind. Area"*) while the electricity bill reads *"Plot No. 4B, Sector 18, Electronic City Industrial Area, Phase IV"*.
+- **The Result:** The automated MCA OCR engine flags an address mismatch.
+- **Prevention:** Transcribe the address on SPICe+ Part B character-for-character as it appears on the municipal utility bill, including landmark, district, and 6-digit PIN code.
 
-### Step 4: Match the registered office paperwork perfectly
-The government process is document-sensitive. Address proof, agreement details, dates and premises support documents should tell one consistent story. This is one of the most common problem areas.
+---
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+## Mistake 4: Capital Discrepancies Across SPICe+, e-MoA & e-AoA
 
-### Step 5: Review linked attachments as a pack, not as separate files
-Founders often review each document in isolation. The better method is to read the entire filing set as one story and ask whether every name, figure and address repeats consistently.
+A company's capital structure is entered in SPICe+ Part B and simultaneously encoded in Clause V of the **e-MoA (INC-33)**:
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+1. **Authorized Capital in SPICe+ Part B: ₹10,00,000 (1,00,000 shares of ₹10)**
+2. **Must Exactly Equal e-MoA Clause V: ₹10,00,000 (1,00,000 shares of ₹10)**
+3. **Sum of Subscriber Shares: 50,000 (Founder A) + 50,000 (Founder B) = 1,00,000**
 
-### Step 6: Plan for post-submission availability
-Once the filing is made, the team should stay reachable for clarification or quick corrections. Delays are worse when a query arrives and no one is ready with the underlying documents.
+- **The Common Flaw:** An applicant updates the subscribed shares in SPICe+ Part B to adjust founder equity splits, but forgets to regenerate and match the share counts in the linked e-MoA.
+- **The Result:** Pre-scrutiny validation error: *"Total subscribed capital does not match sum of subscriber shares"*.
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+---
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+## Mistake 5: AGILE-PRO-S Bank & Director Photo Validation Failures
 
-- Clean founder KYC master sheet
-- Shortlist of company names with backup options
-- Registered office documents reviewed together
-- Business object notes aligned with actual plans
-- Attachment review checklist before submission
+The **AGILE-PRO-S (INC-35)** form handles banking and multi-agency integrations:
+- **Director Photograph Glitches:** Uploading photos with dark backgrounds, non-standard aspect ratios, or file sizes exceeding 100 KB causes silent form submission failures.
+- **Specimen Signature Card:** The authorized signatory must sign on blank white paper using dark blue or black ink. Blurry, low-contrast phone photos are rejected by commercial bank screening teams.
+- **Bank Branch Selection:** Selecting a newly established bank branch whose IFSC code is not yet mapped in the MCA banking gateway prevents the form from submitting.
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+---
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+## Mistake 6: DSC Authentication & Web-Signer Glitches on MCA V3
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+The migration to the MCA V3 platform replaced offline PDF signing with the browser-based **EMBridge Web-Signer utility**:
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+- **The Common Flaw:** Attempting to digitally sign forms under a "Registered User" profile rather than upgrading to a **"Business User"** profile.
+- **Token Driver Mismatches:** Using outdated cryptographic USB token drivers causes the web-signer to throw *"Certificate validation failed"* errors.
+- **Prevention:** Always register the director's Class 3 DSC under **"Associate DSC"** before opening SPICe+ Part B, and ensure the EMBridge background service is actively running on port 58727.
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+---
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+## Mistake 7: Vague or Prohibited Object Clauses in the e-MoA
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+Clause 3(a) of the **e-MoA (INC-33)** outlines the main business activities the company is incorporated to execute:
 
-- Using different spellings of the same director name in separate places
-- Submitting a name without checking broader brand and legal fit
-- Uploading incomplete or dated address proof
-- Treating attachments as admin work instead of legal evidence
-- Not keeping backup name options ready
+- **The Common Flaw:** Inserting generic omnibus clauses like *"To carry on all types of general trade, manufacturing, services, and investments in India or abroad"*.
+- **The Law:** Under the Companies Act 2013, a company must define specific, focused main objects that directly align with the activity word in its approved corporate name.
+- **Prohibited Objects:** Inserting microfinance, multi-level marketing (chits), lottery operations, or banking activities without regulatory licenses causes immediate rejection.
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+---
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+## Mistake 8: Subscriber Shareholding Mathematics and Decimals
 
-- Freeze a final data sheet before the filing team starts the form
-- Run a last review as if you were the officer seeing the case for the first time
-- Keep founder signatures and DSC access ready during the filing window
-- Document every resubmission note so the same error is not repeated
+Each subscriber must hold at least one whole equity share.
+- You cannot issue fractional shares in an Indian company (e.g., allocating 500.5 shares).
+- Ensure the equity split totals exactly 100% of the subscribed capital. If two founders subscribe to ₹1,00,000 capital, the share count must be exact (e.g., 5,000 shares each at ₹10 face value).
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+---
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+## Mistake 9: Omitting Existing Directorship Disclosures in Form DIR-2
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+Under Section 152(5), every director must furnish **Form DIR-2** disclosing any other directorships or partnership interests they hold:
+- If a founder already holds a DIN and is a director in an existing company, that CIN and company name must be declared.
+- Omitting active directorships is treated as material misrepresentation, triggering CRC scrutiny under Section 7(5).
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
+---
 
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
+## Mistake 10: Missing Practicing Professional UDIN and Attestation
 
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
+Every SPICe+ incorporation must be certified by an independent practicing Chartered Accountant, Company Secretary, or Cost Accountant:
+- The professional must verify all attachments against original identity proofs.
+- The professional must generate and insert an active **Unique Document Identification Number (UDIN)** from their respective institute portal (ICAI/ICSI/ICMAI). Submitting without a verified UDIN invalidates the professional attestation.
 
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
+---
 
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
+## Frequently Asked Questions
 
-## FAQs
-### Is SPICe+ difficult if the company is simple?
-The form itself is manageable, but the challenge lies in consistency and documentation. Even simple companies get delayed when basics are not aligned.
+### How many resubmissions does the MCA allow for SPICe+?
+Under Rule 37 of the Companies (Incorporation) Rules 2014, the Central Registration Centre (CRC) allows one resubmission cycle. The applicant is granted 15 days to rectify all cited defects. If the defects are not cured satisfactorily on resubmission, the application is rejected.
 
-### What causes the most delays in practice?
-Name issues, address proof mismatches and careless attachment preparation are among the most common causes.
+### What should I do if the electricity bill is in the name of the property owner's deceased parent?
+You cannot submit an electricity bill in a deceased person's name with an NOC signed by the heir without legal proof. You must attach a copy of the registered Will, Succession Certificate, Legal Heirship Certificate, or registered Gift Deed establishing that the signatory is the lawful owner.
 
-### Can a founder prepare everything without professional help?
-Some founders do, but professional review helps because it catches pattern-based errors that first-time applicants often miss.
+### Why does the MCA V3 portal reject director passport photos in AGILE-PRO-S?
+The AGILE-PRO-S form has rigid image validation parameters: photos must be strictly in JPEG format, under 100 KB in file size, with a white background, and standard aspect ratio. Uploading PNGs or high-resolution camera photos causes validation errors.
 
-### Why should business objects matter so early?
-Because they become part of the legal record and should reflect the company's intended activity sensibly from the beginning.
+### Can a company commence business operations if SPICe+ Part B is approved?
+Approval of SPICe+ grants legal incorporation, but the company cannot commence business or exercise borrowing powers until the subscribers deposit share capital and Form INC-20A is successfully filed within 180 days.
 
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
+---
 
-- [MCA Services Portal](https://www.mca.gov.in/) - Ministry of Corporate Affairs
-- [Companies Act and Rules Resources](https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html) - Ministry of Corporate Affairs
+## Official References
 
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [Company Registration Guides](/blog?category=Company%20Registration)
-- [Private Limited Company Registration](/services/private-limited-company)
-- [Trademark Guides](/blog?category=Trademark)
-
-### Related calculators and templates
-- Income Tax Calculator
-- Incorporation Checklist
-
-### Related services
-- Private Limited Company Registration
-- Trademark Registration
-
-## CTA
-If you want a second pair of eyes on your SPICe+ paperwork before filing, FilingBy can review the package and flag the avoidable mistakes. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle spice plus filing mistakes is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [The Companies (Incorporation) Rules, 2014](https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html) — Ministry of Corporate Affairs (MCA), Government of India
+- [MCA V3 Portal FAQ and Troubleshooting Guide](https://www.mca.gov.in/content/mca/global/en/frequently-asked-questions/v3-filing.html) — Ministry of Corporate Affairs
+- [ICAI Secretarial & Corporate Practice Directives](https://www.icai.org/) — Institute of Chartered Accountants of India

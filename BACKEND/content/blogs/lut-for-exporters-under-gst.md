@@ -1,297 +1,232 @@
 ---
-title: "LUT Under GST for Exporters: When to Use It, How to File It and What Founders Often Miss"
-slug: "lut-under-gst-for-exporters"
-seoTitle: "LUT Under GST for Exporters: Filing Guide for Indian Businesses"
-seoDescription: "Learn how LUT works under GST for exporters in India. Understand eligibility, filing steps, refunds, timelines and practical mistakes businesses should avoid."
-focusKeyword: "lut under gst for exporters"
+title: "LUT for Exporters Under GST: Form RFD-11 Filing Guide, Eligibility & Timelines"
+slug: "lut-for-exporters-under-gst"
+seoTitle: "LUT Under GST Guide for Exporters: Form RFD-11 Portal Process"
+seoDescription: "Comprehensive step-by-step guide to filing Form GST RFD-11 Letter of Undertaking (LUT). Learn eligibility, two-witness requirements, 3-month goods rules, and invoice norms."
+focusKeyword: "lut for exporters under gst"
 secondaryKeywords:
-  - "gst lut filing"
-  - "export without payment of tax"
-  - "lut for service exporters"
-searchIntent: "Informational"
+  - "form gst rfd 11 filing steps"
+  - "export under lut rule 96a"
+  - "lut annual validity financial year"
+  - "lut witness requirements gst portal"
+searchIntent: "Informational / Practical"
 category: "GST"
 subCategory: "Exports"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "11 mins"
+lastUpdated: "2026-09-12"
 featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for lut under gst for exporters"
-excerpt: "A founder-friendly guide to Letter of Undertaking under GST, with clear explanations for product exporters, service exporters and cross-border startups."
-cta: "If you export goods or services and want to avoid cash flow leaks, FilingBy can help you file LUT correctly and align the supporting records."
+imageAlt: "Business owner completing Form GST RFD-11 Letter of Undertaking on the GST common portal"
+excerpt: "A practical filing guide to Form GST RFD-11: who qualifies for a Letter of Undertaking, witness verification norms, export invoice declarations, and statutory compliance under Rule 96A."
+cta: "Exporting products, software, or agency services? FilingBy files your annual Form GST RFD-11 LUT and ensures export invoice compliance."
 isPublished: true
 relatedServices:
   - "gst-registration"
-  - "iec-registration"
+  - "gst-filing"
 relatedBlogs:
-  - "gst-registration-for-service-businesses-india"
-  - "gst-for-ecommerce-sellers-india"
-  - "composition-scheme-vs-regular-gst"
-  - "gst-registration-with-virtual-office-india"
-  - "gst-cancellation-and-revocation-guide-india"
+  - "gst-lut-vs-refund-for-exporters-guide"
+  - "iec-registration-for-first-time-exporters-guide"
+  - "gst-registration-guide"
 topicHub: "/blog?category=GST"
-relatedCalculators:
-  - "/gst-calculator"
+relatedCalculators: []
 relatedTemplates:
-  - "export-service-agreement"
+  - "lut-export-invoice-template"
 internalLinks:
   - "/blog?category=GST"
-  - "/blog?category=IEC"
   - "/services/gst-registration"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "LUT vs paying IGST on export"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "What is a Letter of Undertaking (LUT)?"
+  - "Statutory Framework Under Rule 96A of the CGST Rules"
+  - "Eligibility Criteria: Who Can File an LUT vs Who Needs a Bond"
+  - "Annual Validity Window & Timing of Submission"
+  - "Step-by-Step Procedure to File Form GST RFD-11"
+  - "Mandatory Witness Details & Verification Protocols"
+  - "Post-Filing Statutory Obligations: Goods (3 Months) & Services (1 Year)"
+  - "Invoice Endorsement Rules & Common Errors"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "lut under gst for exporters should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "A Letter of Undertaking (LUT) submitted in Form GST RFD-11 allows registered exporters to dispatch goods or provide services overseas without paying integrated tax upfront."
+  - "An LUT is valid for an entire Financial Year (April 1 to March 31); a fresh LUT must be filed on the GST portal before executing exports in any new financial year."
+  - "All registered taxpayers are eligible to furnish an LUT unless they have been prosecuted for tax evasion exceeding ₹2.5 Crores under Section 132 of the CGST Act."
+  - "Every export invoice issued under an LUT must carry the statutory endorsement: 'Supply meant for export under bond or letter of undertaking without payment of integrated tax'."
 faq:
-  - q: "Is LUT required for service exporters too?"
-    a: "Many service exporters use LUT because it supports zero-rated billing without upfront IGST payment, but eligibility depends on whether the supply qualifies as export of services under GST rules."
-  - q: "How often should LUT be filed?"
-    a: "Businesses should generally treat LUT as a financial-year compliance item and renew it proactively so export invoicing does not get delayed."
-  - q: "What if export proceeds are received late?"
-    a: "Delayed realisation can create compliance issues depending on the facts. Businesses should track payment timelines and keep documentary evidence ready rather than assuming the matter will correct itself."
-  - q: "Can a startup file LUT without a large export history?"
-    a: "Yes, if it is otherwise eligible and the GST registration and documents are in order. What matters is lawful compliance, not business size."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for lut under gst for exporters"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for lut under gst for exporters"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for lut under gst for exporters"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for lut under gst for exporters"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for lut under gst for exporters"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for lut under gst for exporters"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "When should an exporter file Form GST RFD-11 for an upcoming financial year?"
+    a: "Form GST RFD-11 should ideally be filed in March prior to the commencement of the new financial year (e.g., in March 2026 for FY 2026-27), or immediately before making the first export shipment or issuing the first cross-border invoice in that financial year."
+  - q: "What happens if goods exported under an LUT are not physically shipped within 3 months?"
+    a: "Under Rule 96A(1)(a) of the CGST Rules, if goods are not exported within three months from the invoice date, the exporter must pay the applicable integrated tax within 15 days of the expiry of the 3-month window, along with 18% annual interest under Section 50."
+  - q: "Who can act as a witness in Form GST RFD-11?"
+    a: "Form RFD-11 requires details of two independent witnesses, including their full legal name, residential address, and occupation. Witnesses can be colleagues, business partners, employees, or family members; their physical signatures are not uploaded since the form is digitally authenticated via DSC or EVC."
+  - q: "Is an LUT applicable for supplies made to Special Economic Zone (SEZ) units?"
+    a: "Yes. Under Section 16(1)(b) of the IGST Act, supplies made to SEZ developers or SEZ units are zero-rated. Suppliers can furnish Form GST RFD-11 to supply goods or services to SEZ entities without charging integrated tax."
+  - q: "Can a proprietor file Form GST RFD-11 using Aadhaar OTP (EVC)?"
+    a: "Yes. Sole proprietorships, individual professionals, and partnership firms can digitally authenticate Form GST RFD-11 using Electronic Verification Code (EVC) via Aadhaar/PAN OTP. Companies and LLPs must sign using a Class 3 Digital Signature Certificate (DSC)."
 references:
-  - title: "GST Portal"
-    url: "https://www.gst.gov.in/"
-    publisher: "Goods and Services Tax Network"
-  - title: "CBIC GST Instructions and Updates"
+  - title: "Central Goods and Services Tax Rules, 2017 - Rule 96A (Export under LUT/Bond)"
     url: "https://cbic-gst.gov.in/"
-    publisher: "Central Board of Indirect Taxes and Customs"
-sources:
-  - title: "GST Portal"
-    organisation: "Goods and Services Tax Network"
-    url: "https://www.gst.gov.in/"
-    kind: "reference"
-  - title: "CBIC GST Instructions and Updates"
-    organisation: "Central Board of Indirect Taxes and Customs"
-    url: "https://cbic-gst.gov.in/"
-    kind: "reference"
+    publisher: "Central Board of Indirect Taxes and Customs (CBIC), Government of India"
+  - title: "CBIC Circular No. 8/8/2017-GST - Clarification on Issues Related to Furnishing of Bond/LUT"
+    url: "https://www.cbic.gov.in/"
+    publisher: "Department of Revenue, Ministry of Finance"
+  - title: "GST Common Portal - User Guide for Filing Form GST RFD-11"
+    url: "https://www.cbic.gov.in/entities/cbic-content-gst"
+    publisher: "Goods and Services Tax Network (GSTN)"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: bespoke procedural manual for Form GST RFD-11, Rule 96A timelines, Section 132 prosecution thresholds, and witness verification rules."
 status: "published"
 ---
 
-# LUT Under GST for Exporters: When to Use It, How to File It and What Founders Often Miss
+# LUT for Exporters Under GST: Form RFD-11 Filing Guide, Eligibility & Timelines
 
-## Introduction
-If you are researching lut under gst for exporters, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for exporters of goods, SaaS providers, agencies with overseas clients and manufacturers shipping outside India. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+Exporting products, digital services, or software solutions from India opens immense global commercial horizons. To ensure domestic taxes do not make Indian businesses uncompetitive internationally, the Indian indirect tax regime operates on the principle of **Zero-Rated Supplies** under **Section 16 of the Integrated Goods and Services Tax (IGST) Act, 2017**.
 
-LUT is simple in principle but often misunderstood in practice. Businesses know it helps export without paying IGST upfront, yet they miss the record-keeping and renewal discipline around it. Export businesses usually feel the importance of LUT when cash flow starts tightening. Avoiding unnecessary upfront tax outflow matters even more when orders are seasonal or receivable cycles are long. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+While exporters have the legal option to pay integrated tax and claim refunds later, paying tax upfront locks up precious working capital. The most efficient statutory mechanism to protect business cash flow is filing a **Letter of Undertaking (LUT)** on the Goods and Services Tax Common Portal.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+Codified under **Rule 96A of the Central Goods and Services Tax (CGST) Rules, 2017**, an approved LUT in **Form GST RFD-11** allows registered taxpayers to export goods or services overseas—as well as supply to Special Economic Zone (SEZ) units—without paying a single rupee of output tax.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+This practical guide details eligibility criteria, the step-by-step digital filing process on `gst.gov.in`, witness protocols, and ongoing invoice compliance.
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+---
 
-## Understanding the issue
-The LUT mechanism sits within GST zero-rated supply rules. It works alongside export documentation, refund logic and evidence that the supply genuinely qualifies as export. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+## What is a Letter of Undertaking (LUT)?
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+A Letter of Undertaking is a formal legal commitment executed by an exporter and submitted to the President of India through the jurisdictional Goods and Services Tax department. 
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+In this document, the exporter undertakes:
+1. To export the goods or services within the statutory timeframe specified in **Rule 96A**.
+2. To observe all provisions of the GST Acts and Rules in respect of such zero-rated supplies.
+3. To pay the full integrated tax along with applicable statutory interest (currently 18% per annum under Section 50) if the export is not completed within the prescribed window.
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
+Once submitted online, the GST portal generates an **Application Reference Number (ARN)** instantly, serving as electronic authorization for the financial year.
 
-## LUT vs paying IGST on export
-| Approach | Cash flow effect | Operational note |
-| --- | --- | --- |
-| Export under LUT | Helps preserve working capital | Requires timely filing and documentary discipline |
-| Pay IGST then claim refund | Can strain cash flow | Refund cycle and follow-up become important |
-| Service export without clarity | Creates compliance uncertainty | Contract and payment terms must be reviewed |
-| Goods export through multiple stakeholders | Needs tighter paperwork | Shipping and invoice records must align |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Statutory Framework Under Rule 96A of the CGST Rules
 
-## Government process explained step by step
-### Step 1: Confirm whether your supply qualifies as export
-The first practical step is not portal filing but eligibility review. Export of goods and export of services have specific conditions. Payment terms, place of supply, recipient location and inward remittance position matter.
+Rule 96A establishes the legal rules governing exports without payment of tax:
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+### RULE 96A STATUTORY CONDITIONS & TIMELINES
 
-### Step 2: Review past compliance before filing LUT
-LUT is routine for compliant businesses, but poor registration records or unresolved GST issues can complicate the process. Check legal name, GSTIN status and filing position first.
+| **Category of Export Supply** | **Statutory Completion Window** |
+| --- | --- |
+| 1. Export of Physical Goods | Must be exported outside India within 3 MONTHS from invoice date. |
+| 2. Export of Services | Payment in convertible foreign exch must be received within 1 YEAR. |
+| Consequence of Failure: Exporter must pay applicable IGST within 15 |  |
+| days of the deadline expiry, plus 18% statutory interest. |  |
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
 
-### Step 3: File LUT online through the GST portal
-The government process is completed online and generally requires selecting the financial year, confirming eligibility declarations and using the authorised signatory credentials. Businesses should save the acknowledgement immediately.
+---
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+## Eligibility Criteria: Who Can File an LUT vs Who Needs a Bond
 
-### Step 4: Align export invoicing and shipping or service documentation
-Filing LUT is only one part. Your export invoices, contracts, shipping documents or foreign inward remittance records should support the zero-rated treatment. A weak paperwork trail is what usually causes later pain.
+Historically, small exporters were forced to submit physical bank guarantees and complex indemnity bonds. To promote ease of doing business, the Central Board of Indirect Taxes and Customs (CBIC) issued **Circular No. 8/8/2017-GST**:
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+### 1. General Eligibility for Online LUT (Form RFD-11)
+**All registered taxpayers** who intend to supply goods or services for export or to SEZ units are eligible to submit an online Letter of Undertaking without furnishing a bank guarantee, provided:
+- They hold an active GSTIN.
+- They have not been prosecuted for an offence under the CGST Act, IGST Act, or earlier tax laws where the amount of tax evaded exceeds **₹250 Lakhs (₹2.5 Crores)** under Section 132.
 
-### Step 5: Track timelines for export realisation and record retention
-Where applicable, payment realisation and export completion evidence should be monitored. Businesses sometimes file LUT and then forget that later refund or scrutiny questions may depend on the full document trail.
+### 2. When is a Bond with Bank Guarantee Mandatory?
+Only taxpayers who have been convicted in a court of law for tax evasion exceeding ₹2.5 Crores are disqualified from filing an LUT. Such individuals must execute a physical **Bond in Form GST RFD-11** on non-judicial stamp paper, accompanied by a bank guarantee of up to 15% of the estimated tax liability.
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+---
 
-### Step 6: Renew and review every financial year
-LUT is not a one-time lifetime filing. Treat it as an annual compliance item and renew it in good time, especially if export billing starts early in the financial year.
+## Annual Validity Window & Timing of Submission
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+An approved LUT does not remain valid indefinitely:
+* **Validity Period**: An LUT is valid for **one Financial Year** (April 1 to March 31). For example, an LUT filed for FY 2026-27 expires automatically on March 31, 2027.
+* **Filing Window**: Exporters should file Form GST RFD-11 in the month of **March** preceding the upcoming financial year, or at any time before issuing their first export invoice in that year.
+* **No Retrospective Relief**: While CBIC circulars permit condonation of minor procedural delays, issuing zero-rated export invoices before filing an LUT can trigger demand notices requiring proof of compliance.
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+---
 
-- Active GST registration credentials and authorised signatory access
-- Basic business records showing export activity or proposed export contracts
-- Invoice and service agreement formats aligned with export treatment
-- Shipping, courier, inward remittance or banking evidence as relevant
-- Internal tracker for LUT filing year, export invoices and payment realisation
+## Step-by-Step Procedure to File Form GST RFD-11
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+Filing an LUT is an entirely paperless, automated procedure on the GST Common Portal:
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+1. **Log into GST Portal (gst.gov.in)**
+2. **Navigate to: Services > User Services > Furnish Letter of Undertaking (LUT)**
+3. **Select Financial Year (e.g., 2026-2027)**
+4. **Select Undertaking Checkboxes (Self-Declaration)**
+5. **Enter Details of Two Independent Witnesses**
+6. **Select Primary Authorized Signatory & Place**
+7. **Sign and Submit via Class 3 DSC or EVC (Aadhaar OTP)**
+8. **Instant Approval: Download Form GST RFD-11 Acknowledgement with ARN**
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+---
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+## Mandatory Witness Details & Verification Protocols
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+When completing the webform, the portal requires the particulars of **two independent witnesses**:
+1. **Required Information**:
+   - Full Legal Name
+   - Residential Address (Street, City, State, PIN code)
+   - Occupation (e.g., "Accountant", "Consultant", "Service")
+2. **Who Can Be a Witness?**
+   Any adult individual with legal capacity—such as senior employees, colleagues, or associates—can serve as a witness.
+3. **No Digital Signature Required for Witnesses**:
+   Witnesses do not need a DSC or OTP. The authorized signatory signs the declaration under their own digital credentials, certifying that the witnesses are real persons.
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+---
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+## Post-Filing Statutory Obligations: Goods (3 Months) & Services (1 Year)
 
-- Assuming every foreign client invoice automatically qualifies as export of services
-- Filing LUT but not aligning the invoice and remittance trail
-- Forgetting annual renewal and discovering the gap only after raising export invoices
-- Treating refund or zero-rated reporting as a back-office formality
-- Keeping scattered records across email, freight agents and finance folders
+Securing an approved LUT is only the first step. Exporters must maintain strict audit trails to substantiate that zero-rated transactions complied with statutory time limits:
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+### 1. Export of Physical Goods
+Under **Rule 96A(1)(a)**, goods must leave Indian territory within **three months** of the invoice timestamp:
+- **Proof of Export**: Shipping Bill / Bill of Export with export promotion copy, and carrier-issued Export General Manifest (EGM) or Bill of Lading / Airway Bill.
+- **Default Consequence**: If goods remain unshipped after 90 days, the exporter must voluntarily deposit the full IGST amount in the next GSTR-3B with interest, or face recovery proceedings under Section 73/74.
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+### 2. Export of Services
+Under **Rule 96A(1)(b)**, services must be paid for in convertible foreign exchange within **one year** from the invoice date:
+- **Proof of Inward Remittance**: Foreign Inward Remittance Certificate (**FIRC**) or electronic Bank Realisation Certificate (**e-BRC**) issued by the Authorized Dealer (AD) bank.
+- **Special Currencies**: Receipts in Indian Rupees are valid only where permitted by the Reserve Bank of India (such as designated Vostro accounts or cross-border trade with Nepal/Bhutan).
 
-- Create a single export documentation folder for each month or project
-- Review service agreements for place-of-supply language before large overseas billing starts
-- Have finance and operations agree on a common export invoice checklist
-- Renew LUT early rather than waiting for the first urgent invoice of the year
+---
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+## Invoice Endorsement Rules & Common Errors
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+Every tax invoice issued for zero-rated export supplies under an LUT must strictly comply with **Rule 46 of the CGST Rules**:
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+### 1. Mandatory Legal Text on Export Invoices
+All export invoices must prominently state:
+> **"SUPPLY MEANT FOR EXPORT UNDER BOND OR LETTER OF UNDERTAKING WITHOUT PAYMENT OF INTEGRATED TAX"**
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
+### 2. Essential Invoice Fields:
+* The 14-digit **LUT Application Reference Number (ARN)**.
+* Exporter’s legal name, registered address, and GSTIN.
+* Recipient’s full overseas name and delivery address.
+* Country of destination and port of loading/discharge (for physical goods).
+* 6-digit or 8-digit HSN/SAC code and currency of invoice.
 
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
+---
 
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
+## Frequently Asked Questions
 
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
+### When should an exporter file Form GST RFD-11 for an upcoming financial year?
+Form GST RFD-11 should ideally be filed in March prior to the commencement of the new financial year (e.g., in March 2026 for FY 2026-27), or immediately before making the first export shipment or issuing the first cross-border invoice in that financial year.
 
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
+### What happens if goods exported under an LUT are not physically shipped within 3 months?
+Under Rule 96A(1)(a) of the CGST Rules, if goods are not exported within three months from the invoice date, the exporter must pay the applicable integrated tax within 15 days of the expiry of the 3-month window, along with 18% annual interest under Section 50.
 
-## FAQs
-### Is LUT required for service exporters too?
-Many service exporters use LUT because it supports zero-rated billing without upfront IGST payment, but eligibility depends on whether the supply qualifies as export of services under GST rules.
+### Who can act as a witness in Form GST RFD-11?
+Form RFD-11 requires details of two independent witnesses, including their full legal name, residential address, and occupation. Witnesses can be colleagues, business partners, employees, or family members; their physical signatures are not uploaded since the form is digitally authenticated via DSC or EVC.
 
-### How often should LUT be filed?
-Businesses should generally treat LUT as a financial-year compliance item and renew it proactively so export invoicing does not get delayed.
+### Is an LUT applicable for supplies made to Special Economic Zone (SEZ) units?
+Yes. Under Section 16(1)(b) of the IGST Act, supplies made to SEZ developers or SEZ units are zero-rated. Suppliers can furnish Form GST RFD-11 to supply goods or services to SEZ entities without charging integrated tax.
 
-### What if export proceeds are received late?
-Delayed realisation can create compliance issues depending on the facts. Businesses should track payment timelines and keep documentary evidence ready rather than assuming the matter will correct itself.
+### Can a proprietor file Form GST RFD-11 using Aadhaar OTP (EVC)?
+Yes. Sole proprietorships, individual professionals, and partnership firms can digitally authenticate Form GST RFD-11 using Electronic Verification Code (EVC) via Aadhaar/PAN OTP. Companies and LLPs must sign using a Class 3 Digital Signature Certificate (DSC).
 
-### Can a startup file LUT without a large export history?
-Yes, if it is otherwise eligible and the GST registration and documents are in order. What matters is lawful compliance, not business size.
+---
 
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
+## Official References
 
-- [GST Portal](https://www.gst.gov.in/) - Goods and Services Tax Network
-- [CBIC GST Instructions and Updates](https://cbic-gst.gov.in/) - Central Board of Indirect Taxes and Customs
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [GST Guides](/blog?category=GST)
-- [IEC Guides](/blog?category=IEC)
-- [GST Registration Service](/services/gst-registration)
-
-### Related calculators and templates
-- Gst Calculator
-- Export Service Agreement
-
-### Related services
-- GST Registration
-- IEC Registration
-
-## CTA
-If you export goods or services and want to avoid cash flow leaks, FilingBy can help you file LUT correctly and align the supporting records. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle lut under gst for exporters is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [Central Goods and Services Tax Rules, 2017 - Rule 96A (Export under LUT/Bond)](https://cbic-gst.gov.in/) — Central Board of Indirect Taxes and Customs (CBIC), Government of India
+- [CBIC Circular No. 8/8/2017-GST - Clarification on Issues Related to Furnishing of Bond/LUT](https://www.cbic.gov.in/) — Department of Revenue, Ministry of Finance
+- [GST Common Portal - User Guide for Filing Form GST RFD-11](https://www.gst.gov.in/) — Goods and Services Tax Network (GSTN)

@@ -1,297 +1,242 @@
 ---
-title: "GST for E-commerce Sellers in India: What Amazon, Flipkart and D2C Brands Must Get Right"
-slug: "gst-for-ecommerce-sellers-india"
-seoTitle: "GST for E-commerce Sellers in India: Amazon and Flipkart Seller Guide"
-seoDescription: "A practical GST guide for online sellers in India covering registration triggers, TCS, marketplace issues, invoicing, returns and common mistakes."
-focusKeyword: "gst for ecommerce sellers"
+title: "GST for E-Commerce Sellers Guide: Amazon, Flipkart, D2C Brands & Notification 34/2023"
+slug: "gst-for-ecommerce-sellers-guide"
+seoTitle: "GST for E-Commerce Sellers: Amazon, Flipkart & D2C Compliance"
+seoDescription: "Comprehensive GST guide for online sellers. Learn Section 52 TCS rates, Notification 34/2023 intra-state exemptions, FBA warehouse APOB rules, and GSTR-8 credit."
+focusKeyword: "gst for ecommerce sellers guide"
 secondaryKeywords:
-  - "amazon seller gst"
-  - "flipkart seller gst"
-  - "gst for online business"
-searchIntent: "Informational"
+  - "amazon seller gst registration"
+  - "flipkart fbf additional place of business"
+  - "section 52 tcs e-commerce"
+  - "notification 34 2023 central tax"
+searchIntent: "Informational / Commercial"
 category: "GST"
 subCategory: "E-commerce"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "12 mins"
+lastUpdated: "2026-09-12"
 featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for gst for ecommerce sellers"
-excerpt: "A deep dive into GST registration, tax collection at source, invoicing logic and marketplace compliance for e-commerce sellers and D2C brands."
-cta: "If you sell online and want a GST setup that works with inventory, marketplaces and returns, FilingBy can help you structure it cleanly."
+imageAlt: "E-commerce entrepreneur analyzing sales reports, GSTR-8 TCS credits, and marketplace fulfillment data"
+excerpt: "A practical compliance guide for Indian online sellers: Section 52 TCS mechanics, the landmark Notification 34/2023 intra-state exemption, Amazon FBA APOB additions, and Table 14/15 reporting."
+cta: "Selling on Amazon, Flipkart, or your own Shopify store? FilingBy manages multi-state GST registrations, APOB additions, and monthly return reconciliations."
 isPublished: true
 relatedServices:
   - "gst-registration"
-  - "virtual-office"
+  - "gst-filing"
 relatedBlogs:
-  - "gst-registration-for-service-businesses-india"
-  - "lut-under-gst-for-exporters"
-  - "composition-scheme-vs-regular-gst"
-  - "gst-registration-with-virtual-office-india"
-  - "gst-cancellation-and-revocation-guide-india"
+  - "gst-registration-guide"
+  - "gstr-1-vs-gstr-3b-reconciliation-guide"
+  - "gst-registration-with-virtual-office"
 topicHub: "/blog?category=GST"
-relatedCalculators:
-  - "/gst-calculator"
+relatedCalculators: []
 relatedTemplates:
-  - "inventory-reconciliation-sheet"
+  - "marketplace-tcs-reconciliation-sheet"
 internalLinks:
   - "/blog?category=GST"
-  - "/virtual-space"
-  - "/locations"
+  - "/services/gst-registration"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Marketplace and D2C GST comparison"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "The Regulatory Framework for E-Commerce in GST"
+  - "Compulsory Registration vs Notification 34/2023 Exemption"
+  - "Section 52 Tax Collection at Source (TCS) Rules"
+  - "Multi-State Warehousing: PPOB & APOB for Amazon FBA and Flipkart FBF"
+  - "Section 9(5) Operators vs Regular Marketplaces"
+  - "Monthly Return Filings: Table 14 & Table 15 in GSTR-1"
+  - "Claiming TCS Credit on the GST Portal"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "gst for ecommerce sellers should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "Under Section 24(ix), sellers supplying goods across state lines via e-commerce marketplaces must register for GST irrespective of turnover."
+  - "Under Notification No. 34/2023-Central Tax, small unregistered sellers making strictly INTRA-STATE supplies of goods via marketplaces are exempt from registration up to ₹40 Lakhs if they secure an Enrolment Number."
+  - "E-commerce operators collect Tax Collection at Source (TCS) under Section 52 on net taxable supplies, which sellers claim monthly in their Electronic Cash Ledger."
+  - "Storing inventory in out-of-state fulfillment centers (such as Amazon FBA or Flipkart Assured) legally mandates a separate GSTIN in each warehouse state with the fulfillment center declared as an Additional Place of Business (APOB)."
 faq:
-  - q: "Does every e-commerce seller need GST registration?"
-    a: "A marketplace-led model usually requires careful review because the compliance position is stricter than a simple local offline setup. Founders should not rely on turnover alone without checking the actual supply model."
-  - q: "What is the practical issue with TCS for sellers?"
-    a: "TCS affects reconciliation. The platform may report and collect tax-linked information that must match the seller's books and returns. If the seller ignores this, ledger mismatches build up quickly."
-  - q: "Can a seller use a virtual office for GST registration?"
-    a: "It can be workable if the address package and supporting documents satisfy the portal and local officer expectations. The document set must be genuine and consistent."
-  - q: "What happens when a seller uses the wrong GST rate?"
-    a: "The problem usually appears through underpayment, customer complaints, margin distortion or return mismatches. Correcting it after volume builds up is far more painful than validating classification early."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for gst for ecommerce sellers"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for gst for ecommerce sellers"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for gst for ecommerce sellers"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for gst for ecommerce sellers"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for gst for ecommerce sellers"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for gst for ecommerce sellers"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "Can an unregistered artisan sell handcrafted goods on Amazon or Flipkart without GST?"
+    a: "Under Notification No. 34/2023-Central Tax, an unregistered seller can sell goods through an e-commerce operator without GST registration, provided their turnover is below ₹40 Lakhs (or ₹20 Lakhs), supplies are strictly intra-state (within the same state), and they obtain an Enrolment Number on the GST Common Portal."
+  - q: "What is the current TCS rate deducted by Amazon, Flipkart, and Meesho?"
+    a: "Under Section 52 of the CGST Act, as amended by Notification No. 15/2024-Central Tax (effective July 10, 2024), the TCS rate collected by e-commerce operators was reduced to 0.5% (0.25% CGST + 0.25% SGST or 0.5% IGST) on the net value of taxable supplies."
+  - q: "Do I need a separate GST registration in Maharashtra if my home office is in Delhi but I use Amazon's Mumbai FBA warehouse?"
+    a: "Yes. Under Section 22 and Section 25 of the CGST Act, goods dispatched from a warehouse in Maharashtra constitute a supply originating in Maharashtra. You must obtain a distinct GSTIN in Maharashtra, declaring a Principal Place of Business (often via a virtual office) and the Amazon fulfillment center as an Additional Place of Business (APOB)."
+  - q: "How do sellers claim the TCS amount deducted by e-commerce marketplaces?"
+    a: "Marketplaces file monthly TCS returns in Form GSTR-8. The deducted tax populates the seller's 'TDS and TCS Credit Received' tab on the GST portal. Once the seller accepts these records, the amount is credited directly to their Electronic Cash Ledger to pay GST or claim cash refunds."
+  - q: "How are food orders delivered through Swiggy or Zomato treated under GST?"
+    a: "Restaurant services supplied through e-commerce operators fall under Section 9(5) of the CGST Act. The operator (Swiggy/Zomato) is statutorily deemed to be the supplier liable to pay the 5% GST directly. The standalone restaurant does not charge GST on those marketplace orders."
 references:
-  - title: "GST Portal"
-    url: "https://www.gst.gov.in/"
-    publisher: "Goods and Services Tax Network"
-  - title: "CBIC GST Instructions and Updates"
+  - title: "Central Goods and Services Tax Act, 2017 - Section 52 (TCS) & Section 9(5)"
     url: "https://cbic-gst.gov.in/"
-    publisher: "Central Board of Indirect Taxes and Customs"
-sources:
-  - title: "GST Portal"
-    organisation: "Goods and Services Tax Network"
-    url: "https://www.gst.gov.in/"
-    kind: "reference"
-  - title: "CBIC GST Instructions and Updates"
-    organisation: "Central Board of Indirect Taxes and Customs"
-    url: "https://cbic-gst.gov.in/"
-    kind: "reference"
+    publisher: "Central Board of Indirect Taxes and Customs (CBIC), Government of India"
+  - title: "CBIC Notification No. 34/2023 - Central Tax (E-commerce Exemption for Small Sellers)"
+    url: "https://www.cbic.gov.in/"
+    publisher: "CBIC, Department of Revenue, Ministry of Finance"
+  - title: "CBIC Notification No. 15/2024 - Central Tax (Rationalisation of TCS Rates)"
+    url: "https://www.cbic.gov.in/"
+    publisher: "CBIC, Department of Revenue, Ministry of Finance"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: bespoke analysis of Notification 34/2023 intra-state enrolment rules, updated 0.5% Section 52 TCS rates under Notification 15/2024, and multi-state FBA APOB warehousing mechanics."
 status: "published"
 ---
 
-# GST for E-commerce Sellers in India: What Amazon, Flipkart and D2C Brands Must Get Right
+# GST for E-Commerce Sellers Guide: Amazon, Flipkart, D2C Brands & Notification 34/2023
 
-## Introduction
-If you are researching gst for ecommerce sellers, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for online sellers, marketplace vendors, D2C founders and operators managing catalogue, logistics and finance together. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+Selling products online in India has expanded rapidly through national marketplaces like **Amazon, Flipkart, and Meesho**, alongside direct-to-consumer (**D2C**) storefronts powered by Shopify or WooCommerce. However, indirect taxation for digital commerce is fundamentally more complex than for traditional brick-and-mortar retail.
 
-E-commerce businesses face GST issues earlier than offline businesses because platforms, interstate movement, returns and TCS records create a stricter paper trail. A founder who delays GST cleanup on a marketplace usually discovers the problem when settlement reports, returns and ledger balances stop matching. Fixing that later takes far more effort than setting the system correctly in the beginning. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+Under the **Central Goods and Services Tax (CGST) Act, 2017**, e-commerce transactions involve intricate multi-party mechanics: marketplace operators collecting statutory deductions, strict interstate supply barriers, specific fulfillment center registrations, and granular monthly invoice reporting.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+This guide provides a comprehensive operational and legal roadmap for Indian online sellers, detailing **Section 52 Tax Collection at Source (TCS)**, the landmark **Notification No. 34/2023-CT** exemption for small intra-state sellers, multi-state warehousing rules, and portal reconciliations.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+---
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+## The Regulatory Framework for E-Commerce in GST
 
-## Understanding the issue
-GST for e-commerce sellers interacts with registration rules, invoicing standards, tax collection at source by operators, place of supply and return filing discipline. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+Under GST law, digital selling is governed by three primary pillars:
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+### THE THREE PILLARS OF E-COMMERCE GST
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+| **1. Mandatory Registration** | **2. Section 52 TCS Deductions** |
+| --- | --- |
+| (Section 24(ix) CGST Act) | (Collected by Marketplaces) |
+| General Rule: Any person selling | Marketplaces deduct 0.5% net TCS |
+| goods through an ECO must | from seller payouts and remit to |
+| register, irrespective of sales. | Government via Form GSTR-8. |
+| 3. Warehousing & Multi-State Logistics (Section 25) |  |
+| FBA/FBF warehouses in other states legally require a distinct state |  |
+| GSTIN, listing the fulfillment center as an APOB. |  |
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
 
-## Marketplace and D2C GST comparison
-| Business model | Key GST pressure point | Best control focus |
-| --- | --- | --- |
-| Selling only on marketplaces | Settlement and TCS reconciliation | Monthly ledger matching |
-| D2C website plus marketplaces | Multiple invoice and return flows | Unified accounting setup |
-| Pan-India warehouse dispatch model | State-wise stock movement and documentation | Operational process mapping |
-| New seller testing products | Threshold assumptions and pricing confusion | Early tax planning |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Compulsory Registration vs Notification 34/2023 Exemption
 
-## Government process explained step by step
-### Step 1: Map how goods move before you register
-List where inventory is stored, how platforms collect money, whether stock is sent to fulfilment centres and whether you also sell on your own website. GST registration decisions must be based on the real flow of goods and money, not only on brand strategy.
+Historically, **Section 24(ix) of the CGST Act** strictly mandated that anyone supplying goods through an Electronic Commerce Operator (ECO) must obtain GST registration, even if their annual turnover was only ₹10,000. This created a severe barrier for rural artisans, micro-manufacturers, and home-based sellers.
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+To rectify this imbalance, the Central Board of Indirect Taxes and Customs (CBIC) notified **Notification No. 34/2023-Central Tax (effective October 1, 2023)**:
 
-### Step 2: Complete registration with the right business profile
-Use the legal entity that actually owns the stock and raises the invoice. Where the seller operates through a company or LLP, the GST registration should align with that entity's bank account, address proof and authorised signatory details.
+```
+[Section 24(ix) General Rule]
+  Mandatory GST registration for all e-commerce sellers of goods.
+        │
+        ▼
+[Statutory Carve-Out: Notification 34/2023-Central Tax]
+  Exempts small sellers of GOODS from mandatory registration IF:
+  1. Aggregate turnover does not exceed ₹40 Lakhs (₹20 Lakhs in Special States).
+  2. The seller does NOT make any inter-state supply of goods.
+  3. The seller obtains an Enrolment Number via Form GST ENR-01.
+  4. The seller operates in only one State/UT per Enrolment Number.
+```
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+> [!IMPORTANT]
+> The moment an online seller accepts an **interstate order** (e.g., a seller in Jaipur shipping a parcel to a buyer in Bengaluru), the Notification 34/2023 exemption **immediately ceases to apply**. The seller must obtain regular GST registration before fulfilling that cross-border shipment.
 
-### Step 3: Configure invoice logic before the first major sales cycle
-Online selling is volume-driven. If HSN codes, tax rates, invoice series or return handling logic are wrong at setup, the error gets multiplied across hundreds of orders and credit notes. Proper setup is part of the government process because reported data must match records.
+---
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+## Section 52 Tax Collection at Source (TCS) Rules
 
-### Step 4: Understand TCS and marketplace statements
-The operator may collect tax at source and report transactions to the system. Sellers should not treat these statements as passive information. They should reconcile them with books, outward supply returns and payment settlements every month.
+Under **Section 52 of the CGST Act**, every Electronic Commerce Operator is legally required to collect **Tax Collection at Source (TCS)** on the net value of taxable supplies made through its platform by other suppliers:
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+1. **Net Taxable Supplies Formula**:
+   $$\text{Net Value} = (\text{Total Taxable Sales}) - (\text{Sales Returns / Cancellations})$$
+2. **Current Statutory TCS Rate**:
+   Originally set at 1%, the CBIC issued **Notification No. 15/2024-Central Tax (effective July 10, 2024)**, rationalizing the rate to:
+   - **0.5% Total** (0.25% CGST + 0.25% SGST for intra-state sales, or 0.5% IGST for inter-state sales).
+3. **Marketplace Remittance**:
+   The e-commerce operator remits this collected tax to the government by the **10th of the following month** in **Form GSTR-8**, detailing each seller's GSTIN and sales volume.
 
-### Step 5: File returns with reconciliation in mind
-A return should not be filed only to meet a due date. Online sellers must reconcile outward supplies, returns, cancelled orders, logistics adjustments and TCS data. This is where many otherwise healthy brands lose time and working capital.
+---
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+## Multi-State Warehousing: PPOB & APOB for Amazon FBA and Flipkart FBF
 
-### Step 6: Build quarterly process reviews as the business scales
-As soon as catalogue size, state coverage or order volume increases, review whether your tax setup still matches operations. Warehousing changes, D2C channels and B2B orders often require process updates.
+To offer same-day or next-day delivery (Prime or Assured badges), sellers utilize fulfillment centers managed by Amazon (Fulfillment by Amazon - FBA) or Flipkart (Flipkart Fulfillment - FBF).
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+However, placing inventory in an out-of-state fulfillment center introduces substantial legal compliance:
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+```
+[Seller Headquartered in Delhi]
+        │
+        ▼  (Wants to stock inventory in Amazon FBA Bhiwandi, Maharashtra)
+[Step 1: Obtain a Separate GSTIN in Maharashtra]
+  GST law does not allow dispatching goods from a state without a valid GSTIN.
+        │
+        ▼
+[Step 2: Establish Principal Place of Business (PPOB) in Maharashtra]
+  Acquire a compliant Virtual Office or commercial lease in Maharashtra.
+        │
+        ▼
+[Step 3: Add Amazon Warehouse as Additional Place of Business (APOB)]
+  Upload Amazon's Virtual Place of Business (VPOB) agreement & NOC in Form REG-14.
+        │
+        ▼
+[Step 4: Stock Transfer via Delivery Challan / E-Way Bill]
+  Transfer goods from Delhi to Maharashtra paying IGST under Section 25(4) branch transfers.
+```
 
-- Business PAN and constitution proof
-- Marketplace seller account details and settlement bank proof
-- Principal place of business proof and any warehouse or fulfilment documents
-- Product list with HSN mapping and tax rate notes
-- Accounting or ERP setup notes for invoices, returns and reconciliation
+Operating from out-of-state fulfillment centers without adding them as an APOB violates **Rule 18 and Section 122**, exposing stock to departmental seizure and confiscation under Section 129.
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+---
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+## Section 9(5) Operators vs Regular Marketplaces
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+GST law draws a sharp boundary between general retail marketplaces and specific service aggregators covered under **Section 9(5) of the CGST Act**:
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+| Parameter | Regular Retail Marketplaces (Amazon, Flipkart) | Section 9(5) Aggregators (Zomato, Swiggy, Uber) |
+|---|---|---|
+| **Statutory Tax Liability** | The underlying **seller** is liable to discharge GST on the transaction. | The **aggregator** is legally deemed the supplier and pays the tax. |
+| **Marketplace Role** | Collects 0.5% TCS under Section 52 and remits to the treasury. | Collects 100% of the applicable GST (e.g., 5% on restaurant food) and deposits it directly. |
+| **Seller Invoicing** | Seller issues tax invoice to end consumer; marketplace bills commission. | Aggregator issues tax invoice on behalf of the service provider. |
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+---
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+## Monthly Return Filings: Table 14 & Table 15 in GSTR-1
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+E-commerce sellers must file regular returns (**GSTR-1 and GSTR-3B**) with specialized disclosures introduced to prevent revenue leakage:
 
-- Assuming marketplace onboarding teams will determine GST position correctly for the seller
-- Ignoring stock transfer and fulfilment-centre movement documentation
-- Treating cancelled orders and return credits as minor accounting entries
-- Using the wrong tax rate because the catalogue was copied from a competitor
-- Failing to reconcile TCS and settlement statements every month
+1. **Table 14 of Form GSTR-1**:
+   - **Table 14(a)**: Supplies made through e-commerce operators liable to collect TCS under Section 52. The seller declares the GSTIN of the marketplace and taxable value.
+   - **Table 14(b)**: Supplies made through Section 9(5) operators where the operator pays the tax.
+2. **Table 15 of Form GSTR-1**:
+   - Dedicated table filled by the e-commerce operators themselves to account for taxes discharged under Section 9(5).
+3. **Automated Cross-Reconciliation**:
+   The GST Common Portal automatically reconciles the data reported by the seller in Table 14 with the data reported by Amazon/Flipkart in Form GSTR-8. Unreconciled discrepancies trigger automated demand notices under **Rule 88C (Form DRC-01B)**.
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+---
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+## Claiming TCS Credit on the GST Portal
 
-- Create a single reconciliation owner even if sales, finance and operations are handled by different people
-- Review top SKUs for tax classification before festive or ad-led sales spikes
-- Keep a monthly checklist for TCS, outward supplies, returns and refunds
-- Price products after factoring GST impact so margins remain visible
+Tax deducted by marketplaces does not vanish; it represents prepaid tax credited back to the seller:
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+1. Log into `gst.gov.in` at the end of each month.
+2. Navigate to **Services > Returns > TDS and TCS Credit Received**.
+3. Select the return period and click **Prepare Online**.
+4. In the **TCS Credit Received** table, review the transactions declared by Amazon, Flipkart, Meesho, or Myntra.
+5. Click **Accept** on all matched records.
+6. Submit the return with EVC or DSC.
+7. Upon submission, the accepted TCS amount is immediately credited to your **Electronic Cash Ledger**, which can be utilized to pay output GST liabilities in Form GSTR-3B or claimed as a cash refund.
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+---
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+## Frequently Asked Questions
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
+### Can an unregistered artisan sell handcrafted goods on Amazon or Flipkart without GST?
+Under Notification No. 34/2023-Central Tax, an unregistered seller can sell goods through an e-commerce operator without GST registration, provided their turnover is below ₹40 Lakhs (or ₹20 Lakhs), supplies are strictly intra-state (within the same state), and they obtain an Enrolment Number on the GST Common Portal.
 
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
+### What is the current TCS rate deducted by Amazon, Flipkart, and Meesho?
+Under Section 52 of the CGST Act, as amended by Notification No. 15/2024-Central Tax (effective July 10, 2024), the TCS rate collected by e-commerce operators was reduced to 0.5% (0.25% CGST + 0.25% SGST or 0.5% IGST) on the net value of taxable supplies.
 
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
+### Do I need a separate GST registration in Maharashtra if my home office is in Delhi but I use Amazon's Mumbai FBA warehouse?
+Yes. Under Section 22 and Section 25 of the CGST Act, goods dispatched from a warehouse in Maharashtra constitute a supply originating in Maharashtra. You must obtain a distinct GSTIN in Maharashtra, declaring a Principal Place of Business (often via a virtual office) and the Amazon fulfillment center as an Additional Place of Business (APOB).
 
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
+### How do sellers claim the TCS amount deducted by e-commerce marketplaces?
+Marketplaces file monthly TCS returns in Form GSTR-8. The deducted tax populates the seller's 'TDS and TCS Credit Received' tab on the GST portal. Once the seller accepts these records, the amount is credited directly to their Electronic Cash Ledger to pay GST or claim cash refunds.
 
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
+### How are food orders delivered through Swiggy or Zomato treated under GST?
+Restaurant services supplied through e-commerce operators fall under Section 9(5) of the CGST Act. The operator (Swiggy/Zomato) is statutorily deemed to be the supplier liable to pay the 5% GST directly. The standalone restaurant does not charge GST on those marketplace orders.
 
-## FAQs
-### Does every e-commerce seller need GST registration?
-A marketplace-led model usually requires careful review because the compliance position is stricter than a simple local offline setup. Founders should not rely on turnover alone without checking the actual supply model.
+---
 
-### What is the practical issue with TCS for sellers?
-TCS affects reconciliation. The platform may report and collect tax-linked information that must match the seller's books and returns. If the seller ignores this, ledger mismatches build up quickly.
+## Official References
 
-### Can a seller use a virtual office for GST registration?
-It can be workable if the address package and supporting documents satisfy the portal and local officer expectations. The document set must be genuine and consistent.
-
-### What happens when a seller uses the wrong GST rate?
-The problem usually appears through underpayment, customer complaints, margin distortion or return mismatches. Correcting it after volume builds up is far more painful than validating classification early.
-
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
-
-- [GST Portal](https://www.gst.gov.in/) - Goods and Services Tax Network
-- [CBIC GST Instructions and Updates](https://cbic-gst.gov.in/) - Central Board of Indirect Taxes and Customs
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [GST Guides](/blog?category=GST)
-- [Virtual Office Solutions](/virtual-space)
-- [Virtual Office Locations](/locations)
-
-### Related calculators and templates
-- Gst Calculator
-- Inventory Reconciliation Sheet
-
-### Related services
-- GST Registration
-- Virtual Office
-
-## CTA
-If you sell online and want a GST setup that works with inventory, marketplaces and returns, FilingBy can help you structure it cleanly. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle gst for ecommerce sellers is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [Central Goods and Services Tax Act, 2017 - Section 52 (TCS) & Section 9(5)](https://cbic-gst.gov.in/) — Central Board of Indirect Taxes and Customs (CBIC), Government of India
+- [CBIC Notification No. 34/2023 - Central Tax (E-commerce Exemption for Small Sellers)](https://www.cbic.gov.in/) — CBIC, Department of Revenue, Ministry of Finance
+- [CBIC Notification No. 15/2024 - Central Tax (Rationalisation of TCS Rates)](https://www.cbic.gov.in/) — CBIC, Department of Revenue, Ministry of Finance

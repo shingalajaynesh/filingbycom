@@ -1,297 +1,202 @@
 ---
-title: "Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language"
+title: "Income Tax Notice Guide: Section 143(1) Intimations vs Section 139(9) Defective Returns"
 slug: "income-tax-notice-143-1-139-9-guide"
-seoTitle: "Income Tax Notice Guide for 143(1) and 139(9)"
-seoDescription: "A plain-English guide to common income tax notices in India, including 143(1) intimation, 139(9) defective return and how to respond calmly."
-focusKeyword: "income tax notice 143 1 139 9 guide"
+seoTitle: "Income Tax Notice 143(1) vs 139(9): Meaning, Timelines & Rectification"
+seoDescription: "Step-by-step guide to resolving Income Tax notices in India: Section 143(1) intimations, Section 139(9) defective return rectifications, and 15-day response rules."
+focusKeyword: "income tax notice 143 1 139 9"
 secondaryKeywords:
-  - "income tax notice guide india"
-  - "defective return notice"
-  - "143(1) intimation explained"
-searchIntent: "Informational"
+  - "section 143 1 intimation tax demand"
+  - "section 139 9 defective return resolution"
+  - "income tax notice response timeline 15 days"
+  - "how to file rectification section 154"
+searchIntent: "Transactional / Notice"
 category: "Income Tax"
-subCategory: "Notices"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
-featuredImage: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
+subCategory: "Tax Notices"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "10 mins"
+lastUpdated: "2026-09-12"
+featuredImage: "https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for income tax notice 143 1 139 9 guide"
-excerpt: "A practical notice-handling guide for taxpayers who want to respond with facts instead of panic."
-cta: "Need help with income tax notice 143 1 139 9 guide? FilingBy can help you review the documents, the filing route and the practical business impact before you proceed."
+imageAlt: "Income tax intimation notice document reviewed by accountant on computer screen"
+excerpt: "A practical guide to understanding and responding to Section 143(1) intimations and Section 139(9) defective return notices on the Income Tax e-filing portal."
+cta: "Received an automated income tax notice or demand? FilingBy assists taxpayers with notice analysis and online rectifications."
 isPublished: true
 relatedServices:
   - "itr-filing"
   - "tax-audit"
 relatedBlogs:
-  - "presumptive-taxation-44ad-44ada-guide"
+  - "itr-filing-for-freelancers-guide"
   - "advance-tax-for-founders-guide"
-  - "tax-audit-applicability-guide-india"
-  - "itr-filing-for-freelancers-guide-india"
-  - "section-80c-80d-deductions-guide-india"
+  - "presumptive-taxation-44ad-44ada-guide"
 topicHub: "/blog?category=Income%20Tax"
 relatedCalculators:
   - "/income-tax-calculator"
 relatedTemplates:
-  - "income-tax-document-checklist"
+  - "income-tax-notice-response-template"
 internalLinks:
   - "/blog?category=Income%20Tax"
   - "/services/itr-filing"
   - "/income-tax-calculator"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Decision snapshot"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "Demystifying Income Tax Department Communications"
+  - "Section 143(1) Intimation: Processing Summary vs Demand"
+  - "The Three Varieties of Section 143(1) Orders"
+  - "Section 139(9): The Defective Return Notice"
+  - "Key Differences: Section 143(1) vs Section 139(9)"
+  - "Common Triggers for Section 139(9) Defective Notices"
+  - "How to Resolve Section 139(9) Within the Strict 15-Day Window"
+  - "How to Correct a Section 143(1) Demand via Section 154 Rectification"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "income tax notice 143 1 139 9 guide should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "Section 143(1) is an automated processing intimation showing mathematical calculations, TDS adjustments, and final refund or tax demand amounts."
+  - "Section 139(9) is a formal defect notice issued when an ITR contains structural errors, missing balance sheet schedules, or incomplete audit disclosures."
+  - "A Section 139(9) defective notice requires a mandatory response within 15 days; failure to rectify results in the return being deemed 'Invalid', as if never filed."
+  - "A Section 143(1) intimation containing an apparent clerical or TDS credit error should be resolved by submitting a Rectification Request under Section 154, rather than refiling the original ITR."
 faq:
-  - q: "Is income tax notice 143 1 139 9 guide only relevant when a deadline arrives?"
-    a: "No. The strongest results usually come when the business reviews the issue before a deadline or commercial promise creates pressure. Early clarity reduces errors and makes the Income Tax e-Filing portal workflow simpler."
-  - q: "Can a small business handle this without overcomplicating the process?"
-    a: "Yes, provided the facts are clear, the document pack is organised and the team understands what changes after the filing. Complexity often comes from weak preparation, not only from the law."
-  - q: "Why do these applications or filings get delayed in practice?"
-    a: "The most common reasons are inconsistent records, unclear supporting documents, internal ownership confusion and last-minute submissions. Clean paperwork usually improves outcomes more than aggressive follow-up."
-  - q: "When should professional help be considered?"
-    a: "It becomes especially useful where the issue affects contracts, tax, funding, licensing, interstate activity or founder relationships, or where a wrong filing could create long-tail compliance problems."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for income tax notice 143 1 139 9 guide"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for income tax notice 143 1 139 9 guide"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for income tax notice 143 1 139 9 guide"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for income tax notice 143 1 139 9 guide"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for income tax notice 143 1 139 9 guide"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for income tax notice 143 1 139 9 guide"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "Is a Section 143(1) intimation always a tax demand notice?"
+    a: "No. A Section 143(1) intimation can be of three types: (1) Nil demand where your computation matches the department, (2) Refund determined where excess tax is refunded with interest, or (3) Demand notice where additional tax is calculated due to disallowed deductions or mismatched TDS."
+  - q: "What happens if I do not respond to a Section 139(9) notice within 15 days?"
+    a: "If you fail to rectify the defect within 15 days (or an extension granted by the Assessing Officer), your ITR is treated as an 'Invalid Return'. Legally, it is treated as though you never filed an ITR, exposing you to late filing fees under Section 234F, penal interest under 234A, and loss of carried-forward losses."
+  - q: "How do I respond to a Section 139(9) notice on the portal?"
+    a: "Log into incometax.gov.in, go to 'Pending Actions' > 'e-Proceedings', select the defective notice, click 'Submit Response', agree with the defect, and upload a freshly prepared, corrected XML/JSON schema correcting the identified error."
+  - q: "Can I appeal against a Section 143(1) demand?"
+    a: "Yes. If the discrepancy is due to a mistake apparent from the record (e.g. 26AS TDS not credited), you can file an online Rectification under Section 154. If there is a legal dispute over deduction eligibility, an appeal can be filed before the Commissioner of Income Tax (Appeals) within 30 days."
 references:
-  - title: "Income Tax Department e-Filing Portal"
+  - title: "Income Tax Act, 1961 - Sections 143(1), 139(9) & 154"
+    url: "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx"
+    publisher: "Central Board of Direct Taxes (CBDT)"
+  - title: "Income Tax e-Filing Portal e-Proceedings Module"
     url: "https://www.incometax.gov.in/"
-    publisher: "Income Tax Department"
-  - title: "Income Tax Rules and Circulars"
-    url: "https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx"
-    publisher: "Income Tax Department"
-sources:
-  - title: "Income Tax Department e-Filing Portal"
-    organisation: "Income Tax Department"
-    url: "https://www.incometax.gov.in/"
-    kind: "reference"
-  - title: "Income Tax Rules and Circulars"
-    organisation: "Income Tax Department"
-    url: "https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx"
-    kind: "reference"
+    publisher: "Income Tax Department, Government of India"
+  - title: "CBDT Guidelines on Automated Processing at CPC Bengaluru"
+    url: "https://incometaxindia.gov.in/pages/communications/circulars.aspx"
+    publisher: "Ministry of Finance"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: focused on distinguishing 143(1) vs 139(9), 15-day rectification clock, CPC mechanics, and Section 154 remedies."
 status: "published"
 ---
 
-# Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language
+# Income Tax Notice Guide: Section 143(1) Intimations vs Section 139(9) Defective Returns
 
-## Introduction
-If you are researching income tax notice 143 1 139 9 guide, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for founders, salaried professionals, freelancers and growing businesses who need tax decisions explained without finance jargon. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+Every year, millions of Indian taxpayers submit their Income Tax Returns (ITR) online. Within weeks or months of electronic verification, communications arrive from the **Centralized Processing Centre (CPC), Bengaluru**.
 
-Income Tax Notice Guide: 143(1), 139(9) and Other Common Notices Explained in Plain Language is rarely a narrow formality. It changes how the business prepares documents, answers stakeholder questions and avoids costly rework later. Many business owners look up income tax notice 143 1 139 9 guide only when a deadline, client, regulator or internal clean-up pushes the issue to the surface. Understanding the process early usually saves money and management time. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+> [!NOTE]
+> **Statutory Period Applicability (September 2026 Context):**
+> - **AY 2026-27 (FY 2025-26) and Prior Years:** Intimations, defective return notices, and rectifications for returns filed for income earned up to March 31, 2026 are governed by Sections 143(1), 139(9), and 154 of the **Income-tax Act, 1961**.
+> - **Income Tax Act, 2025 Transition:** Current and future e-proceedings on the `incometax.gov.in` portal incorporate corresponding notice and rectification provisions under the **Income Tax Act, 2025**. Taxpayers must check the statutory citation in the notice header to ensure response submissions quote the appropriate governing Act.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+While many emails are routine processing confirmations, receiving a notice titled **Section 143(1)** or **Section 139(9)** often causes confusion and alarm. Taxpayers frequently confuse a routine assessment summary with an active penalty notice, or ignore a defective return notice until their return is legally declared invalid.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+Understanding the legal distinction between a **Section 143(1) Intimation** and a **Section 139(9) Defective Return Notice** is crucial to safeguarding your refunds and preventing automated tax demands.
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+---
 
-## Understanding the issue
-Income-tax compliance depends on the Income-tax Act, filing forms, deduction rules, record quality, notices and the distinction between planning, reporting and assessment. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+## Section 143(1) Intimation: Processing Summary vs Demand
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+An intimation under **Section 143(1)** is an automated statement generated by the Income Tax Department's processing algorithms. It is not an investigation notice; it reflects the prima facie adjustments made by the CPC when comparing your filed return against the department's electronic databases (Form 26AS, AIS, and TIS).
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+The document displays a side-by-side comparison with two columns:
+- **As Provided by Taxpayer in Return of Income**
+- **As Computed Under Section 143(1)**
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
+Section 143(1) orders result in three possible outcomes:
+1. **Zero Demand / Nil Notice (Blue Header):** Your calculation matches CPC computation. No tax payable, no refund due. Return processing is officially complete.
+2. **Refund Notice (Green Header):** CPC determined that you overpaid taxes. Refund amount along with Section 244A interest is approved and credited directly to your validated bank account.
+3. **Tax Demand Notice (Red Header):** CPC disallowed an ineligible deduction, added omitted income reported in AIS, or found an unverified TDS mismatch. The demanded tax must be addressed within 30 days.
 
-## Decision snapshot
-| Situation | What to check | Why it matters |
-| --- | --- | --- |
-| Urgent filing pressure | Whether the legal trigger is real and the documents are ready | It prevents rushed submissions and rework |
-| Routine planning stage | Whether the business can align records before filing | Better preparation usually means faster approval |
-| Growth or expansion stage | How this decision affects contracts, tax and onboarding | The filing should support the next stage of the business |
-| Post-approval reality | Whether internal systems will be updated after approval | A certificate is useful only when records also improve |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Section 139(9): The Defective Return Notice
 
-## Government process explained step by step
-### Step 1: Clarify why income tax notice 143 1 139 9 guide matters now
-Before opening the Income Tax e-Filing portal, define the actual trigger. It may be a customer requirement, a funding process, an annual deadline, a structure change or a clean-up exercise. The filing route becomes much clearer once the business reason is written down properly.
+Unlike Section 143(1), which processes the return and issues a financial outcome, **Section 139(9)** is a **Defect Notice**. 
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+The Assessing Officer or CPC algorithm determines that your filed ITR is **incomplete, structurally inconsistent, or missing mandatory schedules**, preventing the system from calculating taxes accurately.
 
-### Step 2: Review the entity, address and authorised person details
-Most practical delays start with identity mismatch, address inconsistency or weak authorisation. A quick pre-check of names, PAN-linked records, addresses and signatory details usually saves more time than any later correction effort.
+> [!WARNING]
+> Under Section 139(9), the law grants a strict statutory response window of **15 days** from the date of receipt of the notice. If you fail to rectify the defect within 15 days, the return is treated as an **"Invalid Return"**. Legally, the department considers that you never filed an ITR for that assessment year, triggering Section 234F late fees and disqualifying you from carrying forward business or capital losses.
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+---
 
-### Step 3: Prepare the document pack before the first portal draft
-A business that gathers documents in advance can answer queries calmly. Prepare the core support papers, rename them clearly and make sure the factual story is consistent across each record.
+## Key Differences: Section 143(1) vs Section 139(9)
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+| Characteristic | Section 143(1) Intimation | Section 139(9) Defective Notice |
+|---|---|---|
+| **Nature of Document** | Summary of processed tax liability or refund | Notice pointing out structural errors in the return |
+| **Stage of Issuance** | Issued after return is successfully processed | Issued during pre-processing validation |
+| **Return Status** | Return has been accepted and processed | Return processing is halted until defect is cured |
+| **Statutory Response Window** | **30 days** to submit response to demand or file rectification | **Strict 15 days** to upload a corrected return |
+| **Legal Remedy** | Section 154 Rectification or Section 246A Appeal | Submit corrected XML/JSON schema under Section 139(9) |
+| **Consequence of Inaction** | Tax demand becomes payable with compounding 1% interest | Return becomes **Invalid / Void ab initio** |
 
-### Step 4: Complete the Income Tax e-Filing portal workflow with commercial accuracy
-While filling the form, focus not only on legal correctness but also on how the record will be read later by banks, vendors, customers, officers or investors. The best filing is the one that keeps working after approval too.
+---
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+## Common Triggers for Section 139(9) Defective Notices
 
-### Step 5: Handle clarifications directly and with evidence
-If the system or reviewer raises a query, answer it with simple factual support. Avoid emotional notes, generic copy-paste responses or unclear attachments. Most queries reduce once the evidence is better organised.
+The most frequent algorithmic triggers for a Section 139(9) notice include:
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+1. **Missing Profit & Loss or Balance Sheet Data:** A taxpayer files ITR-3 claiming business income, but fails to complete the mandatory balance sheet and P&L schedules under Section 44AA.
+2. **Gross Receipts Mismatch in Presumptive Tax:** Filing ITR-4 under Section 44AD/44ADA where the gross turnover declared in the ITR is less than the gross receipts reported in Form 26AS/AIS.
+3. **Filing Wrong ITR Form:** Filing ITR-1 while holding unlisted equity shares, holding directorship in a company, or earning income from cryptocurrency/VDA.
+4. **TDS Claimed Without Matching Income:** Claiming credit for TDS deducted under Section 194J or 194C while failing to report the corresponding gross receipts in the income schedule.
+5. **Audited Entity Without Audit Report:** Stating that the business is subject to audit under Section 44AB, but failing to submit the Chartered Accountant's Form 3CA/3CB report prior to filing the return.
 
-### Step 6: Update post-approval systems immediately
-Once the filing is approved or accepted, update invoices, contracts, internal trackers, vendor records and future compliance calendars. This is where the business turns the filing into something actually useful.
+---
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+## How to Resolve Section 139(9) Within the Strict 15-Day Window
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+1. **Log into incometax.gov.in**
+2. **Navigate to "Pending Actions" > "e-Proceedings"**
+3. **Select Notice Under Section 139(9) -> View Defect Description & Error Code**
+4. **Option A: Agree with Defect] ───────────────> [Option B: Disagree with Defect**
+5. **Generate Fresh Corrected JSON/Schema]         [Provide Detailed Written Reason**
+6. **Upload Corrected Return under Sec 139(9)]     [Attach Supporting Documents**
+7. **E-Verify via Aadhaar OTP / DSC]               [Submit Disagreement to AO**
 
-- Primary identity and contact records of the owner, entity or authorised signatory
-- Address proof and core business constitution documents relevant to the filing
-- Supporting bank, tax or registration records that connect with the same filing trail
-- A simple internal checklist showing what is being filed and why
-- A shared folder of signed proofs, acknowledgements and follow-up notes
+### If You Agree with the Defect
+1. Read the specific error code mentioned in the notice (e.g., *"Error Code 8: Taxpayer has claimed credit for TDS but corresponding income not offered"*).
+2. Prepare a corrected return JSON using the offline utility, ensuring the omitted schedules or mismatched income are accurately included.
+3. Under the e-Proceedings tab, select **"Agree"**, upload the corrected JSON file, and e-verify using Aadhaar OTP or Digital Signature.
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+---
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+## How to Correct a Section 143(1) Demand via Section 154 Rectification
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+If your Section 143(1) intimation shows an unexpected tax demand due to an obvious mistake apparent from the record:
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+1. **Do Not File a Belated or Revised Return:** Once an ITR is processed under Section 143(1), you cannot revise it under Section 139(5).
+2. **Submit a Rectification Request (Section 154):**
+   - Go to **"Services"** > **"Rectification"** > **"New Request"**.
+   - Select the relevant Assessment Year.
+   - Choose the request type:
+     - *Reprocess the Return:* If TDS reflected in 26AS was inadvertently omitted by CPC.
+     - *Tax Credit Mismatch Correction:* To rectify advance tax, self-assessment tax, or TDS challan details.
+     - *Return Data Correction (Offline):* To correct schedules without altering gross total income.
+3. Once submitted, CPC Bengaluru reprocesses the return and issues a modified intimation under Section 154, wiping out the incorrect demand.
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+---
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+## Frequently Asked Questions
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+### Is a Section 143(1) intimation always a tax demand notice?
+No. A Section 143(1) intimation can be of three types: (1) Nil demand where your computation matches the department, (2) Refund determined where excess tax is refunded with interest, or (3) Demand notice where additional tax is calculated due to disallowed deductions or mismatched TDS.
 
-- Starting the filing because of pressure rather than because the facts are ready
-- Using mismatched names, addresses or supporting records
-- Ignoring how the filing changes later operations and record keeping
-- Relying on memory instead of using one clean checklist and archive
-- Sending a weak clarification response when direct evidence would work better
+### What happens if I do not respond to a Section 139(9) notice within 15 days?
+If you fail to rectify the defect within 15 days (or an extension granted by the Assessing Officer), your ITR is treated as an 'Invalid Return'. Legally, it is treated as though you never filed an ITR, exposing you to late filing fees under Section 234F, penal interest under 234A, and loss of carried-forward losses.
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+### How do I respond to a Section 139(9) notice on the portal?
+Log into `incometax.gov.in`, go to 'Pending Actions' > 'e-Proceedings', select the defective notice, click 'Submit Response', agree with the defect, and upload a freshly prepared, corrected XML/JSON schema correcting the identified error.
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+### Can I appeal against a Section 143(1) demand?
+Yes. If the discrepancy is due to a mistake apparent from the record (e.g. 26AS TDS not credited), you can file an online Rectification under Section 154. If there is a legal dispute over deduction eligibility, an appeal can be filed before the Commissioner of Income Tax (Appeals) within 30 days.
 
-- Prepare the record trail before opening the portal form
-- Align finance, operations and the authorised signatory in advance
-- Keep one dated folder of all documents and acknowledgements
-- Review the post-approval impact before you submit
+---
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+## Official References
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
-
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
-
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
-
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
-
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
-
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
-
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
-
-## FAQs
-### Is income tax notice 143 1 139 9 guide only relevant when a deadline arrives?
-No. The strongest results usually come when the business reviews the issue before a deadline or commercial promise creates pressure. Early clarity reduces errors and makes the Income Tax e-Filing portal workflow simpler.
-
-### Can a small business handle this without overcomplicating the process?
-Yes, provided the facts are clear, the document pack is organised and the team understands what changes after the filing. Complexity often comes from weak preparation, not only from the law.
-
-### Why do these applications or filings get delayed in practice?
-The most common reasons are inconsistent records, unclear supporting documents, internal ownership confusion and last-minute submissions. Clean paperwork usually improves outcomes more than aggressive follow-up.
-
-### When should professional help be considered?
-It becomes especially useful where the issue affects contracts, tax, funding, licensing, interstate activity or founder relationships, or where a wrong filing could create long-tail compliance problems.
-
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
-
-- [Income Tax Department e-Filing Portal](https://www.incometax.gov.in/) - Income Tax Department
-- [Income Tax Rules and Circulars](https://incometaxindia.gov.in/pages/rules/income-tax-rules.aspx) - Income Tax Department
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [Income Tax Guides](/blog?category=Income%20Tax)
-- [ITR Filing Service](/services/itr-filing)
-- [Income Tax Calculator](/income-tax-calculator)
-
-### Related calculators and templates
-- Income Tax Calculator
-- Income Tax Document Checklist
-
-### Related services
-- ITR Filing
-- Tax Audit
-
-## CTA
-Need help with income tax notice 143 1 139 9 guide? FilingBy can help you review the documents, the filing route and the practical business impact before you proceed. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle income tax notice 143 1 139 9 guide is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [Income Tax Act, 1961 - Sections 143(1), 139(9) & 154](https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx) — Central Board of Direct Taxes (CBDT)
+- [Income Tax e-Filing Portal e-Proceedings Module](https://www.incometax.gov.in/) — Income Tax Department, Government of India
+- [CBDT Guidelines on Automated Processing at CPC Bengaluru](https://incometaxindia.gov.in/pages/communications/circulars.aspx) — Ministry of Finance

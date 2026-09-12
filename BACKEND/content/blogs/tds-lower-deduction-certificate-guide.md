@@ -1,292 +1,222 @@
 ---
-title: "Lower or Nil TDS Certificate Guide: When It Helps and What Businesses Should Check First"
+title: "Lower or Nil TDS Certificate Guide: Section 197, Form 13 & TRACES Portal Steps"
 slug: "tds-lower-deduction-certificate-guide"
-seoTitle: "Lower or Nil TDS Certificate Guide in India"
-seoDescription: "Learn how lower or nil TDS certificates work in India, when they help cash flow and what deductors and deductees should verify before relying on them."
-focusKeyword: "tds lower deduction certificate guide"
+seoTitle: "Section 197 Lower TDS Certificate: Form 13 & TRACES Guide"
+seoDescription: "Step-by-step guide to obtaining a Lower or Nil TDS deduction certificate under Section 197. Learn Form 13 filing on TRACES, eligibility, and working capital savings."
+focusKeyword: "tds lower deduction certificate"
 secondaryKeywords:
-  - "nil tds certificate"
-  - "lower deduction certificate india"
-  - "how to use tds certificate"
-searchIntent: "Informational"
+  - "section 197 lower tds certificate"
+  - "form 13 traces application steps"
+  - "nil tds certificate for startups"
+  - "lower deduction certificate eligibility"
+searchIntent: "Transactional / Tax"
 category: "TDS"
-subCategory: "Certificates"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
-featuredImage: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
+subCategory: "Lower Deduction"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "11 mins"
+lastUpdated: "2026-09-12"
+featuredImage: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for tds lower deduction certificate guide"
-excerpt: "A cash-flow-focused TDS guide for businesses and professionals dealing with lower deduction certificates."
-cta: "Need help with tds lower deduction certificate guide? FilingBy can help you review the documents, the filing route and the practical business impact before you proceed."
+imageAlt: "Accountant reviewing TRACES portal application for lower TDS deduction certificate"
+excerpt: "A practical guide to securing a Lower or Nil TDS Certificate under Section 197: Form 13 requirements, financial estimations, and TRACES portal workflows."
+cta: "Is high client TDS draining your operating cash flow? FilingBy assists companies and professionals with Section 197 Form 13 filings."
 isPublished: true
 relatedServices:
   - "tds-return-filing"
+  - "itr-filing"
 relatedBlogs:
-  - "tan-registration-and-tds-setup-guide"
   - "tds-on-professional-fees-contracts-rent-guide"
-  - "late-tds-return-and-correction-guide"
   - "tds-on-salary-vs-professional-fees-guide"
-  - "form-16-vs-form-16a-guide"
+  - "late-tds-return-and-correction-guide"
 topicHub: "/blog?category=TDS"
 relatedCalculators:
-
+  - "/calculators/tds"
 relatedTemplates:
-  - "tds-vendor-master-checklist"
+  - "form-13-financial-projection-template"
 internalLinks:
   - "/blog?category=TDS"
   - "/services/tds-return-filing"
+  - "/calculators/tds"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Decision snapshot"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "The Working Capital Trap: Why Lower TDS Certificates Matter"
+  - "What is Section 197 and How Does It Function?"
+  - "Sections Covered Under Section 197 Lower Deduction"
+  - "Mandatory Pre-Requisites Before Filing Form 13"
+  - "Step-by-Step Online Filing Procedure on the TRACES Portal"
+  - "Financial Documents and Projections Required by the Assessing Officer"
+  - "Validity Period and How Deductors Verify the Certificate"
+  - "Common Reasons for Rejection and How to Prevent Them"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "tds lower deduction certificate guide should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "Section 197 of the Income Tax Act allows taxpayers whose estimated total tax liability is zero or substantially lower than standard statutory TDS rates to apply for a Lower or Nil Deduction Certificate."
+  - "The application is filed electronically using Form 13 on the TRACES portal (tdscpc.gov.in) with digital signatures or electronic verification."
+  - "Section 197 applies across major commercial sections including Section 194C (contractors), 194J (professional/technical fees), 194-I (rent), 194H (commission), and 194-O (e-commerce)."
+  - "A Section 197 certificate is valid only for the specific Financial Year for which it is issued and covers payments up to the monetary threshold approved by the Assessing Officer."
 faq:
-  - q: "Is tds lower deduction certificate guide only relevant when a deadline arrives?"
-    a: "No. The strongest results usually come when the business reviews the issue before a deadline or commercial promise creates pressure. Early clarity reduces errors and makes the Income Tax and TRACES portal workflow simpler."
-  - q: "Can a small business handle this without overcomplicating the process?"
-    a: "Yes, provided the facts are clear, the document pack is organised and the team understands what changes after the filing. Complexity often comes from weak preparation, not only from the law."
-  - q: "Why do these applications or filings get delayed in practice?"
-    a: "The most common reasons are inconsistent records, unclear supporting documents, internal ownership confusion and last-minute submissions. Clean paperwork usually improves outcomes more than aggressive follow-up."
-  - q: "When should professional help be considered?"
-    a: "It becomes especially useful where the issue affects contracts, tax, funding, licensing, interstate activity or founder relationships, or where a wrong filing could create long-tail compliance problems."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for tds lower deduction certificate guide"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for tds lower deduction certificate guide"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for tds lower deduction certificate guide"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for tds lower deduction certificate guide"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for tds lower deduction certificate guide"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for tds lower deduction certificate guide"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "Can a startup with carried-forward business losses apply for a Nil TDS certificate?"
+    a: "Yes. In fact, startups with substantial brought-forward tax losses or initial operating deficits are prime candidates for Form 13. By demonstrating that net taxable income will be negative, they can obtain a 0% (Nil) deduction certificate, preventing capital lockup."
+  - q: "What is the difference between Section 197 and Form 15G/15H?"
+    a: "Form 15G/15H is a self-declaration submitted directly to deductors (banks/firms) only by individuals for specific income (interest, dividend) if total income is below basic exemption. Section 197 requires formal government evaluation and an official certificate issued by the Assessing Officer for commercial and business contracts."
+  - q: "How long does it take to obtain a Section 197 certificate on TRACES?"
+    a: "The Citizen's Charter prescribes a target timeline of 30 days from the date of a complete application. If financial projections, past ITRs, and TAN lists are clear, Assessing Officers typically issue the digitally signed certificate within 3 to 4 weeks."
+  - q: "Does the client need to verify the certificate before deducting lower tax?"
+    a: "Yes. When invoicing your client, provide the unique Certificate Number. The client's finance team verifies the certificate on the TRACES portal before processing payments to ensure the lower rate and monetary limit remain valid."
 references:
-  - title: "Income Tax e-Filing for TDS"
-    url: "https://www.incometax.gov.in/"
-    publisher: "Income Tax Department"
-  - title: "TRACES Portal"
+  - title: "TRACES Portal (TDS Reconciliation Analysis and Correction Enabling System)"
     url: "https://www.tdscpc.gov.in/"
-    publisher: "TDS Reconciliation Analysis and Correction Enabling System"
-sources:
-  - title: "Income Tax e-Filing for TDS"
-    organisation: "Income Tax Department"
-    url: "https://www.incometax.gov.in/"
-    kind: "reference"
-  - title: "TRACES Portal"
-    organisation: "TDS Reconciliation Analysis and Correction Enabling System"
-    url: "https://www.tdscpc.gov.in/"
-    kind: "reference"
+    publisher: "Income Tax Department, Government of India"
+  - title: "Section 197 of the Income Tax Act, 1961"
+    url: "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx"
+    publisher: "Central Board of Direct Taxes (CBDT)"
+  - title: "CBDT Circular on Form 13 Processing and Timelines"
+    url: "https://incometaxindia.gov.in/pages/communications/circulars.aspx"
+    publisher: "Ministry of Finance"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Phase 2.2 statutory alignment: updated Section 194H standard rate to 2% (reduced from 5% w.e.f. October 1, 2024 via Finance (No. 2) Act, 2024)."
 status: "published"
 ---
 
-# Lower or Nil TDS Certificate Guide: When It Helps and What Businesses Should Check First
+# Lower or Nil TDS Certificate Guide: Section 197, Form 13 & TRACES Portal Steps
 
-## Introduction
-If you are researching tds lower deduction certificate guide, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for finance teams, founders and business operators who deduct, deposit, reconcile or explain TDS in day-to-day commercial work. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+For businesses operating on thin profit margins, early-stage startups with operational losses, and independent agencies with heavy sub-contractor overhead, the statutory Tax Deducted at Source (TDS) regime can strangle cash flow.
 
-Lower or Nil TDS Certificate Guide: When It Helps and What Businesses Should Check First is rarely a narrow formality. It changes how the business prepares documents, answers stakeholder questions and avoids costly rework later. Many business owners look up tds lower deduction certificate guide only when a deadline, client, regulator or internal clean-up pushes the issue to the surface. Understanding the process early usually saves money and management time. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+When domestic corporate clients deduct **10% TDS under Section 194J** or **2% under Section 194C** from every gross invoice, the business may end up with TDS credits vastly exceeding its ultimate annual income tax liability. While excess TDS is eventually refunded after filing an ITR, waiting 12 to 18 months for a tax refund traps precious working capital.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+> [!NOTE]
+> **Statutory Period Applicability (September 2026 Context):**
+> - **AY 2026-27 (FY 2025-26):** Lower or Nil deduction applications for contracts and revenues earned during the financial year ending March 31, 2026 are governed by Section 197 of the **Income-tax Act, 1961**.
+> - **Income Tax Act, 2025 Transition:** For current and future withholding on or after April 1, 2026, lower deduction certificates transition to the withholding provisions under the **Income Tax Act, 2025**. Electronic submission continues through Form 13 on the TRACES portal.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+To solve this liquidity bottleneck, the **Income Tax Act, 1961** provides a statutory relief mechanism under **Section 197**: the **Lower or Nil TDS Deduction Certificate**.
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+By submitting **Form 13** electronically on the **TRACES portal**, an eligible taxpayer can legally instruct clients to deduct tax at a reduced percentage (e.g., 1%, 0.5%) or at **0% (Nil)**.
 
-## Understanding the issue
-TDS work is shaped by deduction sections, deposit timelines, return filing rules, PAN capture quality, TRACES logic and the linkage between vendor records and tax reporting. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+---
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+## What is Section 197 and How Does It Function?
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+Section 197(1) empowers an Assessing Officer (AO) to issue a formal, digitally signed certificate directing payers (deductors) to deduct income tax at lower rates or zero rate, if the AO is satisfied that the total income of the recipient justifies such relief.
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
+1. **Business Submits Form 13 & Financial Projections on TRACES**
+2. **Automated Scrutiny & Referral to Jurisdictional Assessing Officer**
+3. **AO Verifies Past 3 Years ITR, Audit Reports & Estimated Profit Rate**
+4. **AO Issues Digitally Signed Certificate with Specific Rate & Limit**
+5. **Business Quotes Certificate Number on Invoices -> Client Deducts at Lower Rate**
 
-## Decision snapshot
-| Situation | What to check | Why it matters |
-| --- | --- | --- |
-| Urgent filing pressure | Whether the legal trigger is real and the documents are ready | It prevents rushed submissions and rework |
-| Routine planning stage | Whether the business can align records before filing | Better preparation usually means faster approval |
-| Growth or expansion stage | How this decision affects contracts, tax and onboarding | The filing should support the next stage of the business |
-| Post-approval reality | Whether internal systems will be updated after approval | A certificate is useful only when records also improve |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Sections Covered Under Section 197 Lower Deduction
 
-## Government process explained step by step
-### Step 1: Clarify why tds lower deduction certificate guide matters now
-Before opening the Income Tax and TRACES portal, define the actual trigger. It may be a customer requirement, a funding process, an annual deadline, a structure change or a clean-up exercise. The filing route becomes much clearer once the business reason is written down properly.
+Section 197 applies across a wide spectrum of commercial transactions:
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+| Section | Nature of Payment | Standard Statutory Rate | Potential Section 197 Benefit |
+|---|---|---|---|
+| **Section 194C** | Payments to Contractors / Subcontractors | 1% (Indiv/HUF) or 2% (Others) | Can be reduced to **0.5% or 0%** |
+| **Section 194J** | Professional Fees / Technical Services | 10% (Professional) / 2% (Technical) | Can be reduced to **1% or 0%** |
+| **Section 194-I** | Rent on Land, Building or Furniture | 10% | Can be reduced to **1% to 2%** |
+| **Section 194H** | Commission or Brokerage | 2% (w.e.f. 01.10.2024; was 5%) | Can be reduced to **1% or 0%** |
+| **Section 194-O** | E-Commerce Operator Payments to Sellers | 1% | Can be reduced to **0.1% or 0%** |
+| **Section 192** | Salary Income (Specific conditions) | Slab rates | Adjusted based on relief |
 
-### Step 2: Review the entity, address and authorised person details
-Most practical delays start with identity mismatch, address inconsistency or weak authorisation. A quick pre-check of names, PAN-linked records, addresses and signatory details usually saves more time than any later correction effort.
+*Note: Section 197 does NOT apply to certain non-specified sections, such as Section 194DA (life insurance payouts), Section 194B (lottery winnings), or Section 194E.*
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+---
 
-### Step 3: Prepare the document pack before the first portal draft
-A business that gathers documents in advance can answer queries calmly. Prepare the core support papers, rename them clearly and make sure the factual story is consistent across each record.
+## Mandatory Pre-Requisites Before Filing Form 13
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+Before initiating your online application on TRACES, ensure the applicant meets the following statutory criteria:
+1. **Active PAN:** Clean PAN status with Aadhaar linkage (where applicable).
+2. **Past 3 Years ITRs:** Acknowledgment copies and computation of income for the preceding three assessment years.
+3. **Audit Reports & Balance Sheets:** Form 3CA/3CB and audited financials for the past three years (if subject to audit).
+4. **Current Year Financial Projections:** Estimated Profit & Loss statement and computation of total taxable income for the current financial year.
+5. **Deductor Details (TAN List):** The list of specific corporate clients, their 10-digit Tax Deduction and Collection Account Numbers (TAN), and the estimated gross invoice value expected from each payer.
 
-### Step 4: Complete the Income Tax and TRACES portal workflow with commercial accuracy
-While filling the form, focus not only on legal correctness but also on how the record will be read later by banks, vendors, customers, officers or investors. The best filing is the one that keeps working after approval too.
+---
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+## Step-by-Step Online Filing Procedure on the TRACES Portal
 
-### Step 5: Handle clarifications directly and with evidence
-If the system or reviewer raises a query, answer it with simple factual support. Avoid emotional notes, generic copy-paste responses or unclear attachments. Most queries reduce once the evidence is better organised.
+All Form 13 applications are processed through the official TRACES platform:
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+### 1. Log into TRACES as Taxpayer
+Navigate to `https://www.tdscpc.gov.in/` and log in under the **"Taxpayer"** portal using your PAN and password.
 
-### Step 6: Update post-approval systems immediately
-Once the filing is approved or accepted, update invoices, contracts, internal trackers, vendor records and future compliance calendars. This is where the business turns the filing into something actually useful.
+### 2. Initiate Form 13
+Click on **"Statements / Forms"** > **"Request for Form 13"**. Select the Financial Year for which the certificate is sought (e.g., FY 2025-26).
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+### 3. Enter Basic & Financial Data
+- **Nature of Income:** Select the applicable sections (e.g., 194J for consulting, 194C for contracts).
+- **Projected Revenue:** Enter estimated gross receipts for the current financial year.
+- **Estimated Net Tax Liability:** Input anticipated tax payable after computing allowable business expenses.
+- **Requested Rate:** Specify the requested rate of deduction (e.g., `0.00%` or `1.50%`).
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+### 4. Upload Deductor Details (Annexures)
+Enter the TAN of each deductor, their registered entity name, and the estimated payment amount for the financial year. The certificate will only protect payments from the specific TANs declared in this schedule.
 
-- Primary identity and contact records of the owner, entity or authorised signatory
-- Address proof and core business constitution documents relevant to the filing
-- Supporting bank, tax or registration records that connect with the same filing trail
-- A simple internal checklist showing what is being filed and why
-- A shared folder of signed proofs, acknowledgements and follow-up notes
+### 5. Attach Mandatory Financial Exhibits
+Upload clean PDF files of:
+- Past 3 years' filed ITR acknowledgments.
+- Audited balance sheets and P&L sheets.
+- Form 26AS for the previous financial year.
+- Provisional P&L and balance sheet for the expired portion of the current year.
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+### 6. Digital Signature Verification
+Sign the application electronically using a valid Class 3 Digital Signature Certificate (DSC) of the authorized director, partner, or individual. An automated **Acknowledgment Number** is generated for status tracking.
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+---
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+## Financial Documents and Projections Required by the Assessing Officer
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+The Assessing Officer evaluates the application using the **Estimated Average Tax Rate Formula**:
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+$$\text{Estimated Rate of Tax} = \frac{\text{Total Estimated Tax Liability}}{\text{Total Estimated Gross Receipts}} \times 100$$
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+- If your estimated turnover is ₹2,00,00,000 and your projected net profit is ₹10,00,000, your corporate tax liability (at 22% plus cess) is approximately ₹2,28,800.
+- Your effective tax rate on gross receipts is **1.14%** ($\frac{2,28,800}{2,00,00,000} \times 100$).
+- Deducting standard 10% TDS (₹20,00,000) creates a working capital blockage of over ₹17,70,000. 
+- Demonstrating this math in your Form 13 projection sheet provides objective statutory justification for the AO to grant a **1% or 1.5% certificate**.
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+---
 
-- Starting the filing because of pressure rather than because the facts are ready
-- Using mismatched names, addresses or supporting records
-- Ignoring how the filing changes later operations and record keeping
-- Relying on memory instead of using one clean checklist and archive
-- Sending a weak clarification response when direct evidence would work better
+## Validity Period and How Deductors Verify the Certificate
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+1. **Duration:** The certificate is valid from the **date of issuance until March 31 of the relevant financial year** (or until the approved monetary threshold is exhausted, whichever occurs earlier). It cannot be applied retrospectively to invoices already deducted.
+2. **Unique Certificate Reference:** Once approved, the certificate carries a unique **Certificate Number** (e.g., `CERTXXXXX`).
+3. **Verification by Deductors:** When you invoice a client:
+   - State on your invoice: *"TDS to be deducted at 1% pursuant to Section 197 Certificate No. CERTXXXXX valid for FY 2025-26"*.
+   - The deductor logs into TRACES under their deductor account, navigates to **"Validate Lower Deduction Certificate"**, verifies the certificate validity, and deducts the lower rate without regulatory risk.
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+---
 
-- Prepare the record trail before opening the portal form
-- Align finance, operations and the authorised signatory in advance
-- Keep one dated folder of all documents and acknowledgements
-- Review the post-approval impact before you submit
+## Common Reasons for Rejection and How to Prevent Them
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+1. **Unreconciled Outstanding Tax Demands:** If your PAN shows outstanding tax demands from prior assessment years on the portal, the AO will withhold issuance until the demand is paid or rectified.
+2. **Unrealistic Expense Projections:** Projecting sudden 95% operating overhead without operational explanation triggers suspicion.
+3. **Late Application Submission:** Applying in February or March leaves little operational runway; the best time to apply for Form 13 is **between March and May** before the start of the financial year.
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+---
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+## Frequently Asked Questions
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
+### Can a startup with carried-forward business losses apply for a Nil TDS certificate?
+Yes. In fact, startups with substantial brought-forward tax losses or initial operating deficits are prime candidates for Form 13. By demonstrating that net taxable income will be negative, they can obtain a 0% (Nil) deduction certificate, preventing capital lockup.
 
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
+### What is the difference between Section 197 and Form 15G/15H?
+Form 15G/15H is a self-declaration submitted directly to deductors (banks/firms) only by individuals for specific income (interest, dividend) if total income is below basic exemption. Section 197 requires formal government evaluation and an official certificate issued by the Assessing Officer for commercial and business contracts.
 
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
+### How long does it take to obtain a Section 197 certificate on TRACES?
+The Citizen's Charter prescribes a target timeline of 30 days from the date of a complete application. If financial projections, past ITRs, and TAN lists are clear, Assessing Officers typically issue the digitally signed certificate within 3 to 4 weeks.
 
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
+### Does the client need to verify the certificate before deducting lower tax?
+Yes. When invoicing your client, provide the unique Certificate Number. The client's finance team verifies the certificate on the TRACES portal before processing payments to ensure the lower rate and monetary limit remain valid.
 
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
+---
 
-## FAQs
-### Is tds lower deduction certificate guide only relevant when a deadline arrives?
-No. The strongest results usually come when the business reviews the issue before a deadline or commercial promise creates pressure. Early clarity reduces errors and makes the Income Tax and TRACES portal workflow simpler.
+## Official References
 
-### Can a small business handle this without overcomplicating the process?
-Yes, provided the facts are clear, the document pack is organised and the team understands what changes after the filing. Complexity often comes from weak preparation, not only from the law.
-
-### Why do these applications or filings get delayed in practice?
-The most common reasons are inconsistent records, unclear supporting documents, internal ownership confusion and last-minute submissions. Clean paperwork usually improves outcomes more than aggressive follow-up.
-
-### When should professional help be considered?
-It becomes especially useful where the issue affects contracts, tax, funding, licensing, interstate activity or founder relationships, or where a wrong filing could create long-tail compliance problems.
-
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
-
-- [Income Tax e-Filing for TDS](https://www.incometax.gov.in/) - Income Tax Department
-- [TRACES Portal](https://www.tdscpc.gov.in/) - TDS Reconciliation Analysis and Correction Enabling System
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [TDS Guides](/blog?category=TDS)
-- [TDS Return Filing Service](/services/tds-return-filing)
-
-### Related calculators and templates
-- Tds Vendor Master Checklist
-
-### Related services
-- TDS Return Filing
-
-## CTA
-Need help with tds lower deduction certificate guide? FilingBy can help you review the documents, the filing route and the practical business impact before you proceed. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle tds lower deduction certificate guide is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [TRACES Portal (TDS CPC)](https://www.tdscpc.gov.in/) — Income Tax Department, Government of India
+- [Section 197 of the Income Tax Act, 1961](https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx) — Central Board of Direct Taxes (CBDT)
+- [CBDT Guidelines on Form 13 Processing](https://incometaxindia.gov.in/pages/communications/circulars.aspx) — Ministry of Finance

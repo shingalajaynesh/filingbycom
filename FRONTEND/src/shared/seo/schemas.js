@@ -272,12 +272,12 @@ export function buildBlogPostingSchema(post) {
     "datePublished": post.publishedAt || post.createdAt,
     "dateModified": post.lastUpdated || post.updatedAt || post.createdAt,
     "author": {
-      "@type": "Person",
-      "name": authorProfile.name
+      "@type": "Organization",
+      "name": "FilingBy Editorial Team"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "FilingBy.com",
+      "name": "FilingBy",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.filingby.com/logo.jpeg"

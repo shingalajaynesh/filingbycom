@@ -1,297 +1,217 @@
 ---
-title: "Composition Scheme vs Regular GST: Which Option Suits a Small Business Better?"
-slug: "composition-scheme-vs-regular-gst"
-seoTitle: "Composition Scheme vs Regular GST: Small Business Decision Guide"
-seoDescription: "Compare composition scheme and regular GST for small businesses in India. Learn the practical differences in tax, invoicing, compliance and growth planning."
-focusKeyword: "composition scheme vs regular gst"
+title: "Composition Scheme vs Regular GST: Section 10 Slabs, Restrictions & Decision Guide"
+slug: "composition-vs-regular-gst-scheme"
+seoTitle: "Composition Scheme vs Regular GST: Section 10 Comparison Guide"
+seoDescription: "Compare GST Composition Scheme (Section 10) with Regular GST. Analyze ₹1.5Cr/₹50L thresholds, ITC restrictions, Bill of Supply, and Form CMP-08 filing."
+focusKeyword: "composition vs regular gst scheme"
 secondaryKeywords:
-  - "gst composition scheme"
-  - "regular gst vs composition"
-  - "small business gst option"
-searchIntent: "Commercial"
+  - "section 10 composition scheme thresholds"
+  - "form cmp-08 quarterly payment"
+  - "gstr-4 annual return deadline"
+  - "composition scheme for service providers 6 percent"
+searchIntent: "Commercial / Informational"
 category: "GST"
 subCategory: "Scheme Selection"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "12 mins"
+lastUpdated: "2026-09-12"
 featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for composition scheme vs regular gst"
-excerpt: "A practical comparison of composition and regular GST for founders who want to balance tax simplicity, customer expectations and future growth."
-cta: "If you are unsure whether composition or regular GST suits your business, FilingBy can help you review the commercial and compliance impact before you choose."
+imageAlt: "Retail store owner comparing tax invoicing under Regular GST versus Bill of Supply under Composition Scheme"
+excerpt: "A comprehensive comparative guide to Section 10 Composition Levy versus Regular GST: ₹1.5 Crore goods and ₹50 Lakh service thresholds, ITC restrictions, and CMP-08 mechanics."
+cta: "Deciding between Composition Scheme and Regular GST? FilingBy helps small businesses evaluate tax margins, ITC recovery, and compliance costs."
 isPublished: true
 relatedServices:
   - "gst-registration"
   - "gst-filing"
 relatedBlogs:
-  - "gst-registration-for-service-businesses-india"
-  - "gst-for-ecommerce-sellers-india"
-  - "lut-under-gst-for-exporters"
-  - "gst-registration-with-virtual-office-india"
-  - "gst-cancellation-and-revocation-guide-india"
+  - "gst-registration-guide"
+  - "gstr-1-vs-gstr-3b-reconciliation-guide"
+  - "gst-for-ecommerce-sellers-guide"
 topicHub: "/blog?category=GST"
-relatedCalculators:
-  - "/gst-calculator"
+relatedCalculators: []
 relatedTemplates:
-  - "pricing-model-sheet"
+  - "gst-composition-margin-calculator"
 internalLinks:
   - "/blog?category=GST"
   - "/services/gst-registration"
-  - "/services/gst-return-filing"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Composition vs regular GST at a glance"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "The Core Architecture of Section 10 Composition Levy"
+  - "Statutory Turnover Thresholds: Goods vs Services"
+  - "Applicable Tax Rates Under the Composition Scheme"
+  - "Absolute Statutory Restrictions Imposed on Composition Dealers"
+  - "Invoicing Mechanics: Tax Invoice vs Bill of Supply"
+  - "Compliance Burden: CMP-08 & GSTR-4 vs Monthly Filings"
+  - "Detailed Comparative Matrix: Regular vs Composition"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "composition scheme vs regular gst should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "Under Section 10(1), eligible manufacturers and traders of goods can opt for the Composition Scheme if their annual turnover is within ₹1.5 Crores (₹75 Lakhs in 8 Special Category States)."
+  - "Under Section 10(2A) / Notification 2/2019-CT, service providers can opt for the Composition Scheme if their preceding year turnover is up to ₹50 Lakhs, paying a flat 6% tax."
+  - "Composition taxpayers are strictly barred from collecting tax from customers, cannot issue tax invoices (must issue a Bill of Supply), and cannot claim Input Tax Credit on purchases."
+  - "Making a single inter-state supply of goods or services automatically disqualifies the taxpayer, forcing an immediate transition into the Regular GST scheme."
 faq:
-  - q: "Is composition always cheaper than regular GST?"
-    a: "Not automatically. A lower apparent compliance burden may be offset by the loss of input credit or weaker pricing position with B2B customers. The real answer depends on the business model."
-  - q: "Can a growing business move from composition to regular GST?"
-    a: "Yes, but the transition should be planned. Invoicing, customer communication, software configuration and compliance cadence all need to change smoothly."
-  - q: "Who usually benefits from regular GST earlier?"
-    a: "Businesses selling to companies, buying from multiple vendors or planning to scale quickly often find regular GST more practical despite heavier compliance."
-  - q: "Should a founder decide this without numbers?"
-    a: "No. Even a simple spreadsheet comparing margin impact, client expectations and compliance effort can make the decision far clearer."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for composition scheme vs regular gst"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for composition scheme vs regular gst"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for composition scheme vs regular gst"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for composition scheme vs regular gst"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for composition scheme vs regular gst"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for composition scheme vs regular gst"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "Can a composition dealer issue a tax invoice so that a B2B corporate customer can claim ITC?"
+    a: "No. Under Section 31(3)(c) of the CGST Act, a composition taxpayer cannot issue a tax invoice and cannot collect any tax from recipients. They must issue a 'Bill of Supply' with the mandatory endorsement: 'composition taxable person, not eligible to collect tax on supplies'. B2B buyers cannot claim any input tax credit on purchases from composition dealers."
+  - q: "Can a small restaurant serving food opt for the Composition Scheme?"
+    a: "Yes. Standalone restaurants that do not serve alcoholic liquor for human consumption can opt for the Composition Scheme under Section 10(1)(b), paying a flat rate of 5% (2.5% CGST + 2.5% SGST) on total turnover, provided they do not make inter-state supplies."
+  - q: "What happens if a composition dealer's turnover crosses ₹1.5 Crores during the financial year?"
+    a: "Under Rule 6 of the CGST Rules, the moment aggregate turnover exceeds the statutory ceiling (₹1.5 Crores for goods, ₹50 Lakhs for services), the composition option lapses immediately. The taxpayer must issue regular tax invoices from the very next transaction, file Form GST CMP-04 within 7 days to exit the scheme, and file Form GST ITC-01 within 30 days to claim credit on closing stock."
+  - q: "What are the return filing deadlines for a composition taxpayer?"
+    a: "A composition taxpayer is exempt from monthly GSTR-1 and GSTR-3B filings. They make quarterly tax payments using Form GST CMP-08 by the 18th of the month following the quarter, and file a single consolidated annual return in Form GSTR-4 by April 30 following the end of the financial year."
+  - q: "Can a composition dealer sell goods through Amazon or Flipkart?"
+    a: "Generally, Section 10(2)(d) bars composition dealers from supplying goods through an e-commerce operator liable to collect TCS under Section 52. However, under recent statutory relaxations, small intra-state dealers with valid state-level enrolments may engage in limited local marketplace supplies under Notification 34/2023."
 references:
-  - title: "GST Portal"
-    url: "https://www.gst.gov.in/"
-    publisher: "Goods and Services Tax Network"
-  - title: "CBIC GST Instructions and Updates"
+  - title: "Central Goods and Services Tax Act, 2017 - Section 10 (Composition Levy)"
     url: "https://cbic-gst.gov.in/"
-    publisher: "Central Board of Indirect Taxes and Customs"
-sources:
-  - title: "GST Portal"
-    organisation: "Goods and Services Tax Network"
-    url: "https://www.gst.gov.in/"
-    kind: "reference"
-  - title: "CBIC GST Instructions and Updates"
-    organisation: "Central Board of Indirect Taxes and Customs"
-    url: "https://cbic-gst.gov.in/"
-    kind: "reference"
+    publisher: "Central Board of Indirect Taxes and Customs (CBIC), Government of India"
+  - title: "CBIC Notification No. 14/2019 - Central Tax (Turnover Threshold for Composition Scheme)"
+    url: "https://www.cbic.gov.in/"
+    publisher: "CBIC, Department of Revenue, Ministry of Finance"
+  - title: "CBIC Notification No. 02/2019 - Central Tax (Rate) (Composition Scheme for Services)"
+    url: "https://www.cbic.gov.in/"
+    publisher: "CBIC, Department of Revenue, Ministry of Finance"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: bespoke comparative analysis of Section 10(1) vs 10(2A), Bill of Supply mechanics, CMP-08 quarterly schedules, and stock transition rules."
 status: "published"
 ---
 
-# Composition Scheme vs Regular GST: Which Option Suits a Small Business Better?
+# Composition Scheme vs Regular GST: Section 10 Slabs, Restrictions & Decision Guide
 
-## Introduction
-If you are researching composition scheme vs regular gst, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for retail traders, small manufacturers, local service operators and founders evaluating the right GST path. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+When registering a business under the Goods and Services Tax (GST) in India, one of the most critical structural decisions every entrepreneur faces is whether to opt for the **Composition Scheme** under **Section 10 of the Central Goods and Services Tax (CGST) Act, 2017** or enroll as a **Regular Taxpayer**.
 
-Composition looks simpler on paper, but the right answer depends on your customer profile, margin structure, expansion plans and whether clients expect input tax credit. Small businesses often choose a tax route only to reduce paperwork. The better approach is to ask how the scheme will affect pricing, market access and growth one year later. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+The Composition Scheme was designed by the GST Council as a simplified compliance track for micro and small enterprises, shielding them from the demanding cadence of invoice-level monthly filings and extensive accounting registers. In exchange for this procedural simplicity, however, the statute imposes severe operational limitations—including a complete ban on collecting tax from customers, zero Input Tax Credit (ITC) recovery, and strict prohibitions on interstate commerce.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+This guide provides a comprehensive statutory comparison of the Composition Scheme versus Regular GST, analyzing turnover ceilings, tax rate structures, invoicing restrictions, and long-term commercial trade-offs.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+---
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+## The Core Architecture of Section 10 Composition Levy
 
-## Understanding the issue
-The composition route is a concessional compliance framework with its own eligibility limits and restrictions, while the regular scheme supports broader credit and invoicing flexibility. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+The Composition Scheme operates as an alternative, optional levy designed for small, local B2C (business-to-consumer) enterprises. Instead of computing tax at standard rates (5%, 12%, 18%, or 28%) and offsetting Input Tax Credit, the taxpayer pays a small, flat percentage of their overall business turnover directly out of their revenue.
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+### COMPOSITION SCHEME VS REGULAR GST
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+| **Composition Scheme (Section 10)** | **Regular GST Scheme** |
+| --- | --- |
+| Flat low tax paid out of pocket | Standard tax rate charged to buyer |
+| No Input Tax Credit (ITC) | Seamless 100% ITC on purchases |
+| Invoices via "Bill of Supply" | Invoices via full "Tax Invoice" |
+| Intra-state local sales only | Unrestricted nationwide selling |
+| Quarterly statement (CMP-08) | Monthly GSTR-1 & GSTR-3B filings |
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
 
-## Composition vs regular GST at a glance
-| Point | Composition scheme | Regular GST |
-| --- | --- | --- |
-| Compliance effort | Lower in many cases | More detailed return and invoice discipline |
-| Input tax credit | Restricted | Generally available subject to conditions |
-| Large B2B customer preference | Often weaker | Usually stronger because of tax invoice and credit visibility |
-| Scalability | Can become limiting | More flexible for expansion |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Statutory Turnover Thresholds: Goods vs Services
 
-## Government process explained step by step
-### Step 1: Review your customer mix honestly
-A neighbourhood business selling mostly to end consumers may think differently from a B2B supplier serving companies that insist on tax invoices. The customer mix should shape the choice more than fear of monthly compliance.
+Eligibility is governed strictly by the taxpayer's **aggregate turnover** in the preceding financial year:
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+### 1. Manufacturers and Traders of Goods (Section 10(1))
+* **General States**: Aggregate turnover ceiling of **₹1.5 Crores** in the preceding financial year (Notification No. 14/2019-Central Tax).
+* **Special Category States**: Ceiling of **₹75 Lakhs** in 8 designated northeastern/hill states (Arunachal Pradesh, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim, Tripura, and Uttarakhand).
+* **Marginal Service Supply Window**: To accommodate goods suppliers who occasionally provide incidental services (e.g., equipment repair or installation), the second proviso to Section 10(1) allows service supplies up to **10% of turnover** in the preceding financial year, or **₹5 Lakhs**, whichever is higher.
 
-### Step 2: Understand the scheme restrictions before opting in
-The government process allows eligible taxpayers to opt for composition, but that does not mean it is suitable for every business. Restrictions around credit, invoicing style and operational scope must be understood first.
+### 2. Service Providers & Mixed Suppliers (Section 10(2A))
+Historically, pure service businesses were excluded from the composition scheme. To rectify this, the government introduced Section 10(2A) via **Notification No. 02/2019-Central Tax (Rate)**:
+* **Turnover Ceiling**: Aggregate turnover up to **₹50 Lakhs** in the preceding financial year.
+* **Eligible Entities**: Independent service consultants, repair workshops, salons, graphic designers, and boutique agencies operating locally.
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+---
 
-### Step 3: Model pricing under both options
-A tax decision should be tested in numbers. Estimate how margins behave if input credit is unavailable, whether customers compare ex-tax or tax-inclusive rates and whether discount-led sales make one option less attractive.
+## Applicable Tax Rates Under the Composition Scheme
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+Unlike regular taxpayers who track different GST slabs across their inventory, composition taxpayers discharge tax at uniform rates:
 
-### Step 4: Consider future expansion and state reach
-A business that plans to scale, attract distributors or serve larger clients may outgrow a simpler scheme quickly. Choosing purely for short-term convenience often leads to a second transition when the business is already busy.
+| Category of Registered Business | CGST Rate | SGST Rate | Total Composite Rate |
+|---|---|---|---|
+| **Traders of Goods** | 0.5% of taxable turnover | 0.5% of taxable turnover | **1.0%** of taxable supplies |
+| **Manufacturers of Goods** | 0.5% of total turnover | 0.5% of total turnover | **1.0%** of total turnover |
+| **Restaurants (Non-Alcoholic)** | 2.5% of total turnover | 2.5% of total turnover | **5.0%** of total turnover |
+| **Service Providers (Section 10(2A))** | 3.0% of total turnover | 3.0% of total turnover | **6.0%** of total turnover |
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+> [!NOTE]
+> Traders pay 1% only on their **taxable supplies** (exempt goods are excluded). Manufacturers, however, must pay 1% on their **total aggregate turnover**, including exempt goods.
 
-### Step 5: Opt through the proper portal process and retain evidence
-If composition is chosen, complete the required portal action and keep clear records. If regular GST is more suitable, set up invoicing and return discipline immediately instead of treating it as an afterthought.
+---
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+## Absolute Statutory Restrictions Imposed on Composition Dealers
 
-### Step 6: Review the decision annually
-What works for a micro business this year may not work next year. Revenue mix, vendor profile and business goals change, so the scheme choice should be revisited with data.
+To prevent distortion of the national tax chain, **Section 10(2)** bars composition dealers from several standard commercial activities:
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+1. **No Interstate Outward Supplies**: A composition dealer cannot sell goods or provide services to a customer located in another State. Even a single interstate sale invalidates the composition status immediately. (Purchasing goods from other states is permitted, but inward tax must be absorbed as cost).
+2. **No E-Commerce Marketplaces**: Taxpayers cannot sell through an Electronic Commerce Operator (such as Amazon or Flipkart) that is required to collect TCS under Section 52 (subject only to narrow localized intra-state seller relaxations).
+3. **Ineligible Product Sectors**: Manufacturers of ice cream, pan masala, tobacco products, aerated water, fly ash bricks, and brick kilns are statutorily disqualified from the scheme.
+4. **No Casual Taxable Person / NRI Status**: Cannot operate as a temporary exhibition vendor across states.
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+---
 
-- Turnover summary and customer mix analysis
-- Purchase pattern review to assess the impact of input credit
-- Basic profit and pricing model for both options
-- GST registration details and portal access
-- Written review note documenting why the chosen route suits the business
+## Invoicing Mechanics: Tax Invoice vs Bill of Supply
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+Under **Section 31(3)(c) of the CGST Act**, a composition taxpayer is legally prohibited from issuing a **Tax Invoice**:
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+* **Bill of Supply Mandate**: The taxpayer must issue a **Bill of Supply** for all sales transactions.
+* **Prohibition on Tax Collection**: The seller cannot add a separate CGST/SGST line item or collect any tax from the purchaser. The 1%, 5%, or 6% composite tax must be paid out of the business's own profit margin.
+* **Mandatory Legal Endorsement**: Every Bill of Supply and business signboard must state:
+  > **"COMPOSITION TAXABLE PERSON, NOT ELIGIBLE TO COLLECT TAX ON SUPPLIES"**
+* **The B2B Disadvantage**: Because no tax invoice is issued, B2B corporate customers cannot claim Input Tax Credit on purchases made from a composition dealer. Consequently, corporate clients almost universally refuse to purchase from composition suppliers.
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+---
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+## Compliance Burden: CMP-08 & GSTR-4 vs Monthly Filings
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+The primary justification for choosing the Composition Scheme is the dramatic reduction in accounting overhead:
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+### COMPLIANCE CADENCE COMPARISON
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+| **Regular Taxpayer (Monthly)** | **Composition Taxpayer (Quarterly)** |
+| --- | --- |
+| GSTR-1: Due 11th of each month | Form GST CMP-08: Due 18th after |
+| GSTR-3B: Due 20th of each month | each quarter (simple tax payment) |
+| GSTR-2B: Monthly matching | Form GSTR-4: Annual return due |
+| Annual: GSTR-9 by Dec 31 | April 30 following year-end |
+| Total: Minimum 25 filings/year | Total: Exactly 5 filings/year |
 
-- Opting for composition only because someone said it is simpler
-- Ignoring the expectations of B2B customers who want tax invoices
-- Failing to model the impact of blocked input credit
-- Not revisiting the decision when the business starts scaling
-- Mixing operational growth plans with a tax structure that no longer fits
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+---
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+## Detailed Comparative Matrix: Regular vs Composition
 
-- A short financial model can prevent a year of wrong tax positioning
-- If you plan to raise capital or work with enterprise clients, think beyond the next quarter
-- Document the basis of your decision so future changes are easier to evaluate
-- Review vendor invoices and customer agreements before finalising the scheme
+| Parameter | Regular GST Scheme | Composition Scheme (Section 10) |
+|---|---|---|
+| **Turnover Limit** | Unlimited. | ₹1.5 Crores (Goods) / ₹50 Lakhs (Services). |
+| **Input Tax Credit (ITC)** | Full credit allowed on inputs, input services, and capital goods. | **Zero ITC**. All tax paid on procurements is a direct expense. |
+| **Interstate Sales** | Fully permitted across all Indian states and export markets. | **Strictly prohibited**. Only local intra-state sales allowed. |
+| **Invoicing Type** | Tax Invoice with line-item GST. | Bill of Supply with zero tax collected from buyers. |
+| **Target Customer Profile** | B2B enterprises, corporate clients, export buyers, and general retail. | Local B2C consumers, retail walk-ins, and neighbourhood diners. |
+| **Exit Trigger** | Voluntary surrender or cancellation. | Automated exit the day turnover exceeds the statutory ceiling. |
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+---
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+## Frequently Asked Questions
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+### Can a composition dealer issue a tax invoice so that a B2B corporate customer can claim ITC?
+No. Under Section 31(3)(c) of the CGST Act, a composition taxpayer cannot issue a tax invoice and cannot collect any tax from recipients. They must issue a 'Bill of Supply' with the mandatory endorsement: 'composition taxable person, not eligible to collect tax on supplies'. B2B buyers cannot claim any input tax credit on purchases from composition dealers.
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
+### Can a small restaurant serving food opt for the Composition Scheme?
+Yes. Standalone restaurants that do not serve alcoholic liquor for human consumption can opt for the Composition Scheme under Section 10(1)(b), paying a flat rate of 5% (2.5% CGST + 2.5% SGST) on total turnover, provided they do not make inter-state supplies.
 
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
+### What happens if a composition dealer's turnover crosses ₹1.5 Crores during the financial year?
+Under Rule 6 of the CGST Rules, the moment aggregate turnover exceeds the statutory ceiling (₹1.5 Crores for goods, ₹50 Lakhs for services), the composition option lapses immediately. The taxpayer must issue regular tax invoices from the very next transaction, file Form GST CMP-04 within 7 days to exit the scheme, and file Form GST ITC-01 within 30 days to claim credit on closing stock.
 
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
+### What are the return filing deadlines for a composition taxpayer?
+A composition taxpayer is exempt from monthly GSTR-1 and GSTR-3B filings. They make quarterly tax payments using Form GST CMP-08 by the 18th of the month following the quarter, and file a single consolidated annual return in Form GSTR-4 by April 30 following the end of the financial year.
 
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
+### Can a composition dealer sell goods through Amazon or Flipkart?
+Generally, Section 10(2)(d) bars composition dealers from supplying goods through an e-commerce operator liable to collect TCS under Section 52. However, under recent statutory relaxations, small intra-state dealers with valid state-level enrolments may engage in limited local marketplace supplies under Notification 34/2023.
 
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
+---
 
-## FAQs
-### Is composition always cheaper than regular GST?
-Not automatically. A lower apparent compliance burden may be offset by the loss of input credit or weaker pricing position with B2B customers. The real answer depends on the business model.
+## Official References
 
-### Can a growing business move from composition to regular GST?
-Yes, but the transition should be planned. Invoicing, customer communication, software configuration and compliance cadence all need to change smoothly.
-
-### Who usually benefits from regular GST earlier?
-Businesses selling to companies, buying from multiple vendors or planning to scale quickly often find regular GST more practical despite heavier compliance.
-
-### Should a founder decide this without numbers?
-No. Even a simple spreadsheet comparing margin impact, client expectations and compliance effort can make the decision far clearer.
-
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
-
-- [GST Portal](https://www.gst.gov.in/) - Goods and Services Tax Network
-- [CBIC GST Instructions and Updates](https://cbic-gst.gov.in/) - Central Board of Indirect Taxes and Customs
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [GST Guides](/blog?category=GST)
-- [GST Registration Service](/services/gst-registration)
-- [GST Return Filing Service](/services/gst-return-filing)
-
-### Related calculators and templates
-- Gst Calculator
-- Pricing Model Sheet
-
-### Related services
-- GST Registration
-- GST Return Filing
-
-## CTA
-If you are unsure whether composition or regular GST suits your business, FilingBy can help you review the commercial and compliance impact before you choose. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle composition scheme vs regular gst is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [Central Goods and Services Tax Act, 2017 - Section 10 (Composition Levy)](https://cbic-gst.gov.in/) — Central Board of Indirect Taxes and Customs (CBIC), Government of India
+- [CBIC Notification No. 14/2019 - Central Tax (Turnover Threshold for Composition Scheme)](https://www.cbic.gov.in/) — CBIC, Department of Revenue, Ministry of Finance
+- [CBIC Notification No. 02/2019 - Central Tax (Rate) (Composition Scheme for Services)](https://www.cbic.gov.in/) — CBIC, Department of Revenue, Ministry of Finance

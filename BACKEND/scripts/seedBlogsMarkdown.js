@@ -10,7 +10,13 @@ import MarkdownIt from "markdown-it";
 import sanitizeHtml from "sanitize-html";
 import BlogPost from "../src/models/BlogPost.model.js";
 
+import { fileURLToPath } from "node:url";
+
+const __scriptDir = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config();
+if (!process.env.MONGODB_URI) {
+  dotenv.config({ path: path.resolve(__scriptDir, "../.env") });
+}
 
 const md = new MarkdownIt({
   html: false,
@@ -219,7 +225,10 @@ const seedMarkdownBlogs = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connected to MongoDB for markdown blog seeding...");
 
-    const blogsDir = path.join(process.cwd(), "content", "blogs");
+    let blogsDir = path.join(process.cwd(), "content", "blogs");
+    if (!fs.existsSync(blogsDir)) {
+      blogsDir = path.resolve(__scriptDir, "../content/blogs");
+    }
     if (!fs.existsSync(blogsDir)) {
       console.error(`Blogs directory does not exist at ${blogsDir}`);
       process.exit(1);
@@ -259,8 +268,8 @@ const seedMarkdownBlogs = async () => {
         keywords: metadata.focusKeyword || "",
         category: metadata.category || "General",
         tags: toArray(metadata.secondaryKeywords),
-        author: metadata.author || "FilingBy Legal Desk",
-        authorId: metadata.authorId || DEFAULT_AUTHOR_ID,
+        author: metadata.author || "FilingBy Editorial Team",
+        authorId: metadata.authorId || "filingby-editorial-team",
         readTime: readingMinutes,
         isPublished: metadata.isPublished ?? true,
         publishedAt,

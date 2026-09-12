@@ -1,0 +1,786 @@
+{
+  "inventory": [
+    {
+      "slug": "adt-1-aoc-4-mgt-7-guide",
+      "title": "ROC Annual Filings Triad: Form ADT-1, AOC-4 and MGT-7/7A Compliance Guide",
+      "category": "ROC Compliance",
+      "words": 1298,
+      "headings": 15,
+      "tables": 6,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "advance-tax-for-founders-guide",
+      "title": "Advance Tax for Founders and Companies: AY 2026-27 Installment Dates, Slabs & Penalties",
+      "category": "Income Tax",
+      "words": 1511,
+      "headings": 17,
+      "tables": 6,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "authorised-capital-and-shareholding-guide",
+      "title": "Authorised Capital vs Paid-Up Capital: Startup Shareholding & Form SH-7 Guide",
+      "category": "Company Registration",
+      "words": 1290,
+      "headings": 17,
+      "tables": 24,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "company-incorporation-documents-checklist-guide",
+      "title": "Company Incorporation Documents Checklist: What Founders Must Prepare for SPICe+",
+      "category": "Company Registration",
+      "words": 1337,
+      "headings": 21,
+      "tables": 11,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "company-name-approval-guide-india",
+      "title": "Company Name Approval in India: Rule 8, MCA V3 Search & SPICe+ Part A Guide",
+      "category": "Company Registration",
+      "words": 1272,
+      "headings": 20,
+      "tables": 7,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "composition-vs-regular-gst-scheme",
+      "title": "Composition Scheme vs Regular GST: Section 10 Slabs, Restrictions & Decision Guide",
+      "category": "GST",
+      "words": 1576,
+      "headings": 18,
+      "tables": 26,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "coworking-vs-virtual-office-registration-guide",
+      "title": "Coworking vs Virtual Office for Registration: Cost Models, Regulatory Acceptance & CPV Audits",
+      "category": "Virtual Office",
+      "words": 1503,
+      "headings": 17,
+      "tables": 18,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "designated-partner-dsc-dpin-guide",
+      "title": "Designated Partner DSC and DPIN Guide: What LLP Founders Must Finish Before Filing",
+      "category": "LLP",
+      "words": 1921,
+      "headings": 21,
+      "tables": 13,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "director-kyc-din-compliance-guide",
+      "title": "Director KYC and DIN Compliance Guide: DIR-3 KYC vs Web KYC & Reactivation Rules",
+      "category": "ROC Compliance",
+      "words": 1294,
+      "headings": 13,
+      "tables": 7,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "exporter-onboarding-documents-guide",
+      "title": "Exporter Onboarding Documents Guide: ICEGATE, Bank AD Code, RCMC & Commercial Paperwork",
+      "category": "IEC",
+      "words": 1461,
+      "headings": 20,
+      "tables": 16,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "form-16-vs-form-16a-guide",
+      "title": "Form 16 vs Form 16A Guide: Differences, Section 203 Rules, TRACES & ITR Filing",
+      "category": "TDS",
+      "words": 1663,
+      "headings": 17,
+      "tables": 22,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "fssai-basic-vs-state-vs-central-guide",
+      "title": "FSSAI Basic vs State vs Central Licence: 2026 Thresholds, FoSCoS & Perpetual Validity",
+      "category": "FSSAI",
+      "words": 1606,
+      "headings": 15,
+      "tables": 15,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "fssai-for-cloud-kitchen-and-home-business-guide",
+      "title": "FSSAI for Cloud Kitchens & Home Food Businesses: Swiggy/Zomato Rules, 2026 Slabs & Schedule 4",
+      "category": "FSSAI",
+      "words": 1563,
+      "headings": 20,
+      "tables": 8,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "fssai-labelling-compliance-guide",
+      "title": "FSSAI Labelling Compliance Guide: Mandatory Declarations, Nutritional Panels & 2026 Norms",
+      "category": "FSSAI",
+      "words": 1480,
+      "headings": 19,
+      "tables": 19,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "fssai-renewal-and-modification-guide",
+      "title": "FSSAI Renewal & Modification Guide: FoSCoS Form C, Perpetual Validity & Category Updates",
+      "category": "FSSAI",
+      "words": 1382,
+      "headings": 15,
+      "tables": 13,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gst-cancellation-and-revocation-guide",
+      "title": "GST Cancellation and Revocation Guide: Voluntary Surrender (REG-16) vs Restoration (REG-21)",
+      "category": "GST",
+      "words": 1595,
+      "headings": 17,
+      "tables": 7,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gst-for-ecommerce-sellers-guide",
+      "title": "GST for E-Commerce Sellers Guide: Amazon, Flipkart, D2C Brands & Notification 34/2023",
+      "category": "GST",
+      "words": 1548,
+      "headings": 15,
+      "tables": 14,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gst-lut-vs-refund-for-exporters-guide",
+      "title": "GST LUT vs Refund for Exporters: Working Capital, Rule 96 vs 96A & Strategic Comparison",
+      "category": "GST",
+      "words": 1669,
+      "headings": 17,
+      "tables": 21,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gst-registration-guide",
+      "title": "GST Registration for Service Businesses: Thresholds, Exemptions & REG-01 Filing",
+      "category": "GST",
+      "words": 1669,
+      "headings": 18,
+      "tables": 12,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gst-registration-with-virtual-office",
+      "title": "GST Registration with Virtual Office: Rule 8 Documentation, PPOB & Physical Verification",
+      "category": "GST",
+      "words": 1559,
+      "headings": 15,
+      "tables": 15,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "gstr-1-vs-gstr-3b-reconciliation-guide",
+      "title": "GSTR-1 vs GSTR-3B Reconciliation Guide: Rule 88C DRC-01B, Rule 88D & IMS Mechanics",
+      "category": "GST",
+      "words": 1511,
+      "headings": 18,
+      "tables": 7,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "how-to-register-private-limited-company",
+      "title": "How to Register a Private Limited Company in India: Complete SPICe+ MCA V3 Guide",
+      "category": "Company Registration",
+      "words": 1402,
+      "headings": 19,
+      "tables": 21,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "iec-amendment-and-surrender-guide",
+      "title": "IEC Amendment and Surrender Guide: DGFT Online Modifications, Form ANF-2A & Deactivation Fixes",
+      "category": "IEC",
+      "words": 1416,
+      "headings": 18,
+      "tables": 6,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "iec-registration-for-first-time-exporters-guide",
+      "title": "IEC Registration for First-Time Exporters: DGFT Portal, AD Code & Annual Validation Guide",
+      "category": "IEC",
+      "words": 1486,
+      "headings": 19,
+      "tables": 10,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "income-tax-notice-143-1-139-9-guide",
+      "title": "Income Tax Notice Guide: Section 143(1) Intimations vs Section 139(9) Defective Returns",
+      "category": "Income Tax",
+      "words": 1398,
+      "headings": 13,
+      "tables": 8,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "itr-filing-for-freelancers-guide",
+      "title": "ITR Filing for Freelancers in India: ITR-3 vs ITR-4, Section 44ADA & Expenses Guide",
+      "category": "Income Tax",
+      "words": 1694,
+      "headings": 19,
+      "tables": 17,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "late-tds-return-and-correction-guide",
+      "title": "Late TDS Return and Correction Guide: Section 234E Fees, Form 26Q & TRACES Steps",
+      "category": "TDS",
+      "words": 1740,
+      "headings": 17,
+      "tables": 14,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "llp-agreement-drafting-guide",
+      "title": "LLP Agreement Drafting Guide: Essential Clauses, Stamp Duty & Form 3 Filing",
+      "category": "LLP",
+      "words": 1784,
+      "headings": 25,
+      "tables": 19,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "llp-annual-compliance-calendar",
+      "title": "LLP Annual Compliance Calendar: Form 11, Form 8, DIR-3 KYC & Tax Timelines",
+      "category": "LLP",
+      "words": 1802,
+      "headings": 17,
+      "tables": 26,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "llp-registration-for-consultants",
+      "title": "LLP Registration for Consultants & Agencies: Section 27 Shield, Section 10(2A) Tax & MCA V3",
+      "category": "LLP",
+      "words": 1546,
+      "headings": 15,
+      "tables": 15,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "llp-to-private-limited-conversion-guide",
+      "title": "LLP to Private Limited Conversion Guide: Form URC-1, Section 47(xiii) & MCA V3 Process",
+      "category": "LLP",
+      "words": 1692,
+      "headings": 16,
+      "tables": 22,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "llp-vs-private-limited-for-bootstrapped-startups",
+      "title": "LLP vs Private Limited for Bootstrapped Startups: Compliance, Tax Slabs & VC Readiness",
+      "category": "LLP",
+      "words": 1634,
+      "headings": 16,
+      "tables": 26,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "lut-for-exporters-under-gst",
+      "title": "LUT for Exporters Under GST: Form RFD-11 Filing Guide, Eligibility & Timelines",
+      "category": "GST",
+      "words": 1534,
+      "headings": 22,
+      "tables": 6,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "msme-benefits-after-udyam-registration-guide",
+      "title": "MSME Benefits After Udyam Registration: Revised 2025 Thresholds, Subsidies & Samadhan",
+      "category": "MSME",
+      "words": 1440,
+      "headings": 17,
+      "tables": 10,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "msme-payment-delay-samadhan-guide",
+      "title": "MSME Payment Delay and Samadhan Guide: Sections 15-19, 3x RBI Interest & MSEFC Claims",
+      "category": "MSME",
+      "words": 1606,
+      "headings": 16,
+      "tables": 8,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "opc-vs-private-limited-company-guide",
+      "title": "OPC vs Private Limited Company in India: Which Structure Fits a Solo Founder Better?",
+      "category": "Company Registration",
+      "words": 1212,
+      "headings": 13,
+      "tables": 11,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "presumptive-taxation-44ad-44ada-guide",
+      "title": "Presumptive Taxation Under Sections 44AD and 44ADA: Limits, Rules & Differences",
+      "category": "Income Tax",
+      "words": 1448,
+      "headings": 17,
+      "tables": 11,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "roc-compliance-calendar-private-limited-guide",
+      "title": "ROC Compliance Calendar for Private Limited Companies: Annual & Event-Based Guide",
+      "category": "ROC Compliance",
+      "words": 1373,
+      "headings": 18,
+      "tables": 33,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "roc-forms-every-startup-should-track-guide",
+      "title": "ROC Forms Every Startup Should Track: From Incorporation to Funding & Annual Filing",
+      "category": "ROC Compliance",
+      "words": 1513,
+      "headings": 21,
+      "tables": 14,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "section-80c-80d-deductions-guide",
+      "title": "Section 80C and 80D Deductions Guide: Limits, Rules & New vs Old Tax Regime (AY 2026-27)",
+      "category": "Income Tax",
+      "words": 1404,
+      "headings": 15,
+      "tables": 20,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "spice-plus-common-mistakes-guide",
+      "title": "Top 10 SPICe+ Filing Mistakes That Cause MCA Resubmissions and Delays",
+      "category": "Company Registration",
+      "words": 1395,
+      "headings": 16,
+      "tables": 0,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "startup-india-benefits-and-documents-guide",
+      "title": "Startup India Benefits and Documents Checklist: What Founders Must Prepare Before Applying",
+      "category": "Startup India",
+      "words": 1431,
+      "headings": 19,
+      "tables": 16,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "startup-india-patent-benefits-guide",
+      "title": "Startup India Patent Benefits Guide: SIPP Scheme, 80% Fee Rebates & Expedited Examination",
+      "category": "Startup India",
+      "words": 1532,
+      "headings": 18,
+      "tables": 14,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "startup-india-registration-guide",
+      "title": "Startup India Registration Guide: Step-by-Step NSWS Portal Filing & Certificate Download",
+      "category": "Startup India",
+      "words": 1275,
+      "headings": 16,
+      "tables": 6,
+      "refs": 7,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "startup-india-vs-msme-guide",
+      "title": "Startup India vs MSME Registration: Which One Does Your Business Need?",
+      "category": "Startup India",
+      "words": 1473,
+      "headings": 17,
+      "tables": 18,
+      "refs": 7,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "tan-registration-and-tds-setup-guide",
+      "title": "TAN Registration & TDS Setup Guide: Form 49B, Section 203A & TRACES Deductor Rules",
+      "category": "TDS",
+      "words": 2083,
+      "headings": 18,
+      "tables": 11,
+      "refs": 5,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "tax-audit-applicability-guide",
+      "title": "Tax Audit Applicability Under Section 44AB: ₹10 Crore Limit, Deadlines & Form 3CD",
+      "category": "Income Tax",
+      "words": 1354,
+      "headings": 17,
+      "tables": 9,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "tds-lower-deduction-certificate-guide",
+      "title": "Lower or Nil TDS Certificate Guide: Section 197, Form 13 & TRACES Portal Steps",
+      "category": "TDS",
+      "words": 1499,
+      "headings": 19,
+      "tables": 8,
+      "refs": 7,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "tds-on-professional-fees-contracts-rent-guide",
+      "title": "TDS on Professional Fees, Contracts & Rent: Sections 194C, 194J & 194-I Guide",
+      "category": "TDS",
+      "words": 1976,
+      "headings": 18,
+      "tables": 21,
+      "refs": 8,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "tds-on-salary-vs-professional-fees-guide",
+      "title": "TDS on Salary vs Professional Fees: Section 192 vs 194J Classification Guide",
+      "category": "TDS",
+      "words": 1649,
+      "headings": 18,
+      "tables": 11,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "trademark-assignment-licensing-guide",
+      "title": "Trademark Assignment vs Licensing in India: Transfer of Ownership vs Permissive Use",
+      "category": "Trademark",
+      "words": 1523,
+      "headings": 20,
+      "tables": 14,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "trademark-hearing-preparation-guide",
+      "title": "Trademark Hearing Preparation Guide: Show-Cause Hearings, Evidence & Legal Strategy",
+      "category": "Trademark",
+      "words": 1494,
+      "headings": 22,
+      "tables": 13,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "trademark-objection-reply-guide",
+      "title": "Trademark Objection Reply Guide: Responding to Section 9 & 11 Objections",
+      "category": "Trademark",
+      "words": 1446,
+      "headings": 19,
+      "tables": 5,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "trademark-renewal-restoration-guide",
+      "title": "Trademark Renewal and Restoration Guide: Statutory Timelines, Form TM-R & Fees",
+      "category": "Trademark",
+      "words": 1573,
+      "headings": 18,
+      "tables": 6,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "trademark-search-and-class-selection-guide",
+      "title": "Trademark Search and Class Selection Guide: NICE Classes & Public Search Portal",
+      "category": "Trademark",
+      "words": 1332,
+      "headings": 18,
+      "tables": 19,
+      "refs": 5,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "udyam-registration-for-service-business-guide",
+      "title": "Udyam Registration for Service Businesses: NIC Codes, Export Carve-Out & Official ₹0 Portal",
+      "category": "MSME",
+      "words": 1415,
+      "headings": 15,
+      "tables": 12,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "udyam-update-modification-guide",
+      "title": "Udyam Update & Modification Guide: Automated ITR Sync, NIC Changes & Portal Guidelines",
+      "category": "MSME",
+      "words": 1426,
+      "headings": 16,
+      "tables": 19,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "virtual-office-documents-checklist-guide",
+      "title": "Virtual Office Documents Checklist: Forensic Audit of Electricity Bills, NOCs & Master Leases",
+      "category": "Virtual Office",
+      "words": 1427,
+      "headings": 16,
+      "tables": 14,
+      "refs": 4,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "virtual-office-for-company-registration-guide",
+      "title": "Virtual Office for Company Registration: Section 12 Compliance, Rule 25B & SPICe+ Rules",
+      "category": "Virtual Office",
+      "words": 1460,
+      "headings": 16,
+      "tables": 8,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    },
+    {
+      "slug": "virtual-office-for-gst-registration-guide",
+      "title": "Virtual Office for GST Registration: Vendor Vetting, State Nuances & Inspection Readiness",
+      "category": "Virtual Office",
+      "words": 1561,
+      "headings": 15,
+      "tables": 18,
+      "refs": 6,
+      "hasOrgAuthor": true,
+      "hasFakeReviewer": false
+    }
+  ],
+  "pairScores": [
+    {
+      "a": "tds-on-professional-fees-contracts-rent-guide",
+      "b": "tds-on-salary-vs-professional-fees-guide",
+      "sim": 0.04653312788906009
+    },
+    {
+      "a": "fssai-basic-vs-state-vs-central-guide",
+      "b": "fssai-renewal-and-modification-guide",
+      "sim": 0.045423023578363385
+    },
+    {
+      "a": "presumptive-taxation-44ad-44ada-guide",
+      "b": "section-80c-80d-deductions-guide",
+      "sim": 0.0452147701582517
+    },
+    {
+      "a": "gst-registration-with-virtual-office",
+      "b": "virtual-office-for-gst-registration-guide",
+      "sim": 0.042567125081859856
+    },
+    {
+      "a": "roc-compliance-calendar-private-limited-guide",
+      "b": "roc-forms-every-startup-should-track-guide",
+      "sim": 0.038897280966767374
+    },
+    {
+      "a": "adt-1-aoc-4-mgt-7-guide",
+      "b": "roc-compliance-calendar-private-limited-guide",
+      "sim": 0.03889102810935695
+    },
+    {
+      "a": "company-incorporation-documents-checklist-guide",
+      "b": "spice-plus-common-mistakes-guide",
+      "sim": 0.038669760247486466
+    },
+    {
+      "a": "income-tax-notice-143-1-139-9-guide",
+      "b": "presumptive-taxation-44ad-44ada-guide",
+      "sim": 0.0379323168464113
+    },
+    {
+      "a": "company-incorporation-documents-checklist-guide",
+      "b": "how-to-register-private-limited-company",
+      "sim": 0.037848605577689244
+    },
+    {
+      "a": "presumptive-taxation-44ad-44ada-guide",
+      "b": "tax-audit-applicability-guide",
+      "sim": 0.03783996846669294
+    },
+    {
+      "a": "trademark-assignment-licensing-guide",
+      "b": "trademark-objection-reply-guide",
+      "sim": 0.0374331550802139
+    },
+    {
+      "a": "gst-lut-vs-refund-for-exporters-guide",
+      "b": "lut-for-exporters-under-gst",
+      "sim": 0.03732554365465758
+    },
+    {
+      "a": "llp-to-private-limited-conversion-guide",
+      "b": "llp-vs-private-limited-for-bootstrapped-startups",
+      "sim": 0.03677869372225745
+    },
+    {
+      "a": "gst-cancellation-and-revocation-guide",
+      "b": "gst-registration-with-virtual-office",
+      "sim": 0.036405378812725486
+    },
+    {
+      "a": "composition-vs-regular-gst-scheme",
+      "b": "gst-for-ecommerce-sellers-guide",
+      "sim": 0.03629579375848033
+    },
+    {
+      "a": "llp-registration-for-consultants",
+      "b": "llp-vs-private-limited-for-bootstrapped-startups",
+      "sim": 0.03496732026143791
+    },
+    {
+      "a": "tan-registration-and-tds-setup-guide",
+      "b": "tds-on-professional-fees-contracts-rent-guide",
+      "sim": 0.03475862068965517
+    },
+    {
+      "a": "itr-filing-for-freelancers-guide",
+      "b": "presumptive-taxation-44ad-44ada-guide",
+      "sim": 0.03471017007983339
+    },
+    {
+      "a": "director-kyc-din-compliance-guide",
+      "b": "roc-compliance-calendar-private-limited-guide",
+      "sim": 0.03470540758676352
+    },
+    {
+      "a": "director-kyc-din-compliance-guide",
+      "b": "roc-forms-every-startup-should-track-guide",
+      "sim": 0.034653465346534656
+    }
+  ],
+  "stats": {
+    "totalWords": 91156,
+    "avgWords": 1519,
+    "minWords": 1212,
+    "maxWords": 2083,
+    "totalTables": 826,
+    "totalHeadings": 1049,
+    "totalGovRefs": 335,
+    "sitemapUrls": 105,
+    "coreIndexedCount": 14,
+    "secondaryNoindexFollowCount": 137,
+    "geoNoindexFollowCount": 17,
+    "maxSimilarity": "4.65",
+    "minSimilarity": "0.60",
+    "avgSimilarity": "1.13",
+    "boilerplateHits": 0,
+    "templateHits": 0,
+    "missingOrgAuthor": 0,
+    "foundFakeReviewer": 0
+  }
+}

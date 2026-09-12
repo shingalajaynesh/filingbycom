@@ -1196,12 +1196,12 @@ Sitemap: https://www.filingby.com/image-sitemap.xml
         "datePublished": post.publishedAt,
         "dateModified": post.lastUpdated || post.updatedAt || post.publishedAt,
         "author": { 
-          "@type": "Person", 
-          "name": post.author || "FilingBy Editorial Team" 
+          "@type": "Organization", 
+          "name": "FilingBy Editorial Team" 
         },
         "publisher": {
           "@type": "Organization",
-          "name": "FilingBy.com",
+          "name": "FilingBy",
           "logo": {
             "@type": "ImageObject",
             "url": "https://www.filingby.com/logo.jpeg"

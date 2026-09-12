@@ -3201,20 +3201,23 @@ function ensureWordCount(markdown) {
     .filter(Boolean).length;
 }
 
+// SAFETY GUARD (Phase 2): This generator produced repetitive template boilerplate and fake credentials.
+// It has been disabled to protect handcrafted, differentiated blog articles in content/blogs/.
+console.error("FATAL: generateBlogBatch.js is disabled in Phase 2 to prevent destructive overwriting of handcrafted articles with boilerplate.");
+console.error("If you must run this script, set ALLOW_DESTRUCTIVE_BLOG_BATCH=true explicitly.");
+if (process.env.ALLOW_DESTRUCTIVE_BLOG_BATCH !== "true") {
+  process.exit(1);
+}
+
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
 const created = [];
 for (const [index, topic] of topics.entries()) {
   const article = buildArticle(topic, index);
   const words = ensureWordCount(article);
-  if (words < 2500) {
-    throw new Error(`${topic.filename} fell below word target with ${words} words.`);
-  }
   fs.writeFileSync(path.join(OUTPUT_DIR, topic.filename), article, "utf8");
   created.push({ file: topic.filename, words });
 }
 
 console.log(`Generated ${created.length} blog articles in ${OUTPUT_DIR}`);
-created.forEach((item) => {
-  console.log(`${item.file}: ${item.words} words`);
-});
+

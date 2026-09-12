@@ -1,297 +1,211 @@
 ---
-title: "Choosing Authorised Capital and Shareholding at Incorporation: A Straightforward Guide for Founders"
+title: "Authorised Capital vs Paid-Up Capital: Startup Shareholding & Form SH-7 Guide"
 slug: "authorised-capital-and-shareholding-guide"
-seoTitle: "Authorised Capital and Shareholding Guide for New Companies in India"
-seoDescription: "Learn how founders should choose authorised capital, paid-up capital and shareholding splits during company registration in India without creating avoidable legal or tax issues."
+seoTitle: "Authorised vs Paid-Up Capital: Startup Guide & Form SH-7 Increase"
+seoDescription: "Understand authorised capital vs paid-up capital in India. Learn initial capital planning, state stamp duty, equity dilution math, and Form SH-7 filing."
 focusKeyword: "authorised capital and shareholding guide"
 secondaryKeywords:
-  - "paid up capital meaning"
-  - "shareholding split for startup"
-  - "company capital at incorporation"
-searchIntent: "Informational"
+  - "authorised vs paid up capital differences"
+  - "how to increase authorised capital form sh-7"
+  - "state stamp duty on share capital increase"
+  - "startup cap table structuring india"
+searchIntent: "Informational / Corporate"
 category: "Company Registration"
-subCategory: "Planning"
-author: "FilingBy Editorial Desk"
-authorId: "filingby-editorial-desk"
-reviewedBy: "FilingBy Content Team"
-reviewerId: "filingby-content-team"
-reviewedByTitle: "Editorial Fact-Checking Desk"
-reviewerExperience: ""
-readingTime: "13 mins"
-lastUpdated: "2026-07-17"
-featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
+subCategory: "Share Capital"
+author: "FilingBy Editorial Team"
+authorId: "filingby-editorial-team"
+readingTime: "11 mins"
+lastUpdated: "2026-09-12"
+featuredImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1200&auto=format&fit=crop"
 featuredImageWidth: 1200
 featuredImageHeight: 675
-imageAlt: "Featured image for authorised capital and shareholding guide"
-excerpt: "A practical guide for co-founders who want to set up a sensible capital structure instead of copying random numbers during company incorporation."
-cta: "If you are finalising a founder structure and want it reviewed before incorporation, FilingBy can help you think through the cap table properly."
+imageAlt: "Cap table spreadsheet and shareholding certificates reviewed on computer screen"
+excerpt: "A practical founder's guide to corporate capital in India: authorized vs paid-up distinctions, cap table math, state stamp duty, and Form SH-7 capital expansion."
+cta: "Planning to expand your company's authorized share capital or issue shares to investors? FilingBy manages seamless capital restructuring."
 isPublished: true
 relatedServices:
   - "private-limited-company"
-  - "llp-registration"
+  - "roc-annual-filing-pvt"
 relatedBlogs:
-  - "private-limited-company-registration-india-guide"
-  - "spice-plus-filing-mistakes-guide"
-  - "opc-vs-private-limited-company-guide-india"
-  - "company-name-approval-guide-india"
-  - "company-incorporation-documents-checklist-guide"
+  - "how-to-register-private-limited-company"
+  - "roc-forms-every-startup-should-track-guide"
+  - "opc-vs-private-limited-company-guide"
 topicHub: "/blog?category=Company%20Registration"
-relatedCalculators:
-  - "/income-tax-calculator"
+relatedCalculators: []
 relatedTemplates:
-  - "cap-table-template"
-  - "founders-agreement"
+  - "form-sh-7-board-and-egm-resolution"
 internalLinks:
   - "/blog?category=Company%20Registration"
   - "/services/private-limited-company"
 tableOfContents:
-  - "Introduction"
-  - "Understanding the issue"
-  - "Capital decisions founders should understand"
-  - "Government process explained step by step"
-  - "Documents you should prepare"
-  - "Costs, timelines and practical expectations"
-  - "Common mistakes"
-  - "Pro tips from practice"
-  - "FAQs"
-  - "Authoritative references"
-  - "Related resources and services"
-  - "Conclusion"
+  - "Demystifying Corporate Share Capital"
+  - "The Four Tiers of Company Capital"
+  - "Authorised Capital vs Paid-Up Capital: Core Differences"
+  - "How Much Initial Capital Should a Startup Set?"
+  - "State Stamp Duty on Authorised Capital: A State-by-State Overview"
+  - "Step-by-Step Procedure to Increase Authorised Capital via Form SH-7"
+  - "Cap Table Dilution Math: Expanding the Pie for Investors"
+  - "Frequently Asked Questions"
+  - "Official References"
 keyTakeaways:
-  - "authorised capital and shareholding guide should be treated as a business decision, not only a filing formality."
-  - "Clean documentation and consistent records usually matter more than rushing to submit."
-  - "The right compliance approach should support growth, client trust and long-term operational discipline."
-  - "Review connected registrations, tax impact and post-approval workflow before you proceed."
+  - "Authorised Share Capital is the maximum statutory limit of share capital a company is permitted to issue under Clause V of its Memorandum of Association (MoA)."
+  - "Paid-Up Share Capital is the actual monetary amount transferred by shareholders into the company's bank account in exchange for allotted shares."
+  - "Paid-up capital can never legally exceed authorized capital; before issuing new shares to investors or employee option pools, authorized capital must be increased first."
+  - "Increasing authorized capital requires shareholder approval via an Ordinary Resolution, altering the MoA, and filing Form SH-7 on MCA V3 within 30 days along with state stamp duty."
 faq:
-  - q: "Does higher authorised capital mean a higher company valuation?"
-    a: "No. Authorised capital is a legal capacity figure, not a valuation certificate. Founders should not confuse the two."
-  - q: "Can founders choose uneven shareholding?"
-    a: "Yes. Uneven ownership is common where contribution, responsibility or strategic role differs. The important part is that the logic is discussed and documented properly."
-  - q: "Should paid-up capital always be high at the start?"
-    a: "Not necessarily. The better question is whether the initial capital structure matches the operating reality and can be defended as sensible."
-  - q: "What if founders want to change the split later?"
-    a: "It can be changed, but the change should follow proper legal and tax review instead of casual side agreements."
-imageGallery:
-  - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
-    alt: "Founder reviewing compliance checklist for authorised capital and shareholding guide"
-    caption: "A founder at a desk reviewing key compliance documents before filing."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
-    alt: "Government portal workflow screen for authorised capital and shareholding guide"
-    caption: "A visual showing the online registration or filing journey in a simple business context."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
-    alt: "Business document stack for authorised capital and shareholding guide"
-    caption: "Scanned business records, PAN, bank proof and address documents prepared in order."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
-    alt: "Advisor discussion with founder for authorised capital and shareholding guide"
-    caption: "A consultation scene showing a founder clarifying legal and tax questions before applying."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
-    alt: "Operations and finance coordination for authorised capital and shareholding guide"
-    caption: "A team-level image reflecting accounting, compliance and operational coordination."
-    width: undefined
-    height: undefined
-  - url: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
-    alt: "Certificate and post-approval planning for authorised capital and shareholding guide"
-    caption: "A business owner moving from approval to practical implementation and record keeping."
-    width: undefined
-    height: undefined
+  - q: "Can a startup be incorporated with ₹10,000 paid-up capital and ₹10,00,000 authorised capital?"
+    a: "Yes. In fact, this is standard startup best practice. Setting authorized capital at ₹10,00,000 (or ₹15,00,000 where ROC fees are concessional) while injecting only ₹10,000 as paid-up capital allows founders to start lean without paying high capital upfront."
+  - q: "What is the consequence of issuing shares exceeding authorized capital?"
+    a: "Under the Companies Act 2013, any allotment of shares beyond the authorized share capital specified in the MoA is null and void (ultra vires). The company and defaulting officers face substantial penalties, and the allotment cannot be registered on the MCA portal."
+  - q: "How much stamp duty is payable when increasing authorized capital?"
+    a: "Stamp duty is governed by state stamp acts and varies widely. In Maharashtra, stamp duty on capital is slab-based; in Delhi and Karnataka, distinct percentage tariffs apply to the incremental capital amount."
+  - q: "What is the statutory deadline to file Form SH-7 after increasing capital?"
+    a: "Under Section 64(1) of the Companies Act 2013, Form SH-7 must be filed with the Registrar of Companies within 30 days from the date of passing the shareholder resolution at the Extraordinary General Meeting (EGM)."
 references:
-  - title: "MCA Services Portal"
-    url: "https://www.mca.gov.in/"
-    publisher: "Ministry of Corporate Affairs"
-  - title: "Companies Act and Rules Resources"
+  - title: "The Companies Act, 2013 (Section 61 & Section 64 - Alteration of Share Capital)"
     url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
+    publisher: "Ministry of Corporate Affairs (MCA), Government of India"
+  - title: "MCA V3 Form SH-7 User Manual"
+    url: "https://www.mca.gov.in/content/mca/global/en/e-filing/company-forms-download-eforms.html"
     publisher: "Ministry of Corporate Affairs"
-sources:
-  - title: "MCA Services Portal"
-    organisation: "Ministry of Corporate Affairs"
-    url: "https://www.mca.gov.in/"
-    kind: "reference"
-  - title: "Companies Act and Rules Resources"
-    organisation: "Ministry of Corporate Affairs"
-    url: "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html"
-    kind: "reference"
+  - title: "State Stamp Acts and Share Capital Duties"
+    url: "https://www.mca.gov.in/content/mcafee/en/acts-rules.html"
+    publisher: "Ministry of Corporate Affairs"
 versionHistory:
-  - date: "July 2026"
-    change: "Initial production-ready article created with detailed process guidance, FAQs and internal linking."
-  - date: "July 2026"
-    change: "Editorial layout upgraded with key takeaways, reference section and stronger E-E-A-T trust signals."
+  - date: "September 2026"
+    change: "Comprehensive Phase 2 rewrite: detailed 4-tier capital hierarchy, state stamp duty variations, dilution mathematics, and Form SH-7 procedure."
 status: "published"
 ---
 
-# Choosing Authorised Capital and Shareholding at Incorporation: A Straightforward Guide for Founders
+# Authorised Capital vs Paid-Up Capital: Startup Shareholding & Form SH-7 Guide
 
-## Introduction
-If you are researching authorised capital and shareholding guide, you are probably trying to make a business decision that has legal, financial and operational consequences. This guide is written for co-founders, family businesses, professional firms converting into companies and first-time startup teams. It keeps the language practical and avoids legal drama because most founders do not need more jargon; they need a clear decision path.
+When structuring a new Private Limited Company in India, founders frequently encounter terms like **Authorised Capital**, **Issued Capital**, **Subscribed Capital**, and **Paid-Up Capital**.
 
-Many new companies spend more time choosing a logo than discussing capital and shareholding. Yet this is the section that later affects control, fundraising and founder trust. The incorporation form makes capital structure look simple, but a careless number today can trigger awkward corrections tomorrow when investors, banks or tax professionals review the company. That is why the best approach is to understand not only the form or portal step, but also the business context in which the compliance decision sits.
+Because these concepts sound similar, first-time entrepreneurs often conflate them:
+- Some founders believe setting an authorized capital of ₹10,00,000 requires them to immediately deposit ₹10,00,000 in cash into their newly opened corporate bank account.
+- Other founders initialize their company with a tiny authorized capital of ₹10,000, only to discover 6 months later that they cannot issue shares to an incoming angel investor without undertaking an expensive, formal legal process to increase their capital ceiling.
 
-Another reason this topic matters is that many businesses in India move from informal working to structured compliance very quickly. A new client, a marketplace onboarding requirement, a bank query, a funding conversation or a city expansion plan can suddenly make this issue urgent. When that happens, founders who already understand the ground rules move faster and with less stress.
+Understanding how corporate share capital operates—and mastering the procedure to increase your capital ceiling via **Form SH-7 on MCA V3**—is essential for every venture builder.
 
-That is exactly why the article is written in a business-first way rather than a purely technical one. A founder reading this should be able to connect the legal requirement with hiring plans, billing operations, vendor relationships and long-term brand credibility without feeling lost in unnecessary complexity.
+---
 
-Throughout this article, the aim is to help you distinguish between what is legally required, what is commercially smart and what is simply good housekeeping. Those are not always the same thing, and confusion between them is what creates expensive mistakes. By the end, you should know whether this is something you can prepare for confidently and where professional help becomes valuable.
+## The Four Tiers of Company Capital
 
-## Understanding the issue
-Authorised capital, subscribed capital and paid-up capital are distinct concepts. Their treatment sits within company law mechanics and affects filings, share issuance and internal governance. In real life, however, the challenge is rarely only about the law. The bigger challenge is that business documents, tax records, partner expectations, cash flow and operational habits all intersect at the same point.
+To understand company shareholding, visualize capital as an inverted pyramid of legal thresholds:
 
-A founder should therefore ask three questions very early. First, does the business actually need this registration, licence or compliance action now? Second, are the documents and internal records clean enough to support it? Third, if approval comes through, is the business ready to operate properly afterwards rather than treating the certificate as the finish line?
+### 1. AUTHORISED CAPITAL
 
-This is where long-term thinking matters. A document filed in a hurry often creates a silent problem that surfaces months later during banking, vendor onboarding, annual compliance, funding due diligence or a government query. Planning slightly better at the start usually saves disproportionate time later.
+| **The legal ceiling defined in Clause V of the MoA.** |
+| --- |
+| (e.g., ₹15,00,000 divided into 1,50,000 shares of ₹10 each) |
+| 2. ISSUED CAPITAL |
+| The portion of authorised capital offered to shareholders. |
+| (e.g., ₹5,00,000 divided into 50,000 shares of ₹10 each) |
+| 3. SUBSCRIBED CAPITAL |
+| The portion of issued capital that shareholders agreed to take. |
+| (e.g., ₹5,00,000 agreed to be purchased by Founders & Investors) |
+| 4. PAID-UP CAPITAL |
+| The actual cash deposited by subscribers into the company bank a/c. |
+| (e.g., ₹5,00,000 fully credited and verified via Form INC-20A) |
 
-For Indian founders, this is especially relevant because one compliance task often overlaps with another. A decision taken for tax, registration, licensing or corporate law reasons can quickly affect contracts, pricing, city expansion, marketplace access or investor readiness. Seeing the issue in that wider frame leads to far better business decisions.
 
-## Capital decisions founders should understand
-| Element | What it means | Why it matters |
-| --- | --- | --- |
-| Authorised capital | Maximum share capital the company is allowed to issue initially | Sets the immediate issuance ceiling unless changed later |
-| Subscribed capital | Amount agreed to be taken by shareholders | Shows what shareholders commit to take |
-| Paid-up capital | Amount actually paid or credited on issued shares | Reflects actual ownership backing |
-| Shareholding split | Allocation of shares across owners | Defines economics and control |
+---
 
-The comparison above matters because many business owners default to the path that looks easiest in the short term. A better question is which path will still look sensible once the business grows, invoices become more frequent and someone outside the business starts reviewing the records. That outside person could be a customer, bank, vendor, tax officer, investor or auditor.
+## Authorised Capital vs Paid-Up Capital: Core Differences
 
-## Government process explained step by step
-### Step 1: Separate emotional fairness from commercial design
-Equal ownership feels simple, but simple is not always fair. Founders should examine capital contribution, operating responsibility, IP creation, decision rights and long-term commitment before deciding the split.
+| Statutory Dimension | Authorised Share Capital | Paid-Up Share Capital |
+|---|---|---|
+| **Legal Definition** | The maximum nominal value of shares the company is legally authorized to issue. | The actual money received by the company from shareholders for allotted shares. |
+| **Documentary Anchor** | Embedded in **Clause V of the Memorandum of Association (MoA)**. | Reflected in the company balance sheet and **Form INC-20A / PAS-3**. |
+| **Relation to Bank Balance** | Has **zero connection to bank balance**; it is purely a legal ceiling. | Represents **actual cash injected** into the corporate bank account. |
+| **Alteration Procedure** | Requires EGM shareholder vote, altering MoA, and filing **Form SH-7**. | Increases automatically when new shares are allotted via **Form PAS-3**. |
+| **Statutory Stamp Duty** | Attracts state government stamp duty and ROC registration fees upon creation/increase. | No direct MCA fee; shares are stamped via state share certificate stamp duty. |
 
-At this stage, speed matters less than factual clarity. A clean first submission usually saves more time than a rushed correction cycle and reduces avoidable follow-up effort.
+---
 
-### Step 2: Choose authorised capital with a practical view
-There is no prize for copying a large number without reason. A sensible figure should support initial share issuance and a near-term operating plan while remaining easy to explain and manage.
+## How Much Initial Capital Should a Startup Set?
 
-This step works best when finance, operations and the authorised signatory are aligned before anything is submitted and before commercial promises are made outside the business.
+When incorporating via SPICe+ on MCA V3, the Central Government provides a major incentive:
+- **₹0 MCA ROC Fee on Authorized Capital up to ₹15,00,000** for new company incorporations (only state stamp duty applies).
+- **The Recommended Setup:**
+  - **Authorised Capital:** Set at **₹10,00,000 or ₹15,00,000** (e.g., 1,00,000 shares of ₹10 face value).
+  - **Paid-Up Capital:** Initialize at **₹10,000 to ₹1,00,000** (e.g., Founders inject ₹50,000 each).
 
-### Step 3: Record the logic before filing the incorporation forms
-The government process only captures the final numbers. The internal founder reasoning should be written separately so future conversations about dilution, additional funding or founder changes have a reference point.
+### Why This Structure Is Optimal:
+1. **Low Initial Cash Outlay:** Founders only need to deposit ₹10,000 or ₹1,00,000 from their personal bank accounts into the company bank account to clear Form INC-20A.
+2. **Room for Growth:** The company has unissued headroom of ₹9,00,000 to ₹14,00,000 in authorized capital, allowing them to issue shares to incoming angel investors, grant ESOPs, or bring in co-founders without paying to file Form SH-7.
 
-Most avoidable queries at this point come from inconsistent supporting records rather than from complex law, so document discipline matters more than last-minute confidence.
+---
 
-### Step 4: Align incorporation documents with the agreed structure
-Share counts, subscriber sheets, authorised capital and related drafting should all point in one direction. Inconsistency between founder discussions and filed data is one of the easiest ways to create friction later.
+## State Stamp Duty on Authorised Capital: A State-by-State Overview
 
-A founder should treat this as an evidence step, not just a form-filling step. The stronger the record trail, the smoother the outcome usually becomes.
+While MCA ROC fees are waived up to ₹15 lakh, **State Stamp Duty** is mandatory under state stamp acts and varies depending on where your registered office is situated:
 
-### Step 5: Think one round ahead, not only one month ahead
-A bootstrapped startup may not need outside capital immediately, but it should still ask whether the structure leaves room for advisers, early employees or future investors without confusion.
+| State of Registered Office | Stamp Duty on Initial Capital (Up to ₹10–15 Lakh) | Incremental Duty on Increasing Capital |
+|---|---|---|
+| **Delhi** | Nominal slab (~₹1,000 to ₹2,000) | 0.15% to 0.5% on incremental capital |
+| **Maharashtra** | ₹1,000 for every ₹5,00,000 capital (subject to cap) | Slab-based incremental duty |
+| **Karnataka** | 0.5% of authorized share capital | 0.5% on incremental capital |
+| **Telangana / AP** | Slab-based percentage duty | Percentage duty on increased amount |
 
-Where timing matters commercially, build a review buffer here instead of assuming the first draft will always be submission-ready or fully consistent across documents.
+---
 
-### Step 6: Review changes formally after incorporation
-If the company later wants to issue more shares or change capital, handle it through proper resolutions and filings. Informal founder understandings are not a substitute for corporate records.
+## Step-by-Step Procedure to Increase Authorised Capital via Form SH-7
 
-This is the point where organised internal records start paying off. Businesses with a clear document trail generally move with less friction and better confidence.
+When your company negotiates an investment round that requires issuing shares exceeding your current authorized capital ceiling, you must increase authorized capital under **Section 61 read with Section 64**:
 
-## Documents you should prepare
-Even when the online process looks simple, document quality decides how smooth the journey feels. A clean document pack reduces clarifications, shortens review time and helps your team answer questions confidently. The following checklist is a practical starting point.
+1. **Board Meeting: Approve Capital Increase & Convene EGM**
+2. **Extraordinary General Meeting (EGM): Shareholders Pass Ordinary Resolution**
+3. **Alter Clause V of Memorandum of Association (MoA)**
+4. **File Form SH-7 on MCA V3 within 30 Days of EGM with State Stamp Duty**
+5. **ROC Approves Capital Expansion -> Ready to Allot Shares via Form PAS-3**
 
-- Founder contribution summary covering cash, effort, assets or IP
-- Draft cap table showing number of shares and ownership percentages
-- Incorporation papers reflecting authorised and subscribed capital
-- Internal founder note capturing decision logic
-- Template board or shareholder approvals for future changes
+### Mandatory Attachments for Form SH-7
+1. Certified true copy of the **Ordinary Resolution** passed at the EGM.
+2. Altered copy of the **Memorandum of Association (MoA)** showing the expanded capital figure in Clause V.
+3. Notice of the EGM along with the explanatory statement under Section 102.
 
-It is wise to keep these documents in one shared folder with a consistent naming format. That small discipline helps not only with the current application but also with later reviews, renewals, amendments and annual compliance work. Businesses that store records well usually look more reliable because they can answer questions without panic.
+---
 
-## Costs, timelines and practical expectations
-Most founders want a precise rupee figure and a guaranteed timeline. In practice, the better answer is to separate government charges, professional fees and opportunity cost. The visible filing cost is only one part of the picture. The hidden cost of poor preparation is often much larger.
+## Cap Table Dilution Math: Expanding the Pie for Investors
 
-Timelines also vary depending on document quality, portal response, whether the case is straightforward and whether any follow-up is triggered. A business that prepares well usually moves faster not because the law changes, but because avoidable corrections are reduced. That is why serious founders focus first on readiness, then on submission.
+Consider two founders, Aman and Neha, who incorporate *Apex Analytics Pvt Ltd* with:
+- Authorized Capital: ₹1,00,000 (10,000 shares of ₹10 each).
+- Paid-Up Capital: ₹1,00,000 (Aman owns 5,000 shares; Neha owns 5,000 shares; 50/50 split).
 
-Where the matter is linked to client onboarding, export orders, marketplace launch or fundraising, build extra buffer into your timeline. Do not promise external stakeholders that the approval will certainly arrive on the earliest possible date. A prudent buffer protects both commercial relationships and internal stress levels.
+An angel investor offers to invest **₹25,00,000 for a 20% equity stake**:
 
-It is also sensible to budget internal management time, not only filing fees. Someone in the business will need to gather records, answer queries, review drafts and update post-approval systems. When that time is planned properly, the process feels controlled instead of disruptive.
+### Step 1: Calculate New Share Allotment
+- To give the investor 20%, the founders' 10,000 shares must represent 80% of the post-money company.
+- Post-money total shares = $\frac{10,000}{0.80} = 12,500 \text{ shares}$.
+- New shares to be issued to investor = **2,500 shares**.
+- Premium per share = $\frac{₹25,00,000}{2,500} = ₹1,000$ per share (₹10 face value + ₹990 securities premium).
 
-In other words, the most useful planning question is not only "What does this cost?" but also "What will this require from the team before and after approval?" That wider view usually leads to better timelines, better delegation and fewer unpleasant surprises.
+### Step 2: The Capital Bottleneck
+- Total post-money shares = 12,500 shares of ₹10 = **₹1,25,000 nominal capital**.
+- The existing authorized capital is only **₹1,00,000**.
+- **Action Required:** Before the company can legally accept the funds and file Form PAS-3, it must convene an EGM, file **Form SH-7**, and increase authorized capital to at least ₹2,00,000 (or ₹10,00,000 to allow future rounds).
 
-## Common mistakes
-Most problems do not arise because the law is impossible to understand. They arise because everyday business pressure pushes founders into filing before the facts are ready. These are the mistakes we see most often in practice.
+---
 
-- Using a random authorised capital amount copied from a friend
-- Splitting shares equally to avoid one difficult conversation
-- Confusing paid-up capital with business valuation
-- Failing to document why the split was chosen
-- Promising future share adjustments informally without legal records
+## Frequently Asked Questions
 
-A useful way to read this list is to ask which of these mistakes your business is naturally most likely to make. For some teams the risk is documentation; for others it is poor internal ownership; for others it is overconfidence. Identifying the likely weak point early is often enough to prevent the error altogether.
+### Can a startup be incorporated with ₹10,000 paid-up capital and ₹10,00,000 authorised capital?
+Yes. In fact, this is standard startup best practice. Setting authorized capital at ₹10,00,000 (or ₹15,00,000 where ROC fees are concessional) while injecting only ₹10,00,000 as paid-up capital allows founders to start lean without paying high capital upfront.
 
-## Pro tips from practice
-Professional experience usually shows that the easiest wins come from process discipline rather than legal brilliance. You do not need a dramatic strategy. You need a repeatable one that your team can follow without confusion. The tips below are simple, but they are effective because they reduce friction.
+### What is the consequence of issuing shares exceeding authorized capital?
+Under the Companies Act 2013, any allotment of shares beyond the authorized share capital specified in the MoA is null and void (ultra vires). The company and defaulting officers face substantial penalties, and the allotment cannot be registered on the MCA portal.
 
-- Discuss role, risk and reward before discussing percentages
-- Keep the cap table simple enough to explain in one minute
-- Use written founder notes even if everyone is on good terms today
-- Plan for small future grants or restructuring rather than squeezing everything into the first issue
+### How much stamp duty is payable when increasing authorized capital?
+Stamp duty is governed by state stamp acts and varies widely. In Maharashtra, stamp duty on capital is slab-based; in Delhi and Karnataka, distinct percentage tariffs apply to the incremental capital amount.
 
-Another strong practice is to connect this compliance task with the rest of the business system. For example, if you are updating registration records, also review invoicing, contracts, vendor onboarding, banking and annual compliance folders. That joined-up approach creates much better long-term control than handling each issue in isolation.
+### What is the statutory deadline to file Form SH-7 after increasing capital?
+Under Section 64(1) of the Companies Act 2013, Form SH-7 must be filed with the Registrar of Companies within 30 days from the date of passing the shareholder resolution at the Extraordinary General Meeting (EGM).
 
-## Practical scenarios founders commonly face
-Scenario one is the urgent customer or vendor trigger. A large client asks for a compliant invoice, a marketplace requests updated registration details or a bank asks for structured records. In this situation, the founder who already understands the compliance ground rules can respond calmly instead of reacting with incomplete filings.
+---
 
-Scenario two is the growth transition. The business was manageable in an informal setup, but a second city, a new partner, a new product line or a larger monthly billing cycle changes the risk profile. This is often the moment when good compliance stops being theoretical and starts becoming a business enabler.
+## Official References
 
-Scenario three is the clean-up phase. The business has already been operating for some time, and the founder now wants to regularise the structure properly. That is absolutely possible, but the clean-up is smoother when the team first reconstructs facts, documents and timelines before rushing into a portal action.
-
-## Founder checklist before you proceed
-Before taking the next step, run through a simple final checklist. Can you explain why the action is needed, who in the business owns it, what documents support it and what post-approval process will change once it is completed? If any one of those answers is still fuzzy, spend a little more time on preparation.
-
-Also ask whether the business has updated its surrounding systems. Many registrations and filings technically get completed, but the company keeps using old invoice details, old contracts, old addresses or inconsistent vendor records. That disconnect weakens the value of the compliance work and often creates the next problem.
-
-## How to keep this useful over the next five years
-A good compliance decision should survive business growth, not just solve today's urgency. That is why founders should review this topic again whenever revenue mix changes, a new state or city is added, investors begin due diligence, large enterprise clients are onboarded or the business shifts into a more formal operating phase. The rule may remain the same, but the practical answer for your business can still evolve.
-
-It also helps to build one annual review ritual around registrations, tax positions, licences and internal records. When the leadership team spends even one structured hour checking whether business reality still matches legal records, many future corrections can be prevented. That discipline is what makes content like this genuinely evergreen rather than only useful at the moment of first filing.
-
-## FAQs
-### Does higher authorised capital mean a higher company valuation?
-No. Authorised capital is a legal capacity figure, not a valuation certificate. Founders should not confuse the two.
-
-### Can founders choose uneven shareholding?
-Yes. Uneven ownership is common where contribution, responsibility or strategic role differs. The important part is that the logic is discussed and documented properly.
-
-### Should paid-up capital always be high at the start?
-Not necessarily. The better question is whether the initial capital structure matches the operating reality and can be defended as sensible.
-
-### What if founders want to change the split later?
-It can be changed, but the change should follow proper legal and tax review instead of casual side agreements.
-
-## Authoritative references
-Compliance content becomes far more trustworthy when readers can cross-check the core principles with official or primary-source platforms. The sources below are useful starting points for validation and future updates.
-
-- [MCA Services Portal](https://www.mca.gov.in/) - Ministry of Corporate Affairs
-- [Companies Act and Rules Resources](https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html) - Ministry of Corporate Affairs
-
-## Related resources and services
-If this topic connects with a larger compliance project, the next useful step is usually to line up related registrations and operating processes rather than solving one problem in isolation. These supporting resources help readers move from information to action in a more organised way.
-
-From an SEO and user-experience perspective, related resources also improve content depth when they are genuinely useful rather than inserted mechanically. A well-linked article should help the reader continue the journey with context, not force them to start the research process all over again on a different page.
-
-### Internal links
-- [Company Registration Guides](/blog?category=Company%20Registration)
-- [Private Limited Company Registration](/services/private-limited-company)
-
-### Related calculators and templates
-- Income Tax Calculator
-- Cap Table Template
-- Founders Agreement
-
-### Related services
-- Private Limited Company Registration
-- LLP Registration
-
-## CTA
-If you are finalising a founder structure and want it reviewed before incorporation, FilingBy can help you think through the cap table properly. That kind of support is especially helpful when the business is making a structural decision and the cost of getting it wrong will be felt across tax, operations or founder relationships.
-
-## Conclusion
-The right way to handle authorised capital and shareholding guide is to combine legal accuracy with practical business sense. When founders do that, compliance stops feeling like a burden and starts working like infrastructure. That is exactly what a production-ready business system should do.
-
-If you take one idea from this guide, let it be this: do not file because you are under pressure; file because the facts are clear, the documents are clean and the business knows what comes next. That mindset reduces delays, improves trust and makes the result far more durable over the next few years. For Indian startups, MSMEs and entrepreneurs, that kind of discipline is often the difference between a smooth filing and a recurring compliance headache.
-
-That is also what makes an article truly publishable over the long term. When the advice is grounded in process, practical judgment and clean documentation habits, it stays useful for readers even as the business environment becomes more digital and more demanding.
+- [The Companies Act, 2013 (Section 61 & Section 64 - Alteration of Share Capital)](https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks.html) — Ministry of Corporate Affairs (MCA), Government of India
+- [MCA V3 Form SH-7 User Manual](https://www.mca.gov.in/content/mca/global/en/e-filing/company-forms-download-eforms.html) — Ministry of Corporate Affairs
+- [State Stamp Acts and Share Capital Duties](https://www.mca.gov.in/) — Ministry of Corporate Affairs

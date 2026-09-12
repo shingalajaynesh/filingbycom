@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const mdDir = path.join(__dirname, '../content/blogs');
 const distDir = path.join(__dirname, '../../FRONTEND/dist/blog');
