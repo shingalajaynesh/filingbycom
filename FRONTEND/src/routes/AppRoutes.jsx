@@ -258,8 +258,8 @@ function VirtualOfficeAreaRedirect() {
 }
 
 const LEGACY_BLOG_REDIRECTS = {
-  "gst-registration-guide": "/blog/gst-registration-for-service-businesses-india",
-  "how-to-register-private-limited-company": "/blog/private-limited-company-registration-india-guide",
+  "gst-registration-for-service-businesses-india": "/blog/gst-registration-guide",
+  "private-limited-company-registration-india-guide": "/blog/how-to-register-private-limited-company",
   "virtual-office-for-gst-registration": "/blog/virtual-office-for-gst-registration-guide",
   "virtual-office-for-company-registration": "/blog/virtual-office-for-company-registration-guide",
   "llp-vs-private-limited-company": "/blog/llp-vs-private-limited-for-bootstrapped-startups",

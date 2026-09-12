@@ -205,13 +205,13 @@
       "permanent": true
     },
     {
-      "source": "/blog/gst-registration-guide",
-      "destination": "/blog/gst-registration-for-service-businesses-india",
+      "source": "/blog/gst-registration-for-service-businesses-india",
+      "destination": "/blog/gst-registration-guide",
       "permanent": true
     },
     {
-      "source": "/blog/how-to-register-private-limited-company",
-      "destination": "/blog/private-limited-company-registration-india-guide",
+      "source": "/blog/private-limited-company-registration-india-guide",
+      "destination": "/blog/how-to-register-private-limited-company",
       "permanent": true
     },
     {
