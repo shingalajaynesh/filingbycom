@@ -319,14 +319,6 @@ const STATIC_PAGES = [
     content: "<h3>Frequently Asked Questions</h3><h4>1. What is the process for company registration?</h4><p>You need to submit director IDs, select a brand name, file the SPICe+ form with the MCA, and register for PAN/TAN. The ROC issues the certificate in 7-10 days.</p><h4>2. How does virtual office work?</h4><p>We provide a legal commercial address, NOC, utility bill, and rent agreement which you submit to register for GST or incorporate a company.</p><h4>3. What are the tax deadlines?</h4><p>Monthly GST filings must be completed by the 11th/20th of each month. ITR returns are usually due by July 31st for individuals.</p><h4>4. What are the penalties for late filings?</h4><p>Late filing of GST returns attracts a daily late fee of ₹20-50 depending on tax liabilities. Late filing of ITR returns attracts penalty charges up to ₹5,000 under Section 234F.</p>"
   },
   {
-    path: "locations",
-    title: "Virtual Office Locations Across Major Business Hubs in India | FilingBy",
-    description: "Browse commercial virtual office addresses for GST registration and company incorporation in Mumbai, Delhi, Surat, Noida, Bangalore, and Pune.",
-    keywords: "virtual office locations, business address india, gst verification address, local office spaces",
-    h1: "Our Virtual Office Locations",
-    content: "<p>Discover compliant commercial business addresses across major economic zones in India. Secure legal rent agreements, utility bills, and landlord NOCs in Delhi, Bangalore, Noida, Gurugram, Mumbai, Surat, and Pune to expand your corporate presence with ease.</p>"
-  },
-  {
     path: "blog",
     title: "Knowledge Hub & Expert Legal Compliance Blogs | FilingBy",
     description: "Explore legal guides, tax filing instructions, GST regulation changes, startup tips, and ROC compliance checklists authored by expert CAs and CSs.",
@@ -441,10 +433,50 @@ const STATIC_PAGES = [
   {
     path: "default/privacy-policy",
     title: "Privacy Policy and Data Protection Guidelines | FilingBy.com",
-    description: "FilingBy.com Privacy Policy. Learn how we handle your KYC documents, corporate registrations, billing transactions, and ensure your data remains secure.",
-    keywords: "privacy policy, data security, privacy statement filingby",
+    description: "FilingBy.com Privacy Policy. Learn how we handle KYC records, data security, Google AdSense cookies, analytics, and user privacy rights.",
+    keywords: "privacy policy, data security, privacy statement filingby, google adsense cookies, privacy opt out",
     h1: "Privacy Policy",
-    content: "<p>FilingBy.com respects client privacy. This Privacy Policy details how we collect, store, and utilize details regarding your company registrations and transactions. We ensure robust security protocols for all KYC document uploads.</p><h3>KYC Documents and Information Security</h3><p>We implement industry-standard cryptographic protocols to encrypt your uploaded files (like Aadhaar, PAN, and bank statements). Your documents are accessed strictly by certified Chartered Accountants or Company Secretaries handling your cases.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        FilingBy.com respects client privacy. This Privacy Policy details how we collect, store, and utilize information regarding your company registrations, compliance filings, billing transactions, and interactions with our digital platform.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. Information We Collect</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        We collect corporate name records, partner/director identity documentation (PAN, Aadhaar metadata), email coordinates, telephone numbers, and billing records required to execute commercial leases, landlord NOC folders, and statutory filing workflows.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Data Security &amp; KYC Confidentiality</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        All KYC document uploads are encrypted in secure storage buckets and accessed exclusively by authorized compliance desk coordinators during verification checks. We maintain strict role-based access controls and cryptographic safeguards.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Third-Party Data Sharing Limitations</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        We do not sell, rent, or trade your contact numbers or email addresses with external marketers. Address details and company information are submitted strictly to official statutory tax panels (MCA, GSTN, Income Tax portal) as mandated by your requested filings.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">4. Google AdSense &amp; Third-Party Advertising Cookies</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 12px;">
+        We use third-party advertising companies, including Google, to serve advertisements when you visit our website. These companies may use cookies, web beacons, IP addresses, and other identifiers to collect information and serve ads based on your prior visits to our website or other websites on the internet.
+      </p>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 12px;">
+        Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visits to our site and/or other sites across the internet. Google and its partners may place or read cookies and collect device/browser identifiers as part of ad serving and measurement on eligible content pages. To learn more about how Google processes information, visit <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" style="color: #1A56DB; text-decoration: underline;">How Google uses data when you use our partners' sites or apps</a>.
+      </p>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Users may opt out of personalized advertising at any time by visiting Google's Ad Settings at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" style="color: #1A56DB; text-decoration: underline;">adssettings.google.com</a>. Alternatively, users may opt out of third-party vendor cookies for personalized advertising by visiting the Network Advertising Initiative / Digital Advertising Alliance portal at <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" style="color: #1A56DB; text-decoration: underline;">www.aboutads.info</a>.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">5. Analytics &amp; Web Measurement Technologies</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        FilingBy uses Google Analytics and server access logs to evaluate aggregate traffic metrics, monitor site health, and improve navigational clarity. These tools collect standard internet log information, including masked IP addresses, browser types, referral sources, and page dwell times, without associating individual identities with personal account records.
+      </p>
+
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">6. User Privacy Rights &amp; Contact Method</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        If you have questions regarding this Privacy Policy, wish to inspect the personal documentation retained on file, or wish to request data correction or deletion, contact our Data Privacy Officer via email at <a href="mailto:support@filingby.com" style="color: #1A56DB; text-decoration: underline;">support@filingby.com</a> or by post at FilingBy Compliance Solutions, B-1210 IT PARK, SURAT, Gujarat — 394101, India.
+      </p>
+    `
   },
   {
     path: "contact-us",
@@ -591,6 +623,7 @@ const NOINDEX_PAGES = [
   { path: "admin", title: "Admin Portal | FilingBy.com" },
   { path: "admin/dashboard", title: "Admin Control Room | FilingBy.com" },
   { path: "sso-callback", title: "SSO Callback | FilingBy.com" },
+  { path: "locations", title: "Virtual Office Locations | FilingBy.com" },
   { path: "404", title: "404 Page Not Found | FilingBy.com" }
 ];
 
@@ -809,7 +842,6 @@ async function prerender() {
     const staticUrls = [
       { path: "", changefreq: "daily", priority: "1.0" },
       { path: "virtual-space", changefreq: "daily", priority: "1.0" },
-      { path: "locations", changefreq: "weekly", priority: "0.9" },
       { path: "ecommerce-office", changefreq: "weekly", priority: "0.9" },
       { path: "about-us", changefreq: "monthly", priority: "0.8" },
       { path: "our-promise", changefreq: "monthly", priority: "0.8" },
@@ -822,10 +854,6 @@ async function prerender() {
       { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
       { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
       { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
-      { path: "hubs/gst", changefreq: "weekly", priority: "0.8" },
-      { path: "hubs/company", changefreq: "weekly", priority: "0.8" },
-      { path: "compare/private-limited-company-vs-llp", changefreq: "weekly", priority: "0.8" },
-      { path: "compare/trademark-vs-patent", changefreq: "weekly", priority: "0.8" },
       { path: "calculators/hra", changefreq: "weekly", priority: "0.8" },
       { path: "calculators/tds", changefreq: "weekly", priority: "0.8" },
       { path: "calculators/depreciation", changefreq: "weekly", priority: "0.8" },

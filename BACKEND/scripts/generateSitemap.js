@@ -23,7 +23,6 @@ const targetSitemapPath = join(__dirname, "../../FRONTEND/public/sitemap.xml");
 const STATIC_PAGES = [
   { path: "", changefreq: "daily", priority: "1.0" },
   { path: "virtual-space", changefreq: "daily", priority: "1.0" },
-  { path: "locations", changefreq: "weekly", priority: "0.9" },
   { path: "ecommerce-office", changefreq: "weekly", priority: "0.9" },
   { path: "about-us", changefreq: "monthly", priority: "0.8" },
   { path: "our-promise", changefreq: "monthly", priority: "0.8" },

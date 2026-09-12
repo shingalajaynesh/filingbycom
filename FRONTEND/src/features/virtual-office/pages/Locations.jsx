@@ -93,6 +93,7 @@ export default function Locations() {
         description="Explore FilingBy virtual office locations across selected Indian business hubs including Surat, Mumbai, and Delhi. Official GST registration addresses from ₹999/mo."
         keywords="virtual office locations India, virtual office cities India, virtual office Delhi Mumbai Surat, business address India"
         canonical="/locations"
+        noindex={true}
         schema={buildBreadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Virtual Office", url: "/virtual-space" },
