@@ -44,8 +44,26 @@ class SitemapController {
   </url>`;
       }
 
-      // Services
+const CORE_INDEXABLE_SERVICES = new Set([
+  "gst-registration",
+  "gst-return-filing",
+  "private-limited-company",
+  "llp-registration",
+  "one-person-company",
+  "trademark-registration",
+  "itr-1-filing",
+  "fssai-basic-registration",
+  "udyam-registration",
+  "iec-registration",
+  "startup-india",
+  "roc-annual-filing-pvt",
+  "roc-annual-filing-llp",
+  "trust-registration",
+]);
+
+      // Services (Core Indexable Only)
       for (const service of services) {
+        if (!CORE_INDEXABLE_SERVICES.has(service.slug)) continue;
         xml += `
   <url>
     <loc>https://www.filingby.com/services/${service.slug}</loc>

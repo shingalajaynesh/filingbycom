@@ -12,12 +12,20 @@ function sanitizeHtml(html) {
   return cleaned;
 }
 
-export function ServiceOverview({ name, description }) {
+export function ServiceOverview({ name, description, statutoryInfo }) {
   const sanitized = sanitizeHtml(description);
   return (
     <article className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
-      <p className="text-xs font-black uppercase tracking-[0.25em] text-[#1A56DB]">Overview</p>
+      <p className="text-xs font-black uppercase tracking-[0.25em] text-[#1A56DB]">Overview & Statutory Framework</p>
       <h2 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">About {name}</h2>
+      {statutoryInfo ? (
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-blue-50/60 rounded-2xl border border-blue-100/70 text-xs">
+          <div><strong className="text-slate-800">Governing Act:</strong> <span className="text-slate-600 ml-1">{statutoryInfo.governingAct}</span></div>
+          <div><strong className="text-slate-800">Relevant Sections:</strong> <span className="text-slate-600 ml-1">{statutoryInfo.sections}</span></div>
+          <div><strong className="text-slate-800">Official Portal:</strong> <span className="text-slate-600 ml-1">{statutoryInfo.portal}</span></div>
+          <div><strong className="text-slate-800">Statutory Fee:</strong> <span className="text-slate-600 ml-1">{statutoryInfo.statutoryFee}</span></div>
+        </div>
+      ) : null}
       {sanitized ? (
         <div 
           className="mt-4 text-sm text-slate-600 leading-relaxed space-y-4"
@@ -25,7 +33,7 @@ export function ServiceOverview({ name, description }) {
         />
       ) : (
         <p className="mt-4 text-sm text-slate-600 leading-relaxed">
-          Secure your {name} online with FilingBy. Our expert team of Chartered Accountants (CA) and Company Secretaries (CS) manages the entire application, drafting, and regulatory approvals.
+          Secure your {name} online with FilingBy. Our expert team manages the entire application, drafting, and regulatory approvals.
         </p>
       )}
     </article>
@@ -113,7 +121,91 @@ export function ServiceTimeline({ steps }) {
   );
 }
 
-export function ServiceFees({ basePrice, name }) {
+export function ServiceFees({ basePrice, name, slug, statutoryFee }) {
+  if (slug === "udyam-registration") {
+    return (
+      <article className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="text-xl font-bold text-slate-900">Government Fee & Consultation Breakdown</h2>
+        <p className="text-xs text-slate-500 mt-1">
+          The Government of India does not charge any fee for Udyam Registration. FilingBy provides optional independent classification and preparation support:
+        </p>
+        <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-100">
+                <th className="p-4 font-black text-slate-800">Fee Component</th>
+                <th className="p-4 font-black text-slate-800 text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-100">
+                <td className="p-4 text-slate-600">
+                  <strong className="text-slate-800">Official Government Udyam Registration Fee</strong>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Free digital registration on official government portal (udyamregistration.gov.in)</p>
+                </td>
+                <td className="p-4 text-emerald-600 font-bold text-right text-sm">₹0 (Free)</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="p-4 text-slate-600">
+                  <strong className="text-slate-800">Optional Business Classification Consultation (FilingBy)</strong>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Independent advisory for NIC code mapping, composite threshold evaluation, and checklist preparation</p>
+                </td>
+                <td className="p-4 text-slate-800 font-bold text-right">₹{basePrice.toLocaleString("en-IN")}</td>
+              </tr>
+              <tr className="bg-slate-50/50">
+                <td className="p-4 font-black text-slate-900">Total for Official Self-Registration</td>
+                <td className="p-4 text-emerald-600 font-black text-sm text-right">₹0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+          *Notice: Registration on the official Ministry of MSME portal is completely free and self-declaration based. Engaging FilingBy for classification consultation is entirely optional. FilingBy is an independent platform and is not authorized to register enterprises on your behalf.
+        </p>
+      </article>
+    );
+  }
+
+  if (slug === "fssai-basic-registration") {
+    return (
+      <article className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
+        <h2 className="text-xl font-bold text-slate-900">FoSCoS Statutory Fee & Professional Fee Structure</h2>
+        <p className="text-xs text-slate-500 mt-1">
+          Transparent separation between official FoSCoS statutory fees and optional FilingBy professional support:
+        </p>
+        <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-100">
+                <th className="p-4 font-black text-slate-800">Fee Component</th>
+                <th className="p-4 font-black text-slate-800 text-right">Amount / Terms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-slate-100">
+                <td className="p-4 text-slate-600">
+                  <strong className="text-slate-800">Statutory FoSCoS Government Fee</strong>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Payable directly to FSSAI on FoSCoS. Licences/registrations have perpetual validity; statutory fees continue under the FoSCoS framework (payable for selected years or during the year). Amount varies by business category and capacity.</p>
+                </td>
+                <td className="p-4 text-slate-800 font-bold text-right">As per FoSCoS schedule</td>
+              </tr>
+              <tr className="border-b border-slate-100">
+                <td className="p-4 text-slate-600">
+                  <strong className="text-slate-800">FilingBy Professional Assistance Fee</strong>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Optional advisory for food category code mapping, document verification, FoSCoS form compilation, and query compliance</p>
+                </td>
+                <td className="p-4 text-slate-800 font-bold text-right">₹{basePrice.toLocaleString("en-IN")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-xs text-slate-500 leading-relaxed">
+          *Government fee varies by registration/licence category and food-business type; the current amount is payable through FoSCoS. Perpetual validity eliminates periodic renewal applications merely to extend validity, but applicable statutory fee obligations continue according to the current FoSCoS framework.
+        </p>
+      </article>
+    );
+  }
+
   const govtFee = Math.round(basePrice * 0.4);
   const profFee = basePrice;
   const total = govtFee + profFee;
@@ -121,7 +213,7 @@ export function ServiceFees({ basePrice, name }) {
   return (
     <article className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
       <h2 className="text-xl font-bold text-slate-900">Transparent Pricing & Fee Breakup</h2>
-      <p className="text-xs text-slate-500 mt-1">No hidden charges. Clear split of your {name} registration costs:</p>
+      <p className="text-xs text-slate-500 mt-1">No hidden charges. Clear split of your {name} compliance costs:</p>
       <div className="mt-5 overflow-hidden rounded-2xl border border-slate-100">
         <table className="w-full text-left text-xs border-collapse">
           <thead>

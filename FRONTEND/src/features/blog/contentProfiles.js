@@ -1,17 +1,11 @@
 export const blogAuthorProfiles = {
-  "filingby-editorial-desk": {
-    name: "FilingBy Editorial Desk",
+  "filingby-editorial-team": {
+    name: "FilingBy Editorial Team",
     bio: "Business compliance editors covering registrations, tax and regulatory workflows for Indian startups and MSMEs."
-  }
-};
-
-export const blogReviewerProfiles = {
-  "filingby-content-team": {
-    name: "FilingBy Content Team",
-    prefix: "Editorially reviewed by",
-    title: "Editorial review",
-    experience: "",
-    schemaType: "Organization"
+  },
+  "filingby-editorial-desk": {
+    name: "FilingBy Editorial Team",
+    bio: "Business compliance editors covering registrations, tax and regulatory workflows for Indian startups and MSMEs."
   }
 };
 
@@ -21,21 +15,8 @@ export function resolveAuthorProfile(post) {
   }
 
   return {
-    name: post?.author || "FilingBy Editorial Desk",
+    name: post?.author || "FilingBy Editorial Team",
     bio: "Business compliance editors covering registrations, tax and regulatory workflows for Indian startups and MSMEs."
   };
 }
 
-export function resolveReviewerProfile(post) {
-  if (post?.reviewerId && blogReviewerProfiles[post.reviewerId]) {
-    return blogReviewerProfiles[post.reviewerId];
-  }
-
-  return {
-    name: "FilingBy Content Team",
-    prefix: "Editorially reviewed by",
-    title: "Editorial review",
-    experience: "",
-    schemaType: "Organization"
-  };
-}

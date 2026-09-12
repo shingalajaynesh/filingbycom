@@ -1,0 +1,201 @@
+{
+  "clean": [
+    {
+      "slug": "adt-1-aoc-4-mgt-7-guide"
+    },
+    {
+      "slug": "advance-tax-for-founders-guide"
+    },
+    {
+      "slug": "authorised-capital-and-shareholding-guide"
+    },
+    {
+      "slug": "company-incorporation-documents-checklist-guide"
+    },
+    {
+      "slug": "company-name-approval-guide-india"
+    },
+    {
+      "slug": "composition-vs-regular-gst-scheme"
+    },
+    {
+      "slug": "coworking-vs-virtual-office-registration-guide"
+    },
+    {
+      "slug": "designated-partner-dsc-dpin-guide"
+    },
+    {
+      "slug": "director-kyc-din-compliance-guide"
+    },
+    {
+      "slug": "exporter-onboarding-documents-guide"
+    },
+    {
+      "slug": "form-16-vs-form-16a-guide"
+    },
+    {
+      "slug": "fssai-basic-vs-state-vs-central-guide"
+    },
+    {
+      "slug": "fssai-for-cloud-kitchen-and-home-business-guide"
+    },
+    {
+      "slug": "fssai-labelling-compliance-guide"
+    },
+    {
+      "slug": "fssai-renewal-and-modification-guide"
+    },
+    {
+      "slug": "gst-cancellation-and-revocation-guide"
+    },
+    {
+      "slug": "gst-for-ecommerce-sellers-guide"
+    },
+    {
+      "slug": "gst-lut-vs-refund-for-exporters-guide"
+    },
+    {
+      "slug": "gst-registration-with-virtual-office"
+    },
+    {
+      "slug": "gstr-1-vs-gstr-3b-reconciliation-guide"
+    },
+    {
+      "slug": "iec-amendment-and-surrender-guide"
+    },
+    {
+      "slug": "iec-registration-for-first-time-exporters-guide"
+    },
+    {
+      "slug": "income-tax-notice-143-1-139-9-guide"
+    },
+    {
+      "slug": "itr-filing-for-freelancers-guide"
+    },
+    {
+      "slug": "late-tds-return-and-correction-guide"
+    },
+    {
+      "slug": "llp-agreement-drafting-guide"
+    },
+    {
+      "slug": "llp-annual-compliance-calendar"
+    },
+    {
+      "slug": "llp-registration-for-consultants"
+    },
+    {
+      "slug": "llp-to-private-limited-conversion-guide"
+    },
+    {
+      "slug": "llp-vs-private-limited-for-bootstrapped-startups"
+    },
+    {
+      "slug": "lut-for-exporters-under-gst"
+    },
+    {
+      "slug": "msme-benefits-after-udyam-registration-guide"
+    },
+    {
+      "slug": "msme-payment-delay-samadhan-guide"
+    },
+    {
+      "slug": "opc-vs-private-limited-company-guide"
+    },
+    {
+      "slug": "presumptive-taxation-44ad-44ada-guide"
+    },
+    {
+      "slug": "roc-compliance-calendar-private-limited-guide"
+    },
+    {
+      "slug": "roc-forms-every-startup-should-track-guide"
+    },
+    {
+      "slug": "section-80c-80d-deductions-guide"
+    },
+    {
+      "slug": "spice-plus-common-mistakes-guide"
+    },
+    {
+      "slug": "startup-india-benefits-and-documents-guide"
+    },
+    {
+      "slug": "startup-india-patent-benefits-guide"
+    },
+    {
+      "slug": "startup-india-registration-guide"
+    },
+    {
+      "slug": "startup-india-vs-msme-guide"
+    },
+    {
+      "slug": "tan-registration-and-tds-setup-guide"
+    },
+    {
+      "slug": "tax-audit-applicability-guide"
+    },
+    {
+      "slug": "tds-lower-deduction-certificate-guide"
+    },
+    {
+      "slug": "tds-on-professional-fees-contracts-rent-guide"
+    },
+    {
+      "slug": "tds-on-salary-vs-professional-fees-guide"
+    },
+    {
+      "slug": "trademark-assignment-licensing-guide"
+    },
+    {
+      "slug": "trademark-hearing-preparation-guide"
+    },
+    {
+      "slug": "trademark-objection-reply-guide"
+    },
+    {
+      "slug": "trademark-renewal-restoration-guide"
+    },
+    {
+      "slug": "trademark-search-and-class-selection-guide"
+    },
+    {
+      "slug": "udyam-registration-for-service-business-guide"
+    },
+    {
+      "slug": "udyam-update-modification-guide"
+    },
+    {
+      "slug": "virtual-office-documents-checklist-guide"
+    },
+    {
+      "slug": "virtual-office-for-company-registration-guide"
+    },
+    {
+      "slug": "virtual-office-for-gst-registration-guide"
+    }
+  ],
+  "minor": [
+    {
+      "slug": "gst-registration-guide",
+      "matches": [
+        "How long does"
+      ]
+    },
+    {
+      "slug": "how-to-register-private-limited-company",
+      "matches": [
+        "How long does"
+      ]
+    }
+  ],
+  "strong": [],
+  "ymyl": [
+    {
+      "slug": "gst-registration-guide",
+      "matches": [
+        "How long does"
+      ]
+    }
+  ]
+}

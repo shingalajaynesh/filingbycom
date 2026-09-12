@@ -18,7 +18,7 @@ export default function RefundPolicy() {
         
         <div className="text-xs sm:text-sm text-gray-700 leading-relaxed space-y-6 font-normal">
           <p>
-            At FilingBy.com, we prioritize professional accountability, corporate transparency, and customer satisfaction. We take full ownership of the legal and administrative documentation prepared by our professional Chartered Accountants (CA) and workspace network partners.
+            At FilingBy.com, we prioritize transparency and customer satisfaction. We take full ownership of the administrative documentation prepared by our team and partner workspaces. Specialist professional assistance may be coordinated where a filing legally requires a qualified professional.
           </p>
 
           <section className="space-y-3">

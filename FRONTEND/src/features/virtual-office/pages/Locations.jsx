@@ -89,9 +89,9 @@ export default function Locations() {
   return (
     <div className="bg-gray-50 min-h-screen pb-20">
       <SEO
-        title="Virtual Office Locations in India — All Major Cities | FilingBy"
-        description="Explore FilingBy virtual office locations across 100+ Indian cities including Delhi, Mumbai, and Bangalore. Official GST registration addresses from ₹999/mo."
-        keywords="virtual office locations India, virtual office cities India, virtual office Delhi Mumbai Bangalore, business address India"
+        title="Virtual Office Locations in India — Selected Business Hubs | FilingBy"
+        description="Explore FilingBy virtual office locations across selected Indian business hubs including Surat, Mumbai, and Delhi. Official GST registration addresses from ₹999/mo."
+        keywords="virtual office locations India, virtual office cities India, virtual office Delhi Mumbai Surat, business address India"
         canonical="/locations"
         schema={buildBreadcrumbSchema([
           { name: "Home", url: "/" },
@@ -113,10 +113,10 @@ export default function Locations() {
           </span>
           <h1 className="text-3xl md:text-5xl font-black tracking-tight mt-5 mb-6 leading-tight text-white">
             Premium Virtual Office Addresses <br />
-            <span className="text-[#F97316]">Across All Major Cities in India</span>
+            <span className="text-[#F97316]">Across Selected Business Hubs in India</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg mb-10 max-w-2xl mx-auto font-medium">
-            Get instant NOC, utility bills, and rental agreements for company incorporation or GST registration in any state. Select your city to explore active centers.
+            Get verified NOC, utility bills, and rental agreements for company incorporation or GST registration in supported states. Select your city to explore active centers.
           </p>
 
           {/* Search bar */}

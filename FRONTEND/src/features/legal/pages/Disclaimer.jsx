@@ -24,10 +24,10 @@ export default function Disclaimer() {
           <section className="space-y-3">
             <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide border-l-4 border-blue-600 pl-3">1. Professional Advisory Boundaries</h2>
             <p>
-              While FilingBy collaborates with qualified Chartered Accountants (CAs), Company Secretaries (CSs), and tax professionals to assist with administrative filings, browsing this website or utilizing our calculators does not automatically establish a formal professional-client relationship.
+              FilingBy is a digital technology platform providing corporate compliance tools, documentation workflows, and verified workspace solutions. Specialist professional assistance may be coordinated where a filing legally requires a qualified professional. FilingBy is not a chartered accountancy firm, company secretarial firm, or legal advocacy partnership and does not provide formal legal representation. Browsing this website or utilizing our calculators does not establish a formal attorney-client or professional-client relationship.
             </p>
             <p>
-              Tax laws, statutory regulations, and government filing procedures in India change frequently. Users must verify specific facts with qualified professionals or official government portals (MCA, GSTN, Income Tax India) before taking financial or corporate decisions based on general web guides.
+              Tax laws, statutory regulations, and government filing procedures in India change frequently. Users must verify specific facts with qualified independent professionals or official government portals (MCA, GSTN, Income Tax India) before taking financial or corporate decisions based on general web guides.
             </p>
           </section>
 

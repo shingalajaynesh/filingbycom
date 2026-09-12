@@ -24,7 +24,7 @@ export default function FaqPage() {
     {
       title: "Billing & Renewals",
       items: [
-        { q: "What is your refund policy?", a: "We offer a 100% money-back guarantee. If local tax inspectors reject our registry documents and we cannot resolve it, you get a full refund within 7 working days." },
+        { q: "What is your refund policy?", a: "We provide a 100% service fee refund guarantee. If the target government registry formally rejects your application due to verified documentation defects attributable to our workspace host, you receive a full refund of FilingBy service fees within 7 to 10 working days as detailed in our Refund Policy." },
         { q: "Are there any hidden renewal charges?", a: "No. All prices are flat. Renewal terms are communicated beforehand and strictly match the initial agreement rate slabs." }
       ]
     }

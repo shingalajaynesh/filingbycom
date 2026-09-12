@@ -52,7 +52,7 @@ export default function EcommerceOffice() {
               <span className="text-[#F97316]">E-commerce GST Registration</span>
             </h1>
             <p className="text-gray-300 text-sm md:text-base font-medium leading-relaxed max-w-xl">
-              Fulfill Amazon FC (Fulfilment Center) & Flipkart Assured registration requirements easily. Obtain a valid GSTIN in multiple states using legal virtual addresses starting from ₹999/mo.
+              Fulfill Amazon FC (Fulfilment Center) & Flipkart Assured registration requirements easily. Obtain a valid GSTIN in supported business hubs using legal virtual addresses starting from ₹999/mo.
             </p>
 
             <div className="flex flex-wrap gap-4 items-center pt-2">

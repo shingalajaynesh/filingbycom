@@ -128,9 +128,11 @@ export default function ContactUs() {
               <div className="flex items-start gap-4">
                 <span className="text-2xl mt-1">📍</span>
                 <div>
-                  <p className="font-bold text-gray-400 uppercase tracking-wider text-[10px]">Headquarters Address</p>
+                  <p className="font-bold text-gray-400 uppercase tracking-wider text-[10px]">Operations Office</p>
                   <p className="text-gray-900 text-xs font-semibold leading-relaxed">
-                    {settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India"}
+                    {settings?.ca_contact_address
+                      ? settings.ca_contact_address
+                      : "India Operations & Online Compliance Helpdesk"}
                   </p>
                 </div>
               </div>

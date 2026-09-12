@@ -270,7 +270,7 @@ export default function VirtualSpace() {
   const stats = [
     { icon: Icons.ShieldCheck, value: "100% Legal", label: "Stamp & NOC Verified", color: "text-blue-400", bgColor: "bg-white/10" },
     { icon: Icons.Lightning, value: "24-48 Hrs", label: "Documentation SLA", color: "text-yellow-400", bgColor: "bg-white/10" },
-    { icon: Icons.Globe, value: "28 States", label: "Pan-India Network", color: "text-emerald-400", bgColor: "bg-white/10" },
+    { icon: Icons.Globe, value: "Multiple", label: "Business Hubs", color: "text-emerald-400", bgColor: "bg-white/10" },
     { icon: Icons.Refresh, value: "Full Refund", label: "Compliance Guarantee", color: "text-blue-300", bgColor: "bg-white/10" },
   ];
 
@@ -327,7 +327,7 @@ export default function VirtualSpace() {
   const whyChooseUs = [
     { icon: Icons.Users,       title: "Dedicated Account Manager",     desc: "Personalized support from experts who understand your business",              color: "text-blue-500",   bg: "bg-blue-500/10" },
     { icon: Icons.IndianRupee, title: "Transparent Pricing",           desc: "Clear, honest pricing with absolutely no hidden fees — ever",                  color: "text-emerald-500",  bg: "bg-emerald-500/10" },
-    { icon: Icons.Refresh,     title: "Easy Stress-Free Refunds",      desc: "Full no-questions-asked refunds if your GST application has issues",           color: "text-emerald-500", bg: "bg-emerald-500/10" },
+    { icon: Icons.Refresh,     title: "Service Fee Refund SLA",        desc: "100% refund of FilingBy service fees if your registration encounters verified document defects attributable to us", color: "text-emerald-500", bg: "bg-emerald-500/10" },
     { icon: Icons.CheckCircle, title: "Complete Registration Help",    desc: "Expert handling of GST and company registration — swiftly and accurately",     color: "text-blue-500",   bg: "bg-blue-500/10" },
     { icon: Icons.ShieldCheck, title: "Fully Compliant Addresses",     desc: "Government-accepted virtual addresses ensuring seamless business operations",   color: "text-blue-600", bg: "bg-blue-500/10" },
     { icon: Icons.Trophy,      title: "Transparent Statutory Documentation", desc: "Every agreement is paired with municipal electricity bills and owner NOCs ready for GST and MCA scrutiny.", color: "text-blue-500", bg: "bg-blue-500/10" },
@@ -355,14 +355,7 @@ export default function VirtualSpace() {
     { name: "Maharashtra",    city: "Mumbai",       icon: Icons.Building },
   ];
 
-  const DEFAULT_REVIEWS = [
-    { initials: "AB", color: "bg-blue-600",   name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
-    { initials: "AA", color: "bg-emerald-600",  name: "Anson Antony",    text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
-    { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel",    text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
-    { initials: "AM", color: "bg-indigo-650", name: "Aman",            text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
-    { initials: "AF", color: "bg-[#0E1528]",   name: "Ashfaq",          text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
-    { initials: "KD", color: "bg-emerald-700",   name: "Kunal Debnath",   text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
-  ];
+  const DEFAULT_REVIEWS = [];
 
   const faqs = [
     { q: "Who can use a virtual office?",                     a: "Any business, startup, freelancer, or brand looking for a cost-effective, credible address without the expense of a physical office." },
@@ -419,12 +412,12 @@ export default function VirtualSpace() {
               {/* Trust badge */}
               <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 mb-6 shadow-md">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
-                <span className="text-white text-xs font-semibold">🇮🇳 Pan-India Virtual Office Network</span>
+                <span className="text-white text-xs font-semibold">🇮🇳 Selected Indian Business Hubs</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.1] mb-5 tracking-tight">
                 Premium Virtual Offices{" "}
-                <span className="text-[#F97316] block mt-1">Across All 28 States</span>
+                <span className="text-[#F97316] block mt-1">Across Major Indian Hubs</span>
               </h1>
 
               <p className="text-blue-100 text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
@@ -840,6 +833,26 @@ export default function VirtualSpace() {
             const averageRating = reviewCount
               ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
               : "0.0";
+            if (reviewCount === 0) {
+              return (
+                <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-gray-200/80 bg-white p-8 text-center sm:flex-row sm:text-left shadow-sm">
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Client Feedback &amp; Reviews</h2>
+                    <p className="mt-1 text-sm text-gray-600">
+                      We value verified client feedback. Have you used our virtual office services? Share your experience with our team.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowReviewModal(true)}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 shrink-0 cursor-pointer"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                    Write a review
+                  </button>
+                </div>
+              );
+            }
 
             return (
               <>
@@ -985,7 +998,7 @@ export default function VirtualSpace() {
           <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3">
             {[
               { icon: Icons.Check, label: "All Documents Included" },
-              { icon: Icons.Globe, label: "28 States Covered" },
+              { icon: Icons.Globe, label: "Major Hubs Covered" },
               { icon: Icons.Lightning, label: "7-Day Setup" },
               { icon: Icons.ShieldCheck, label: "100% Compliant" },
             ].map(b => (

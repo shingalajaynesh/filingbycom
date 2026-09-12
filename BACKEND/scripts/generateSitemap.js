@@ -37,7 +37,6 @@ const STATIC_PAGES = [
   { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
   { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
   { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
-  { path: "services/pan-card", changefreq: "weekly", priority: "0.9" },
   { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },
   { path: "default/refund", changefreq: "monthly", priority: "0.5" },
   { path: "default/privacy-policy", changefreq: "monthly", priority: "0.5" },
@@ -86,10 +85,28 @@ async function generate() {
   </url>`;
     }
 
-    // Add CA services
+const CORE_INDEXABLE_SERVICES = new Set([
+  "gst-registration",
+  "gst-return-filing",
+  "private-limited-company",
+  "llp-registration",
+  "one-person-company",
+  "trademark-registration",
+  "itr-1-filing",
+  "fssai-basic-registration",
+  "udyam-registration",
+  "iec-registration",
+  "startup-india",
+  "roc-annual-filing-pvt",
+  "roc-annual-filing-llp",
+  "trust-registration",
+]);
+
+    // Add CA services (Core Indexable Only)
     if (services.length > 0) {
-      xml += `\n\n  <!-- Dynamic CA / Compliance Services -->`;
+      xml += `\n\n  <!-- Dynamic CA / Compliance Services (Core Indexable Only) -->`;
       for (const service of services) {
+        if (!CORE_INDEXABLE_SERVICES.has(service.slug)) continue;
         xml += `
   <url>
     <loc>https://www.filingby.com/services/${service.slug}</loc>

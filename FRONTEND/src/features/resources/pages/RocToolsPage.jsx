@@ -7,8 +7,8 @@ import { rocToolCards, rocComplianceTimeline, resourceFaqs } from "../data/resou
 const MCA_FORMS = [
   { id: "aoc4", name: "Form AOC-4 (Financial Statements)", entity: "Pvt Ltd / OPC", dailyFee: 100, normalFeeType: "capital", deadline: "30 days from AGM (Oct 29)" },
   { id: "mgt7", name: "Form MGT-7 / 7A (Annual Return)", entity: "Pvt Ltd / Small Co", dailyFee: 100, normalFeeType: "capital", deadline: "60 days from AGM (Nov 28)" },
-  { id: "llp11", name: "LLP Form 11 (Annual Return)", entity: "LLP", dailyFee: 100, normalFeeType: "flat_llp", deadline: "May 30 (60 days from FY end)" },
-  { id: "llp8", name: "LLP Form 8 (Statement of Accounts)", entity: "LLP", dailyFee: 100, normalFeeType: "flat_llp", deadline: "October 30 (7 months from FY end)" },
+  { id: "llp11", name: "LLP Form 11 (Annual Return)", entity: "LLP", dailyFee: 0, normalFeeType: "flat_llp", deadline: "May 30 (60 days from FY end)" },
+  { id: "llp8", name: "LLP Form 8 (Statement of Accounts)", entity: "LLP", dailyFee: 0, normalFeeType: "flat_llp", deadline: "October 30 (7 months from FY end)" },
   { id: "dir3kyc", name: "DIR-3 KYC (Director e-KYC)", entity: "Directors / Partners", dailyFee: 0, fixedLateFee: 5000, normalFeeType: "zero", deadline: "September 30 every year" }
 ];
 
@@ -47,7 +47,18 @@ export default function RocToolsPage() {
     let additionalFee = 0;
     if (formMeta.id === "dir3kyc") {
       additionalFee = days > 0 ? formMeta.fixedLateFee : 0;
+    } else if (formMeta.id === "llp11" || formMeta.id === "llp8") {
+      // Graded multiplier schedule under amended MCA LLP Rules
+      if (days === 0) additionalFee = 0;
+      else if (days <= 15) additionalFee = normalFee * 1;
+      else if (days <= 30) additionalFee = normalFee * 2;
+      else if (days <= 60) additionalFee = normalFee * 4;
+      else if (days <= 90) additionalFee = normalFee * 6;
+      else if (days <= 180) additionalFee = normalFee * 10;
+      else if (days <= 360) additionalFee = normalFee * 15;
+      else additionalFee = normalFee * 25;
     } else {
+      // Companies Act Section 403 second proviso (AOC-4, MGT-7): ₹100/day
       additionalFee = days * formMeta.dailyFee;
     }
 
@@ -114,7 +125,7 @@ export default function RocToolsPage() {
         <article className="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm sm:p-8">
           <div className="border-b border-gray-100 pb-4">
             <h2 className="text-xl font-bold text-slate-900">MCA V3 Additional Late Fee Calculator</h2>
-            <p className="text-xs text-slate-500 mt-1">Calculates statutory government fees and daily additional penalty under Section 403 of Companies Act / Section 69 of LLP Act.</p>
+            <p className="text-xs text-slate-500 mt-1">Calculates statutory government fees and additional fees under Section 403 of Companies Act / amended LLP Rules.</p>
           </div>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -163,7 +174,11 @@ export default function RocToolsPage() {
                 placeholder="e.g. 30"
               />
               <span className="text-[11px] text-slate-400 mt-1 block">
-                {formMeta.id === "dir3kyc" ? "If delay > 0 days, statutory revival fee of ₹5,000 applies." : "Statutory penalty accumulates at ₹100 per day without ceiling."}
+                {formMeta.id === "dir3kyc"
+                  ? "If delay > 0 days, statutory revival fee of ₹5,000 applies."
+                  : formMeta.id.startsWith("llp")
+                  ? "MCA additional fees apply on a graded multiplier scale based on delay period."
+                  : "Section 403 additional fee accumulates at ₹100 per day for companies."}
               </span>
             </label>
           </div>
@@ -218,7 +233,7 @@ export default function RocToolsPage() {
             <div className="mt-3 space-y-2 text-xs text-slate-600">
               <p><strong>Section 403 (Companies Act):</strong> Imposes ₹100/day penalty for late filing of financial statements and annual returns.</p>
               <p><strong>Section 164(2):</strong> Disqualifies directors for 5 years if a company fails to file returns for 3 consecutive financial years.</p>
-              <p><strong>Section 69 (LLP Act):</strong> Mandates ₹100/day late filing fee for Form 8 and Form 11.</p>
+              <p><strong>LLP Rules (Section 69):</strong> Applies graded additional-fee multipliers (from 2x to 25x/50x normal fee) based on delay period and Small LLP status.</p>
             </div>
           </div>
         </aside>
@@ -302,13 +317,13 @@ export default function RocToolsPage() {
           <article className="rounded-3xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
             <h3 className="text-xl font-bold text-slate-900">Worked Case 2: LLP Form 11 Delayed by 90 Days</h3>
             <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-              An active Limited Liability Partnership (LLP) fails to submit Form 11 (Annual Return) by May 30th and files on August 28th (90-day delay):
+              An active Small LLP fails to submit Form 11 (Annual Return) by May 30th and files on August 28th (90-day delay):
             </p>
             <div className="mt-4 space-y-2 rounded-2xl bg-slate-50 p-4 text-xs text-slate-700">
               <p><strong>Normal LLP Filing Fee:</strong> ₹50</p>
-              <p><strong>Additional Late Fee (Section 69):</strong> 90 days × ₹100/day = ₹9,000</p>
-              <p className="text-rose-700 font-bold">Total Payable on MCA V3 Portal: ₹9,050</p>
-              <p className="text-slate-500">Note: LLP penalties have no statutory upper ceiling and continue compounding daily until filed.</p>
+              <p><strong>Additional Fee (Graded Schedule):</strong> Delay between 61–90 days = 6 times normal fee = ₹300 (or ₹600 for non-Small LLPs)</p>
+              <p className="text-rose-700 font-bold">Total Payable on MCA V3 Portal: ₹350 (Small LLP)</p>
+              <p className="text-slate-500">Note: Under the amended LLP Rules, late fees follow a graded multiplier schedule based on delay bands rather than an unscaled flat daily surcharge.</p>
             </div>
           </article>
         </div>

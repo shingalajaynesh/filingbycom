@@ -246,6 +246,17 @@ function RedirectToService() {
   return <NoIndexRedirect to={`/services/${slug}`} />;
 }
 
+// Helpers to redirect legacy /virtual-office/:city and :area to canonical /virtual-office-:city
+function VirtualOfficeCityRedirect() {
+  const { city } = useParams();
+  return <NoIndexRedirect to={`/virtual-office-${city}`} />;
+}
+
+function VirtualOfficeAreaRedirect() {
+  const { city, area } = useParams();
+  return <NoIndexRedirect to={`/virtual-office-${city}/${area}`} />;
+}
+
 const LEGACY_BLOG_REDIRECTS = {
   "gst-registration-guide": "/blog/gst-registration-for-service-businesses-india",
   "how-to-register-private-limited-company": "/blog/private-limited-company-registration-india-guide",
@@ -499,8 +510,8 @@ function AppRoutesContent() {
           
           {/* Cloned Pages for address.co */}
           <Route path="/locations" element={<Locations />} />
-          <Route path="/virtual-office/:city" element={<VirtualOfficeCity />} />
-          <Route path="/virtual-office/:city/:area" element={<VirtualOfficeArea />} />
+          <Route path="/virtual-office/:city" element={<VirtualOfficeCityRedirect />} />
+          <Route path="/virtual-office/:city/:area" element={<VirtualOfficeAreaRedirect />} />
           <Route path="/virtual-office-:city" element={<VirtualOfficeCity />} />
           <Route path="/virtual-office-:city/:area" element={<VirtualOfficeArea />} />
           

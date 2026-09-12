@@ -36,7 +36,7 @@ export default function AdminSettings({ portal }) {
     ca_contact_phone: "+91 75671 26945",
     ca_whatsapp_url: "https://wa.me/917567126945",
     ca_contact_email: "support@filingby.com",
-    ca_contact_address: "3rd Floor, Business Center, New Delhi, India",
+    ca_contact_address: "B-1210 IT PARK, SURAT 394101",
     vs_announcement_text: "🎉 Special Offer: Virtual Office starting at just ₹999/month — Limited slots!",
     vs_contact_phone: "+91 75671 26945",
     vs_whatsapp_url: "https://wa.me/917567126945",
@@ -563,7 +563,7 @@ export default function AdminSettings({ portal }) {
                 <textarea
                   value={settings.ca_contact_address}
                   onChange={(e) => handleChange("ca_contact_address", e.target.value)}
-                  placeholder="e.g. 3rd Floor, Business Center, New Delhi, India"
+                  placeholder="e.g. B-1210 IT PARK, SURAT 394101"
                   className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-[#1A56DB] text-sm text-gray-900 bg-white resize-none"
                   rows="2"
                   required

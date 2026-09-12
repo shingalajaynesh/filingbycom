@@ -8,7 +8,7 @@ const LAST_UPDATED = "2026-07-17";
 const AUTHOR = "FilingBy Editorial Desk";
 const AUTHOR_ID = "filingby-editorial-desk";
 const REVIEWER_ID = "filingby-content-team";
-const REVIEWED_BY = "Hiren Patel (FCA)";
+const REVIEWED_BY = "FilingBy Content Team";
 const REVIEWED_BY_TITLE = "Chartered Accountant";
 const REVIEWER_EXPERIENCE = "15+ Years Experience";
 

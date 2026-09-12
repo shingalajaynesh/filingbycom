@@ -25,34 +25,16 @@ const HOME_FAQS = [
   },
   {
     q: "Can I register a business if I work remotely?",
-    a: "Yes, you can register a business from anywhere using our Virtual Office services. We provide valid business address credentials in 28 states across India."
+    a: "Yes, you can register a business using our Virtual Office services. We provide valid business address credentials across major Indian commercial hubs."
   },
   {
     q: "What is the refund policy if my application gets rejected?",
-    a: "If your application gets rejected due to validation errors on our side, we offer a full no-questions-asked refund policy. Your compliance satisfaction is our top priority."
+    a: "If your application is formally rejected by government authorities due to documentation defects directly attributable to FilingBy, we provide a 100% refund of our service fees in accordance with our transparent Refund Policy."
   }
 ];
 
-const DEFAULT_REVIEWS = [
-  {
-    rating: 5,
-    comment: "FilingBy handled our GST registration and company incorporation seamlessly. Highly professional team!",
-    authorName: "Rahul Mehta",
-    businessName: "Mehta Enterprises"
-  },
-  {
-    rating: 5,
-    comment: "Got our trademark registered in just 3 days. The process was completely online and hassle-free.",
-    authorName: "Priya Sharma",
-    businessName: "PS Fashion Studio"
-  },
-  {
-    rating: 5,
-    comment: "Their CA team files our monthly GST returns on time every month. No stress, no penalties!",
-    authorName: "Vikram Patel",
-    businessName: "Patel Trading Co."
-  }
-];
+const DEFAULT_REVIEWS = [];
+
 
 // Brand logo renderer helper for visual brand logo display
 function BrandLogo({ name, imageUrl }) {
@@ -246,8 +228,8 @@ export default function Home() {
             Start, Manage & Grow Your Business
           </h1>
           <p className="mx-auto mb-8 max-w-2xl px-2 text-sm text-blue-100 sm:text-base md:text-lg">
-            Expert CA & CS assisted services for GST, Company Registration,
-            Trademark, ITR Filing & 100+ more compliance services — 100% online.
+            Professional compliance assistance for GST, Company Registration,
+            Trademark, ITR Filing & 100+ compliance services — 100% online.
           </p>
 
           <Search />
@@ -256,8 +238,8 @@ export default function Home() {
             {[
               { value: "100%", label: "Online Process" },
               { value: "24-72h", label: "Filing SLA" },
-              { value: "28 States", label: "Pan-India Coverage" },
-              { value: "CA Assisted", label: "Expert Review" },
+              { value: "Multiple", label: "Business Hubs" },
+              { value: "Assisted", label: "Professional Review" },
             ].map((item) => (
               <div key={item.label} className="text-center text-white">
                 <p className="text-2xl font-bold text-white">{item.value}</p>
@@ -428,7 +410,7 @@ export default function Home() {
                 </h3>
                 
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                  Skip the expensive commercial leases. Secure a premium, legal business address across any of the 28 states in India. Perfect for GST registration, company mailing, or seller registration with 100% compliant documentation.
+                  Skip expensive commercial leases. Secure a legitimate commercial business address across prime business hubs in India. Suitable for GST registration, company mailing, and seller registration with verified documentation.
                 </p>
 
                 {/* Structured Checkmarks List */}
@@ -447,7 +429,7 @@ export default function Home() {
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
-                    <span>100% GST Registry Approved</span>
+                    <span>Document-Checked GST Filing Support</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
@@ -571,8 +553,8 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                   </svg>
                 ),
-                title: "Expert CA & CS Team",
-                desc: "Qualified corporate professionals providing comprehensive legal, ROC, and tax compliance assistance.",
+                title: "Experienced Corporate Compliance Team",
+                desc: "Qualified corporate professionals providing comprehensive ROC, tax compliance, and document filing support.",
                 bg: "bg-blue-500/10",
               },
               {
@@ -625,15 +607,34 @@ export default function Home() {
 
       <section className="bg-gray-50 px-4 py-16">
         <div className="mx-auto max-w-screen-xl text-center">
-          <h2 className="text-2xl font-bold text-gray-900">
-            What Our Clients Say
-          </h2>
             {(() => {
               const reviewItems = dynamicReviews.length > 0 ? dynamicReviews : DEFAULT_REVIEWS;
               const reviewCount = reviewItems.length;
               const averageRating = reviewCount
                 ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
                 : "0.0";
+
+              if (reviewCount === 0) {
+                return (
+                  <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-gray-200/80 bg-white p-8 text-center sm:flex-row sm:text-left shadow-sm">
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900">Client Feedback &amp; Reviews</h2>
+                      <p className="mt-1 text-sm text-gray-600">
+                        We value client transparency. Worked with FilingBy on your corporate filings? Share your experience with our team.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowReviewModal(true)}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 shrink-0"
+                    >
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                      Write a review
+                    </button>
+                  </div>
+                );
+              }
 
               return (
                 <>
@@ -662,36 +663,36 @@ export default function Home() {
 
                   <div className="mt-8 grid gap-4 md:grid-cols-3 md:gap-6">
                     {reviewItems.map((rev, index) => (
-              <article
-                key={index}
-                className="rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6"
-              >
-                <div className="flex items-center text-yellow-400 mb-4">
-                  {Array.from({ length: rev.rating || 5 }).map((_, i) => (
-                    <span key={i}>★</span>
-                  ))}
-                  {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
-                    <span key={i} className="text-gray-300">★</span>
-                  ))}
-                </div>
-                <p className="mb-4 text-sm leading-relaxed text-gray-600 italic">
-                  "{rev.comment}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-[#1A56DB]">
-                    {rev.authorName
-                      ?.split(" ")
-                      .map((n) => n[0])
-                      .join("") || "C"}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">
-                      {rev.authorName}
-                    </p>
-                    <p className="text-xs text-gray-500">{rev.businessName}</p>
-                  </div>
-                </div>
-              </article>
+                      <article
+                        key={index}
+                        className="rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-sm sm:p-6"
+                      >
+                        <div className="flex items-center text-yellow-400 mb-4">
+                          {Array.from({ length: rev.rating || 5 }).map((_, i) => (
+                            <span key={i}>★</span>
+                          ))}
+                          {Array.from({ length: 5 - (rev.rating || 5) }).map((_, i) => (
+                            <span key={i} className="text-gray-300">★</span>
+                          ))}
+                        </div>
+                        <p className="mb-4 text-sm leading-relaxed text-gray-600 italic">
+                          "{rev.comment}"
+                        </p>
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-[#1A56DB]">
+                            {rev.authorName
+                              ?.split(" ")
+                              .map((n) => n[0])
+                              .join("") || "C"}
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">
+                              {rev.authorName}
+                            </p>
+                            <p className="text-xs text-gray-500">{rev.businessName}</p>
+                          </div>
+                        </div>
+                      </article>
                     ))}
                   </div>
                 </>

@@ -10,7 +10,7 @@ import {
   buildBreadcrumbSchema,
   buildFaqSchema,
 } from "../../../shared/seo/schemas.js";
-import { resolveAuthorProfile, resolveReviewerProfile } from "../contentProfiles.js";
+import { resolveAuthorProfile } from "../contentProfiles.js";
 import {
   fetchBlogPost,
   fetchRelatedBlogPosts,
@@ -53,7 +53,7 @@ const categoryServiceMap = {
     { label: "LLP Registration", href: "/services/llp-registration" },
   ],
   MSME: [
-    { label: "MSME Registration", href: "/services/udyam-registration" },
+    { label: "MSME & Udyam Guidance", href: "/services/udyam-registration" },
     { label: "GST Registration", href: "/services/gst-registration" },
   ],
   FSSAI: [
@@ -82,8 +82,8 @@ const serviceLinkMap = {
   "tax-audit": { label: "Tax Audit", href: "/services/tax-audit" },
   "virtual-office": { label: "Virtual Office", href: "/virtual-space" },
   "virtual-space": { label: "Virtual Office", href: "/virtual-space" },
-  "msme-registration": { label: "MSME Registration", href: "/services/udyam-registration" },
-  "udyam-registration": { label: "MSME Registration", href: "/services/udyam-registration" },
+  "msme-registration": { label: "MSME & Udyam Guidance", href: "/services/udyam-registration" },
+  "udyam-registration": { label: "MSME & Udyam Guidance", href: "/services/udyam-registration" },
   "fssai-registration": { label: "FSSAI Registration", href: "/services/fssai-registration" },
   "iec-registration": { label: "IEC Registration", href: "/services/iec-registration" },
   "tds-return-filing": { label: "TDS Return Filing", href: "/services/tds-return-filing" },
@@ -121,8 +121,8 @@ function resolveResourceLabel(value) {
     "/services/tax-audit": "Tax Audit Support",
     "/services/fssai-registration": "FSSAI Registration Service",
     "/services/iec-registration": "IEC Registration Service",
-    "/services/udyam-registration": "MSME / Udyam Registration Service",
-    "/services/msme-registration": "MSME / Udyam Registration Service",
+    "/services/udyam-registration": "MSME Classification & Udyam Guidance",
+    "/services/msme-registration": "MSME Classification & Udyam Guidance",
     "/services/tds-return-filing": "TDS Return Filing Service",
   };
 
@@ -301,7 +301,6 @@ export default function BlogDetail() {
   const articleSchema = buildBlogPostingSchema(post);
   const faqSchema = buildFaqSchema(post.faq || []);
   const authorProfile = resolveAuthorProfile(post);
-  const reviewerProfile = resolveReviewerProfile(post);
   const publishedDate = formatDate(post.publishedAt || post.createdAt);
   const updatedDate = formatDate(post.lastUpdated || post.updatedAt || post.createdAt);
   const verifiedDate = formatDate(post.lastVerifiedAt);
@@ -407,22 +406,10 @@ export default function BlogDetail() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-[#1A56DB]">
                   FB
                 </div>
-                <div className="grid flex-1 gap-4 md:grid-cols-2">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Author</p>
-                    <p className="mt-2 text-sm font-bold text-gray-900">{authorProfile.name}</p>
-                    <p className="mt-1 text-xs leading-6 text-gray-500">{authorProfile.bio}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Reviewed by</p>
-                    <p className="mt-2 text-sm font-bold text-gray-900">
-                      {reviewerProfile.prefix} {reviewerProfile.name}
-                    </p>
-                    {reviewerProfile.title ? <p className="mt-1 text-xs leading-6 text-gray-500">{reviewerProfile.title}</p> : null}
-                    {reviewerProfile.experience ? (
-                      <p className="mt-1 text-xs leading-6 text-gray-500">{reviewerProfile.experience}</p>
-                    ) : null}
-                  </div>
+                <div className="flex-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Published by</p>
+                  <p className="mt-2 text-sm font-bold text-gray-900">{authorProfile.name}</p>
+                  <p className="mt-1 text-xs leading-6 text-gray-500">{authorProfile.bio}</p>
                 </div>
               </div>
             </div>

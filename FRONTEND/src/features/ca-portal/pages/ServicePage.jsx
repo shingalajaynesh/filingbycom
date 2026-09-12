@@ -23,6 +23,7 @@ import {
   ExpertReview
 } from '../components/SEOContentComponents.jsx';
 import { PortalPageShell, PortalCard } from '../components/PortalPageShell.jsx';
+import { CORE_SERVICES_CONTENT } from '../../../shared/data/coreServicesContent.js';
 
 const LEGACY_SERVICE_SLUG_MAP = {
   "msme-registration": "/services/udyam-registration",
@@ -40,7 +41,48 @@ const LEGACY_SERVICE_SLUG_MAP = {
   "ngo-darpan-registration": "/services/ngo-darpan"
 };
 
+const CORE_INDEXABLE_SERVICES = new Set([
+  "gst-registration",
+  "gst-return-filing",
+  "private-limited-company",
+  "llp-registration",
+  "one-person-company",
+  "trademark-registration",
+  "itr-1-filing",
+  "fssai-basic-registration",
+  "udyam-registration",
+  "iec-registration",
+  "startup-india",
+  "roc-annual-filing-pvt",
+  "roc-annual-filing-llp",
+  "trust-registration"
+]);
+
 const SERVICE_SEO_OVERRIDES = {
+  "udyam-registration": {
+    title: "Udyam Registration Guidance & MSME Classification Support | FilingBy",
+    description:
+      "Independent guide for MSME classification, NIC codes, and official portal preparation. Official Government Udyam Registration is 100% free on udyamregistration.gov.in.",
+    keywords:
+      "udyam registration guidance, msme classification support, udyamregistration gov in, official udyam free, msme limits 2025 2026",
+    intro:
+      "This page provides independent educational and advisory guidance on MSME classification, post-April-2025 thresholds, NIC code mapping, and official portal preparation. Official Udyam Registration is completely free and self-declaration based on udyamregistration.gov.in. FilingBy is an independent platform and is not affiliated with or authorized by the Ministry of MSME to issue or process Udyam Registration.",
+    snapshotTitle: "Official MSME Udyam Registration Facts",
+    snapshotBody:
+      "Official Udyam Registration is completely free on the Government portal (udyamregistration.gov.in). Apart from the official Government portal and Government Single Window Systems, no private online/offline service, agency or person is authorized to do MSME Registration. Use this page for MSME classification rules, NIC code selection, and data readiness.",
+    quickFacts: [
+      { label: "Govt Registration Fee", value: "₹0 (100% Free on udyamregistration.gov.in)" },
+      { label: "Micro Limit (2025+)", value: "Investment ≤ ₹2.5Cr & Turnover ≤ ₹10Cr" },
+      { label: "Ideal Next Step", value: "Review NIC codes and visit official portal" }
+    ],
+    checkpoints: [
+      "Confirm enterprise turnover and plant & machinery investment against composite 2025 MSME limits.",
+      "Ensure mobile number linked to Proprietor / Partner / Director Aadhaar is active for OTP verification.",
+      "Identify correct 5-digit National Industrial Classification (NIC) activity codes.",
+      "Complete free self-declaration directly on the official portal: udyamregistration.gov.in."
+    ],
+    primaryCtaLabel: "View Official Udyam Portal (Free)"
+  },
   "trust-registration": {
     title: "Trust Compliance in India: Annual Filing, Audit and Legal Checklist",
     description:
@@ -250,7 +292,18 @@ function mergeFaqs(primaryFaqs = [], overrideFaqs = []) {
   return Array.from(normalized.values());
 }
 
-function IntentSnapshot({ title, body, facts = [], checkpoints = [], onPrimaryAction, primaryLabel, whatsappUrl }) {
+function IntentSnapshot({
+  title,
+  body,
+  facts = [],
+  checkpoints = [],
+  onPrimaryAction,
+  primaryLabel,
+  whatsappUrl,
+  isExternalPrimary = false,
+  externalPrimaryUrl = "",
+  nextStepText = ""
+}) {
   if (!title && !body && facts.length === 0 && checkpoints.length === 0) {
     return null;
   }
@@ -277,15 +330,26 @@ function IntentSnapshot({ title, body, facts = [], checkpoints = [], onPrimaryAc
         <div className="w-full max-w-xs rounded-[1.75rem] border border-slate-200/80 bg-white/90 p-5 shadow-[0_14px_40px_rgba(15,23,42,0.08)]">
           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Next step</p>
           <p className="mt-3 text-sm font-semibold leading-6 text-slate-800">
-            Review required documents and begin statutory filing with our CA/CS team.
+            {nextStepText || "Review required documents and begin statutory filing with our CA/CS team."}
           </p>
-          <button
-            type="button"
-            onClick={onPrimaryAction}
-            className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 cursor-pointer"
-          >
-            {primaryLabel || "Get Started"}
-          </button>
+          {isExternalPrimary ? (
+            <a
+              href={externalPrimaryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 block w-full text-center rounded-full bg-emerald-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            >
+              {primaryLabel || "View Official Portal (Free) ↗"}
+            </a>
+          ) : (
+            <button
+              type="button"
+              onClick={onPrimaryAction}
+              className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 cursor-pointer"
+            >
+              {primaryLabel || "Get Started"}
+            </button>
+          )}
           <a
             href={whatsappUrl || "https://wa.me/917567126945"}
             target="_blank"
@@ -478,39 +542,47 @@ export default function ServicePage() {
     window.location.href = '/dashboard';
   };
 
+  const coreContent = CORE_SERVICES_CONTENT[slug] || null;
   const seoOverride = SERVICE_SEO_OVERRIDES[slug] || null;
-  const faqs = mergeFaqs(serviceData.faqs || [], seoOverride?.faqs || []);
-  const processSteps = serviceData.processSteps || [];
-  const documentsRequired = serviceData.documentsRequired || [];
+  const faqs = mergeFaqs(coreContent?.faqs || serviceData.faqs || [], seoOverride?.faqs || []);
+  const processSteps = coreContent?.processSteps || serviceData.processSteps || [];
+  const documentsRequired = coreContent?.documentsRequired || serviceData.documentsRequired || [];
+  const serviceBenefits = coreContent?.benefits || serviceData.benefits || [];
+  const statutoryInfo = coreContent?.statutoryInfo || serviceData.statutoryInfo || null;
+
   let seoTitle =
-    serviceData.seoTitle || seoOverride?.title || `${serviceData.name} Online India | FilingBy`;
-  if (seoTitle.length > 68) {
+    coreContent?.metaTitle || serviceData.seoTitle || seoOverride?.title || `${serviceData.name} Online India | FilingBy`;
+  if (seoTitle.length > 68 && !coreContent) {
     seoTitle = `${serviceData.name} Online | FilingBy`;
   }
-  if (seoTitle.length > 68) {
+  if (seoTitle.length > 68 && !coreContent) {
     seoTitle = `${serviceData.name} | FilingBy`;
   }
-  if (seoTitle.length > 68) {
+  if (seoTitle.length > 68 && !coreContent) {
     seoTitle = seoTitle.substring(0, 65).trim() + "...";
   }
   let seoDescription =
-    serviceData.seoDescription || seoOverride?.description || serviceData.description || "";
+    coreContent?.metaDescription || serviceData.seoDescription || seoOverride?.description || serviceData.description || "";
   if (!seoDescription) {
-    seoDescription = `Get expert-assisted ${serviceData.name} services online in India. Flat-rate pricing, secure document upload, and 100% compliance guaranteed.`;
-  } else if (seoDescription.length < 120) {
+    seoDescription = `Get expert-assisted ${serviceData.name} services online in India. Flat-rate pricing, secure document upload, and structured compliance assistance with document review.`;
+  } else if (seoDescription.length < 120 && !coreContent) {
     seoDescription = `${seoDescription.trim()} Secure online filing, transparent flat-rate pricing, and dedicated expert support for businesses across India.`;
   }
-  if (seoDescription.length > 160) {
+  if (seoDescription.length > 160 && !coreContent) {
     seoDescription = seoDescription.substring(0, 157) + "...";
   }
   const seoKeywords =
+    coreContent?.metaKeywords ||
     serviceData.seoKeywords ||
     seoOverride?.keywords ||
     `${serviceData.name.toLowerCase()} online, ${serviceData.name.toLowerCase()} registration, online CA services India`;
-  const pageDescription = seoOverride?.intro || serviceData.description;
+  const pageDescription = coreContent?.overview || seoOverride?.intro || serviceData.description;
+  const pageH1 = coreContent?.h1 || seoOverride?.title || `${serviceData.name} Online India`;
   const snapshotFacts = seoOverride?.quickFacts || [];
   const snapshotCheckpoints = seoOverride?.checkpoints || [];
   const primaryCtaLabel = seoOverride?.primaryCtaLabel || "Get Started";
+
+  const isCoreIndexable = CORE_INDEXABLE_SERVICES.has(slug);
 
   return (
     <m.main 
@@ -525,7 +597,15 @@ export default function ServicePage() {
         description={seoDescription}
         keywords={seoKeywords}
         canonical={`/services/${slug}`}
-        schema={buildServiceSchema({ name: serviceData.name, description: seoDescription, price: serviceData.basePrice?.toString(), url: `/services/${slug}` })}
+        noindex={!isCoreIndexable}
+        schema={buildServiceSchema({
+          name: slug === "udyam-registration" ? "MSME Classification & Udyam Guidance" : serviceData.name,
+          description: slug === "udyam-registration"
+            ? "Independent educational and advisory guidance for MSME classification, NIC codes, and official portal preparation. Official Udyam Registration is 100% free on the Government portal udyamregistration.gov.in."
+            : seoDescription,
+          price: slug === "udyam-registration" ? "499.00" : serviceData.basePrice?.toString(),
+          url: `/services/${slug}`
+        })}
         extraSchemas={[
           buildBreadcrumbSchema([
             { name: 'Home', url: '/' },
@@ -545,7 +625,7 @@ export default function ServicePage() {
         </nav>
 
         <h1 className="text-3xl font-black text-slate-950 sm:text-4xl mb-6">
-          {seoOverride?.title || `${serviceData.name} Online India`}
+          {pageH1}
         </h1>
  
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-3 lg:gap-8">
@@ -559,13 +639,16 @@ export default function ServicePage() {
               onPrimaryAction={handleGetStarted}
               primaryLabel={primaryCtaLabel}
               whatsappUrl={settings?.ca_whatsapp_url}
+              isExternalPrimary={slug === "udyam-registration"}
+              externalPrimaryUrl="https://udyamregistration.gov.in/"
+              nextStepText={slug === "udyam-registration" ? "Review MSME classification thresholds, prepare business details, and complete free self-declaration on the official Government portal." : undefined}
             />
-            <ServiceOverview name={serviceData.name} description={pageDescription} />
+            <ServiceOverview name={serviceData.name} description={pageDescription} statutoryInfo={statutoryInfo} />
             <ComparisonTable slug={slug} />
-            <ServiceBenefits name={serviceData.name} benefits={serviceData.benefits} />
+            <ServiceBenefits name={serviceData.name} benefits={serviceBenefits} />
             <ServiceDocuments documents={documentsRequired} />
             <ServiceTimeline steps={processSteps} />
-            <ServiceFees basePrice={serviceData.basePrice || 999} name={serviceData.name} />
+            <ServiceFees basePrice={serviceData.basePrice || 999} name={serviceData.name} slug={slug} statutoryFee={statutoryInfo?.statutoryFee} />
             <ServiceFAQ faqs={faqs} openFaq={openFaq} setOpenFaq={setOpenFaq} />
             <RelatedServices services={services} currentCategory={serviceData.category} currentSlug={slug} />
             <RelatedBlogs currentCategory={serviceData.category} />
@@ -578,15 +661,46 @@ export default function ServicePage() {
             className="order-2 lg:order-none lg:sticky lg:top-24 lg:self-start lg:flex lg:flex-col lg:gap-6"
           >
             <div className="rounded-3xl border border-[#1A56DB] bg-white p-6 shadow-lg">
-              <p className="text-sm text-gray-500">Starting from</p>
-              <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹{serviceData.basePrice?.toLocaleString('en-IN')}/-</p>
-              <p className="mt-1 text-xs text-slate-400">+ Govt. fees as applicable</p>
-              <button
-                onClick={handleGetStarted}
-                className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 cursor-pointer"
-              >
-                {primaryCtaLabel}
-              </button>
+              {slug === "udyam-registration" ? (
+                <>
+                  <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-3.5 mb-4 text-center">
+                    <p className="text-xs font-bold text-emerald-800">Official Portal is 100% Free</p>
+                    <p className="text-[11px] text-emerald-700 mt-0.5 font-medium">Government Udyam Registration Fee: ₹0</p>
+                  </div>
+                  <a
+                    href="https://udyamregistration.gov.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center rounded-full bg-emerald-600 px-4 py-3 text-sm font-bold text-white hover:bg-emerald-700 transition"
+                  >
+                    View Official Udyam Portal (Free) ↗
+                  </a>
+                  <div className="mt-5 pt-4 border-t border-slate-100">
+                    <p className="text-xs text-slate-500 font-semibold">Optional Advisory Support</p>
+                    <p className="text-xs text-slate-400 mt-0.5">Business Classification &amp; NIC Code Guidance</p>
+                    <p className="mt-2 text-2xl font-bold text-slate-900">₹{serviceData.basePrice?.toLocaleString('en-IN') || "499"}/-</p>
+                    <p className="text-[11px] text-slate-400">Optional private consultation fee</p>
+                    <button
+                      onClick={handleGetStarted}
+                      className="mt-3 w-full rounded-full border border-[#1A56DB] bg-white px-4 py-2.5 text-xs font-bold text-[#1A56DB] hover:bg-blue-50 transition cursor-pointer"
+                    >
+                      Get Classification Guidance
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm text-gray-500">Starting from</p>
+                  <p className="mt-2 text-4xl font-bold text-[#1A56DB]">₹{serviceData.basePrice?.toLocaleString('en-IN')}/-</p>
+                  <p className="mt-1 text-xs text-slate-400">+ Govt. fees as applicable</p>
+                  <button
+                    onClick={handleGetStarted}
+                    className="mt-5 w-full rounded-full bg-[#1A56DB] px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 cursor-pointer"
+                  >
+                    {primaryCtaLabel}
+                  </button>
+                </>
+              )}
             </div>
             
             <CTASection 
@@ -697,20 +811,41 @@ export default function ServicePage() {
 
       {/* Sticky Mobile CTA Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 p-4 lg:hidden flex gap-3 shadow-[0_-8px_30px_rgb(0,0,0,0.12)]">
-        <button
-          onClick={handleGetStarted}
-          className="flex-1 bg-[#1A56DB] text-white py-3 rounded-full text-xs font-black text-center cursor-pointer border-0"
-        >
-          Get Started
-        </button>
-        <a
-          href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"}
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center justify-center bg-green-50 border border-green-400 text-green-600 px-5 py-3 rounded-full text-xs font-bold"
-        >
-          WhatsApp
-        </a>
+        {slug === "udyam-registration" ? (
+          <>
+            <a
+              href="https://udyamregistration.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-emerald-600 text-white py-3 rounded-full text-xs font-black text-center flex items-center justify-center border-0"
+            >
+              Official Portal (Free) ↗
+            </a>
+            <button
+              onClick={handleGetStarted}
+              className="flex-1 bg-[#1A56DB] text-white py-3 rounded-full text-xs font-black text-center cursor-pointer border-0"
+            >
+              Guidance (₹{serviceData.basePrice || 499})
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={handleGetStarted}
+              className="flex-1 bg-[#1A56DB] text-white py-3 rounded-full text-xs font-black text-center cursor-pointer border-0"
+            >
+              Get Started
+            </button>
+            <a
+              href={settings?.ca_whatsapp_url || "https://wa.me/917567126945"}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center bg-green-50 border border-green-400 text-green-600 px-5 py-3 rounded-full text-xs font-bold"
+            >
+              WhatsApp
+            </a>
+          </>
+        )}
       </div>
 
       <CheckoutModal

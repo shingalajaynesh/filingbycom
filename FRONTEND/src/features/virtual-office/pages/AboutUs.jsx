@@ -34,7 +34,7 @@ export default function AboutUs() {
             <span className="text-[#F97316]">For Indian Entrepreneurs</span>
           </h1>
           <p className="text-gray-300 text-sm md:text-base font-medium max-w-xl mx-auto leading-relaxed">
-            We are a network of verified legal spaces, CA professionals, and technology experts dedicated to providing digital business registrations.
+            We are a digital compliance platform providing verified commercial address solutions and corporate documentation workflows. Specialist professional assistance may be coordinated where a filing legally requires a qualified professional.
           </p>
         </div>
       </section>
@@ -45,7 +45,7 @@ export default function AboutUs() {
           {[
             { value: "100%", label: "Online & Paperless" },
             { value: "24-48h", label: "Draft SLA Turnaround" },
-            { value: "28 States", label: "Pan-India Coverage" },
+            { value: "Multiple", label: "Business Hubs" },
             { value: "Zero", label: "Hidden Administrative Fees" },
           ].map((metric) => (
             <div key={metric.label} className="space-y-1">
@@ -78,7 +78,7 @@ export default function AboutUs() {
             { title: "Transparency First", desc: "No hidden administrative charges or arbitrary annual increases. Everything is pre-calculated.", icon: "💎" },
             { title: "100% Legal Guarantee", desc: "All contracts are fully stamp-registered and utility bills checked against government state grids.", icon: "🛡️" },
             { title: "Turnaround SLA", desc: "Digital draft NOCs within 24 hours. Express courier dispatch for original folders.", icon: "⚡" },
-            { title: "Expert Care Network", desc: "Dedicated CA/CS support representatives handling commercial tax authority query replies.", icon: "🤝" },
+            { title: "Compliance Support", desc: "Dedicated support specialists assisting with documentation workflow; qualified professional assistance is coordinated where statutorily required.", icon: "🤝" },
           ].map((val) => (
             <div key={val.title} className="bg-white rounded-2xl shadow-sm p-5 space-y-2">
               <span className="text-2xl">{val.icon}</span>

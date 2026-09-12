@@ -124,11 +124,11 @@ export const rocToolCards = [
 ];
 
 export const rocComplianceTimeline = [
-  { form: "LLP Form 11", entity: "LLPs", deadline: "May 30 (60 days from FY end)", description: "Annual return containing partner details and business activities.", lateFee: "₹100 per day without upper ceiling" },
+  { form: "LLP Form 11", entity: "LLPs", deadline: "May 30 (60 days from FY end)", description: "Annual return containing partner details and business activities.", lateFee: "Graded additional fee multiplier (2x to 50x normal fee)" },
   { form: "DIR-3 KYC", entity: "All Directors & Designated Partners", deadline: "September 30", description: "Annual KYC validation for active DIN holders via mobile/email OTP.", lateFee: "₹5,000 one-time deactivation revival fee" },
-  { form: "AOC-4", entity: "Private Limited / OPC", deadline: "October 29 (30 days from AGM)", description: "Balance Sheet, Profit & Loss Account, and Director's Report filing.", lateFee: "₹100 per day per form" },
-  { form: "LLP Form 8", entity: "LLPs", deadline: "October 30 (30 days from 6 months of FY end)", description: "Statement of Accounts, Solvency, and Income/Expenditure declaration.", lateFee: "₹100 per day without upper ceiling" },
-  { form: "MGT-7 / 7A", entity: "Private Limited / Small Companies", deadline: "November 28 (60 days from AGM)", description: "Annual return detailing shareholding structure and director meetings.", lateFee: "₹100 per day per form" }
+  { form: "AOC-4", entity: "Private Limited / OPC", deadline: "October 29 (30 days from AGM)", description: "Balance Sheet, Profit & Loss Account, and Director's Report filing.", lateFee: "₹100 per day per form (Section 403)" },
+  { form: "LLP Form 8", entity: "LLPs", deadline: "October 30 (30 days from 6 months of FY end)", description: "Statement of Accounts, Solvency, and Income/Expenditure declaration.", lateFee: "Graded additional fee multiplier (2x to 50x normal fee)" },
+  { form: "MGT-7 / 7A", entity: "Private Limited / Small Companies", deadline: "November 28 (60 days from AGM)", description: "Annual return detailing shareholding structure and director meetings.", lateFee: "₹100 per day per form (Section 403)" }
 ];
 
 export const trademarkChecklist = [
@@ -179,7 +179,7 @@ export const resourceFaqs = {
     },
     {
       q: "What is the Standard Deduction for salaried individuals in FY 2025-26?",
-      a: "Under the New Tax Regime, the standard deduction for salaried individuals and pensioners is ₹75,000 (increased from ₹50,000 under the Finance Act 2024). Under the Old Tax Regime, the standard deduction remains ₹50,000."
+      a: "Under the New Tax Regime, the standard deduction for salaried individuals and pensioners is ₹75,000 under Section 115BAC / Income Tax Department AY 2026-27 statutory guidance (increased from ₹50,000). Under the Old Tax Regime, the standard deduction remains ₹50,000."
     },
     {
       q: "Can I switch between the Old and New Tax Regimes every year?",
@@ -201,7 +201,7 @@ export const resourceFaqs = {
     },
     {
       q: "What is the penalty for late filing of LLP Form 8 and Form 11?",
-      a: "Under the LLP Act, delayed filing of Form 11 (Annual Return) or Form 8 (Statement of Account & Solvency) attracts a statutory penalty of ₹100 per day per form with no statutory upper limit until filed."
+      a: "Under the amended LLP Rules, delayed filing of Form 11 (Annual Return) or Form 8 (Statement of Account & Solvency) incurs a graded additional fee multiplier schedule based on the duration of delay and Small LLP status (ranging from 2x to 50x the normal fee), rather than an unscaled flat daily penalty."
     },
     {
       q: "What happens if a director misses the September 30th DIR-3 KYC deadline?",

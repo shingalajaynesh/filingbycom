@@ -46,7 +46,7 @@ export default function Footer() {
               <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
             </a>
             <p className="text-sm text-blue-100/70 leading-relaxed">
-              Expert CA & CS assisted compliance services for Indian businesses. Fast, secure, transparent, and completely online.
+              Professional compliance and corporate documentation support for Indian businesses. Fast, secure, transparent, and completely online.
             </p>
             {/* Social Icons */}
             <div className="flex gap-4 pt-2">
@@ -146,7 +146,7 @@ export default function Footer() {
               </p>
               <p className="flex items-start gap-2 leading-relaxed">
                 <span className="mt-1">📍</span>
-                <span>{settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India"}</span>
+                <span>{settings?.ca_contact_address ? settings.ca_contact_address : "India Operations — Online Corporate Compliance Helpdesk"}</span>
               </p>
             </div>
           </div>

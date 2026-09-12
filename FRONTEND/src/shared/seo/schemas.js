@@ -1,4 +1,4 @@
-import { resolveAuthorProfile, resolveReviewerProfile } from "../../features/blog/contentProfiles.js";
+import { resolveAuthorProfile } from "../../features/blog/contentProfiles.js";
 
 /**
  * schemas.js
@@ -9,7 +9,7 @@ import { resolveAuthorProfile, resolveReviewerProfile } from "../../features/blo
 const schemaConfig = {
   ca_contact_phone: "+91-75671-26945",
   ca_contact_email: "support@filingby.com",
-  ca_contact_address: "3rd Floor, Business Center, New Delhi, India",
+  ca_contact_address: "",
   vs_contact_phone: "+91-75671-26945"
 };
 
@@ -23,7 +23,7 @@ export function updateSchemaSettings(settings) {
     schemaConfig.ca_contact_email = settings.ca_contact_email;
     localBusinessSchema.email = settings.ca_contact_email;
   }
-  if (settings.ca_contact_address) {
+  if (settings.ca_contact_address && settings.ca_contact_address.trim().length > 5) {
     schemaConfig.ca_contact_address = settings.ca_contact_address;
     if (localBusinessSchema.address) {
       localBusinessSchema.address.streetAddress = settings.ca_contact_address;
@@ -76,26 +76,14 @@ export const websiteSchema = {
 
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://www.filingby.com/#localbusiness",
+  "@type": "ProfessionalService",
+  "@id": "https://www.filingby.com/#professionalservice",
   "name": "FilingBy CA & Business Services",
   "image": "https://www.filingby.com/logo.jpeg",
   "telephone": "+91-75671-26945",
   "email": "support@filingby.com",
   "url": "https://www.filingby.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "301, Business Hub, CG Road",
-    "addressLocality": "Ahmedabad",
-    "addressRegion": "Gujarat",
-    "postalCode": "380009",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "23.0225",
-    "longitude": "72.5714"
-  },
+  "priceRange": "₹₹",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
@@ -108,19 +96,23 @@ export const localBusinessSchema = {
     ],
     "opens": "09:00",
     "closes": "19:00"
-  },
-  "priceRange": "$$"
+  }
 };
 
 export const homeReviewsSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "FilingBy.com CA & Virtual Office Services",
+  "@type": "Service",
+  "name": "FilingBy Corporate Compliance & Registration Services",
   "image": "https://www.filingby.com/logo.jpeg",
-  "description": "GST Registration, Company Incorporation, ITR Filing, and Premium Virtual Office Addresses across India.",
-  "brand": {
-    "@type": "Brand",
-    "name": "FilingBy"
+  "description": "GST Registration, Company Incorporation, ITR Filing assistance, and Virtual Office Addresses across India.",
+  "provider": {
+    "@type": "Organization",
+    "name": "FilingBy",
+    "url": "https://www.filingby.com"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
   },
   "offers": {
     "@type": "Offer",
@@ -128,51 +120,24 @@ export const homeReviewsSchema = {
     "price": "999.00",
     "priceValidUntil": "2027-12-31",
     "url": "https://www.filingby.com",
-    "availability": "https://schema.org/InStock",
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0",
-        "currency": "INR"
-      },
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "IN"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 1,
-          "unitCode": "DAY"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 1,
-          "maxValue": 3,
-          "unitCode": "DAY"
-        }
-      }
-    },
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "IN",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-    }
+    "availability": "https://schema.org/InStock"
   }
 };
 
 export const virtualOfficeSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   "name": "Virtual Office Address for GST Registration & Mailing",
-  "description": "Premium virtual business addresses across 28 states in India. Includes NOC, utility bills, and rent agreement for hassle-free GST registration & corporate mailing.",
+  "description": "Virtual business addresses across prime commercial hubs in India. Includes NOC, utility bills, and rent agreement for GST registration and corporate mailing support.",
   "image": "https://www.filingby.com/logo.jpeg",
-  "brand": {
-    "@type": "Brand",
-    "name": "FilingBy"
+  "provider": {
+    "@type": "Organization",
+    "name": "FilingBy",
+    "url": "https://www.filingby.com"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
   },
   "offers": {
     "@type": "Offer",
@@ -180,39 +145,7 @@ export const virtualOfficeSchema = {
     "price": "999.00",
     "priceValidUntil": "2027-12-31",
     "url": "https://www.filingby.com/virtual-space",
-    "availability": "https://schema.org/InStock",
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0",
-        "currency": "INR"
-      },
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "IN"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 1,
-          "unitCode": "DAY"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 1,
-          "maxValue": 3,
-          "unitCode": "DAY"
-        }
-      }
-    },
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "IN",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-    }
+    "availability": "https://schema.org/InStock"
   }
 };
 
@@ -268,13 +201,22 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
 
   return {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "Service",
     "name": name,
     "description": description,
     "image": imageUrl,
-    "brand": {
-      "@type": "Brand",
-      "name": "FilingBy"
+    "provider": {
+      "@type": "Organization",
+      "name": "FilingBy",
+      "url": "https://www.filingby.com"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "India"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Corporate Compliance Services"
     },
     "offers": {
       "@type": "Offer",
@@ -282,39 +224,7 @@ export function buildServiceSchema({ name, description, price = "999.00", url, i
       "price": price,
       "priceValidUntil": "2027-12-31",
       "url": serviceUrl,
-      "availability": "https://schema.org/InStock",
-      "shippingDetails": {
-        "@type": "OfferShippingDetails",
-        "shippingRate": {
-          "@type": "MonetaryAmount",
-          "value": "0",
-          "currency": "INR"
-        },
-        "shippingDestination": {
-          "@type": "DefinedRegion",
-          "addressCountry": "IN"
-        },
-        "deliveryTime": {
-          "@type": "ShippingDeliveryTime",
-          "handlingTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 0,
-            "maxValue": 1,
-            "unitCode": "DAY"
-          },
-          "transitTime": {
-            "@type": "QuantitativeValue",
-            "minValue": 1,
-            "maxValue": 3,
-            "unitCode": "DAY"
-          }
-        }
-      },
-      "hasMerchantReturnPolicy": {
-        "@type": "MerchantReturnPolicy",
-        "applicableCountry": "IN",
-        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-      }
+      "availability": "https://schema.org/InStock"
     }
   };
 }
@@ -347,7 +257,6 @@ export function buildBlogPostingSchema(post) {
 
   const imageSource = post.featuredImage || post.image || "https://www.filingby.com/logo.jpeg";
   const authorProfile = resolveAuthorProfile(post);
-  const reviewerProfile = resolveReviewerProfile(post);
   const keywords = [
     post.focusKeyword,
     ...(Array.isArray(post.secondaryKeywords) ? post.secondaryKeywords : []),
@@ -366,12 +275,6 @@ export function buildBlogPostingSchema(post) {
       "@type": "Person",
       "name": authorProfile.name
     },
-    "reviewedBy": reviewerProfile?.name
-      ? {
-          "@type": reviewerProfile.schemaType || "Organization",
-          "name": reviewerProfile.name
-        }
-      : undefined,
     "publisher": {
       "@type": "Organization",
       "name": "FilingBy.com",

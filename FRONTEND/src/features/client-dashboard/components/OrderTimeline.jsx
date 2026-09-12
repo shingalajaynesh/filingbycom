@@ -210,7 +210,7 @@ export default function OrderTimeline({ order, onClose, onCancelSuccess }) {
               <div class="info-block">
                 <h3>Billed By</h3>
                 <p class="name">FilingBy Solutions Private Limited</p>
-                <p>${settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India"}</p>
+                <p>${settings?.ca_contact_address ? settings.ca_contact_address : "India Operations & Online Corporate Helpdesk"}</p>
                 <p>${settings?.ca_contact_email || "support@filingby.com"} | ${settings?.ca_contact_phone || "+91 75671 26945"}</p>
               </div>
               <div class="info-block">

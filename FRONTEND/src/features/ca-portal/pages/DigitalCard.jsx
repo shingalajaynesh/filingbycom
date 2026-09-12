@@ -400,7 +400,7 @@ export default function DigitalCard() {
   function handleSaveContact() {
     const phone = (settings?.ca_contact_phone || "+91 75671 26945").replace(/\s+/g, "");
     const email = settings?.ca_contact_email || "support@filingby.com";
-    const address = settings?.ca_contact_address || "3rd Floor, Business Center, New Delhi, India";
+    const address = settings?.ca_contact_address ? settings.ca_contact_address : "India Operations & Online Compliance Desk";
     const vcard = `BEGIN:VCARD\r\nVERSION:3.0\r\nFN:FilingBy.com\r\nORG:FilingBy.com\r\nTITLE:Business Registration & Compliance Experts\r\nTEL;TYPE=WORK,VOICE:${phone}\r\nEMAIL;TYPE=WORK:${email}\r\nURL:https://www.filingby.com\r\nADR;TYPE=WORK:;;${address}\r\nNOTE:India's trusted platform for business registration, GST, ITR, Trademark & all compliance needs.\r\nEND:VCARD`;
     const blob = new Blob([vcard], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
@@ -449,8 +449,8 @@ export default function DigitalCard() {
     <>
       <SEO
         title="Digital Business Card & Contact Desk | FilingBy.com"
-        description="Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online CA services, ITR filing, and virtual offices."
-        keywords="FilingBy business card, FilingBy contact details, CA services Surat, digital business card"
+        description="Connect with FilingBy.com. Download our digital contact card (vCard), chat on WhatsApp, or explore online business registration, ITR filing assistance, and virtual offices."
+        keywords="FilingBy business card, FilingBy contact details, business compliance Surat, digital business card"
         canonical="/card"
         noindex
         schema={{
@@ -513,7 +513,7 @@ export default function DigitalCard() {
             <h2 style={S.titleText}>Business Registration & Compliance Experts</h2>
             <div style={S.locationText}>
               <i className="fas fa-map-marker-alt" style={{ color: TOKEN.gold, fontSize: '0.8rem' }} />
-              {settings?.ca_contact_address || "Surat, Gujarat · Pan-India Services"}
+              {settings?.ca_contact_address || "Surat, Gujarat · Online Compliance Assistance"}
             </div>
           </div>
 
@@ -593,7 +593,7 @@ export default function DigitalCard() {
               href="https://www.google.com/maps/search/Surat+Gujarat"
               icon="fas fa-map-marker-alt"
               label="Location"
-              value={settings?.ca_contact_address || "Surat, Gujarat — Pan-India Services"}
+              value={settings?.ca_contact_address || "Surat, Gujarat — Online Compliance Assistance"}
               valueStyle={{ fontSize: '0.85rem', lineHeight: 1.35 }}
               target="_blank"
             />

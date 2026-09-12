@@ -38,14 +38,7 @@ function BrandLogo({ name, imageUrl }) {
   );
 }
 
-const DEFAULT_REVIEWS = [
-  { initials: "AB", color: "bg-blue-600", name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
-  { initials: "AA", color: "bg-emerald-600", name: "Anson Antony", text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
-  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel", text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
-  { initials: "AM", color: "bg-indigo-650", name: "Aman", text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
-  { initials: "AF", color: "bg-[#0E1528]", name: "Ashfaq", text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
-  { initials: "KD", color: "bg-emerald-700", name: "Kunal Debnath", text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
-];
+const DEFAULT_REVIEWS = [];
 
 export default function VirtualOfficeCity() {
   const { city } = useParams();
@@ -242,6 +235,7 @@ export default function VirtualOfficeCity() {
         description={`Get a virtual office in ${defaultCity.name} for GST registration, company address, and ecommerce VPOB/PPOB. Includes NOC, utility bills, and agreement from ₹${defaultCity.rate}/month.`}
         keywords={`virtual office ${defaultCity.name.toLowerCase()}, virtual office address ${defaultCity.name.toLowerCase()}, GST registration ${defaultCity.name.toLowerCase()}, business address ${defaultCity.name.toLowerCase()} India`}
         canonical={`/virtual-office-${detectedCitySlug}`}
+        noindex={true}
         schema={buildCityVirtualOfficeSchema(defaultCity.name)}
         extraSchemas={[
           buildFaqSchema(defaultCity.faqs),
@@ -621,7 +615,7 @@ export default function VirtualOfficeCity() {
             <span className="text-[9px] font-black uppercase tracking-widest text-[#F97316] bg-orange-450/20 border border-orange-500/20 px-3 py-1 rounded">Compliance Lock SLA</span>
             <h3 className="text-xl md:text-2xl font-black">Guaranteed GST Registration Or 100% Refund</h3>
             <p className="text-gray-400 text-xs md:text-sm max-w-xl leading-relaxed font-semibold">
-              FilingBy is a CA-backed compliance platform. If your GST application gets rejected because of an address document deficiency, we will work with you to resolve it immediately. If it still fails, we refund your complete booking amount with no questions asked.
+              FilingBy is a compliance assistance platform. If your GST application gets rejected because of an address document deficiency directly attributable to our workspace host, we will work with you to resolve it immediately. If it still fails, we refund our service fee in accordance with our transparent Refund Policy.
             </p>
           </div>
           <button
@@ -641,6 +635,27 @@ export default function VirtualOfficeCity() {
           const averageRating = reviewCount
             ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
             : "0.0";
+
+          if (reviewCount === 0) {
+            return (
+              <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-gray-200/80 bg-white p-8 text-center sm:flex-row sm:text-left shadow-sm">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Client Feedback &amp; Reviews</h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    We value verified client feedback. Have you booked a virtual office address in {defaultCity.name}? Share your experience with our team.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowReviewModal(true)}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 shrink-0 cursor-pointer"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                  Write a review
+                </button>
+              </div>
+            );
+          }
 
           return (
             <>

@@ -10,14 +10,7 @@ import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { optimizeCloudinaryUrl } from "../../../shared/utils/cloudinary.js";
 
 
-const DEFAULT_REVIEWS = [
-  { initials: "AB", color: "bg-blue-600", name: "Abhishek Tewari", text: "Many thanks to the team for making the whole process so smooth. Fantastic coordination and actively responding to queries. Great team!" },
-  { initials: "AA", color: "bg-emerald-600", name: "Anson Antony", text: "I had a great experience getting a virtual address. Very helpful throughout the process and made everything smooth and hassle-free. Highly recommended!" },
-  { initials: "JP", color: "bg-blue-700", name: "Jaimin Patel", text: "Highly recommended to anyone wanting a virtual office space. Staff is also very helpful. I got very good responses with all my work." },
-  { initials: "AM", color: "bg-indigo-650", name: "Aman", text: "Great experience with the virtual office space. Reliable and professional service. 5/5. Excellent work and fantastic support really makes them stand out." },
-  { initials: "AF", color: "bg-[#0E1528]", name: "Ashfaq", text: "Absolutely professional and supportive at every step. Pricing was clear and fair. Felt well taken care of from start to finish. The best!" },
-  { initials: "KD", color: "bg-emerald-700", name: "Kunal Debnath", text: "Enjoyed the experience and grateful for the streamlined process without any hassles. Price is reasonable. The team is patient and kind." },
-];
+const DEFAULT_REVIEWS = [];
 
 export default function VirtualOfficeArea() {
   const { city, area } = useParams();
@@ -200,6 +193,7 @@ export default function VirtualOfficeArea() {
         description={`Get a virtual office address at ${selectedArea.name}, ${cityName} for GST and company registration. Includes NOC, utility bills, and agreement starting ₹${selectedArea.priceGST}/mo.`}
         keywords={`virtual office ${areaSlug}, virtual office ${cityName}, GST address ${areaSlug}, VPOB ${cityName}`}
         canonical={`/virtual-office-${citySlug}/${areaSlug}`}
+        noindex={true}
         schema={buildBreadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Virtual Office", url: "/virtual-space" },
@@ -498,6 +492,27 @@ export default function VirtualOfficeArea() {
           const averageRating = reviewCount
             ? (reviewItems.reduce((sum, review) => sum + (Number(review.rating) || 5), 0) / reviewCount).toFixed(1)
             : "0.0";
+
+          if (reviewCount === 0) {
+            return (
+              <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-gray-200/80 bg-white p-8 text-center sm:flex-row sm:text-left shadow-sm">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">Client Feedback &amp; Reviews</h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    We value verified client feedback. Have you booked a virtual office address in {selectedArea.name}? Share your experience with our team.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowReviewModal(true)}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#1A56DB] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 shrink-0 cursor-pointer"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/15 text-xs font-bold">★</span>
+                  Write a review
+                </button>
+              </div>
+            );
+          }
 
           return (
             <>

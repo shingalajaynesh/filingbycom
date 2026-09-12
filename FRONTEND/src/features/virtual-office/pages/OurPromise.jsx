@@ -40,8 +40,8 @@ export default function OurPromise() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
             {
-              title: "100% Refund Policy",
-              desc: "In the rare event that the commercial tax inspector or MCA registrar rejects our address despite valid papers, we will offer a complete 100% refund of the agreement fee, no questions asked.",
+              title: "Service Fee Refund SLA",
+              desc: "If the commercial tax department or MCA formally rejects your registration due to a documentation defect directly attributable to FilingBy or our workspace host, we provide a 100% refund of our service fee as outlined in our Refund Policy.",
               icon: "💰",
               color: "border-l-4 border-[#F97316]",
             },

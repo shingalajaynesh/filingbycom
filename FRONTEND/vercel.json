@@ -398,6 +398,16 @@
       "source": "/\\${t}",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/virtual-office/:city",
+      "destination": "/virtual-office-:city",
+      "permanent": true
+    },
+    {
+      "source": "/virtual-office/:city/:area",
+      "destination": "/virtual-office-:city/:area",
+      "permanent": true
     }
   ],
   "rewrites": [
