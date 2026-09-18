@@ -8,6 +8,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import { CORE_SERVICES_CONTENT } from "../src/shared/data/coreServicesContent.js";
+import { FALLBACK_SERVICES } from "../src/features/ca-portal/data/fallbackServices.js";
 
 // Define dynamic schema-less models for querying to avoid importing backend files and causing multiple mongoose instance conflicts
 const Service = mongoose.models.Service || mongoose.model("Service", new mongoose.Schema({}, { strict: false, collection: "services" }));
@@ -110,6 +111,32 @@ if (!fs.existsSync(templatePath)) {
 
 const templateHtml = fs.readFileSync(templatePath, "utf8");
 
+function renderPrerenderPopularServices() {
+  const cards = FALLBACK_SERVICES.slice(0, 8).map(service => `
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: ${service.tag === 'Essential' ? '#EFF6FF' : '#FFF7ED'}; color: ${service.tag === 'Essential' ? '#1D4ED8' : '#C2410C'}; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid ${service.tag === 'Essential' ? '#DBEAFE' : '#FFEDD5'};">${service.tag || 'Popular'}</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/${service.slug}" style="color: #0F172A; text-decoration: none;">${service.name}</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">${service.description}</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹${service.basePrice}${service.billingCycle === 'Month' ? '/Month' : ''}</span>
+            </div>
+            <a href="/services/${service.slug}" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>`).join("\n");
+
+  return `
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 8px;">Popular Services</h2>
+      <p style="font-size: 15px; color: #64748B; margin-bottom: 20px;">Most ordered services by Indian businesses</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 36px;">
+${cards}
+      </div>`;
+}
+
 // Static route metadata
 const STATIC_PAGES = [
   {
@@ -148,130 +175,7 @@ const STATIC_PAGES = [
           <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">ROC &amp; MCA Annual Compliance</h3>
           <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Filing annual financial statements (AOC-4), annual return of shares (MGT-7), LLP Form 8 &amp; 11, and DIR-3 KYC for active corporate directors.</p>
         </div>
-      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 8px;">Popular Services</h2>
-      <p style="font-size: 15px; color: #64748B; margin-bottom: 20px;">Most ordered services by Indian businesses</p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 36px;">
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/gst-registration" style="color: #0F172A; text-decoration: none;">GST Registration</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Official Goods and Services Tax registration for businesses in India. Get your 15-digit GSTIN with complete document verification.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹999</span>
-            </div>
-            <a href="/services/gst-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/private-limited-company" style="color: #0F172A; text-decoration: none;">Private Limited Company</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Incorporate your Pvt Ltd company via MCA V3 SPICe+ framework. Includes DIN, name approval, DSC, and Certificate of Incorporation.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999</span>
-            </div>
-            <a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/trademark-registration" style="color: #0F172A; text-decoration: none;">Trademark Registration</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Protect your brand name, logo, or slogan across India with IP India online filing and comprehensive classification search.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999</span>
-            </div>
-            <a href="/services/trademark-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/gst-return-filing" style="color: #0F172A; text-decoration: none;">GST Return Filing</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Monthly &amp; quarterly GSTR-1, GSTR-2B/IMS reconciliation, and GSTR-3B tax payment computation under QRMP or monthly schemes.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999/Month</span>
-            </div>
-            <a href="/services/gst-return-filing" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/llp-registration" style="color: #0F172A; text-decoration: none;">LLP Registration</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Incorporate a Limited Liability Partnership under MCA rules. Combines corporate limited liability with partnership operational flexibility.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹4999</span>
-            </div>
-            <a href="/services/llp-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #DBEAFE;">Essential</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/itr-1-filing" style="color: #0F172A; text-decoration: none;">ITR-1 Salaried Individual</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Income tax return filing for salaried residents with total income up to ₹50 Lakhs under New vs Old Tax Regime optimization.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹999</span>
-            </div>
-            <a href="/services/itr-1-filing" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/udyam-registration" style="color: #0F172A; text-decoration: none;">MSME Udyam Guidance</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Advisory and document preparation for MSME classification under revised composite investment and turnover thresholds.</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹499</span>
-            </div>
-            <a href="/services/udyam-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-
-        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
-            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/roc-annual-filing-pvt" style="color: #0F172A; text-decoration: none;">ROC Filing (Pvt Ltd)</a></h3>
-            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Statutory annual compliance filing for private limited companies: Form AOC-4 (Financials) and Form MGT-7/7A (Annual Return).</p>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
-            <div>
-              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
-              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹2999</span>
-            </div>
-            <a href="/services/roc-annual-filing-pvt" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
-          </div>
-        </div>
-      </div>
+      ${renderPrerenderPopularServices()}
 
       <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Free Compliance &amp; Tax Calculators</h2>
       <p style="font-size: 15px; color: #475569; margin-bottom: 18px;">Access our free interactive tax calculators and compliance checklists designed for Indian businesses and tax filers:</p>
@@ -1399,20 +1303,7 @@ const GLOBAL_PRERENDER_FOOTER = `
       <div>
         <strong style="display: block; color: #0F172A; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">Core Services</strong>
         <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
-          <li><a href="/services/gst-registration" style="color: #475569; text-decoration: none;">GST Registration</a></li>
-          <li><a href="/services/private-limited-company" style="color: #475569; text-decoration: none;">Private Limited Company</a></li>
-          <li><a href="/services/trademark-registration" style="color: #475569; text-decoration: none;">Trademark Registration</a></li>
-          <li><a href="/services/gst-return-filing" style="color: #475569; text-decoration: none;">GST Return Filing</a></li>
-          <li><a href="/services/llp-registration" style="color: #475569; text-decoration: none;">LLP Registration</a></li>
-          <li><a href="/services/itr-1-filing" style="color: #475569; text-decoration: none;">ITR-1 Return Filing</a></li>
-          <li><a href="/services/udyam-registration" style="color: #475569; text-decoration: none;">MSME Udyam Registration</a></li>
-          <li><a href="/services/one-person-company" style="color: #475569; text-decoration: none;">One Person Company</a></li>
-          <li><a href="/services/fssai-basic-registration" style="color: #475569; text-decoration: none;">FSSAI Registration</a></li>
-          <li><a href="/services/iec-registration" style="color: #475569; text-decoration: none;">Import Export Code (IEC)</a></li>
-          <li><a href="/services/roc-annual-filing-pvt" style="color: #475569; text-decoration: none;">ROC Filing (Pvt Ltd)</a></li>
-          <li><a href="/services/roc-annual-filing-llp" style="color: #475569; text-decoration: none;">ROC Filing (LLP)</a></li>
-          <li><a href="/services/startup-india" style="color: #475569; text-decoration: none;">Startup India DPIIT</a></li>
-          <li><a href="/services/trust-registration" style="color: #475569; text-decoration: none;">Trust Registration</a></li>
+          ${FALLBACK_SERVICES.map(s => `<li><a href="/services/${s.slug}" style="color: #475569; text-decoration: none;">${s.name}</a></li>`).join("\n          ")}
         </ul>
       </div>
       <div>

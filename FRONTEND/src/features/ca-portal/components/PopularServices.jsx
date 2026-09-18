@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ServiceCard from './ServiceCard.jsx';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
-import { FALLBACK_SERVICES } from '../data/fallbackServices.js';
+import { FALLBACK_SERVICES, CURATED_POPULAR_SLUGS } from '../data/fallbackServices.js';
 
 function ServiceCardSkeleton() {
     return (
@@ -33,12 +33,14 @@ export default function PopularServices() {
     const { services, loading } = useSharedData();
     const [showAll, setShowAll] = useState(false);
 
-    // Filter active popular services from available services dataset
-    const sourceServices = (services && services.length > 0) ? services : FALLBACK_SERVICES;
-    const filteredPopular = sourceServices.filter(s => s.isPopular === true && s.isActive !== false);
-    
-    // Ensure display list is NEVER empty - fallback to canonical core services if needed
-    const popularServices = filteredPopular.length > 0 ? filteredPopular : FALLBACK_SERVICES;
+    // Curate deterministic popular services from live API with canonical fallback
+    const resolvedServices = CURATED_POPULAR_SLUGS.map(slug => {
+        const liveService = Array.isArray(services) ? services.find(s => s.slug === slug && s.isActive !== false) : null;
+        const fallbackService = FALLBACK_SERVICES.find(s => s.slug === slug);
+        return liveService || fallbackService;
+    }).filter(Boolean);
+
+    const popularServices = resolvedServices.length > 0 ? resolvedServices : FALLBACK_SERVICES;
 
     return (
         <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">

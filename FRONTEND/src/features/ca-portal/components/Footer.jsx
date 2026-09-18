@@ -28,22 +28,12 @@ const platformIcons = {
   )
 };
 
-const CORE_SERVICES_NAV = [
-  { label: 'GST Registration', slug: 'gst-registration' },
-  { label: 'Private Limited Company', slug: 'private-limited-company' },
-  { label: 'Trademark Registration', slug: 'trademark-registration' },
-  { label: 'GST Return Filing', slug: 'gst-return-filing' },
-  { label: 'LLP Registration', slug: 'llp-registration' },
-  { label: 'ITR-1 Return Filing', slug: 'itr-1-filing' },
-  { label: 'MSME Udyam Registration', slug: 'udyam-registration' },
-  { label: 'One Person Company', slug: 'one-person-company' },
-  { label: 'FSSAI Registration', slug: 'fssai-basic-registration' },
-  { label: 'Import Export Code (IEC)', slug: 'iec-registration' },
-  { label: 'ROC Filing (Pvt Ltd)', slug: 'roc-annual-filing-pvt' },
-  { label: 'ROC Filing (LLP)', slug: 'roc-annual-filing-llp' },
-  { label: 'Startup India DPIIT', slug: 'startup-india' },
-  { label: 'Trust Registration', slug: 'trust-registration' },
-];
+import { FALLBACK_SERVICES } from '../data/fallbackServices.js';
+
+const CORE_SERVICES_NAV = FALLBACK_SERVICES.map(s => ({
+  label: s.name,
+  slug: s.slug
+}));
 
 const QUICK_LINKS = [
   { label: 'Home', path: '/' },

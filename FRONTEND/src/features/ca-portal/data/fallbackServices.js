@@ -96,6 +96,19 @@ export const FALLBACK_SERVICES = [
     isActive: true
   },
   {
+    _id: "core-roc-annual-filing-pvt",
+    slug: "roc-annual-filing-pvt",
+    name: "ROC Filing (Pvt Ltd)",
+    description: "Statutory annual compliance filing for private limited companies: Form AOC-4 (Financials) and Form MGT-7/7A (Annual Return).",
+    basePrice: 2999,
+    billingCycle: "Fixed",
+    category: "MCA / ROC",
+    icon: "landmark",
+    tag: "Popular",
+    isPopular: true,
+    isActive: true
+  },
+  {
     _id: "core-fssai-basic-registration",
     slug: "fssai-basic-registration",
     name: "FSSAI Registration",
@@ -131,19 +144,6 @@ export const FALLBACK_SERVICES = [
     category: "Licenses",
     icon: "globe",
     tag: "Essential",
-    isPopular: true,
-    isActive: true
-  },
-  {
-    _id: "core-roc-annual-filing-pvt",
-    slug: "roc-annual-filing-pvt",
-    name: "ROC Filing (Pvt Ltd)",
-    description: "Statutory annual compliance filing for private limited companies: Form AOC-4 (Financials) and Form MGT-7/7A (Annual Return).",
-    basePrice: 2999,
-    billingCycle: "Fixed",
-    category: "MCA / ROC",
-    icon: "landmark",
-    tag: "Popular",
     isPopular: true,
     isActive: true
   },
@@ -187,3 +187,11 @@ export const FALLBACK_SERVICES = [
     isActive: true
   }
 ];
+
+/**
+ * Top curated popular services in deterministic display order.
+ * Derived directly from the canonical FALLBACK_SERVICES array.
+ * First 8 are displayed by default on the homepage Popular Services grid.
+ * Clicking 'Show All Services' expands to all 14 core services.
+ */
+export const CURATED_POPULAR_SLUGS = FALLBACK_SERVICES.map(s => s.slug);
