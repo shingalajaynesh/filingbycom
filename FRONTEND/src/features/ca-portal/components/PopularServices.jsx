@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ServiceCard from './ServiceCard.jsx';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
+import { FALLBACK_SERVICES } from '../data/fallbackServices.js';
 
 function ServiceCardSkeleton() {
     return (
@@ -32,7 +33,12 @@ export default function PopularServices() {
     const { services, loading } = useSharedData();
     const [showAll, setShowAll] = useState(false);
 
-    const popularServices = services ? services.filter(s => s.isPopular === true && s.isActive !== false) : [];
+    // Filter active popular services from available services dataset
+    const sourceServices = (services && services.length > 0) ? services : FALLBACK_SERVICES;
+    const filteredPopular = sourceServices.filter(s => s.isPopular === true && s.isActive !== false);
+    
+    // Ensure display list is NEVER empty - fallback to canonical core services if needed
+    const popularServices = filteredPopular.length > 0 ? filteredPopular : FALLBACK_SERVICES;
 
     return (
         <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -44,15 +50,11 @@ export default function PopularServices() {
                     </div>
                 </div>
 
-                {loading ? (
+                {loading && (!services || services.length === 0) ? (
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
                         {Array.from({ length: 8 }).map((_, i) => (
                             <ServiceCardSkeleton key={i} />
                         ))}
-                    </div>
-                ) : popularServices.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">
-                        No services currently available.
                     </div>
                 ) : (
                     <>

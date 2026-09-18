@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
-import { useSharedData } from "../../../shared/context/SharedDataContext.jsx";
 import { PortalCTA, PortalCard, PortalPageShell } from "../components/PortalPageShell.jsx";
+import NotFound from "../../../shared/components/NotFound.jsx";
 
 const HUB_CLUSTERS = {
   gst: {
@@ -12,7 +12,7 @@ const HUB_CLUSTERS = {
     services: [
       { name: "GST Registration", slug: "gst-registration" },
       { name: "GST Amendment", slug: "gst-amendment" },
-      { name: "GST Return Filing", slug: "gst-filing" },
+      { name: "GST Return Filing", slug: "gst-return-filing" },
       { name: "GST LUT Filing", slug: "gst-lut" },
       { name: "GST Cancellation Revocation", slug: "gst-revocation" },
     ],
@@ -46,32 +46,12 @@ const HUB_CLUSTERS = {
 
 export default function TopicHubPage() {
   const { hubSlug } = useParams();
-  const { services: backendServices } = useSharedData();
-  const [hubData, setHubData] = useState(null);
 
-  useEffect(() => {
-    if (HUB_CLUSTERS[hubSlug]) {
-      setHubData(HUB_CLUSTERS[hubSlug]);
-      return;
-    }
-
-    const formattedTitle = hubSlug?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    const matchedServices = backendServices
-      ? backendServices.filter((service) => service.category?.toLowerCase() === hubSlug.toLowerCase() && service.isActive !== false).slice(0, 5)
-      : [];
-
-    setHubData({
-      name: `${formattedTitle} Topic Hub`,
-      desc: `A grouped view of services, tools, and resources for ${formattedTitle} related compliance queries.`,
-      services: matchedServices.length > 0 ? matchedServices : [{ name: "General Compliance Service", slug: "general-compliance" }],
-      calculators: [{ name: "Business Calculator", path: "/gst-calculator" }],
-      templates: [{ name: "General Agreement Template", path: "/templates/service-agreement" }],
-    });
-  }, [hubSlug, backendServices]);
-
-  if (!hubData) {
-    return <div className="flex min-h-screen items-center justify-center bg-slate-50"><div className="h-8 w-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" /></div>;
+  if (!HUB_CLUSTERS[hubSlug]) {
+    return <NotFound />;
   }
+
+  const hubData = HUB_CLUSTERS[hubSlug];
 
   return (
     <>

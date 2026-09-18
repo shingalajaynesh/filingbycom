@@ -1,0 +1,5 @@
+# Ignore scratch scripts and test outputs
+scratch/
+node_modules/
+.DS_Store
+*.log

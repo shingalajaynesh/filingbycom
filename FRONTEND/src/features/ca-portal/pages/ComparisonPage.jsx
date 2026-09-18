@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { PortalCTA, PortalCard, PortalPageShell } from "../components/PortalPageShell.jsx";
+import NotFound from "../../../shared/components/NotFound.jsx";
 
 const COMPARISON_DATA = {
   "private-limited-company-vs-llp": {
@@ -42,38 +43,13 @@ const COMPARISON_DATA = {
 
 export default function ComparisonPage() {
   const { slug1, slug2 } = useParams();
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
   const compKey = `${slug1}-vs-${slug2}`;
 
-  useEffect(() => {
-    if (COMPARISON_DATA[compKey]) {
-      setData(COMPARISON_DATA[compKey]);
-    } else {
-      const formattedTitle1 = slug1?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-      const formattedTitle2 = slug2?.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-      setData({
-        title: `${formattedTitle1} vs ${formattedTitle2}`,
-        desc: `A practical comparison between ${formattedTitle1} and ${formattedTitle2} for Indian business and compliance decisions.`,
-        features: [
-          { name: "Primary Focus", col1: formattedTitle1, col2: formattedTitle2 },
-          { name: "Compliance Lens", col1: "Setup, cost, usage", col2: "Setup, cost, usage" },
-        ],
-        p1: { name: formattedTitle1, base: 1999, govt: 1000, time: "7-10 Days", pros: ["Simplified path", "Quicker start"], cons: ["May have fit limitations"] },
-        p2: { name: formattedTitle2, base: 2999, govt: 1500, time: "10-14 Days", pros: ["Higher formalisation", "Broader long-term use"], cons: ["May involve more compliance"] },
-        conclusion: `Choose the option that better matches your funding plans, governance comfort, and long-term operating model.`,
-        faqs: [
-          { q: `What is the practical difference between ${formattedTitle1} and ${formattedTitle2}?`, a: "The main difference usually lies in legal structure, compliance burden, and business fit." },
-        ],
-      });
-    }
-    setLoading(false);
-  }, [compKey, slug1, slug2]);
-
-  if (loading) {
-    return <div className="flex min-h-screen items-center justify-center bg-slate-50"><div className="h-8 w-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" /></div>;
+  if (!COMPARISON_DATA[compKey]) {
+    return <NotFound />;
   }
+
+  const data = COMPARISON_DATA[compKey];
 
   return (
     <>

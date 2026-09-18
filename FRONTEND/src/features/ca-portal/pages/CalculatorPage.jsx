@@ -159,12 +159,16 @@ export default function CalculatorPage() {
     ]
   };
 
+  const NOINDEX_CALCULATORS = ["hra", "tds", "depreciation"];
+  const shouldNoindex = NOINDEX_CALCULATORS.includes(calcSlug);
+
   return (
     <>
       <SEO
         title={`${data.title} Online India — Fast & Accurate | FilingBy`}
         description={data.desc}
         canonical={`/calculators/${calcSlug}`}
+        noindex={shouldNoindex}
         extraSchemas={[
           buildBreadcrumbSchema([
             { name: "Home", url: "/" },

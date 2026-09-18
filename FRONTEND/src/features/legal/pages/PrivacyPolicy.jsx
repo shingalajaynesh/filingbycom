@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
           
           <h2 className="text-sm font-bold text-gray-950 uppercase tracking-wide">2. Data Security & KYC Confidentiality</h2>
           <p>
-            All KYC document uploads are encrypted in secure storage buckets and accessed exclusively by authorized compliance desk coordinators during verification checks. We maintain strict role-based access controls and cryptographic safeguards.
+            All KYC document uploads are encrypted in secure storage buckets and accessed exclusively by authorized compliance desk coordinators during verification checks. We maintain strict role-based access controls and cryptographic safeguards. FilingBy follows privacy and security practices designed to align with applicable Indian data-protection requirements, including provisions of the Digital Personal Data Protection Act, 2023 as and when they become applicable.
           </p>
 
           <h2 className="text-sm font-bold text-gray-950 uppercase tracking-wide">3. Third-Party Data Sharing Limitations</h2>
@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
 
           <h2 className="text-sm font-bold text-gray-950 uppercase tracking-wide">6. User Privacy Rights & Contact Method</h2>
           <p>
-            If you have questions regarding this Privacy Policy, wish to inspect the personal documentation retained on file, or wish to request data correction or deletion, contact our Data Privacy Officer via email at <a href="mailto:support@filingby.com" className="text-blue-600 hover:underline">support@filingby.com</a> or by post at FilingBy Compliance Solutions, B-1210 IT PARK, SURAT, Gujarat — 394101, India.
+            If you have questions regarding this Privacy Policy, wish to inspect the personal documentation retained on file, or wish to request data correction or deletion, contact our Data Privacy Contact via email at <a href="mailto:support@filingby.com" className="text-blue-600 hover:underline">support@filingby.com</a> or by post at FilingBy Compliance Solutions, B-1210 IT PARK, SURAT, Gujarat — 394101, India.
           </p>
         </div>
       </div>

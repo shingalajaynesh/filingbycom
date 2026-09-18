@@ -286,7 +286,7 @@ export default function VirtualOfficeCity() {
           <div className="lg:col-span-7 space-y-6 animate-fadeInUp">
             <div className="flex flex-wrap gap-2">
               <span className="text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-orange-400/20 text-orange-400 border border-orange-400/20">
-                ⭐ 4.8/5 Star Rated (1,500+ Businesses)
+                🏢 MCA &amp; GST Compliant Commercial Address
               </span>
               <span className="text-[10px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-blue-500/30 text-blue-200 border border-blue-400/20">
                 🛡️ 100% Moneyback SLA

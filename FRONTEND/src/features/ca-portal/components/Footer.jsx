@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSharedData } from '../../../shared/context/SharedDataContext';
 
 const platformIcons = {
@@ -28,8 +28,55 @@ const platformIcons = {
   )
 };
 
+const CORE_SERVICES_NAV = [
+  { label: 'GST Registration', slug: 'gst-registration' },
+  { label: 'Private Limited Company', slug: 'private-limited-company' },
+  { label: 'Trademark Registration', slug: 'trademark-registration' },
+  { label: 'GST Return Filing', slug: 'gst-return-filing' },
+  { label: 'LLP Registration', slug: 'llp-registration' },
+  { label: 'ITR-1 Return Filing', slug: 'itr-1-filing' },
+  { label: 'MSME Udyam Registration', slug: 'udyam-registration' },
+  { label: 'One Person Company', slug: 'one-person-company' },
+  { label: 'FSSAI Registration', slug: 'fssai-basic-registration' },
+  { label: 'Import Export Code (IEC)', slug: 'iec-registration' },
+  { label: 'ROC Filing (Pvt Ltd)', slug: 'roc-annual-filing-pvt' },
+  { label: 'ROC Filing (LLP)', slug: 'roc-annual-filing-llp' },
+  { label: 'Startup India DPIIT', slug: 'startup-india' },
+  { label: 'Trust Registration', slug: 'trust-registration' },
+];
+
+const QUICK_LINKS = [
+  { label: 'Home', path: '/' },
+  { label: 'Virtual Space', path: '/virtual-space' },
+  { label: 'Ecommerce Office', path: '/ecommerce-office' },
+  { label: 'GST Calculator', path: '/gst-calculator' },
+  { label: 'Income Tax Calculator', path: '/income-tax-calculator' },
+  { label: 'ROC Tools', path: '/roc-tools' },
+  { label: 'Knowledge Hub (Blog)', path: '/blog' },
+  { label: 'Company Registration Guides', path: '/company-registration-guides' },
+  { label: 'Trademark Search', path: '/trademark-search' },
+  { label: 'Legal Templates', path: '/legal-templates' },
+  { label: 'Locations Directory', path: '/locations' },
+  { label: 'About Us', path: '/about-us' },
+  { label: 'Our Promise', path: '/our-promise' },
+  { label: 'Contact Us', path: '/contact-us' },
+  { label: 'Customer Care', path: '/customer-care' },
+  { label: 'FAQs', path: '/faq' },
+  { label: 'Partner Onboarding', path: '/partner-onboarding' },
+];
+
+const LEGAL_POLICIES = [
+  { label: 'Privacy Policy', path: '/default/privacy-policy' },
+  { label: 'Cookie Policy', path: '/default/cookie-policy' },
+  { label: 'Terms of Service', path: '/terms-conditions' },
+  { label: 'Refund Policy', path: '/default/refund' },
+  { label: 'Disclaimer', path: '/default/disclaimer' },
+  { label: 'Editorial Policy', path: '/default/editorial-policy' },
+  { label: 'Corrections Policy', path: '/default/corrections-policy' },
+  { label: 'Editorial Team', path: '/editorial-team' },
+];
+
 export default function Footer() {
-  const navigate = useNavigate();
   const { settings } = useSharedData();
 
   return (
@@ -42,9 +89,9 @@ export default function Footer() {
           
           {/* Column 1: Brand info */}
           <div className="space-y-4">
-            <a href="/" className="inline-flex items-center bg-white/5 rounded-xl px-3.5 py-2 border border-white/10 hover:bg-white/10 transition-colors">
+            <Link to="/" className="inline-flex items-center bg-white/5 rounded-xl px-3.5 py-2 border border-white/10 hover:bg-white/10 transition-colors">
               <img src="/logo.png" alt="FilingBy.com" className="h-8 w-auto object-contain" />
-            </a>
+            </Link>
             <p className="text-sm text-blue-100/70 leading-relaxed">
               Professional compliance and corporate documentation support for Indian businesses. Fast, secure, transparent, and completely online.
             </p>
@@ -65,62 +112,39 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Popular Services */}
+          {/* Column 2: Core Compliance Services */}
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-4">
-              Popular Services
+              Core Services
             </h4>
-            <ul className="space-y-2 text-sm text-blue-100/75">
-              {[
-                { label: 'Private Limited Company', slug: 'private-limited-company' },
-                { label: 'LLP Registration', slug: 'llp-registration' },
-                { label: 'GST Registration', slug: 'gst-registration' },
-                { label: 'Trademark Registration', slug: 'trademark-registration' },
-                { label: 'ITR Return Filing', slug: 'itr-1-filing' },
-              ].map((link) => (
+            <ul className="space-y-1.5 text-xs sm:text-sm text-blue-100/75">
+              {CORE_SERVICES_NAV.map((link) => (
                 <li key={link.slug}>
-                  <button
-                    onClick={() => navigate(`/services/${link.slug}`)}
-                    className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+                  <Link
+                    to={`/services/${link.slug}`}
+                    className="hover:text-white transition-colors block py-0.5"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Quick Links */}
+          {/* Column 3: Quick Links & Tools */}
           <div>
             <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-4">
-              Quick Links
+              Quick Links &amp; Tools
             </h4>
-            <ul className="space-y-2 text-sm text-blue-100/75">
-              {[
-                { label: 'Home', path: '/' },
-                { label: 'GST Calculator', path: '/gst-calculator' },
-                { label: 'Income Tax Calculator', path: '/income-tax-calculator' },
-                { label: 'ROC Tools', path: '/roc-tools' },
-                { label: 'Knowledge Hub (Blog)', path: '/blog' },
-                { label: 'Company Registration Guides', path: '/company-registration-guides' },
-                { label: 'Trademark Search', path: '/trademark-search' },
-                { label: 'Legal Templates', path: '/legal-templates' },
-                { label: 'Locations Directory', path: '/locations' },
-                { label: 'For E-commerce', path: '/virtual-office-ecommerce' },
-                { label: 'About Us', path: '/about-us' },
-                { label: 'Our Promise', path: '/our-promise' },
-                { label: 'Contact Us', path: '/contact-us' },
-                { label: 'Customer Care', path: '/customer-care' },
-                { label: 'FAQs', path: '/faq' },
-                { label: 'Partner Onboarding', path: '/partner-onboarding' },
-              ].map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => navigate(link.path)}
-                    className="hover:text-white transition-colors cursor-pointer text-left focus:outline-none"
+            <ul className="space-y-1.5 text-xs sm:text-sm text-blue-100/75">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="hover:text-white transition-colors block py-0.5"
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -157,23 +181,14 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-blue-100/50">
           <p>© 2026 FilingBy.com. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-            {[
-              { label: 'Privacy Policy', path: '/default/privacy-policy' },
-              { label: 'Cookie Policy', path: '/default/cookie-policy' },
-              { label: 'Terms of Service', path: '/terms-conditions' },
-              { label: 'Refund Policy', path: '/default/refund' },
-              { label: 'Disclaimer', path: '/default/disclaimer' },
-              { label: 'Editorial Policy', path: '/default/editorial-policy' },
-              { label: 'Corrections Policy', path: '/default/corrections-policy' },
-              { label: 'Editorial Team', path: '/editorial-team' },
-            ].map((policy) => (
-              <button
+            {LEGAL_POLICIES.map((policy) => (
+              <Link
                 key={policy.label}
-                onClick={() => navigate(policy.path)}
-                className="hover:text-white transition-colors cursor-pointer text-xs"
+                to={policy.path}
+                className="hover:text-white transition-colors text-xs"
               >
                 {policy.label}
-              </button>
+              </Link>
             ))}
           </div>
         </div>

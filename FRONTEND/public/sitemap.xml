@@ -73,21 +73,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.filingby.com/calculators/hra</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/calculators/tds</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/calculators/depreciation</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.filingby.com/contact-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

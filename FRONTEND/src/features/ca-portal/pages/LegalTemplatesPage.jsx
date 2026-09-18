@@ -1,36 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
+import NotFound from "../../../shared/components/NotFound.jsx";
 
 const TEMPLATE_DOCUMENTS = {
   "nda": {
     name: "Non-Disclosure Agreement (NDA)",
-    desc: "Draft a comprehensive NDA to protect your startup's intellectual property, proprietary information, and trade secrets during business discussions.",
+    desc: "Draft a comprehensive mutual NDA to protect your startup's intellectual property, proprietary information, and commercial secrets.",
     preview: `MUTUAL NON-DISCLOSURE AGREEMENT
 
 This Non-Disclosure Agreement (the "Agreement") is entered into on this ____ day of __________, 2026, by and between:
-1. Party A: ______________________________, residing/having registered office at _____________________________________,
+1. Disclosing/Receiving Party A: ______________________________, having registered office at _____________________________________,
 And
-2. Party B: ______________________________, residing/having registered office at _____________________________________.
+2. Disclosing/Receiving Party B: ______________________________, having registered office at _____________________________________.
 
-1. PURPOSE: The parties wish to explore a potential business relationship (the "Purpose") and in connection therewith, may disclose confidential commercial and technical information.
-2. CONFIDENTIAL INFORMATION: Includes all commercial data, software secrets, customer lists, designs, and financial projections shared under this agreement.
-3. EXCLUSIONS: Information already public, independent developments, or legally required disclosures.
-4. SIGNATURES:
+1. PURPOSE: The parties wish to explore a potential commercial or corporate relationship and may disclose proprietary information.
+2. CONFIDENTIAL INFORMATION: Includes all commercial data, software source code, customer lists, designs, and financial projections.
+3. EXCLUSIONS: Information already public, independently developed without access, or legally compelled by statutory order.
+4. JURISDICTION: Governed by the laws of the Republic of India with exclusive jurisdiction of competent civil courts.
 
-Party A Signature: __________________          Party B Signature: __________________`,
+Signatures:
+Party A: __________________          Party B: __________________`,
     explanations: [
       "Mutuality: This template is a Mutual NDA, meaning both parties are legally restricted from leaking each other's proprietary disclosures.",
-      "Jurisdiction: Set the governing laws (e.g., Delhi courts, Karnataka courts) based on where your primary operations are registered."
+      "Jurisdiction: Set the governing laws based on where your primary operations are registered."
     ],
     faqs: [
-      { q: "Is a stamp duty registration mandatory for an NDA?", a: "NDAs in India are legally valid when printed on a stamp paper (typically ₹100 or ₹200 denomination) and signed by both parties. Registration is optional but recommended for high-value intellectual properties." }
+      { q: "Is a stamp duty registration mandatory for an NDA?", a: "NDAs in India are legally valid when printed on non-judicial stamp paper of appropriate denomination (typically ₹100 or ₹200) and signed by both authorized signatories." }
     ]
   },
   "rent-agreement": {
     name: "Commercial Rent Agreement Template",
-    desc: "A standard legal rental agreement contract format for commercial workspaces, virtual offices, or shop leases in India.",
+    desc: "A standard legal rental agreement contract format for commercial workspaces, virtual offices, or business premises in India.",
     preview: `COMMERCIAL LEASE & RENT AGREEMENT
 
 This Lease Agreement is made on this ____ day of __________, 2026, by and between:
@@ -38,44 +40,108 @@ LANDLORD: ______________________________, residing at __________________________
 And
 TENANT: ______________________________, residing/having business at ________________________________________________.
 
-1. LEASED PREMISES: The Landlord hereby leases the commercial property located at ___________________________________,
+1. LEASED PREMISES: The Landlord hereby leases the commercial premises located at ___________________________________,
 2. TERM: The lease is granted for a term of 11 (Eleven) months commencing from ____________ and ending on ____________.
-3. MONTHLY RENT: The Tenant agrees to pay a monthly rent of ₹__________ (Rupees ____________________ only) on or before the 5th day of every calendar month.
-4. REFUNDABLE SECURITY DEPOSIT: The Tenant has deposited ₹__________ as interest-free security deposit.
+3. MONTHLY RENT: The Tenant agrees to pay a monthly rent of ₹__________ on or before the 5th day of every calendar month.
+4. REFUNDABLE SECURITY DEPOSIT: The Tenant has deposited ₹__________ as an interest-free security deposit.
 
 IN WITNESS WHEREOF the parties have set their signatures:
 Landlord: __________________                   Tenant: __________________`,
     explanations: [
-      "11-Month Clause: Most commercial and residential lease agreements are drafted for 11 months to avoid mandatory registration under the Registration Act, 1908.",
+      "11-Month Clause: Most commercial tenancy agreements are drafted for 11 months to avoid mandatory registration under the Registration Act, 1908.",
       "Maintenance Charges: Clearly state if municipal taxes, electricity bills, or society maintenance is included in the base rent."
     ],
     faqs: [
-      { q: "Can I use this rent agreement to register for GST?", a: "Yes. Along with the signed rent agreement, you must submit a recent utility bill (electricity bill or gas bill) in the name of the landlord, and a signed No-Objection Certificate (NOC) to secure GST approvals." }
+      { q: "Can I use this rent agreement to register for GST?", a: "Yes. Along with the signed rent agreement, you must submit a recent utility bill in the name of the landlord and a signed No-Objection Certificate (NOC)." }
+    ]
+  },
+  "gst-invoice": {
+    name: "Standard GST Tax Invoice Template",
+    desc: "Statutory tax invoice blueprint compliant with Section 31 of the CGST Act, 2017 and Rule 46 of the CGST Rules.",
+    preview: `TAX INVOICE (RULE 46 CGST RULES, 2017)
+
+SUPPLIER NAME: ___________________________________  GSTIN: _______________________
+ADDRESS: _________________________________________  STATE CODE: __________________
+INVOICE NO: __________________                      DATE OF ISSUE: _______________
+
+RECIPIENT NAME: __________________________________  GSTIN: _______________________
+BILLING ADDRESS: _________________________________  PLACE OF SUPPLY: _____________
+
+ITEM DESCRIPTION | HSN/SAC | QTY | RATE | TAXABLE VALUE | CGST% | SGST% | IGST% | TOTAL
+1. _____________ | _______ | ___ | ____ | _____________ | _____ | _____ | _____ | _____
+
+TOTAL INVOICE VALUE (IN WORDS): ___________________________________________________
+BANK DETAILS: Bank: _________________ A/C No: _______________ IFSC: _______________
+
+AUTHORIZED SIGNATORY: _____________________________`,
+    explanations: [
+      "Mandatory HSN/SAC Codes: Businesses with turnover above ₹5 Crore must report 6-digit HSN codes; businesses up to ₹5 Crore report 4-digit codes for B2B supplies.",
+      "Place of Supply: Explicitly determines whether CGST+SGST (intra-state) or IGST (inter-state) is levied."
+    ],
+    faqs: [
+      { q: "What is the time limit for issuing a GST tax invoice?", a: "For goods, on or before removal or delivery. For services, within 30 days from the date of service provision (45 days for banking/NBFC entities)." }
+    ]
+  },
+  "partnership-deed": {
+    name: "Partnership Deed Format Draft",
+    desc: "Comprehensive legal partnership deed under the Indian Partnership Act, 1932 detailing profit-sharing, capital contributions, and partner rights.",
+    preview: `PARTNERSHIP DEED
+
+This Deed of Partnership is made on this ____ day of __________, 2026, by and between:
+1. Party A: ______________________________, residing at _____________________________________,
+And
+2. Party B: ______________________________, residing at _____________________________________.
+
+1. NAME & PLACE: The business shall be conducted under the firm name of M/s _____________________________.
+2. NATURE OF BUSINESS: The firm shall carry on the business of _________________________________________.
+3. CAPITAL & PROFIT SHARING: The capital shall be contributed equally, and net profits/losses shared in ratio: ___:___.
+4. BANKING & OPERATION: Bank accounts shall be operated jointly by both partners.
+5. ARBITRATION: Disputes shall be settled under the Arbitration and Conciliation Act, 1996.
+
+Signatures of Partners:
+Partner 1: __________________          Partner 2: __________________`,
+    explanations: [
+      "Stamp Paper Admissibility: A partnership deed must be executed on judicial stamp paper whose value is prescribed by the applicable State Stamp Act.",
+      "PAN Allotment: Once the deed is signed and notarized, the firm applies for its own entity PAN using Form 49A."
+    ],
+    faqs: [
+      { q: "Is registration of a partnership firm mandatory?", a: "Registration under Section 58 of the Indian Partnership Act, 1932 is optional but highly recommended; unregistered firms cannot sue third parties in civil court for contract breaches." }
+    ]
+  },
+  "board-resolution": {
+    name: "Board Resolution Template for Corporate Actions",
+    desc: "Certified true copy format for board resolutions passed by directors under the Companies Act, 2013.",
+    preview: `CERTIFIED TRUE COPY OF THE RESOLUTION PASSED AT THE MEETING OF THE BOARD OF DIRECTORS OF [COMPANY NAME] HELD ON [DATE] AT [REGISTERED OFFICE ADDRESS]
+
+"RESOLVED THAT the Company be and is hereby authorized to open a Current Bank Account with [Bank Name], [Branch Address] in the name and style of '[Company Name]'.
+
+RESOLVED FURTHER THAT [Director Name], Director (DIN: ________), be and is hereby authorized to sign account opening forms, operate the said account, and submit KYC documents on behalf of the Company."
+
+Certified True Copy,
+For [COMPANY NAME]
+
+_________________________
+Director / Authorized Signatory
+DIN: ____________________`,
+    explanations: [
+      "Corporate Authority: Banks, GST officers, and government departments require certified true copies of board resolutions to verify signatory authority.",
+      "Quorum & Notice: Ensure the meeting complied with Section 173 and 174 of the Companies Act, 2013."
+    ],
+    faqs: [
+      { q: "Can a board resolution be passed by circulation?", a: "Yes, under Section 175 of the Companies Act, 2013, resolutions may be passed by circulation among directors if approved by a majority of directors entitled to vote." }
     ]
   }
 };
 
 export default function LegalTemplatesPage() {
   const { slug } = useParams();
-  const [doc, setDoc] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    if (TEMPLATE_DOCUMENTS[slug]) {
-      setDoc(TEMPLATE_DOCUMENTS[slug]);
-    } else {
-      // Fallback template builder
-      const formattedName = slug?.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-      setDoc({
-        name: `${formattedName} Template`,
-        desc: `Standard draft copy of ${formattedName} for Indian businesses, startups, and CA registration requirements.`,
-        preview: `${formattedName.toUpperCase()} AGREEMENT DRAFT\n\nThis agreement is made on this ___ day of __________, 2026, between the undersigned parties...\n\n1. TERMS OF ENGAGEMENT...\n\n2. DISPUTE RESOLUTION...\n\nSignatures:\nParty A: _______________      Party B: _______________`,
-        explanations: [`This is a generic draft for ${formattedName}. Consult a licensed legal counsel or CA before signing.`],
-        faqs: [{ q: `What is the legal validity of ${formattedName}?`, a: "It is legally binding once executed on stamp paper of appropriate denomination and signed by authorized representatives." }]
-      });
-    }
-    setCopied(false);
-  }, [slug]);
+  if (!TEMPLATE_DOCUMENTS[slug]) {
+    return <NotFound />;
+  }
+
+  const doc = TEMPLATE_DOCUMENTS[slug];
 
   const handleCopy = () => {
     if (!doc) return;
@@ -83,14 +149,6 @@ export default function LegalTemplatesPage() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  if (!doc) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="w-8 h-8 rounded-full border-2 border-[#1A56DB] border-t-transparent animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 py-10 px-4 sm:px-6 lg:px-8">

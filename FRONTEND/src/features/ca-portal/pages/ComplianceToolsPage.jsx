@@ -3,9 +3,17 @@ import { useParams, Link } from "react-router-dom";
 import SEO from "../../../shared/components/SEO.jsx";
 import { buildBreadcrumbSchema } from "../../../shared/seo/schemas.js";
 import { PortalCard, PortalPageShell } from "../components/PortalPageShell.jsx";
+import NotFound from "../../../shared/components/NotFound.jsx";
+
+const VALID_TOOLS = ["structure-selector", "gst-eligibility", "trademark-class"];
 
 export default function ComplianceToolsPage() {
   const { toolSlug } = useParams();
+
+  if (!VALID_TOOLS.includes(toolSlug)) {
+    return <NotFound />;
+  }
+
   const [funding, setFunding] = useState("no");
   const [founders, setFounders] = useState("2");
   const [quizResult, setQuizResult] = useState(null);

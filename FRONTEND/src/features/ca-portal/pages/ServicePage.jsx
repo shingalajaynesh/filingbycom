@@ -488,17 +488,24 @@ export default function ServicePage() {
     }
 
     return (
-      <PortalPageShell
-        badge="Service Directory"
-        title="Service Moved or Updated"
-        description="The compliance service page you requested has been updated or merged into our core CA services catalog. Explore our services below or speak with an expert."
-        breadcrumbs={[
-          { label: "Home", to: "/" },
-          { label: "Services", to: "/" },
-          { label: "Service Finder" }
-        ]}
-      >
-        <PortalCard className="text-center">
+      <>
+        <SEO
+          title="404 Service Not Found | FilingBy.com"
+          description="The requested compliance service page does not exist or has been updated. Explore our core CA services catalog or speak with an expert."
+          canonical="/404"
+          noindex={true}
+        />
+        <PortalPageShell
+          badge="Service Directory"
+          title="Service Moved or Updated"
+          description="The compliance service page you requested has been updated or merged into our core CA services catalog. Explore our services below or speak with an expert."
+          breadcrumbs={[
+            { label: "Home", to: "/" },
+            { label: "Services", to: "/" },
+            { label: "Service Finder" }
+          ]}
+        >
+          <PortalCard className="text-center">
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-[#1A56DB]/5 text-4xl text-[#1A56DB]">
             📋
           </div>
@@ -523,7 +530,8 @@ export default function ServicePage() {
           </div>
         </PortalCard>
       </PortalPageShell>
-    );
+    </>
+  );
   }
 
   const handleGetStarted = () => {

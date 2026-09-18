@@ -148,6 +148,129 @@ const STATIC_PAGES = [
           <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">ROC &amp; MCA Annual Compliance</h3>
           <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Filing annual financial statements (AOC-4), annual return of shares (MGT-7), LLP Form 8 &amp; 11, and DIR-3 KYC for active corporate directors.</p>
         </div>
+      <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 8px;">Popular Services</h2>
+      <p style="font-size: 15px; color: #64748B; margin-bottom: 20px;">Most ordered services by Indian businesses</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 36px;">
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/gst-registration" style="color: #0F172A; text-decoration: none;">GST Registration</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Official Goods and Services Tax registration for businesses in India. Get your 15-digit GSTIN with complete document verification.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹999</span>
+            </div>
+            <a href="/services/gst-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/private-limited-company" style="color: #0F172A; text-decoration: none;">Private Limited Company</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Incorporate your Pvt Ltd company via MCA V3 SPICe+ framework. Includes DIN, name approval, DSC, and Certificate of Incorporation.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999</span>
+            </div>
+            <a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/trademark-registration" style="color: #0F172A; text-decoration: none;">Trademark Registration</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Protect your brand name, logo, or slogan across India with IP India online filing and comprehensive classification search.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999</span>
+            </div>
+            <a href="/services/trademark-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/gst-return-filing" style="color: #0F172A; text-decoration: none;">GST Return Filing</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Monthly &amp; quarterly GSTR-1, GSTR-2B/IMS reconciliation, and GSTR-3B tax payment computation under QRMP or monthly schemes.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹6999/Month</span>
+            </div>
+            <a href="/services/gst-return-filing" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/llp-registration" style="color: #0F172A; text-decoration: none;">LLP Registration</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Incorporate a Limited Liability Partnership under MCA rules. Combines corporate limited liability with partnership operational flexibility.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹4999</span>
+            </div>
+            <a href="/services/llp-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #EFF6FF; color: #1D4ED8; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #DBEAFE;">Essential</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/itr-1-filing" style="color: #0F172A; text-decoration: none;">ITR-1 Salaried Individual</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Income tax return filing for salaried residents with total income up to ₹50 Lakhs under New vs Old Tax Regime optimization.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹999</span>
+            </div>
+            <a href="/services/itr-1-filing" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/udyam-registration" style="color: #0F172A; text-decoration: none;">MSME Udyam Guidance</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Advisory and document preparation for MSME classification under revised composite investment and turnover thresholds.</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹499</span>
+            </div>
+            <a href="/services/udyam-registration" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="display: inline-block; background: #FFF7ED; color: #C2410C; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; margin-bottom: 10px; border: 1px solid #FFEDD5;">Popular</span>
+            <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 6px;"><a href="/services/roc-annual-filing-pvt" style="color: #0F172A; text-decoration: none;">ROC Filing (Pvt Ltd)</a></h3>
+            <p style="font-size: 13px; color: #64748B; line-height: 1.5; margin-bottom: 14px;">Statutory annual compliance filing for private limited companies: Form AOC-4 (Financials) and Form MGT-7/7A (Annual Return).</p>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #F1F5F9; padding-top: 12px;">
+            <div>
+              <span style="font-size: 10px; text-transform: uppercase; color: #94A3B8; display: block; font-weight: 600;">Starting at</span>
+              <span style="font-size: 16px; font-weight: 800; color: #1A56DB;">₹2999</span>
+            </div>
+            <a href="/services/roc-annual-filing-pvt" style="color: #1A56DB; font-weight: 600; font-size: 13px; text-decoration: none;">View details →</a>
+          </div>
+        </div>
       </div>
 
       <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Free Compliance &amp; Tax Calculators</h2>
@@ -392,6 +515,7 @@ const STATIC_PAGES = [
   },
   {
     path: "calculators/hra",
+    isNoindex: true,
     title: "HRA Exemption Calculator Online India — Section 10(13A) Tax Relief | FilingBy",
     description: "Calculate your House Rent Allowance (HRA) tax exemption amount under Section 10(13A) of the Income Tax Act for metro and non-metro cities.",
     keywords: "HRA calculator, house rent allowance exemption, section 10 13A calculator, Rule 2A income tax",
@@ -400,6 +524,7 @@ const STATIC_PAGES = [
   },
   {
     path: "calculators/tds",
+    isNoindex: true,
     title: "TDS Calculator Online India — Section-wise Tax Deduction | FilingBy",
     description: "Compute TDS deductions for contractor payments (194C), professional fees (194J), and rent (194I) under Indian Income Tax rules.",
     keywords: "TDS calculator, tax deducted at source calculator, 194C 194J 194I TDS rates",
@@ -408,6 +533,7 @@ const STATIC_PAGES = [
   },
   {
     path: "calculators/depreciation",
+    isNoindex: true,
     title: "Asset Depreciation Calculator India — SLM vs WDV Method | FilingBy",
     description: "Calculate company asset depreciation under Companies Act and Income Tax Act using Straight Line Method (SLM) and Written Down Value (WDV) methods.",
     keywords: "depreciation calculator, SLM vs WDV calculator, asset depreciation companies act schedule II",
@@ -420,7 +546,35 @@ const STATIC_PAGES = [
     description: "Read FilingBy's terms and conditions. Understand the legal guidelines, usage policies, and responsibilities governing CA compliance and virtual office leases.",
     keywords: "terms and conditions, legal agreement, service terms filingby",
     h1: "Terms and Conditions",
-    content: "<p>Welcome to FilingBy.com. These Terms and Conditions govern your use of our virtual office services, agreements, and support interfaces. Review our standard terms, compliance responsibilities, and billing terms.</p><h3>Usage Policies and User Agreement</h3><p>By accessing our website and using our online CA/CS consultation services, corporate address solutions, or checkout desk, you agree to comply with our Terms of Service. FilingBy reserves the right to terminate access for any fraudulent activity or documentation tampering.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Welcome to FilingBy.com. These Terms and Conditions of Service govern your access to and use of FilingBy's compliance platform, online CA/CS assisted workflows, corporate documentation tools, and commercial virtual office solutions.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. Acceptance of Terms</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        By visiting our website, submitting an order, or utilizing our compliance tools, you enter into a legally binding agreement with FilingBy and agree to adhere to these Terms of Service. If you disagree with any portion of these terms, you must discontinue platform use immediately.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Nature of Services &amp; Advisory Scope</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        FilingBy operates as an independent compliance technology platform. We streamline documentation workflows, provide verification checks, and connect users with qualified professionals (Chartered Accountants, Company Secretaries, and Legal Advocates) for statutory portal submissions. FilingBy does not directly represent itself as a law or audit firm.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. User Obligations &amp; Document Authenticity</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Users are solely responsible for ensuring that all identity proofs (PAN, Aadhaar), registered office proofs, and financial records submitted for government filings are authentic, unaltered, and legally valid. Submission of forged or fraudulent documentation will result in immediate service termination.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">4. Virtual Office Lease Terms</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Virtual office spaces provided through FilingBy are intended strictly for commercial business registration (GST and MCA). Tenants must operate within governing commercial tenancy regulations and adhere to registered office verification standards.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">5. Limitation of Liability</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        To the maximum extent permitted under applicable law, FilingBy's aggregate liability for any claims arising from service delivery shall not exceed the total professional service fees actually paid by the client for the specific order.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">6. Governing Law &amp; Dispute Jurisdiction</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        These Terms and Conditions shall be governed by and construed in accordance with the laws of the Republic of India. Any legal disputes or claims arising out of or in connection with our services shall be subject to the exclusive jurisdiction of the courts located in Surat, Gujarat, India.
+      </p>
+    `
   },
   {
     path: "default/refund",
@@ -428,7 +582,63 @@ const STATIC_PAGES = [
     description: "Read the FilingBy refund policy. We offer a 100% refund of FilingBy service fees if corporate registration fails due to documentation defects directly attributable to us.",
     keywords: "refund policy, service fee refund guarantee, filingby refund",
     h1: "Refund Policy & Service Fee SLA",
-    content: "<p>At FilingBy.com, we stand by the quality of our services. We offer a 100% refund of FilingBy service fees in case of registration rejections due to verified documentation errors directly attributable to us, subject to our refund policy terms.</p><h3>Our Refund Claim Process</h3><p>If you encounter issues with your registration or if the GST department rejects your virtual office address application due to incorrect NOC or utility bills directly attributable to our workspace host, submit a support ticket within 30 days of the rejection notice for a refund of your FilingBy service charges.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        At FilingBy.com, we prioritize transparency and customer satisfaction. We take full ownership of the administrative documentation prepared by our team and partner workspaces. Specialist professional assistance may be coordinated where a filing legally requires a qualified professional.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. 100% Service Fee Refund SLA</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        We offer a strict 100% Money-Back Guarantee for FilingBy professional service fees covering virtual office address verification orders and company registration filing assistance. If the target government registry authority (such as the State Commercial Tax Department for GST registration or the MCA Registrar of Companies) formally rejects your application due to a verified document defect directly attributable to FilingBy.com or our property host (e.g. invalid land deed, landlord verification dispute, title defect in NOC), FilingBy will refund 100% of the FilingBy professional service fees paid.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Exclusions &amp; Non-Refundable Scenarios</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        To maintain fair commercial practices, refunds are not applicable under the following circumstances:
+      </p>
+      <ul style="padding-left: 20px; line-height: 1.8; color: #334155; margin-bottom: 16px;">
+        <li><strong>Client-Side Verification Defaults:</strong> Rejections caused by mismatched client identity proofs (e.g. incorrect PAN name, invalid Aadhaar address, forged signature, unverified Director Identification Number).</li>
+        <li><strong>Change of Mind / Voluntary Cancellation:</strong> Orders cancelled after legal documentation (rent agreement drafting, NOC notarization, electric utility bill compilation) has already been dispatched or uploaded to government portals.</li>
+        <li><strong>Client Non-Response:</strong> Failure by the Client to respond to clarification queries issued by statutory officers within the mandated statutory timeframe (typically 7 working days).</li>
+        <li><strong>Government &amp; Statutory Fees:</strong> Statutory fees paid directly to government authorities, registries, or treasury portals (including MCA filing fees, electronic stamp duty, GST portal charges, trademark application fees, or licensing fees) are collected for and remitted to the respective statutory authorities and are normally outside FilingBy's control once submitted. Eligibility for any refund, reversal, or adjustment of such statutory fees depends entirely on the specific rules, criteria, and administrative procedures of the relevant government authority (such as eligible MCA21 service fee refund claims submitted via the official MCA Refund Form, or state/UT-specific statutory procedures governing electronic stamp-duty refunds). FilingBy's 100% money-back SLA applies exclusively to FilingBy's own professional service fees.</li>
+      </ul>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Claim Refund Submission Procedure</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        To initiate a refund request, the Client must email <a href="mailto:support@filingby.com" style="color: #1A56DB; font-weight: 600;">support@filingby.com</a> or contact their designated compliance manager with: (1) FilingBy Order Reference Number; (2) Copy of the Official Government Rejection Notice (REG-05 for GST, MCA Rejection Challan); (3) Bank account details for electronic credit transfer.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">4. Processing Timelines</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Once a refund request is verified and approved by our legal audit team, the refund amount will be credited back to the Client's original payment method (Bank Transfer, Credit Card, UPI, Netbanking) within <strong>7 to 10 working days</strong>.
+      </p>
+    `
+  },
+  {
+    path: "services/pan-card",
+    title: "PAN Card Assistance India — New Application & Correction | FilingBy",
+    description: "Get fast PAN card assistance in India. Dedicated support for new PAN applications, Form 49A/49AA filings, data corrections, NRI PAN cards, and TAN registration guidance.",
+    keywords: "pan card assistance india, pan application help, pan correction support, pan vs tan, nri pan card india",
+    h1: "PAN Card Assistance for Individuals, NRIs & Commercial Entities",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Comprehensive statutory guidance for new PAN applications (Form 49A / 49AA), data corrections, reprint requests, and business tax identity onboarding across India.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">Understanding Your PAN &amp; Tax Registration Requirements</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        A Permanent Account Number (PAN) is the cornerstone of Indian financial compliance. Review your filing category to ensure accurate processing: Form 49A for Indian residents and Form 49AA for NRIs and foreign citizens; corporate/LLP PAN allotment via MCA SPICe+ incorporation; and corrections/updates for name, DOB, or re-issuance.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">Mandatory Document Checklist for PAN Application</h2>
+      <ul style="padding-left: 20px; line-height: 1.8; color: #334155; margin-bottom: 24px;">
+        <li>Proof of Identity: Aadhaar Card, Passport, Voter ID, or Driving Licence.</li>
+        <li>Proof of Address: Utility Bill (under 2 months old), Bank Statement, or Passport.</li>
+        <li>Proof of Date of Birth: Birth Certificate, Matriculation Certificate, or Passport.</li>
+        <li>For NRIs / Foreigners: Apostilled / Embassy-attested passport and overseas address proof.</li>
+      </ul>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">Frequently Asked Questions</h2>
+      <div style="margin-top: 12px;">
+        <p style="font-size: 14px; color: #0F172A; font-weight: 700; margin-bottom: 4px;">What is the difference between PAN and TAN?</p>
+        <p style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 14px;">A Permanent Account Number (PAN) is a unique 10-digit alphanumeric identity issued by the Income Tax Department to track financial transactions. A Tax Deduction and Collection Account Number (TAN) is required specifically by entities that deduct or collect tax at source (TDS/TCS).</p>
+        <p style="font-size: 14px; color: #0F172A; font-weight: 700; margin-bottom: 4px;">Can FilingBy help with PAN corrections?</p>
+        <p style="font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 14px;">Yes. FilingBy assists with name corrections, date of birth updates, signature/photo updates, address changes, and issuing duplicate physical/electronic PAN cards.</p>
+      </div>
+    `
   },
   {
     path: "default/privacy-policy",
@@ -448,7 +658,7 @@ const STATIC_PAGES = [
 
       <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Data Security &amp; KYC Confidentiality</h2>
       <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-        All KYC document uploads are encrypted in secure storage buckets and accessed exclusively by authorized compliance desk coordinators during verification checks. We maintain strict role-based access controls and cryptographic safeguards.
+        All KYC document uploads are encrypted in secure storage buckets and accessed exclusively by authorized compliance desk coordinators during verification checks. We maintain strict role-based access controls and cryptographic safeguards. FilingBy follows privacy and security practices designed to align with applicable Indian data-protection requirements, including provisions of the Digital Personal Data Protection Act, 2023 as and when they become applicable.
       </p>
 
       <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Third-Party Data Sharing Limitations</h2>
@@ -474,7 +684,7 @@ const STATIC_PAGES = [
 
       <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">6. User Privacy Rights &amp; Contact Method</h2>
       <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-        If you have questions regarding this Privacy Policy, wish to inspect the personal documentation retained on file, or wish to request data correction or deletion, contact our Data Privacy Officer via email at <a href="mailto:support@filingby.com" style="color: #1A56DB; text-decoration: underline;">support@filingby.com</a> or by post at FilingBy Compliance Solutions, B-1210 IT PARK, SURAT, Gujarat — 394101, India.
+        If you have questions regarding this Privacy Policy, wish to inspect the personal documentation retained on file, or wish to request data correction or deletion, contact our Data Privacy Contact via email at <a href="mailto:support@filingby.com" style="color: #1A56DB; text-decoration: underline;">support@filingby.com</a> or by post at FilingBy Compliance Solutions, B-1210 IT PARK, SURAT, Gujarat — 394101, India.
       </p>
     `
   },
@@ -533,7 +743,28 @@ const STATIC_PAGES = [
     description: "Learn how FilingBy.com uses cookies, advertising identifiers, analytical tools, and consent settings to ensure secure browsing and personalized compliance experiences.",
     keywords: "cookie policy, cookies filingby, advertising cookies, consent management",
     h1: "Cookie Policy",
-    content: "<p>This Cookie Policy explains how FilingBy.com uses cookies, web beacons, Google AdSense cookies, and consent controls to manage user sessions, analytics, and monetization.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        FilingBy.com ("we", "us", or "our") uses cookies, local storage, web beacons, and related tracking technologies to provide seamless user sessions, maintain authenticated account states, analyze site traffic, and deliver relevant advertisements. This Cookie Policy explains what cookies are, how we use them, and how you can manage your preferences.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. What Are Cookies?</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Cookies are small data files placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work efficiently, provide reporting information, and store user preferences across visits.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Categories of Cookies We Use</h2>
+      <div style="margin-bottom: 16px;">
+        <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 8px;"><strong>A. Strictly Necessary / Essential Cookies:</strong> Required for core platform functionality, including secure session validation (Clerk authentication), form submissions, order routing, and security protection. These cannot be disabled.</p>
+        <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 8px;"><strong>B. Analytical &amp; Performance Cookies:</strong> Help us understand how visitors interact with our website by measuring page views, navigation paths, and technical performance via privacy-focused tools like Google Tag Manager and Vercel Analytics.</p>
+        <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 8px;"><strong>C. Advertising &amp; Monetization Cookies (Google AdSense):</strong> Google AdSense and third-party advertising networks use cookies to serve ads on eligible informational pages. These cookies measure ad impressions, prevent fraud, and serve personalized ads based on your visits to our site and other internet pages.</p>
+      </div>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Managing Your Cookie Preferences</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 12px;">
+        When you first visit FilingBy.com, our Cookie Consent Banner enables you to accept or reject optional analytical and advertising cookies. You can also modify your browser settings to block or delete cookies at any time.
+      </p>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        To opt out of Google's personalized advertising cookies specifically, visit the official <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" style="color: #1A56DB; font-weight: 600; text-decoration: underline;">Google Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" style="color: #1A56DB; font-weight: 600; text-decoration: underline;">www.aboutads.info</a>.
+      </p>
+    `
   },
   {
     path: "default/disclaimer",
@@ -541,7 +772,27 @@ const STATIC_PAGES = [
     description: "FilingBy.com legal disclaimer. Important information regarding professional CA/CS assistance, general informational content, government filings, and legal limitations.",
     keywords: "legal disclaimer, tax disclaimer, filingby disclaimer, professional advisory limits",
     h1: "Legal & Tax Disclaimer",
-    content: "<p>Content published on FilingBy.com is provided for general informational and educational purposes only and does not constitute formal legal, tax, or financial advice.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        <strong>Important Notice:</strong> Content published on FilingBy.com, including articles, calculators, guides, and legal templates, is provided for general informational and educational purposes only and does not constitute formal legal, tax, financial, or accounting advice.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. Professional Advisory Boundaries</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        FilingBy is a digital technology platform providing corporate compliance tools, documentation workflows, and verified workspace solutions. Specialist professional assistance may be coordinated where a filing legally requires a qualified professional. FilingBy is not a chartered accountancy firm, company secretarial firm, or legal advocacy partnership and does not provide formal legal representation. Browsing this website or utilizing our calculators does not establish a formal attorney-client or professional-client relationship.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Government Affiliation Disclaimer</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        FilingBy.com is a private technology platform and independent service provider. FilingBy is <strong>NOT affiliated with, endorsed by, or an official agency of</strong> the Ministry of Corporate Affairs (MCA), Goods and Services Tax Network (GSTN), Income Tax Department of India, Controller General of Patents Designs and Trade Marks (CGPDTM), or any central or state government department.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Calculator &amp; Estimation Tool Limitations</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Calculators provided on this platform (such as GST Inclusive/Exclusive calculators, Income Tax regime comparison tools, HRA calculators, and ROC late fee estimators) yield estimates based on standardized mathematical formulas and user inputs. Actual tax liabilities or statutory late fees imposed by government authorities may vary depending on individual case details and specific statutory conditions.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">4. External Links &amp; Third-Party References</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        FilingBy.com may contain links to external government portals, statutory acts, or reference resources. FilingBy assumes no responsibility for the accuracy, availability, or content of third-party websites.
+      </p>
+    `
   },
   {
     path: "default/editorial-policy",
@@ -549,7 +800,27 @@ const STATIC_PAGES = [
     description: "FilingBy editorial policy. Learn how our editorial desk researches, fact-checks, updates, and reviews business compliance guides, tax filing articles, and legal resources.",
     keywords: "editorial policy, fact checking, editorial standards, compliance research",
     h1: "Editorial Policy",
-    content: "<p>At FilingBy.com, our editorial desk researches business compliance guides using primary government sources, statutory MCA/GST circulars, and human expert verification.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        At FilingBy.com, our mission is to deliver accurate, objective, easy-to-understand, and practical statutory compliance information to Indian business owners, founders, and tax professionals.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. Primary Source Verification</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Our editorial content is researched using official primary government sources, statutory acts, Ministry of Corporate Affairs (MCA) circulars, Central Board of Direct Taxes (CBDT) notifications, and GST Council updates. We cite official legislation and government portals directly when discussing compliance requirements.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Editorial Independence &amp; Ad Policy</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Our editorial desk operates independently of commercial partnerships and advertising sponsors. Advertisements served via Google AdSense or external networks do not influence our research findings, tool calculations, or editorial reviews.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Editorial Quality &amp; Human Expert Oversight</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        All technical tax calculations, statutory deadlines, legal steps, and government form requirements published on our platform are systematically researched, verified, and reviewed by qualified compliance specialists and corporate experts before publication.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">4. Regular Audits &amp; Date Currency</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Tax rates and corporate filing procedures change each financial year. Our team regularly audits published guides to ensure dates, slab rates, late fees, and form names reflect current laws (e.g. FY 2025-26 / AY 2026-27 regulations).
+      </p>
+    `
   },
   {
     path: "default/corrections-policy",
@@ -557,7 +828,23 @@ const STATIC_PAGES = [
     description: "FilingBy corrections policy. Learn how we handle factual updates, regulatory changes, reader feedback, and corrections across our business compliance knowledge hub.",
     keywords: "corrections policy, fact checking updates, regulatory updates filingby",
     h1: "Corrections & Updates Policy",
-    content: "<p>FilingBy.com is committed to maintaining factual accuracy across all published articles, statutory calculators, and business guides.</p>"
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        FilingBy.com is committed to maintaining absolute factual accuracy across all published articles, statutory calculators, and business guides. When errors occur or when government authorities issue regulatory amendments, we act swiftly and transparently to correct the record.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">1. Submitting Correction Requests</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        If you identify an outdated statutory due date, a mathematical discrepancy in a calculator tool, or a factual error in an article, please inform our editorial desk immediately at <a href="mailto:support@filingby.com" style="color: #1A56DB; font-weight: 600; text-decoration: underline;">support@filingby.com</a> with the subject line <code>Correction Request</code>.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">2. Evaluation &amp; Revision Workflow</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        Upon receiving feedback, our compliance editorial team cross-references the flagged claim against primary MCA/GST/ITD notifications. If a factual correction is warranted, the article or calculator code is updated immediately, and significant modifications are documented with a clear timestamp.
+      </p>
+      <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-top: 24px; margin-bottom: 10px;">3. Regulatory &amp; Budgetary Updates</h2>
+      <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
+        When Union Budgets or MCA circulars introduce new tax slabs, fee schedules, or compliance forms, affected articles are placed into an expedited review queue to prevent outdated statutory advice from persisting online.
+      </p>
+    `
   },
   {
     path: "editorial-team",
@@ -605,6 +892,359 @@ const STATIC_PAGES = [
       <p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
         If you spot a typo, an outdated statutory fee structure, or an ambiguous legal reference in any of our published articles, our editorial desk welcomes your feedback at <a href="mailto:support@filingby.com" style="color: #1A56DB;">support@filingby.com</a>. Every query is examined by our researchers within 48 business hours.
       </p>
+    `
+  },
+  {
+    path: "tools/structure-selector",
+    isNoindex: true,
+    title: "Business Structure Selector Quiz | FilingBy",
+    description: "Interactive decision tool to help Indian founders determine whether to incorporate a Private Limited Company, LLP, or One Person Company.",
+    keywords: "business structure selector, pvt ltd vs llp selector, startup entity quiz, business incorporation tool India",
+    h1: "Business Structure Selector Quiz",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Selecting the correct corporate legal entity structure is a foundational strategic step for Indian entrepreneurs. This interactive selector evaluates critical parameters such as equity fundraising goals, founder count, and compliance appetite to recommend the optimal legal form.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Corporate Structure Considerations</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Private Limited Company:</strong> Ideal for startups seeking angel or venture capital investment, ESOP allocations, and scalable corporate governance under SPICe+ MCA guidelines.</li>
+          <li><strong>Limited Liability Partnership (LLP):</strong> Best suited for professional services, consultancies, and family enterprises desiring limited liability with lower mandatory compliance overhead.</li>
+          <li><strong>One Person Company (OPC):</strong> Tailored for solo entrepreneurs wanting separate corporate legal personality while retaining sole operational control.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Explore our dedicated entity incorporation desks: <a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600;">Private Limited Company</a> | <a href="/services/llp-registration" style="color: #1A56DB; font-weight: 600;">LLP Registration</a> | <a href="/services/one-person-company" style="color: #1A56DB; font-weight: 600;">One Person Company</a>.</p>
+    `
+  },
+  {
+    path: "tools/gst-eligibility",
+    isNoindex: true,
+    title: "GST Registration Eligibility Checker | FilingBy",
+    description: "Evaluate Goods and Services Tax mandatory registration thresholds, aggregate turnover limits, and interstate supply rules under the CGST Act.",
+    keywords: "gst eligibility checker, gst registration threshold, interstate gst rules, turnover limit gst India",
+    h1: "GST Registration Eligibility Checker",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Goods and Services Tax (GST) registration requirements depend on aggregate annual turnover thresholds and specific statutory triggers under Section 22 and Section 24 of the CGST Act, 2017.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Statutory GST Thresholds &amp; Mandatory Rules</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Goods Suppliers:</strong> Mandatory registration kicks in when aggregate pan-India turnover exceeds ₹40 Lakhs in normal states (₹20 Lakhs in Special Category States).</li>
+          <li><strong>Service Providers:</strong> Mandatory registration threshold is ₹20 Lakhs in normal states (₹10 Lakhs in Special Category States).</li>
+          <li><strong>Section 24 Compulsory Registration:</strong> Interstate taxable supplies, e-commerce operators, reverse charge liability, and non-resident taxable persons must obtain GSTIN regardless of turnover.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Ready to register or compute tax? Visit our <a href="/services/gst-registration" style="color: #1A56DB; font-weight: 600;">GST Registration Service</a> or use our interactive <a href="/gst-calculator" style="color: #1A56DB; font-weight: 600;">Online GST Calculator</a>.</p>
+    `
+  },
+  {
+    path: "tools/trademark-class",
+    isNoindex: true,
+    title: "Trademark Class Finder Lookup | FilingBy",
+    description: "Identify the appropriate Nice classification class (Classes 1 to 45) for goods and services before filing an Indian trademark application.",
+    keywords: "trademark class finder, tm class lookup, nice classification India, trademark class 9 25 43 45",
+    h1: "Trademark Class Finder Lookup",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        The Trade Marks Registry in India categorizes goods and services into 45 distinct classes under the international Nice Classification system. Choosing the correct classification is vital to ensure robust statutory brand protection.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Common Trademark Classes in India</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Class 9:</strong> Software, mobile applications, computer hardware, electronics, and digital apparatus.</li>
+          <li><strong>Class 25:</strong> Clothing, footwear, headgear, and fashion apparel.</li>
+          <li><strong>Class 35:</strong> Advertising, business management, retail services, and e-commerce platforms.</li>
+          <li><strong>Class 42:</strong> Scientific, technological services, software development, and IT research.</li>
+          <li><strong>Class 43:</strong> Food, beverages, restaurant services, catering, and temporary accommodation.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Conduct a comprehensive trademark audit before filing: <a href="/trademark-search" style="color: #1A56DB; font-weight: 600;">Public Trademark Search Guide</a> | <a href="/services/trademark-registration" style="color: #1A56DB; font-weight: 600;">Trademark Registration Online</a>.</p>
+    `
+  },
+  {
+    path: "templates/nda",
+    isNoindex: true,
+    title: "Mutual Non-Disclosure Agreement (NDA) Template | FilingBy",
+    description: "Standard mutual non-disclosure agreement draft for Indian startups, protecting commercial proprietary information and intellectual property.",
+    keywords: "nda template india, mutual non disclosure agreement draft, startup confidentiality agreement, proprietary info agreement",
+    h1: "Mutual Non-Disclosure Agreement (NDA) Template",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        A Mutual Non-Disclosure Agreement (NDA) protects confidential business disclosures, trade secrets, software code, customer data, and technical processes when evaluating partnerships or vendor arrangements in India.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Key Clauses &amp; Execution Guidelines</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Scope of Confidential Information:</strong> Explicitly covers technical data, business plans, financial projections, and proprietary algorithms.</li>
+          <li><strong>Standard Exclusions:</strong> Information in the public domain, independently developed without access, or compelled by judicial authority is excluded.</li>
+          <li><strong>Stamp Duty Admissibility:</strong> In India, NDAs must be executed on non-judicial stamp paper of appropriate value under state stamp laws (commonly ₹100 or ₹200) to ensure court admissibility.</li>
+          <li><strong>Jurisdiction:</strong> Specifying dispute resolution under the Indian Arbitration and Conciliation Act, 1996 guarantees streamlined adjudication.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Browse additional agreements in our <a href="/legal-templates" style="color: #1A56DB; font-weight: 600;">Legal Templates Library</a> or register your IP via <a href="/services/trademark-registration" style="color: #1A56DB; font-weight: 600;">Trademark Registration</a>.</p>
+    `
+  },
+  {
+    path: "templates/rent-agreement",
+    isNoindex: true,
+    title: "Commercial Rent Agreement Template | FilingBy",
+    description: "Standard commercial lease and rental agreement contract format for office workspaces, virtual offices, and business premises in India.",
+    keywords: "commercial rent agreement template, office lease agreement draft, 11 month rent agreement India, gst rent agreement",
+    h1: "Commercial Rent Agreement Template",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        A commercial rental agreement legally establishes the tenancy relationship between a property owner and a business tenant for commercial workspaces, corporate headquarters, or virtual office setups.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Drafting &amp; GST Compliance Requirements</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>11-Month Tenancy Period:</strong> Short-term commercial leases of up to 11 months are standard practice to avoid mandatory registration under Section 17 of the Registration Act, 1908.</li>
+          <li><strong>Address Proof for GST &amp; MCA:</strong> To use the premises as a principal place of business, the agreement must be accompanied by the landlord's signed No Objection Certificate (NOC) and latest electricity bill.</li>
+          <li><strong>Maintenance &amp; Commercial Tax:</strong> Explicitly clarify whether municipal rates, water, power, and building maintenance are inclusive in the base rent.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Looking for compliant corporate addresses? Explore <a href="/virtual-space" style="color: #1A56DB; font-weight: 600;">Virtual Office for GST Registration</a> across top Indian business hubs.</p>
+    `
+  },
+  {
+    path: "templates/gst-invoice",
+    isNoindex: true,
+    title: "Standard GST Tax Invoice Template | FilingBy",
+    description: "Statutory tax invoice blueprint compliant with Section 31 of the CGST Act 2017 and Rule 46 of the CGST Rules.",
+    keywords: "gst invoice template, tax invoice format india, rule 46 cgst invoice, b2b gst invoice format",
+    h1: "Standard GST Tax Invoice Template",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Under Section 31 of the Central Goods and Services Tax Act, 2017, every registered supplier of taxable goods or services is required to issue a formal tax invoice containing all mandatory particulars outlined in Rule 46 of the CGST Rules.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Mandatory Tax Invoice Particulars (Rule 46)</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Supplier &amp; Recipient Identification:</strong> Legal name, registered address, and 15-digit GSTIN of both parties.</li>
+          <li><strong>Consecutive Serial Number:</strong> Unique numeric or alphanumeric serial number containing up to 16 characters for each financial year.</li>
+          <li><strong>Place of Supply &amp; State Code:</strong> Identifies whether the transaction is an intra-state supply (attracting CGST + SGST) or inter-state supply (attracting IGST).</li>
+          <li><strong>HSN/SAC Code:</strong> Accurate Harmonized System of Nomenclature code for goods or Service Accounting Code for services.</li>
+          <li><strong>Itemized Tax Computation:</strong> Taxable value, statutory tax rate percentage, and exact monetary tax breakdown.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">For automated return reconciliation and filing: <a href="/services/gst-return-filing" style="color: #1A56DB; font-weight: 600;">GST Return Filing Assistance</a> | <a href="/gst-calculator" style="color: #1A56DB; font-weight: 600;">GST Calculator</a>.</p>
+    `
+  },
+  {
+    path: "templates/partnership-deed",
+    isNoindex: true,
+    title: "Partnership Deed Format Draft | FilingBy",
+    description: "Comprehensive legal partnership deed format under the Indian Partnership Act 1932 detailing capital contributions, profit sharing, and partner duties.",
+    keywords: "partnership deed draft, partnership deed format india, indian partnership act 1932 deed, firm registration agreement",
+    h1: "Partnership Deed Format Draft",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        A Partnership Deed is the foundational constitution of a partnership firm formed under the Indian Partnership Act, 1932. It defines the operational rights, financial duties, and mutual profit ratios of all partners.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Core Clauses in a Commercial Partnership Deed</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Firm Name &amp; Principal Place:</strong> The official trading name and registered commercial premises of the partnership.</li>
+          <li><strong>Capital Contribution &amp; Interest:</strong> Initial and working capital provided by each partner, including terms of interest on capital under Section 40(b) of the Income Tax Act.</li>
+          <li><strong>Profit &amp; Loss Sharing Ratio:</strong> Explicit percentage allocation of net operational profit or commercial loss among partners.</li>
+          <li><strong>Banking Operations:</strong> Specific signing mandate for bank transactions, credit facilities, and statutory filings.</li>
+          <li><strong>Dispute Resolution &amp; Dissolution:</strong> Arbitration under the Arbitration and Conciliation Act, 1996 and protocols for partner retirement or firm winding up.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Ready to register your firm? Visit our <a href="/services/partnership-firm" style="color: #1A56DB; font-weight: 600;">Partnership Firm Registration Desk</a>.</p>
+    `
+  },
+  {
+    path: "templates/board-resolution",
+    isNoindex: true,
+    title: "Board Resolution Template for Corporate Actions | FilingBy",
+    description: "Certified true copy format for board resolutions passed by company directors under the Companies Act 2013.",
+    keywords: "board resolution template, certified true copy resolution, bank account board resolution, companies act 2013 resolution",
+    h1: "Board Resolution Template for Corporate Actions",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        In corporate administration, a Board Resolution represents an official collective decision made by the Board of Directors of a company during a duly convened meeting under the Companies Act, 2013.
+      </p>
+      <div style="border: 1px solid #E2E8F0; padding: 24px; border-radius: 16px; background: #F8FAFC; margin-bottom: 24px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin-bottom: 12px;">Common Corporate Board Actions &amp; Compliance</h2>
+        <ul style="padding-left: 20px; line-height: 1.8; color: #334155;">
+          <li><strong>Bank Account Opening:</strong> Authorizing specific directors or executives to open and operate commercial current accounts and digital banking facilities.</li>
+          <li><strong>Statutory Registration Signatory:</strong> Appointing authorized representatives for GST, PAN, TAN, Import-Export Code (IEC), and state commercial tax registrations.</li>
+          <li><strong>Quorum &amp; Meeting Notice:</strong> Must satisfy the statutory quorum requirement under Section 174 (one-third of total directors or two directors, whichever is higher) and formal 7-day meeting notice under Section 173(3).</li>
+          <li><strong>Certification:</strong> Certified True Copies must be signed by a non-interested director or company secretary with DIN clearly specified.</li>
+        </ul>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Need company incorporation or annual filing assistance? Visit <a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600;">Private Limited Incorporation</a> and our <a href="/roc-tools" style="color: #1A56DB; font-weight: 600;">ROC Compliance Suite</a>.</p>
+    `
+  },
+  {
+    path: "hubs/gst",
+    isNoindex: true,
+    title: "GST Compliance and Tax Hub | FilingBy",
+    description: "Central resource cluster for Indian GST compliance: registration, monthly return filings, revocation, invoice templates, and calculators.",
+    keywords: "gst hub, gst compliance resources, gstr filing hub, gst calculator and templates",
+    h1: "GST Compliance & Tax Resource Hub",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Welcome to the FilingBy GST Compliance Hub. Access end-to-end statutory resources, filing pathways, calculation engines, and legal drafting templates designed for Indian businesses and tax filers.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 24px 0;">
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 8px;">GST Filing &amp; Advisory Services</h3>
+          <ul style="padding-left: 18px; line-height: 1.8; font-size: 14px; color: #334155;">
+            <li><a href="/services/gst-registration" style="color: #1A56DB; font-weight: 600;">New GSTIN Registration</a></li>
+            <li><a href="/services/gst-return-filing" style="color: #1A56DB; font-weight: 600;">Monthly Return Filing (GSTR-1 &amp; 3B)</a></li>
+            <li><a href="/services/gst-amendment" style="color: #1A56DB; font-weight: 600;">Core &amp; Non-Core Amendments</a></li>
+            <li><a href="/services/gst-lut" style="color: #1A56DB; font-weight: 600;">LUT Filing for Zero-Rated Exports</a></li>
+            <li><a href="/services/gst-revocation" style="color: #1A56DB; font-weight: 600;">Revocation of Cancelled GSTIN</a></li>
+          </ul>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 8px;">Tools &amp; Drafting Templates</h3>
+          <ul style="padding-left: 18px; line-height: 1.8; font-size: 14px; color: #334155;">
+            <li><a href="/gst-calculator" style="color: #1A56DB; font-weight: 600;">Interactive GST Calculator</a></li>
+            <li><a href="/tools/gst-eligibility" style="color: #1A56DB; font-weight: 600;">GST Registration Eligibility Checker</a></li>
+            <li><a href="/templates/gst-invoice" style="color: #1A56DB; font-weight: 600;">Standard GST Tax Invoice Draft</a></li>
+            <li><a href="/templates/rent-agreement" style="color: #1A56DB; font-weight: 600;">Commercial Rent Agreement Draft</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">For multi-state business expansion, review our nationwide <a href="/virtual-space" style="color: #1A56DB; font-weight: 600;">Virtual Office Solutions for GST</a>.</p>
+    `
+  },
+  {
+    path: "hubs/company",
+    isNoindex: true,
+    title: "Company Incorporation and Startup Hub | FilingBy",
+    description: "Step-by-step entity formation guides, comparative analysis, statutory forms, and legal drafting templates for Indian entrepreneurs.",
+    keywords: "company formation hub, startup registration resources, pvt ltd llp guides, incorporation checklist",
+    h1: "Company Incorporation & Startup Resource Hub",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        The FilingBy Company Incorporation Hub offers comprehensive resources, comparison matrices, and statutory documentation workflows for incorporating and scaling corporate entities in India.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 24px 0;">
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 8px;">Incorporation Desks</h3>
+          <ul style="padding-left: 18px; line-height: 1.8; font-size: 14px; color: #334155;">
+            <li><a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600;">Private Limited Company (SPICe+)</a></li>
+            <li><a href="/services/llp-registration" style="color: #1A56DB; font-weight: 600;">Limited Liability Partnership (LLP)</a></li>
+            <li><a href="/services/one-person-company" style="color: #1A56DB; font-weight: 600;">One Person Company (OPC)</a></li>
+            <li><a href="/services/section-8-company" style="color: #1A56DB; font-weight: 600;">Section 8 Non-Profit Company</a></li>
+          </ul>
+        </div>
+        <div style="border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px; background: #F8FAFC;">
+          <h3 style="font-weight: 700; color: #0F172A; font-size: 16px; margin-bottom: 8px;">Decision Tools &amp; Templates</h3>
+          <ul style="padding-left: 18px; line-height: 1.8; font-size: 14px; color: #334155;">
+            <li><a href="/compare/private-limited-company-vs-llp" style="color: #1A56DB; font-weight: 600;">Pvt Ltd vs LLP Comparison</a></li>
+            <li><a href="/tools/structure-selector" style="color: #1A56DB; font-weight: 600;">Business Structure Selector Quiz</a></li>
+            <li><a href="/templates/nda" style="color: #1A56DB; font-weight: 600;">Mutual Non-Disclosure Agreement (NDA)</a></li>
+            <li><a href="/templates/board-resolution" style="color: #1A56DB; font-weight: 600;">Board Resolution Template</a></li>
+            <li><a href="/company-registration-guides" style="color: #1A56DB; font-weight: 600;">Company Registration Guides</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">For post-incorporation annual secretarial compliance, consult our <a href="/roc-tools" style="color: #1A56DB; font-weight: 600;">ROC Compliance Suite</a>.</p>
+    `
+  },
+  {
+    path: "compare/private-limited-company-vs-llp",
+    isNoindex: true,
+    title: "Private Limited Company vs LLP Comparison | FilingBy",
+    description: "Detailed comparative analysis between a Private Limited Company and a Limited Liability Partnership (LLP) under Indian corporate law.",
+    keywords: "pvt ltd vs llp, private limited vs limited liability partnership, startup structure comparison, mca compliance differences",
+    h1: "Private Limited Company vs Limited Liability Partnership (LLP)",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        When starting a business in India, choosing between a Private Limited Company and a Limited Liability Partnership (LLP) affects equity fundraising capability, statutory compliance burden, tax efficiency, and operational agility.
+      </p>
+      <div style="overflow-x: auto; margin-bottom: 24px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+          <thead>
+            <tr style="background: #0F172A; color: #FFFFFF;">
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Key Parameter</th>
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Private Limited Company</th>
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Limited Liability Partnership (LLP)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Governing Law</td>
+              <td style="padding: 12px 16px; color: #475569;">Companies Act, 2013</td>
+              <td style="padding: 12px 16px; color: #475569;">Limited Liability Partnership Act, 2008</td>
+            </tr>
+            <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Membership Limits</td>
+              <td style="padding: 12px 16px; color: #475569;">Min 2, Max 200 shareholders</td>
+              <td style="padding: 12px 16px; color: #475569;">Min 2 designated partners, no upper ceiling</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Venture / Angel Investment</td>
+              <td style="padding: 12px 16px; color: #475569;">Highly preferred by VCs &amp; Angels (Equity &amp; ESOPs)</td>
+              <td style="padding: 12px 16px; color: #475569;">Not suitable for institutional equity funding</td>
+            </tr>
+            <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Statutory Audit</td>
+              <td style="padding: 12px 16px; color: #475569;">Mandatory from Year 1 regardless of turnover</td>
+              <td style="padding: 12px 16px; color: #475569;">Mandatory only if turnover &gt; ₹40L or capital &gt; ₹25L</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Annual ROC Compliances</td>
+              <td style="padding: 12px 16px; color: #475569;">AOC-4, MGT-7/7A, DIR-3 KYC, Board Meetings</td>
+              <td style="padding: 12px 16px; color: #475569;">Form 11 (Annual Return), Form 8 (Statement of Accounts)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Ready to incorporate? <a href="/services/private-limited-company" style="color: #1A56DB; font-weight: 600;">Register a Private Limited Company</a> | <a href="/services/llp-registration" style="color: #1A56DB; font-weight: 600;">Register an LLP</a>.</p>
+    `
+  },
+  {
+    path: "compare/trademark-vs-patent",
+    isNoindex: true,
+    title: "Trademark vs Patent Registration Comparison | FilingBy",
+    description: "Understand the core differences between trademark brand identity protection and patent invention exclusivity in India.",
+    keywords: "trademark vs patent, brand vs invention protection, ip india difference, patent vs trademark cost timeline",
+    h1: "Trademark vs Patent Registration Comparison",
+    content: `
+      <p style="font-size: 16px; color: #475569; margin-bottom: 20px; line-height: 1.6;">
+        Intellectual property rights grant statutory monopolies that protect distinct assets. A trademark protects brand identifiers (names, logos, taglines), whereas a patent protects novel, non-obvious industrial inventions and technical processes.
+      </p>
+      <div style="overflow-x: auto; margin-bottom: 24px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; text-align: left;">
+          <thead>
+            <tr style="background: #0F172A; color: #FFFFFF;">
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Key Attribute</th>
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Trademark Protection</th>
+              <th style="padding: 12px 16px; border: 1px solid #334155;">Patent Protection</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Subject Matter</td>
+              <td style="padding: 12px 16px; color: #475569;">Brand names, word marks, logos, slogans, trade dress</td>
+              <td style="padding: 12px 16px; color: #475569;">Inventions, manufacturing processes, chemical compositions</td>
+            </tr>
+            <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Governing Statute</td>
+              <td style="padding: 12px 16px; color: #475569;">Trade Marks Act, 1999</td>
+              <td style="padding: 12px 16px; color: #475569;">Patents Act, 1970</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Validity Duration</td>
+              <td style="padding: 12px 16px; color: #475569;">10 Years (Renewable indefinitely every 10 years)</td>
+              <td style="padding: 12px 16px; color: #475569;">20 Years from filing date (Non-renewable)</td>
+            </tr>
+            <tr style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0;">
+              <td style="padding: 12px 16px; font-weight: 700; color: #0F172A;">Registration Authority</td>
+              <td style="padding: 12px 16px; color: #475569;">Trade Marks Registry (IP India)</td>
+              <td style="padding: 12px 16px; color: #475569;">Indian Patent Office (IP India)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 14px; color: #64748B;">Secure your brand identity today: <a href="/services/trademark-registration" style="color: #1A56DB; font-weight: 600;">Trademark Registration Online</a> | <a href="/trademark-search" style="color: #1A56DB; font-weight: 600;">Trademark Search Guide</a>.</p>
     `
   }
 ];
@@ -753,11 +1393,78 @@ function writeHtmlPage(routePath, pageTitle, pageDescription, pageKeywords, page
     `${seoMetadata}\n</head>`
   );
 
+const GLOBAL_PRERENDER_FOOTER = `
+  <footer style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #E2E8F0; font-size: 13px; color: #64748B;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 30px;">
+      <div>
+        <strong style="display: block; color: #0F172A; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">Core Services</strong>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+          <li><a href="/services/gst-registration" style="color: #475569; text-decoration: none;">GST Registration</a></li>
+          <li><a href="/services/private-limited-company" style="color: #475569; text-decoration: none;">Private Limited Company</a></li>
+          <li><a href="/services/trademark-registration" style="color: #475569; text-decoration: none;">Trademark Registration</a></li>
+          <li><a href="/services/gst-return-filing" style="color: #475569; text-decoration: none;">GST Return Filing</a></li>
+          <li><a href="/services/llp-registration" style="color: #475569; text-decoration: none;">LLP Registration</a></li>
+          <li><a href="/services/itr-1-filing" style="color: #475569; text-decoration: none;">ITR-1 Return Filing</a></li>
+          <li><a href="/services/udyam-registration" style="color: #475569; text-decoration: none;">MSME Udyam Registration</a></li>
+          <li><a href="/services/one-person-company" style="color: #475569; text-decoration: none;">One Person Company</a></li>
+          <li><a href="/services/fssai-basic-registration" style="color: #475569; text-decoration: none;">FSSAI Registration</a></li>
+          <li><a href="/services/iec-registration" style="color: #475569; text-decoration: none;">Import Export Code (IEC)</a></li>
+          <li><a href="/services/roc-annual-filing-pvt" style="color: #475569; text-decoration: none;">ROC Filing (Pvt Ltd)</a></li>
+          <li><a href="/services/roc-annual-filing-llp" style="color: #475569; text-decoration: none;">ROC Filing (LLP)</a></li>
+          <li><a href="/services/startup-india" style="color: #475569; text-decoration: none;">Startup India DPIIT</a></li>
+          <li><a href="/services/trust-registration" style="color: #475569; text-decoration: none;">Trust Registration</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong style="display: block; color: #0F172A; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">Compliance Tools</strong>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+          <li><a href="/gst-calculator" style="color: #475569; text-decoration: none;">GST Calculator</a></li>
+          <li><a href="/income-tax-calculator" style="color: #475569; text-decoration: none;">Income Tax Calculator</a></li>
+          <li><a href="/roc-tools" style="color: #475569; text-decoration: none;">ROC Compliance Tools</a></li>
+          <li><a href="/company-registration-guides" style="color: #475569; text-decoration: none;">Company Registration Guides</a></li>
+          <li><a href="/trademark-search" style="color: #475569; text-decoration: none;">Trademark Search</a></li>
+          <li><a href="/legal-templates" style="color: #475569; text-decoration: none;">Legal Templates</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong style="display: block; color: #0F172A; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">Company &amp; Workspaces</strong>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+          <li><a href="/virtual-space" style="color: #475569; text-decoration: none;">Virtual Space</a></li>
+          <li><a href="/ecommerce-office" style="color: #475569; text-decoration: none;">Ecommerce Office</a></li>
+          <li><a href="/about-us" style="color: #475569; text-decoration: none;">About Us</a></li>
+          <li><a href="/our-promise" style="color: #475569; text-decoration: none;">Our Promise</a></li>
+          <li><a href="/customer-care" style="color: #475569; text-decoration: none;">Customer Care</a></li>
+          <li><a href="/faq" style="color: #475569; text-decoration: none;">FAQs</a></li>
+          <li><a href="/blog" style="color: #475569; text-decoration: none;">Knowledge Hub</a></li>
+          <li><a href="/contact-us" style="color: #475569; text-decoration: none;">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong style="display: block; color: #0F172A; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">Legal Policies</strong>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 2;">
+          <li><a href="/terms-conditions" style="color: #475569; text-decoration: none;">Terms of Service</a></li>
+          <li><a href="/default/refund" style="color: #475569; text-decoration: none;">Refund Policy</a></li>
+          <li><a href="/default/privacy-policy" style="color: #475569; text-decoration: none;">Privacy Policy</a></li>
+          <li><a href="/default/cookie-policy" style="color: #475569; text-decoration: none;">Cookie Policy</a></li>
+          <li><a href="/default/disclaimer" style="color: #475569; text-decoration: none;">Disclaimer</a></li>
+          <li><a href="/default/editorial-policy" style="color: #475569; text-decoration: none;">Editorial Policy</a></li>
+          <li><a href="/default/corrections-policy" style="color: #475569; text-decoration: none;">Corrections Policy</a></li>
+          <li><a href="/editorial-team" style="color: #475569; text-decoration: none;">Editorial Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="border-top: 1px solid #E2E8F0; padding-top: 20px; text-align: center; font-size: 12px; color: #94A3B8;">
+      © 2026 FilingBy.com. All rights reserved. Professional corporate compliance &amp; taxation desk.
+    </p>
+  </footer>
+`;
+
   // Inject content into <div id="root"> replacing entire template root container
   const preRenderedContent = `
     <div data-prerender-shell="true">
       <div class="prerendered-content" style="max-width: 1000px; margin: 40px auto; padding: 20px; font-family: -apple-system, sans-serif; line-height: 1.6; color: #334155;">
         ${pageContent}
+        ${GLOBAL_PRERENDER_FOOTER}
       </div>
     </div>
     <div id="app-root"></div>
@@ -779,7 +1486,17 @@ function writeNoIndexHtmlPage(routePath, pageTitle) {
   }
 
   const is404 = routePath === "404";
-  const robotsDirective = is404 ? "noindex, nofollow" : "noindex, follow";
+  const isPrivateOr404 =
+    is404 ||
+    routePath.startsWith("dashboard") ||
+    routePath.startsWith("admin") ||
+    routePath.startsWith("virtual-office/dashboard") ||
+    routePath.startsWith("partner/dashboard") ||
+    routePath.startsWith("sso-callback") ||
+    routePath === "login" ||
+    routePath === "register";
+
+  const robotsDirective = isPrivateOr404 ? "noindex, nofollow" : "noindex, follow";
 
   const seoMetadata = `
   <title>${pageTitle}</title>
@@ -827,7 +1544,9 @@ async function prerender() {
         page.description,
         page.keywords,
         null,
-        `<h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${page.h1}</h1>${page.content}`
+        `<h1 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-bottom: 20px;">${page.h1}</h1>${page.content}`,
+        null,
+        page.isNoindex || false
       );
     }
 
@@ -854,9 +1573,6 @@ async function prerender() {
       { path: "company-registration-guides", changefreq: "weekly", priority: "0.8" },
       { path: "trademark-search", changefreq: "weekly", priority: "0.8" },
       { path: "legal-templates", changefreq: "weekly", priority: "0.8" },
-      { path: "calculators/hra", changefreq: "weekly", priority: "0.8" },
-      { path: "calculators/tds", changefreq: "weekly", priority: "0.8" },
-      { path: "calculators/depreciation", changefreq: "weekly", priority: "0.8" },
       { path: "contact-us", changefreq: "monthly", priority: "0.7" },
       { path: "editorial-team", changefreq: "monthly", priority: "0.7" },
       { path: "terms-conditions", changefreq: "monthly", priority: "0.5" },

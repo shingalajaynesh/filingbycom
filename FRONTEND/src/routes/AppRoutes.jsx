@@ -240,11 +240,6 @@ function GlobalDynamicRouter() {
   return <NotFound />;
 }
 
-// Helper to redirect legacy Shopify product URLs dynamically to services
-function RedirectToService() {
-  const { slug } = useParams();
-  return <NoIndexRedirect to={`/services/${slug}`} />;
-}
 
 // Helpers to redirect legacy /virtual-office/:city and :area to canonical /virtual-office-:city
 function VirtualOfficeCityRedirect() {
@@ -266,7 +261,6 @@ const LEGACY_BLOG_REDIRECTS = {
   "fssai-food-license-registration": "/blog/fssai-basic-vs-state-vs-central-guide",
   "startup-india-recognition-benefits": "/blog/startup-india-benefits-and-documents-guide",
   "trademark-registration-india": "/services/trademark-registration",
-  "income-tax-filing-ay-2026-27": "/services/itr-filing",
   "income-tax-return-filing-salaried-individuals": "/services/itr-1-filing"
 };
 
@@ -429,21 +423,15 @@ function AppRoutesContent() {
           {/* Legacy Shopify page redirects */}
           <Route path="/pages" element={<NoIndexRedirect to="/" />} />
           <Route path="/pages/income-tax-return-filing" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
-          <Route path="/pages/csr-audit" element={<NoIndexRedirect to="/services/csr-registration" />} />
-          <Route path="/pages/trust-compliance" element={<NoIndexRedirect to="/services/trust-registration" />} />
-          <Route path="/pages/trust-audit" element={<NoIndexRedirect to="/services/trust-registration" />} />
           <Route path="/pages/moa-amendment-public-private-limited" element={<NoIndexRedirect to="/services/moa-amendment" />} />
           <Route path="/pages/pan-card" element={<NoIndexRedirect to="/services/pan-card" />} />
           <Route path="/pages/private-limited-company-winding-up" element={<NoIndexRedirect to="/services/pvt-winding-up" />} />
-          <Route path="/pages/ngo-compliance" element={<NoIndexRedirect to="/services/trust-registration" />} />
           <Route path="/pages/llp-compliance" element={<NoIndexRedirect to="/services/roc-annual-filing-llp" />} />
           <Route path="/pages/start-application" element={<NoIndexRedirect to="/register" />} />
           <Route path="/pages/apeda-registration" element={<NoIndexRedirect to="/services/apeda-registration" />} />
           <Route path="/pages/tan-card" element={<NoIndexRedirect to="/services/tan-registration" />} />
-          <Route path="/pages/ngo-registration" element={<NoIndexRedirect to="/services/trust-registration" />} />
           <Route path="/pages/salary-return-filing" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
           <Route path="/pages/gst-audit" element={<NoIndexRedirect to="/services/gst-audit" />} />
-          <Route path="/pages/llp-income-tax-return" element={<NoIndexRedirect to="/services/roc-annual-filing-llp" />} />
           <Route path="/pages/niti-aayog-registration" element={<NoIndexRedirect to="/services/ngo-darpan" />} />
           <Route path="/pages/moa-amendment-section-8" element={<NoIndexRedirect to="/services/moa-amendment" />} />
           <Route path="/pages/trust-income-tax-return" element={<NoIndexRedirect to="/services/itr-7-filing" />} />
@@ -455,38 +443,22 @@ function AppRoutesContent() {
           <Route path="/pages/partnership-firm-return" element={<NoIndexRedirect to="/services/partnership-firm" />} />
           <Route path="/pages/indian-subsidiary-registration" element={<NoIndexRedirect to="/services/indian-subsidiary" />} />
           <Route path="/pages/income-tax-audit" element={<NoIndexRedirect to="/services/tax-audit" />} />
-          <Route path="/pages/:slug" element={<RedirectToService />} />
 
           {/* Shopify endpoints redirects */}
           <Route path="/account" element={<NoIndexRedirect to="/dashboard" />} />
-          <Route path="/cart" element={<NoIndexRedirect to="/dashboard" />} />
-          <Route path="/search" element={<NoIndexRedirect to="/dashboard" />} />
-
-          {/* Legacy Shopify products catch-all */}
-          <Route path="/products/:slug" element={<RedirectToService />} />
 
           {/* Legacy Shopify collections redirects */}
-          <Route path="/collections" element={<NoIndexRedirect to="/" />} />
           <Route path="/collections/income-tax" element={<NoIndexRedirect to="/services/itr-1-filing" />} />
           <Route path="/collections/gst-invoicing-filing-software" element={<NoIndexRedirect to="/services/gst-return-filing" />} />
           <Route path="/collections/gst-annual-return-filing-gstr-9" element={<NoIndexRedirect to="/services/gst-return-filing" />} />
           <Route path="/collections/one-person-company" element={<NoIndexRedirect to="/services/one-person-company" />} />
           <Route path="/collections/darpan-registration" element={<NoIndexRedirect to="/services/ngo-darpan" />} />
-          <Route path="/collections/:slug" element={<RedirectToService />} />
 
           {/* Legacy service alias redirects */}
           <Route path="/services/msme-registration" element={<NoIndexRedirect to="/services/udyam-registration" />} />
           <Route path="/services/udyam-registration-msme" element={<NoIndexRedirect to="/services/udyam-registration" />} />
           <Route path="/services/partnership-firm-return" element={<NoIndexRedirect to="/services/partnership-firm" />} />
 
-          {/* Obsolete Shopify internal tracking/assets routes */}
-          <Route path="/wpm" element={<NoIndexRedirect to="/" />} />
-          <Route path="/b" element={<NoIndexRedirect to="/" />} />
-          <Route path="/cdn" element={<NoIndexRedirect to="/" />} />
-          <Route path="/v1/produce" element={<NoIndexRedirect to="/" />} />
-          <Route path="/%24%7Bt%7D" element={<NoIndexRedirect to="/" />} />
-          <Route path="/$%7Bt%7D" element={<NoIndexRedirect to="/" />} />
-          <Route path="/${t}" element={<NoIndexRedirect to="/" />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/gst-calculator" element={<GstCalculatorPage />} />

@@ -12,8 +12,8 @@ export default function RefundPolicy() {
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-10 space-y-8">
         <div className="border-b border-gray-100 pb-6">
           <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full">Risk-Free Guarantee</span>
-          <h1 className="text-3xl font-black text-gray-900 mt-3">Refund Policy & Money-Back SLA</h1>
-          <p className="text-xs text-gray-500 mt-2">Last Updated: July 2026 | Service Satisfaction & Rejection Refund SLA</p>
+          <h1 className="text-3xl font-black text-gray-900 mt-3">Refund Policy & Service Fee SLA</h1>
+          <p className="text-xs text-gray-500 mt-2">Last Updated: July 2026 | Professional Service Satisfaction & Rejection Refund SLA</p>
         </div>
         
         <div className="text-xs sm:text-sm text-gray-700 leading-relaxed space-y-6 font-normal">
@@ -22,12 +22,12 @@ export default function RefundPolicy() {
           </p>
 
           <section className="space-y-3">
-            <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide border-l-4 border-emerald-600 pl-3">1. 100% Money-Back Refund SLA</h2>
+            <h2 className="text-base font-bold text-gray-950 uppercase tracking-wide border-l-4 border-emerald-600 pl-3">1. 100% Service Fee Refund SLA</h2>
             <p>
-              We offer a strict 100% Money-Back Guarantee for virtual office address verification orders and company registration filing assistance.
+              We offer a strict 100% Money-Back Guarantee for FilingBy professional service fees covering virtual office address verification orders and company registration filing assistance.
             </p>
             <p>
-              If the target government registry authority (such as the State Commercial Tax Department for GST registration or the MCA Registrar of Companies) formally rejects your application due to a verified document defect directly attributable to FilingBy.com or our property host (e.g. invalid land deed, landlord verification dispute, title defect in NOC), FilingBy will refund 100% of the service fees paid.
+              If the target government registry authority (such as the State Commercial Tax Department for GST registration or the MCA Registrar of Companies) formally rejects your application due to a verified document defect directly attributable to FilingBy.com or our property host (e.g. invalid land deed, landlord verification dispute, title defect in NOC), FilingBy will refund 100% of the FilingBy professional service fees paid.
             </p>
           </section>
 
@@ -47,7 +47,7 @@ export default function RefundPolicy() {
                 <strong>Client Non-Response:</strong> Failure by the Client to respond to clarification queries issued by statutory officers within the mandated statutory timeframe (typically 7 working days).
               </li>
               <li>
-                <strong>Government Fees:</strong> Statutory fees paid directly to government portals (MCA challans, stamp duty, GST portal charges) are non-refundable once processed by the treasury.
+                <strong>Government &amp; Statutory Fees:</strong> Statutory fees paid directly to government authorities, registries, or treasury portals (including MCA filing fees, electronic stamp duty, GST portal charges, trademark application fees, or licensing fees) are collected for and remitted to the respective statutory authorities and are normally outside FilingBy's control once submitted. Eligibility for any refund, reversal, or adjustment of such statutory fees depends entirely on the specific rules, criteria, and administrative procedures of the relevant government authority (such as eligible MCA21 service fee refund claims submitted via the official MCA Refund Form, or state/UT-specific statutory procedures governing electronic stamp-duty refunds). FilingBy's 100% money-back SLA applies exclusively to FilingBy's own professional service fees.
               </li>
             </ul>
           </section>
