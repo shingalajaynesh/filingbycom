@@ -305,12 +305,12 @@
       "permanent": true
     },
     {
-      "source": "/virtual-office/:city",
+      "source": "/virtual-office/:city(mumbai|surat|noida|gurugram|bangalore|pune|kolkata|delhi|gurgaon)",
       "destination": "/virtual-office-:city",
       "permanent": true
     },
     {
-      "source": "/virtual-office/:city/:area",
+      "source": "/virtual-office/:city(mumbai|surat|noida|gurugram|bangalore|pune|kolkata|delhi|gurgaon)/:area",
       "destination": "/virtual-office-:city/:area",
       "permanent": true
     }

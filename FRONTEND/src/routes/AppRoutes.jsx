@@ -244,6 +244,15 @@ function GlobalDynamicRouter() {
 // Helpers to redirect legacy /virtual-office/:city and :area to canonical /virtual-office-:city
 function VirtualOfficeCityRedirect() {
   const { city } = useParams();
+  if (city === "dashboard") {
+    return (
+      <NoIndexRoute title="Virtual Office Dashboard | FilingBy.com" description="Manage your virtual office spaces and documents.">
+        <ProtectedRoute>
+          <VirtualDashboard />
+        </ProtectedRoute>
+      </NoIndexRoute>
+    );
+  }
   return <NoIndexRedirect to={`/virtual-office-${city}`} />;
 }
 
@@ -482,6 +491,26 @@ function AppRoutesContent() {
           
           {/* Cloned Pages for address.co */}
           <Route path="/locations" element={<Locations />} />
+          <Route
+            path="/virtual-office/dashboard"
+            element={
+              <NoIndexRoute title="Virtual Office Dashboard | FilingBy.com" description="Manage your virtual office spaces and documents.">
+                <ProtectedRoute>
+                  <VirtualDashboard />
+                </ProtectedRoute>
+              </NoIndexRoute>
+            }
+          />
+          <Route
+            path="/virtual-office/dashboard/*"
+            element={
+              <NoIndexRoute title="Virtual Office Dashboard | FilingBy.com" description="Manage your virtual office spaces and documents.">
+                <ProtectedRoute>
+                  <VirtualDashboard />
+                </ProtectedRoute>
+              </NoIndexRoute>
+            }
+          />
           <Route path="/virtual-office/:city" element={<VirtualOfficeCityRedirect />} />
           <Route path="/virtual-office/:city/:area" element={<VirtualOfficeAreaRedirect />} />
           <Route path="/virtual-office-:city" element={<VirtualOfficeCity />} />
@@ -528,16 +557,6 @@ function AppRoutesContent() {
               <NoIndexRoute title="Client Dashboard | FilingBy.com" description="Manage your compliance requests and filings.">
                 <ProtectedRoute>
                   <ClientDashboard />
-                </ProtectedRoute>
-              </NoIndexRoute>
-            }
-          />
-          <Route
-            path="/virtual-office/dashboard"
-            element={
-              <NoIndexRoute title="Virtual Office Dashboard | FilingBy.com" description="Manage your virtual office spaces and documents.">
-                <ProtectedRoute>
-                  <VirtualDashboard />
                 </ProtectedRoute>
               </NoIndexRoute>
             }
