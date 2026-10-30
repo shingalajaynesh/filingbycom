@@ -120,32 +120,12 @@
 
   <!-- Dynamic CA / Compliance Services -->
   <url>
-    <loc>https://www.filingby.com/services/gst-registration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/services/gst-return-filing</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/services/private-limited-company</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/services/llp-registration</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/services/one-person-company</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.filingby.com/services/trademark-registration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/services/udyam-registration</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -165,7 +145,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.filingby.com/services/udyam-registration</loc>
+    <loc>https://www.filingby.com/services/gst-return-filing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/services/gst-registration</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -180,7 +165,22 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.filingby.com/services/llp-registration</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.filingby.com/services/startup-india</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/services/one-person-company</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/services/private-limited-company</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -192,53 +192,23 @@
 
   <!-- Dynamic Blogs and Guides -->
   <url>
-    <loc>https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide</loc>
+    <loc>https://www.filingby.com/blog/form-16-vs-form-16a-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[ROC Annual Filings Triad: Form ADT-1, AOC-4 and MGT-7/7A Compliance Guide]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Form 16 vs Form 16A Guide: Differences, Section 203 Rules, TRACES & ITR Filing]]></image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/advance-tax-for-founders-guide</loc>
+    <loc>https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Advance Tax for Founders and Companies: AY 2026-27 Installment Dates, Slabs & Penalties]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/authorised-capital-and-shareholding-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Authorised Capital vs Paid-Up Capital: Startup Shareholding & Form SH-7 Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/company-incorporation-documents-checklist-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Company Incorporation Documents Checklist: What Founders Must Prepare for SPICe+]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/company-name-approval-guide-india</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Company Name Approval in India: Rule 8, MCA V3 Search & SPICe+ Part A Guide]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI for Cloud Kitchens & Home Food Businesses: Swiggy/Zomato Rules, 2026 Slabs & Schedule 4]]></image:title>
     </image:image>
   </url>
   <url>
@@ -262,13 +232,53 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/designated-partner-dsc-dpin-guide</loc>
+    <loc>https://www.filingby.com/blog/advance-tax-for-founders-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Designated Partner DSC and DPIN Guide: What LLP Founders Must Finish Before Filing]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Advance Tax for Founders and Companies: AY 2026-27 Installment Dates, Slabs & Penalties]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/authorised-capital-and-shareholding-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Authorised Capital vs Paid-Up Capital: Startup Shareholding & Form SH-7 Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/company-name-approval-guide-india</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Company Name Approval in India: Rule 8, MCA V3 Search & SPICe+ Part A Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/adt-1-aoc-4-mgt-7-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ROC Annual Filings Triad: Form ADT-1, AOC-4 and MGT-7/7A Compliance Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/company-incorporation-documents-checklist-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Company Incorporation Documents Checklist: What Founders Must Prepare for SPICe+]]></image:title>
     </image:image>
   </url>
   <url>
@@ -292,13 +302,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/form-16-vs-form-16a-guide</loc>
+    <loc>https://www.filingby.com/blog/designated-partner-dsc-dpin-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Form 16 vs Form 16A Guide: Differences, Section 203 Rules, TRACES & ITR Filing]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Designated Partner DSC and DPIN Guide: What LLP Founders Must Finish Before Filing]]></image:title>
     </image:image>
   </url>
   <url>
@@ -312,26 +322,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/fssai-for-cloud-kitchen-and-home-business-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[FSSAI for Cloud Kitchens & Home Food Businesses: Swiggy/Zomato Rules, 2026 Slabs & Schedule 4]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/fssai-labelling-compliance-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[FSSAI Labelling Compliance Guide: Mandatory Declarations, Nutritional Panels & 2026 Norms]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/fssai-renewal-and-modification-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -339,6 +329,66 @@
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[FSSAI Renewal & Modification Guide: FoSCoS Form C, Perpetual Validity & Category Updates]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/how-to-register-private-limited-company</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[How to Register a Private Limited Company in India: Complete SPICe+ MCA V3 Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[IEC Registration for First-Time Exporters: DGFT Portal, AD Code & Annual Validation Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GSTR-1 vs GSTR-3B Reconciliation Guide: Rule 88C DRC-01B, Rule 88D & IMS Mechanics]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[GST LUT vs Refund for Exporters: Working Capital, Rule 96 vs 96A & Strategic Comparison]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/iec-amendment-and-surrender-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[IEC Amendment and Surrender Guide: DGFT Online Modifications, Form ANF-2A & Deactivation Fixes]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Income Tax Notice Guide: Section 143(1) Intimations vs Section 139(9) Defective Returns]]></image:title>
     </image:image>
   </url>
   <url>
@@ -362,13 +412,23 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/gst-lut-vs-refund-for-exporters-guide</loc>
+    <loc>https://www.filingby.com/blog/fssai-labelling-compliance-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GST LUT vs Refund for Exporters: Working Capital, Rule 96 vs 96A & Strategic Comparison]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[FSSAI Labelling Compliance Guide: Mandatory Declarations, Nutritional Panels & 2026 Norms]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/itr-filing-for-freelancers-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[ITR Filing for Freelancers in India: ITR-3 vs ITR-4, Section 44ADA & Expenses Guide]]></image:title>
     </image:image>
   </url>
   <url>
@@ -392,116 +452,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/gstr-1-vs-gstr-3b-reconciliation-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[GSTR-1 vs GSTR-3B Reconciliation Guide: Rule 88C DRC-01B, Rule 88D & IMS Mechanics]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/how-to-register-private-limited-company</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[How to Register a Private Limited Company in India: Complete SPICe+ MCA V3 Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/iec-amendment-and-surrender-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[IEC Amendment and Surrender Guide: DGFT Online Modifications, Form ANF-2A & Deactivation Fixes]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/iec-registration-for-first-time-exporters-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[IEC Registration for First-Time Exporters: DGFT Portal, AD Code & Annual Validation Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/income-tax-notice-143-1-139-9-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Income Tax Notice Guide: Section 143(1) Intimations vs Section 139(9) Defective Returns]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/itr-filing-for-freelancers-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[ITR Filing for Freelancers in India: ITR-3 vs ITR-4, Section 44ADA & Expenses Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/late-tds-return-and-correction-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Late TDS Return and Correction Guide: Section 234E Fees, Form 26Q & TRACES Steps]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-agreement-drafting-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Agreement Drafting Guide: Essential Clauses, Stamp Duty & Form 3 Filing]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-annual-compliance-calendar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Annual Compliance Calendar: Form 11, Form 8, DIR-3 KYC & Tax Timelines]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-registration-for-consultants</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP Registration for Consultants & Agencies: Section 27 Shield, Section 10(2A) Tax & MCA V3]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/llp-to-private-limited-conversion-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LLP to Private Limited Conversion Guide: Form URC-1, Section 47(xiii) & MCA V3 Process]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/llp-vs-private-limited-for-bootstrapped-startups</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -509,16 +459,6 @@
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[LLP vs Private Limited for Bootstrapped Startups: Compliance, Tax Slabs & VC Readiness]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/lut-for-exporters-under-gst</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[LUT for Exporters Under GST: Form RFD-11 Filing Guide, Eligibility & Timelines]]></image:title>
     </image:image>
   </url>
   <url>
@@ -552,16 +492,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Presumptive Taxation Under Sections 44AD and 44ADA: Limits, Rules & Differences]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/roc-compliance-calendar-private-limited-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -582,13 +512,73 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/section-80c-80d-deductions-guide</loc>
+    <loc>https://www.filingby.com/blog/llp-annual-compliance-calendar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Annual Compliance Calendar: Form 11, Form 8, DIR-3 KYC & Tax Timelines]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-agreement-drafting-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Agreement Drafting Guide: Essential Clauses, Stamp Duty & Form 3 Filing]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-to-private-limited-conversion-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP to Private Limited Conversion Guide: Form URC-1, Section 47(xiii) & MCA V3 Process]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/late-tds-return-and-correction-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Late TDS Return and Correction Guide: Section 234E Fees, Form 26Q & TRACES Steps]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/llp-registration-for-consultants</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[LLP Registration for Consultants & Agencies: Section 27 Shield, Section 10(2A) Tax & MCA V3]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/presumptive-taxation-44ad-44ada-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Presumptive Taxation Under Sections 44AD and 44ADA: Limits, Rules & Differences]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/lut-for-exporters-under-gst</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Section 80C and 80D Deductions Guide: Limits, Rules & New vs Old Tax Regime (AY 2026-27)]]></image:title>
+      <image:title><![CDATA[LUT for Exporters Under GST: Form RFD-11 Filing Guide, Eligibility & Timelines]]></image:title>
     </image:image>
   </url>
   <url>
@@ -602,23 +592,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/startup-india-benefits-and-documents-guide</loc>
+    <loc>https://www.filingby.com/blog/trademark-objection-reply-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India Benefits and Documents Checklist: What Founders Must Prepare Before Applying]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/startup-india-patent-benefits-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India Patent Benefits Guide: SIPP Scheme, 80% Fee Rebates & Expedited Examination]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Objection Reply Guide: Responding to Section 9 & 11 Objections]]></image:title>
     </image:image>
   </url>
   <url>
@@ -632,26 +612,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/startup-india-vs-msme-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Startup India vs MSME Registration: Which One Does Your Business Need?]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/tan-registration-and-tds-setup-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[TAN Registration & TDS Setup Guide: Form 49B, Section 203A & TRACES Deductor Rules]]></image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.filingby.com/blog/tax-audit-applicability-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -659,6 +619,56 @@
     <image:image>
       <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
       <image:title><![CDATA[Tax Audit Applicability Under Section 44AB: ₹10 Crore Limit, Deadlines & Form 3CD]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-renewal-restoration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Renewal and Restoration Guide: Statutory Timelines, Form TM-R & Fees]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TDS on Salary vs Professional Fees: Section 192 vs 194J Classification Guide]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-hearing-preparation-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Hearing Preparation Guide: Show-Cause Hearings, Evidence & Legal Strategy]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-benefits-and-documents-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India Benefits and Documents Checklist: What Founders Must Prepare Before Applying]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/trademark-assignment-licensing-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Assignment vs Licensing in India: Transfer of Ownership vs Permissive Use]]></image:title>
     </image:image>
   </url>
   <url>
@@ -682,73 +692,13 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/tds-on-salary-vs-professional-fees-guide</loc>
+    <loc>https://www.filingby.com/blog/tan-registration-and-tds-setup-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[TDS on Salary vs Professional Fees: Section 192 vs 194J Classification Guide]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-assignment-licensing-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Assignment vs Licensing in India: Transfer of Ownership vs Permissive Use]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-hearing-preparation-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Hearing Preparation Guide: Show-Cause Hearings, Evidence & Legal Strategy]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-objection-reply-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Objection Reply Guide: Responding to Section 9 & 11 Objections]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-renewal-restoration-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Renewal and Restoration Guide: Statutory Timelines, Form TM-R & Fees]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/trademark-search-and-class-selection-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Trademark Search and Class Selection Guide: NICE Classes & Public Search Portal]]></image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.filingby.com/blog/udyam-registration-for-service-business-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-09-12</lastmod>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Udyam Registration for Service Businesses: NIC Codes, Export Carve-Out & Official ₹0 Portal]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[TAN Registration & TDS Setup Guide: Form 49B, Section 203A & TRACES Deductor Rules]]></image:title>
     </image:image>
   </url>
   <url>
@@ -772,6 +722,26 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Virtual Office for GST Registration: Vendor Vetting, State Nuances & Inspection Readiness]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/udyam-registration-for-service-business-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Udyam Registration for Service Businesses: NIC Codes, Export Carve-Out & Official ₹0 Portal]]></image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.filingby.com/blog/virtual-office-for-company-registration-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -782,13 +752,43 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.filingby.com/blog/virtual-office-for-gst-registration-guide</loc>
+    <loc>https://www.filingby.com/blog/trademark-search-and-class-selection-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <lastmod>2026-09-12</lastmod>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
-      <image:title><![CDATA[Virtual Office for GST Registration: Vendor Vetting, State Nuances & Inspection Readiness]]></image:title>
+      <image:loc>https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Trademark Search and Class Selection Guide: NICE Classes & Public Search Portal]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/section-80c-80d-deductions-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Section 80C and 80D Deductions Guide: Limits, Rules & New vs Old Tax Regime (AY 2026-27)]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-vs-msme-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India vs MSME Registration: Which One Does Your Business Need?]]></image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.filingby.com/blog/startup-india-patent-benefits-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-09-12</lastmod>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop</image:loc>
+      <image:title><![CDATA[Startup India Patent Benefits Guide: SIPP Scheme, 80% Fee Rebates & Expedited Examination]]></image:title>
     </image:image>
   </url>
 </urlset>

@@ -1,43 +1,58 @@
-const BASE_URL = "https://www.filingby.com";
+const https = require('https');
 
-async function pollDeployment() {
-  console.log("Checking Vercel live deployment status...");
-  let deployed = false;
-  let attempts = 0;
-
-  while (!deployed && attempts < 24) {
-    attempts++;
-    try {
-      const sitemapRes = await fetch(`${BASE_URL}/sitemap.xml?_t=${Date.now()}`);
-      const text = await sitemapRes.text();
-      const count = (text.match(/<loc>/g) || []).length;
-      
-      const privacyRes = await fetch(`${BASE_URL}/default/privacy-policy?_t=${Date.now()}`);
-      const privacyText = await privacyRes.text();
-      const hasAdSenseRaw = privacyText.includes("Google AdSense &amp; Third-Party Advertising Cookies") || privacyText.includes("Google AdSense & Third-Party Advertising Cookies");
-
-      const locationsRes = await fetch(`${BASE_URL}/locations?_t=${Date.now()}`);
-      const locationsText = await locationsRes.text();
-      const locationsNoindex = locationsText.includes('content="noindex, follow"');
-
-      console.log(`[Attempt ${attempts}] Sitemap count: ${count}, Privacy raw AdSense: ${hasAdSenseRaw}, Locations noindex: ${locationsNoindex}`);
-
-      if (count === 100 && hasAdSenseRaw && locationsNoindex) {
-        deployed = true;
-        console.log("=== VERCEL PRODUCTION DEPLOYMENT IS LIVE! ===");
-        break;
-      }
-    } catch (e) {
-      console.log(`Attempt ${attempts} error:`, e.message);
-    }
-
-    await new Promise(r => setTimeout(r, 10000));
-  }
-
-  if (!deployed) {
-    console.error("Timed out waiting for Vercel production deployment.");
-    process.exit(1);
-  }
+function checkRoute(path) {
+  return new Promise((resolve) => {
+    https.get(`https://www.filingby.com${path}`, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        resolve({
+          status: res.statusCode,
+          headers: res.headers,
+          dataLength: data.length,
+          snippet: data.slice(0, 300)
+        });
+      });
+    }).on('error', (err) => {
+      resolve({ error: err.message });
+    });
+  });
 }
 
-pollDeployment();
+async function checkDeployment() {
+  console.log('Checking live deployment status...');
+  // We can check if /tools/structure-selector returns 200 with noindex
+  const toolCheck = await checkRoute('/tools/structure-selector');
+  // And check if /wpm returns 404
+  const wpmCheck = await checkRoute('/wpm');
+  // And check /cart returns 404
+  const cartCheck = await checkRoute('/cart');
+
+  console.log(`/tools/structure-selector -> Status: ${toolCheck.status}`);
+  console.log(`/wpm -> Status: ${wpmCheck.status}`);
+  console.log(`/cart -> Status: ${cartCheck.status}`);
+  if (toolCheck.headers) {
+    console.log(`Vercel Cache: ${toolCheck.headers['x-vercel-cache']}, Age: ${toolCheck.headers['age']}, Server: ${toolCheck.headers['server']}, Date: ${toolCheck.headers['date']}`);
+    console.log(`Vercel ID: ${toolCheck.headers['x-vercel-id']}`);
+  }
+
+  const isLive = toolCheck.status === 200 && wpmCheck.status === 404 && cartCheck.status === 404;
+  console.log(`Phase 1.3 Deployment Live: ${isLive ? 'YES! 🎉' : 'Deploying/Waiting...'}`);
+  return isLive;
+}
+
+async function run() {
+  for (let attempt = 1; attempt <= 20; attempt++) {
+    console.log(`\n--- Attempt ${attempt} (${attempt * 10}s) ---`);
+    const isLive = await checkDeployment();
+    if (isLive) {
+      console.log('DEPLOYMENT VERIFIED LIVE!');
+      process.exit(0);
+    }
+    await new Promise(r => setTimeout(r, 10000));
+  }
+  console.log('Timeout waiting for deployment');
+  process.exit(1);
+}
+
+run();
