@@ -313,6 +313,16 @@
       "source": "/virtual-office/:city(mumbai|surat|noida|gurugram|bangalore|pune|kolkata|delhi|gurgaon)/:area",
       "destination": "/virtual-office-:city/:area",
       "permanent": true
+    },
+    {
+      "source": "/blogs/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blogs",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -330,6 +340,10 @@
     },
     {
       "source": "/admin/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!assets/|feed\\.xml|sitemap.*\\.xml|image-sitemap.*\\.xml|robots\\.txt|ads\\.txt|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/index.html"
     }
   ]

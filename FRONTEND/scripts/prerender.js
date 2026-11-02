@@ -175,6 +175,7 @@ const STATIC_PAGES = [
           <h3 style="font-weight: 700; color: #0F172A; font-size: 17px; margin-bottom: 8px;">ROC &amp; MCA Annual Compliance</h3>
           <p style="font-size: 14px; color: #64748B; line-height: 1.5;">Filing annual financial statements (AOC-4), annual return of shares (MGT-7), LLP Form 8 &amp; 11, and DIR-3 KYC for active corporate directors.</p>
         </div>
+      </div>
       ${renderPrerenderPopularServices()}
 
       <h2 style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 36px; margin-bottom: 16px;">Free Compliance &amp; Tax Calculators</h2>

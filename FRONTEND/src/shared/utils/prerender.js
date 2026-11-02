@@ -83,5 +83,15 @@ export function revealPrerenderShell() {
   }
 
   document.documentElement.classList.remove(ACTIVE_CLASS);
-  document.querySelector(SHELL_SELECTOR)?.remove();
+  const shell = document.querySelector(SHELL_SELECTOR);
+  if (!shell) {
+    return;
+  }
+
+  const appRoot = document.getElementById("app-root");
+  if (appRoot && shell.contains(appRoot)) {
+    shell.parentNode?.insertBefore(appRoot, shell.nextSibling);
+  }
+
+  shell.remove();
 }
